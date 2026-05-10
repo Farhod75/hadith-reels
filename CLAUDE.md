@@ -79,3 +79,21 @@ hadith-reels/
 ## Run commands
 npm run dev -- -p 3002   (3000=other app, 3001=hadith-verifier)
 vercel --prod --force
+
+## Vercel env var best practice (Windows PowerShell)
+# Add to Production + Preview only (Development uses .env.local)
+# Selecting all 3 causes "Development cannot be combined" error
+
+vercel env add KEY_NAME production
+vercel env add KEY_NAME preview
+# Development reads from .env.local automatically — no need to add via CLI
+
+## Vercel deployment notes
+- Use: vercel env add KEY production then vercel env add KEY preview (separately)
+- Never select Development via CLI — use .env.local for local dev
+- Quick deploy: vercel --prod --force
+- Quick link new project: vercel --yes
+
+## Build status
+- Deployment URL: https://hadith-reels-553rlrbpd-farhod75s-projects.vercel.app
+- Status: scaffold deployed, UI in progress
