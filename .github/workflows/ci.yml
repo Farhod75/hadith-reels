@@ -1,0 +1,3 @@
+cd "C:\QA\Hadith verification AI app\hadith-reels"
+New-Item -ItemType Directory -Force ".github\workflows"
+New-Item -ItemType File ".github\workflows\ci.yml"
