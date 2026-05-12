@@ -1,9 +1,8 @@
 // remotion/index.tsx
-// P053: .tsx required for JSX
-// P054: double cast (X as unknown as Record<string,unknown>) for non-overlapping types
+// P056: Must call registerRoot() — required by Remotion CLI entry point
 
 import React from 'react'
-import { Composition } from 'remotion'
+import { Composition, registerRoot } from 'remotion'
 import { HadithReel, type HadithReelProps } from './compositions/HadithReel'
 import { KidsReel, type KidsReelProps } from './compositions/KidsReel'
 
@@ -13,7 +12,7 @@ const adultDefaults: HadithReelProps = {
   narrator:      'Abu Hurairah',
   collection:    'Sahih al-Bukhari',
   hadithNumber:  '1894',
-  story:         'One day the Prophet ﷺ saw his companions struggling with their desires and reminded them of fasting as a shield...',
+  story:         'One day the Prophet ﷺ saw his companions struggling with their desires and reminded them of fasting as a shield against temptation.',
   moral:         'Protect yourself with fasting — it shields the soul from harm.',
   seerahContext: 'During the blessed months in Madinah, the Prophet ﷺ taught his companions the power of voluntary fasting.',
   attribution:   '📖 Source: Ar-Raheeq Al-Makhtum',
@@ -32,7 +31,7 @@ const kidsDefaults: KidsReelProps = {
   audioUrl:     undefined,
 }
 
-export const RemotionRoot: React.FC = () => {
+const Root: React.FC = () => {
   return (
     <>
       <Composition
@@ -56,3 +55,6 @@ export const RemotionRoot: React.FC = () => {
     </>
   )
 }
+
+// Required by Remotion CLI — must be called in the entry point file
+registerRoot(Root)
