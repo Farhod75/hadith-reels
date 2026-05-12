@@ -138,3 +138,49 @@ await page.evaluate(() => {
   "Showing Russian translation (Tajik coming soon)"
 
 **Status:** DOCUMENTED — working as designed
+## ════════════════════════════════════════════════════════
+## PATTERN 54: @remotion/renderer native binaries break Next.js build
+## ════════════════════════════════════════════════════════
+**ID:** P054
+**Type:** Build fix (native module externalization)
+**Files:** next.config.js, app/api/render-reel/route.ts
+**Commit:** fix: externalize Remotion from Next.js build — native binaries (P054)
+
+**Symptom:**
+  CI #18 fails on Build step:
+  "Module not found: Can't resolve '@remotion/compositor-win32-x64-msvc'"
+  Import trace: ./app/api/render-reel/route.ts
+
+**Root cause:**
+  @remotion/renderer imports platform-specific native binaries at build time:
+  - compositor-win32-x64-msvc (Windows)
+  - compositor-linux-x64-gnu (Linux)
+  - compositor-darwin-arm64 (Mac M1)
+  Next.js webpack tries to bundle ALL of them during build.
+  Linux CI runner doesn't have the Windows binary → build fails.
+  Even if it didn't fail, Remotion can't render on Vercel serverless:
+  - Memory limit: 1GB (Remotion needs 4GB+)
+  - Timeout: 10s (rendering takes 2-10 minutes)
+  - No FFmpeg available
+
+**Fix — two parts:**
+  1. next.config.js: externalize all Remotion packages from webpack bundling
+     config.externals.push('@remotion/renderer', '@remotion/bundler', ...)
+  2. render-reel/route.ts: detect VERCEL env → return 501 with local instructions
+     Dynamic import of @remotion/renderer → only resolves locally
+
+**Where Remotion CAN run:**
+  - Local machine: full rendering via npm run remotion:adults
+  - AWS Lambda: @remotion/lambda (Phase 4)
+  - Render.com / Railway: persistent servers with FFmpeg
+
+**Local rendering commands (add to package.json scripts):**
+  "remotion:preview": "remotion preview remotion/index.tsx"
+  "remotion:adults": "remotion render remotion/index.tsx HadithReel out/adults.mp4"
+  "remotion:kids": "remotion render remotion/index.tsx KidsReel out/kids.mp4"
+
+**Rule going forward:**
+  Never import native binary packages (Remotion, Sharp, Canvas, FFmpeg)
+  in Next.js API routes without externalizing them in next.config.js first.
+
+**Status:** FIXED
