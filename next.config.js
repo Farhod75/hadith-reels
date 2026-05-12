@@ -1,34 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // P054: Externalize @remotion/renderer — it uses native Windows binaries
-  // that cannot be bundled by Next.js webpack on Linux CI/Vercel.
-  // Remotion rendering runs locally only — not on Vercel serverless.
-  experimental: {
-    serverComponentsExternalPackages: [
-      '@remotion/renderer',
-      '@remotion/bundler',
-      '@remotion/compositor-win32-x64-msvc',
-      '@remotion/compositor-linux-x64-gnu',
-      'remotion',
-    ],
-  },
+  // P054/P055: Externalize Remotion native binaries from Next.js build
+  // Next.js 15+: use serverExternalPackages (not experimental.serverComponentsExternalPackages)
+  // Next.js 16+: uses Turbopack by default — no webpack config needed
+  serverExternalPackages: [
+    '@remotion/renderer',
+    '@remotion/bundler',
+    '@remotion/compositor-win32-x64-msvc',
+    '@remotion/compositor-linux-x64-gnu',
+    '@remotion/compositor-linux-x64-musl',
+    '@remotion/compositor-darwin-x64',
+    '@remotion/compositor-darwin-arm64',
+    'remotion',
+  ],
 
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      // Prevent webpack from trying to bundle Remotion native modules
-      config.externals = [
-        ...(Array.isArray(config.externals) ? config.externals : []),
-        '@remotion/renderer',
-        '@remotion/bundler',
-        '@remotion/compositor-win32-x64-msvc',
-        '@remotion/compositor-linux-x64-gnu',
-        '@remotion/compositor-linux-x64-musl',
-        '@remotion/compositor-darwin-x64',
-        '@remotion/compositor-darwin-arm64',
-      ]
-    }
-    return config
-  },
+  // Silence Turbopack warning — we have no webpack customizations
+  turbopack: {},
 
   async headers() {
     return [
