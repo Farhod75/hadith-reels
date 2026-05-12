@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "remotion:preview": "remotion preview remotion/index.tsx",
+    "remotion:adults": "remotion render remotion/index.tsx HadithReel out/adults.mp4",
+    "remotion:kids": "remotion render remotion/index.tsx KidsReel out/kids.mp4"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.1",
@@ -19,6 +22,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "remotion": "^4.0.460"
+    
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
