@@ -1,25 +1,25 @@
-name: Hadith Reels CI/CD
+name: HadithReels CI
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
     inputs:
-      run_audit:
-        description: 'Run audit tests against production'
-        required: false
+      run_real_api:
+        description: 'Run real API tests against production'
         default: 'false'
         type: choice
         options: ['false', 'true']
 
 jobs:
   test:
-    name: Playwright Tests
+    name: Build + Playwright Tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,16 +30,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Type check
+        run: npx tsc --noEmit
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # ── P043/P045: Only mocked/fast tests in CI push
+      # P043/P045: ONLY mocked tests in CI push
+      # language-speech.spec.ts → EXCLUDED (real ElevenLabs calls)
+      # Real API tests → manual: npx playwright test --grep @real-api
       - name: Run E2E tests
         run: npx playwright test tests/hadith-reels.spec.ts --reporter=list --workers=1 --project=chromium
         env:
           BASE_URL: https://hadith-reels.vercel.app
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        continue-on-error: true
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
