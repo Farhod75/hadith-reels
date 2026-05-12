@@ -1,99 +1,165 @@
-@AGENTS.md
-# CLAUDE.md — HadithReels
-# Context file for Claude Code
+# CLAUDE.md
+# Hadith Reels — Context file for Claude Code
 # github.com/Farhod75/hadith-reels
+# Last updated: May 2026 — CI #13 ✅
+# Read AGENTS.md and QA_STANDARDS_AGENT_RULES.md before every task
+# ============================================================
 
 ## What this project does
-HadithReels creates short animated video reels based on authentic
-(sahih) hadiths from the hadith_library Supabase table (shared with
-hadith-verifier). Each reel includes:
-- Arabic text + translation
-- AI-generated story behind the hadith (Claude)
-- AI-generated moral lesson
-- Text-to-Speech narration (ElevenLabs)
-- Animated Remotion composition
-- Export as MP4 for Instagram/TikTok/Telegram
+AI-powered content studio that creates authentic Islamic hadith reels
+for social media (Instagram, TikTok, YouTube Shorts, Telegram).
+YOU create reels → YOU post → YOU monetize.
+Revenue covers Vercel + Railway + Supabase + ElevenLabs + Claude API costs.
+HadithVerifier.com stays free forever.
 
-## Audience segments
-- Adults: formal tone, dark elegant themes, scholarly language
-- Kids (6-14): simple language, bright colorful themes, fun facts
+Core principle: Only sahih/hasan hadiths. Never daif. Human approves before posting.
 
-## Languages
-- Arabic (ar) — primary
-- Uzbek (uz)
-- Russian (ru)
-- Tajik (tj) — uses Persian/Farsi voices as fallback
+## Business model
+- NOT a user-facing reel creation tool
+- YOU use the admin panel (/admin) to generate reels
+- Public site (/) shows hadith library + watch reels
+- Monetization: YouTube Partner + TikTok Creator + Islamic brand sponsors
 
 ## Tech stack
-- Next.js 14 + TypeScript + Tailwind CSS
-- Remotion (video composition + export)
-- Anthropic Claude Sonnet (claude-sonnet-4-6)
-- ElevenLabs (TTS — multilingual voices)
-- Supabase (SHARED with hadith-verifier)
-- Vercel (hosting)
-- Stripe (monetization — Free/Pro/Team)
-
-## Shared infrastructure
-- Supabase: same project as hadith-verifier
-  - Tables used: hadith_library, hadith_reels, reel_history, search_history
-  - RLS disabled on all tables
-  - Always use SUPABASE_SERVICE_ROLE_KEY server-side
-- ElevenLabs: same API key as hadith-verifier
-- Anthropic: same API key as hadith-verifier
+- Frontend: Next.js 14 + TypeScript + Tailwind CSS
+- AI: Anthropic Claude Sonnet (claude-sonnet-4-20250514)
+- TTS: ElevenLabs Multilingual v2 (Hijazi AR, Abrar Sabbah RU/UZ)
+- Video: Remotion (planned Phase 2)
+- Database: Supabase (SHARED with hadith-verifier)
+- Hosting: Vercel (port 3002 locally)
+- Testing: Playwright (TypeScript)
 
 ## Project structure
+```
 hadith-reels/
 ├── app/
-│   ├── page.tsx               — main UI (Browse|Create|MyReels|History)
-│   ├── layout.tsx
+│   ├── page.tsx              — public: Hadith library + Watch reels tabs
+│   ├── layout.tsx            — metadata, Inter font, theme
+│   ├── globals.css
 │   └── api/
-│       ├── generate-reel/     — Claude AI content generation
-│       ├── tts/               — ElevenLabs proxy (same as hadith-verifier)
-│       ├── reels/             — Supabase CRUD for hadith_reels
-│       └── search/            — hadith_library search by tag/keyword
-├── components/
-│   ├── TTSPlayer.tsx          — same as hadith-verifier
-│   ├── ReelCard.tsx           — reel preview card
-│   ├── AudienceToggle.tsx     — Adults/Kids toggle
-│   ├── ThemePicker.tsx        — visual theme selector
-│   └── VoicePicker.tsx        — voice/reciter selector
-├── remotion/
-│   ├── HadithReel.tsx         — adults composition
-│   ├── KidsReel.tsx           — kids composition
-│   └── index.ts               — composition registry
-├── lib/
-│   ├── voices.ts              — voice matrix (all 4 langs × 2 audiences)
-│   ├── themes.ts              — theme definitions
-│   └── supabase.ts            — shared Supabase client
-├── CLAUDE.md                  — this file
-├── CHANGELOG.md
-├── FEATURES.md
-└── README.md
+│       ├── reels/route.ts    — GET hadith_library (sahih/hasan only)
+│       ├── generate-reel/    — POST: Claude story+moral+seerah_context
+│       ├── tts/route.ts      — ElevenLabs proxy (lang×style voice map)
+│       ├── search/route.ts   — hadith search (stub — use /api/reels)
+│       └── admin/
+│           └── verify/       — POST: ADMIN_PASSWORD check
+├── admin/
+│   ├── page.tsx              — admin studio (password gated)
+│   └── layout.tsx            — dark slate theme
+├── tests/
+│   └── hadith-reels.spec.ts  — Playwright CI tests (all mocked)
+├── playwright.config.ts
+├── next.config.js            — CSP headers (ElevenLabs + blob: audio)
+├── .github/workflows/ci.yml  — push: E2E mocked only | manual: real API
+├── AGENTS.md                 — agent orchestration rulebook
+├── QA_STANDARDS_AGENT_RULES.md
+├── CI_WORKFLOW_TEMPLATE.md
+├── fix_patterns.md           — P046–P050
+└── CLAUDE.md                 — this file
+```
 
-## Monetization tiers
-- Free: 3 reel exports/month, 720p, watermark
-- Pro ($4.99/mo): unlimited HD, no watermark, all themes, all voices
-- Family ($9.99/mo): Pro + Kids content unlocked
-- Team ($19/mo): 5 users, custom logo, bulk export
+## Environment variables
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xeirfeqnbjfyszykiraa.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+SUPABASE_SERVICE_ROLE_KEY=eyJ...      ← ALWAYS use this server-side
+ANTHROPIC_API_KEY=sk-ant-...
+ELEVENLABS_API_KEY=sk_...
+ADMIN_PASSWORD=***                    ← set in Vercel + .env.local
+```
+
+## Shared Supabase (with hadith-verifier)
+- Project: xeirfeqnbjfyszykiraa.supabase.co
+- Tables used: hadith_library (70 hadiths), hadith_reels
+- NEVER drop or alter hadith_library without coordinating with HV
+- RLS disabled — always use SUPABASE_SERVICE_ROLE_KEY server-side
+- hadith_library columns: text_arabic, text_english, text_uzbek, text_russian
+- NO text_tajik column — TJ shows Russian fallback (P050)
+
+## Languages
+| Code | Display text | Narration | Seerah source |
+|---|---|---|---|
+| ar | text_arabic | Hijazi (ElevenLabs) | Ar-Raheeq Al-Makhtum |
+| en | text_english | EN voice | Ar-Raheeq Al-Makhtum |
+| uz | text_uzbek (or EN) | Abrar Sabbah | Усваи Хасана |
+| ru | text_russian | Abrar Sabbah | Усваи Хасана |
+| tj | text_russian (fallback) | Tajik Cyrillic via Claude | Усваи Хасана |
+
+## Seerah sources (P049)
+- AR/EN: Ar-Raheeq Al-Makhtum (Safiur Rahman al-Mubarakpuri, 1976)
+  Scholarly, eloquent, historical. Award: Muslim World League 1979.
+- UZ/RU/TJ: Усваи Хасана (Uswa al-Hasana)
+  Turkish multi-volume Seerah, translated to Russian/Uzbek.
+  Emotional, devotional, warm. Better for Central Asian/Russian audience.
+
+## Admin panel (/admin)
+- Password gated via ADMIN_PASSWORD env var
+- 4-step workflow: Pick hadith → Generate → Preview → Done
+- Config: Adults/Kids style + 5 languages + grade filter
+- Claude generates: title + story + moral + seerah_context + caption_intro
+- ElevenLabs audio preview per section
+- MP3 download button
+- Auto-generated social caption with hashtags + source attribution
+- One-click open: Instagram / TikTok / YouTube / Telegram
+
+## Public page (/)
+- Tab 1: Hadith library — browse 70 hadiths, search, grade filter
+- Tab 2: Watch reels — coming soon + follow buttons (YT/IG/TG/TikTok)
+- HV cross-link banner always visible
+- Generate reel button NOT on public page (admin only)
 
 ## Run commands
-npm run dev -- -p 3002   (3000=other app, 3001=hadith-verifier)
+```powershell
+npm run dev -- -p 3002
+npx playwright test tests/hadith-reels.spec.ts --project=chromium
 vercel --prod --force
+```
 
-## Vercel env var best practice (Windows PowerShell)
-# Add to Production + Preview only (Development uses .env.local)
-# Selecting all 3 causes "Development cannot be combined" error
+## CI workflow
+Push triggers:
+- ✅ Type check (continue-on-error)
+- ✅ Build
+- ✅ E2E tests (hadith-reels.spec.ts — mocked)
+NOT in push CI:
+- ❌ language-speech.spec.ts (real ElevenLabs)
+Manual dispatch: run_real_api=true
 
-vercel env add KEY_NAME production
-vercel env add KEY_NAME preview
-# Development reads from .env.local automatically — no need to add via CLI
+## CI history
+- #1–5 ❌ yml had language-speech step (P046)
+- #6 ✅ correct yml + mocked spec (P046)
+- #7–8 ❌ emoji tab button locator (P047/P048)
+- #9 ✅ functional outcome tests (P048)
+- #10 ✅ fix_patterns + AGENTS.md docs
+- #11 ✅ admin studio deployed
+- #12 ✅ dual seerah sources (P049)
+- #13 ✅ TJ Russian fallback (P050)
 
-## Vercel deployment notes
-- Use: vercel env add KEY production then vercel env add KEY preview (separately)
-- Never select Development via CLI — use .env.local for local dev
-- Quick deploy: vercel --prod --force
-- Quick link new project: vercel --yes
+## Fix patterns (HR specific, P046–P050)
+P046: ci.yml had language-speech real ElevenLabs step
+P047: emoji tab button locator breaks in headless CI
+P048: test functionality not emoji label text
+P049: dual seerah sources — Uswa al-Hasana for UZ/TJ/RU
+P050: TJ has no text_tajik — Russian fallback for display
 
-## Build status
-- Deployment URL: https://hadith-reels-553rlrbpd-farhod75s-projects.vercel.app
-- Status: scaffold deployed, UI in progress
+## Phase roadmap
+| Phase | Feature | Status |
+|---|---|---|
+| 1 | Browse tab (real Supabase) | ✅ Done |
+| 1 | Generate tab → Claude story | ✅ Done |
+| 1 | TTS via ElevenLabs | ✅ Done |
+| 1 | Admin studio (/admin) | ✅ Done |
+| 1 | Public page (Browse+Watch) | ✅ Done |
+| 1 | Dual seerah sources | ✅ Done |
+| 2 | Remotion MP4 export | ⏳ Next |
+| 3 | Telegram auto-post | ⏳ Quick win |
+| 3 | Buffer API (IG/TikTok/YT) | ⏳ Pending |
+| 4 | Daily cron agent | ⏳ Pending |
+| 4 | YouTube monetization | ⏳ Pending |
+| 5 | Stripe custom reels service | ⏳ Pending |
+
+## Live URLs
+- Public: https://hadith-reels.vercel.app
+- Admin: https://hadith-reels.vercel.app/admin
+- GitHub: https://github.com/Farhod75/hadith-reels
+- Companion: https://hadithverifier.com (shared Supabase)
+- Domain: hadithreels.com (coming)
