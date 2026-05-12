@@ -111,3 +111,30 @@ await page.evaluate(() => {
   AR/EN: 📖 Source: Ar-Raheeq Al-Makhtum
 
 **Status:** IMPLEMENTED
+## ════════════════════════════════════════════════════════
+## PATTERN 50: TJ (Tajik) — no text_tajik column in DB
+## ════════════════════════════════════════════════════════
+**ID:** P050
+**Type:** Language handling clarification
+**File:** app/api/reels/route.ts
+**Commit:** fix: TJ display uses Russian fallback, narration in Tajik (P050)
+
+**Symptom:** When TJ selected, hadiths show Russian text — looks like a bug
+
+**Explanation — NOT a bug:**
+  hadith_library has: text_arabic, text_english, text_uzbek, text_russian
+  NO text_tajik column exists.
+  Tajik is culturally close to Persian/Dari and uses Russian as bridge language.
+  Russian text is the correct fallback for TJ display.
+
+**Two-layer TJ support:**
+  Layer 1 — Browse display: Russian text (text_russian fallback) ✅
+  Layer 2 — Reel narration: Claude generates Tajik Cyrillic via generate-reel ✅
+
+**Future:** Add text_tajik column to hadith_library when Tajik translations
+  are available. Then update display mapping from 'ru_fallback' to 'tj'.
+
+**display_lang field:** Added to API response so UI can show:
+  "Showing Russian translation (Tajik coming soon)"
+
+**Status:** DOCUMENTED — working as designed
