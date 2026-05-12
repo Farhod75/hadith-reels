@@ -184,3 +184,65 @@ Phase 5 — Monetization
 *Last updated: May 2026*
 *Read QA_STANDARDS_AGENT_RULES.md for full universal standards*
 *HV fix patterns (P001–P043) also apply to this project*
+## ════════════════════════════════════════════════════════
+## ADDENDUM TO AGENTS.md (both HV and HR)
+## Append to the bottom of each AGENTS.md
+## ════════════════════════════════════════════════════════
+
+## ── GOLDEN RULE: CI GREEN GATE ──────────────────────────
+## Added: May 2026 — agreed with Farhod
+## ─────────────────────────────────────────────────────────
+
+### The rule
+**NEVER move to the next task until CI is green.**
+
+This applies to:
+- Every feature build
+- Every bug fix
+- Every doc update
+- Every spec change
+- Moving from HV tasks to HR tasks (or vice versa)
+- Starting any new Phase
+
+### Why
+- Red CI = broken code in main branch = next push builds on broken foundation
+- Moving forward with red CI caused 10+ wasted CI runs (P037–P048)
+- Each wasted run = 3-5 minutes + context switching + debugging time
+
+### How to enforce
+Before declaring any task complete, the orchestrator MUST:
+1. Confirm CI run number from GitHub Actions
+2. Confirm green ✅ status
+3. Only then mark task done and move to next
+
+### Exception
+Documentation-only commits (CLAUDE.md, fix_patterns.md, README.md):
+- These cannot break CI
+- Can be pushed while watching another CI run
+- But still must not contain code changes
+
+### What to do if CI is red
+1. STOP — do not start next task
+2. CI monitor agent reads the failure
+3. Check fix_patterns.md first
+4. Fix the failing test
+5. Push fix
+6. Wait for green
+7. THEN move forward
+
+## ── NEVER-DO LIST ADDITIONS (P046–P048) ─────────────────
+
+- P046: Never add language-speech or ElevenLabs steps to CI push workflow
+- P047: Never use getByText() or filter({ hasText }) on buttons with emojis
+- P048: Never test UI label text — test functional outcome instead
+- P048: For emoji tab buttons use page.evaluate() to click by textContent
+- P048: For lang buttons scope to header: page.locator('header').locator('button', { hasText: 'EN' })
+
+## ── TEST DESIGN CHECKLIST (before writing any new test) ──
+
+Ask these questions before writing each test:
+1. Am I testing a label/text or a functional outcome? → Test outcome
+2. Does the element I'm targeting contain an emoji? → Use evaluate()
+3. Am I calling a real external API? → Mock it or tag @real-api
+4. Is this locator scoped to a specific container? → If not, scope it
+5. Would this test pass if the feature was broken? → If yes, rewrite it
