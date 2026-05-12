@@ -76,3 +76,38 @@ await page.evaluate(() => {
   page.locator('header').locator('button', { hasText: 'EN' })
 
 **Status:** FIXED — CI #9 ✅
+## ════════════════════════════════════════════════════════
+## PATTERN 49: Dual Seerah sources for UZ/TJ/RU vs AR/EN
+## ════════════════════════════════════════════════════════
+**ID:** P049
+**Type:** Feature enhancement (content quality)
+**File:** app/api/generate-reel/route.ts
+**Commit:** feat: dual seerah sources — Uswa al-Hasana for UZ/TJ/RU (P049)
+
+**Why:**
+  Ar-Raheeq Al-Makhtum is the authoritative English/Arabic Seerah but
+  its style is scholarly and historical. For Uzbek, Tajik and Russian
+  audiences, Uswa al-Hasana (Усваи Хасана) — the Turkish multi-volume
+  Seerah translated into Russian/Uzbek — is more culturally appropriate:
+  - Emotional and devotional tone
+  - Strong emphasis on love for the Prophet ﷺ
+  - Better for social media engagement in Central Asian/Russian audience
+  - Already familiar to Uzbek and Tajik Muslim communities
+
+**Implementation:**
+  getSeerahSource(lang) returns source name + description + attribution:
+  - AR/EN → Ar-Raheeq Al-Makhtum (Safiur Rahman al-Mubarakpuri)
+  - UZ/TJ/RU → Uswa al-Hasana (Усваи Хасана)
+
+  Attribution string injected into:
+  - Claude prompt (source to draw from)
+  - JSON response (source_attribution field)
+  - Social media caption
+
+**Attribution strings:**
+  RU: 📖 Источник: Усваи Хасана
+  TJ: 📖 Сарчашма: Усваи Ҳасана
+  UZ: 📖 Манба: Усваи Ҳасана
+  AR/EN: 📖 Source: Ar-Raheeq Al-Makhtum
+
+**Status:** IMPLEMENTED
