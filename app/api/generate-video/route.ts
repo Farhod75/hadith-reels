@@ -1,6 +1,5 @@
 // app/api/generate-video/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { fal } from '@fal-ai/client'
 
 const SCENE_PROMPTS: Record<string, string> = {
   intro: `Cinematic Islamic mosque interior at golden hour,
@@ -55,13 +54,15 @@ export async function POST(req: NextRequest) {
     const promptKey = style === 'kids' ? 'kids' : scene
     const prompt = SCENE_PROMPTS[promptKey] || SCENE_PROMPTS.intro
 
+    // Dynamic import — avoids Turbopack bundling issues
+    const { fal } = await import('@fal-ai/client')
+
     const result = await fal.subscribe('fal-ai/kling-video/v1.6/standard/text-to-video', {
       input: {
         prompt,
-        duration: '5',
+        duration: '10',
         aspect_ratio: '9:16',
       },
-      
       logs: true,
     })
 
