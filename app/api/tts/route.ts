@@ -21,8 +21,8 @@ const VOICE_MAP: Record<string, Record<string, string>> = {
     kids:   process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
   },
   en: {
-    adults: process.env.ELEVENLABS_VOICE_EN_ADULTS  || 'pNInz6obpgDQGcFmaJgB',
-    kids:   process.env.ELEVENLABS_VOICE_EN_KIDS    || 'pNInz6obpgDQGcFmaJgB',
+    adults: process.env.ELEVENLABS_VOICE_EN_ADULTS  || 'EkK5I93UQWFDigLMpZcX',
+    kids:   process.env.ELEVENLABS_VOICE_EN_KIDS    || 'FVQMzxJGPUBtfz1Azdoy',
   },
   tj: {
     // Tajik: fallback to Russian voice
