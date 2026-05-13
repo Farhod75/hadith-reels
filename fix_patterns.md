@@ -300,3 +300,34 @@ await page.evaluate(() => {
 - Background images committed to repo
 - Remotion render with audio narration (ElevenLabs)
 - AI video tools evaluation (Runway ML API)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 67: @fal-ai/client SDK breaks Turbopack CI build
+## ════════════════════════════════════════════════════════
+**ID:** P067
+**Type:** Build fix (SDK → direct REST API)
+**Files:** app/api/generate-video/route.ts, next.config.js
+**Commit:** fix: fal.ai direct REST API + CSP headers (P067)
+**Date:** May 13 2026 — HR CI #30
+
+**Symptom:** CI build fails — "Cannot find module '@fal-ai/client'"
+  Even with serverExternalPackages and dynamic import — Turbopack
+  still tries to resolve the module at build time in CI Ubuntu runner.
+
+**Fix:** Remove @fal-ai/client SDK entirely. Use direct fetch() calls
+  to fal.ai REST API: queue.fal.run
+  No imports = no bundling issues. Works in CI and locally.
+
+**Also:** Added fal.ai domains to CSP connect-src in next.config.js:
+  https://queue.fal.run https://v3b.fal.media
+
+**Voice updates:**
+  EN adults: James — EkK5I93UQWFDigLMpZcX (husky, bold, narration)
+  EN kids:   Danielle — FVQMzxJGPUBtfz1Azdoy (gentle, engaging)
+
+**Rule going forward:**
+  Never import heavy SDK packages in Next.js API routes.
+  Always prefer direct fetch() to REST APIs — no bundling issues,
+  smaller bundle, works in all environments.
+
+**Status:** FIXED — CI #30 ✅
