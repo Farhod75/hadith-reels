@@ -75,33 +75,38 @@ test.describe('UI — Page loads', () => {
 
   test('should show EN language button', async ({ page }) => {
     await gotoAndWait(page)
-    // Use header scope to avoid false matches in hadith content
-    const header = page.locator('header')
-    await expect(header.locator('button', { hasText: 'EN' }).first()).toBeVisible()
+    // Use filter with regex — emoji comment nodes make exact text match fragile
+    await expect(
+      page.locator('header button').filter({ hasText: /EN/ }).first()
+    ).toBeVisible()
   })
 
   test('should show UZ language button', async ({ page }) => {
     await gotoAndWait(page)
-    const header = page.locator('header')
-    await expect(header.locator('button', { hasText: 'UZ' }).first()).toBeVisible()
+    await expect(
+      page.locator('header button').filter({ hasText: /UZ/ }).first()
+    ).toBeVisible()
   })
 
   test('should show AR language button', async ({ page }) => {
     await gotoAndWait(page)
-    const header = page.locator('header')
-    await expect(header.locator('button', { hasText: 'AR' }).first()).toBeVisible()
+    await expect(
+      page.locator('header button').filter({ hasText: /AR/ }).first()
+    ).toBeVisible()
   })
 
   test('should show RU language button', async ({ page }) => {
     await gotoAndWait(page)
-    const header = page.locator('header')
-    await expect(header.locator('button', { hasText: 'RU' }).first()).toBeVisible()
+    await expect(
+      page.locator('header button').filter({ hasText: /RU/ }).first()
+    ).toBeVisible()
   })
 
   test('should show TJ language button', async ({ page }) => {
     await gotoAndWait(page)
-    const header = page.locator('header')
-    await expect(header.locator('button', { hasText: 'TJ' }).first()).toBeVisible()
+    await expect(
+      page.locator('header button').filter({ hasText: /TJ/ }).first()
+    ).toBeVisible()
   })
 })
 
@@ -180,43 +185,39 @@ test.describe('Browse tab functionality (CT-GenAI)', () => {
 // ═════════════════════════════════════════════════════════════════════════════
 test.describe('Watch tab', () => {
 
-  // P048: click the tab using evaluate() to find button by partial textContent
-  // avoids emoji rendering issues in headless chromium
-  async function clickWatchTab(page: Page) {
-    await page.evaluate(() => {
-      const buttons = Array.from(document.querySelectorAll('button'))
-      const watchBtn = buttons.find(b => b.textContent?.toLowerCase().includes('watch'))
-      watchBtn?.click()
-    })
-    await page.waitForTimeout(500)
-  }
-
   test('should show coming soon on Watch tab', async ({ page }) => {
     await gotoAndWait(page)
-    await clickWatchTab(page)
-    await page.waitForSelector('text=/coming soon/i', { timeout: 8000 })
-    await expect(page.getByText(/coming soon/i).first()).toBeVisible()
+    await page.evaluate(() => {
+  const btn = Array.from(document.querySelectorAll('button'))
+    .find(b => b.textContent?.toLowerCase().includes('watch'))
+  btn?.click()
+}) 
+    await expect(page.getByText(/Reels coming soon/i).first()).toBeVisible()
   })
 
   test('should show YouTube link on Watch tab', async ({ page }) => {
     await gotoAndWait(page)
-    await clickWatchTab(page)
-    await page.waitForSelector('text=/youtube/i', { timeout: 8000 })
-    await expect(page.getByText(/youtube/i).first()).toBeVisible()
+    await page.evaluate(() => {
+  const btn = Array.from(document.querySelectorAll('button'))
+    .find(b => b.textContent?.toLowerCase().includes('watch'))
+  btn?.click()
+})
+    await expect(page.locator('a[href*="youtube"]').first()).toBeVisible()
   })
 
   test('should show Telegram link on Watch tab', async ({ page }) => {
     await gotoAndWait(page)
-    await clickWatchTab(page)
-    await page.waitForSelector('text=/telegram/i', { timeout: 8000 })
-    await expect(page.getByText(/telegram/i).first()).toBeVisible()
+    await page.evaluate(() => {
+  const btn = Array.from(document.querySelectorAll('button'))
+    .find(b => b.textContent?.toLowerCase().includes('watch'))
+  btn?.click()
+})
+    await expect(page.locator('a[href*="t.me"], a[href*="telegram"]').first()).toBeVisible()
   })
 
   test('Generate reel button NOT on public page', async ({ page }) => {
     await gotoAndWait(page)
-    // Generate reel is removed from public — only in /admin
-    const generateBtns = page.locator('button').filter({ hasText: /generate reel/i })
-    await expect(generateBtns).toHaveCount(0)
+    await expect(page.getByRole('button', { name: /generate reel/i })).toHaveCount(0)
   })
 })
 
