@@ -76,6 +76,7 @@ await page.evaluate(() => {
   page.locator('header').locator('button', { hasText: 'EN' })
 
 **Status:** FIXED — CI #9 ✅
+
 ## ════════════════════════════════════════════════════════
 ## PATTERN 49: Dual Seerah sources for UZ/TJ/RU vs AR/EN
 ## ════════════════════════════════════════════════════════
@@ -99,18 +100,8 @@ await page.evaluate(() => {
   - AR/EN → Ar-Raheeq Al-Makhtum (Safiur Rahman al-Mubarakpuri)
   - UZ/TJ/RU → Uswa al-Hasana (Усваи Хасана)
 
-  Attribution string injected into:
-  - Claude prompt (source to draw from)
-  - JSON response (source_attribution field)
-  - Social media caption
-
-**Attribution strings:**
-  RU: 📖 Источник: Усваи Хасана
-  TJ: 📖 Сарчашма: Усваи Ҳасана
-  UZ: 📖 Манба: Усваи Ҳасана
-  AR/EN: 📖 Source: Ar-Raheeq Al-Makhtum
-
 **Status:** IMPLEMENTED
+
 ## ════════════════════════════════════════════════════════
 ## PATTERN 50: TJ (Tajik) — no text_tajik column in DB
 ## ════════════════════════════════════════════════════════
@@ -120,24 +111,11 @@ await page.evaluate(() => {
 **Commit:** fix: TJ display uses Russian fallback, narration in Tajik (P050)
 
 **Symptom:** When TJ selected, hadiths show Russian text — looks like a bug
-
 **Explanation — NOT a bug:**
   hadith_library has: text_arabic, text_english, text_uzbek, text_russian
-  NO text_tajik column exists.
-  Tajik is culturally close to Persian/Dari and uses Russian as bridge language.
-  Russian text is the correct fallback for TJ display.
-
-**Two-layer TJ support:**
-  Layer 1 — Browse display: Russian text (text_russian fallback) ✅
-  Layer 2 — Reel narration: Claude generates Tajik Cyrillic via generate-reel ✅
-
-**Future:** Add text_tajik column to hadith_library when Tajik translations
-  are available. Then update display mapping from 'ru_fallback' to 'tj'.
-
-**display_lang field:** Added to API response so UI can show:
-  "Showing Russian translation (Tajik coming soon)"
-
+  NO text_tajik column exists. Russian text is the correct fallback for TJ.
 **Status:** DOCUMENTED — working as designed
+
 ## ════════════════════════════════════════════════════════
 ## PATTERN 54: @remotion/renderer native binaries break Next.js build
 ## ════════════════════════════════════════════════════════
@@ -146,41 +124,179 @@ await page.evaluate(() => {
 **Files:** next.config.js, app/api/render-reel/route.ts
 **Commit:** fix: externalize Remotion from Next.js build — native binaries (P054)
 
+**Symptom:** CI #18 fails — "Module not found: @remotion/compositor-win32-x64-msvc"
+**Root cause:** Remotion uses platform-specific native binaries. Next.js webpack
+  tries to bundle ALL platforms. Linux CI runner fails on Windows binary.
+**Fix:** Externalize all Remotion packages in next.config.js. Detect VERCEL
+  env in render-reel route → return 501 with local render instructions.
+**Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 62: $env:BASE_URL session variable overrides playwright config
+## ════════════════════════════════════════════════════════
+**ID:** P062
+**Type:** Test environment bug (session variable pollution)
+**File:** tests/hadith-reels.spec.ts, playwright.config.ts
+**Commit:** fix: Watch tab click via evaluate() for emoji button — P048 (P063)
+**Date:** May 13 2026 — HR CI #24
+
 **Symptom:**
-  CI #18 fails on Build step:
-  "Module not found: Can't resolve '@remotion/compositor-win32-x64-msvc'"
-  Import trace: ./app/api/render-reel/route.ts
+  All 25 tests failing locally. Playwright opens hadithverifier.com (production)
+  instead of localhost:3002. h1 shows "Hadith Verifier" not "Hadith Reels".
+  Tests time out immediately trying to find elements that don't exist on HV.
 
 **Root cause:**
-  @remotion/renderer imports platform-specific native binaries at build time:
-  - compositor-win32-x64-msvc (Windows)
-  - compositor-linux-x64-gnu (Linux)
-  - compositor-darwin-arm64 (Mac M1)
-  Next.js webpack tries to bundle ALL of them during build.
-  Linux CI runner doesn't have the Windows binary → build fails.
-  Even if it didn't fail, Remotion can't render on Vercel serverless:
-  - Memory limit: 1GB (Remotion needs 4GB+)
-  - Timeout: 10s (rendering takes 2-10 minutes)
-  - No FFmpeg available
+  $env:BASE_URL was set to "https://hadithverifier.com" in the PowerShell
+  session from a previous HV audit test run:
+    $env:BASE_URL="https://hadithverifier.com"  ← set earlier, never cleared
+  playwright.config.ts reads: process.env.BASE_URL || 'http://localhost:3002'
+  Since BASE_URL was set → Playwright used hadithverifier.com for all tests.
+  This affected ALL test runs in the same terminal session.
 
-**Fix — two parts:**
-  1. next.config.js: externalize all Remotion packages from webpack bundling
-     config.externals.push('@remotion/renderer', '@remotion/bundler', ...)
-  2. render-reel/route.ts: detect VERCEL env → return 501 with local instructions
-     Dynamic import of @remotion/renderer → only resolves locally
-
-**Where Remotion CAN run:**
-  - Local machine: full rendering via npm run remotion:adults
-  - AWS Lambda: @remotion/lambda (Phase 4)
-  - Render.com / Railway: persistent servers with FFmpeg
-
-**Local rendering commands (add to package.json scripts):**
-  "remotion:preview": "remotion preview remotion/index.tsx"
-  "remotion:adults": "remotion render remotion/index.tsx HadithReel out/adults.mp4"
-  "remotion:kids": "remotion render remotion/index.tsx KidsReel out/kids.mp4"
+**Fix:**
+  Clear the env var before running HR tests:
+    $env:BASE_URL = ""
+  Confirm it's cleared:
+    echo $env:BASE_URL  ← should print nothing
 
 **Rule going forward:**
-  Never import native binary packages (Remotion, Sharp, Canvas, FFmpeg)
-  in Next.js API routes without externalizing them in next.config.js first.
+  ALWAYS clear $env:BASE_URL before switching between HV and HR test runs.
+  Add to pre-push hook: explicit BASE_URL=http://localhost:3002 passed to
+  Playwright so session variables cannot override it.
 
-**Status:** FIXED
+**Prevention:**
+  Pre-push hook now passes BASE_URL explicitly:
+    BASE_URL=http://localhost:3002 npx playwright test ...
+  This makes the hook immune to session variable pollution.
+
+**Status:** FIXED — CI #24 ✅
+
+## ════════════════════════════════════════════════════════
+## PATTERN 63: Watch tab emoji button — all locator strategies fail
+## ════════════════════════════════════════════════════════
+**ID:** P063
+**Type:** Test fix (emoji button click)
+**File:** tests/hadith-reels.spec.ts
+**Commit:** fix: Watch tab click via evaluate() for emoji button — P048 (P063)
+**Date:** May 13 2026 — HR CI #24
+
+**Symptom:**
+  Watch tab tests timeout on button click. Tried all strategies:
+  1. page.locator('button').filter({ hasText: /Watch reels/i }) → timeout
+  2. page.getByRole('button', { name: /Watch reels/i }) → timeout
+  3. page.getByText('🎬 Watch reels', { exact: true }) → timeout
+  All fail because emoji "🎬" creates separate text node in headless Chromium.
+
+**Root cause:**
+  Button renders as: <button>🎬<!-- --> <!-- -->Watch reels</button>
+  The emoji + HTML comment nodes + space break ALL Playwright text matchers.
+  This is the same root cause as P047/P048 — emoji text nodes are
+  non-deterministic in headless Chromium.
+
+**Fix — page.evaluate() only reliable approach:**
+```ts
+await page.evaluate(() => {
+  const btn = Array.from(document.querySelectorAll('button'))
+    .find(b => b.textContent?.toLowerCase().includes('watch'))
+  btn?.click()
+})
+```
+  evaluate() runs in browser context → accesses raw textContent →
+  emoji rendering doesn't affect textContent string matching.
+
+**Rule (extends P048):**
+  For ANY button containing emoji + text: ALWAYS use page.evaluate()
+  Never use: getByText(), getByRole(), filter({ hasText }) for emoji buttons.
+
+**Status:** FIXED — CI #24 ✅ — 25/25 tests passing
+
+## ════════════════════════════════════════════════════════
+## PATTERN 64: Admin page Telegram button hidden — wrong step
+## ════════════════════════════════════════════════════════
+**ID:** P064
+**Type:** UX clarification (not a bug)
+**File:** app/admin/page.tsx
+**Date:** May 13 2026
+
+**Symptom:**
+  "Post to Telegram" button appears to redirect to telegram.org home page.
+  User unable to find the API-based post button.
+
+**Root cause — two separate Telegram elements on Step 3:**
+  1. "Telegram Channel / Open ↗" — link button → opens t.me/SahihHadithReels
+     in browser. If channel doesn't exist in Telegram app → redirects to home.
+  2. "✈️ Post to Telegram channel" — actual API button → calls /api/telegram/post
+
+  User was clicking element #1 (the link), not element #2 (the API button).
+  Element #2 is in a separate "📤 Publish to Telegram" section, below the
+  platform links, and requires scrolling on smaller screens.
+
+**Fix applied:**
+  No code change needed. User workflow clarified:
+  Step 3 → scroll down past Instagram/TikTok/YouTube/Telegram links
+  → find "📤 Publish to Telegram" section → click "✈️ Post to Telegram channel"
+
+**Future improvement:**
+  Rename "Telegram Channel / Open ↗" to "Open @SahihHadithReels" to avoid
+  confusion with the API post button.
+
+**Status:** DOCUMENTED — working as designed
+
+## ════════════════════════════════════════════════════════
+## PATTERN 65: Vercel served cached old admin page after new commit
+## ════════════════════════════════════════════════════════
+**ID:** P065
+**Type:** Deployment issue (Vercel build cache)
+**File:** app/admin/page.tsx
+**Date:** May 13 2026
+
+**Symptom:**
+  New app/admin/page.tsx with "✈️ Post to Telegram channel" button committed
+  in feat: admin studio full pipeline (commit 3fb5f53). Vercel showed ✅ Ready.
+  But admin page still showed old UI — "Auto-posting via Buffer API coming Phase 3"
+  instead of the new Telegram post button.
+
+**Root cause:**
+  Vercel build cache served the old compiled page.tsx even after new commit.
+  The /api/telegram/post route deployed correctly (returned 400 on test) but
+  the admin page component was cached.
+
+**Fix:**
+  Force redeploy with empty commit:
+    git commit --allow-empty -m "chore: trigger Vercel redeploy for admin page update"
+    git push origin main
+  After redeploy: hard refresh browser (Ctrl+Shift+R) to clear client cache.
+
+**Rule going forward:**
+  After deploying UI component changes, always verify in production with
+  hard refresh. If UI doesn't match code → force empty commit redeploy.
+  Check /api/ routes separately from UI components — they may deploy at
+  different times from the same commit.
+
+**Status:** FIXED — admin page now shows correct UI with Telegram post button
+
+## ════════════════════════════════════════════════════════
+## MILESTONE: Telegram channel @SahihHadithReels launched
+## ════════════════════════════════════════════════════════
+**Date:** May 13 2026
+**HR CI:** #24 ✅ green
+**HV CI:** #150 ✅ green
+
+**What was accomplished:**
+- Telegram channel @SahihHadithReels created
+- Bot @hadith_verifier_alert_bot added as admin
+- Vercel env vars added: TELEGRAM_ALERT_BOT_TOKEN, TELEGRAM_CHANNEL_CHAT_ID
+- app/admin/page.tsx updated with full Telegram post pipeline
+- app/api/telegram/post/route.ts deployed and working
+- First text post sent successfully (Russian hadith)
+- Background images downloaded for Remotion compositions:
+  public/backgrounds/kaaba.jpg, madinah.jpg, desert.jpg, stars.jpg, mosque.jpg
+- First MP4 rendered locally: out/adults.mp4 (5.7 MB, h264)
+- 25 Playwright tests passing ✅
+- HR CI #24 green ✅
+
+**Next phase:**
+- P066: Automated multi-language reel pipeline (4 langs × 2 styles)
+- Background images committed to repo
+- Remotion render with audio narration (ElevenLabs)
+- AI video tools evaluation (Runway ML API)
