@@ -12,6 +12,7 @@ const nextConfig = {
     '@remotion/compositor-darwin-x64',
     '@remotion/compositor-darwin-arm64',
     'remotion',
+    '@fal-ai/client',  // ← add this line
   ],
 
   // Silence Turbopack warning — we have no webpack customizations
