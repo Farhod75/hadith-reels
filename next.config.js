@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // P054/P055: Externalize Remotion native binaries from Next.js build
-  // Next.js 15+: use serverExternalPackages (not experimental.serverComponentsExternalPackages)
-  // Next.js 16+: uses Turbopack by default — no webpack config needed
   serverExternalPackages: [
     '@remotion/renderer',
     '@remotion/bundler',
@@ -12,10 +9,8 @@ const nextConfig = {
     '@remotion/compositor-darwin-x64',
     '@remotion/compositor-darwin-arm64',
     'remotion',
-    '@fal-ai/client',  // ← add this line
   ],
 
-  // Silence Turbopack warning — we have no webpack customizations
   turbopack: {},
 
   async headers() {
@@ -31,7 +26,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "media-src 'self' blob: https://api.elevenlabs.io",
-              "connect-src 'self' https://api.anthropic.com https://api.elevenlabs.io https://xeirfeqnbjfyszykiraa.supabase.co",
+              "connect-src 'self' https://api.anthropic.com https://api.elevenlabs.io https://xeirfeqnbjfyszykiraa.supabase.co https://queue.fal.run https://v3b.fal.media",
               "font-src 'self' https://fonts.gstatic.com",
               "frame-src 'none'",
             ].join('; '),
