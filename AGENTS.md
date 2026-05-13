@@ -246,3 +246,69 @@ Ask these questions before writing each test:
 3. Am I calling a real external API? → Mock it or tag @real-api
 4. Is this locator scoped to a specific container? → If not, scope it
 5. Would this test pass if the feature was broken? → If yes, rewrite it
+## ════════════════════════════════════════════════════════
+## MANDATORY PRE-PUSH PROTOCOL (added May 2026)
+## Why: CI #122–143 = 20+ wasted runs from not testing locally first
+## ════════════════════════════════════════════════════════
+
+### THE RULE
+**NEVER run `git push` without running tests locally first.**
+This is non-negotiable. No exceptions except `--no-verify` for
+doc-only commits (CLAUDE.md, fix_patterns.md, README.md).
+
+### What to run before EVERY push
+
+#### For hadith-verifier:
+```powershell
+# Must ALL pass before git push:
+npx tsc --noEmit
+npx playwright test tests/hadith-verifier.spec.ts --project=chromium --reporter=list
+npx playwright test tests/api.spec.ts --project=chromium --reporter=list
+```
+
+#### For hadith-reels:
+```powershell
+# Must ALL pass before git push:
+npx tsc --noEmit
+npm run build
+npx playwright test tests/hadith-reels.spec.ts --project=chromium --reporter=list
+```
+
+### Automated enforcement — pre-push Git hook
+The pre-push hook in `.git/hooks/pre-push` runs these automatically.
+If any test fails → push is BLOCKED.
+Install once per machine:
+```powershell
+# hadith-verifier:
+Copy-Item ".githooks\pre-push" ".git\hooks\pre-push"
+
+# hadith-reels:
+Copy-Item ".githooks\pre-push" ".git\hooks\pre-push"
+```
+
+### Test agent checklist (run in this order)
+Before declaring any code task complete:
+- [ ] tsc --noEmit passes
+- [ ] Playwright mocked tests pass locally
+- [ ] If new API field added → audit_spec.ts updated
+- [ ] If new component added → spec test added
+- [ ] fix_patterns.md entry written
+- [ ] ONLY THEN → git push
+
+### What caused CI #122–143 failures (all preventable)
+| CI run | Root cause | Could have caught locally? |
+|---|---|---|
+| #122–131 | Selector/timeout issues | ✅ Yes — playwright test locally |
+| #132 | P043 fix not pushed | ✅ Yes — git status check |
+| #133 | Severity test calls real Claude | ✅ Yes — playwright test locally |
+| #135–136 | audit_spec in CI | ✅ Yes — check ci.yml before push |
+| #137 | Package-lock out of sync | ✅ Yes — npm ci locally |
+| #138–140 | Remotion type errors | ✅ Yes — tsc --noEmit |
+| #141–143 | Syntax errors in TypeScript | ✅ Yes — tsc --noEmit |
+
+**All 20+ CI failures were preventable with local testing.**
+
+### Starting from CI #144 — target: zero preventable failures
+Every push must be preceded by local test run.
+If CI fails after local tests passed → it is an environment issue.
+If CI fails and local tests would have caught it → process violation.

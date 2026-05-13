@@ -405,3 +405,204 @@ Copy-Item "QA_STANDARDS_AGENT_RULES.md" `
 ---
 *Last updated: May 2026 · Farhod Elbekov · ISTQB CT-AI #26-CT-AI-00063-USA*
 *Next review: June 2026*
+## ════════════════════════════════════════════════════════
+## ADDENDUM TO QA_STANDARDS_AGENT_RULES.md
+## Section 6 additions — CI workflow rules (P044, P045)
+## Append to bottom of QA_STANDARDS_AGENT_RULES.md Section 6
+## ════════════════════════════════════════════════════════
+
+### 6.5 CI yml must NEVER contain (P045)
+These step types cause non-deterministic CI failures:
+```yaml
+# NEVER add these to push-triggered CI steps:
+- name: Run Audit tests          # real Claude × 14+ calls
+- name: Run language-speech tests # real ElevenLabs calls
+- name: Run @real-api tests       # any tagged real-api tests
+```
+
+### 6.6 Correct CI yml structure (permanent template)
+```yaml
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:             # manual trigger for audit
+    inputs:
+      run_audit:
+        description: 'Run audit against production'
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+jobs:
+  test:                         # runs on every push
+    steps:
+      - Run API tests            # mocked severity unit tests
+      - Run E2E tests            # all page.route() mocked
+      # NO audit step
+      # NO language-speech step
+
+  audit:                        # manual dispatch ONLY
+    if: github.event_name == 'workflow_dispatch' && inputs.run_audit == 'true'
+    steps:
+      - Run audit_spec.ts        # real Claude, post-deploy
+```
+
+### 6.7 CI timeout budget
+- Push CI timeout: 20 minutes maximum (was 55 — wasteful)
+- If tests need >20 min → too many real API calls in CI suite
+- Target: all CI push tests in <5 minutes
+
+### 6.8 Deterministic vs non-deterministic test separation
+ALWAYS ask: "Does this test need Claude to return a specific value?"
+- YES → it is a non-deterministic test → mock it OR tag @real-api
+- NO  → it tests deterministic logic → unit test it directly
+
+Examples:
+  getSeverity() → pure function → unit test (no Claude)
+  UI renders verdict badge → rendering test → mock API response
+  Claude returns valid enum → schema test → real Claude OK (just enum check)
+  Claude returns Arabic text → language test → mock with Arabic MOCK_RESPONSE
+  Claude returns compassionate tone → quality test → audit_spec (post-deploy)
+
+### 6.9 How to run audit manually (two options — add to all project READMEs)
+Option A — PowerShell (local):
+```powershell
+$env:BASE_URL="https://[your-production-url].com"
+npx playwright test tests/audit_spec.ts --reporter=list
+```
+
+Option B — GitHub Actions manual dispatch:
+1. GitHub → your repo → Actions tab
+2. Select workflow "Hadith Verifier CI/CD"
+3. Click "Run workflow" dropdown
+4. Set run_audit = true
+5. Click "Run workflow"
+
+### 6.10 Spec file naming convention (P045 lesson)
+ALWAYS use underscores in spec filenames — NEVER dots except the .spec extension:
+  ✅ audit_spec.ts
+  ✅ api_spec.ts
+  ✅ hadith_verifier_spec.ts
+  ❌ audit.spec.ts  ← dot before spec causes yml path mismatch
+When CI yml references a file, verify exact filename with:
+  Get-ChildItem tests/ -Filter "*.spec.ts"
+## ════════════════════════════════════════════════════════
+## QA_STANDARDS_AGENT_RULES.md ADDENDUM — May 2026
+## Append to bottom of QA_STANDARDS_AGENT_RULES.md
+## Covers: Pre-push protocol, P040-P059 rules, agent auto-update
+## ════════════════════════════════════════════════════════
+
+### 6.5 MANDATORY: Pre-push test protocol (added after CI #122-143)
+NEVER run `git push` without running tests locally first.
+20+ CI failures were caused by skipping this step.
+
+```powershell
+# hadith-verifier — run before EVERY push:
+npx tsc --noEmit
+npx playwright test tests/hadith-verifier.spec.ts --project=chromium
+npx playwright test tests/api.spec.ts --project=chromium
+
+# hadith-reels — run before EVERY push:
+npx tsc --noEmit
+npm run build
+npx playwright test tests/hadith-reels.spec.ts --project=chromium
+```
+
+Automated via .git/hooks/pre-push script in both projects.
+Doc-only commits bypass with: git push --no-verify
+
+### 6.6 CI yml forbidden steps (P045/P046)
+NEVER add these to push-triggered CI:
+- audit_spec.ts (14+ real Claude calls)
+- language-speech.spec.ts (real ElevenLabs)
+- Any @real-api tagged tests
+Use workflow_dispatch for audit runs instead.
+
+### 6.7 Deterministic vs non-deterministic test rule (P044)
+NEVER test a deterministic function through a non-deterministic AI API.
+Pure functions (getSeverity, mapLang, getRateLimit) → unit test directly.
+AI output quality → @real-api tagged tests only.
+
+### 6.8 Emoji tab button locator rule (P047/P048)
+NEVER use getByText() or filter({hasText}) on buttons containing emojis.
+Test FUNCTIONAL OUTCOME (content that loads) not UI LABEL TEXT.
+Use page.evaluate() to click emoji buttons by partial textContent.
+
+### 6.9 TTS text sanitization rule (P059)
+ALWAYS sanitize text before sending to TTS (ElevenLabs or browser):
+Remove: URLs (https://...), bullet chars (◆♦•·), hadith refs (#1234, bukhari:8)
+Remove: markdown (**bold**), tier labels ([tier1])
+Function: sanitizeForTTS() in TTSPlayer.tsx
+
+### 6.10 BCP-47 language codes for browser SpeechSynthesis (P058)
+Browser SpeechSynthesis requires full BCP-47 codes:
+  en → en-US  |  uz → uz-UZ  |  ar → ar-SA  |  ru → ru-RU  |  tj → ru-RU
+'uz' alone is NOT recognized — browser falls back to English voice.
+'tj' has no native voice — ru-RU is closest available.
+
+### 6.11 Native binary packages in Next.js routes (P054/P055)
+NEVER import native binary packages in Next.js API routes without externalizing:
+- @remotion/renderer, @remotion/bundler — use serverExternalPackages
+- Sharp, Canvas, FFmpeg, node-gyp packages — same rule
+Next.js 15+: use top-level serverExternalPackages (not experimental.*)
+Next.js 16+: uses Turbopack by default — remove webpack config entirely
+
+## ════════════════════════════════════════════════════════
+## SECTION 8 UPDATE: Daily skill upgrade protocol (enhanced)
+## ════════════════════════════════════════════════════════
+
+### 8.5 Agent self-update rule (NEW)
+After every session where fixes are applied:
+1. Doc agent MUST update fix_patterns.md in the SAME commit as the fix
+2. Doc agent MUST update CLAUDE.md when: CI run completes, feature added,
+   bug fixed, test count changes, pending feature list changes
+3. Doc agent MUST update AGENTS.md when: new never-do rule identified,
+   new test pattern established, pre-push protocol changes
+4. Doc agent MUST update QA_STANDARDS_AGENT_RULES.md when: new section
+   needed from production learnings (like P040-P059 this session)
+5. QA_STANDARDS_AGENT_RULES.md propagated to ALL projects after update:
+   Copy-Item "QA_STANDARDS_AGENT_RULES.md" "..\hadith-reels\..." -Force
+   Copy-Item "QA_STANDARDS_AGENT_RULES.md" "..\idris-learning-app\..." -Force
+
+### 8.6 What was missed this session (self-audit May 2026)
+The following were NOT documented in real-time and required catch-up:
+- fix_patterns.md: P040-P059 (20 patterns) missing until end of session
+- CLAUDE.md: outdated (4 tabs, no seerah_context, wrong CI count)
+- AGENTS.md: pre-push protocol not added until end of session
+- QA_STANDARDS: sections 6.5-6.11 not added until end of session
+Root cause: doc tasks were treated as separate from code tasks.
+Fix: every fix message includes fix_patterns entry in same response.
+
+### 8.7 Video trace agent (planned — Phase 4)
+Current state: Playwright saves trace.zip on failure. No agent reads it.
+Planned: CI monitor agent downloads trace.zip from GitHub Actions artifacts
+and runs: npx playwright show-trace trace.zip
+This gives video + DOM + network log of exact failure moment.
+Eliminates all guessing about what the page looked like during failure.
+
+## ════════════════════════════════════════════════════════
+## SECTION 9 UPDATE: TTS and audio quality rules (NEW)
+## ════════════════════════════════════════════════════════
+
+### 9.1 TTS voice quality by language
+| Language | Primary | Fallback | Quality |
+|---|---|---|---|
+| AR | ElevenLabs Hijazi/Abu Salem | ar-SA browser | High |
+| RU | ElevenLabs Abrar Sabbah | ru-RU browser | High |
+| EN | ElevenLabs EN voice | en-US browser | High |
+| UZ | ElevenLabs multilingual | uz-UZ browser | Medium |
+| TJ | ElevenLabs (ru voice) | ru-RU browser | Low — no native TJ |
+
+### 9.2 Tajik narration — real voice recommendation
+ElevenLabs has no native Tajik voice. Options for authentic TJ narration:
+1. islamhouse.com — free Tajik Islamic audio (CC licensed)
+2. Custom ElevenLabs voice clone from real Tajik scholar recording
+3. Phase 4: integrate a Tajik TTS API (e.g. SalomAI by Uzbek/Tajik teams)
+Current acceptable behavior: ru-RU voice for TJ (sounds Russian — acceptable)
+
+### 9.3 Text sanitization before TTS (mandatory)
+sanitizeForTTS() must be called before ANY TTS provider:
+- ElevenLabs API call
+- Browser SpeechSynthesis
+- Any future TTS provider
+Strips: URLs, bullets, hadith refs, markdown, tier labels, excess whitespace
