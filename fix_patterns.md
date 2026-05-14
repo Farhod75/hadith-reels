@@ -416,3 +416,34 @@ await page.evaluate(() => {
   TJ kids:   Danielle FVQMzxJGPUBtfz1Azdoy
 
 **Status:** FIXED — CI #37 ✅
+
+## ════════════════════════════════════════════════════════
+## PATTERN 71: OpenAI Nova TTS for UZ/TJ Cyrillic
+## ════════════════════════════════════════════════════════
+**ID:** P071
+**Type:** Feature — dual TTS provider routing
+**File:** app/api/tts/route.ts
+**Date:** May 14 2026 — HR CI #41
+
+**Problem:** ElevenLabs Abrar voice has harsh accent for UZ/TJ
+  Cyrillic text. Prophet ﷺ read as "p.b.u.h" in English.
+
+**Fix:**
+  1. Route UZ/TJ to OpenAI TTS (Nova/Onyx voices)
+     - Nova for kids (warm, friendly)
+     - Onyx for adults (deep, authoritative)
+  2. cleanForTTS() replaces ﷺ with language-specific phrase:
+     - UZ: Саллаллоҳу алайҳи васаллам
+     - TJ: Салаллоҳу алайҳи васаллам
+     - RU: Да благословит его Аллах и приветствует
+     - AR: صلى الله عليه وسلم
+     - EN: peace be upon him
+
+**Provider routing:**
+  UZ → OpenAI Nova/Onyx
+  TJ → OpenAI Nova/Onyx
+  EN → ElevenLabs James/Danielle
+  AR → ElevenLabs Hijazi/Abu Salem
+  RU → ElevenLabs Abrar
+
+**Status:** FIXED — CI #41 ✅
