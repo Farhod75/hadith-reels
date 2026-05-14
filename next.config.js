@@ -26,7 +26,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "media-src 'self' blob: https://api.elevenlabs.io",
-              "connect-src 'self' https://api.anthropic.com https://api.elevenlabs.io https://xeirfeqnbjfyszykiraa.supabase.co https://queue.fal.run https://v3b.fal.media",
+              "connect-src 'self' https://api.anthropic.com https://api.elevenlabs.io https://xeirfeqnbjfyszykiraa.supabase.co https://queue.fal.run https://v3b.fal.media https://hadithreels.com",
               "font-src 'self' https://fonts.gstatic.com",
               "frame-src 'none'",
             ].join('; '),
