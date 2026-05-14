@@ -331,3 +331,24 @@ await page.evaluate(() => {
   smaller bundle, works in all environments.
 
 **Status:** FIXED — CI #30 ✅
+## ════════════════════════════════════════════════════════
+## PATTERN 68: hadithreels.com domain registered + connected
+## ════════════════════════════════════════════════════════
+**ID:** P068
+**Type:** Infrastructure + deployment
+**Files:** next.config.js, scripts/merge-reel.js, HV app/page.tsx
+**Date:** May 13 2026 — HR CI #32, HV CI #151
+
+**What was done:**
+- Registered hadithreels.com on Namecheap — $11.48/yr
+- Connected to Vercel via ns1/ns2.vercel-dns.com nameservers
+- Both hadithreels.com and www.hadithreels.com → Valid Configuration
+- Updated CSP connect-src to include hadithreels.com
+- Updated merge-reel.js watermark from vercel.app to hadithreels.com
+- Updated HV cross-link banner from hadith-reels.vercel.app to hadithreels.com
+
+**Rule going forward:**
+  Always use hadithreels.com in all references.
+  Never use hadith-reels.vercel.app in user-facing content.
+
+**Status:** FIXED — both CIs green ✅
