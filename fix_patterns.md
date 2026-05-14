@@ -384,3 +384,35 @@ await page.evaluate(() => {
   out/backgrounds/nasheed-bg-1.mp3 — background music
 
 **Status:** PRODUCTION READY ✅
+
+## ════════════════════════════════════════════════════════
+## PATTERN 70: TTS text cleaning + UZ/TJ kids voice fix
+## ════════════════════════════════════════════════════════
+**ID:** P070
+**Type:** Feature fix (TTS quality)
+**Files:** app/api/tts/route.ts, app/admin/page.tsx
+**Commit:** fix: TTS text cleaning Prophet name + Danielle for UZ/TJ kids (P070)
+**Date:** May 14 2026 — HR CI #37
+
+**Fixes:**
+1. Prophet ﷺ symbol not pronounced by ElevenLabs
+   → cleanForTTS() replaces ﷺ, p.b.u.h, (pbuh), (saw) with
+     "peace be upon him" (EN) or "صلى الله عليه وسلم" (AR)
+2. UZ kids voice was Abrar Sabbah (harsh, rude accent)
+   → Changed to Danielle FVQMzxJGPUBtfz1Azdoy (gentle, warm)
+3. TJ kids voice also updated to Danielle
+4. Back button added to Step 3 Preview
+   → setStep('pick') + setGenerated(null) resets without page refresh
+
+**Voice matrix final:**
+  EN adults: James    EkK5I93UQWFDigLMpZcX
+  EN kids:   Danielle FVQMzxJGPUBtfz1Azdoy
+  UZ adults: Abrar    ErXwobaYiN019PkySvjV
+  UZ kids:   Danielle FVQMzxJGPUBtfz1Azdoy
+  RU adults: Abrar    ErXwobaYiN019PkySvjV
+  RU kids:   Abrar    ErXwobaYiN019PkySvjV
+  AR adults: Hijazi   pNInz6obpgDQGcFmaJgB
+  TJ adults: Abrar    ErXwobaYiN019PkySvjV
+  TJ kids:   Danielle FVQMzxJGPUBtfz1Azdoy
+
+**Status:** FIXED — CI #37 ✅
