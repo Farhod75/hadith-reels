@@ -2,11 +2,11 @@
 // ElevenLabs TTS proxy — same pattern as hadith-verifier
 // POST { text, lang, style }
 // Returns audio/mpeg stream
+// P070: text cleaning for Prophet name + Islamic symbols
 
 import { NextRequest, NextResponse } from 'next/server'
 
 // Voice matrix: lang × style → ElevenLabs voice ID
-// Store actual IDs in .env.local
 const VOICE_MAP: Record<string, Record<string, string>> = {
   ar: {
     adults: process.env.ELEVENLABS_VOICE_HIJAZI     || 'pNInz6obpgDQGcFmaJgB',
@@ -18,17 +18,36 @@ const VOICE_MAP: Record<string, Record<string, string>> = {
   },
   uz: {
     adults: process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
-    kids:   process.env.ELEVENLABS_VOICE_ABRAR      || 'FVQMzxJGPUBtfz1Azdoy',
+    kids:   process.env.ELEVENLABS_VOICE_EN_KIDS    || 'FVQMzxJGPUBtfz1Azdoy',
   },
   en: {
     adults: process.env.ELEVENLABS_VOICE_EN_ADULTS  || 'EkK5I93UQWFDigLMpZcX',
     kids:   process.env.ELEVENLABS_VOICE_EN_KIDS    || 'FVQMzxJGPUBtfz1Azdoy',
   },
   tj: {
-    // Tajik: fallback to Russian voice
     adults: process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
-    kids:   process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
+    kids:   process.env.ELEVENLABS_VOICE_EN_KIDS    || 'FVQMzxJGPUBtfz1Azdoy',
   },
+}
+
+// ─── Clean text for TTS ───────────────────────────────────────────────────────
+function cleanForTTS(text: string, lang: string): string {
+  return text
+    // Prophet name symbols
+    .replace(/ﷺ/g, lang === 'ar' ? 'صلى الله عليه وسلم' : 'peace be upon him')
+    .replace(/\(ﷺ\)/g, lang === 'ar' ? 'صلى الله عليه وسلم' : 'peace be upon him')
+    .replace(/p\.b\.u\.h\.?/gi, 'peace be upon him')
+    .replace(/\(pbuh\)/gi, 'peace be upon him')
+    .replace(/\(saw\)/gi, 'peace be upon him')
+    .replace(/\(s\.a\.w\.?\)/gi, 'peace be upon him')
+    // Allah symbol
+    .replace(/ﷲ/g, lang === 'ar' ? 'الله' : 'Allah')
+    // Remove markdown
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    // Cap length
+    .slice(0, 1000)
+    .trim()
 }
 
 export async function POST(req: NextRequest) {
@@ -44,8 +63,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'ElevenLabs not configured' }, { status: 503 })
     }
 
+    // Clean text before sending to ElevenLabs
+    const cleanText = cleanForTTS(text, lang)
+
     // Get voice ID for lang + style
-    const langKey  = lang.replace('_cyrillic', '').replace('_latin', '') // uz_cyrillic → uz
+    const langKey  = lang.replace('_cyrillic', '').replace('_latin', '')
     const voiceMap = VOICE_MAP[langKey] || VOICE_MAP.en
     const voiceId  = voiceMap[style] || voiceMap.adults
 
@@ -58,7 +80,7 @@ export async function POST(req: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          text: text.slice(0, 1000), // cap to avoid quota burn
+          text: cleanText,
           model_id: 'eleven_multilingual_v2',
           voice_settings: {
             stability:        0.5,
@@ -77,7 +99,6 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Stream audio back to client
     const audioBuffer = await elevenRes.arrayBuffer()
     return new NextResponse(audioBuffer, {
       headers: {
