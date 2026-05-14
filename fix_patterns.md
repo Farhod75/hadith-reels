@@ -352,3 +352,35 @@ await page.evaluate(() => {
   Never use hadith-reels.vercel.app in user-facing content.
 
 **Status:** FIXED — both CIs green ✅
+
+## ════════════════════════════════════════════════════════
+## PATTERN 69: Complete reel production template finalized
+## ════════════════════════════════════════════════════════
+**ID:** P069
+**Type:** Feature complete — production template
+**Date:** May 13 2026
+
+**Final reel template:**
+- fal.ai Kling video (10sec, looped via -stream_loop -1)
+- ElevenLabs James voice narration (EN adults)
+- Whisper SRT subtitles (small model, 35 char width)
+- Background nasheed at volume=0.25
+- Hadith transliteration drawtext at top (fontsize=36)
+- Source reference drawtext at bottom (fontsize=16)
+- Output: h264 MP4, ~7.5MB, 34sec
+
+**FFmpeg filter chain:**
+  [narration][music]amix → volume 1.0 narration + 0.25 music
+  subtitles SRT → MarginV=80
+  drawtext hadith name → y=40
+  drawtext source → y=h-30
+
+**Voice matrix confirmed:**
+  EN adults: James EkK5I93UQWFDigLMpZcX
+  EN kids:   Danielle FVQMzxJGPUBtfz1Azdoy
+
+**Background assets:**
+  out/backgrounds/mosque.mp4 — intro scene
+  out/backgrounds/nasheed-bg-1.mp3 — background music
+
+**Status:** PRODUCTION READY ✅
