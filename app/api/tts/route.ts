@@ -18,7 +18,7 @@ const VOICE_MAP: Record<string, Record<string, string>> = {
   },
   uz: {
     adults: process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
-    kids:   process.env.ELEVENLABS_VOICE_ABRAR      || 'ErXwobaYiN019PkySvjV',
+    kids:   process.env.ELEVENLABS_VOICE_ABRAR      || 'FVQMzxJGPUBtfz1Azdoy',
   },
   en: {
     adults: process.env.ELEVENLABS_VOICE_EN_ADULTS  || 'EkK5I93UQWFDigLMpZcX',
