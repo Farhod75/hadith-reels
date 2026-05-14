@@ -495,8 +495,16 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* ── STEP 3: PREVIEW ─────────────────────────────────────────── */}
+        {/* — STEP 3: PREVIEW ————————————————————————— */}
         {step === 'preview' && generated && selected && (
+          <>
+          <button
+            onClick={() => { setStep('pick'); setGenerated(null) }}
+            className="mb-4 text-sm text-slate-400 hover:text-white flex items-center gap-1"
+          >
+            ← Back to hadith picker
+          </button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
             {/* Content + Audio */}
@@ -613,6 +621,8 @@ export default function AdminPage() {
               </button>
             </div>
           </div>
+        </div>
+          </>
         )}
 
         {/* ── STEP 4: PUBLISHED ───────────────────────────────────────── */}
