@@ -495,17 +495,16 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* — STEP 3: PREVIEW ————————————————————————— */}
+        {/* ── STEP 3: PREVIEW ─────────────────────────────────────────── */}
         {step === 'preview' && generated && selected && (
-          <>
-          <button
-            onClick={() => { setStep('pick'); setGenerated(null) }}
-            className="mb-4 text-sm text-slate-400 hover:text-white flex items-center gap-1"
-          >
-            ← Back to hadith picker
-          </button>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="space-y-4">
+            <button
+              onClick={() => { setStep('pick'); setGenerated(null) }}
+              className="text-sm text-slate-400 hover:text-white flex items-center gap-1"
+            >
+              ← Back to hadith picker
+            </button>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
             {/* Content + Audio */}
             <div className="space-y-3">
@@ -620,9 +619,8 @@ export default function AdminPage() {
                 ✅ Mark as published
               </button>
             </div>
+            </div>
           </div>
-        </div>
-          </>
         )}
 
         {/* ── STEP 4: PUBLISHED ───────────────────────────────────────── */}
