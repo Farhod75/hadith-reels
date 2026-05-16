@@ -320,10 +320,12 @@ export default function AdminPage() {
               onKeyDown={e => e.key === 'Enter' && handleLogin()}
               placeholder="Admin password"
               className="w-full bg-slate-700 text-white border border-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400"
-              autoFocus />
+              autoFocus
+              suppressHydrationWarning />
             {authError && <p className="text-red-400 text-xs text-center">{authError}</p>}
             <button onClick={handleLogin}
-              className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-colors">
+              className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-colors"
+              suppressHydrationWarning>
               Enter Studio
             </button>
           </div>
