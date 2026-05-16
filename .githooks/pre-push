@@ -1,0 +1,101 @@
+#!/bin/sh
+# .git/hooks/pre-push — hadith-reels (smart version)
+
+echo ""
+echo "🎬 Hadith Reels — Smart pre-push scanner..."
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+REMOTE_REF=$(git rev-parse --verify origin/main 2>/dev/null)
+if [ -z "$REMOTE_REF" ]; then
+  CHANGED_FILES=$(git diff --name-only $(git hash-object -t tree /dev/null) HEAD)
+else
+  CHANGED_FILES=$(git diff --name-only origin/main HEAD)
+fi
+
+if [ -z "$CHANGED_FILES" ]; then
+  echo "✅ No changes — nothing to check"
+  exit 0
+fi
+
+echo "📋 Files changed:"
+echo "$CHANGED_FILES" | sed 's/^/   /'
+echo ""
+
+DOC_PATTERNS="\.md$|\.txt$|fix_patterns|CLAUDE|AGENTS|QA_STANDARDS|CI_WORKFLOW|README|CHANGELOG|\.githooks"
+API_PATTERNS="^app/api/|route\.ts$"
+UI_PATTERNS="^app/page\.tsx$|^components/|^lib/"
+REMOTION_PATTERNS="^remotion/"
+CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
+TEST_PATTERNS="^tests/|\.spec\.ts$"
+
+HAS_DOC=$(echo "$CHANGED_FILES" | grep -E "$DOC_PATTERNS" | wc -l | tr -d ' ')
+HAS_API=$(echo "$CHANGED_FILES" | grep -E "$API_PATTERNS" | wc -l | tr -d ' ')
+HAS_UI=$(echo "$CHANGED_FILES" | grep -E "$UI_PATTERNS" | wc -l | tr -d ' ')
+HAS_REMOTION=$(echo "$CHANGED_FILES" | grep -E "$REMOTION_PATTERNS" | wc -l | tr -d ' ')
+HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" | wc -l | tr -d ' ')
+NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
+
+echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG"
+echo ""
+
+# Doc-only → skip
+if [ "$NON_DOC" -eq 0 ]; then
+  echo "✅ Doc-only push — skipping tests"
+  exit 0
+fi
+
+FAILED=0
+
+# TypeScript always
+echo "▶ TypeScript check..."
+npx tsc --noEmit 2>&1
+if [ $? -ne 0 ]; then echo "❌ TypeScript errors"; FAILED=1; fi
+[ $FAILED -eq 0 ] && echo "✅ TypeScript OK"
+
+# Config/next.config → build check
+if [ "$HAS_CONFIG" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ Build check (config changed)..."
+  npm run build 2>&1
+  if [ $? -ne 0 ]; then echo "❌ Build failed"; FAILED=1; fi
+  [ $FAILED -eq 0 ] && echo "✅ Build OK"
+fi
+
+# Remotion compositions → just tsc (can't render in pre-push)
+if [ "$HAS_REMOTION" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "✅ Remotion changes — TypeScript check sufficient (render locally after push)"
+fi
+
+# API or UI → E2E tests
+if [ "$((HAS_API + HAS_UI))" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ E2E tests (code changed)..."
+
+  # Ensure dev server is running on 3002
+  DEV_PID=""
+  if ! curl -s http://localhost:3002 > /dev/null 2>&1; then
+    echo "  Starting dev server on 3002..."
+    npx next dev -p 3002 > /dev/null 2>&1 &
+    DEV_PID=$!
+    sleep 8
+  fi
+
+  BASE_URL=http://localhost:3002 npx playwright test tests/hadith-reels.spec.ts \
+    --project=chromium --reporter=list --workers=2 2>&1
+  TEST_EXIT=$?
+
+  # Stop dev server if we started it
+  if [ -n "$DEV_PID" ]; then
+    kill $DEV_PID 2>/dev/null
+  fi
+
+  if [ $TEST_EXIT -ne 0 ]; then echo "❌ E2E tests failed"; FAILED=1; fi
+  [ $FAILED -eq 0 ] && echo "✅ E2E tests OK"
+fi
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+if [ $FAILED -ne 0 ]; then
+  echo "❌ Push blocked — fix issues above"
+  exit 1
+else
+  echo "✅ All checks passed — pushing..."
+  exit 0
+fi

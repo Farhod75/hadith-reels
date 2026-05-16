@@ -446,4 +446,135 @@ await page.evaluate(() => {
   AR → ElevenLabs Hijazi/Abu Salem
   RU → ElevenLabs Abrar
 
-**Status:** FIXED — CI #41 ✅
+**Status:** FIXED — CI #41 ✅# HR Fix Patterns — append P072 through P075 to existing hr-fix-patterns.md
+
+Append these entries at the END of the existing `hr-fix-patterns.md` file.
+Do NOT replace the file — only append.
+
+---
+
+## P072 — `.env.local` dotenv comment-character silent truncation
+
+**Symptom:** Admin login returns 401 "Invalid password"; OpenAI TTS route returns auth error despite key being "set". Byte inspection of `.env.local` shows correct value, but `process.env.<KEY>.length` at runtime is shorter than expected.
+
+**Root cause:** dotenv parser treats unquoted `#` as start-of-comment. Everything from `#` to end-of-line is discarded silently. Affects any value containing `#` — common in passwords, some API keys, complex secrets.
+
+**Example:** `ADMIN_PASSWORD=HR@Admin#Farhod75` was parsed as `HR@Admin` (8 bytes), truncating `#Farhod75` as comment.
+
+**Fix:** Wrap the value in double quotes:
+```
+ADMIN_PASSWORD="HR@Admin#Farhod75"
+```
+
+**Detection:** Add temporary logging in the consuming route to print `process.env.<KEY>.length` and `Buffer.from(value).join(',')`. Compare to expected bytes. If env length < file length and the difference aligns with a `#` in the value, this is the bug.
+
+**Prevention:** Default to quoting all `.env.local` values whose plain contents include any of: `#`, `$`, `'`, `"`, leading/trailing space, backtick. Or quote everything by convention.
+
+**Related:** Browser-extension hydration mismatch (this same session), tsconfig.json BOM corruption.
+
+**Status:** FIXED — May 15, 2026
+
+---
+
+## P073 — Browser-extension hydration warning on `<html>` and form elements
+
+**Symptom:** Console floods with "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties" error. References to `katalonextensionid`, `toscacontainsshadowdom`, `fdprocessedid` in the React stack.
+
+**Root cause:** Browser extensions (Katalon Recorder, Tricentis Tosca, password managers) inject attributes into the DOM before React hydrates. These are SDET tooling extensions installed for QA work that pollute admin pages.
+
+**Fix:** Add `suppressHydrationWarning` to four elements:
+- `<html lang="en" suppressHydrationWarning>` in `app/layout.tsx`
+- `<body className={inter.className} suppressHydrationWarning>` in `app/layout.tsx`
+- `<input type="password" suppressHydrationWarning />` in `app/admin/page.tsx`
+- `<button onClick={handleLogin} suppressHydrationWarning>Enter Studio</button>` in `app/admin/page.tsx`
+
+`suppressHydrationWarning` only suppresses one level deep — it doesn't hide real bugs nested inside.
+
+**Verification:** After fix, the hydration warning block disappears from Console. Viewport/themeColor warnings remain (unrelated, separate issue).
+
+**Caveat — file delivery:** During this fix, partial code snippets with `...` placeholders were used in instructions and they got copy-pasted literally into JSX, breaking the build. Lesson: NEVER use `...` placeholder in delivered artifacts. See AGENTS_ADDENDUM.md File Delivery Protocol.
+
+**Status:** FIXED — May 15, 2026
+
+---
+
+## P074 — OpenAI `tts-1` Russian-Cyrillic phonetic bias for UZ/TJ narration
+
+**Symptom:** OpenAI Nova/Onyx narrating Uzbek or Tajik Cyrillic text pronounces letters using Russian phonetic patterns:
+- `ҳ` (aspirated h, like Arabic ح) → reads as Russian `х`
+- `қ` (deep uvular k, like Arabic ق) → reads as Russian `к`
+- `ў` (Uzbek o-with-breve) → mispronounced
+- `ғ` (voiced uvular g) → mispronounced
+- `ж` (Uzbek "j" in "judge") → reads as Russian "zh" / "dzh"
+
+Native speakers immediately identify the narration as non-native.
+
+**Root cause:** OpenAI `tts-1` model has strong Russian-Cyrillic phonetic prior. Cannot be overridden by text alone. OpenAI TTS does not support SSML `<phoneme>` tags.
+
+**Fix:** Migrate from `tts-1` to `gpt-4o-mini-tts` model + use the `instructions` parameter (which `tts-1` does not support) for per-language phonetic guidance.
+
+Implementation in `app/api/tts/route.ts`:
+
+1. Add `TTS_INSTRUCTIONS` constant keyed by `${lang}.${style}` with explicit phonetic instructions per language pair (uz.kids, uz.adults, tj.kids, tj.adults).
+2. Change OpenAI request body:
+   - `model: 'tts-1'` → `model: 'gpt-4o-mini-tts'`
+   - Add `instructions: TTS_INSTRUCTIONS[langKey][style]`
+
+Example UZ kids instruction (with concrete examples for stubborn letters):
+```
+"Speak as a native Uzbek (O'zbek) speaker reading to children. Use warm, gentle, joyful tone. Pronounce these Uzbek Cyrillic letters precisely: ҳ as aspirated h (like in 'house', not Russian х); қ as deep uvular k from back of throat (like Arabic ق, not Russian к) — pronounce қ consistently strong whether at start, middle, or end of word; ў as 'o' sound in 'go'; ғ as voiced uvular g (like Arabic غ); ж as English 'j' in 'judge' or 'jim' (single soft J sound, NOT 'dzh' with hard D onset, NOT French 'zh'). Example pronunciations: жилмайиб = 'JIL-mai-ib' (start with soft English J, no D); иссиқ = 'is-SEEQ' (strong throat-back Q at end, NOT soft K); қуёшдек = 'qu-yosh-DEK' (strong Q at start). Place word stress on the final syllable per Uzbek convention. Do not use Russian phonetic patterns."
+```
+
+**Effectiveness:** Significant improvement but NOT perfect. Approximately 80-90% of letters now correct. Persistent issues observed:
+- Final-position қ in some words (иссиқ) still occasionally weak
+- ж in некоторых positions still sometimes hard "dzh"
+
+**v2 plan (post-Hajj):** Voice cloning via ElevenLabs Professional Voice Clone using native speaker recordings — this is the permanent fix. Phonetic substitution via PPD (Supabase table) as backup. See `hr-ppd-spec.md` for design.
+
+**Reference research:** Speechmatics semantic word error rate paper — Whisper-class WER misses meaning-altering pronunciations. v2 validation should use semantic similarity (embedding-based), not just Levenshtein.
+
+**Status:** PARTIALLY FIXED — May 15, 2026; permanent fix queued for post-Hajj (06/06+)
+
+---
+
+## P075 — Missing `text_tajik` column in `hadith_library` table
+
+**Symptom:** TJ language tab on hadithreels.com displays Russian text instead of Tajik. Listen button narrates in Russian. Affects all 70 hadiths.
+
+**Root cause:** Original Supabase schema had `text_arabic`, `text_english`, `text_uzbek`, `text_russian` but NO `text_tajik` column. Route `app/api/reels/route.ts` documented this as P050 with explicit RU fallback. Library appeared functional but was misleading users.
+
+**Fix — three parts:**
+
+**Part 1 — Schema:**
+```sql
+ALTER TABLE hadith_library ADD COLUMN text_tajik TEXT;
+```
+
+**Part 2 — Data:** Use Claude API (Sonnet 4.5) to translate `text_uzbek` → `text_tajik` for all 70 rows. Pipeline:
+- `scripts/translate-tajik.ts` — generates `out/tajik-translations.json` for human review
+- Human spot-checks JSON, edits any rows
+- `scripts/apply-tajik-translations.ts --apply` — writes verified translations to Supabase
+
+See `hr-tj-translation-process.md` for full process documentation.
+
+**Part 3 — Route:** Update `app/api/reels/route.ts`:
+- Add `text_tajik` to SELECT clause
+- Add TJ branch: `lang === 'tj' ? (h.text_tajik || h.text_russian || h.text_english) : ...`
+- `display_lang` now returns `'tj'` if `text_tajik` exists, `'ru_fallback'` only if missing
+
+Update `app/page.tsx` Hadith interface:
+- Add `text_tajik?: string`
+
+**Verification SQL:**
+```sql
+SELECT hadith_number, LEFT(text_tajik, 60) AS tj_preview
+FROM hadith_library WHERE text_tajik IS NOT NULL LIMIT 10;
+```
+
+**Caveat:** Translations are AI-generated from Uzbek source. Native Tajik speaker review desirable for v2. Quality observed as good — proper Tajik grammar (Persian-derived constructions like "то ҳангоме ки"), not transliterated Uzbek. One minor edit applied in JSON review (`то он ҳангоме ки` → `то ҳангоме ки` in hadith #13).
+
+**Status:** FIXED locally — May 15, 2026; pending Vercel deploy.
+
+---
+
+End of P072-P075 appendix.
