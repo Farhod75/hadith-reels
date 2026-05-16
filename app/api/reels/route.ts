@@ -1,6 +1,6 @@
 // app/api/reels/route.ts
 // P050: TJ has no text_tajik column — shows Russian as display fallback
-// TJ narration still produced in Tajik Cyrillic via generate-reel/Claude
+// P073: text_tajik column added, TJ now reads native Tajik with RU fallback for safety
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 
     let query = sb
       .from('hadith_library')
-      .select('id, text_arabic, text_english, text_uzbek, text_russian, narrator, collection, hadith_number, grade, tags, source_url, authority')
+      .select('id, text_arabic, text_english, text_uzbek, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority')
       .order('collection')
       .range(offset, offset + limit - 1)
 
@@ -38,11 +38,16 @@ export async function GET(req: NextRequest) {
       text_display:
         lang === 'uz' || lang === 'uz_cyrillic' || lang === 'uz_latin'
           ? (h.text_uzbek   || h.text_english)
-          : lang === 'ru' || lang === 'tj'  // TJ: Russian fallback (no text_tajik column)
+          : lang === 'tj'
+          ? (h.text_tajik   || h.text_russian || h.text_english)
+          : lang === 'ru'
           ? (h.text_russian || h.text_english)
           : h.text_english,
-      // Let UI know TJ is showing Russian fallback
-      display_lang: lang === 'tj' ? 'ru_fallback' : lang,
+      // P073: TJ now shows native Tajik when available, RU fallback only if missing
+      display_lang:
+        lang === 'tj'
+          ? (h.text_tajik ? 'tj' : 'ru_fallback')
+          : lang,
     }))
 
     return NextResponse.json({ reels: results, total: results.length, offset, limit, lang })

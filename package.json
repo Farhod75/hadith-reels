@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -12,7 +12,8 @@
     "remotion:kids": "npx remotion render remotion/index.tsx KidsReel out/kids.mp4"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.95.1",
+    "@anthropic-ai/sdk": "^0.95.2",
+    "@fal-ai/client": "^1.10.1",
     "@remotion/bundler": "^4.0.460",
     "@remotion/player": "^4.0.459",
     "@remotion/renderer": "^4.0.460",
@@ -30,9 +31,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
+    "tsx": "^4.22.0",
     "typescript": "^5"
   }
 }

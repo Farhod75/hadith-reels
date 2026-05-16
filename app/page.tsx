@@ -13,6 +13,7 @@ interface Hadith {
   text_english: string
   text_uzbek?: string
   text_russian?: string
+  text_tajik?: string
   text_display?: string
   narrator: string
   collection: string
