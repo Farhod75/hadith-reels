@@ -578,3 +578,94 @@ FROM hadith_library WHERE text_tajik IS NOT NULL LIMIT 10;
 ---
 
 End of P072-P075 appendix.
+# Append to fix_patterns.md (HR — hadith-reels)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 78: Whisper STT produces Latin transliteration for UZ/TJ — q→k drift
+## ════════════════════════════════════════════════════════
+**ID:** P078
+**Type:** Pipeline limitation + workaround
+**Project:** hadith-reels (also affects hadith-verifier — see HV P078)
+**Files affected:**
+  - reel-creation-pipeline.md (subtitle generation step)
+  - remotion/HadithReel.tsx (subtitle rendering — bypassed for v2)
+  - out/adults-tj-umra-reel-v2.mp4 (first reel shipped without subtitles)
+**First observed:** May 15, 2026 — TJ adults reel render (Bukhari #1773 Umrah)
+**Discovered during:** Pre-Hajj reel production session
+
+**Symptom:**
+  When generating .srt subtitle files from ElevenLabs-narrated UZ/TJ audio via
+  Whisper STT (OpenAI Whisper API or local whisper-large-v3):
+  1. Whisper transcribes Cyrillic audio output as Latin transliteration
+     - "Расул" → "Rasul"
+     - "Паёмбар" → "Payambar"
+     - "Аллоҳ" → "Alloh"
+  2. Compounded by Q→K consonant drift in transliteration:
+     - "қабул" → "kabul" (should be "qabul")
+     - "Ҳаққ" → "Hakk" (should be "Haqq")
+     - "Қуръон" → "Kuran" (should be "Quran" or "Qur'on")
+  3. Output is unreadable to native Tajik/Uzbek Cyrillic readers
+  4. Hardcoding these subtitles onto the reel made it look broken
+
+**Root cause:**
+  Whisper's training corpus for Tajik (TJ) and Uzbek (UZ) is dominated by
+  Latin-script transliteration sources, not Cyrillic. The model has stronger
+  priors for Latin output even when the audio phonetics map cleanly to Cyrillic
+  characters. Additionally, Whisper's tokenizer treats /q/ and /k/ as
+  near-equivalent in Turkic phonetic contexts, causing systematic drift on
+  uvular/velar distinctions that ARE phonemic in TJ/UZ.
+
+**Workaround (current — v2 shipped this way):**
+  Ship UZ/TJ reels WITHOUT burned-in subtitles. The audio narration alone
+  conveys the message. Caption text in the post description carries the
+  written Cyrillic version for accessibility.
+
+  Implementation in v2 render:
+  - HadithReel.tsx `subtitleText` prop set to empty string
+  - Subtitle scene block conditionally skipped if subtitleText is empty
+  - Reel duration redistributed: longer story/moral scene fade times
+
+**Permanent fix options (deferred to post-Hajj):**
+
+  Option A — Latin→Cyrillic conversion script (RECOMMENDED, fastest):
+    1. Run Whisper as normal, get Latin .srt
+    2. Pipe through a deterministic Latin→Cyrillic mapper:
+       - "Rasul" → "Расул"
+       - "kabul" → "қабул" (handle q→k reversal via context)
+       - "Alloh" → "Аллоҳ"
+    3. Use existing Uzbek Latin/Cyrillic conversion libraries:
+       - npm: uzbek-latin-cyrillic
+       - python: uzbek-translit
+    4. For TJ: hand-built mapping table (no mature library exists)
+    5. Add post-processing step to reel-creation-pipeline.md after STT
+
+  Option B — Replace Whisper with Claude STT prompt:
+    1. Send audio to Claude Sonnet with explicit instruction:
+       "Transcribe this Tajik audio in Tajik Cyrillic script only.
+        Use Cyrillic characters Ҳ, Ҷ, Қ, Ғ, Ӯ where appropriate.
+        Do NOT use Latin transliteration."
+    2. Claude has better script-following behavior on instruction.
+    3. Cost: higher than Whisper, slower, but accurate.
+
+  Option C — Generate .srt from Claude-generated story text directly:
+    1. Skip STT entirely
+    2. Use the story/moral text from /api/generate-reel as subtitle source
+       (it IS already in Cyrillic — that's what we narrated FROM)
+    3. Time-align by splitting on sentence boundaries proportional to audio
+       duration (or use forced alignment via aeneas/Montreal Forced Aligner)
+    4. This is technically the cleanest solution — bypasses STT entirely.
+    5. RECOMMENDED for production pipeline.
+
+**Prevention / detection:**
+  Before next post-Hajj reel production, add CI check:
+  - Lint subtitle .srt files for Latin characters in UZ/TJ outputs
+  - Fail render if subtitleText contains [a-zA-Z] for lang in ['uz','tj']
+  - Add to hr-render-reel-route.ts: validateSubtitleScript(text, lang)
+
+**Status:** WORKAROUND IN PLACE (no subtitles for UZ/TJ).
+  Permanent fix: Option C scheduled for post-Hajj (target 06/06/2026).
+  Tracked in: hr-CLAUDE-append-3.md Phase 2 deliverables.
+
+**Reels shipped under this workaround:**
+  - out/adults-tj-umra-reel-v2.mp4 (Bukhari #1773, posted to @SahihHadithReels May 15)
+  - Future TJ/UZ reels until Option C ships
