@@ -766,6 +766,10 @@ End of P072-P075 appendix.
   P061 — TTS route contract (downstream of story text)
   P078 — Whisper STT limitations (separate issue, but same workflow stage)
 
-**Status:** WORKAROUND IN PLACE (regenerate until correct).
-  Permanent fix scheduled for post-Hajj (target 06/06/2026).
-  Tracked in: hr-CLAUDE-append-3.md Phase 2 deliverables.
+**Status:** FIXED — CI #51 (c81d313), 2026-06-10.
+  Story/moral/seerah render as editable <textarea> bound to generated state via
+  updateField(); edits flow straight into TTS (no regenerate cycle needed).
+  Also fixed: undeclared genError state (pre-existing build error surfaced while
+  type-checking this change).
+  Verified: manual admin test (RU reel) — edited text narrated correctly; tsc clean.
+  Original workaround (regenerate until correct) no longer required.
