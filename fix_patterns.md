@@ -669,3 +669,103 @@ End of P072-P075 appendix.
 **Reels shipped under this workaround:**
   - out/adults-tj-umra-reel-v2.mp4 (Bukhari #1773, posted to @SahihHadithReels May 15)
   - Future TJ/UZ reels until Option C ships
+
+## ════════════════════════════════════════════════════════
+## PATTERN 79: Admin story/moral text not editable before TTS generation
+## ════════════════════════════════════════════════════════
+**ID:** P079
+**Type:** UX gap (admin workflow)
+**Project:** hadith-reels
+**File affected:** app/admin/page.tsx (or wherever admin Step 2 renders)
+**First observed:** May 16, 2026 — RU adults reel (Bukhari #1520, hajj-women)
+**Discovered during:** Pre-Hajj reel production session
+
+**Symptom:**
+  Claude's generated story for RU adults reel contained grammatical error:
+    "Послание к Аллаха" (Message to Allah — wrong)
+  Should have been:
+    "Посланник Аллаха" (the Messenger of Allah — correct)
+
+  Error was present in:
+  1. Generated story text shown in admin Step 2
+  2. Story narration MP3 (ElevenLabs read the wrong text)
+  3. Whisper-generated SRT (faithfully transcribed the wrong audio)
+  4. Auto-generated caption (also used Claude's wrong text)
+
+  Forced full regenerate workflow — re-generate story, re-download both MP3s,
+  re-run concat, re-run Whisper, re-run final ffmpeg merge. ~10 min lost.
+
+**Root cause:**
+  In hr-admin-page.tsx Step 2 render, story and moral text are displayed via:
+    <p className="text-amber-100 text-sm leading-relaxed" dir="auto">
+      {generated.story}
+    </p>
+  This is a read-only paragraph. The user cannot click and edit the text
+  before clicking "Generate Story narration".
+
+  Result: any Claude generation error forces a full regenerate cycle, which:
+  - Spends additional Anthropic API credits (story + moral regenerated)
+  - Spends additional ElevenLabs credits (new MP3s)
+  - Adds production time
+  - Risks Claude making a different error in the new generation (P060)
+
+**Workaround (current):**
+  Click 🔄 Regenerate button in admin. Iterate 2-3 times if needed.
+  Claude is non-deterministic — different output each run, sometimes worse,
+  sometimes better. No guarantee of correct output on first retry.
+
+**Permanent fix (target: post-Hajj):**
+
+  Replace the read-only `<p>` elements with editable `<textarea>` elements
+  bound to `setGenerated()` state. Approximate code change:
+
+  ```tsx
+  // BEFORE (read-only):
+  <p className="text-amber-100 text-sm leading-relaxed" dir="auto">
+    {generated.story}
+  </p>
+
+  // AFTER (editable):
+  <textarea
+    value={generated.story}
+    onChange={e => setGenerated({ ...generated, story: e.target.value })}
+    className="w-full bg-amber-950/30 text-amber-100 text-sm leading-relaxed
+               border border-amber-800/50 rounded-lg p-2 resize-none min-h-[120px]"
+    dir="auto"
+  />
+  ```
+
+  Apply same pattern to:
+  - generated.story (amber section)
+  - generated.moral (emerald section)
+  - generated.seerah_context (blue section, if present)
+
+  Estimated effort: ~10 lines of code, 1 commit, fully backward compatible.
+
+**Prevention / detection (post-fix):**
+  Add UI affordance: highlight box border on textarea focus to signal
+  "this is editable — please proofread before generating audio".
+
+  Add a "Verified" checkbox the user must tick before "Generate Story narration"
+  button is enabled. Forces explicit human review step.
+
+**Test pattern (when fix lands):**
+  Add to tests/hadith-reels.spec.ts:
+  ```typescript
+  test('admin Step 2 story is editable before TTS', async ({ page }) => {
+    // ... navigate to admin, generate ...
+    const storyTextarea = page.locator('textarea[data-test="story-edit"]')
+    await expect(storyTextarea).toBeVisible()
+    await storyTextarea.fill('Edited story text')
+    // Verify the edit propagates to the generate audio request
+  })
+  ```
+
+**Related patterns:**
+  P060 — AI quality tests non-deterministic (same root: Claude varies between runs)
+  P061 — TTS route contract (downstream of story text)
+  P078 — Whisper STT limitations (separate issue, but same workflow stage)
+
+**Status:** WORKAROUND IN PLACE (regenerate until correct).
+  Permanent fix scheduled for post-Hajj (target 06/06/2026).
+  Tracked in: hr-CLAUDE-append-3.md Phase 2 deliverables.
