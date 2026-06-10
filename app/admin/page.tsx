@@ -157,9 +157,10 @@ export default function AdminPage() {
   const [style, setStyle] = useState<Style>('adults')
 
   const [generating, setGenerating] = useState(false)
-  const [generated, setGenerated]   = useState<Generated | null>(null)
   const [genError, setGenError]     = useState('')
-
+  const [generated, setGenerated]   = useState<Generated | null>(null)
+  const updateField = (field: keyof Generated, value: string) =>
+    setGenerated(prev => prev ? { ...prev, [field]: value } : prev)
   // Audio URLs for each section — passed to Remotion
   const [storyAudioUrl, setStoryAudioUrl]   = useState('')
   const [moralAudioUrl, setMoralAudioUrl]   = useState('')
@@ -521,7 +522,7 @@ export default function AdminPage() {
               {/* Story + Audio */}
               <div className="bg-amber-900/20 rounded-xl border border-amber-800/50 p-4">
                 <div className="text-xs text-amber-400 uppercase tracking-wide mb-2">📖 Story — {generated.source_attribution || generated.attribution}</div>
-                <p className="text-amber-100 text-sm leading-relaxed" dir="auto">{generated.story}</p>
+                <textarea value={generated.story} onChange={e => updateField('story', e.target.value)} className="w-full bg-amber-950/30 text-amber-100 text-sm leading-relaxed border border-amber-800/50 rounded-lg p-2 resize-y min-h-[120px] focus:outline-none focus:border-amber-500" dir="auto" data-test="story-edit" />
                 <AudioSection
                   text={generated.story}
                   lang={lang} style={style}
@@ -533,7 +534,7 @@ export default function AdminPage() {
               {/* Moral + Audio */}
               <div className="bg-emerald-900/20 rounded-xl border border-emerald-800/50 p-4">
                 <div className="text-xs text-emerald-400 uppercase tracking-wide mb-2">💡 Moral lesson</div>
-                <p className="text-emerald-100 text-sm leading-relaxed" dir="auto">{generated.moral}</p>
+                <textarea value={generated.moral} onChange={e => updateField('moral', e.target.value)} className="w-full bg-emerald-950/30 text-emerald-100 text-sm leading-relaxed border border-emerald-800/50 rounded-lg p-2 resize-y min-h-[100px] focus:outline-none focus:border-emerald-500" dir="auto" data-test="moral-edit" />
                 <AudioSection
                   text={generated.moral}
                   lang={lang} style={style}
@@ -546,7 +547,7 @@ export default function AdminPage() {
               {generated.seerah_context && (
                 <div className="bg-blue-900/20 rounded-xl border border-blue-800/50 p-4">
                   <div className="text-xs text-blue-400 uppercase tracking-wide mb-2">🕌 Historical context</div>
-                  <p className="text-blue-100 text-sm leading-relaxed" dir="auto">{generated.seerah_context}</p>
+                  <textarea value={generated.seerah_context} onChange={e => updateField('seerah_context', e.target.value)} className="w-full bg-blue-950/30 text-blue-100 text-sm leading-relaxed border border-blue-800/50 rounded-lg p-2 resize-y min-h-[80px] focus:outline-none focus:border-blue-500" dir="auto" data-test="seerah-edit" />
                 </div>
               )}
 
