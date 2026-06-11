@@ -20,6 +20,8 @@
    .\render-reel.ps1 -Style adults -Lang ru -Slug bukhari-1520
    .\render-reel.ps1 -Style kids   -Lang uz -Slug muslim-1337 -Nasheed ramadan-bg.mp3
    .\render-reel.ps1 -Style adults -Lang en -Slug bukhari-1773 -Open
+   # ANIMATED reel (ordered scene clips from out\backgrounds\new\normalized\):
+   .\render-reel.ps1 -Style adults -Lang ru -Slug bukhari-1520 -Scenes b1520-scene1.mp4,b1520-dua.mp4,kaaba.mp4 -Open
 
  PARAMS:
    -Nasheed     (optional) specific nasheed filename in out\backgrounds\; else random
@@ -34,6 +36,7 @@ param(
   [Parameter(Mandatory)][ValidateSet('en','ru','ar','uz','tj')][string]$Lang,
   [Parameter(Mandatory)][string]$Slug,
   [string]$Nasheed,
+  [string[]]$Scenes,     # ordered clip names (in normalized\) for an ANIMATED reel; omit = random 3
   [switch]$ForceNoSubs,
   [switch]$NoReview,
   [switch]$Open
@@ -135,7 +138,7 @@ if ($useSubs) {
   } else {
     # Build args as an array of literal strings; pass the path quoted to avoid
     # PowerShell mangling the backslash path into whisper.exe (which prints usage).
-    & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "out" --max_line_width 35 2>&1 |
+    & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "out" 2>&1 |
       ForEach-Object { if ("$_" -match 'Warning|FP16|usage:') {} else { Write-Host "        $_" -ForegroundColor DarkGray } }
     if (-not (Test-Path $srt)) { Die "Whisper did not produce $srt (run it manually to see the error)" }
     Ok "$srt"
@@ -168,27 +171,62 @@ if ($useSubs -and -not $NoReview) {
   }
 }
 
-# --- STEP 6: random-pick 3 bg clips -> mixed background ----------------------
-Say "`n[3/5] Step 6 - building background (3 random clips)..."
-$picked = $clips | Get-Random -Count 3
+# --- STEP 6: build background -- ORDERED scenes (animated) OR random 3 -------
+$animated = ($Scenes -and $Scenes.Count -gt 0)
+if ($animated) {
+  Say "`n[3/5] Step 6 - stitching $($Scenes.Count) ordered scene clips (animated reel)..."
+  $picked = foreach ($name in $Scenes) {
+    $clip = Join-Path $normDir $name
+    if (-not (Test-Path $clip)) { Die "scene clip not found: $clip" }
+    Get-Item $clip
+  }
+} else {
+  Say "`n[3/5] Step 6 - building background (3 random clips)..."
+  $picked = $clips | Get-Random -Count 3
+}
 $picked | ForEach-Object { Write-Host "        + $($_.Name)" -ForegroundColor DarkGray }
 
-# guard: -c copy concat requires identical dimensions. Reject non-1080x1920 clips.
-$badRes = @()
-foreach ($c in $picked) {
-  $dim = (& ffprobe -hide_banner -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x $c.FullName 2>$null).Trim()
-  if ($dim -ne '1080x1920') { $badRes += "$($c.Name) is $dim (need 1080x1920)" }
-}
-if ($badRes.Count -gt 0) {
-  Write-Host "`nBackground clip(s) wrong resolution -- normalize before use:" -ForegroundColor Red
-  $badRes | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }
-  Die "non-1080x1920 background clip in the random pick"
+# resolution guard for RANDOM mode only (it uses -c copy, needs pre-normalized clips).
+# Animated mode normalizes each clip below, so it tolerates any source res/fps.
+if (-not $animated) {
+  $badRes = @()
+  foreach ($c in $picked) {
+    $dim = (& ffprobe -hide_banner -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x $c.FullName 2>$null).Trim()
+    if ($dim -ne '1080x1920') { $badRes += "$($c.Name) is $dim (need 1080x1920)" }
+  }
+  if ($badRes.Count -gt 0) {
+    Write-Host "`nClip(s) wrong resolution -- normalize before use:" -ForegroundColor Red
+    $badRes | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }
+    Die "non-1080x1920 clip in the random pick"
+  }
 }
 
 $concatList = "out\backgrounds\new\concat-$base.txt"
-$picked | ForEach-Object { "file '$($_.FullName -replace '\\','/')'" } |
-  Out-File -Encoding ASCII -FilePath $concatList
-$rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-f","concat","-safe","0","-i",$concatList,"-c","copy",$bgMixed)
+if ($animated) {
+  # Normalize EACH clip to identical 1080x1920 @ 30fps BEFORE concat. This is the
+  # robust fix for the framerate/resolution traps: a stray 24fps or off-size clip
+  # can no longer flash-by or distort, because every clip is rebuilt uniform first.
+  $tmps = @()
+  $idx = 0
+  foreach ($c in $picked) {
+    $idx++
+    $tmp = "out\backgrounds\new\_norm-$base-$idx.mp4"
+    $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$c.FullName,
+      "-vf","scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+      "-c:v","libx264","-pix_fmt","yuv420p","-r","30","-an",$tmp)
+    if (-not (Test-Path $tmp)) { Die "failed to normalize $($c.Name)" }
+    $tmps += $tmp
+  }
+  $tmps | ForEach-Object { "file '$((Resolve-Path $_).Path -replace '\\','/')'" } |
+    Out-File -Encoding ASCII -FilePath $concatList
+  # all temps now identical -> safe -c copy concat
+  $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-f","concat","-safe","0","-i",$concatList,"-c","copy",$bgMixed)
+  $tmps | ForEach-Object { Remove-Item $_ -ErrorAction SilentlyContinue }
+} else {
+  $picked | ForEach-Object { "file '$($_.FullName -replace '\\','/')'" } |
+    Out-File -Encoding ASCII -FilePath $concatList
+  $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-f","concat","-safe","0","-i",$concatList,"-c","copy",$bgMixed)
+}
 Remove-Item $concatList -ErrorAction SilentlyContinue
 if (-not (Test-Path $bgMixed)) { Die "background concat failed ($bgMixed not created)" }
 Ok "$bgMixed"
