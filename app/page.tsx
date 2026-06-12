@@ -160,9 +160,19 @@ function HadithCard({ hadith, lang }: { hadith: Hadith; lang: Lang }) {
     </div>
   )
 }
+// Language-aware social links. Each platform falls back to `default` (the main
+// channel) until a per-language playlist/channel URL is filled in. So links work
+// today and improve as per-language content is added.
+const SOCIAL_LINKS: Record<'youtube'|'instagram'|'telegram'|'tiktok', Partial<Record<Lang,string>> & { default: string }> = {
+  youtube:   { default: 'https://www.youtube.com/@SahihHadithReels' },
+  instagram: { default: 'https://www.instagram.com/SahihHadithReels' },
+  telegram:  { default: 'https://t.me/SahihHadithReels' },
+  tiktok:    { default: 'https://www.tiktok.com/@sahihhadithreels' },
+}
+const socialUrl = (platform: keyof typeof SOCIAL_LINKS, lang: Lang) =>
+  SOCIAL_LINKS[platform][lang] ?? SOCIAL_LINKS[platform].default
 
-// ─── Watch Tab placeholder (wire to real reels once published) ────────────────
-function WatchTab() {
+function WatchTab({ lang }: { lang: Lang }) {
   return (
     <div className="space-y-4">
       {/* Coming soon card */}
@@ -174,19 +184,19 @@ function WatchTab() {
           Follow us to be notified when we launch.
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
-          <a href="https://www.youtube.com/@HadithReels" target="_blank" rel="noopener noreferrer"
+          <a href={socialUrl('youtube', lang)} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-medium transition-colors">
             ▶ YouTube
           </a>
-          <a href="https://www.instagram.com/hadithreels" target="_blank" rel="noopener noreferrer"
+          <a href={socialUrl('instagram', lang)} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 text-white text-sm font-medium transition-colors">
             📸 Instagram
           </a>
-          <a href="https://t.me/hadithreels" target="_blank" rel="noopener noreferrer"
+          <a href={socialUrl('telegram', lang)} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium transition-colors">
             ✈️ Telegram
           </a>
-          <a href="https://www.tiktok.com/@hadithreels" target="_blank" rel="noopener noreferrer"
+          <a href={socialUrl('tiktok', lang)} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-black hover:bg-gray-900 text-white text-sm font-medium transition-colors">
             🎵 TikTok
           </a>
@@ -414,7 +424,7 @@ export default function HadithReelsPage() {
         )}
 
         {/* WATCH TAB */}
-        {tab === 'watch' && <WatchTab />}
+        {tab === 'watch' && <WatchTab lang={lang} />}
 
         {/* Footer */}
         <div className="text-center text-xs text-gray-400 pt-4 pb-8 border-t border-gray-100">
