@@ -12,7 +12,16 @@
 **Repo:** github.com/Farhod75/hadith-reels
 **Sister project to:** hadithverifier.com
 **Built as:** sadaqah jariyah — daily authentic hadith reels for social media
-
+---
+## 📝 DOCUMENTATION DISCIPLINE (STRICT — applies to HV + HR)
+**EVERY fix, update, or enhancement MUST be documented in the same session it ships.**
+- Fixes → `fix_patterns.md` (log immediately after CI green, never deferred)
+- Features / enhancements → `CLAUDE.md` + `FEATURES.md` + `CHANGELOG.md`
+- Process changes → keep `reel-creation-pipeline.md` and related process docs current
+- Update docs BEFORE or ALONGSIDE the code push — never "document later"
+- Verify doc updates with git (`git show` / `git log`), exactly like code
+- Rationale: docs falling behind capabilities is itself a defect. This rule is
+  non-negotiable and a Claude session must not slip it.
 ---
 
 ## 🎯 PROJECT GOAL
