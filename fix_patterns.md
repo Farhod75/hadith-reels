@@ -773,3 +773,65 @@ End of P072-P075 appendix.
   type-checking this change).
   Verified: manual admin test (RU reel) — edited text narrated correctly; tsc clean.
   Original workaround (regenerate until correct) no longer required.
+
+  ================================================================
+
+**ID:** P081
+**Type:** Tooling bug (render automation)
+**Project:** hadith-reels
+**File affected:** render-reel.ps1 (Step 5 Whisper call)
+**First observed:** Jun 11, 2026 — RU adults animated reel (Bukhari #1520)
+**Discovered during:** render-reel.ps1 end-to-end testing (animated pipeline)
+**Symptom:**
+  The script's Whisper subtitle call failed with:
+    "whisper.exe : usage: ... error: --max_line_width requires --word_timestamps True."
+  Whisper printed its usage banner and produced NO .srt, so render-reel.ps1
+  fail-loud guard halted at Step 5. The same command worked manually only when
+  --word_timestamps True was also present.
+**Root cause:**
+  An earlier edit removed --word_timestamps (it had been suspected as the cause of
+  a different failure) but LEFT --max_line_width 35 in the call. Whisper rejects
+  --max_line_width unless --word_timestamps True is also supplied — they are a pair.
+  The orphaned flag caused the usage error.
+**Fix:**
+  Dropped --max_line_width entirely. Segment-level SRT (Whisper default, no
+  word-timestamps) reads BETTER in reels (whole phrases vs word-by-word flashing)
+  and is faster/more reliable. Final call:
+    & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "out"
+  Also: route Whisper directly (not through the Out-Null helper) so it writes the
+  SRT, and skip-if-SRT-exists to avoid re-transcribing.
+**Lesson:**
+  Whisper CLI flags have dependencies (--max_line_width / --max_line_count /
+  --max_words_per_line all require --word_timestamps True). Run native tools the
+  EXACT way that worked manually; don't half-remove paired flags.
+
+================================================================
+
+**ID:** P082
+**Type:** Tooling bug (video stitch — framerate mismatch)
+**Project:** hadith-reels
+**File affected:** render-reel.ps1 (Step 6 ordered-scene stitch, -Scenes mode)
+**First observed:** Jun 11, 2026 — RU adults animated reel (Bukhari #1520, 4-scene)
+**Discovered during:** Pillar 2 animated-reel assembly
+**Symptom:**
+  In the 4-scene animated reel (pilgrim → dua → Kaaba → path), the PATH scene
+  flashed by in ~1 second instead of its full ~5 seconds, while the other three
+  scenes played correctly. ffprobe confirmed the path clip was genuinely 5.04s /
+  121 frames — so the clip was fine, but it disappeared in the stitched output.
+**Root cause:**
+  The path clip was 24 fps (Kling image-to-video / FLUX-still origin), while the
+  other clips and the stitch target were 30 fps. The concat demuxer concatenates
+  streams using the first stream's timebase; a 24fps clip dropped into a 30fps
+  timeline gets wrong presentation timestamps and is compressed/flashed.
+  (Sibling of the resolution-mismatch trap: image-to-video preserves the source
+  still's aspect/fps, which often differs from the reel's 1080x1920 @ 30fps.)
+**Fix:**
+  In render-reel.ps1's animated (-Scenes) branch, NORMALIZE EACH clip to identical
+  1080x1920 @ 30fps BEFORE concatenating, then concat the uniform temps with -c copy:
+    ffmpeg -i clip -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" -c:v libx264 -pix_fmt yuv420p -r 30 -an tmp
+  Now any stray fps/resolution can't flash-by or distort. (Manual one-off fix for the
+  affected clip: same -vf with fps=30 re-normalize.)
+**Lesson:**
+  Never -c copy concat clips from mixed sources (Kling t2v, Kling i2v, real footage,
+  FLUX stills) — they differ in fps AND resolution. Always normalize each to a uniform
+  spec first. Resolution guard alone is insufficient; framerate matters equally.
