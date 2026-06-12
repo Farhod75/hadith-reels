@@ -185,14 +185,14 @@ test.describe('Browse tab functionality (CT-GenAI)', () => {
 // ═════════════════════════════════════════════════════════════════════════════
 test.describe('Watch tab', () => {
 
-  test('should show coming soon on Watch tab', async ({ page }) => {
+  test('should show Watch reels heading on Watch tab', async ({ page }) => {
     await gotoAndWait(page)
     await page.evaluate(() => {
   const btn = Array.from(document.querySelectorAll('button'))
     .find(b => b.textContent?.toLowerCase().includes('watch'))
   btn?.click()
 }) 
-    await expect(page.getByText(/Reels coming soon/i).first()).toBeVisible()
+    await expect(page.getByText(/Watch our reels/i).first()).toBeVisible()
   })
 
   test('should show YouTube link on Watch tab', async ({ page }) => {

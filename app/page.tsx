@@ -178,10 +178,10 @@ function WatchTab({ lang }: { lang: Lang }) {
       {/* Coming soon card */}
       <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-2xl p-8 text-center text-white">
         <div className="text-5xl mb-4">🎬</div>
-        <h2 className="text-xl font-bold mb-2">Reels coming soon</h2>
+        <h2 className="text-xl font-bold mb-2">Watch our reels</h2>
         <p className="text-indigo-200 text-sm mb-6 max-w-sm mx-auto">
-          We're producing daily authentic hadith reels — beautiful animations with verified Islamic sources.
-          Follow us to be notified when we launch.
+          Authentic hadith reels with verified Islamic sources — new reels added regularly.
+          Follow us on your favourite platform.
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
           <a href={socialUrl('youtube', lang)} target="_blank" rel="noopener noreferrer"
