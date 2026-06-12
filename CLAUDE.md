@@ -21,7 +21,19 @@
 - Update docs BEFORE or ALONGSIDE the code push — never "document later"
 - Verify doc updates with git (`git show` / `git log`), exactly like code
 - Rationale: docs falling behind capabilities is itself a defect. This rule is
-  non-negotiable and a Claude session must not slip it.
+ non-negotiable and a Claude session must not slip it.
+---
+## ⚠️ DEV ENVIRONMENT GOTCHA — PowerShell file writes get reverted
+**On this machine, PowerShell file-API writes to repo files are silently REVERTED**
+(`Set-Content`, `Add-Content`, `[System.IO.File]::WriteAllBytes`/`WriteAllText`).
+The write appears to succeed, Windows `dir` briefly shows the new size, but git
+reads the OLD content (stale blob) and the change never persists/commits.
+Likely cause: antivirus controlled-folder-access or a sync/backup tool intercepting writes.
+- **FIX: edit repo files in VS Code** (its save path is NOT intercepted) — never via PowerShell file APIs.
+- This also explains earlier BOM/encoding struggles with `Set-Content`.
+- Symptom to recognize: `git hash-object <file>` returns the SAME sha as HEAD even
+  after you "wrote" changes; `git status` says clean despite a changed file.
+- TODO: investigate root cause (Windows Defender controlled folder access, or sync tool).
 ---
 
 ## 🎯 PROJECT GOAL
