@@ -47,7 +47,22 @@ Pipeline uses ffmpeg shell commands (NOT Remotion). Remotion compositions exist 
    - **Manual validation step:** listen to both. If pronunciation is unacceptable, retry the Generate button (Nova has run-to-run variance — sometimes second take is better). Accept when good enough or retries exhaust patience.
 
 ---
+## ⭐ Automated render (Steps 2–4 in ONE command) — Pillar 1
 
+Once both narration MP3s are saved with the naming convention, render the whole reel with one command — no need to run Steps 2–4 manually:
+
+```powershell
+cd "C:\QA\Hadith verification AI app\hadith-reels"
+.\render-reel.ps1 -Style adults -Lang ru -Slug bukhari-1520 -Open
+```
+
+This does it all: concat story+moral → Whisper subtitles (auto-skipped for uz/tj per P078) → subtitle-review checkpoint (proofread before burn-in) → random-pick 3 Kaaba bg clips (resolution-guarded) → final merge with a random local nasheed + title overlay → reports MB and resolution.
+
+Flags: `-Nasheed <file>.mp3` (force a specific nasheed), `-NoReview` (skip the proofread pause), `-ForceNoSubs` (skip subtitles).
+
+> Steps 2–4 below are the MANUAL commands this script automates — kept for reference/debugging. In normal use you do NOT run them by hand.
+
+---
 ## Step 2 — Concatenate story + moral into one narration file
 
 Combine the two audio files with a 1-second gap between them, so Whisper can transcribe both as one timeline.
@@ -159,24 +174,24 @@ If any check fails, return to relevant earlier step.
 All reel artifacts in `out/` follow this pattern:
 
 ```
-<style>-<lang>-narration-<keyword>.mp3        — story audio only
-moral-narration-<lang>-<keyword>.mp3          — moral audio only
-<style>-<lang>-narration-<keyword>-full.mp3   — concatenated
-<style>-<lang>-narration-<keyword>-full.srt   — Whisper subtitles
-<style>-<lang>-<keyword>-reel.mp4             — final MP4
+{style}-{lang}-{slug}-story.mp3        — story audio (from admin Step 2)
+{style}-{lang}-{slug}-moral.mp3        — moral audio (from admin Step 2)
+{style}-{lang}-{slug}-narration.mp3    — concatenated (render-reel.ps1 makes this)
+{style}-{lang}-{slug}-narration.srt    — Whisper subtitles (en/ru/ar only, per P078)
+{style}-{lang}-{slug}-reel.mp4         — final MP4
 ```
 
 Where:
-- `<style>` ∈ {`kids`, `adults`}
-- `<lang>` ∈ {`en`, `uz`, `ar`, `ru`, `tj`}
-- `<keyword>` is a short identifier of the hadith (e.g., `tabassum`, `fasting`, `prayer`)
+- `{style}` ∈ {`kids`, `adults`}
+- `{lang}` ∈ {`en`, `uz`, `ru`, `tj`}  (AR skipped — not quality-checkable; was: en/uz/ar/ru/tj)
+- `{slug}` = collection-number, machine-dedupable (e.g. `bukhari-1520`, `tirmidhi-1956`)
 
 Example complete set for UZ kids tabassum reel:
-- `out/kids-uz-narration-tabassum.mp3`
-- `out/moral-narration-uz-tabassum.mp3`
-- `out/kids-uz-narration-tabassum-full.mp3`
-- `out/kids-uz-narration-tabassum-full.srt`
-- `out/kids-uz-tabassum-reel.mp4`
+- `out/adults-ru-bukhari-1520-story.mp3`
+- `out/adults-ru-bukhari-1520-moral.mp3`
+- `out/adults-ru-bukhari-1520-narration.mp3`
+- `out/adults-ru-bukhari-1520-narration.srt`
+- `out/adults-ru-bukhari-1520-reel.mp4`
 
 ---
 
@@ -188,8 +203,14 @@ $env:PATH += ";C:\ffmpeg\ffmpeg-master-latest-win64-gpl\bin"
 ```
 (Permanent fix: add to system PATH via Environment Variables UI)
 
-**Whisper outputs Latin script for UZ/TJ:**
-Known limitation. Ship Latin subtitles for now. Cyrillic conversion via substitution map is a post-Hajj task.
+**Whisper outputs Latin script for UZ/TJ (P078):**
+`render-reel.ps1` AUTO-SKIPS subtitles for uz/tj — only en/ru/ar get Whisper subs. Long-term path: Claude native audio input (Candidate 7) to fix UZ/TJ transliteration.
+
+**Whisper call fails with "usage: ... --max_line_width requires --word_timestamps" (P081):**
+`--max_line_width` needs `--word_timestamps True` (they're a pair). render-reel.ps1 omits both and uses segment-level SRT (cleaner for reels). Don't half-remove paired flags.
+
+**Generated story has a grammar error (e.g. RU "Послание→Посланник"):**
+FIXED (P079) — story/moral/seerah are now EDITABLE textareas in admin Step 2. Just fix the text before generating audio; no regenerate cycle needed.
 
 **Whisper says "FP16 not supported on CPU":**
 Harmless warning. Uses FP32 instead. Slightly slower but accurate.
@@ -202,7 +223,11 @@ Per P074, gpt-4o-mini-tts + instructions parameter mitigates ~80-90%. Persistent
 
 ---
 
-## Future automation (post-Hajj)
+## Future automation (Curator agent)
+**Status update (2026-06-11):** the render step is now AUTOMATED — `render-reel.ps1`
+turns the manual Steps 2–4 into one command (Pillar 1) and also stitches ordered
+animated scenes (Pillar 2, `-Scenes`). So the agent below no longer has to reinvent
+rendering; it would orchestrate the existing scripts. Remaining for a Curator agent:
 
 Per `hr-agent-fleet-roadmap.md`:
 - Orchestrator agent triggers daily cron at 06:00 UTC
@@ -213,4 +238,5 @@ Per `hr-agent-fleet-roadmap.md`:
 - Auto-posts to Telegram via Bot API
 - Logs to `hadith_reels` table
 
-Today's manual pipeline becomes the agent's reference workflow.
+The render-reel.ps1 / generate-scene.ps1 / generate-image.ps1 scripts become the agent's
+building blocks. See `animated-reel-scene-prompts.md` for Pillar 2 (animated) design + guardrails.
