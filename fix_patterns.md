@@ -835,3 +835,39 @@ End of P072-P075 appendix.
   Never -c copy concat clips from mixed sources (Kling t2v, Kling i2v, real footage,
   FLUX stills) — they differ in fps AND resolution. Always normalize each to a uniform
   spec first. Resolution guard alone is insufficient; framerate matters equally.
+
+  ================================================================
+
+**ID:** P083
+**Type:** Tooling bug (render automation — PowerShell native stderr)
+**Project:** hadith-reels
+**File affected:** render-reel.ps1 (Step 5 Whisper call)
+**First observed:** Jun 13, 2026 — EN adults animated reel (Bukhari #1520)
+**Discovered during:** Producing the EN 1520 reel (first subtitled reel since the script's Whisper path)
+**Symptom:**
+  render-reel.ps1 halted at Step 5 with:
+    "whisper.exe : ...UserWarning: FP16 is not supported on CPU; using FP32 instead
+     ... NativeCommandError"
+  No SRT produced; script died before the Test-Path $srt check. Running whisper
+  manually produced a perfect SRT — so Whisper worked; only the script halted.
+**Root cause:**
+  The script sets `$ErrorActionPreference = 'Stop'` globally (line 45). The Whisper
+  call (unlike ffmpeg, which goes through the Run() helper) was invoked directly:
+    & whisper ... 2>&1 | ForEach-Object {...}
+  Whisper writes a HARMLESS "FP16 not supported on CPU" warning to stderr. Under
+  'Stop', that merged stderr line is treated as a TERMINATING error, killing the
+  script before the SRT existence check. (Only triggers when Whisper actually runs —
+  i.e. en/ru/ar; uz/tj auto-skip subs per P078, so they never hit it.)
+**Fix:**
+  Wrap the Whisper call in the same 'Continue' pattern as Run():
+    $prevEAP = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    & whisper ... 2>&1 | ForEach-Object {...}
+    $ErrorActionPreference = $prevEAP
+    if (-not (Test-Path $srt)) { Die ... }
+  Now Whisper's FP16 warning prints harmlessly and the render continues; real
+  failures still caught by the Test-Path check. Fixed CI/commit 2c47759.
+**Lesson:**
+  Native tools (whisper, ffmpeg) write normal/warning output to stderr. Under
+  $ErrorActionPreference='Stop', ANY direct native call can be killed by a stderr
+  line. Route ALL native calls through a 'Continue'-wrapped helper, not just ffmpeg.
