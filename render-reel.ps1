@@ -138,8 +138,14 @@ if ($useSubs) {
   } else {
     # Build args as an array of literal strings; pass the path quoted to avoid
     # PowerShell mangling the backslash path into whisper.exe (which prints usage).
+    # P083: whisper writes a harmless "FP16 not supported on CPU" warning to stderr.
+    # Under $ErrorActionPreference='Stop' that stderr line TERMINATES the script, so we
+    # flip to 'Continue' around the call (same pattern as Run()) and rely on the SRT check.
+    $prevEAP = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
     & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "out" 2>&1 |
       ForEach-Object { if ("$_" -match 'Warning|FP16|usage:') {} else { Write-Host "        $_" -ForegroundColor DarkGray } }
+    $ErrorActionPreference = $prevEAP
     if (-not (Test-Path $srt)) { Die "Whisper did not produce $srt (run it manually to see the error)" }
     Ok "$srt"
   }
