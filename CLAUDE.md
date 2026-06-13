@@ -1,7 +1,7 @@
 # CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
-# Last updated: 2026-05-17
+# Last updated: 2026-06-13
 
 ---
 
@@ -35,6 +35,19 @@ Likely cause: antivirus controlled-folder-access or a sync/backup tool intercept
   after you "wrote" changes; `git status` says clean despite a changed file.
 - TODO: investigate root cause (Windows Defender controlled folder access, or sync tool).
 ---
+## 🐑 Talking-mascot kids lane (added 2026-06-13)
+- **Mascot stills:** Nano Banana Pro (Gemini, paid API key). Locked reusable
+  assets in **tracked** `assets/mascot/` (NOT gitignored `out/`). Edit an
+  existing mascot to add poses/outfits — don't re-roll — to keep the face.
+- **Lip-sync:** `generate-talking-clip.py` → fal `veed/fabric-1.0` (`FAL_KEY`).
+- **DEV GOTCHAS (this session):**
+  - Browser image downloads can save with a corrupted extension
+    (e.g. `lamb-boy-v1.pn.jpg`). Rename cleanly in VS Code/Explorer;
+    Fabric accepts jpg regardless of the wrong-looking name.
+  - Install the fal client with `python -m pip install fal-client`
+    (not bare `pip`) so it lands in the interpreter running the script.
+- **Guardrail:** kids mascots are generic animals only — never the Prophet,
+  prophets, angels, Allah, or named Sahaba.
 
 ## 🎯 PROJECT GOAL
 

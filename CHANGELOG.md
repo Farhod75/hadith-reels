@@ -1,3 +1,18 @@
+
+## [2026-06-13]
+
+### Added
+- **Talking-mascot kids lane (proof-of-concept proven).** New
+  `generate-talking-clip.py` turns a mascot still + TTS audio into a
+  lip-synced talking-mascot MP4 via fal **VEED Fabric 1.0**
+  (`veed/fabric-1.0`; inputs `image_url` + `audio_url` + `resolution`;
+  returns MP4 URL). Verified end-to-end at 480p:
+  `assets/mascot/lamb-boy-v1.png` + `out/adults-en-bukhari-1520-moral.mp3`
+  → `out/talking/test-boy.mp4`.
+- **Two consistent lamb mascots** (Nano Banana Pro / Gemini): `lamb-boy-v1`
+  (blue yakhtak + belbog + tyubeteika) and `lamb-girl-v1` (vibrant
+  khan-atlas dress + braids), stored in tracked `assets/mascot/`.
+  Generic animal mascots only — never sacred figures.
 ## [2026-06-11] — Animated reel pipeline + multi-platform launch
 
 ### Added (Pillar 2 — Animated reels)
