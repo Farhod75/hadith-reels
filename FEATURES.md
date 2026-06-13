@@ -9,3 +9,13 @@
   face-consistent (edit, don't re-roll). One face per clip → animate each
   mascot separately, compose in render.
 - Drives clips from existing ElevenLabs/OpenAI TTS narrations.
+
+### Kids talking-mascot reels — Route A (scene-baked)
+**Status:** proven end-to-end (2026-06-13).
+
+- **Render:** `render-mascot-reel.ps1` -Lang -Slug -Clips [-Nasheed|-NoMusic]
+  [-Subs] [-Open]. Talking clips = spine; nasheed under voice @0.20.
+- **Scene mascots:** generate the mascot *in* the scene in Nano Banana Pro,
+  attaching the locked base mascot as a face reference. Keep the mascot large,
+  front-facing, clear mouth; keep empty headroom (Route-A motion coupling).
+- **Proven assets:** boy = moonlit mosque (night), girl = mosque garden (day).

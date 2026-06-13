@@ -1,3 +1,21 @@
+## [2026-06-13] (continued)
+
+### Added
+- **Scene-baked mascots (Route A).** Mascots are now generated *inside* a
+  scene via Nano Banana Pro using a locked mascot still as a face reference,
+  so face/outfit stay consistent while the environment changes. Fabric then
+  animates lamb + scene together. Assets: `assets/mascot/lamb-boy-mosque-night-v2.png`,
+  `assets/mascot/lamb-girl-garden-day-v1.png`.
+- **`render-mascot-reel.ps1`** — kids talking-mascot reel renderer. Talking
+  clips (Fabric) are the spine; nasheed mixes under the voice at 0.20;
+  optional burned subs (skipped uz/tj per P078); output
+  `out/kids-{lang}-{slug}-mascot-reel.mp4`.
+
+### Notes
+- Route-A limitation: Fabric animates the whole frame, so anything directly
+  above the head drifts with head motion. Mitigation: keep moon/large objects
+  offset to a corner with empty headroom above the mascot. Route B
+  (green-screen composite) deferred for fully-static backgrounds.
 
 ## [2026-06-13]
 

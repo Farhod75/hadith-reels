@@ -49,6 +49,20 @@ Likely cause: antivirus controlled-folder-access or a sync/backup tool intercept
 - **Guardrail:** kids mascots are generic animals only — never the Prophet,
   prophets, angels, Allah, or named Sahaba.
 
+  ### Scene-baked mascots + render-mascot-reel.ps1 (added 2026-06-13)
+- **Scene generation:** Nano Banana Pro, attach the locked base mascot
+  (`lamb-boy-v1` / `lamb-girl-v1`) as a face reference, prompt the new scene.
+  Keeps face consistent across environments. Download to `assets/mascot/`.
+- **Render:** `render-mascot-reel.ps1` — talking clips are the audio spine
+  (NOT a silent background); nasheed mixes under the voice at 0.20.
+- **Route-A motion coupling:** Fabric animates the whole image, so objects
+  near/above the head drift with head motion. Keep the mascot large and
+  centered, offset moons/large objects to a corner, leave headroom. Route B
+  (green-screen over looping scene video) is the fix for fully-static bg — deferred.
+- **Downloaded-script gotcha:** new `.ps1` files saved from a browser are
+  execution-policy blocked; clear with `Unblock-File .\script.ps1` (metadata
+  change, not a content write — revert gotcha doesn't apply).
+
 ## 🎯 PROJECT GOAL
 
 Generate short-form video reels (15-60s) with authentic hadiths for Instagram/TikTok/YouTube Shorts.
