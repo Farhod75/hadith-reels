@@ -25,6 +25,9 @@
 | R003 | 2026-05-14* | Jami at-Tirmidhi #1956 | Abu Dharr | Hasan | Charity / Akhlaq | #smile #charity #akhlaq #brotherhood | UZ | Adults | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | Smile-as-charity hadith. Source: Усваи Ҳасана. Backfill post-Hajj. |
 | R004 | 2026-05-15 | Sahih al-Bukhari #1773 | Abu Hurairah | Sahih (mutafaqun alayh) | Hajj / Umrah | #hajj #umrah #expiation #pilgrimage #mabrur | TJ | Adults | umra-to-umra | umra-to-umra-narration.mp3 | umra-to-umra-moral-narration.mp3 | umra-to-umra-narration-full.mp3 | TBD (3 random of 6) | tj-adults-bg-mixed.mp4 | path-to-jannah-bg.mp3 | No (P078 — UZ/TJ Whisper Latin drift) | adults-tj-umra-reel-v2.mp4 | 50.7s | 33 MB | Source: Сарчашма: Усваи Ҳасана. Pre-Hajj pick. |
 | R005 | 2026-05-16 | Sahih al-Bukhari #1520 | Aisha | Sahih | Hajj / Women's jihad | #hajj #jihad #women #pilgrimage #mabrur #virtue | RU | Adults | hajj-women | hajj-women-story-narration-ru.mp3 | hajj-women-moral-narration-ru.mp3 | hajj-women-narration-ru-full.mp3 | 3 random from out/backgrounds/new/normalized/ | ru-adults-bg-mixed.mp4 | mubarak-bg.mp3 | No (regenerate cycle, audio fixed, subs skipped to ship clean) | adults-ru-hajj-women-reel-v2.mp4 | 49.1s | 22 MB | Source: Источник: Усваи Хасана. Required 1 regenerate cycle (P079 — "Послание к Аллаха" → "Посланник Аллаха"). |
+| R006 | 2026-06-13 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | en | kids | bukhari-6009 | kids-en-bukhari-6009-story.mp3 | kids-en-bukhari-6009-moral.mp3 | (split clip01–02) | kids-en-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-en-bukhari-6009-mascot-reel.mp4 | ~40s | 12.9 MB | First talking-mascot kids reel (girl lamb, Route A); fal Fabric lip-sync; published TG/YT/IG/TikTok | | R007 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | ru | kids | bukhari-6009 | kids-ru-bukhari-6009-story.mp3 | kids-ru-bukhari-6009-moral.mp3 | (split clip01–02) | kids-ru-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-ru-bukhari-6009-mascot-reel.mp4 | ~51s | 17.5 MB | Girl lamb; Nova RU kids voice (P085); published TG/YT/IG/TikTok |
+| R008 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | uz | kids | bukhari-6009 | kids-uz-bukhari-6009-story.mp3 | kids-uz-bukhari-6009-moral.mp3 | (split clip01–03) | kids-uz-bukhari-6009-clip01.mp4, clip02.mp4, clip03.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-uz-bukhari-6009-mascot-reel.mp4 | ~69s | 24.6 MB | Girl lamb; Nova UZ kids voice + ҳ/ж/ғ tuning (P087); published 4 platforms |
+| R009 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | tj | kids | bukhari-6009 | kids-tj-bukhari-6009-story.mp3 | kids-tj-bukhari-6009-moral.mp3 | (split clip01–02) | kids-tj-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-tj-bukhari-6009-mascot-reel.mp4 | ~54s | ~18 MB | Girl lamb; native Tajik text (not RU dup); Nova TJ ҷ/ӯ OK; published 4 platforms |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -41,6 +44,7 @@
 | Jami at-Tirmidhi #1956 | UZ | Adults | R003 |
 | Sahih al-Bukhari #1773 | TJ | Adults | R004 |
 | Sahih al-Bukhari #1520 | RU | Adults | R005 |
+| Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
 
 ---
 
@@ -69,12 +73,12 @@
 **Language coverage gaps:**
 
 - AR (Arabic) — 0 reels (gap!)
-- Kids style — 0 reels in any language (gap!)
+- Kids style — ✅ first set live (Bukhari 6009, EN/RU/UZ/TJ → R006–R009); grow with new hadiths
 
 ---
 
 ## Asset reuse audit
-
+| ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 > **Use to avoid asset fatigue** — same nasheed/clips on consecutive reels feels lazy to viewers.
 
 ### Nasheed usage
@@ -114,16 +118,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 5 |
+| Total reels posted | 9 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
 | Adults reels | 5 |
-| Kids reels | 0 |
-| Avg duration | ~50s |
-| Avg file size | ~28 MB |
-| Hadiths used (unique) | 5 |
-| Hadith collections used | 2 (Sahih al-Bukhari ×3, Jami at-Tirmidhi ×2) |
-| Companions cited | 3 (Abu Hurairah ×3, Abu Dharr ×1, Aisha ×1) |
+| Kids reels | 4 |
+| Avg duration | ~52s |
+| Avg file size | ~22 MB |
+| Hadiths used (unique) | 6 |
+| Hadith collections used | 2 (Sahih al-Bukhari ×7, Jami at-Tirmidhi ×2) |
+| Companions cited | 3 (Abu Hurairah ×7, Abu Dharr ×1, Aisha ×1) |
 
 ---
 
@@ -155,3 +159,5 @@ Then update:
 | Date | Change | By |
 |---|---|---|
 | 2026-05-16 | Initial creation, 5 reels logged retroactively + tonight's | Farhod / Claude session |
+| 2026-06-13 | First kids talking-mascot reel: Bukhari 6009 EN | Farhod / Claude |
+| 2026-06-14 | Bukhari 6009 full 4-lang kids set (girl lamb, R007–R009) + P085/P086/P087 | Farhod / Claude |
