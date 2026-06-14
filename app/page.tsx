@@ -244,28 +244,32 @@ export default function HadithReelsPage() {
   const [error, setError]           = useState('')
   const [stats, setStats]           = useState({ total: 0, sahih: 0 })
   const [searchQuery, setSearchQuery] = useState('')
+  const [loadingMore, setLoadingMore] = useState(false)
 
-  useEffect(() => { fetchHadiths() }, [filterGrade, lang])
+  const PAGE_SIZE = 40
 
-  async function fetchHadiths() {
-    setLoading(true)
+  useEffect(() => { fetchHadiths(0, true) }, [filterGrade, lang])
+
+  async function fetchHadiths(offset = 0, replace = false) {
+    if (replace) { setLoading(true) } else { setLoadingMore(true) }
     setError('')
     try {
-      const params = new URLSearchParams({ lang, limit: '40' })
+      const params = new URLSearchParams({ lang, limit: String(PAGE_SIZE), offset: String(offset) })
       if (filterGrade !== 'all') params.set('grade', filterGrade)
       const res  = await fetch(`/api/reels?${params}`)
       const data = await res.json()
       if (data.error) throw new Error(data.error)
       const list = (data.reels || []) as Hadith[]
-      setHadiths(list)
+      setHadiths(prev => replace ? list : [...prev, ...list])
       setStats({
-        total: list.length,
-        sahih: list.filter(h => h.grade === 'sahih').length,
+        total: data.total ?? list.length,
+        sahih: data.sahih ?? list.filter(h => h.grade === 'sahih').length,
       })
     } catch (e: any) {
       setError(e.message || 'Failed to load')
     } finally {
       setLoading(false)
+      setLoadingMore(false)
     }
   }
 
@@ -397,7 +401,7 @@ export default function HadithReelsPage() {
             {!loading && error && (
               <div className="bg-red-50 rounded-xl border border-red-200 p-4 text-center">
                 <p className="text-sm text-red-700 mb-2">{error}</p>
-                <button onClick={fetchHadiths}
+                <button onClick={() => fetchHadiths(0, true)}
                   className="text-xs px-3 py-1.5 rounded-lg bg-red-100 text-red-700 hover:bg-red-200">
                   Retry
                 </button>
@@ -418,6 +422,15 @@ export default function HadithReelsPage() {
                 {filtered.map(h => (
                   <HadithCard key={h.id} hadith={h} lang={lang} />
                 ))}
+                {!searchQuery.trim() && hadiths.length < stats.total && (
+                  <button
+                    onClick={() => fetchHadiths(hadiths.length)}
+                    disabled={loadingMore}
+                    className="w-full py-3 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                  >
+                    {loadingMore ? 'Loading…' : `Load more (${hadiths.length} of ${stats.total})`}
+                  </button>
+                )}
               </div>
             )}
           </>

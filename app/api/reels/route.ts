@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 
     let query = sb
       .from('hadith_library')
-      .select('id, text_arabic, text_english, text_uzbek, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority')
+      .select('id, text_arabic, text_english, text_uzbek, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority', { count: 'exact' })
       .order('collection')
       .range(offset, offset + limit - 1)
 
@@ -30,8 +30,18 @@ export async function GET(req: NextRequest) {
       query = query.in('grade', ['sahih', 'hasan'])
     }
 
-    const { data, error } = await query
+    const { data, error, count } = await query
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+    // Accurate Sahih sub-count for the header (independent of pagination)
+    let sahihCount = 0
+    {
+      const { count: sc } = await sb
+        .from('hadith_library')
+        .select('id', { count: 'exact', head: true })
+        .eq('grade', 'sahih')
+      sahihCount = sc ?? 0
+    }
 
     const results = (data || []).map(h => ({
       ...h,
@@ -50,7 +60,7 @@ export async function GET(req: NextRequest) {
           : lang,
     }))
 
-    return NextResponse.json({ reels: results, total: results.length, offset, limit, lang })
+    return NextResponse.json({ reels: results, total: count ?? results.length, sahih: sahihCount, offset, limit, lang })
 
   } catch (error: any) {
     return NextResponse.json({ error: error?.message || 'Failed' }, { status: 500 })

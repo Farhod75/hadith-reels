@@ -996,3 +996,36 @@ End of P072-P075 appendix.
   lowercase mid-sentence (content-side fix, not prompt-side).
 
 **Status:** FIXED (instructions) + documented workaround
+
+## ════════════════════════════════════════════════════════
+## PATTERN 88: Public library capped at 40 rows; counter wrong
+## ════════════════════════════════════════════════════════
+**ID:** P088
+**Type:** Feature/fix (pagination + accurate counts)
+**Files:** app/api/reels/route.ts, app/page.tsx
+**Commit:** feat: load-more pagination + accurate library counts (P088)
+
+**Symptom:**
+  hadithreels.com showed "40 Hadiths" no matter the real DB size, and browsing
+  only ever displayed the first 40 rows. New hadiths past row 40 (ordered by
+  collection) were unreachable when browsing. (Surfaced while diagnosing why
+  Bukhari 6009 wasn't visible — root cause there was blank prod Supabase env;
+  the 40-cap was the second, separate issue.)
+
+**Root cause:**
+  - /api/reels hard-limited to 40 and returned total = results.length (page
+    size), not the real DB count.
+  - Public page set stats.total from the fetched list length and never paged.
+
+**Fix:**
+  - Route: select with { count: 'exact' } → return real total; add an exact
+    Sahih sub-count (head:true count query); accept offset for paging.
+  - Page: paginate in PAGE_SIZE (40) batches; append on "Load more"; counter
+    reads data.total/data.sahih (real DB counts). Load-more hidden during
+    search (search stays client-side over loaded rows — option A).
+
+**Known limit (option A):**
+  Client-side search only filters loaded rows; user may need to Load More to
+  search the full library. Server-side search (option B) deferred — board item.
+
+**Status:** FIXED
