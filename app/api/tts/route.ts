@@ -26,6 +26,11 @@ const VOICE_MAP: Record<string, Record<string, string>> = {
 // P073: per-language phonetic instructions for gpt-4o-mini-tts
 // Keyed as `${lang}.${style}` — e.g., 'uz.kids', 'tj.adults'
 const TTS_INSTRUCTIONS: Record<string, string> = {
+  'ru.kids':
+    "Speak as a native Russian speaker reading to young children. Use a warm, " +
+    "gentle, joyful and clear tone. This is a religious children's story — speak " +
+    "with reverence, kindness and care. Natural Russian pronunciation and pacing.",
+
   'uz.kids':
     "Speak as a native Uzbek (O'zbek) speaker reading to children. Use warm, gentle, joyful tone. " +
     "Pronounce these Uzbek Cyrillic letters precisely: ҳ as aspirated h (like in 'house', not Russian х); " +
@@ -94,7 +99,8 @@ export async function POST(req: NextRequest) {
 
     const cleanText = cleanForTTS(text, lang)
     const langKey = lang.replace('_cyrillic', '').replace('_latin', '')
-    const useOpenAI = ['uz', 'tj'].includes(langKey)
+    // RU kids -> OpenAI Nova (female); RU adults stays on ElevenLabs (Abrar)
+    const useOpenAI = ['uz', 'tj'].includes(langKey) || (langKey === 'ru' && style === 'kids')
 
     // ── OpenAI gpt-4o-mini-tts for UZ/TJ ─────────────────────────────────────
     if (useOpenAI) {

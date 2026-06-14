@@ -902,3 +902,35 @@ End of P072-P075 appendix.
   Restart dev server → admin Kids/EN → generate 6009 TTS → female (Danielle).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 85: RU kids narration used male voice (ElevenLabs Abrar)
+## ════════════════════════════════════════════════════════
+**ID:** P085
+**Type:** Enhancement / voice routing (TTS provider branch)
+**Files:** app/api/tts/route.ts
+**Commit:** feat: route RU kids TTS to OpenAI Nova (female) (P085)
+
+**Symptom:**
+  RU kids reels narrated with a male voice. RU (both styles) routed through
+  ElevenLabs to ELEVENLABS_VOICE_ABRAR (Antoni, male); no female kids option.
+
+**Root cause:**
+  The OpenAI branch (Nova female for kids) only fired for uz/tj. RU always
+  used the ElevenLabs path, which had a single male voice for both styles.
+
+**Fix — two edits (RU adults untouched):**
+  1. Add a 'ru.kids' entry to TTS_INSTRUCTIONS (warm Russian children's tone).
+  2. Extend the OpenAI condition:
+       const useOpenAI = ['uz','tj'].includes(langKey)
+         || (langKey === 'ru' && style === 'kids')
+     The OpenAI branch already selects 'nova' when style === 'kids'.
+
+**Why safe:**
+  RU adults still misses the useOpenAI condition -> stays on ElevenLabs/Abrar
+  exactly as before. Only RU+kids flips to OpenAI Nova.
+
+**Verification:**
+  Admin Kids/RU -> generate 6009 -> female (Nova). Confirmed 2026-06-13.
+
+**Status:** FIXED
