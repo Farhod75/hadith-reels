@@ -969,3 +969,30 @@ End of P072-P075 appendix.
   item: move hook to a tracked scripts/pre-push.sh so it survives re-clone.
 
 **Status:** FIXED (local hook)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 87: UZ kids TTS mispronounced ҳ / ж / ғ (Nova phonetics)
+## ════════════════════════════════════════════════════════
+**ID:** P087
+**Type:** Enhancement (OpenAI Nova phonetic instructions, P073 family)
+**Files:** app/api/tts/route.ts
+**Commit:** feat: strengthen uz.kids ҳ/ж/ғ pronunciation for Nova (P087)
+
+**Symptom (UZ kids, OpenAI Nova):**
+  - ҳ dropped/softened to an s-like sound: меҳрибон → "месрибон"
+  - ж read as Russian/French "zh" instead of English J: жонзот, муҳтож
+  - plain г occasionally hardened toward throaty ғ: сувга
+
+**Fix — strengthened the 'uz.kids' instructions string:**
+  - ҳ: ALWAYS audible breathy H, never dropped/softened to s, never Russian х.
+  - ж: soft English J (judge), never zh, including word-final ж.
+  - Added explicit examples: меҳрибон=meh-hree-BON, жонзот=JON-zot,
+    муҳтож=muh-TOJ, сувга=suv-GA (plain g, not ғ).
+
+**Residual + workaround:**
+  Nova still mispronounced ҳ specifically on sentence-INITIAL capitalized
+  "Меҳрибон" while reading lowercase "меҳрибонлик" correctly. Instructions
+  can't reliably fix one stochastic position → reword so the word sits
+  lowercase mid-sentence (content-side fix, not prompt-side).
+
+**Status:** FIXED (instructions) + documented workaround

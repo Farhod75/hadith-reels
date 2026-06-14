@@ -33,13 +33,13 @@ const TTS_INSTRUCTIONS: Record<string, string> = {
 
   'uz.kids':
     "Speak as a native Uzbek (O'zbek) speaker reading to children. Use warm, gentle, joyful tone. " +
-    "Pronounce these Uzbek Cyrillic letters precisely: ҳ as aspirated h (like in 'house', not Russian х); " +
+    "Pronounce these Uzbek Cyrillic letters precisely: ҳ as a clear breathy aspirated H (like the H in 'house'/'hello') — it must ALWAYS be audibly pronounced as H, never dropped and never softened to an s/с sound, never Russian х; " +
     "қ as deep uvular k from back of throat (like Arabic ق, not Russian к) — pronounce қ consistently strong " +
     "whether at start, middle, or end of word; ў as 'o' sound in 'go'; ғ as voiced uvular g (like Arabic غ); " +
-    "ж as English 'j' in 'judge' or 'jim' (single soft J sound, NOT 'dzh' with hard D onset, NOT French 'zh'). " +
+    "ж as English 'j' in 'judge'/'jam' — a soft single J sound, NEVER the Russian/French 'zh' (as in 'measure'); apply this to EVERY ж including at the end of a word. " +
     "Example pronunciations: жилмайиб = 'JIL-mai-ib' (start with soft English J, no D); " +
     "иссиқ = 'is-SEEQ' (strong throat-back Q at end, NOT soft K); " +
-    "қуёшдек = 'qu-yosh-DEK' (strong Q at start). " +
+    "қуёшдек = 'qu-yosh-DEK' (strong Q at start); меҳрибон = 'meh-hree-BON' (clear breathy H in the middle, NEVER 'mes-ri-bon'); сувга = 'suv-GA' (plain hard g like 'go' — do NOT harden plain г into the throaty ғ/gh); жонзот = 'JON-zot' (English J like 'judge', NOT 'zhon'); муҳтож = 'muh-TOJ' (clear H, and end with English J — NOT 'muh-tozh'). " +
     "Place word stress on the final syllable per Uzbek convention. " +
     "Do not use Russian phonetic patterns. This is a religious children's story — speak with reverence and clarity.",
 
