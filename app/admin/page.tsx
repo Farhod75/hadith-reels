@@ -91,7 +91,7 @@ function AudioSection({ text, lang, style, label, onAudioReady }: {
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 800), lang }),
+        body: JSON.stringify({ text: text.slice(0, 800), lang, style }),
       })
       if (!res.ok) throw new Error(`TTS ${res.status}`)
       const blob = await res.blob()

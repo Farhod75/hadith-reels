@@ -871,3 +871,34 @@ End of P072-P075 appendix.
   Native tools (whisper, ffmpeg) write normal/warning output to stderr. Under
   $ErrorActionPreference='Stop', ANY direct native call can be killed by a stderr
   line. Route ALL native calls through a 'Continue'-wrapped helper, not just ffmpeg.
+
+  ## ════════════════════════════════════════════════════════
+## PATTERN 84: Admin TTS request omits `style` → kids use adults (male) voice
+## ════════════════════════════════════════════════════════
+**ID:** P084
+**Type:** Bug fix (request payload / voice routing)
+**Files:** app/admin/page.tsx
+**Commit:** fix: admin TTS request missing style param — kids used adults voice (P084)
+
+**Symptom:**
+  Kids reels were narrated with a MALE voice in every language, despite the
+  voice matrix specifying Danielle (EN/UZ/TJ kids). Generating EN/Kids audio
+  produced James/Adam (adults), not Danielle.
+
+**Root cause:**
+  AudioSection in the admin page calls /api/tts but only sends { text, lang }:
+      body: JSON.stringify({ text: text.slice(0, 800), lang })
+  The TTS route defaults `style = 'adults'` when none is sent, so EVERY kids
+  generation silently routed to the adults voice. The VOICE_MAP and .env.local
+  were correct all along — the request simply never asked for the kids voice.
+  `style` was already available as a prop in AudioSection; it just wasn't in
+  the body. This affected ALL kids languages, not only EN.
+
+**Fix (one line):**
+  app/admin/page.tsx — add `style` to the TTS request body:
+      body: JSON.stringify({ text: text.slice(0, 800), lang, style })
+
+**Verification:**
+  Restart dev server → admin Kids/EN → generate 6009 TTS → female (Danielle).
+
+**Status:** FIXED
