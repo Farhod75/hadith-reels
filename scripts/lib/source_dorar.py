@@ -31,7 +31,7 @@ _TAG = re.compile(r"<[^>]+>")
 # "لا يصح" don't get mis-read as sahih.
 _DAIF_RAW = [
     "موضوع", "باطل", "منكر", "لا يصح", "لا اصل", "غير صحيح", "ليس بصحيح",
-    "ضعيف", "واه", "شاذ", "متروك", "لا يثبت",
+    "ضعيف", "واه", "شاذ", "متروك", "لا يثبت", "خطا", "ضعفه", "لم يصح",
 ]
 _DAIF_N = [normalize_arabic(x) for x in _DAIF_RAW]
 _SAHIH_N = normalize_arabic("صحيح")
@@ -51,39 +51,45 @@ def classify_dorar_grade(grade_ar: str) -> str:
     return "unknown"
 
 
-# Each Dorar card: matn, then labelled metadata. Field values are text nodes
-# that end at the next tag ("[^<]+"), which prevents a grade from swallowing the
-# following card's matn. Matn = text between the previous card's end and this one.
-_BLOCK = re.compile(
-    r"الراوي\s*:?\s*(?:<[^>]*>)?\s*(?P<rawi>[^<]+).*?"
-    r"المحدث\s*:?\s*(?:<[^>]*>)?\s*(?P<muhaddith>[^<]+).*?"
-    r"المصدر\s*:?\s*(?:<[^>]*>)?\s*(?P<source>[^<]+).*?"
-    r"(?:الصفحة أو الرقم|الرقم)\s*:?\s*(?:<[^>]*>)?\s*(?P<number>[^<]+).*?"
-    r"(?:خلاصة )?حكم المحدث\s*:?\s*(?:<[^>]*>)?\s*(?P<grade>[^<]+)",
+# Real Dorar markup: each result is <div class="hadith">MATN</div> immediately
+# followed by <div class="hadith-info"> whose fields are labelled spans
+# (الراوي / المحدث / المصدر / الصفحة أو الرقم / خلاصة حكم المحدث). A field value can
+# sit after MULTIPLE tags (e.g. "</span> <span >value</span>"), so the value lead
+# skips any run of tags. Pairing the matn div with its info div is more robust
+# than slicing text between metadata blocks.
+_ENTRY = re.compile(
+    r'<div class="hadith"[^>]*>(?P<matn>.*?)</div>\s*'
+    r'<div class="hadith-info"[^>]*>(?P<info>.*?)</div>',
     re.DOTALL,
 )
+_NUM_PREFIX = re.compile(r"^\s*\d+\s*-\s*")  # Dorar prefixes "N - " on each matn
 
 
 def _strip_html(s: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(_TAG.sub(" ", s))).strip()
 
 
+def _field(info_html: str, label: str) -> str:
+    # label, optional ':', then any run of tags/space, then text value (up to next tag)
+    m = re.search(label + r"\s*:?\s*(?:<[^>]*>\s*)*([^<]+)", info_html)
+    return m.group(1).strip() if m else ""
+
+
 def parse_dorar(raw) -> list:
     data = json.loads(raw) if isinstance(raw, str) else raw
-    blob = ""
-    if isinstance(data, dict):
-        blob = (data.get("ahadith") or {}).get("result", "") or ""
-    cards, prev_end = [], 0
-    for m in _BLOCK.finditer(blob):
+    blob = (data.get("ahadith") or {}).get("result", "") if isinstance(data, dict) else str(raw)
+    cards = []
+    for m in _ENTRY.finditer(blob):
+        matn = _NUM_PREFIX.sub("", _strip_html(m.group("matn"))).strip()
+        info = m.group("info")
         cards.append({
-            "matn": _strip_html(blob[prev_end:m.start()]),
-            "rawi": m.group("rawi").strip(),
-            "muhaddith": m.group("muhaddith").strip(),
-            "source": m.group("source").strip(),
-            "number": m.group("number").strip(),
-            "grade": m.group("grade").strip(),
+            "matn": matn,
+            "rawi": _field(info, "الراوي"),
+            "muhaddith": _field(info, "المحدث"),
+            "source": _field(info, "المصدر"),
+            "number": _field(info, r"(?:الصفحة أو الرقم|الرقم)"),
+            "grade": _field(info, r"(?:خلاصة )?حكم المحدث"),
         })
-        prev_end = m.end()
     return cards
 
 
@@ -188,6 +194,10 @@ def search_dorar(query: str, *, timeout: int = 20, dedupe: bool = True) -> dict:
 def fetch_dorar(query: str, *, timeout: int = 20) -> dict:
     """Thin wrapper. Validate the param shape against live dorar.net once."""
     url = f"{API}?{urllib.parse.urlencode({'skey': query})}"
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    req = urllib.request.Request(url, headers={
+        "Accept": "application/json",
+        "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"),
+    })
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode("utf-8"))

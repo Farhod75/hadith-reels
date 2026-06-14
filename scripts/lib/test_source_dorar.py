@@ -26,20 +26,26 @@ def test_hasan_sahih_is_authentic():
     # contains صحيح -> sahih bucket; either way it's KEPT (authentic)
     assert classify_dorar_grade("حسن صحيح") == "sahih"
 
-# ---- Parse the HTML-in-JSON blob into cards ----
+# ---- Parse the HTML-in-JSON blob into cards (REAL Dorar markup) ----
 FIX = json.dumps({"ahadith": {"result":
-    "<div>إنما الأعمال بالنيات وإنما لكل امرئ ما نوى "
-    "<span>الراوي:</span> عمر بن الخطاب "
-    "<span>المحدث:</span> البخاري "
-    "<span>المصدر:</span> صحيح البخاري "
-    "<span>الصفحة أو الرقم:</span> 1 "
-    "<span>خلاصة حكم المحدث:</span> صحيح </div>"
-    "<div>نص حديث ضعيف هنا "
-    "<span>الراوي:</span> فلان "
-    "<span>المحدث:</span> الألباني "
-    "<span>المصدر:</span> ضعيف الجامع "
-    "<span>الصفحة أو الرقم:</span> 99 "
-    "<span>خلاصة حكم المحدث:</span> ضعيف </div>"
+    '<head></head>'
+    '<div class="hadith" style="text-align:justify;">1 - إنما الأعمال بالنيات وإنما لكل امرئ ما نوى </div>'
+    '<div class="hadith-info">'
+    '<span class="info-subtitle">الراوي:</span> عمر بن الخطاب'
+    '<span class="info-subtitle">المحدث:</span> البخاري'
+    '<span class="info-subtitle">المصدر:</span> صحيح البخاري'
+    '<span class="info-subtitle">الصفحة أو الرقم:</span> 1'
+    '<span class="info-subtitle">خلاصة حكم المحدث:</span> <span >صحيح</span>'
+    '</div>'
+    '--------------<br/>'
+    '<div class="hadith" style="text-align:justify;">2 - نص حديث ضعيف هنا </div>'
+    '<div class="hadith-info">'
+    '<span class="info-subtitle">الراوي:</span> فلان'
+    '<span class="info-subtitle">المحدث:</span> الألباني'
+    '<span class="info-subtitle">المصدر:</span> ضعيف الجامع'
+    '<span class="info-subtitle">الصفحة أو الرقم:</span> 99'
+    '<span class="info-subtitle">خلاصة حكم المحدث:</span> <span >ضعيف</span>'
+    '</div>'
 }})
 
 def test_parse_two_cards():
