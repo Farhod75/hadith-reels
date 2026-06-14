@@ -248,7 +248,31 @@ export default function HadithReelsPage() {
 
   const PAGE_SIZE = 40
 
-  useEffect(() => { fetchHadiths(0, true) }, [filterGrade, lang])
+  useEffect(() => { if (!searchQuery.trim()) fetchHadiths(0, true) }, [filterGrade, lang])
+
+  // P089: server-side search across the whole library (debounced)
+  useEffect(() => {
+    const q = searchQuery.trim()
+    if (!q) { fetchHadiths(0, true); return }   // empty box → normal browse
+    const t = setTimeout(() => searchHadiths(q), 300)
+    return () => clearTimeout(t)
+  }, [searchQuery, filterGrade, lang])
+
+  async function searchHadiths(q: string) {
+    setLoading(true); setError('')
+    try {
+      const params = new URLSearchParams({ lang, q, limit: '100' })
+      if (filterGrade !== 'all') params.set('grade', filterGrade)
+      const res  = await fetch(`/api/reels?${params}`)
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setHadiths((data.reels || []) as Hadith[])
+    } catch (e: any) {
+      setError(e.message || 'Search failed')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   async function fetchHadiths(offset = 0, replace = false) {
     if (replace) { setLoading(true) } else { setLoadingMore(true) }
@@ -273,15 +297,8 @@ export default function HadithReelsPage() {
     }
   }
 
-  // Filter by search query
-  const filtered = searchQuery.trim()
-    ? hadiths.filter(h =>
-        (h.text_display || h.text_english).toLowerCase().includes(searchQuery.toLowerCase()) ||
-        h.text_arabic?.includes(searchQuery) ||
-        h.tags?.some(t => t.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        h.narrator.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : hadiths
+  // P089: search is server-side now — render what the API returned
+  const filtered = hadiths
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">

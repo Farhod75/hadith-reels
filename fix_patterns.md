@@ -1029,3 +1029,26 @@ End of P072-P075 appendix.
   search the full library. Server-side search (option B) deferred — board item.
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 89: Search only matched loaded rows (capped at 40)
+## ════════════════════════════════════════════════════════
+**ID:** P089
+**Type:** Feature (server-side search)
+**Files:** app/api/reels/route.ts, app/page.tsx
+**Commit:** feat: server-side library search across all languages (P089)
+
+**Symptom:**
+  Client-side search filtered only the loaded rows (first 40), so any hadith
+  past row 40 was unfindable until the user manually clicked Load More — and
+  users had no way to know to do that. Got worse as the library grew.
+
+**Fix:**
+  - Route: accept `q` param; when present, .or(ilike) across text_english/
+    russian/uzbek/tajik/arabic + narrator/collection/hadith_number over the
+    WHOLE library (esc strips %/, that break .or()).
+  - Page: debounced (300ms) search effect calls /api/reels?q=...; empty box
+    returns to paginated browse; removed the client-side filter (filtered =
+    hadiths). Also helps non-EN users find via in-language text search.
+
+**Status:** FIXED

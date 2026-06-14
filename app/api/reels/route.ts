@@ -10,6 +10,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const grade  = searchParams.get('grade')  || 'all'
     const lang   = searchParams.get('lang')   || 'en'
+    const q      = (searchParams.get('q') || '').trim()
     const limit  = parseInt(searchParams.get('limit')  || '40')
     const offset = parseInt(searchParams.get('offset') || '0')
 
@@ -28,6 +29,23 @@ export async function GET(req: NextRequest) {
       query = query.eq('grade', grade)
     } else {
       query = query.in('grade', ['sahih', 'hasan'])
+    }
+
+    // P089: server-side search across all languages + metadata (whole library)
+    if (q) {
+      const esc = q.replace(/[%,]/g, ' ')  // strip wildcards/commas that break .or()
+      query = query.or(
+        [
+          `text_english.ilike.%${esc}%`,
+          `text_russian.ilike.%${esc}%`,
+          `text_uzbek.ilike.%${esc}%`,
+          `text_tajik.ilike.%${esc}%`,
+          `text_arabic.ilike.%${esc}%`,
+          `narrator.ilike.%${esc}%`,
+          `collection.ilike.%${esc}%`,
+          `hadith_number.ilike.%${esc}%`,
+        ].join(',')
+      )
     }
 
     const { data, error, count } = await query
