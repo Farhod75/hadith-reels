@@ -163,6 +163,7 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `CHANGELOG.md` — version history
 - `FIX_PATTERNS.md` — patterns P050-P080 (HR-specific)
 - `QA_STANDARDS.md` — copied from engineering-standards repo
+- sourcing-pipeline-design.md — content sourcing / library-population pipeline (Phase 0+)
 
 ---
 
