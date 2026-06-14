@@ -2,7 +2,10 @@
 # Run:  python scripts/lib/test_source_dorar.py   (no pytest needed)
 import os, sys, json
 sys.path.insert(0, os.path.dirname(__file__))
-from source_dorar import classify_dorar_grade, parse_dorar, confirm_grade
+from source_dorar import (
+    classify_dorar_grade, parse_dorar, confirm_grade,
+    card_to_candidate, cards_to_candidates,
+)
 
 # ---- Grade classification, incl. tricky negations ----
 def test_grade_buckets():
@@ -65,6 +68,39 @@ def test_confirm_grade_no_match():
     res = confirm_grade("نص لا علاقة له بشيء مختلف تماما عن البقية", cards)
     # may match weakly but below threshold -> unknown / not matched
     assert res["matched"] is False or res["grade_bucket"] in ("sahih", "hasan", "daif")
+
+
+# ---- Dorar AS A SOURCE ----
+def test_card_to_candidate_sahih():
+    cards = parse_dorar(FIX)
+    r = card_to_candidate(cards[0])
+    assert r["status"] == "candidate"
+    c = r["candidate"]
+    assert c["collection"] == "bukhari"        # "صحيح البخاري" -> bukhari
+    assert c["grade"] == "sahih"
+    assert c["grade_confirmed"] is True          # Dorar is authority
+    assert c["narrator"] == "عمر بن الخطاب"
+    assert c["source_urls"]["dorar"].startswith("https://dorar.net/")
+
+def test_card_to_candidate_daif_dropped():
+    cards = parse_dorar(FIX)
+    assert card_to_candidate(cards[1])["status"] == "dropped"
+
+def test_cards_to_candidates_drops_daif():
+    res = cards_to_candidates(parse_dorar(FIX))
+    assert len(res["candidates"]) == 1          # sahih kept, daif dropped
+    assert len(res["dropped"]) == 1
+
+def test_dedupe_keeps_stronger_grade():
+    dup = [
+        {"matn": "نص واحد مكرر", "rawi": "x", "muhaddith": "البخاري",
+         "source": "صحيح البخاري", "number": "1", "grade": "حسن"},
+        {"matn": "نص واحد مكرر", "rawi": "x", "muhaddith": "الألباني",
+         "source": "صحيح الجامع", "number": "1", "grade": "صحيح"},
+    ]
+    res = cards_to_candidates(dup)
+    assert len(res["candidates"]) == 1          # collapsed
+    assert res["candidates"][0]["grade"] == "sahih"  # stronger grade wins
 
 
 if __name__ == "__main__":

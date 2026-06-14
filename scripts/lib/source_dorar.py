@@ -22,7 +22,7 @@ import difflib
 import urllib.request
 import urllib.parse
 
-from dedup import normalize_arabic
+from dedup import normalize_arabic, normalize_collection
 
 API = "https://dorar.net/dorar_api.json"
 _TAG = re.compile(r"<[^>]+>")
@@ -125,6 +125,64 @@ def confirm_grade(candidate_arabic: str, cards: list, threshold: float = 0.7) ->
             "number": best.get("number"),
         }
     return {"matched": False, "score": round(best_score, 3), "grade_bucket": "unknown"}
+
+
+def build_dorar_link(matn: str) -> str:
+    """Deep link to the specific hadith via Dorar search (no stable per-id URL is exposed)."""
+    return f"https://dorar.net/hadith/search?q={urllib.parse.quote(matn[:80])}"
+
+
+def card_to_candidate(card: dict) -> dict:
+    """
+    PURE: turn one Dorar card into a Stage-0 result. Dorar is the grading
+    AUTHORITY here, so grade_confirmed=True. Daif/ungraded dropped at the door.
+    """
+    bucket = classify_dorar_grade(card.get("grade", ""))
+    if bucket not in ("sahih", "hasan"):
+        return {"status": "dropped", "reason": f"grade={bucket}", "candidate": None}
+    matn = (card.get("matn") or "").strip()
+    if not matn:
+        return {"status": "dropped", "reason": "no matn", "candidate": None}
+    cand = {
+        "collection": normalize_collection(card.get("source", "")),
+        "hadith_number": (card.get("number") or "").strip(),
+        "narrator": (card.get("rawi") or "").strip() or None,
+        "grade": bucket,
+        "grading_source": f"dorar.net (authority; {card.get('muhaddith', '')})".strip(),
+        "grade_confirmed": True,
+        "source_urls": {"dorar": build_dorar_link(matn)},
+        "text_arabic": matn,
+    }
+    return {"status": "candidate", "reason": "", "candidate": cand}
+
+
+def cards_to_candidates(cards: list, dedupe: bool = True) -> dict:
+    """
+    PURE: map cards → candidates, drop daif, and (optionally) collapse duplicate
+    matns that differ only by grader. Stronger grade wins (sahih > hasan).
+    """
+    seen, candidates, dropped = {}, [], []
+    for card in cards:
+        r = card_to_candidate(card)
+        if r["status"] == "dropped":
+            dropped.append(r["reason"])
+            continue
+        c = r["candidate"]
+        key = normalize_arabic(c["text_arabic"])
+        if dedupe and key in seen:
+            i = seen[key]
+            if c["grade"] == "sahih" and candidates[i]["grade"] == "hasan":
+                candidates[i] = c
+            continue
+        seen[key] = len(candidates)
+        candidates.append(c)
+    return {"candidates": candidates, "dropped": dropped}
+
+
+def search_dorar(query: str, *, timeout: int = 20, dedupe: bool = True) -> dict:
+    """Network: search Dorar for a topic/keyword, return graded candidate records."""
+    cards = parse_dorar(fetch_dorar(query, timeout=timeout))
+    return cards_to_candidates(cards, dedupe=dedupe)
 
 
 def fetch_dorar(query: str, *, timeout: int = 20) -> dict:
