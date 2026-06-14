@@ -63,6 +63,14 @@ Likely cause: antivirus controlled-folder-access or a sync/backup tool intercept
   execution-policy blocked; clear with `Unblock-File .\script.ps1` (metadata
   change, not a content write — revert gotcha doesn't apply).
 
+  ### Narration splitting (split-narration.py, added 2026-06-13)
+- Fabric caps ~30s/clip. `split-narration.py --base <base> --audio <story> <moral>`
+  concats + splits at silences into out/talking/<base>-clipNN.mp3 (<=28s each),
+  then prints the generate-clip loop + render command.
+- **Content rule:** ONE mascot + ONE voice per reel (mixing mascots mid-reel
+  = two voices). Assign the mascot to fit the hadith; expand the cast reactively
+  as the library grows (not up front).
+
 ## 🎯 PROJECT GOAL
 
 Generate short-form video reels (15-60s) with authentic hadiths for Instagram/TikTok/YouTube Shorts.

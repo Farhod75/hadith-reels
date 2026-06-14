@@ -240,3 +240,18 @@ Per `hr-agent-fleet-roadmap.md`:
 
 The render-reel.ps1 / generate-scene.ps1 / generate-image.ps1 scripts become the agent's
 building blocks. See `animated-reel-scene-prompts.md` for Pillar 2 (animated) design + guardrails.
+
+## ════════════════════════════════════════════════════════
+## KIDS LANE — talking-mascot reels (added 2026-06-13)
+## ════════════════════════════════════════════════════════
+1. Library: ensure the hadith exists in hadith_library (4 lang) — add if missing.
+2. Admin (Kids/lang): generate story + moral -> VERIFY text (hard gate).
+3. TTS (kids voice per matrix) -> out/kids-{lang}-{slug}-story.mp3 + -moral.mp3
+4. Scene mascot: pick boy/girl to fit the hadith (assets/mascot/...-scene.png).
+5. Split: python split-narration.py --base kids-{lang}-{slug} --audio <story> <moral>
+6. Generate clips: loop generate-talking-clip.py over the chunks (same mascot).
+7. Render: .\render-mascot-reel.ps1 -Lang {lang} -Slug {slug} -Clips clip01.mp4,... [-Nasheed x.mp3]
+8. Output: out/kids-{lang}-{slug}-mascot-reel.mp4 -> human approval -> publish.
+
+Notes: one mascot + one voice per reel; Route-A scene motion coupling (keep
+objects off the head); subtitles skipped for uz/tj (P078).

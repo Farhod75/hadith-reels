@@ -1,3 +1,15 @@
+## [2026-06-13] (cont.)
+
+### Added
+- **`split-narration.py`** — silence-aware narration splitter. Concats
+  story+moral, then cuts into ordered <=28s chunks at natural pauses (ffmpeg
+  silencedetect) so each fits fal Fabric's ~30s cap. Outputs
+  out/talking/<base>-clipNN.mp3 + a ready generate/render block.
+- **First real kids reel shipped:** kids-en-bukhari-6009 (girl lamb, thirsty-dog
+  hadith), full chain: library → admin → split → Fabric → render-mascot-reel.
+- **Hadith library:** added Sahih al-Bukhari 6009 (kindness to animals) in
+  AR/EN/UZ/RU to hadith_library (TJ via RU fallback, P050).
+
 ## [2026-06-13] (continued)
 
 ### Added

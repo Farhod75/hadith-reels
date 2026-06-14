@@ -19,3 +19,7 @@
   attaching the locked base mascot as a face reference. Keep the mascot large,
   front-facing, clear mouth; keep empty headroom (Route-A motion coupling).
 - **Proven assets:** boy = moonlit mosque (night), girl = mosque garden (day).
+
+- **Long narration:** `split-narration.py` auto-splits story+moral into
+  ordered <=28s chunks at silence boundaries; each chunk -> one Fabric clip;
+  render-mascot-reel.ps1 stitches them in order. One mascot + one voice per reel.
