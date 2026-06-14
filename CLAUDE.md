@@ -161,7 +161,7 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 ### Documentation
 - `AGENTS.md` — agent orchestration + session log
 - `CHANGELOG.md` — version history
-- `FIX_PATTERNS.md` — patterns P050-P080 (HR-specific)
+- `FIX_PATTERNS.md` — patterns P046-P089 (HR-specific)
 - `QA_STANDARDS.md` — copied from engineering-standards repo
 - sourcing-pipeline-design.md — content sourcing / library-population pipeline (Phase 0+)
 
