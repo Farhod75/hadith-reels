@@ -51,7 +51,7 @@ _COLLECTION_ALIASES = {
     "bukhari": {"bukhari", "sahih al bukhari", "sahih bukhari", "al bukhari", "صحيح البخاري", "البخاري"},
     "muslim": {"muslim", "sahih muslim", "صحيح مسلم", "مسلم"},
     "abudawud": {"abu dawud", "abi dawud", "sunan abi dawud", "sunan abu dawud", "ابو داود", "سنن ابي داود"},
-    "tirmidhi": {"tirmidhi", "jami at tirmidhi", "sunan al tirmidhi", "الترمذي", "جامع الترمذي"},
+    "tirmidhi": {"tirmidhi", "jami at tirmidhi", "sunan al tirmidhi", "الترمذي", "جامع الترمذي", "سنن الترمذي"},
     "nasai": {"nasai", "sunan an nasai", "sunan al nasai", "النسائي", "سنن النسائي"},
     "ibnmajah": {"ibn majah", "sunan ibn majah", "ابن ماجه", "سنن ابن ماجه"},
     "ahmad": {"ahmad", "musnad ahmad", "مسند احمد", "احمد"},
@@ -74,13 +74,29 @@ for _canon, _names in _COLLECTION_ALIASES.items():
         _REVERSE[_clean_name(_n)] = _canon
 
 
+def canonical_collection(name: str):
+    """
+    Canonical slug ONLY if `name` is a recognized PRIMARY collection
+    (Bukhari, Muslim, the Sunan, Muwatta, Musnad Ahmad, Darimi). Else None.
+
+    Dorar's المصدر is frequently a commentary / takhrij / fatwa work
+    (e.g. مجموع الفتاوى, شرح الطحاوية, صحيح الجامع) — those are NOT primary
+    collections and return None, so they can be filtered out at the source.
+    Exact alias match (not substring) so "شرح صحيح البخاري" does NOT count as Bukhari.
+    """
+    if not name:
+        return None
+    return _REVERSE.get(_clean_name(name))
+
+
 def normalize_collection(name: str) -> str:
+    """
+    Stable slug for dedup: canonical if recognized, else the cleaned name with
+    spaces preserved (no word-gluing — that was a bug that produced مجموعالفتاوى).
+    """
     if not name:
         return ""
-    c = _clean_name(name)
-    if c in _REVERSE:
-        return _REVERSE[c]
-    return _REVERSE.get(c.replace(" ", ""), c.replace(" ", ""))
+    return canonical_collection(name) or _clean_name(name)
 
 
 _AR_DIGITS = {ord("٠") + i: ord("0") + i for i in range(10)}

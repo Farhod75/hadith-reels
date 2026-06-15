@@ -46,6 +46,20 @@ def test_collection_unknown_gets_stable_slug():
     k = normalize_collection("Some New Collection")
     assert k and k == normalize_collection("some new collection")
 
+def test_canonical_collection_primary_only():
+    from dedup import canonical_collection
+    assert canonical_collection("صحيح البخاري") == "bukhari"
+    assert canonical_collection("صحيح مسلم") == "muslim"
+    # commentary / takhrij / fatwa works are NOT primary collections
+    assert canonical_collection("شرح صحيح البخاري لابن الملقن") is None
+    assert canonical_collection("مجموع الفتاوى") is None
+    assert canonical_collection("صحيح الجامع") is None
+    assert canonical_collection("") is None
+
+def test_normalize_collection_preserves_spaces():
+    # the old bug glued words: مجموعالفتاوى. Must keep spaces now.
+    assert normalize_collection("مجموع الفتاوى") == "مجموع الفتاوى"
+
 # ---- Number normalization ----
 def test_number_normalization():
     assert normalize_number("#1956") == "1956"

@@ -22,7 +22,7 @@ import difflib
 import urllib.request
 import urllib.parse
 
-from dedup import normalize_arabic, normalize_collection
+from dedup import normalize_arabic, normalize_collection, canonical_collection
 
 API = "https://dorar.net/dorar_api.json"
 _TAG = re.compile(r"<[^>]+>")
@@ -149,8 +149,16 @@ def card_to_candidate(card: dict) -> dict:
     matn = (card.get("matn") or "").strip()
     if not matn:
         return {"status": "dropped", "reason": "no matn", "candidate": None}
+    coll = canonical_collection(card.get("source", ""))
+    if not coll:
+        # Dorar's source is a commentary/takhrij/fatwa work, not a primary
+        # collection → citation isn't reliable, so drop (precision over recall).
+        return {"status": "dropped",
+                "reason": f"non-primary source: {(card.get('source') or '')[:40]}",
+                "candidate": None}
     cand = {
-        "collection": normalize_collection(card.get("source", "")),
+        "collection": coll,
+        "source_book": (card.get("source") or "").strip(),  # raw provenance
         "hadith_number": (card.get("number") or "").strip(),
         "narrator": (card.get("rawi") or "").strip() or None,
         "grade": bucket,

@@ -83,10 +83,19 @@ def test_card_to_candidate_sahih():
     assert r["status"] == "candidate"
     c = r["candidate"]
     assert c["collection"] == "bukhari"        # "صحيح البخاري" -> bukhari
+    assert c["source_book"] == "صحيح البخاري"   # raw provenance kept
     assert c["grade"] == "sahih"
     assert c["grade_confirmed"] is True          # Dorar is authority
     assert c["narrator"] == "عمر بن الخطاب"
     assert c["source_urls"]["dorar"].startswith("https://dorar.net/")
+
+def test_card_to_candidate_non_primary_dropped():
+    # sahih grade, but source is a commentary/fatwa work -> dropped (bad citation)
+    card = {"matn": "نص صحيح", "rawi": "x", "muhaddith": "ابن تيمية",
+            "source": "مجموع الفتاوى", "number": "5", "grade": "صحيح"}
+    r = card_to_candidate(card)
+    assert r["status"] == "dropped"
+    assert "non-primary source" in r["reason"]
 
 def test_card_to_candidate_daif_dropped():
     cards = parse_dorar(FIX)
@@ -101,11 +110,11 @@ def test_dedupe_keeps_stronger_grade():
     dup = [
         {"matn": "نص واحد مكرر", "rawi": "x", "muhaddith": "البخاري",
          "source": "صحيح البخاري", "number": "1", "grade": "حسن"},
-        {"matn": "نص واحد مكرر", "rawi": "x", "muhaddith": "الألباني",
-         "source": "صحيح الجامع", "number": "1", "grade": "صحيح"},
+        {"matn": "نص واحد مكرر", "rawi": "x", "muhaddith": "مسلم",
+         "source": "صحيح مسلم", "number": "1", "grade": "صحيح"},
     ]
     res = cards_to_candidates(dup)
-    assert len(res["candidates"]) == 1          # collapsed
+    assert len(res["candidates"]) == 1          # collapsed (both primary sources)
     assert res["candidates"][0]["grade"] == "sahih"  # stronger grade wins
 
 

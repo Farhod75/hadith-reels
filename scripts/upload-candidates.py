@@ -44,6 +44,19 @@ def load_env(path=".env.local") -> dict:
     return env
 
 
+def read_text_lines(path: str) -> list:
+    """Read a text file tolerant of encoding. Arabic query files written via
+    PowerShell `echo > file` come out UTF-16/BOM, not UTF-8 — handle both."""
+    with open(path, "rb") as f:
+        raw = f.read()
+    for enc in ("utf-8-sig", "utf-16", "utf-8"):
+        try:
+            return raw.decode(enc).splitlines()
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace").splitlines()
+
+
 def read_library(url: str, key: str) -> list:
     endpoint = f"{url}/rest/v1/hadith_library?select=id,collection,hadith_number,text_arabic"
     req = urllib.request.Request(
@@ -107,8 +120,8 @@ def main():
         sys.exit(1)
 
     try:
-        with open(args.queries, encoding="utf-8") as f:
-            queries = [l.strip() for l in f if l.strip() and not l.startswith("#")]
+        lines = read_text_lines(args.queries)
+        queries = [l.strip() for l in lines if l.strip() and not l.startswith("#")]
     except FileNotFoundError:
         queries = ["إنما الأعمال بالنيات", "الطهور شطر الإيمان"]
         print(f"ℹ {args.queries} not found — using sample queries.")
