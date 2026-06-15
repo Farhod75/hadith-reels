@@ -32,10 +32,16 @@ _TAG = re.compile(r"<[^>]+>")
 _DAIF_RAW = [
     "موضوع", "باطل", "منكر", "لا يصح", "لا اصل", "غير صحيح", "ليس بصحيح",
     "ضعيف", "واه", "شاذ", "متروك", "لا يثبت", "خطا", "ضعفه", "لم يصح",
+    "مرسل", "مراسيل",  # mursal — broken chain, a recognized weakness
 ]
 _DAIF_N = [normalize_arabic(x) for x in _DAIF_RAW]
 _SAHIH_N = normalize_arabic("صحيح")
 _HASAN_N = normalize_arabic("حسن")
+# "متفق عليه" = agreed upon by al-Bukhari & Muslim — by definition the strongest
+# sahih, and unambiguous (no weak form exists). Other authentic phrasings
+# (جيد / قوي / رجاله ثقات) are negation-prone (غير قوي) and need per-string
+# verification before adding — deferred.
+_SAHIH_EXTRA = [normalize_arabic("متفق عليه")]
 
 
 def classify_dorar_grade(grade_ar: str) -> str:
@@ -44,7 +50,7 @@ def classify_dorar_grade(grade_ar: str) -> str:
         return "unknown"
     if any(m and m in n for m in _DAIF_N):
         return "daif"
-    if _SAHIH_N in n:
+    if _SAHIH_N in n or any(m and m in n for m in _SAHIH_EXTRA):
         return "sahih"
     if _HASAN_N in n:
         return "hasan"
@@ -145,7 +151,9 @@ def card_to_candidate(card: dict) -> dict:
     """
     bucket = classify_dorar_grade(card.get("grade", ""))
     if bucket not in ("sahih", "hasan"):
-        return {"status": "dropped", "reason": f"grade={bucket}", "candidate": None}
+        raw = (card.get("grade") or "").strip()[:50]
+        reason = f"grade={bucket} [{raw}]" if bucket == "unknown" else f"grade={bucket}"
+        return {"status": "dropped", "reason": reason, "candidate": None}
     matn = (card.get("matn") or "").strip()
     if not matn:
         return {"status": "dropped", "reason": "no matn", "candidate": None}

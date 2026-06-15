@@ -111,6 +111,7 @@ def main():
     ap.add_argument("--commit", action="store_true", help="insert into hadith_candidates")
     ap.add_argument("--max-per-query", type=int, default=20)
     ap.add_argument("--debug", action="store_true", help="print raw Dorar response for the first query")
+    ap.add_argument("--show-drops", action="store_true", help="print why candidates were dropped")
     args = ap.parse_args()
 
     env = {**load_env(), **os.environ}
@@ -169,6 +170,12 @@ def main():
     print(f"   fuzzy-flagged (needs_human): {fuzzy}")
     print(f"   skipped, already in library (hard dup): {hard}")
     print(f"   dropped (daif/empty/errors): {len(dropped)}")
+    if args.show_drops and dropped:
+        from collections import Counter
+        cats = Counter(d["reason"].split(":")[0].strip() for d in dropped)
+        print("   drop reasons:")
+        for reason, n in cats.most_common():
+            print(f"      {n:>3}  {reason}")
     if args.commit and rows:
         try:
             st = insert_candidates(url, key, rows)

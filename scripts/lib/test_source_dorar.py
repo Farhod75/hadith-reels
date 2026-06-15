@@ -22,6 +22,17 @@ def test_grade_negations_not_misread_as_sahih():
     assert classify_dorar_grade("غير صحيح") == "daif"
     assert classify_dorar_grade("لا يصح") == "daif"
 
+def test_muttafaq_alayh_is_sahih():
+    assert classify_dorar_grade("متفق عليه") == "sahih"
+
+def test_mursal_is_daif():
+    assert classify_dorar_grade("مرسل") == "daif"
+    assert classify_dorar_grade("أورده في كتاب المراسيل") == "daif"
+
+def test_ambiguous_note_stays_unknown():
+    # "it has a corroborating witness" is NOT a grade — must not become sahih/hasan
+    assert classify_dorar_grade("له شاهد") == "unknown"
+
 def test_hasan_sahih_is_authentic():
     # contains صحيح -> sahih bucket; either way it's KEPT (authentic)
     assert classify_dorar_grade("حسن صحيح") == "sahih"
