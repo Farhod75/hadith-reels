@@ -1052,3 +1052,64 @@ End of P072-P075 appendix.
     hadiths). Also helps non-EN users find via in-language text search.
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 90: Retired model ID + structured-output truncation
+## ════════════════════════════════════════════════════════
+**ID:** P090
+**Type:** API integration / structured-output reliability
+**Repos:** hadith-verifier (analyze + dua routes), telegram_bot.py; hadith-reels (generate-reel route). Global entry — both repos.
+
+**Symptom:**
+  - Production 404 on every analysis: not_found_error, model: claude-sonnet-4-20250514
+  - (Latent) Intermittent "Parse error" on longer duas/hadiths
+
+**Root cause:**
+  1. claude-sonnet-4-20250514 (Sonnet 4) retired on the Claude API 2026-04-20. Pinned model IDs go dead on retirement — they are not evergreen.
+  2. max_tokens: 2000 too small for the 5-language JSON (4 translits + 3 translations + 5-lang comment, Arabic/Cyrillic = token-heavy). Overflow truncates JSON mid-string → JSON.parse throws.
+  3. Reading content[0] assumes first block is text; breaks on thinking-enabled models. Bare JSON.parse intolerant of preamble.
+
+**Fix:**
+  - Model → claude-sonnet-4-6 (active drop-in). Upgrade path claude-sonnet-5 requires parse hardening first (adaptive thinking on by default).
+  - max_tokens → 8000.
+  - Extract text block by type: content.find(b => b.type === 'text'), not by index.
+  - Parse by slicing first "{" … last "}" (matches generate-reel route's robust pattern).
+  - Log raw.slice(0,300) on parse failure.
+
+**Prevention:**
+  - On model-retirement notices: git grep the pinned string across ALL repos — dead IDs hide in multiple callers (found in 4: analyze, dua, generate-reel, telegram_bot).
+  - Structured-output pipelines fail at the parse boundary: generous token budget + tolerant extraction + explicit failure logging.
+  - Never edit repo files in GitHub mobile editor — a stray newline in a string literal caused a build break.
+  - "Committed" ≠ "fixed": verify green build AND a real end-to-end run.
+
+**Status:** FIXED + verified live (green build, live RU analysis) — July 2026
+
+
+## ════════════════════════════════════════════════════════
+## PATTERN 91: RLS disabled + allow-all policy defeating RLS
+## ════════════════════════════════════════════════════════
+**ID:** P091
+**Type:** Security / database access control
+**Repos:** shared Supabase DB xeirfeqnbjfyszykiraa (both apps). Migration: 20260707_enable_rls_security.sql
+
+**Symptom:**
+  - Supabase Security Advisor: 6 CRITICAL "RLS Disabled in Public" across hadith_library, video_backgrounds, hadith_candidates, hadith_promotions, flagged_posts (last also "Policy Exists RLS Disabled")
+
+**Root cause:**
+  1. RLS never enabled → anyone with the anon key (shipped in browser JS, effectively public) could read/insert/update/DELETE these tables directly.
+  2. flagged_posts had a dormant "Allow all" policy (role public, cmd ALL, qual true). Enabling RLS ACTIVATED it, so the table stayed fully open. RLS "on" did NOT mean protected.
+
+**Fix (two-pass migration, service_role verified first):**
+  - Pre-check: confirmed all writers use SUPABASE_SERVICE_ROLE_KEY (bypasses RLS) — HV analyze/search/queue routes + HR upload-candidates.py.
+  - Tier 1 (admin/pipeline): enable RLS, no anon policy → public denied. hadith_candidates, hadith_promotions, flagged_posts.
+  - Tier 2 (public data): enable RLS + "create policy … for select to anon, authenticated using (true)" → public read-only. hadith_library, video_backgrounds.
+  - drop policy "Allow all" on flagged_posts.
+  - Verified: pg_class.relrowsecurity=true on all 5; pg_policies shows only the 2 read policies; both apps confirmed live.
+
+**Prevention:**
+  - "Control enabled" ≠ "control effective." After enabling RLS, ALWAYS list pg_policies and confirm each policy RESTRICTS — never trust the status flag.
+  - Trust boundary runs along the KEY, not the code. Anything client-held (anon key, NEXT_PUBLIC_*) is public; enforcement is server-side. Backend = service_role, clients = anon.
+  - On any new table: enable RLS + add intended policy in the SAME migration. Never leave public "temporarily".
+  - Consider rotating anon + service_role keys if values were ever exposed.
+
+**Status:** FIXED + verified live (5 tables RLS-on, both apps reading correctly) — July 2026
