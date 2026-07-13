@@ -1113,3 +1113,109 @@ End of P072-P075 appendix.
   - Consider rotating anon + service_role keys if values were ever exposed.
 
 **Status:** FIXED + verified live (5 tables RLS-on, both apps reading correctly) — July 2026
+
+## ════════════════════════════════════════════════════════
+## PATTERN 92: Mockable Claude via MOCK_CLAUDE seam + isolated test server
+## ════════════════════════════════════════════════════════
+**ID:** P092
+**Type:** Test infrastructure / determinism / cost control
+**Repos:** hadith-verifier (analyze route, api.spec.ts, playwright.config.ts, .githooks/pre-push). Pattern applies to any repo whose push tests hit the real Claude API.
+
+**Symptom:**
+  - Pre-push api.spec.ts made REAL Claude calls (~30s/test), causing: 429 rate-limit
+    failures (own in-memory limiter + Anthropic), 30s timeouts, non-determinism, API cost
+    on every push. Header claimed "mocked, fast" — it wasn't.
+
+**Root cause:**
+  The analyze route always called `anthropic.messages.create(...)`. Tests that only check
+  status codes / schema shape don't need real Claude, but had no way to bypass it. The Claude
+  call happens server-side inside the route, so Playwright can't intercept it from the test.
+
+**Fix — route-level mock seam + isolated ephemeral server:**
+  1. Route: `const response = process.env.MOCK_CLAUDE === '1' ? { content:[{type:'text',text:JSON.stringify(MOCK_ANALYSIS)}] } : await anthropic.messages.create({...})`.
+     MOCK_ANALYSIS = canned valid object matching the response schema (verdict/confidence/
+     severity/claim_summary/analysis/suggested_comment/references/red_flags/seerah_context).
+     Rest of route (parse, getSeverity override) runs unchanged → real route logic tested.
+  2. Also gate side-effects under mock so test runs don't pollute prod or trip limits:
+     - rate limiter: `if (process.env.MOCK_CLAUDE !== '1') { checkRateLimit... }`
+     - queue insert: `if ([...].includes(verdict) && process.env.MOCK_CLAUDE !== '1')`
+  3. Port isolation: mocked tests run on :3011 (HV=3001, HR=3002, 3011=HV mock-only,
+     ephemeral). Prevents collision with a running dev server.
+  4. Hook starts its OWN mock server, waits for ready, runs tests, kills it, gates on the
+     real exit code (see block below). Do NOT rely on Playwright webServer for the mock run
+     (see P093 for why).
+
+**Hook block (proven):**
+```
+if [ "$HAS_ANALYZE" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  MOCK_CLAUDE=1 npx next dev -p 3011 > /tmp/hv-mock.log 2>&1 &
+  MOCK_PID=$!
+  READY=0
+  for i in $(seq 1 40); do curl -s -o /dev/null http://localhost:3011/api/test && { READY=1; break; }; sleep 1; done
+  if [ $READY -ne 1 ]; then echo "❌ Mock server failed to start"; kill $MOCK_PID 2>/dev/null; FAILED=1;
+  else
+    BASE_URL=http://localhost:3011 npx playwright test tests/api.spec.ts --project=chromium --grep-invert "@real-api" 2>&1
+    API_RC=$?
+    kill $MOCK_PID 2>/dev/null
+    [ $API_RC -ne 0 ] && FAILED=1
+  fi
+fi
+```
+
+**Prevention / notes:**
+  - Result: api.spec push subset now ~45s, API tests sub-second, deterministic, $0, no limits.
+  - The mock doubles as a schema contract — if MOCK_ANALYSIS drifts from what tests assert,
+    you find out instantly (caught a `Tier 1` vs `tier1` mismatch for free).
+  - Quality tests that genuinely need real Claude stay tagged @real-api (excluded from push,
+    run manually). CI (ci.yml) intentionally left REAL against production = post-deploy smoke.
+  - Document 3011 in CLAUDE.md port map so future sessions/agents don't cross-assign.
+
+**Status:** FIXED + verified (exact hook logic proven green via standalone script, RC=0, sub-second) — July 2026
+
+
+## ════════════════════════════════════════════════════════
+## PATTERN 93: Windows/git-bash env + exit-code gotchas that silently defeat a CI gate
+## ════════════════════════════════════════════════════════
+**ID:** P093
+**Type:** Test infrastructure / shell / Windows dev environment
+**Repos:** hadith-verifier (.githooks/pre-push). Applies to any git-bash hook on Windows.
+
+**Symptom:**
+  While wiring MOCK_CLAUDE into the pre-push hook (P092), three separate bugs each made the
+  gate behave wrongly — worst of all, a gate that PASSED while running zero tests.
+
+**Three root causes + fixes:**
+  1. **Inline env prefix doesn't propagate to spawned server (Windows).**
+     `MOCK_CLAUDE=1 npx playwright test...` sets the var for npx, but on Windows git-bash the
+     `.cmd` shim + Playwright's webServer spawn drops it — the spawned `next dev` never sees
+     MOCK_CLAUDE, so it called REAL Claude (tests passed but took 30s). PowerShell `$env:` and
+     bash `export` both work in isolation, but neither reliably reaches a process spawned by
+     Playwright's webServer.
+     → FIX: don't inline-prefix and don't rely on webServer to carry it. Start the mock server
+       explicitly with the var on ITS command (P092 hook block).
+
+  2. **`unset` after the test clobbers `$?`.**
+     ```
+     npx playwright test ...
+     unset MOCK_CLAUDE BASE_URL      # <-- last command
+     if [ $? -ne 0 ]; then FAILED=1  # <-- checks unset's exit (always 0), NOT the test
+     ```
+     Gate could never see a test failure.
+     → FIX: capture immediately — `RC=$?` right after the test, then `unset`, then gate on `$RC`.
+
+  3. **Playwright webServer timeout exits 0 → false pass.**
+     When webServer failed to become ready, the run errored ("Timed out waiting ... webServer")
+     but the outer exit code was 0 — a gate running ZERO tests reported success.
+     → FIX: explicit start/poll(curl /api/test)/kill, and gate on the captured test exit code.
+       Fail loudly ("❌ Mock server failed to start") if the health poll never succeeds.
+
+**Prevention:**
+  - A CI gate that CANNOT fail is worse than no gate — it ships anything with a green check.
+    Always: capture the real exit code of the thing you care about, gate on THAT, and prove the
+    gate can fail (not just pass) before trusting it.
+  - On Windows git-bash: prefer explicit `command &` + health-poll over Playwright webServer +
+    env-prefix magic. Fewer hidden processes, observable failures.
+  - When a hook "passes" suspiciously fast or suspiciously slow, check timings — 30s = real API,
+    sub-second = mock. Timing is the tell that env vars actually took effect.
+
+**Status:** FIXED (all three addressed in the P092 hook block) — July 2026
