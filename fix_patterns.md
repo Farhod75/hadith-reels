@@ -1219,3 +1219,61 @@ fi
     sub-second = mock. Timing is the tell that env vars actually took effect.
 
 **Status:** FIXED (all three addressed in the P092 hook block) — July 2026
+
+
+## ════════════════════════════════════════════════════════
+## PATTERN 94: Stage 5 promote (candidate→library) + CHECK constraints as schema contract
+## ════════════════════════════════════════════════════════
+**ID:** P094
+**Type:** Data pipeline / integrity / idempotency
+**Repos:** hadith-reels (scripts/promote-candidates.py). Touches shared DB hadith_library, hadith_candidates, hadith_promotions.
+
+**What it is:**
+  Stage 5 of the sourcing pipeline — moves human-approved candidates from
+  hadith_candidates into the shared hadith_library, with an audit trail and
+  idempotency. Completes: source → dedup → stage → HUMAN GATE (SQL) → promote → library.
+
+**Design (promote-candidates.py):**
+  - Reads: `status=eq.approved & grade_confirmed=eq.true & grade=in.(sahih,hasan) & promoted_library_id=is.null`
+  - Maps candidate → library columns (schemas differ — mapping is NOT 1:1):
+    - text_uzbek_cyrillic/latin → same; text_uzbek (legacy col) ← Cyrillic (canonical, keeps old readers working)
+    - authority ← grading_source
+    - source_url (text, singular) ← ONE deep-link extracted from source_urls (jsonb, plural): prefer dorar > sunnah > first
+    - tags ← [] (red_flags is a VERIFIER concept, not library content — do not copy)
+    - book ← null (not in candidates); created_at ← DB default now()
+  - Writes hadith_promotions audit row (candidate_id, library_id, promote_mode, reviewed_by, source_deeplink, columns_written)
+  - Stamps candidate: status='promoted', promoted_library_id=<new id>  ← IDEMPOTENCY GUARD
+  - Discipline: dry-run default, --commit to write, --show to preview mapping, service_role key, stdlib-only, ensure_ascii=False for Arabic/Cyrillic/Tajik.
+
+**Stage 4 human gate = SQL (not UI, by choice — promote today, UI later):**
+  - review:  select ... from hadith_candidates where status='needs_human' (or 'sourced')
+  - approve: update ... set status='approved', review_action='approve', reviewed_by=..., reviewed_at=now()
+  - reject:  update ... set status='rejected', review_action='reject', review_reason=...
+
+**Idempotency (proven):** second --commit finds 0 approved (candidate now 'promoted', not 'approved')
+  → cannot double-insert. Re-running is always safe.
+
+**KEY LESSON — CHECK constraints are a schema contract that catches bad writes loudly:**
+  During testing, three assumed values were WRONG and the DB refused them at write time
+  instead of silently storing garbage:
+  - ck_status allows: sourced/deduped/translated/verified/needs_human/approved/rejected/promoted
+    → 'pending' is NOT valid (assumed wrong).
+  - ck_review allows: approve/edit_approve/reject/defer  → 'approved' is NOT valid (it's 'approve').
+  - ck_grade = sahih/hasan; ck_promote_mode = insert/augment_update.
+  This is defense-in-depth working as designed — same principle as P091's RLS lesson:
+  a control must actually RESTRICT, and a good schema fails invalid states loudly and early.
+  Had the status mismatch not been caught pre-commit, a promote could have inserted into
+  library then failed the candidate-stamp step, leaving a half-done promote.
+
+**Prevention / notes:**
+  - Before writing to any table, read its CHECK constraints (pg_get_constraintdef) — don't
+    assume enum values; the constraint is the source of truth.
+  - When two schemas differ (candidates vs library), map explicitly and preview with --show
+    on a DRY RUN before --commit. Never positional-insert into the shared library.
+  - augment_update mode (fill missing translations on an existing library row) is designed
+    for but NOT yet implemented — insert mode only for now. TODO.
+  - Legacy Uzbek backfill (existing 74 rows have single-script, some MIXED-script text_uzbek)
+    is a separate content-cleanup task via uzbek-translit.ts — parked, not part of promote.
+
+**Status:** DONE + verified end-to-end on live data (promote → library + audit + idempotency stamp,
+  then re-run = 0, then test row cleaned up, library back to 74) — July 2026
