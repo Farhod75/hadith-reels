@@ -1277,3 +1277,93 @@ fi
 
 **Status:** DONE + verified end-to-end on live data (promote → library + audit + idempotency stamp,
   then re-run = 0, then test row cleaned up, library back to 74) — July 2026
+  
+## ════════════════════════════════════════════════════════
+## PATTERN 95: Uzbek TTS pronunciation — engine differences + Cyrillic homoglyph corruption
+## ════════════════════════════════════════════════════════
+**ID:** P095
+**Type:** TTS quality / data integrity
+**Repos:** hadith-reels (`lib/uzbek-tts-phonetics.ts`, `app/api/tts/route.ts`), shared DB `hadith_library`.
+Applies to idris-learning-app and seerah audiobooks too.
+
+---
+
+### PART A — TTS engine findings (Uzbek)
+
+**Investigated:** reported mispronunciation of Uzbek letters (ҳ, ғ, қ, ў, ж) in narration.
+
+**Findings (browser + route testing, 2026-08):**
+| engine | ж | ҳ / қ / ғ | verdict |
+|---|---|---|---|
+| **OpenAI gpt-4o-mini-tts** (current UZ/TJ path) | ✅ correct ("jannat") | ✅ correct | **no fix needed** |
+| **ElevenLabs eleven_v3** | ❌ says "dj" | ✅ correct | needs inline IPA |
+| ElevenLabs eleven_multilingual_v2 | — | — | **silently ignores IPA** |
+
+**Conclusion: the reels pipeline needed NO change.** Uzbek routes to OpenAI
+(`useOpenAI = ['uz','tj'].includes(langKey) …`), which already pronounces Uzbek correctly.
+
+**ElevenLabs v3 fix (built, validated, reserved for future/audiobook use):**
+- Inline IPA wrapped in `/slashes/` corrects ж. Mixing IPA for ONE word with Cyrillic for the
+  rest WORKS: `/dʒanˈnat/ оналар оёғи остида` → correct. So only problem WORDS need transcribing.
+- Formatting rules (each learned by failure):
+  1. Everything inside `/…/` must be IPA/Latin — never Cyrillic. `/dʒума/` = undefined output.
+  2. Always close the slash. `/dʒamoat` (unclosed) does not work.
+  3. Include stress `ˈ` before the stressed syllable (Uzbek stress is normally final).
+     Audibly improved results; ElevenLabs' own guidance recommends it.
+- **IPA gotcha:** `j` = the "Y" sound; the "J" of *jam* is `dʒ`. Getting this backwards
+  produces a wrong test input and a FALSE failure (it did — cost one test cycle).
+- **Model assert required:** on `eleven_multilingual_v2` IPA is silently ignored — no error,
+  just wrong audio. `applyUzbekIPA()` throws unless model is `eleven_v3`.
+
+**REJECTED approach — do not reintroduce:** an earlier design respelled Cyrillic
+(ж→дж, ҳ→х, қ→к) to trick a Russian-phonetics engine. Disproven: v3 already over-shoots to
+"dj" so ж→дж makes it worse, and ҳ/қ need no help. **A workaround that helps a weak model can
+harm a stronger one — re-baseline after every model upgrade.**
+
+---
+
+### PART B — Cyrillic homoglyph corruption in `hadith_library` (production data defect)
+
+**Symptom:** 9 of 74 rows had Latin-script `text_uzbek` containing invisible Cyrillic
+look-alike characters mid-word — e.g. `qo'shniСini`, `ustunИdir`, `Amалlar`, `shafОat`,
+`rishtalарини`. Visually identical, different bytes.
+
+**Cause:** typed/pasted with a Cyrillic keyboard layout mid-word. The homoglyph pairs
+(а/a, о/o, е/e, с/c, р/p, и/i, Н/H, И/I, О/O, л/l) are indistinguishable by eye.
+
+**Impact — three real failures:**
+1. **TTS** — engine hits Cyrillic inside a Latin word and may switch phonetics or stumble.
+2. **Search** — user typing `qo'shnisini` never matches `qo'shniСini`.
+3. **Dedup** — different bytes → the same hadith can be inserted twice.
+
+**Detection query (keep this — reusable):**
+```sql
+select id, text_uzbek from hadith_library
+where text_uzbek ~ '[a-zA-Z]'          -- has Latin
+  and text_uzbek ~ '[\u0400-\u04FF]';  -- AND has Cyrillic
+```
+
+**Fix:** `translate()` mapping each Cyrillic homoglyph to its Latin twin, PREVIEWED as a
+dry-run `select` before any `update`. One row (`uylanСa`) needed a manual correction to
+`uylansa` — character mapping alone gave `uylanca`, which is the right *character* but the
+wrong *word*. Mechanical fixes can't infer intent; always eyeball the diff.
+**Verified: post-fix count = 0.**
+
+---
+
+### KEY LESSONS
+
+- **Verify the test input before blaming the system.** A typo in the test phrase (`оёги`
+  instead of `оёғи`) made OpenAI look broken and nearly triggered an unnecessary re-architecture
+  of a working pipeline. The engine pronounced exactly what it was given.
+- **Cheap manual probing beats building.** ~20 minutes in the ElevenLabs browser UI overturned
+  a plausible, fully-designed respelling module. Probe the capability before automating around it.
+- **Silent capability degradation is the dangerous failure.** v2 ignoring IPA without error is
+  the same class as P093's exit-code-0-on-failure. Prefer features that fail loudly; assert
+  preconditions when they don't.
+- Scope collapsed from "5 broken letters, build an ASR eval harness" to "no change needed for
+  reels, 8-word lexicon reserved for ElevenLabs" — purely by testing instead of theorising.
+
+**Status:** DONE — reels pipeline unchanged (correct as-is); `lib/uzbek-tts-phonetics.ts`
+built + validated for future ElevenLabs use; 9 corrupted library rows repaired and verified.
+August 2026
