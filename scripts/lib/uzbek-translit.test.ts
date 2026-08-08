@@ -8,6 +8,7 @@ import {
   cyrillicToLatin,
   detectScript,
   deriveBothScripts,
+  normalizeLatinApostrophes,
 } from './uzbek-translit';
 
 const L2C = (s: string) => latinToCyrillic(s).output;
@@ -89,4 +90,54 @@ test('ambiguous cases produce flags', () => {
   assert.ok(latinToCyrillic('eshik').flags.some((f) => f.includes("'e'→э")));
   assert.ok(!cyrillicToLatin('Эшик').flags.some((f) => f.includes('ye'))); // э is unambiguous → no ye flag
   assert.ok(cyrillicToLatin('ер').flags.some((f) => f.includes('ye'))); // word-initial е
+});
+
+// ---- Apostrophe normalization: okina vs tutuq (P097) ----
+const OKINA = '\u02BB'; // ʻ  oʻ / gʻ
+const TUTUQ = '\u02BC'; // ʼ  glottal stop
+
+test('apostrophe after o/g becomes okina', () => {
+  const cases: [string, string][] = [
+    ["bo'lsa",  `bo${OKINA}lsa`],
+    ["to'rt",   `to${OKINA}rt`],
+    ["qo'shni", `qo${OKINA}shni`],
+    ["ulug'",   `ulug${OKINA}`],
+    ["Ro'za",   `Ro${OKINA}za`],
+  ];
+  for (const [input, want] of cases) {
+    assert.equal(normalizeLatinApostrophes(input), want, `okina "${input}"`);
+  }
+});
+
+test('apostrophe elsewhere becomes tutuq', () => {
+  const cases: [string, string][] = [
+    ["Qur'on",  `Qur${TUTUQ}on`],
+    ["ne'mat",  `ne${TUTUQ}mat`],
+    ["in'om",   `in${TUTUQ}om`],
+    ["ma'no",   `ma${TUTUQ}no`],
+    ["san'at",  `san${TUTUQ}at`],
+  ];
+  for (const [input, want] of cases) {
+    assert.equal(normalizeLatinApostrophes(input), want, `tutuq "${input}"`);
+  }
+});
+
+test('every apostrophe variant folds to the same result', () => {
+  const want = `bo${OKINA}lsa`;
+  for (const v of ["bo'lsa", 'bo\u2019lsa', 'bo\u2018lsa', `bo${OKINA}lsa`, `bo${TUTUQ}lsa`, 'bo\u0060lsa', 'bo\u00B4lsa']) {
+    assert.equal(normalizeLatinApostrophes(v), want, `variant U+${v.charCodeAt(2).toString(16)}`);
+  }
+});
+
+test('handles capitals and multiple apostrophes in one string', () => {
+  assert.equal(normalizeLatinApostrophes("Ko'p ne'mat"), `Ko${OKINA}p ne${TUTUQ}mat`);
+});
+
+// Regression for the actual defect: deriveBothScripts returned raw `text`
+// as `latin`, so ASCII apostrophes survived into text_uzbek_latin (P097).
+test('deriveBothScripts normalizes latin output in both branches', () => {
+  assert.equal(deriveBothScripts("bo'lsa").latin, `bo${OKINA}lsa`, 'latin source');
+  assert.equal(deriveBothScripts("Qur'on").latin, `Qur${TUTUQ}on`, 'latin source, tutuq');
+  assert.equal(deriveBothScripts('рўза').latin, `ro${OKINA}za`, 'cyrillic source');
+  assert.equal(deriveBothScripts('Қуръон').latin, `Qur${TUTUQ}on`, 'cyrillic source, tutuq');
 });

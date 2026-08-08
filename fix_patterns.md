@@ -1367,3 +1367,152 @@ wrong *word*. Mechanical fixes can't infer intent; always eyeball the diff.
 **Status:** DONE — reels pipeline unchanged (correct as-is); `lib/uzbek-tts-phonetics.ts`
 built + validated for future ElevenLabs use; 9 corrupted library rows repaired and verified.
 August 2026
+
+**Repo note:** Fix implemented in hadith-reels (scripts/); logged here because
+hadith_library is shared and HV reads text_uzbek. HV action item: P089 search
+must normalize apostrophes (qo'shni → qoʻshni).
+
+## ════════════════════════════════════════════════════════
+## PATTERN 96: Replayed backfill corrections + silent zero-row updates
+## ════════════════════════════════════════════════════════
+**ID:** P096
+**Type:** Data-safety fix (stale snapshot replay + silent success)
+**File:** scripts/apply-uzbek-scripts.ts
+**Commit:** fix: --skip-source-fix flag + zero-row detection on backfill apply (P096)
+
+**Symptom:**
+  Legacy Uzbek two-script backfill (built 2026-06-14, commit 7b1946c) was never run.
+  On re-examination two months later it was still ready to write, but:
+  1. It wanted to write corrected_text_uzbek to 9 rows whose homoglyph corruption
+     had already been fixed in production by other means.
+  2. Its 74 write results could not be distinguished from 74 no-ops.
+
+**Root cause — part 1 (stale replay):**
+  The apply step does not compute anything. It replays out/uzbek-scripts.json,
+  generated on 2026-06-14 from the then-corrupted table. Any defect fixed in
+  production between generation and apply gets silently overwritten with the
+  June-era value. Backfill scripts age; their input snapshots age with them.
+
+**Root cause — part 2 (silent success):**
+  supabase.from(t).update(u).eq('id', id) returns { error: null } when it
+  matches ZERO rows. A stale id logs ✓ and increments the success counter for
+  a write that never happened. Same failure class as:
+    - P093 — Playwright webServer timeout exits 0 having run zero tests
+    - anon-key writes under RLS — blocked, no error surfaced
+  A green counter is not evidence of work performed.
+
+**Fix — three parts:**
+  1. Assert the defect still exists BEFORE --apply:
+       select count(*) from hadith_library
+       where text_uzbek ~ '[a-zA-Z]' and text_uzbek ~ '[\u0400-\u04FF]';
+     Returned 0 → corrections already landed → skip that path.
+  2. Gate the correction behind --skip-source-fix rather than deleting the code.
+     The path stays available for future runs against uncorrected data.
+  3. Chain .select('id') and treat an empty array as failure:
+       else if (!data || data.length === 0) {
+         fail += 1;
+         console.error(`  ✗ #${n} (${id}): matched 0 rows — id not found`);
+       }
+
+**Also fixed — dishonest preview:**
+  Summary and per-row preview lines were computed from cleaned_from_mixed
+  without consulting the flag, so a --skip-source-fix dry run still printed
+  "correcting source text_uzbek". The dry run IS the human gate; a preview
+  that misreports what will happen defeats the gate. Both lines now branch
+  on SKIP_SOURCE_FIX.
+
+**Verification query — do not count against a fixed number:**
+  The script's built-in hint said "expect 74 / 74", which assumes the table
+  never grows. Compare against total_rows instead:
+    select count(*) as total_rows,
+           count(text_uzbek_cyrillic) as cyr,
+           count(text_uzbek_latin) as lat,
+           count(*) filter (where text_uzbek is not null
+                              and text_uzbek_cyrillic is null) as uz_without_scripts
+    from hadith_library;
+  Result: 74 / 74 / 74 / 0 ✅
+
+**Homoglyph predicate — known limitation:**
+  The mixed-script check catches rows containing BOTH Latin and Cyrillic.
+  A row where every Latin char was replaced by a Cyrillic homoglyph reads as
+  pure Cyrillic and scores 0. Once both script columns are populated, the
+  stronger per-column assertions are:
+    text_uzbek_latin    !~ '[\u0400-\u04FF]'
+    text_uzbek_cyrillic !~ '[a-zA-Z]'
+
+**Rule going forward:**
+  Before running any backfill whose input is a generated snapshot:
+    1. Check the snapshot's age against the last change to its target table.
+    2. Re-assert the defect predicate — never assume the defect is still there.
+    3. Confirm affected-row counts; never trust an absent error as proof of write.
+
+**Status:** FIXED — 74/74 applied, 0 failed
+
+
+## ════════════════════════════════════════════════════════
+## PATTERN 97: Transliterator returned raw Latin source — okina/tutuq drift
+## ════════════════════════════════════════════════════════
+**ID:** P097
+**Type:** Data-correctness fix (orthography + unnormalized passthrough)
+**Files:** scripts/lib/uzbek-translit.ts, scripts/lib/uzbek-translit.test.ts,
+           scripts/promote-candidates.py
+**Commit:** fix: normalize Latin apostrophes to okina/tutuq by context (P097)
+
+**Background — two distinct Uzbek letters, not one apostrophe:**
+  okina  ʻ U+02BB — forms the letters oʻ and gʻ  (boʻlsa, ulugʻ, Roʻza)
+  tutuq  ʼ U+02BC — glottal stop, from Cyrillic ъ (Qurʼon, neʼmat, inʼom)
+  Rule: apostrophe after o/O/g/G → okina; anywhere else → tutuq.
+
+**Symptom:**
+  After the legacy two-script backfill (P096), text_uzbek_latin held 41 rows
+  with ASCII apostrophe ('), 1 row with okina, 32 with none. No row mixed
+  variants — the transliterator was consistent per row, just not normalizing.
+
+**Root cause:**
+  deriveBothScripts() returned `latin: text` — the RAW input — for Latin-source
+  rows. latinToCyrillic() folds all apostrophe glyphs via .replace(APOS, S),
+  but that normalization only ever reached the CYRILLIC output. The Latin side
+  was passthrough, so whatever the source typed survived into the column.
+  Cyrillic-source rows were correct (CYR_MAP emits OKINA for ў/ғ, TUTUQ for ъ),
+  which is why exactly 1 row had proper orthography.
+
+**Compounding error — a blanket replace() made it worse before better:**
+  An initial repair ran replace(text, '''', 'ʻ') across 41 rows, collapsing
+  BOTH letters into okina. That corrupted 6 rows (Qurʼon→Qurʻon, neʼmat→neʻmat,
+  inʼom→inʻom). The spot-check that followed searched for apostrophes adjacent
+  to spaces/punctuation — the one position where tutuq never appears — so it
+  could not have caught the defect it was meant to catch.
+  LESSON: verify a normalization against the RULE it must satisfy, not against
+  a proxy pattern. Counts proving uniformity are not counts proving correctness.
+
+**Fix — data:**
+  Context-aware repair, all apostrophes per row (not just the first):
+    update hadith_library
+    set text_uzbek = regexp_replace(
+          regexp_replace(text_uzbek, U&'([ogOG])[\02BB\02BC]', U&'\\1\02BB', 'g'),
+          U&'([^ogOG])[\02BB\02BC]', U&'\\1\02BC', 'g')
+    where text_uzbek ~ U&'[\02BB\02BC]';
+    update hadith_library set text_uzbek_latin = text_uzbek where text_uzbek is not null;
+  Verify (both 0):
+    select count(*) filter (where text_uzbek ~ U&'[^ogOG]\02BB') as bad_okina,
+           count(*) filter (where text_uzbek ~ U&'[ogOG]\02BC')  as bad_tutuq
+    from hadith_library;
+
+**Fix — code (prevents recurrence):**
+  New exported normalizeLatinApostrophes() applying the o/g context rule.
+  Called on the `latin:` return in BOTH branches of deriveBothScripts —
+  the Cyrillic branch is already correct, but routing it through the same
+  function gives one owner for the invariant.
+  5 tests added, incl. a regression test that fails against `latin: text`.
+
+**KNOWN LIMITATION (accepted, logged not fixed):**
+  The internal sentinel S === TUTUQ (both U+02BC), so LAT_RULES cannot
+  distinguish oʻ from oʼ — ['o'+S, 'ў'] matches first, and a genuine tutuq
+  after o/g folds to okina. No row in hadith_library exercises this.
+  Full fix = private-use sentinel + context-aware LAT_RULES (option B, deferred).
+
+**Downstream to verify:**
+  P089 server-side library search must normalize apostrophes, or a user typing
+  qo'shni will not match stored qoʻshni. NOT done — open item.
+
+**Status:** FIXED — 74/74 rows correct, 11/11 tests green

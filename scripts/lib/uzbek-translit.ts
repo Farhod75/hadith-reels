@@ -47,6 +47,25 @@ const CYR_MAP: Record<string, string> = {
   я: 'ya', ы: 'i',
 };
 
+/**
+ * Fold every apostrophe-like glyph in LATIN text to the correct Uzbek letter.
+ * Context rule (deterministic, no ambiguity in practice):
+ *   after o/O/g/G  → okina  ʻ (U+02BB)  — the letters oʻ and gʻ
+ *   anywhere else  → tutuq  ʼ (U+02BC)  — glottal stop: maʼno, inʼom, Qurʼon
+ *
+ * KNOWN LIMITATION: a genuine tutuq directly after o/g (rare) is folded to
+ * okina by this rule. No row in hadith_library exercises that case. See also
+ * the sentinel note in latinWordToCyr — S === TUTUQ, so LAT_RULES cannot
+ * distinguish oʻ from oʼ on the Cyrillic side either. [P097]
+ */
+export function normalizeLatinApostrophes(text: string): string {
+  if (!text) return text;
+  return text
+    .replace(APOS, S)
+    .replace(new RegExp(`([ogOG])${S}`, 'g'), `$1${OKINA}`)
+    .replace(new RegExp(`([^ogOG])${S}`, 'g'), `$1${TUTUQ}`)
+    .replace(new RegExp(`^${S}`), TUTUQ);
+}
 const isWordToken = (t: string) => /[\p{L}\u02BC]/u.test(t);
 const tokenize = (s: string) => s.match(/[\p{L}\u02BC]+|[^\p{L}\u02BC]+/gu) ?? [];
 
@@ -156,11 +175,11 @@ export function deriveBothScripts(text: string): {
   const sourceScript = detectScript(text);
   if (sourceScript === 'cyrillic') {
     const { output, flags } = cyrillicToLatin(text);
-    return { sourceScript, cyrillic: text, latin: output, flags };
+    return { sourceScript, cyrillic: text, latin: normalizeLatinApostrophes(output), flags };
   }
   if (sourceScript === 'latin') {
     const { output, flags } = latinToCyrillic(text);
-    return { sourceScript, cyrillic: output, latin: text, flags };
+    return { sourceScript, cyrillic: output, latin: normalizeLatinApostrophes(text), flags };
   }
   // mixed / empty → no safe automatic call; flag for the human gate
   return {

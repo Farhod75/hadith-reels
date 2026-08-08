@@ -1,3 +1,29 @@
+### Fixed
+- Uzbek Latin orthography normalized across all 74 `hadith_library` rows: okina (U+02BB)
+  in `oʻ`/`gʻ`, tutuq (U+02BC) for the glottal stop. Previously 41 rows carried ASCII `'`.
+- `scripts/lib/uzbek-translit.ts`: `deriveBothScripts()` returned the raw Latin source
+  unnormalized; now routed through the new exported `normalizeLatinApostrophes()` in both
+  branches (P097).
+- `scripts/promote-candidates.py`: legacy `text_uzbek` now filled from `text_uzbek_latin`
+  rather than Cyrillic, matching the column's back-compat purpose and all 74 existing rows.
+
+### Added
+- `normalizeLatinApostrophes()` — context-based okina/tutuq folding, with 5 tests
+  including a regression test for the passthrough defect.
+
+
+### Fixed
+- Legacy Uzbek two-script backfill applied to all 74 `hadith_library` rows —
+  `text_uzbek_cyrillic` and `text_uzbek_latin` now populated (74/74, 0 failed).
+  Script built 2026-06-14 (`7b1946c`), unrun until now.
+- `scripts/apply-uzbek-scripts.ts`: added `--skip-source-fix` to suppress replay of
+  June-era `text_uzbek` corrections on the 9 mixed rows already cleaned in production.
+- `scripts/apply-uzbek-scripts.ts`: `.update()` now chains `.select('id')` and reports
+  zero-row matches as failures instead of silent successes (P096).
+- `scripts/apply-uzbek-scripts.ts`: dry-run preview no longer claims it will correct
+  `text_uzbek` when `--skip-source-fix` is active.
+
+
 ## [2026-06-13] (cont.)
 
 ### Added

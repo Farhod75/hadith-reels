@@ -122,7 +122,7 @@ def map_to_library(c: dict) -> dict:
         "text_russian":        c.get("text_russian"),
         "text_uzbek_cyrillic": cyr,
         "text_uzbek_latin":    c.get("text_uzbek_latin"),
-        "text_uzbek":          cyr,                       # legacy col = Cyrillic (canonical)
+        "text_uzbek":          c.get("text_uzbek_latin"), # legacy back-compat col = Latin (see D4a)
         "text_tajik":          c.get("text_tajik"),
         "narrator":            c.get("narrator"),
         "collection":          c.get("collection"),

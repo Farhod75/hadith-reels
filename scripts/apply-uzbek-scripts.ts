@@ -20,6 +20,7 @@ import { readFileSync } from 'node:fs';
 config({ path: '.env.local' });
 
 const APPLY = process.argv.includes('--apply');
+const SKIP_SOURCE_FIX = process.argv.includes('--skip-source-fix');
 const JSON_PATH = 'out/uzbek-scripts.json';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -58,6 +59,9 @@ async function preflightColumnsExist(): Promise<boolean> {
 
 async function main() {
   console.log(APPLY ? '⚠️  APPLY MODE — will write to hadith_library' : '🧪 DRY RUN — no DB writes');
+  console.log(SKIP_SOURCE_FIX
+    ? '🔒 --skip-source-fix — text_uzbek will NOT be touched (already cleaned in prod)'
+    : '🧹 source text_uzbek correction ENABLED for mixed rows');
 
   if (!(await preflightColumnsExist())) process.exit(1);
 
@@ -77,7 +81,9 @@ async function main() {
 
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`📦 Proposals: ${proposals.length}  ·  writable: ${valid.length}  ·  skipped (empty): ${skipped}`);
-  console.log(`🧹 Of those, source text_uzbek corrected (mixed rows): ${sourceFixes.length}`);
+  console.log(SKIP_SOURCE_FIX
+    ? `🧹 Mixed rows present in JSON: ${sourceFixes.length} — source correction SKIPPED`
+    : `🧹 Of those, source text_uzbek corrected (mixed rows): ${sourceFixes.length}`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
   console.log('\nFirst 3 writes preview:');
@@ -85,7 +91,11 @@ async function main() {
     console.log(`  #${p.hadith_number}`);
     console.log(`    cyr:   ${p.text_uzbek_cyrillic_proposed.slice(0, 60)}`);
     console.log(`    latin: ${p.text_uzbek_latin_proposed.slice(0, 60)}`);
-    if (p.cleaned_from_mixed) console.log(`    + correcting source text_uzbek`);
+    if (p.cleaned_from_mixed) {
+      console.log(SKIP_SOURCE_FIX
+        ? `    (source text_uzbek fix skipped — already clean in prod)`
+        : `    + correcting source text_uzbek`);
+    }
   }
 
   if (!APPLY) {
@@ -100,13 +110,20 @@ async function main() {
       text_uzbek_cyrillic: p.text_uzbek_cyrillic_proposed,
       text_uzbek_latin: p.text_uzbek_latin_proposed,
     };
-    if (p.cleaned_from_mixed && p.corrected_text_uzbek?.trim()) {
+    if (!SKIP_SOURCE_FIX && p.cleaned_from_mixed && p.corrected_text_uzbek?.trim()) {
       update.text_uzbek = p.corrected_text_uzbek;
     }
-    const { error } = await supabase.from('hadith_library').update(update).eq('id', p.id);
+    const { data, error } = await supabase
+      .from('hadith_library')
+      .update(update)
+      .eq('id', p.id)
+      .select('id');
     if (error) {
       fail += 1;
       console.error(`  ✗ #${p.hadith_number} (${p.id}): ${error.message}`);
+    } else if (!data || data.length === 0) {
+      fail += 1;
+      console.error(`  ✗ #${p.hadith_number} (${p.id}): matched 0 rows — id not found`);
     } else {
       ok += 1;
       console.log(`  ✓ #${p.hadith_number}${p.cleaned_from_mixed ? ' (+source fix)' : ''}`);
