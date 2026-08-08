@@ -122,7 +122,7 @@ RULES:
 6. seerah_context must cite a real period (Makkah, Madinah, Hijra, etc.)`
 
     const response = await anthropic.messages.create({
-      model:      'claude-sonnet-4-20250514',
+      model:      'claude-sonnet-4-6',
       max_tokens: 1200,
       messages:   [{ role: 'user', content: prompt }],
     })
