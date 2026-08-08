@@ -1084,6 +1084,20 @@ End of P072-P075 appendix.
 
 **Status:** FIXED + verified live (green build, live RU analysis) — July 2026
 
+**AMENDMENT (2026-08-08) — the sweep missed a caller for four months:**
+  HR's app/api/generate-reel/route.ts was EDITED to claude-sonnet-4-6 during the
+  original P090 sweep but never committed. `git grep` searches the WORKING TREE
+  by default, so the verification step reported the fix as present while HEAD —
+  and therefore production — still held claude-sonnet-4-20250514.
+  Undetected until 2026-08-08 because no reel had been generated since April.
+  Shipped as 7b6f017; verified against production, not just the deploy.
+
+  RULE: after a multi-caller sweep, verify against HEAD, not the working tree:
+    git grep -n "<retired-id>" HEAD -- app/ lib/
+    git status --short          # nothing left unstaged
+  A green `git grep` on an uncommitted edit is the same silent-success class as
+  P096's zero-row update and P093's zero-test pass.
+
 
 ## ════════════════════════════════════════════════════════
 ## PATTERN 91: RLS disabled + allow-all policy defeating RLS
