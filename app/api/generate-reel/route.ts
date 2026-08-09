@@ -115,11 +115,24 @@ Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, 
 
 RULES:
 1. ALL fields in the language specified above (${lang})
-2. story MUST mention the Prophet ﷺ or his companions by name
+2. story MUST reference the Prophet ﷺ or his companions, but ONLY as the hadith
+   and the cited seerah source record them
 3. moral MUST be practical — what to do TODAY
 4. title MUST be shareable — would someone click on this?
-5. For Kids style: story must be a simple scene a child can picture
-6. seerah_context must cite a real period (Makkah, Madinah, Hijra, etc.)`
+5. For Kids style: use simple, concrete language a child can follow. Do NOT invent
+   a scene — describe the historical setting and the lesson in plain words
+6. seerah_context must cite a real period (Makkah, Madinah, Hijra, etc.)
+
+ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
+7. NEVER invent an incident, scene, or conversation that is not in the hadith text
+   or the cited seerah source
+8. NEVER attribute direct or indirect speech to the Prophet ﷺ, any prophet, or any
+   companion beyond what the hadith itself records. No quotation marks around words
+   they did not say.
+9. NEVER state what a named person felt, thought, saw, or did afterwards
+10. If the hadith text is short, expand ONLY into documented historical context of
+    the period. Do NOT compensate with narrative — a shorter story is correct;
+    an invented one is not.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-4-6',
