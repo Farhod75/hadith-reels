@@ -29,6 +29,7 @@
 | R008 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | uz | kids | bukhari-6009 | kids-uz-bukhari-6009-story.mp3 | kids-uz-bukhari-6009-moral.mp3 | (split clip01–03) | kids-uz-bukhari-6009-clip01.mp4, clip02.mp4, clip03.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-uz-bukhari-6009-mascot-reel.mp4 | ~69s | 24.6 MB | Girl lamb; Nova UZ kids voice + ҳ/ж/ғ tuning (P087); published 4 platforms |
 | R009 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | tj | kids | bukhari-6009 | kids-tj-bukhari-6009-story.mp3 | kids-tj-bukhari-6009-moral.mp3 | (split clip01–02) | kids-tj-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-tj-bukhari-6009-mascot-reel.mp4 | ~54s | ~18 MB | Girl lamb; native Tajik text (not RU dup); Nova TJ ҷ/ӯ OK; published 4 platforms |
 | R010 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | en | Adults | bukhari-1 | adults-en-bukhari-1-story.mp3 | adults-en-bukhari-1-moral.mp3 | adults-en-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-en-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | Yes | adults-en-bukhari-1-reel.mp4 | 78.8s | 23 MB | Pillar 2 animated, MODE B. First Tawheed-theme reel. Scenes 1/2/4 new (FLUX+Kling), scene 3 reused from R005. Fixed P098 (Kling poll loop) + P099 (amix tail) during production. |
+| R011 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | ru | Adults | bukhari-1 | adults-ru-bukhari-1-story.mp3 | adults-ru-bukhari-1-moral.mp3 | adults-ru-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-ru-bukhari-1-bg-mixed.mp4 | mubarak-bg.mp3 | Yes | adults-ru-bukhari-1-reel.mp4 | 58.2s | 17.3 MB | Scenes reused from R010. Story hand-written after 2 generations fabricated Prophet ﷺ dialogue. Whisper UnicodeEncodeError on Cyrillic (P100); 4 transcription fixes incl. мерзкую→мирскую. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -46,7 +47,7 @@
 | Sahih al-Bukhari #1773 | TJ | Adults | R004 |
 | Sahih al-Bukhari #1520 | RU | Adults | R005 |
 | Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
-| Sahih al-Bukhari #1 | EN | Adults | R010 |
+| Sahih al-Bukhari #1 | EN, RU | Adults | R010, R011 |
 
 ---
 
@@ -61,7 +62,7 @@
 | Fasting / Ramadan | 1 | R002 | EN |
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
-| Tawheed / Intentions | 1 | R010 | EN |
+| Tawheed / Intentions | 2 | R010, R011 | EN, RU |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -89,7 +90,7 @@
 | Nasheed | Uses | Last used | Reel IDs |
 |---|---|---|---|
 | path-to-jannah-bg.mp3 | 1 | 2026-05-15 (R004) | R004 |
-| mubarak-bg.mp3 | 1 | 2026-05-16 (R005) | R005 |
+| mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011
 | nasheed-bg-1.mp3 | 0 | Never | — |
 | light-of-my-heart-bg.mp3 | 1 | 2026-08-08 (R010) | R010 |
 | ramadan-bg.mp3 | 0 | Never | — |
@@ -121,10 +122,10 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 10 |
+| Total reels posted | 11 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
-| Adults reels | 6 |
+| Adults reels | 7 |
 | Kids reels | 4 |
 | Avg duration | ~55s |
 | Avg file size | ~22 MB |
@@ -165,3 +166,4 @@ Then update:
 | 2026-06-13 | First kids talking-mascot reel: Bukhari 6009 EN | Farhod / Claude |
 | 2026-06-14 | Bukhari 6009 full 4-lang kids set (girl lamb, R007–R009) + P085/P086/P087 | Farhod / Claude |
 | 2026-08-08 | R010 — Bukhari #1 EN adults, first Pillar 2 animated reel with explicit clip logging | Farhod / Claude |
+| 2026-08-08 | R011 — Bukhari #1 RU adults; P100 Whisper Cyrillic encoding fix | Farhod / Claude |

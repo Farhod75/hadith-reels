@@ -1626,3 +1626,105 @@ must normalize apostrophes (qo'shni → qoʻshni).
   intended outcome.
 
 **Status:** FIXED — verified 78.766s
+
+## ════════════════════════════════════════════════════════
+## PATTERN 100: Whisper crashed on Cyrillic — CP1252 console, not a transcription failure
+## ════════════════════════════════════════════════════════
+**ID:** P100
+**Type:** Environment fix (Windows console encoding)
+**File:** render-reel.ps1 (Step 5 — Whisper call)
+**Commit:** fix(render): force UTF-8 for Whisper so Cyrillic/Arabic subtitles don't abort (P100)
+
+**Symptom:**
+  RU reel render died at Step 5:
+    UnicodeEncodeError: 'charmap' codec can't encode character '\u0412'
+      in position 27: character maps to <undefined>
+    Skipping out\adults-ru-bukhari-1-narration.mp3 due to UnicodeEncodeError
+    FAILED: Whisper did not produce ...-narration.srt
+
+**Root cause:**
+  \u0412 is Cyrillic «В» — the first letter of the narration. Whisper
+  TRANSCRIBED correctly; it crashed trying to PRINT the progress line to a
+  CP1252 console (transcribe.py line 482, print(make_safe(line))). The
+  traceback aborted the run before the .srt was written. The defect is in
+  stdout encoding, not in the audio or the model.
+
+**Why it didn't hit R005 (also RU, June):**
+  Python is now 3.14 (C:\...\Python314). Newer Whisper/Python builds print
+  segment text to stdout during transcription where earlier ones did not.
+  An environment change, not a code change on our side.
+
+**Fix (session-level, proven):**
+    $env:PYTHONIOENCODING = "utf-8"
+    $env:PYTHONUTF8 = "1"
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+  PYTHONIOENCODING is the one that matters — it makes Python write UTF-8
+  regardless of console codepage. The other two fix display.
+
+**TODO — make it durable:**
+  Set PYTHONIOENCODING/PYTHONUTF8 inside render-reel.ps1 before the Whisper
+  invocation, so RU/AR reels don't depend on shell state. Currently the render
+  only succeeds in a shell where these were set by hand.
+
+**Related:** same CP1252 root cause as the mojibake in PowerShell's
+  Invoke-RestMethod output (ï·º for ﷺ) — cosmetic there, fatal here.
+
+**Status:** WORKED AROUND — durable fix pending
+
+## ════════════════════════════════════════════════════════
+## PATTERN 101: generate-reel fabricated hadith — invented scenes + speech attributed to the Prophet ﷺ
+## ════════════════════════════════════════════════════════
+**ID:** P101
+**Type:** CONTENT-SAFETY DEFECT — highest severity in this project
+**File:** app/api/generate-reel/route.ts (prompt)
+**Commit:** (pending) fix(generate-reel): forbid invented incidents and attributed speech
+
+**Symptom:**
+  Generating the RU adults script for Sahih al-Bukhari #1 produced, TWICE, a
+  fabricated narrative incident with direct speech attributed to the Prophet ﷺ:
+    Gen 1 — the Prophet ﷺ approaches a companion after prayer, asks what he felt,
+            the companion answers in quoted speech, the Prophet ﷺ replies
+            «Именно это и есть истинное поклонение».
+    Gen 2 — a companion carries water; the Prophet ﷺ stops and says «даже эта
+            капля воды станет весомее горы в День воздаяния»; the companion is
+            then said never to have acted without intention again.
+  None of this is in Bukhari #1, in Ar-Raheeq Al-Makhtum, or in any source.
+  It is invented hadith — the exact category HV exists to detect.
+
+**Root cause:**
+  The route prompt constrains seerah_context to cite a real period, but has NO
+  rule against inventing incidents or attributing speech to the Prophet ﷺ.
+  Bukhari #1 is a ONE-SENTENCE matn; with little to expand, the model fills the
+  space with narrative. EN complied by chance (it described the Hijra setting);
+  RU did not. Same hadith, same route — so compliance was luck, not design.
+
+**Why the existing gates did not catch it:**
+  - The human review gate DID catch it. That is the only reason it did not ship.
+  - No automated check exists. Nothing in the route, tests, or CI inspects
+    generated output for invented narrative or quoted speech.
+
+**Fix — required in the route prompt (NOT YET APPLIED):**
+  Add to the RULES block:
+    - NEVER invent an incident, scene, or conversation that is not in the hadith
+      text or the cited seerah source.
+    - NEVER attribute direct or indirect speech to the Prophet ﷺ, any prophet,
+      or any companion beyond what the hadith itself records.
+    - NEVER state what a named person felt, thought, or did afterwards.
+    - If the matn is short, expand ONLY into documented historical context of
+      the period. Do not compensate with narrative.
+
+**Interim mitigation (used for R011):**
+  Story field hand-written from the EN version's approach — historical setting,
+  no scene, no quoted speech. P079's editable textareas made this possible
+  without a regenerate cycle.
+
+**Also observed:** the RU caption cited «Источник: Усваи Хасана» while EN cited
+  Ar-Raheeq Al-Makhtum for the same hadith. Source attribution is not consistent
+  across languages — separate defect, needs investigation.
+
+**Rule going forward:**
+  Every generated story is read in full before TTS. Regeneration is NOT a fix
+  for a fabrication — two generations produced two different fabrications.
+  Edit the textarea by hand instead.
+
+**Status:** OPEN — mitigated by human review; route prompt fix pending
