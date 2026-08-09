@@ -30,7 +30,8 @@ param(
   [Parameter(Mandatory)][string]$Prompt,           # text-to-video: scene desc | image-to-video: MOTION desc
   [string]$Image,                                  # optional: local image path -> image-to-video mode
   [ValidateSet('5','10')][string]$Duration = '5',
-  [string]$Model                                   # auto-set by mode if not given
+  [string]$Model                                  # auto-set by mode if not given
+  
 )
 
 # Mode = image-to-video if -Image supplied, else text-to-video. Pick matching default model.
@@ -100,6 +101,7 @@ $resultUrl = $submit.response_url
 if (-not $reqId) { Die "no request_id returned (response: $($submit | ConvertTo-Json -Compress))" }
 Ok "queued: $reqId"
 
+
 # --- 2) POLL until completed -------------------------------------------------
 Say "`n[2/3] Generating (video gen takes ~1-4 min)..."
 $deadline = (Get-Date).AddMinutes(8)
@@ -111,8 +113,10 @@ do {
     Die "status check failed: $($_.Exception.Message)"
   }
   Write-Host "        status: $($st.status)" -ForegroundColor DarkGray
-  if ((Get-Date) -gt $deadline) { Die "timed out after 8 min (request $reqId still $($st.status))" }
-} while ($st.status -ne 'COMPLETED')
+  if ($st.status -eq 'COMPLETED') { break }
+  if ($st.status -in @('FAILED','ERROR','CANCELLED')) { Die "generation failed (status: $($st.status), request $reqId)" }
+  if ((Get-Date) -gt $deadline) { Die "timed out after 8 min (request $reqId, last status $($st.status))" }
+} while ($true)
 Ok "generation complete"
 
 # --- 3) FETCH result + download the clip -------------------------------------

@@ -238,6 +238,8 @@ if (-not (Test-Path $bgMixed)) { Die "background concat failed ($bgMixed not cre
 Ok "$bgMixed"
 
 # --- STEP 7: final merge (7A with subs / 7B without) -------------------------
+# hard-bound output to narration length (amix can otherwise run past it)
+$narrDur = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
 Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + subs'}))..."
 
 # choose nasheed (specific or random from local library)
@@ -257,10 +259,10 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   "-stream_loop","-1","-i",$bgMixed,
   "-i",$narr,
   "-stream_loop","-1","-i",$chosen,
-  "-filter_complex","[1:a]volume=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first[aout]",
+  "-filter_complex","[1:a]volume=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
   "-vf",$vf,
   "-map","0:v","-map","[aout]",
-  "-c:v","libx264","-c:a","aac","-shortest","-movflags","+faststart",
+  "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur,2),"-movflags","+faststart",
   $reel)
 
 if (-not (Test-Path $reel)) { Die "final merge failed ($reel not created)" }

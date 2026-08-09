@@ -1530,3 +1530,99 @@ must normalize apostrophes (qo'shni → qoʻshni).
   qo'shni will not match stored qoʻshni. NOT done — open item.
 
 **Status:** FIXED — 74/74 rows correct, 11/11 tests green
+
+## ════════════════════════════════════════════════════════
+## PATTERN 98: Poll loop killed a COMPLETED job — deadline checked before success
+## ════════════════════════════════════════════════════════
+**ID:** P098
+**Type:** Control-flow bug (wasted a paid API generation)
+**File:** scripts/generate-scene.ps1
+**Commit:** fix(scene): break on COMPLETED before deadline check; exit early on terminal failure (P098)
+
+**Symptom:**
+  A Kling image-to-video generation ran to completion, and the script reported:
+    status: COMPLETED
+    FAILED: timed out after 8 min (request 019fe271-... still COMPLETED)
+  The clip was generated and paid for, but never downloaded — step 3 never ran.
+
+**Root cause:**
+  In the do/while poll loop, the deadline check sat INSIDE the body, above the
+  while condition:
+      Write-Host "status: $($st.status)"
+      if ((Get-Date) -gt $deadline) { Die "timed out ..." }
+    } while ($st.status -ne 'COMPLETED')
+  On the iteration where status finally became COMPLETED, the deadline test ran
+  FIRST and called Die — one line before the loop would have exited normally.
+  The generation had simply taken longer than 8 minutes; success arrived, and
+  the script threw it away.
+
+**Fix:**
+      if ($st.status -eq 'COMPLETED') { break }
+      if ($st.status -in @('FAILED','ERROR','CANCELLED')) { Die "generation failed ..." }
+      if ((Get-Date) -gt $deadline) { Die "timed out ..." }
+    } while ($true)
+  Success is now tested before failure. Terminal error states also exit
+  immediately instead of polling out the full 8 minutes.
+
+**Rule going forward:**
+  In any poll loop, evaluate the SUCCESS condition before any failure or timeout
+  condition. A timeout is only meaningful if the work is still pending.
+  Related: P093 (unset clobbers $? — capture the exit code before cleanup).
+  Both are ordering bugs where a later statement destroyed an earlier result.
+
+**Note — recovery was attempted and abandoned:**
+  A -RequestId parameter to re-fetch the orphaned result was drafted, then
+  reverted: the fal queue-result URL shape was unverified, and regenerating
+  costs ~$0.50. Not worth speculative code. Regenerated instead; loop fix held.
+
+**Status:** FIXED — scene 1 regenerated and downloaded successfully
+
+## ════════════════════════════════════════════════════════
+## PATTERN 99: amix outlived -shortest — frozen subtitle tail on every animated reel
+## ════════════════════════════════════════════════════════
+**ID:** P099
+**Type:** Output-correctness fix (ffmpeg filter semantics)
+**File:** render-reel.ps1
+**Commit:** fix(render): bound reel to narration length — amix dropout_transition + explicit -t (P099)
+
+**Symptom:**
+  adults-en-bukhari-1-reel.mp4 ran 81.0s against a 78.8s narration. The final
+  subtitle cue stayed frozen on screen for the last ~2.2s over silent video.
+
+**Root cause:**
+  -shortest WAS present, but it measures the MAPPED output streams, and the
+  audio map is [aout] — the amix result, not the narration:
+    [1:a]volume=1.0[narration];[2:a]volume=0.25[music];
+    [narration][music]amix=inputs=2:duration=first[aout]
+  amix defaults to dropout_transition=2, adding a 2-second gain-renormalisation
+  tail when an input drops out. The nasheed (150s) outlives the narration
+  (78.8s), so [aout] ran ~2s past duration=first. -shortest then honoured 81s.
+  Diagnosis came from ffprobe on all four inputs — reel 81.0, narration 78.77,
+  nasheed 150.0, background 20.1 — which ruled out every other candidate.
+
+**Fix — two parts:**
+  1. amix=inputs=2:duration=first:dropout_transition=0[aout]
+  2. Measure the narration and hard-bound the output:
+       $narrDur = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
+       ... "-shortest","-t",[string][math]::Round($narrDur,2),...
+  Part 2 is belt-and-suspenders: -t makes the intended length explicit rather
+  than emergent from filter-graph semantics.
+  Result: 78.766009s — exact match to the narration.
+
+**Scope — affects earlier reels:**
+  Same code path as R005 (bukhari-1520 RU, the first animated reel). Any
+  published animated reel from before this fix likely carries the same frozen
+  tail. Not re-rendered; noted for awareness.
+
+**Also learned (not a bug):**
+  The background was 20.1s against 81s of audio — ffmpeg loops the scene set
+  ~4x. Expected for a 4x5s scene set under an 80s narration, but worth knowing
+  the visuals repeat; more or longer scenes reduce the loop count.
+
+**Rule going forward:**
+  -shortest is only as good as what is mapped. When an amix/afade/concat sits
+  between inputs and output, verify the RESULT length with ffprobe rather than
+  trusting the flag. Same class as P096: an absent error is not proof of the
+  intended outcome.
+
+**Status:** FIXED — verified 78.766s
