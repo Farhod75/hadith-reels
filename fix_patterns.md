@@ -1677,7 +1677,7 @@ must normalize apostrophes (qo'shni → qoʻshni).
 **ID:** P101
 **Type:** CONTENT-SAFETY DEFECT — highest severity in this project
 **File:** app/api/generate-reel/route.ts (prompt)
-**Commit:** (pending) fix(generate-reel): forbid invented incidents and attributed speech
+**Commit:** d4ee1af — fix(generate-reel): forbid invented incidents and attributed speech (P101)
 
 **Symptom:**
   Generating the RU adults script for Sahih al-Bukhari #1 produced, TWICE, a
@@ -1703,7 +1703,7 @@ must normalize apostrophes (qo'shni → qoʻshni).
   - No automated check exists. Nothing in the route, tests, or CI inspects
     generated output for invented narrative or quoted speech.
 
-**Fix — required in the route prompt (NOT YET APPLIED):**
+**Fix — required in the route prompt (APPLIED):**
   Add to the RULES block:
     - NEVER invent an incident, scene, or conversation that is not in the hadith
       text or the cited seerah source.
@@ -1727,4 +1727,10 @@ must normalize apostrophes (qo'shni → qoʻshni).
   for a fabrication — two generations produced two different fabrications.
   Edit the textarea by hand instead.
 
-**Status:** OPEN — mitigated by human review; route prompt fix pending
+**Status:** FIXED — rules 7-10 added; verified by regenerating the exact failing case
+  (Bukhari #1, RU) which produced clean output on first generation. NOTE: the original
+  rules ACTIVELY CAUSED this — rule 2 required naming the Prophet ﷺ or companions, and
+  rule 5 required "a simple scene a child can picture" for Kids style. The defect was
+  in the rules, not merely absent from them. Kids style is now explicitly told NOT to
+  invent a scene.
+  Automated detection still does not exist. Human review remains the only gate.
