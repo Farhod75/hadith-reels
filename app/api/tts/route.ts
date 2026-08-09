@@ -21,6 +21,15 @@ const VOICE_MAP: Record<string, Record<string, string>> = {
     adults: process.env.ELEVENLABS_VOICE_EN_ADULTS || 'EkK5I93UQWFDigLMpZcX',
     kids:   process.env.ELEVENLABS_VOICE_EN_KIDS   || 'FVQMzxJGPUBtfz1Azdoy',
   },
+  // P102: UZ/TJ moved from OpenAI to ElevenLabs eleven_v3 — see fix_patterns
+  uz: {
+    adults: process.env.ELEVENLABS_VOICE_UZ_ADULTS || 'R3XXDwKMU2YHwBcuYUH3', // Opa Johann
+    kids:   process.env.ELEVENLABS_VOICE_UZ_KIDS   || 'hO2yZ8lxM3axUxL8OeKX', // Mini
+  },
+  tj: {
+    adults: process.env.ELEVENLABS_VOICE_TJ_ADULTS || 'KXptrwcsEqqFSwRKJukF', // Meisam
+    kids:   process.env.ELEVENLABS_VOICE_TJ_KIDS   || '0zUZ5qUGb8wympsfJH8d', // Katherine Polished
+  },
 }
 
 // P073: per-language phonetic instructions for gpt-4o-mini-tts
@@ -49,6 +58,10 @@ const TTS_INSTRUCTIONS: Record<string, string> = {
     "қ as deep uvular k from back of throat (like Arabic ق, not Russian к) — pronounce қ consistently strong " +
     "whether at start, middle, or end of word; ў as 'o' sound in 'go'; ғ as voiced uvular g (like Arabic غ); " +
     "ж as English 'j' in 'judge' or 'jim', NOT French 'zh' / Russian zh. " +
+    "CRITICAL: plain г is a plain hard g as in 'go' — do NOT harden plain г into the throaty ғ/gh. " +
+    "Example pronunciations: Мадинага = 'ma-di-na-GA'; қилган = 'qil-GAN'; келган = 'kel-GAN'; " +
+    "мавзуга = 'mav-zu-GA'; қараганда = 'qa-ra-GAN-da' (all plain g, never gh). " +
+    "By contrast пайғамбар = 'pay-GHAM-bar' keeps the throaty ғ. " +
     "Place word stress on the final syllable per Uzbek convention. " +
     "Do not use Russian phonetic patterns. This is religious content — speak with gravity and respect.",
 
@@ -99,8 +112,10 @@ export async function POST(req: NextRequest) {
 
     const cleanText = cleanForTTS(text, lang)
     const langKey = lang.replace('_cyrillic', '').replace('_latin', '')
-    // RU kids -> OpenAI Nova (female); RU adults stays on ElevenLabs (Abrar)
-    const useOpenAI = ['uz', 'tj'].includes(langKey) || (langKey === 'ru' && style === 'kids')
+    // P102: UZ/TJ now use ElevenLabs eleven_v3 — it pronounces plain г, ҳ, қ, ғ, ж
+    // correctly, which OpenAI does not (onyx and nova both harden plain г to ғ).
+    // RU kids stays on OpenAI Nova (female); RU adults stays on ElevenLabs (Abrar).
+    const useOpenAI = langKey === 'ru' && style === 'kids'
 
     // ── OpenAI gpt-4o-mini-tts for UZ/TJ ─────────────────────────────────────
     if (useOpenAI) {
@@ -157,7 +172,7 @@ export async function POST(req: NextRequest) {
         },
         body: JSON.stringify({
           text: cleanText,
-          model_id: 'eleven_multilingual_v2',
+          model_id: 'eleven_v3',
           voice_settings: { stability: 0.5, similarity_boost: 0.75 },
         }),
       }
