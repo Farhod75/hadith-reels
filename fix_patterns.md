@@ -1734,3 +1734,74 @@ must normalize apostrophes (qo'shni → qoʻshni).
   in the rules, not merely absent from them. Kids style is now explicitly told NOT to
   invent a scene.
   Automated detection still does not exist. Human review remains the only gate.
+
+  ## ════════════════════════════════════════════════════════
+## PATTERN 102: OpenAI TTS hardened plain г to ғ in Uzbek — moved UZ/TJ to ElevenLabs v3
+## ════════════════════════════════════════════════════════
+**ID:** P102
+**Type:** Provider migration (supersedes P071, P073, P087 for UZ/TJ)
+**File:** app/api/tts/route.ts
+**Commit:** 8229667 — fix(tts): route UZ/TJ to ElevenLabs eleven_v3 (P102)
+
+**Symptom:**
+  UZ adults narration pronounced plain г as the throaty ғ (uvular fricative) —
+  audibly closer to an F. Affected Мадинага, қилган, келган, тўлган, мавзуга,
+  қараганда, солганда. Every -ган / -га ending in the language.
+
+**What was ruled out, in order:**
+  1. Wrong text — NO. Source text had plain г correctly throughout.
+  2. Missing instructions — NO. P087's corrective example ("сувга = suv-GA,
+     do NOT harden plain г into ғ") existed only in 'uz.kids'. Added the same
+     to 'uz.adults' with contrast pairs. Still wrong.
+  3. Phonetic environment — NO. First theory was assimilation to a nearby қ
+     (қилган, қараганда). Disproved when тўлган and мавзуга failed too.
+  4. Content reword — NO. Rewording to avoid the environment (қилган→этган,
+     қараганда→назар солганда) did not help; солганда also failed.
+  5. Voice selection — NO. Switched adults from onyx to nova (the voice that
+     P087 tuned and R008 shipped on). Still wrong. This also means R008's
+     correctness was luck: P087 says "г OCCASIONALLY hardened".
+  6. Newer OpenAI model — NONE EXISTS. gpt-4o-mini-tts is still current
+     (verified against OpenAI docs, Aug 2026).
+
+**Root cause:**
+  gpt-4o-mini-tts does not reliably distinguish Uzbek Cyrillic г from ғ.
+  The `instructions` parameter BIASES output; it does not control phonemes.
+  P087 documented this same limit for ҳ ("instructions can't reliably fix one
+  stochastic position") and resolved it content-side. That escape hatch does
+  not scale to a letter appearing in every grammatical ending.
+
+**Fix — provider change:**
+  UZ and TJ now route to ElevenLabs eleven_v3.
+    const useOpenAI = langKey === 'ru' && style === 'kids'   // was: uz/tj too
+  VOICE_MAP gained uz and tj entries. Verified by browser test before coding.
+
+**Voice matrix (UZ/TJ), chosen deliberately — different voice per language:**
+    uz.adults  Opa Johann        R3XXDwKMU2YHwBcuYUH3
+    uz.kids    Mini              hO2yZ8lxM3axUxL8OeKX
+    tj.adults  Meisam            KXptrwcsEqqFSwRKJukF
+    tj.kids    Katherine Polished 0zUZ5qUGb8wympsfJH8d
+  Rationale: most viewers watch ONE language only, so cross-language voice
+  consistency is invisible to them; per-language fit wins. (Meisam is a Persian
+  voice and Tajik is a Persian variety — chosen on that hypothesis, confirmed
+  by ear.)
+
+**SUPERSEDES EARLIER FINDINGS — v3 improved between July and August 2026:**
+  July test: eleven_v3 said "dj" for ж, which is why lib/uzbek-tts-phonetics.ts
+  (inline IPA lexicon) was built. Re-tested Aug 2026 on the same ж words
+  (Жаннат, жума, ҳижрат, бежиз): CLEAN. The IPA layer is NOT needed for reels.
+  eleven_multilingual_v2 remains worse — accented, and does not recognise Tajik.
+  So the win is v3 specifically, not ElevenLabs generally.
+  This vindicates the module's own warning: "re-baseline after every model
+  upgrade." P071 ("OpenAI Nova for UZ/TJ Cyrillic") is now OBSOLETE.
+
+**Side effect — EN/AR/RU adults also moved to v3** (shared fetch, one model_id).
+  Regression-tested by regenerating EN (James) and RU (Abrar) narrations for
+  Bukhari #1: no degradation, ﷺ still expands correctly. Accepted rather than
+  making model_id language-conditional.
+
+**Rule going forward:**
+  When a TTS defect survives instructions, voice change, AND content reword,
+  stop tuning and re-baseline the providers. Six escalation steps here; the
+  first five were all inside a provider that could not do the thing.
+
+**Status:** FIXED — verified across UZ, TJ, EN, RU; shipped in R012 and R013

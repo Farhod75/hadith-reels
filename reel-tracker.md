@@ -47,7 +47,7 @@
 | Sahih al-Bukhari #1773 | TJ | Adults | R004 |
 | Sahih al-Bukhari #1520 | RU | Adults | R005 |
 | Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
-| Sahih al-Bukhari #1 | EN, RU | Adults | R010, R011 |
+| Sahih al-Bukhari #1 | EN, RU, UZ | Adults | R010, R011, R012 |
 
 ---
 
@@ -62,13 +62,14 @@
 | Fasting / Ramadan | 1 | R002 | EN |
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
-| Tawheed / Intentions | 2 | R010, R011 | EN, RU |
+| - ⚠️ | Tawheed / Intentions | 3 | R010, R011, R012 | EN, RU, UZ |
+
 
 **Coverage gaps to consider for upcoming reels:**
 
 - ❌ Zakat / Wealth purification — no reels yet
 - ❌ Salah / Prayer — no reels yet
-- ⚠️ Tawheed / Aqeedah basics — 1 reel (R010, EN only — RU/UZ/TJ pending)
+- ⚠️ Tawheed / Aqeedah basics — 1 reel (R010, R011, R012 EN/RU/UZ -/TJ pending)
 - ❌ Akhlaq / Patience / Anger management — no reels yet (smile-as-charity is the only one)
 - ❌ Family / Marriage / Parents — no reels yet
 - ❌ Quran recitation / Tilawah — no reels yet
@@ -91,7 +92,7 @@
 |---|---|---|---|
 | path-to-jannah-bg.mp3 | 1 | 2026-05-15 (R004) | R004 |
 | mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011
-| nasheed-bg-1.mp3 | 0 | Never | — |
+| nasheed-bg-1.mp3 | 1 | 2026-08-09 (R012) | 
 | light-of-my-heart-bg.mp3 | 1 | 2026-08-08 (R010) | R010 |
 | ramadan-bg.mp3 | 0 | Never | — |
 | ramadan-1-bg.mp3 | 0 | Never | — |
@@ -122,15 +123,15 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 11 |
+| Total reels posted | 12 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
-| Adults reels | 7 |
+| Adults reels | 8 |
 | Kids reels | 4 |
 | Avg duration | ~55s |
 | Avg file size | ~22 MB |
 | Hadiths used (unique) | 6 |
-| Hadith collections used | 2 (Sahih al-Bukhari ×8, Jami at-Tirmidhi ×2) |
+| Hadith collections used | 2 (Sahih al-Bukhari ×10, Jami at-Tirmidhi ×2) |
 | Companions cited | 3 (Abu Hurairah ×7, Abu Dharr ×1, Aisha ×1, Umar ibn al-Khattab ×1) |
 
 ---
@@ -167,3 +168,4 @@ Then update:
 | 2026-06-14 | Bukhari 6009 full 4-lang kids set (girl lamb, R007–R009) + P085/P086/P087 | Farhod / Claude |
 | 2026-08-08 | R010 — Bukhari #1 EN adults, first Pillar 2 animated reel with explicit clip logging | Farhod / Claude |
 | 2026-08-08 | R011 — Bukhari #1 RU adults; P100 Whisper Cyrillic encoding fix | Farhod / Claude |
+| 2026-08-09 | R012 — Bukhari #1 UZ adults; P102 UZ/TJ moved to ElevenLabs v3 | Farhod / Claude |
