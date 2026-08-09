@@ -28,8 +28,10 @@
 | R006 | 2026-06-13 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | en | kids | bukhari-6009 | kids-en-bukhari-6009-story.mp3 | kids-en-bukhari-6009-moral.mp3 | (split clip01–02) | kids-en-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-en-bukhari-6009-mascot-reel.mp4 | ~40s | 12.9 MB | First talking-mascot kids reel (girl lamb, Route A); fal Fabric lip-sync; published TG/YT/IG/TikTok | | R007 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | ru | kids | bukhari-6009 | kids-ru-bukhari-6009-story.mp3 | kids-ru-bukhari-6009-moral.mp3 | (split clip01–02) | kids-ru-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-ru-bukhari-6009-mascot-reel.mp4 | ~51s | 17.5 MB | Girl lamb; Nova RU kids voice (P085); published TG/YT/IG/TikTok |
 | R008 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | uz | kids | bukhari-6009 | kids-uz-bukhari-6009-story.mp3 | kids-uz-bukhari-6009-moral.mp3 | (split clip01–03) | kids-uz-bukhari-6009-clip01.mp4, clip02.mp4, clip03.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-uz-bukhari-6009-mascot-reel.mp4 | ~69s | 24.6 MB | Girl lamb; Nova UZ kids voice + ҳ/ж/ғ tuning (P087); published 4 platforms |
 | R009 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | tj | kids | bukhari-6009 | kids-tj-bukhari-6009-story.mp3 | kids-tj-bukhari-6009-moral.mp3 | (split clip01–02) | kids-tj-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-tj-bukhari-6009-mascot-reel.mp4 | ~54s | ~18 MB | Girl lamb; native Tajik text (not RU dup); Nova TJ ҷ/ӯ OK; published 4 platforms |
-| R010 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | en | Adults | bukhari-1 | adults-en-bukhari-1-story.mp3 | adults-en-bukhari-1-moral.mp3 | adults-en-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-en-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | Yes | adults-en-bukhari-1-reel.mp4 | 78.8s | 23 MB | Pillar 2 animated, MODE B. First Tawheed-theme reel. Scenes 1/2/4 new (FLUX+Kling), scene 3 reused from R005. Fixed P098 (Kling poll loop) + P099 (amix tail) during production. |
-| R011 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | ru | Adults | bukhari-1 | adults-ru-bukhari-1-story.mp3 | adults-ru-bukhari-1-moral.mp3 | adults-ru-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-ru-bukhari-1-bg-mixed.mp4 | mubarak-bg.mp3 | Yes | adults-ru-bukhari-1-reel.mp4 | 58.2s | 17.3 MB | Scenes reused from R010. Story hand-written after 2 generations fabricated Prophet ﷺ dialogue. Whisper UnicodeEncodeError on Cyrillic (P100); 4 transcription fixes incl. мерзкую→мирскую. |
+| R010 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | en | Adults | bukhari-1 | adults-en-bukhari-1-story.mp3 | adults-en-bukhari-1-moral.mp3 | adults-en-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-en-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | Yes | adults-en-bukhari-1-reel.mp4 | 78.8s | 23 MB | Pillar 2 animated, MODE B. First Tawheed-theme reel. Scenes 1/2/4 new (FLUX+Kling), scene 3 reused from R005. Fixed P098 (Kling poll loop) + P099 (amix tail) during production.; published TG/YT/IG/TikTok |
+| R011 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | ru | Adults | bukhari-1 | adults-ru-bukhari-1-story.mp3 | adults-ru-bukhari-1-moral.mp3 | adults-ru-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-ru-bukhari-1-bg-mixed.mp4 | mubarak-bg.mp3 | Yes | adults-ru-bukhari-1-reel.mp4 | 58.2s | 17.3 MB | Scenes reused from R010. Story hand-written after 2 generations fabricated Prophet ﷺ dialogue. Whisper UnicodeEncodeError on Cyrillic (P100); 4 transcription fixes incl. мерзкую→мирскую. ; published TG/YT/IG/TikTok |
+| R012 | 2026-08-09 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | uz | Adults | bukhari-1 | adults-uz-bukhari-1-story.mp3 | adults-uz-bukhari-1-moral.mp3 | adults-uz-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-uz-bukhari-1-bg-mixed.mp4 | nasheed-bg-1.mp3 | No (P078) | adults-uz-bukhari-1-reel.mp4 | 67.5s | 19.1 MB | Scenes reused from R010. First reel on ElevenLabs eleven_v3 for UZ (P102) — Opa Johann; OpenAI onyx/nova both hardened plain г to ғ. Story rephrased to attribute Hijra timing to scholars; published TG/YT/IG/TikTok |
+| R013 | 2026-08-09 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | tj | Adults | bukhari-1 | adults-tj-bukhari-1-story.mp3 | adults-tj-bukhari-1-moral.mp3 | adults-tj-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-tj-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | No (P078) | adults-tj-bukhari-1-reel.mp4 | 56.9s | 16 MB | Scenes reused from R010. ElevenLabs eleven_v3, Meisam (P102). Story rephrased — generation had credited Umar (RA) with placing the hadith first rather than Imam al-Bukhari; completes the 4-language Bukhari #1 set; published TG/YT/IG/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -47,7 +49,7 @@
 | Sahih al-Bukhari #1773 | TJ | Adults | R004 |
 | Sahih al-Bukhari #1520 | RU | Adults | R005 |
 | Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
-| Sahih al-Bukhari #1 | EN, RU, UZ | Adults | R010, R011, R012 |
+| Sahih al-Bukhari #1 | EN, RU, UZ, TJ | Adults | R010, R011, R012, R013 |
 
 ---
 
@@ -62,14 +64,14 @@
 | Fasting / Ramadan | 1 | R002 | EN |
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
-| - ⚠️ | Tawheed / Intentions | 3 | R010, R011, R012 | EN, RU, UZ |
+| Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
 
 
 **Coverage gaps to consider for upcoming reels:**
 
 - ❌ Zakat / Wealth purification — no reels yet
 - ❌ Salah / Prayer — no reels yet
-- ⚠️ Tawheed / Aqeedah basics — 1 reel (R010, R011, R012 EN/RU/UZ -/TJ pending)
+- ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
 - ❌ Akhlaq / Patience / Anger management — no reels yet (smile-as-charity is the only one)
 - ❌ Family / Marriage / Parents — no reels yet
 - ❌ Quran recitation / Tilawah — no reels yet
@@ -93,7 +95,7 @@
 | path-to-jannah-bg.mp3 | 1 | 2026-05-15 (R004) | R004 |
 | mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011
 | nasheed-bg-1.mp3 | 1 | 2026-08-09 (R012) | 
-| light-of-my-heart-bg.mp3 | 1 | 2026-08-08 (R010) | R010 |
+| light-of-my-heart-bg.mp3 | 2 | 2026-08-08 (R010) | R010, R013|
 | ramadan-bg.mp3 | 0 | Never | — |
 | ramadan-1-bg.mp3 | 0 | Never | — |
 | ramadan-2-bg.mp3 | 0 | Never | — |
@@ -109,7 +111,7 @@
 | Kaaba-drone.mp4 | TBD | TBD |
 | makka-tower.mp4 | TBD | TBD |
 
-**Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line.
+**Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
 
 ### Production rule of thumb
 
