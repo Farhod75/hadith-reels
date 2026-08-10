@@ -1806,38 +1806,155 @@ must normalize apostrophes (qo'shni → qoʻshni).
 
 **Status:** FIXED — verified across UZ, TJ, EN, RU; shipped in R012 and R013
 
-## P103 — Prompt rules mandated the fabrication they forbade
+## ════════════════════════════════════════════════════════
+## PATTERN 103: Prompt rules mandated the fabrication they forbade
+## ════════════════════════════════════════════════════════
+**ID:** P103
+**Type:** Prompt defect — specification conflict (extends P101)
+**File:** app/api/generate-reel/route.ts
+**Commit:** 9ea9b89 — fix(generate-reel): P103 — remove mandated-fabrication conflict in rules 2/6/9 and story field
 
-**Symptom:** `generate-reel` invented an occasion for hadith with no recorded
-setting. Bukhari #1417 produced "the Prophet ﷺ saw people sharing in Madinah"
-and "this teaching came from that warm world" across repeated generations,
-including after P101 tightened rules 7-10.
+**Symptom:**
+  generate-reel invented an occasion for hadith that have no recorded setting.
+  Bukhari #1417 produced "the Prophet ﷺ saw people sharing in Madinah" and
+  "this teaching came from that same warm world of caring and sharing" across
+  repeated generations — including after P101 had tightened rules 7-10.
 
-**Root cause:** NOT rule 9 being too narrow. Rules 2 and 6 *required* what
-7-10 forbade — rule 2 said story MUST reference the Prophet ﷺ or companions,
-rule 6 said seerah_context MUST cite a real period. For a hadith with no
-recorded incident, the model can only satisfy those by inventing. The `story`
-field description compounded it: "vivid, story-like, must feel real and
-touching" is an instruction to dramatize.
+**What was ruled out, in order:**
+  1. Sampling noise — NO. Two independent generations produced the same
+     invented Madinah setting.
+  2. Rule 9 too narrow — NO. This was the standing theory carried into the
+     session ("widen from any named person to any person or group"). Widening
+     it alone would not have worked; the leak survived to the History field.
+  3. Kids-style register — NO. First generation was adult-register (wrong
+     Style selected), but the fabrication persisted after correcting to Kids.
 
-**Fix:** made rules 2 and 6 conditional, widened rule 9 from "any named person"
-to "any person or group" plus an explicit occasion clause, and rewrote the
-`story` field to ask for explanation rather than drama. Rule 6 also needed a
-stop clause — the first pass permitted a fallback but didn't forbid padding
-past it, so the model gave the three permitted elements and then invented
-anyway in softened form ("during a time when").
+**Root cause:**
+  Rules 2 and 6 REQUIRED what rules 7-10 FORBADE. Rule 2 said story MUST
+  reference the Prophet ﷺ or his companions; rule 6 said seerah_context MUST
+  cite a real period. For a hadith with no recorded incident, the only way to
+  satisfy those requirements is to invent one. The model obeyed the
+  requirement, not the prohibition.
+  The `story` field description compounded it: "warm, vivid, story-like",
+  "must give human emotional context", "must feel real and touching" is an
+  instruction to dramatize, sitting directly above the anti-fabrication rules.
 
-**Lesson:** when a prompt keeps producing forbidden output, check whether an
-earlier rule mandates it. Prohibitions cannot win against requirements.
-Softened phrasings ("during a time when", "in an era where") are the same
-fabrication and must be named explicitly.
+**Fix — four edits, all in the prompt:**
+  Rule 2: MUST reference → MAY reference, with "if neither records an incident
+    for this hadith, do NOT construct one — explain the teaching itself instead"
+  Rule 6: cites a period ONLY if sources tie the hadith to one; otherwise state
+    exactly three things and nothing more — collection and book, narrator,
+    classical scholarly reading
+  Rule 9: "any named person" → "any person or group", plus explicit occasion
+    clause: "NEVER assert the occasion, setting, or audience of the hadith
+    unless the narration itself records it"
+  story field: rewritten to ask for explanation rather than drama
 
-**Also in this session:**
+**Rule 6 needed a second pass:**
+  The first version permitted the three-element fallback but did not forbid
+  padding past it. The model gave collection/narrator/reading correctly, then
+  invented anyway in softened form: "during a time when he often encouraged his
+  companions to give in charity". Added an explicit stop clause naming the
+  softened phrasings ("during a time when", "in an era where") as occasions.
+
+**Verified:**
+  Regenerated EN Bukhari #1417 twice after the fix. Story and Moral clean on
+  both. History clean after the rule 6 second pass. #1417 was the hadith that
+  leaked twice, so this is a control test, not a fresh-hadith sample.
+
+**Rule going forward:**
+  When a prompt reliably produces forbidden output, do not strengthen the
+  prohibition first — search the prompt for an instruction that MANDATES the
+  forbidden output. Prohibitions cannot win against requirements.
+  Softened phrasings are the same fabrication and must be named explicitly.
+
+**Also in this session (not separate patterns):**
 - Kids clips now render at `--resolution 720p` (736x1312, was 480x864).
-  `choices=["480p","720p"]` was always available; 480p was just the default.
-- Mascot stills recovered and committed to `assets/mascot/`. Source was lost —
-  only a 480p video frame survived. Recovery: extract frame -> use as face
-  reference in Nano Banana Pro -> regenerate scene at 4K. Never let a source
-  asset exist only inside a rendered video.
-- `generate-talking-clip.py` checks FAL_KEY before argparse, so `--help` fails
-  without a key. Move env guards after `parse_args()`.
+  `choices=["480p","720p"]` was always in generate-talking-clip.py; 480p was
+  merely the default, and every kids reel through #6009 shipped at 480p.
+- Mascot stills recovered and committed to assets/mascot/. The source PNGs were
+  never committed and no longer existed — only 480p video frames in out/talking/.
+  Recovery: extract frame → use as face reference in Nano Banana Pro → regenerate
+  scene at 4K (3072x5504) → commit. Never let a source asset exist only inside a
+  rendered video.
+- generate-talking-clip.py checks FAL_KEY before argparse, so `--help` fails
+  without a key. Move env guards after parse_args().
+- split-narration.py line 172 next-step hint still references the nonexistent
+  lamb-boy-mosque-night-v2.png — update to v3.
+
+**Status:** FIXED — verified on EN Bukhari #1417 (R014); shipped 2026-08-10
+
+## ════════════════════════════════════════════════════════
+## PATTERN 104: Kids voices split by mascot; OpenAI fully retired from TTS
+## ════════════════════════════════════════════════════════
+**ID:** P104
+**Type:** Feature + provider migration (completes P102; fixes P085 recurrence)
+**File:** app/api/tts/route.ts, app/admin/page.tsx
+**Commit:** 502c0de — feat(tts): P103 — kids voices split by mascot; RU kids off OpenAI, ElevenLabs now sole provider
+
+**Symptom:**
+  First boy-lamb kids reel (EN, Bukhari #1417) shipped with Danielle — a female
+  voice on a male mascot. Fabric lip-syncs the mouth, so the voice reads as the
+  character's own, not a narrator's. Every kids voice in the matrix was female
+  because the matrix was built around the girl lamb.
+
+**Decision — mascot/voice pairing becomes channel convention:**
+  boy lamb → male voice, girl lamb → female voice, alternating mascot by hadith.
+  Adults reels have no mascot and are unaffected.
+
+**Design choice — separate `mascot` field, NOT extended `style`:**
+  Rejected: style = 'kids-boy' | 'kids-girl' | 'adults'. Fewer edits, but style
+  would stop meaning "audience" and start meaning "audience + character", and
+  would be ambiguous on adults reels that have no mascot at all.
+  Chosen: VOICE_MAP[lang].kids.{boy|girl}, with mascot threaded admin → route.
+
+**P084 failure-mode guard:**
+  P084 was a missing payload field producing wrong-voice audio with NO error.
+  Same shape here. Mitigation: mascot defaults to 'girl' in the route, so an
+  omitted field falls back to the voices already shipped on #6009 rather than
+  silently switching gender.
+
+**Voice matrix (kids), all eleven_v3:**
+    en.kids.girl  Danielle           FVQMzxJGPUBtfz1Azdoy
+    en.kids.boy   Eric               cjVigY5qzO86Huf0OWal
+    ru.kids.girl  Arabella Calm&Mat  ocFEgn1SP9oWO9QrLDgb
+    ru.kids.boy   Liam Youthful      pw8bioilqsSn2jApHYwT
+    uz.kids.girl  Mini               hO2yZ8lxM3axUxL8OeKX
+    uz.kids.boy   George             JBFqnCBsd6RMkjVDRZzb
+    tj.kids.girl  Katherine Polished 0zUZ5qUGb8wympsfJH8d
+    tj.kids.boy   Liam Viral         VCgLBmBjldJmfphyB8sZ
+  Male kids voices are deliberately NOT the adults voices — reusing James,
+  Abrar, Opa Johann or Meisam would make kids and adults reels indistinguishable
+  within a language.
+
+**RU kids migrated off OpenAI — provider consolidation complete:**
+  Nova was the last OpenAI slot, surviving P102 because RU had not hit the
+  Cyrillic г defect. Replaced with Arabella. The `useOpenAI` branch and the
+  OPENAI_API_KEY check are DELETED; ElevenLabs is now the sole TTS provider.
+  TTS_INSTRUCTIONS retained as reference only, never called — it encodes hard-won
+  Uzbek/Tajik phonetic knowledge worth keeping if a future provider needs it.
+
+**P085 recurrence found and fixed:**
+  VOICE_MAP ru.kids pointed at ELEVENLABS_VOICE_ABRAR — the male adults voice.
+  This is exactly P085, still present in the map. It was masked because
+  useOpenAI intercepted RU kids before the map was ever read. Deleting the
+  OpenAI branch would have exposed it as male-voiced girl-lamb reels.
+  Lesson: a branch that bypasses a lookup also hides bugs in that lookup.
+  When removing a branch, audit what it was shadowing.
+
+**Found while editing, NOT changed — needs .env.local audit:**
+  ar.adults fallback is 'pNInz6obpgDQGcFmaJgB' (Adam), not Hijazi
+  ru.adults fallback is 'ErXwobaYiN019PkySvjV'; library lists Abrar Sabbah as
+  VwC51uc4PUblWEJSPzeo
+  Both only fire if the env vars are unset, so they may never have mattered.
+
+**Note — eleven_v3 take variance is expected:**
+  Identical text/voice/model gives different takes per call (dashboard shows
+  these as "Generation 1 / Generation 2"). Not a defect and not a setting. The
+  admin issues one take per click; regenerate for a different one.
+  voice_settings.stability 0.5 is the dial if variance ever needs narrowing.
+
+**Verified:**
+  EN kids + Boy lamb → Eric; toggle hidden on Adults; tsc clean.
+
+**Status:** FIXED — shipped 2026-08-10
