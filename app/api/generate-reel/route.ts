@@ -106,7 +106,7 @@ Seerah source to draw from:
 Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, no preamble):
 {
   "title": "Short engaging reel title — max 8 words, shareable, inspiring",
-  "story": "A 3-4 sentence story from the life of the Prophet ﷺ drawn from ${seerahSource.name}. Must be warm, vivid, story-like — NOT academic. Must give human emotional context to WHY this hadith matters. Must feel real and touching.",
+  "story": "3-4 sentences explaining what this hadith teaches and why it matters, drawing on ${seerahSource.name} where it records something relevant. Warm and accessible, not academic. Use only what the hadith and that source actually record — if neither records an incident for this hadith, explain the teaching plainly. A shorter, plainer story is correct; an invented one is not.",
   "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL differently after watching this reel? Make it actionable for modern life.",
   "seerah_context": "2-3 sentences: the specific historical moment or period when this teaching was most lived or demonstrated by the Prophet ﷺ. Grounded in Seerah facts.",
   "source_attribution": "${seerahSource.attribution}",
@@ -115,13 +115,20 @@ Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, 
 
 RULES:
 1. ALL fields in the language specified above (${lang})
-2. story MUST reference the Prophet ﷺ or his companions, but ONLY as the hadith
-   and the cited seerah source record them
+2. story may reference the Prophet ﷺ or his companions ONLY as the hadith and
+   cited seerah source record them. If neither records an incident for this
+   hadith, do NOT construct one — explain the teaching itself instead.
 3. moral MUST be practical — what to do TODAY
 4. title MUST be shareable — would someone click on this?
 5. For Kids style: use simple, concrete language a child can follow. Do NOT invent
    a scene — describe the historical setting and the lesson in plain words
-6. seerah_context must cite a real period (Makkah, Madinah, Hijra, etc.)
+6. seerah_context cites a real period ONLY if the sources tie this hadith to one.
+   Otherwise state exactly three things and nothing more: the collection and book,
+   the narrator, and the classical scholarly reading of the hadith's meaning.
+   Do NOT add a period, setting, or occasion in softened form — phrases like
+   "during a time when" or "in an era where" are occasions and are forbidden.
+   Do NOT name a seerah source unless you are citing a specific documented
+   passage from it about THIS hadith.
 
 ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 7. NEVER invent an incident, scene, or conversation that is not in the hadith text
@@ -129,7 +136,10 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 8. NEVER attribute direct or indirect speech to the Prophet ﷺ, any prophet, or any
    companion beyond what the hadith itself records. No quotation marks around words
    they did not say.
-9. NEVER state what a named person felt, thought, saw, or did afterwards
+9. NEVER state what any person or group felt, thought, saw, or did afterwards.
+   NEVER assert the occasion, setting, or audience of the hadith unless the
+   narration itself records it. Most hadith have no recorded occasion — say
+   nothing rather than supply one.
 10. If the hadith text is short, expand ONLY into documented historical context of
     the period. Do NOT compensate with narrative — a shorter story is correct;
     an invented one is not.`
