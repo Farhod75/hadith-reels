@@ -1958,3 +1958,63 @@ must normalize apostrophes (qo'shni → qoʻshni).
   EN kids + Boy lamb → Eric; toggle hidden on Adults; tsc clean.
 
 **Status:** FIXED — shipped 2026-08-10
+
+## ════════════════════════════════════════════════════════
+## PATTERN 105: Seerah attribution fired unconditionally — false source credit in captions
+## ════════════════════════════════════════════════════════
+**ID:** P105
+**Type:** Content-safety defect — false attribution (completes P103)
+**File:** app/api/generate-reel/route.ts, app/admin/page.tsx
+**Commit:** (this commit) — fix(generate-reel): P105 — drop unconditional seerah attribution from captions; seerah_context field no longer mandates a period
+
+**Symptom:**
+  Every non-English reel caption carried a seerah source credit — "📖 Источник:
+  Усваи Хасана" (RU), "📖 Манба: Усваи Ҳасана" (UZ), "📖 Сарчашма: Усваи Ҳасана"
+  (TJ) — regardless of whether the story drew on that source. Appeared in
+  R003, R004, R005 (May) and again in R015, R016, R017 (Aug), so it has been
+  live since the tracker began. EN was unaffected in appearance only; the same
+  mechanism credited Ar-Raheeq Al-Makhtum unconditionally there.
+
+**Root cause:**
+  getSeerahSource(lang) returns a hardcoded attribution string, interpolated
+  directly into the JSON schema as "source_attribution": "${...}". It was never
+  a model output — a constant dressed as one. Line 170 set it again server-side.
+  Nothing checked whether the source was actually used.
+  This became a live falsehood after P103: the prompt now correctly tells the
+  model to explain the teaching plainly when no incident is recorded, so most
+  stories consult no seerah source at all — while the caption kept crediting one.
+
+**Why this is a hard-rule violation, not a cosmetic bug:**
+  The project rule is no fabricated attributions. Crediting a book that was not
+  used is a fabricated attribution, even when the book is real and the hadith is
+  sound. The hadith citation (collection, number, narrator) is what a viewer
+  needs to verify; the seerah source is background material for the story.
+
+**Fix — drop the attribution from captions entirely:**
+  Removed "source_attribution" from the JSON schema
+  Removed result.attribution server-side assignment
+  Removed the attribution line from the admin caption builder
+  Removed attribution/source_attribution from the Generated interface
+  Remotion `attribution` prop now receives the hadith citation instead
+  Story panel header no longer displays a seerah credit
+  getSeerahSource() RETAINED — the model still draws on the source for the
+  story where it records something relevant. Only the caption credit is gone.
+
+**Second defect found in the same read — seerah_context still mandated a period:**
+  P103 fixed rule 6 in the RULES block but NOT the field description, which
+  still said "the specific historical moment or period when this teaching was
+  most lived or demonstrated". The rule said "only if the sources tie the hadith
+  to one"; the field said "give me a specific moment". Same specification
+  conflict P103 was about, surviving in a second location.
+  Lesson: when fixing a prompt conflict, grep the WHOLE prompt for the mandate.
+  A JSON schema field description is an instruction with the same force as a
+  numbered rule.
+
+**Third, minor:** getSeerahSource used Усваи Хасана (Х) in `name` and the RU
+  attribution, Усваи Ҳасана (Ҳ) in UZ/TJ. Normalized `name` to Ҳ (the book's
+  own title); RU attribution string removed with the rest.
+
+**Verified:** RU generation (Al-Bayhaqi #1120) — caption shows collection,
+  narrator, verify link, tags. No seerah line, no undefined, no blank gap.
+
+**Status:** FIXED — shipped 2026-08-10
