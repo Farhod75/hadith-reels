@@ -1805,3 +1805,39 @@ must normalize apostrophes (qo'shni → qoʻshni).
   first five were all inside a provider that could not do the thing.
 
 **Status:** FIXED — verified across UZ, TJ, EN, RU; shipped in R012 and R013
+
+## P103 — Prompt rules mandated the fabrication they forbade
+
+**Symptom:** `generate-reel` invented an occasion for hadith with no recorded
+setting. Bukhari #1417 produced "the Prophet ﷺ saw people sharing in Madinah"
+and "this teaching came from that warm world" across repeated generations,
+including after P101 tightened rules 7-10.
+
+**Root cause:** NOT rule 9 being too narrow. Rules 2 and 6 *required* what
+7-10 forbade — rule 2 said story MUST reference the Prophet ﷺ or companions,
+rule 6 said seerah_context MUST cite a real period. For a hadith with no
+recorded incident, the model can only satisfy those by inventing. The `story`
+field description compounded it: "vivid, story-like, must feel real and
+touching" is an instruction to dramatize.
+
+**Fix:** made rules 2 and 6 conditional, widened rule 9 from "any named person"
+to "any person or group" plus an explicit occasion clause, and rewrote the
+`story` field to ask for explanation rather than drama. Rule 6 also needed a
+stop clause — the first pass permitted a fallback but didn't forbid padding
+past it, so the model gave the three permitted elements and then invented
+anyway in softened form ("during a time when").
+
+**Lesson:** when a prompt keeps producing forbidden output, check whether an
+earlier rule mandates it. Prohibitions cannot win against requirements.
+Softened phrasings ("during a time when", "in an era where") are the same
+fabrication and must be named explicitly.
+
+**Also in this session:**
+- Kids clips now render at `--resolution 720p` (736x1312, was 480x864).
+  `choices=["480p","720p"]` was always available; 480p was just the default.
+- Mascot stills recovered and committed to `assets/mascot/`. Source was lost —
+  only a 480p video frame survived. Recovery: extract frame -> use as face
+  reference in Nano Banana Pro -> regenerate scene at 4K. Never let a source
+  asset exist only inside a rendered video.
+- `generate-talking-clip.py` checks FAL_KEY before argparse, so `--help` fails
+  without a key. Move env guards after `parse_args()`.
