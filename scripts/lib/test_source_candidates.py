@@ -54,6 +54,28 @@ def test_queue_status_new():
     assert out["queue_status"] == "new"
 
 
+# ---- Dorar authority verdict (pure) ----
+def test_dorar_daif_overrides_and_drops():
+    cand = {"grade": "sahih", "text_arabic": "..."}  # Sunnah said sahih
+    reason = sc.apply_dorar_verdict(cand, {"matched": True, "grade_bucket": "daif", "grade_raw": "ضعيف"})
+    assert reason and "daif" in reason  # dropped on authority
+
+def test_dorar_confirms_sahih():
+    cand = {"grade": "hasan", "text_arabic": "..."}
+    reason = sc.apply_dorar_verdict(
+        cand, {"matched": True, "grade_bucket": "sahih", "muhaddith": "البخاري", "score": 0.99})
+    assert reason is None
+    assert cand["grade"] == "sahih"
+    assert cand["grade_confirmed"] is True
+    assert "dorar.net (authority" in cand["grading_source"]
+
+def test_dorar_no_match_leaves_unconfirmed():
+    cand = {"grade": "sahih", "text_arabic": "..."}
+    reason = sc.apply_dorar_verdict(cand, {"matched": False, "score": 0.2})
+    assert reason is None                    # not dropped
+    assert cand["grade_confirmed"] is False  # but flagged — can't auto-promote
+
+
 if __name__ == "__main__":
     fns = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and callable(f)]
     passed = failed = 0

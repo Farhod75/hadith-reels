@@ -25,6 +25,7 @@ _here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(_here, "lib"))
 sys.path.insert(0, _here)
 from source_sunnah import fetch_hadith, parse_sunnah_hadith, API_BASE, MOCK_BASE  # noqa: E402
+from source_dorar import fetch_dorar, parse_dorar, confirm_grade  # noqa: E402
 from dedup import find_duplicates  # noqa: E402
 
 
@@ -69,10 +70,47 @@ def annotate_candidate(cand: dict, library: list, fuzzy_threshold: float = 0.85)
     return cand
 
 
+def apply_dorar_verdict(cand: dict, res: dict):
+    """
+    PURE: apply a confirm_grade() result to the candidate.
+    Returns a DROP reason string if Dorar's AUTHORITY grade rejects it (daif),
+    else None. Sunnah's grade is preliminary; Dorar's is authoritative (§4).
+    """
+    if not res.get("matched"):
+        cand["grade_confirmed"] = False
+        cand["grade_note"] = "dorar: no matching card — grade UNCONFIRMED"
+        return None
+    bucket = res.get("grade_bucket")
+    if bucket == "daif":
+        return f"Dorar authority override: daif (Sunnah said {cand.get('grade')})"
+    if bucket in ("sahih", "hasan"):
+        cand["grade"] = bucket
+        cand["grading_source"] = f"dorar.net (authority; {res.get('muhaddith', '')})".strip()
+        cand["grade_confirmed"] = True
+        cand["dorar"] = {k: res.get(k) for k in ("score", "grade_raw", "muhaddith", "source", "number")}
+        return None
+    cand["grade_confirmed"] = False
+    cand["grade_note"] = f"dorar: matched but grade unparseable ({res.get('grade_raw')})"
+    return None
+
+
+def confirm_via_dorar(cand: dict):
+    """Network: fetch Dorar for this matn and confirm grade. Degrades gracefully."""
+    try:
+        cards = parse_dorar(fetch_dorar(cand["text_arabic"]))
+        res = confirm_grade(cand["text_arabic"], cards)
+    except Exception as e:
+        cand["grade_confirmed"] = False
+        cand["grade_note"] = f"dorar fetch error: {e}"
+        return None
+    return apply_dorar_verdict(cand, res)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", choices=["mock", "live"], default="mock")
     ap.add_argument("--refs", default="out/source-refs.txt")
+    ap.add_argument("--no-dorar", action="store_true", help="skip Dorar grade confirmation")
     args = ap.parse_args()
 
     env = {**load_env(), **os.environ}
@@ -110,7 +148,13 @@ def main():
         if parsed["status"] == "dropped":
             dropped.append({"ref": ref, "reason": parsed["reason"]})
             continue
-        results.append(annotate_candidate(parsed["candidate"], library))
+        cand = parsed["candidate"]
+        if not args.no_dorar:
+            drop_reason = confirm_via_dorar(cand)
+            if drop_reason:
+                dropped.append({"ref": ref, "reason": drop_reason})
+                continue
+        results.append(annotate_candidate(cand, library))
 
     os.makedirs("out", exist_ok=True)
     out = "out/candidates.json"
@@ -120,9 +164,11 @@ def main():
     new = sum(1 for r in results if r["queue_status"] == "new")
     dup = sum(1 for r in results if r["queue_status"] == "duplicate")
     fz = sum(1 for r in results if r["queue_status"] == "review_fuzzy")
+    confirmed = sum(1 for r in results if r.get("grade_confirmed"))
     print("━" * 40)
     print(f"✅ {len(results)} candidates → {out}  (NO DB writes)")
     print(f"   new: {new}  ·  hard-duplicate: {dup}  ·  fuzzy-review: {fz}")
+    print(f"   grade confirmed by Dorar: {confirmed}  ·  unconfirmed: {len(results) - confirmed}")
     print(f"🗑  dropped at door: {len(dropped)}")
     for d in dropped[:10]:
         print(f"    {d['ref']}: {d['reason']}")
