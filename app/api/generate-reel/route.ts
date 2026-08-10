@@ -33,7 +33,7 @@ function getLangInstruction(lang: string): string {
 function getSeerahSource(lang: string): { name: string; description: string; attribution: string } {
   if (lang === 'ru' || lang === 'uz' || lang === 'uz_cyrillic' || lang === 'uz_latin' || lang === 'tj') {
     return {
-      name: 'Uswa al-Hasana (Усваи Хасана)',
+      name: 'Uswa al-Hasana (Усваи Ҳасана)',
       description: 'the multi-volume Turkish Islamic Seerah translated into Russian and Uzbek, known for its warm emotional and devotional style, strong emphasis on love for the Prophet ﷺ',
       attribution: lang === 'ru'
         ? '📖 Источник: Усваи Хасана'
@@ -108,7 +108,7 @@ Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, 
   "title": "Short engaging reel title — max 8 words, shareable, inspiring",
   "story": "3-4 sentences explaining what this hadith teaches and why it matters, drawing on ${seerahSource.name} where it records something relevant. Warm and accessible, not academic. Use only what the hadith and that source actually record — if neither records an incident for this hadith, explain the teaching plainly. A shorter, plainer story is correct; an invented one is not.",
   "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL differently after watching this reel? Make it actionable for modern life.",
-  "seerah_context": "2-3 sentences: the specific historical moment or period when this teaching was most lived or demonstrated by the Prophet ﷺ. Grounded in Seerah facts.",
+  "seerah_context": "2-3 sentences of context. If the sources tie this hadith to a specific period or event, name it. If they do not, give the collection and book, the narrator, and the classical scholarly reading of the hadith's meaning — and nothing more. Do not supply a period, setting, or occasion that the sources do not record.",
   "source_attribution": "${seerahSource.attribution}",
   "caption_intro": "First 2 lines of social media caption — must grab attention immediately. No hashtags here."
 }
@@ -167,8 +167,7 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     result.lang           = lang
     result.style          = style
     result.seerah_source  = seerahSource.name
-    result.attribution    = seerahSource.attribution
-
+    
     return NextResponse.json(result)
 
   } catch (error: any) {

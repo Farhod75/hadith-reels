@@ -30,9 +30,8 @@ interface Generated {
   story:          string
   moral:          string
   seerah_context: string
-  attribution:    string
   caption_intro:  string
-  source_attribution: string
+  
 }
 
 const LANGS: { code: Lang; label: string; flag: string }[] = [
@@ -239,7 +238,6 @@ export default function AdminPage() {
         `${data.title}\n\n${data.moral}\n\n` +
         `📖 ${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}\n` +
         `👤 ${selected.narrator}\n` +
-        `${data.source_attribution || data.attribution || ''}\n\n` +
         `🔍 Verify: hadithverifier.com\n\n` +
         `${tags} #hadith #islamic #authentic #${langLabel.toLowerCase()}`
       )
@@ -262,7 +260,7 @@ export default function AdminPage() {
       story:         generated.story,
       moral:         generated.moral,
       seerahContext: generated.seerah_context,
-      attribution:   generated.source_attribution || generated.attribution,
+      attribution:   `${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}`,
       lang,
       audioUrl:      storyAudioUrl || '',
       bgScene:       lang === 'ar' ? 'kaaba' : lang === 'ru' || lang === 'tj' ? 'mosque' : 'desert',
@@ -540,7 +538,7 @@ export default function AdminPage() {
 
               {/* Story + Audio */}
               <div className="bg-amber-900/20 rounded-xl border border-amber-800/50 p-4">
-                <div className="text-xs text-amber-400 uppercase tracking-wide mb-2">📖 Story — {generated.source_attribution || generated.attribution}</div>
+                <div className="text-xs text-amber-400 uppercase tracking-wide mb-2">📖 Story</div>
                 <textarea value={generated.story} onChange={e => updateField('story', e.target.value)} className="w-full bg-amber-950/30 text-amber-100 text-sm leading-relaxed border border-amber-800/50 rounded-lg p-2 resize-y min-h-[120px] focus:outline-none focus:border-amber-500" dir="auto" data-test="story-edit" />
                 <AudioSection
                   text={generated.story}
