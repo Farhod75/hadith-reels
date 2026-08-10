@@ -32,6 +32,11 @@
 | R011 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | ru | Adults | bukhari-1 | adults-ru-bukhari-1-story.mp3 | adults-ru-bukhari-1-moral.mp3 | adults-ru-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-ru-bukhari-1-bg-mixed.mp4 | mubarak-bg.mp3 | Yes | adults-ru-bukhari-1-reel.mp4 | 58.2s | 17.3 MB | Scenes reused from R010. Story hand-written after 2 generations fabricated Prophet ﷺ dialogue. Whisper UnicodeEncodeError on Cyrillic (P100); 4 transcription fixes incl. мерзкую→мирскую. ; published TG/YT/IG/TikTok |
 | R012 | 2026-08-09 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | uz | Adults | bukhari-1 | adults-uz-bukhari-1-story.mp3 | adults-uz-bukhari-1-moral.mp3 | adults-uz-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-uz-bukhari-1-bg-mixed.mp4 | nasheed-bg-1.mp3 | No (P078) | adults-uz-bukhari-1-reel.mp4 | 67.5s | 19.1 MB | Scenes reused from R010. First reel on ElevenLabs eleven_v3 for UZ (P102) — Opa Johann; OpenAI onyx/nova both hardened plain г to ғ. Story rephrased to attribute Hijra timing to scholars; published TG/YT/IG/TikTok |
 | R013 | 2026-08-09 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | tj | Adults | bukhari-1 | adults-tj-bukhari-1-story.mp3 | adults-tj-bukhari-1-moral.mp3 | adults-tj-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-tj-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | No (P078) | adults-tj-bukhari-1-reel.mp4 | 56.9s | 16 MB | Scenes reused from R010. ElevenLabs eleven_v3, Meisam (P102). Story rephrased — generation had credited Umar (RA) with placing the hadith first rather than Imam al-Bukhari; completes the 4-language Bukhari #1 set; published TG/YT/IG/TikTok |
+| R014 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | en | Kids | bukhari-1417 | kids-en-bukhari-1417-story.mp3 | kids-en-bukhari-1417-moral.mp3 | kids-en-bukhari-1417-narration.mp3 | kids-en-bukhari-1417-clip01.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-en-bukhari-1417-mascot-reel.mp4 | 21.4s | 6.3 MB | FIRST boy-lamb reel; FIRST at 720p (736x1312, was 480p). Mascot still recovered from 480p video frame → Nano Banana Pro 4K → committed as lamb-boy-mosque-night-v3.png. Voice Danielle (female) — pre-dates P104 mascot/voice split. Single clip, no split needed. Story/moral hand-corrected: generation invented a Madinah occasion (P103). published TG/YT/IG/TikTok |
+| R015 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | ru | Kids | bukhari-1417 | kids-ru-bukhari-1417-story.mp3 | kids-ru-bukhari-1417-moral.mp3 | kids-ru-bukhari-1417-narration.mp3 | kids-ru-bukhari-1417-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-ru-bukhari-1417-mascot-reel.mp4 | 29.5s | 7 MB | Boy lamb. FIRST reel on P104 mascot/voice split — Liam Youthful (male). RU kids migrated off OpenAI Nova; ElevenLabs now sole provider. First multi-clip mascot render; split-narration cut cleanly at story/moral seam (21.6s + 8.0s). Fixed "добрость"→"доброту". published TG/YT/IG/TikTok |
+| R016 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | uz | Kids | bukhari-1417 | kids-uz-bukhari-1417-story.mp3 | kids-uz-bukhari-1417-moral.mp3 | kids-uz-bukhari-1417-narration.mp3 | kids-uz-bukhari-1417-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-uz-bukhari-1417-mascot-reel.mp4 | 31.2s | 8.9 MB | Boy lamb; George (male, P104) — first Uzbek test for this voice, ҳ/қ/ғ/ж all clean. split-narration cut at 27.3s (mid-moral, greedy max-length) — recut manually at 21.8s to land on the story/moral silence. Fixed "бандани"→"бандага". published TG/YT/IG/TikTok |
+| R017 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | tj | Kids | bukhari-1417 | kids-tj-bukhari-1417-story.mp3 | kids-tj-bukhari-1417-moral.mp3 | kids-tj-bukhari-1417-narration.mp3 | kids-tj-bukhari-1417-clip01.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-bukhari-1417-mascot-reel.mp4 | 27.3s | 8.1 MB | Boy lamb; Liam Viral (male, P104) — first Tajik test, ҳ/қ/ҷ/ғ/ӣ/ӯ clean. Completes the 4-language #1417 set. Cut a duplicate sourcing sentence from Story, which brought it under 28s and saved a split. Fixed "Равикунандаи"→"Ривоятгари"; dropped "саҳобаи бузург" per rule 9. published TG/YT/IG/TikTok |
+
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -50,6 +55,7 @@
 | Sahih al-Bukhari #1520 | RU | Adults | R005 |
 | Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
 | Sahih al-Bukhari #1 | EN, RU, UZ, TJ | Adults | R010, R011, R012, R013 |
+| Sahih al-Bukhari #1417 | EN, RU, UZ, TJ | Kids | R014, R015, R016, R017 |
 
 ---
 
@@ -65,14 +71,16 @@
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
+| Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
 
 
 **Coverage gaps to consider for upcoming reels:**
 
-- ❌ Zakat / Wealth purification — no reels yet
+- ⚠️ Zakat / Wealth purification — partially covered; #1417 is from Kitab az-Zakat but framed as sadaqah, not zakat proper
 - ❌ Salah / Prayer — no reels yet
 - ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
-- ❌ Akhlaq / Patience / Anger management — no reels yet (smile-as-charity is the only one)
+- ⚠️ Charity / Sadaqah — 5 reels (R003 smile-as-charity; R014–R017 full set)
+- ❌ Akhlaq / Patience / Anger management — no reels yet
 - ❌ Family / Marriage / Parents — no reels yet
 - ❌ Quran recitation / Tilawah — no reels yet
 - ❌ Death / Afterlife / Barzakh — no reels yet
@@ -80,12 +88,12 @@
 **Language coverage gaps:**
 
 - AR (Arabic) — 0 reels (gap!)
-- Kids style — ✅ first set live (Bukhari 6009, EN/RU/UZ/TJ → R006–R009); grow with new hadiths
+- Kids style — ✅ two full sets live (Bukhari #6009 girl lamb R006–R009; Bukhari #1417 boy lamb R014–R017)
 
 ---
 
 ## Asset reuse audit
-| ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
+
 > **Use to avoid asset fatigue** — same nasheed/clips on consecutive reels feels lazy to viewers.
 
 ### Nasheed usage
@@ -93,12 +101,21 @@
 | Nasheed | Uses | Last used | Reel IDs |
 |---|---|---|---|
 | path-to-jannah-bg.mp3 | 1 | 2026-05-15 (R004) | R004 |
-| mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011
-| nasheed-bg-1.mp3 | 1 | 2026-08-09 (R012) | 
-| light-of-my-heart-bg.mp3 | 2 | 2026-08-08 (R010) | R010, R013|
-| ramadan-bg.mp3 | 0 | Never | — |
+| mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011 |
+| nasheed-bg-1.mp3 | 1 | 2026-08-09 (R012) | R012 |
+| light-of-my-heart-bg.mp3 | 2 | 2026-08-09 (R013) | R010, R013 |
+| ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 0 | Never | — |
-| ramadan-2-bg.mp3 | 0 | Never | — |
+| ramadan-2-bg.mp3 | 4 | 2026-08-10 (R017) | R014, R015, R016, R017 |
+
+### Mascot stills
+
+| Still | Uses | Reel IDs |
+|---|---|---|
+| lamb-girl-garden-day-v1.png | 4 | R006, R007, R008, R009 |
+| lamb-boy-mosque-night-v3.png | 4 | R014, R015, R016, R017 |
+
+**Note:** girl-lamb source PNG is NOT in the repo — recoverable only as a 480p frame from `out/talking/girl-garden-moral.mp4`. Regenerate at 4K via Nano Banana Pro before the next girl-lamb set (same method as the boy lamb, see P103).
 
 ### Background video clips (normalized library, 1080×1920)
 
@@ -125,16 +142,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 12 |
+| Total reels posted | 17 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
-| Adults reels | 8 |
-| Kids reels | 4 |
-| Avg duration | ~55s |
-| Avg file size | ~22 MB |
-| Hadiths used (unique) | 6 |
-| Hadith collections used | 2 (Sahih al-Bukhari ×10, Jami at-Tirmidhi ×2) |
-| Companions cited | 3 (Abu Hurairah ×7, Abu Dharr ×1, Aisha ×1, Umar ibn al-Khattab ×1) |
+| Adults reels | 9 |
+| Kids reels | 8 |
+| Avg duration | ~49s |
+| Avg file size | ~17 MB |
+| Hadiths used (unique) | 8 |
+| Hadith collections used | 2 (Sahih al-Bukhari ×15, Jami at-Tirmidhi ×2) |
+| Companions cited | 5 (Abu Hurairah ×7, Umar ibn al-Khattab ×4, Adiy ibn Hatim ×4, Abu Dharr ×1, Aisha ×1) |
 
 ---
 
@@ -143,7 +160,7 @@
 When you ship a reel, copy this row to the "Active reels" table:
 
 ```markdown
-| R### | YYYY-MM-DD | <Collection> #<num> | <Narrator> | <Grade> | <Theme> | #tag1 #tag2 | <Lang> | <Style> | <slug> | <slug>-story-narration-<lang>.mp3 | <slug>-moral-narration-<lang>.mp3 | <slug>-narration-<lang>-full.mp3 | clip1.mp4, clip2.mp4, clip3.mp4 | <lang>-<style>-bg-mixed.mp4 | <nasheed>.mp3 | Yes/No | <output>.mp4 | XXs | XX MB | <notes> |
+| R### | YYYY-MM-DD | <Collection> #<num> | <Narrator> | <Grade> | <Theme> | #tag1 #tag2 | <lang> | <Style> | <slug> | {style}-{lang}-{slug}-story.mp3 | {style}-{lang}-{slug}-moral.mp3 | {style}-{lang}-{slug}-narration.mp3 | clip01.mp4, clip02.mp4 | <bg-mixed>.mp4 or "n/a (mascot spine)" | <nasheed>.mp3 | Yes/No | <output>.mp4 | XXs | XX MB | <notes> |
 ```
 
 Then update:
@@ -171,3 +188,5 @@ Then update:
 | 2026-08-08 | R010 — Bukhari #1 EN adults, first Pillar 2 animated reel with explicit clip logging | Farhod / Claude |
 | 2026-08-08 | R011 — Bukhari #1 RU adults; P100 Whisper Cyrillic encoding fix | Farhod / Claude |
 | 2026-08-09 | R012 — Bukhari #1 UZ adults; P102 UZ/TJ moved to ElevenLabs v3 | Farhod / Claude |
+| 2026-08-09 | R013 — Bukhari #1 TJ adults; completes 4-lang set (was missing from this log) | Farhod / Claude |
+| 2026-08-10 | R014–R017 — Bukhari #1417 kids, 4 langs, first boy lamb + first 720p; P103 prompt fabrication fix, P104 mascot/voice split + OpenAI retired | Farhod / Claude |
