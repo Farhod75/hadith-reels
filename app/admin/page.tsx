@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from 'react'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
 type Style  = 'adults' | 'kids'
+type Mascot = 'boy' | 'girl'
 type Step   = 'login' | 'pick' | 'generate' | 'preview' | 'publish'
 
 interface Hadith {
@@ -75,8 +76,8 @@ function StepBar({ step }: { step: Step }) {
 }
 
 // ── Audio player ──────────────────────────────────────────────────────────────
-function AudioSection({ text, lang, style, label, onAudioReady }: {
-  text: string; lang: Lang; style: Style; label: string
+function AudioSection({ text, lang, style, mascot, label, onAudioReady }: {
+  text: string; lang: Lang; style: Style; mascot: Mascot; label: string
   onAudioReady?: (url: string) => void
 }) {
   const [loading, setLoading]   = useState(false)
@@ -91,7 +92,7 @@ function AudioSection({ text, lang, style, label, onAudioReady }: {
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 800), lang, style }),
+        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot }),
       })
       if (!res.ok) throw new Error(`TTS ${res.status}`)
       const blob = await res.blob()
@@ -155,6 +156,7 @@ export default function AdminPage() {
 
   const [lang, setLang]   = useState<Lang>('ar')
   const [style, setStyle] = useState<Style>('adults')
+  const [mascot, setMascot] = useState<Mascot>('girl')
 
   const [generating, setGenerating] = useState(false)
   const [genError, setGenError]     = useState('')
@@ -373,6 +375,23 @@ export default function AdminPage() {
                   ))}
                 </div>
               </div>
+              {style === 'kids' && (
+                <div>
+                  <label className="text-xs text-slate-400 uppercase tracking-wide block mb-2">Mascot</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {(['girl','boy'] as Mascot[]).map(m => (
+                      <button key={m} onClick={() => setMascot(m)}
+                        className={`py-2 px-3 rounded-lg text-xs border transition-colors ${
+                          mascot === m ? 'bg-indigo-600 text-white border-indigo-500' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}>
+                        {m === 'girl' ? '🧕 Girl lamb' : '🧒 Boy lamb'}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    {mascot === 'girl' ? 'Female voice' : 'Male voice'}
+                  </p>
+                </div>
+              )}
 
               <div>
                 <label className="text-xs text-slate-400 uppercase tracking-wide block mb-2">Language</label>
@@ -525,7 +544,7 @@ export default function AdminPage() {
                 <textarea value={generated.story} onChange={e => updateField('story', e.target.value)} className="w-full bg-amber-950/30 text-amber-100 text-sm leading-relaxed border border-amber-800/50 rounded-lg p-2 resize-y min-h-[120px] focus:outline-none focus:border-amber-500" dir="auto" data-test="story-edit" />
                 <AudioSection
                   text={generated.story}
-                  lang={lang} style={style}
+                  lang={lang} style={style} mascot={mascot}
                   label="Story narration"
                   onAudioReady={url => setStoryAudioUrl(url)}
                 />
@@ -537,7 +556,7 @@ export default function AdminPage() {
                 <textarea value={generated.moral} onChange={e => updateField('moral', e.target.value)} className="w-full bg-emerald-950/30 text-emerald-100 text-sm leading-relaxed border border-emerald-800/50 rounded-lg p-2 resize-y min-h-[100px] focus:outline-none focus:border-emerald-500" dir="auto" data-test="moral-edit" />
                 <AudioSection
                   text={generated.moral}
-                  lang={lang} style={style}
+                  lang={lang} style={style} mascot={mascot}
                   label="Moral narration"
                   onAudioReady={url => setMoralAudioUrl(url)}
                 />

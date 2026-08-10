@@ -1,39 +1,62 @@
 // app/api/tts/route.ts
-// ElevenLabs TTS proxy — EN/AR/RU via ElevenLabs, UZ/TJ via OpenAI gpt-4o-mini-tts
-// POST { text, lang, style }
+// ElevenLabs TTS proxy — all languages via ElevenLabs eleven_v3
+// POST { text, lang, style, mascot }
 // Returns audio/mpeg stream
 // P070: text cleaning for Prophet name + Islamic symbols
-// P071: OpenAI Nova for UZ/TJ Cyrillic
-// P073: gpt-4o-mini-tts + instructions parameter for Uzbek/Tajik phonetics
+// P102: UZ/TJ moved from OpenAI to ElevenLabs eleven_v3
+// P103: kids voices split by mascot (boy lamb = male, girl lamb = female);
+//       RU kids migrated off OpenAI Nova — OpenAI fully retired from this route
 
 import { NextRequest, NextResponse } from 'next/server'
 
-const VOICE_MAP: Record<string, Record<string, string>> = {
+type VoiceSet = {
+  adults: string
+  kids: { boy: string; girl: string }
+}
+
+const VOICE_MAP: Record<string, VoiceSet> = {
   ar: {
     adults: process.env.ELEVENLABS_VOICE_HIJAZI    || 'pNInz6obpgDQGcFmaJgB',
-    kids:   process.env.ELEVENLABS_VOICE_ABU_SALEM || 'pNInz6obpgDQGcFmaJgB',
+    kids: {
+      girl: process.env.ELEVENLABS_VOICE_AR_KIDS     || 'pNInz6obpgDQGcFmaJgB',
+      boy:  process.env.ELEVENLABS_VOICE_AR_KIDS_BOY || 'pNInz6obpgDQGcFmaJgB',
+    },
   },
   ru: {
     adults: process.env.ELEVENLABS_VOICE_ABRAR     || 'ErXwobaYiN019PkySvjV',
-    kids:   process.env.ELEVENLABS_VOICE_ABRAR     || 'ErXwobaYiN019PkySvjV',
+    kids: {
+      girl: process.env.ELEVENLABS_VOICE_RU_KIDS     || 'ocFEgn1SP9oWO9QrLDgb', // Arabella Calm & Mature
+      boy:  process.env.ELEVENLABS_VOICE_RU_KIDS_BOY || 'pw8bioilqsSn2jApHYwT', // Liam Youthful
+    },
   },
   en: {
-    adults: process.env.ELEVENLABS_VOICE_EN_ADULTS || 'EkK5I93UQWFDigLMpZcX',
-    kids:   process.env.ELEVENLABS_VOICE_EN_KIDS   || 'FVQMzxJGPUBtfz1Azdoy',
+    adults: process.env.ELEVENLABS_VOICE_EN_ADULTS || 'EkK5I93UQWFDigLMpZcX', // James
+    kids: {
+      girl: process.env.ELEVENLABS_VOICE_EN_KIDS     || 'FVQMzxJGPUBtfz1Azdoy', // Danielle
+      boy:  process.env.ELEVENLABS_VOICE_EN_KIDS_BOY || 'cjVigY5qzO86Huf0OWal', // Eric
+    },
   },
-  // P102: UZ/TJ moved from OpenAI to ElevenLabs eleven_v3 — see fix_patterns
   uz: {
     adults: process.env.ELEVENLABS_VOICE_UZ_ADULTS || 'R3XXDwKMU2YHwBcuYUH3', // Opa Johann
-    kids:   process.env.ELEVENLABS_VOICE_UZ_KIDS   || 'hO2yZ8lxM3axUxL8OeKX', // Mini
+    kids: {
+      girl: process.env.ELEVENLABS_VOICE_UZ_KIDS     || 'hO2yZ8lxM3axUxL8OeKX', // Mini
+      boy:  process.env.ELEVENLABS_VOICE_UZ_KIDS_BOY || 'JBFqnCBsd6RMkjVDRZzb', // George
+    },
   },
   tj: {
     adults: process.env.ELEVENLABS_VOICE_TJ_ADULTS || 'KXptrwcsEqqFSwRKJukF', // Meisam
-    kids:   process.env.ELEVENLABS_VOICE_TJ_KIDS   || '0zUZ5qUGb8wympsfJH8d', // Katherine Polished
+    kids: {
+      girl: process.env.ELEVENLABS_VOICE_TJ_KIDS     || '0zUZ5qUGb8wympsfJH8d', // Katherine Polished
+      boy:  process.env.ELEVENLABS_VOICE_TJ_KIDS_BOY || 'VCgLBmBjldJmfphyB8sZ', // Liam Viral
+    },
   },
 }
 
-// P073: per-language phonetic instructions for gpt-4o-mini-tts
-// Keyed as `${lang}.${style}` — e.g., 'uz.kids', 'tj.adults'
+// P073: per-language phonetic instructions, written for OpenAI gpt-4o-mini-tts.
+// RETAINED FOR REFERENCE ONLY — no longer called. eleven_v3 handles these
+// phonemes natively (that was the reason for P102). Kept because this encodes
+// hard-won Uzbek/Tajik pronunciation knowledge worth preserving if a future
+// provider or an ElevenLabs pronunciation dictionary needs it.
 const TTS_INSTRUCTIONS: Record<string, string> = {
   'ru.kids':
     "Speak as a native Russian speaker reading to young children. Use a warm, " +
@@ -104,7 +127,10 @@ function cleanForTTS(text: string, lang: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const { text, lang = 'en', style = 'adults' } = await req.json()
+    // P103: `mascot` defaults to 'girl' — if the admin payload omits the field
+    // (the P084 failure mode), reels fall back to the voices already shipped
+    // rather than silently switching gender.
+    const { text, lang = 'en', style = 'adults', mascot = 'girl' } = await req.json()
 
     if (!text?.trim()) {
       return NextResponse.json({ error: 'text required' }, { status: 400 })
@@ -112,55 +138,17 @@ export async function POST(req: NextRequest) {
 
     const cleanText = cleanForTTS(text, lang)
     const langKey = lang.replace('_cyrillic', '').replace('_latin', '')
-    // P102: UZ/TJ now use ElevenLabs eleven_v3 — it pronounces plain г, ҳ, қ, ғ, ж
-    // correctly, which OpenAI does not (onyx and nova both harden plain г to ғ).
-    // RU kids stays on OpenAI Nova (female); RU adults stays on ElevenLabs (Abrar).
-    const useOpenAI = langKey === 'ru' && style === 'kids'
 
-    // ── OpenAI gpt-4o-mini-tts for UZ/TJ ─────────────────────────────────────
-    if (useOpenAI) {
-      const openAIKey = process.env.OPENAI_API_KEY
-      if (!openAIKey) {
-        return NextResponse.json({ error: 'OPENAI_API_KEY not configured' }, { status: 503 })
-      }
-
-      // P073: pick language-specific phonetic instructions
-      const instructionsKey = `${langKey}.${style}`
-      const instructions = TTS_INSTRUCTIONS[instructionsKey] || TTS_INSTRUCTIONS[`${langKey}.adults`]
-
-      const openAIRes = await fetch('https://api.openai.com/v1/audio/speech', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${openAIKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini-tts',
-          voice: style === 'kids' ? 'nova' : 'onyx',
-          input: cleanText,
-          instructions,
-        }),
-      })
-
-      if (!openAIRes.ok) {
-        const err = await openAIRes.text()
-        return NextResponse.json({ error: 'OpenAI TTS failed: ' + err }, { status: openAIRes.status })
-      }
-
-      const audioBuffer = await openAIRes.arrayBuffer()
-      return new NextResponse(audioBuffer, {
-        headers: { 'Content-Type': 'audio/mpeg', 'Cache-Control': 'no-store' },
-      })
-    }
-
-    // ── ElevenLabs for EN/AR/RU ──────────────────────────────────────────────
     const apiKey = process.env.ELEVENLABS_API_KEY
     if (!apiKey) {
       return NextResponse.json({ error: 'ElevenLabs not configured' }, { status: 503 })
     }
 
-    const voiceMap = VOICE_MAP[langKey] || VOICE_MAP.en
-    const voiceId  = voiceMap[style] || voiceMap.adults
+    const voiceSet = VOICE_MAP[langKey] || VOICE_MAP.en
+    const voiceId =
+      style === 'kids'
+        ? (mascot === 'boy' ? voiceSet.kids.boy : voiceSet.kids.girl)
+        : voiceSet.adults
 
     const elevenRes = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}/stream`,
@@ -179,7 +167,6 @@ export async function POST(req: NextRequest) {
     )
 
     if (!elevenRes.ok) {
-      const errText = await elevenRes.text()
       return NextResponse.json({ error: 'TTS failed: ' + elevenRes.status }, { status: elevenRes.status })
     }
 
