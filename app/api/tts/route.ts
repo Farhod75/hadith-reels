@@ -1,13 +1,16 @@
 // app/api/tts/route.ts
 // ElevenLabs TTS proxy — all languages via ElevenLabs eleven_v3
-// POST { text, lang, style, mascot }
-// Returns audio/mpeg stream
+// POST { text, lang, style, mascot, slug, section }
+// Returns audio/mpeg stream; in dev also writes to out/work/{style}/{slug}/{lang}/
 // P070: text cleaning for Prophet name + Islamic symbols
 // P102: UZ/TJ moved from OpenAI to ElevenLabs eleven_v3
 // P103: kids voices split by mascot (boy lamb = male, girl lamb = female);
 //       RU kids migrated off OpenAI Nova — OpenAI fully retired from this route
+// P106: TTS writes narration to disk directly — removes manual download/rename/move
 
 import { NextRequest, NextResponse } from 'next/server'
+import { writeFile, mkdir } from 'fs/promises'
+import path from 'path'
 
 type VoiceSet = {
   adults: string
@@ -130,7 +133,8 @@ export async function POST(req: NextRequest) {
     // P103: `mascot` defaults to 'girl' — if the admin payload omits the field
     // (the P084 failure mode), reels fall back to the voices already shipped
     // rather than silently switching gender.
-    const { text, lang = 'en', style = 'adults', mascot = 'girl' } = await req.json()
+    const { text, lang = 'en', style = 'adults', mascot = 'girl',
+            slug = '', section = '' } = await req.json()
 
     if (!text?.trim()) {
       return NextResponse.json({ error: 'text required' }, { status: 400 })
@@ -171,8 +175,31 @@ export async function POST(req: NextRequest) {
     }
 
     const audioBuffer = await elevenRes.arrayBuffer()
+
+    // P106: in dev, write the narration straight into the work tree so the
+    // operator doesn't download → rename → move by hand. Vercel's filesystem is
+    // read-only and ephemeral, so this is dev-only and never blocks the response.
+    let savedPath = ''
+    if (process.env.NODE_ENV !== 'production' && slug && section) {
+      try {
+        const dir = path.join(process.cwd(), 'out', 'work', style, slug, langKey)
+        await mkdir(dir, { recursive: true })
+        const filename = `${style}-${langKey}-${slug}-${section}.mp3`
+        await writeFile(path.join(dir, filename), Buffer.from(audioBuffer))
+        savedPath = path.join('out', 'work', style, slug, langKey, filename)
+        console.log(`[tts] saved ${savedPath}`)
+      } catch (e: any) {
+        // Never fail the request over a disk write — the audio still streams back.
+        console.error('[tts] disk write failed:', e?.message)
+      }
+    }
+
     return new NextResponse(audioBuffer, {
-      headers: { 'Content-Type': 'audio/mpeg', 'Cache-Control': 'no-store' },
+      headers: {
+        'Content-Type': 'audio/mpeg',
+        'Cache-Control': 'no-store',
+        ...(savedPath ? { 'X-Saved-Path': savedPath } : {}),
+      },
     })
 
   } catch (error: any) {

@@ -75,8 +75,9 @@ function StepBar({ step }: { step: Step }) {
 }
 
 // ── Audio player ──────────────────────────────────────────────────────────────
-function AudioSection({ text, lang, style, mascot, label, onAudioReady }: {
-  text: string; lang: Lang; style: Style; mascot: Mascot; label: string
+function AudioSection({ text, lang, style, mascot, slug, section, label, onAudioReady }: {
+  text: string; lang: Lang; style: Style; mascot: Mascot
+  slug: string; section: 'story' | 'moral'; label: string
   onAudioReady?: (url: string) => void
 }) {
   const [loading, setLoading]   = useState(false)
@@ -91,7 +92,7 @@ function AudioSection({ text, lang, style, mascot, label, onAudioReady }: {
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot }),
+        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot, slug, section }),
       })
       if (!res.ok) throw new Error(`TTS ${res.status}`)
       const blob = await res.blob()
@@ -178,6 +179,9 @@ export default function AdminPage() {
   // Caption
   const [caption, setCaption]           = useState('')
   const [copiedCaption, setCopiedCaption] = useState(false)
+  const reelSlug = selected
+    ? `${selected.collection.toLowerCase().replace(/^(sahih |jami )?(al-)?/, '').replace(/[^a-z0-9]+/g, '-')}-${selected.hadith_number || ''}`.replace(/-+$/, '')
+    : ''
 
   // ── Auth ───────────────────────────────────────────────────────────────────
   async function handleLogin() {
@@ -542,7 +546,7 @@ export default function AdminPage() {
                 <textarea value={generated.story} onChange={e => updateField('story', e.target.value)} className="w-full bg-amber-950/30 text-amber-100 text-sm leading-relaxed border border-amber-800/50 rounded-lg p-2 resize-y min-h-[120px] focus:outline-none focus:border-amber-500" dir="auto" data-test="story-edit" />
                 <AudioSection
                   text={generated.story}
-                  lang={lang} style={style} mascot={mascot}
+                  lang={lang} style={style} mascot={mascot} slug={reelSlug} section="story"
                   label="Story narration"
                   onAudioReady={url => setStoryAudioUrl(url)}
                 />
@@ -554,7 +558,7 @@ export default function AdminPage() {
                 <textarea value={generated.moral} onChange={e => updateField('moral', e.target.value)} className="w-full bg-emerald-950/30 text-emerald-100 text-sm leading-relaxed border border-emerald-800/50 rounded-lg p-2 resize-y min-h-[100px] focus:outline-none focus:border-emerald-500" dir="auto" data-test="moral-edit" />
                 <AudioSection
                   text={generated.moral}
-                  lang={lang} style={style} mascot={mascot}
+                  lang={lang} style={style} mascot={mascot} slug={reelSlug} section="moral"
                   label="Moral narration"
                   onAudioReady={url => setMoralAudioUrl(url)}
                 />
