@@ -21,7 +21,7 @@ Usage (PowerShell, from repo root):
   # custom max length:
   python split-narration.py --base kids-ru-bukhari-1520 --maxlen 25 --audio out\story.mp3
 
-Outputs (ordered, in out\talking\):
+Outputs (ordered, in --outdir, default out\talking\):
   <base>-clip01.mp3, <base>-clip02.mp3, ...
 The script then prints a ready-to-run block to turn each chunk into a talking
 clip (Fabric) and render the final reel.
@@ -40,6 +40,7 @@ MIN_CHUNK      = 4.0    # avoid cutting a chunk shorter than this when possible
 SILENCE_DB     = -30    # silencedetect noise floor (dB)
 SILENCE_DUR    = 0.35   # min silence length to count as a pause (s)
 GAP            = 0.6    # silence inserted between concatenated inputs (s)
+# P106: default is legacy; pass --outdir out/work/{style}/{slug}/{lang} for new reels
 OUTDIR         = os.path.join("out", "talking")
 
 
@@ -169,7 +170,7 @@ def main():
     # print a ready next-step block (user fills in the mascot image)
     mp4_clips = ",".join(f"{args.base}-clip{i+1:02d}.mp4" for i in range(len(made)))
     print("\n--- NEXT: generate a talking clip per chunk, then render ---")
-    print('  $img   = "assets\\mascot\\lamb-boy-mosque-night-v2.png"   # <- pick the mascot scene')
+    print('  $img   = "assets\\mascot\\lamb-boy-mosque-night-v3.png"   # <- pick the mascot scene')
     print(f'  $chunks = Get-ChildItem "{args.outdir}\\{args.base}-clip*.mp3" | Sort-Object Name')
     print('  foreach ($c in $chunks) {')
     print('    $out = $c.FullName -replace "\\.mp3$",".mp4"')

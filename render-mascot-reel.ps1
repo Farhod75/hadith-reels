@@ -69,8 +69,10 @@ function Ok  ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die ($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
 
 $base    = "kids-$Lang-$Slug"
-$talkDir = "out\talking"
-$reel    = "out\$base-mascot-reel.mp4"
+# P106: per-reel work tree — all files for one language of one hadith live together
+$talkDir = "out\work\kids\$Slug\$Lang"
+$reel    = "$talkDir\$base-mascot-reel.mp4"
+New-Item -ItemType Directory -Force $talkDir | Out-Null
 
 Say "================================================================"
 Say " Mascot reel: $base   (clips: $($Clips.Count)$(if($NoMusic){'; voice-only'}))"
