@@ -236,14 +236,28 @@ export default function AdminPage() {
       setGenerated(data)
 
       // Auto-generate caption
-      const tags = selected.tags?.slice(0, 8).map(t => `#${t}`).join(' ') || ''
+      // P106: deterministic caption. Hadith text included so the caption is
+      // verifiable standalone — captions get screenshotted and forwarded, which
+      // is the fabrication vector this project exists to fight.
+      // P106: tags that pull the wrong audience on social platforms. #date reaches
+      // dating content; #hellfire skews to metal/gaming. Sourced from the hadith
+      // library, so filter at caption time rather than editing the library.
+      const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'death', 'women', 'men']
+      const tags = (selected.tags || [])
+        .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
+        .slice(0, 6)
+        .map(t => `#${t}`)
+        .join(' ')
       const langLabel = LANGS.find(l => l.code === lang)?.label || 'English'
+      const hadithText = selected.text_display || selected.text_english
+      const ref = `${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}`
       setCaption(
-        `${data.title}\n\n${data.moral}\n\n` +
-        `📖 ${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}\n` +
-        `👤 ${selected.narrator}\n` +
+        `${data.title}\n\n` +
+        `«${hadithText}»\n\n` +
+        `${data.moral}\n\n` +
+        `📖 ${ref}, ${selected.narrator}\n` +
         `🔍 Verify: hadithverifier.com\n\n` +
-        `${tags} #hadith #islamic #authentic #${langLabel.toLowerCase()}`
+        `${tags} #hadith #islamic #authentic${style === 'kids' ? ' #kids' : ''} #${langLabel.toLowerCase()}`
       )
       setStep('preview')
     } catch (e: any) { setGenError(e.message || 'Generation failed') }
