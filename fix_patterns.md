@@ -2018,3 +2018,95 @@ must normalize apostrophes (qo'shni → qoʻshni).
   narrator, verify link, tags. No seerah line, no undefined, no blank gap.
 
 **Status:** FIXED — shipped 2026-08-10
+
+## ════════════════════════════════════════════════════════
+## PATTERN 106: Pipeline automation — TTS to disk, work tree, wrapper, caption template
+## ════════════════════════════════════════════════════════
+**ID:** P106
+**Type:** Automation / friction removal (no defect — deliberate improvement)
+**Files:** app/api/tts/route.ts, app/admin/page.tsx, render-mascot-reel.ps1,
+           split-narration.py, make-kids-reel.ps1 (new)
+**Commits:** 5c272a8, 6caa47b, 4fbfea2, ad18d59
+
+**Motivation:**
+  The R014-R017 session (Bukhari #1417, 4 languages) took ~8 hours. Step-count
+  audit put it at roughly 70% manual, and every defect that session — P103
+  fabrication leak, three grammar errors, the P105 false attribution — was
+  caught by a human reading output, not by any gate. Conclusion: automate the
+  MECHANICAL steps aggressively; leave content review human until an Auditor
+  exists (see agent-architecture-roadmap.md Phase 4).
+
+**1. TTS writes to disk (app/api/tts/route.ts):**
+  Was: generate in browser -> download -> rename -> move to out\. Eight times
+  per hadith set, and the rename is where a wrong slug silently poisons every
+  downstream command.
+  Now: route writes to out/work/{style}/{slug}/{lang}/{style}-{lang}-{slug}-{section}.mp3
+  Gated on NODE_ENV !== 'production' — Vercel's filesystem is read-only and
+  ephemeral. Write failures are caught and logged, never break the audio
+  response. Returns X-Saved-Path header.
+  Route gained `slug` and `section`; admin derives the slug from
+  collection + hadith_number ("Sahih al-Bukhari" + "1417" -> bukhari-1417).
+  Verified against Al-Bayhaqi, which the regex had not been proven on.
+
+**2. Per-reel work tree (out/ restructure):**
+  out/ had 108 loose files after 17 reels — ~30 files per hadith set, growing
+  without bound. Restructured:
+    out/backgrounds/  shared nasheeds and bg video (unchanged)
+    out/refs/         FLUX source stills, mascot references
+    out/data/         candidates.json, translations, sourcing state
+    out/work/         current set only — stays small permanently
+    out/published/    {style}/{slug}/{lang}/ — archive
+    out/_legacy/      tests and dead-convention files
+  render-mascot-reel.ps1 $talkDir now points at the per-reel folder; the final
+  reel lands there too, so archiving a set is a single folder move.
+  NOTE: three MP4s could not be moved — persistent file lock survived closing
+  the player. Copied and left in place; same environment quirk as the
+  PowerShell silent-revert gotcha. Delete after reboot.
+
+**3. make-kids-reel.ps1 (new) — one command from narration to reel:**
+  Chains concat -> duration check -> split if needed -> Fabric per chunk at
+  720p -> render. Replaces ~16 hand-typed commands with filenames per hadith set.
+  Two deliberate design points:
+  - Seam-aware split. split-narration.py maximises chunk length, so on UZ it
+    cut at 27.3s MID-MORAL rather than at the 22.3s story/moral silence,
+    forcing a manual recut. The wrapper cuts at storyDur + 0.5s instead.
+    split-narration.py itself is unchanged and still correct for its own use;
+    the greedy objective is logged as a P107 candidate.
+  - Confirmation pause before Fabric (skip with -Auto). Fabric is the only
+    paid, irreversible step; a keypress is cheap insurance against spending
+    on a bad TTS take.
+  Step 0 validates inputs, FAL_KEY presence AND length (~69 chars), and
+  ffmpeg/ffprobe/python on PATH before anything is spent.
+  -Mascot girl currently fails Step 0 by design: the girl-lamb still does not
+  exist in the repo yet.
+
+**4. Deterministic caption template (app/admin/page.tsx):**
+  Captions were hand-corrected on every reel. Same two fixes four times each
+  in the #1417 session.
+  - TAG_BLOCKLIST filters tags that pull the wrong audience. #date reaches
+    dating content; #hellfire skews to metal/gaming. Tags come from the hadith
+    library, so filtering happens at caption time rather than editing the library.
+  - Hadith text now included in the caption, via text_display (already
+    language-aware per /api/reels lines 66-73). Rationale: captions get
+    screenshotted and forwarded, which is the exact fabrication vector this
+    project exists to fight. A caption carrying verified text plus its
+    reference is the sadaqah working.
+  - #kids appended automatically on kids reels.
+
+**Still manual after P106:**
+  Clicking Generate for story and moral in the admin (2 clicks per language).
+  Content review — deliberately so.
+  Publishing — 16 uploads per hadith set across 4 platforms. Roadmap Part 6
+  rule 4 keeps cross-posting a human act.
+
+**Known remaining friction (P107 candidates):**
+  - Collection and narrator stay Latin inside Cyrillic captions ("Sahih
+    al-Bukhari #1417, Adiy ibn Hatim" in a Russian caption). Hand-corrected on
+    all four languages in the #1417 session. Needs translation maps or DB columns.
+  - split-narration.py greedy chunk objective (see above).
+  - Pre-push classifier still blind to scripts/, assets/, and read UI=0 on a
+    session that changed admin/page.tsx.
+
+**Status:** SHIPPED 2026-08-11 — verified end to end on Al-Bayhaqi #2318 (TTS
+  write) and Bukhari #1417 RU (caption). Wrapper validated through Step 0;
+  full run pending the next hadith set.
