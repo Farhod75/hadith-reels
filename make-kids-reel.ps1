@@ -117,7 +117,11 @@ foreach ($c in $clips) {
 Ok "$($clips.Count) talking clip(s) generated"
 
 Say "`n[4/4] Rendering..."
-$clipFiles = ($clips | ForEach-Object { "$_.mp4" }) -join ','
-$renderArgs = @('-Lang', $Lang, '-Slug', $Slug, '-Clips', $clipFiles)
-if ($Nasheed) { $renderArgs += @('-Nasheed', $Nasheed) }
-& "$PSScriptRoot\render-mascot-reel.ps1" @renderArgs
+$clipFiles = $clips | ForEach-Object { "$_.mp4" }
+$renderParams = @{
+  Lang  = $Lang
+  Slug  = $Slug
+  Clips = $clipFiles
+}
+if ($Nasheed) { $renderParams['Nasheed'] = $Nasheed }
+& "$PSScriptRoot\render-mascot-reel.ps1" @renderParams
