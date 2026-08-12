@@ -43,7 +43,7 @@ $narr    = "$workDir\$base-narration.mp3"
 
 $stillMap = @{
   boy  = 'assets\mascot\lamb-boy-mosque-night-v3.png'
-  girl = 'assets\mascot\lamb-girl-garden-day-v1.png'
+  girl = 'assets\mascot\lamb-girl-garden-day-v2.png'
 }
 $still = $stillMap[$Mascot]
 
