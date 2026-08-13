@@ -2264,3 +2264,41 @@ must normalize apostrophes (qo'shni → qoʻshni).
   discarded before the empty Network tab settled it in seconds.
 
 **Status:** FIXED — shipped 2026-08-11
+
+## ════════════════════════════════════════════════════════
+## PATTERN 110: CI type-check gate could not fail
+## ════════════════════════════════════════════════════════
+**ID:** P110
+**Type:** Gate integrity (CI)
+**File:** .github/workflows/ci.yml
+**Commit:** fix: remove continue-on-error from CI type check (P110)
+
+**Symptom:**
+  CI reported green on every run regardless of TypeScript errors.
+  The type-check step ran `npx tsc --noEmit` but carried
+  `continue-on-error: true`, so a non-zero exit could never fail
+  the job. CI #50 green did not mean the types were clean.
+
+**Root cause:**
+  `continue-on-error: true` was set on the Type check step,
+  converting a gate into a report. Same failure class as P093
+  (Playwright webServer timeout returning EXIT_CODE=0 with zero
+  tests run): the gate was present, visible, and incapable of
+  blocking.
+
+**Fix:**
+  Removed `continue-on-error: true` from the Type check step.
+  Verified `npx tsc --noEmit` exits clean locally before removing,
+  so the gate closes with no outstanding type debt.
+
+**Rule:**
+  A gate that cannot fail is worse than no gate — it manufactures
+  false confidence. Any CI step whose purpose is to block MUST be
+  able to fail the job. Audit for `continue-on-error: true` on
+  verification steps; it belongs only on genuinely optional steps
+  (artifact upload, notifications).
+
+**Related:** P093 (gate integrity). Sibling item not in this fix:
+  CI E2E `BASE_URL` still points at production — tracked separately.
+
+**Status:** FIXED
