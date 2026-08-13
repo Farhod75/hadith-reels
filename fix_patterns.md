@@ -2371,3 +2371,45 @@ must normalize apostrophes (qo'shni → qoʻshni).
   source attribution).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 112: RU kids boy voice produced a background hum
+## ════════════════════════════════════════════════════════
+**ID:** P112
+**Type:** Asset quality (TTS voice matrix)
+**File:** app/api/tts/route.ts
+**Commit:** fix: RU kids boy voice Liam Youthful -> Maxim Calm & Neutral (P112)
+
+**Symptom:**
+  Muslim #482 RU kids narration carried a steady background hum —
+  described as an electrical device running behind the voice. Present in
+  the raw ElevenLabs mp3, before any nasheed mix, so not a render artifact.
+  EN clips from the same session were clean, isolating it to the RU voice.
+
+**Root cause:**
+  Liam — Clear, Youthful and Steady (`pw8bioilqsSn2jApHYwT`) produced the
+  artifact on eleven_v3. Maxim — Calm & Neutral (`HcaxAsrhw4ByUo4CBCBN`)
+  auditioned clean on the same Russian text and model.
+
+**Fix:**
+  VOICE_MAP ru.kids.boy fallback changed to `HcaxAsrhw4ByUo4CBCBN`.
+  Verified `ELEVENLABS_VOICE_RU_KIDS_BOY` is NOT set in .env.local, so the
+  literal actually governs — per the earlier finding that these fallbacks
+  only fire when the env var is unset.
+
+**Notes:**
+  Maxim's library label reads "calm and neutral middle-aged Russian", an
+  adults register. Accepted after audition on real reel text. Watch across
+  the next RU boy-lamb set that he does not blur the kids/adults line the
+  separate male voice matrix exists to preserve.
+
+**Workflow gap found (not fixed):**
+  The admin regenerates story/moral TEXT together with audio — there is no
+  audio-only reroll. A single bad TTS take therefore costs all content
+  edits made since generation. This turned a 60-second reroll into a voice
+  change decision. Candidate fix: separate "regenerate narration" action.
+
+**Related:** P102 (UZ/TJ provider migration), P104 (mascot/voice split),
+  P084/P085 (wrong-voice routing).
+
+**Status:** FIXED

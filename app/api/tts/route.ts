@@ -29,7 +29,7 @@ const VOICE_MAP: Record<string, VoiceSet> = {
     adults: process.env.ELEVENLABS_VOICE_ABRAR     || 'ErXwobaYiN019PkySvjV',
     kids: {
       girl: process.env.ELEVENLABS_VOICE_RU_KIDS     || 'ocFEgn1SP9oWO9QrLDgb', // Arabella Calm & Mature
-      boy:  process.env.ELEVENLABS_VOICE_RU_KIDS_BOY || 'pw8bioilqsSn2jApHYwT', // Liam Youthful
+      boy:  process.env.ELEVENLABS_VOICE_RU_KIDS_BOY || 'HcaxAsrhw4ByUo4CBCBN', // Maxim Calm & Neutral
     },
   },
   en: {
