@@ -40,6 +40,10 @@
 | R019 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | ru | Kids | bukhari-8 | kids-ru-bukhari-8-story.mp3 | kids-ru-bukhari-8-moral.mp3 | kids-ru-bukhari-8-narration.mp3 | kids-ru-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-ru-bukhari-8-mascot-reel.mp4 | 33.7s | 9.6 MB | Girl lamb; Arabella Calm & Mature. First FULL wrapper run incl. render (P107 fix verified). Wrapper's seam check refused a 28.9s story twice — text trimmed rather than split by hand, which is the guard working as designed. Three regenerations reintroduced "Пророк ﷺ передал/рассказал" and companion epithets; fixed by hand, then prompt rules 11-12 added (P108). Caption initially shipped English hadith text from stale `selected` (P108). published TG/YT/IG/TikTok |
 | R020 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | uz | Kids | bukhari-8 | kids-uz-bukhari-8-story.mp3 | kids-uz-bukhari-8-moral.mp3 | kids-uz-bukhari-8-narration.mp3 | kids-uz-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-uz-bukhari-8-mascot-reel.mp4 | 34.3s | 10.4 MB | Girl lamb; Mini. Cleanest generation of the set — correct isnad verb ("айтдики") and no epithet, unprompted. Caption hadith text came back Latin against Cyrillic body; converted by hand. published TG/YT/IG/TikTok |
 | R021 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | tj | Kids | bukhari-8 | kids-tj-bukhari-8-story.mp3 | kids-tj-bukhari-8-moral.mp3 | kids-tj-bukhari-8-narration.mp3 | kids-tj-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-bukhari-8-mascot-reel.mp4 | 35.5s | 10.5 MB | Girl lamb; Katherine Polished. Completes the 4-language #8 set. Worst rule-9 breach of the session — narrator described as son of Umar ibn al-Khattab AND one of the greatest companions. Also "Равии"→"Ровии" and an ungrammatical opening ("Тасаввур кун хона дорад") caught by Farhod. published TG/YT/IG/TikTok |
+| R022 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | en | Kids | muslim-482 | kids-en-muslim-482-story.mp3 | kids-en-muslim-482-moral.mp3 | kids-en-muslim-482-narration.mp3 | kids-en-muslim-482-clip01.mp4, clip02.mp4 | n/a (mascot spine) | nasheed-bg-1.mp3 | No | kids-en-muslim-482-mascot-reel.mp4 | 36.7s | 11.2 MB | BOY LAMB (rotation: #8 girl → #482 boy), lamb-boy-mosque-night-v3.png. Voice Eric. FIRST non-Bukhari hadith in the kids lane. First reel produced under the P110 CI gate. Generation invented a simile absent from the matn ("like standing right next to a warm, caring light") and rendered the divine name as "God" throughout including the title — both hand-fixed, root cause shipped as P111. Admin title field is not editable; corrected at publish time (caption-only — confirmed the title is not rendered in the KidsReel composition, and remotion/KidsReel.tsx at 36 bytes is a dead stub shadowing remotion/compositions/KidsReel.tsx). published TG/IG/TikTok/YT |
+| R023 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | ru | Kids | muslim-482 | kids-ru-muslim-482-story.mp3 | kids-ru-muslim-482-moral.mp3 | kids-ru-muslim-482-narration.mp3 | kids-ru-muslim-482-clip01.mp4, clip02.mp4 | n/a (mascot spine) | path-to-jannah-bg.mp3 | No | kids-ru-muslim-482-mascot-reel.mp4 | 28.7s | 7.6 MB | Boy lamb. VOICE CHANGED: Liam Youthful produced a steady background hum in the raw ElevenLabs mp3 before any nasheed mix; EN was clean, isolating it to the voice. Replaced with Maxim Calm & Neutral (HcaxAsrhw4ByUo4CBCBN) after audition — P112. Seerah block opened with unsourced "Учёные объясняют" — removed by hand, covered by P111. Divine name held correctly here; «Господу» kept as the correct rendering of Rabb. published TG/IG/TikTok/YT |
+| R024 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | uz | Kids | muslim-482 | kids-uz-muslim-482-story.mp3 | kids-uz-muslim-482-moral.mp3 | kids-uz-muslim-482-narration.mp3 | kids-uz-muslim-482-clip01.mp4 | n/a (mascot spine) | light-of-my-heart-bg.mp3 | No | kids-uz-muslim-482-mascot-reel.mp4 | 23.1s | 7.0 MB | Boy lamb; George. Single clip — 23.1s under the 28s Fabric cap, no split, no seam. Shortest reel of the set. Invented simile again ("сажда — худди қуёшга яқин туриш кабидир", with felt heat) plus unsourced "Уламолар..." — both removed by hand. Caption pulled text_uzbek (Latin) into an otherwise-Cyrillic body; swapped to text_uzbek_cyrillic. DB row verified clean pre-production: mixed_script false, okina intact in the Latin column. published TG/IG/TikTok/YT |
+| R025 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | tj | Kids | muslim-482 | kids-tj-muslim-482-story.mp3 | kids-tj-muslim-482-moral.mp3 | kids-tj-muslim-482-narration.mp3 | kids-tj-muslim-482-clip01.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-muslim-482-mascot-reel.mp4 | 26.0s | 7.4 MB | Boy lamb; Liam Viral. Single clip, no split. Completes the 4-language #482 set. Worst generation of the session — three distinct defects: invented simile ("мисли он аст, ки дари хона кушода шуд"), unsourced "Олимон...", and a MEANING INVERSION calling sujud "поинтарин ҳолати бандагист" (the lowest station) when the hadith describes the closest. Divine name also drifted to "Худо" (6×, incl. title). All hand-fixed; prompt rule 15 added for the inversion (P111). published TG/IG/TikTok/YT |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -61,6 +65,7 @@
 | Sahih al-Bukhari #1 | EN, RU, UZ, TJ | Adults | R010, R011, R012, R013 |
 | Sahih al-Bukhari #1417 | EN, RU, UZ, TJ | Kids | R014, R015, R016, R017 |
 | Sahih al-Bukhari #8 | EN, RU, UZ, TJ | Kids | R018, R019, R020, R021 |
+| Sahih Muslim #482 | EN, RU, UZ, TJ | Kids | R022, R023, R024, R025 |
 
 ---
 
@@ -78,12 +83,13 @@
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
 | Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
 | Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
+| Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
 
 
 **Coverage gaps to consider for upcoming reels:**
 
 - ⚠️ Zakat / Wealth purification — partially covered; #1417 is from Kitab az-Zakat but framed as sadaqah, not zakat proper
-- ⚠️ Salah / Prayer — covered within the Pillars set (R018-R021); no dedicated prayer reel yet
+- ✅ Salah / Prayer — dedicated set live (R022–R025, sujud & dua); also covered within Pillars (R018–R021)
 - ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
 - ⚠️ Charity / Sadaqah — 5 reels (R003 smile-as-charity; R014–R017 full set)
 - ❌ Akhlaq / Patience / Anger management — no reels yet
@@ -106,23 +112,23 @@
 
 | Nasheed | Uses | Last used | Reel IDs |
 |---|---|---|---|
-| path-to-jannah-bg.mp3 | 1 | 2026-05-15 (R004) | R004 |
+| path-to-jannah-bg.mp3 | 2 | 2026-08-13 (R023) | R004, R023 |
 | mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011 |
-| nasheed-bg-1.mp3 | 1 | 2026-08-09 (R012) | R012 |
-| light-of-my-heart-bg.mp3 | 2 | 2026-08-09 (R013) | R010, R013 |
+| nasheed-bg-1.mp3 | 2 | 2026-08-13 (R022) | R012, R022 |
+| light-of-my-heart-bg.mp3 | 3 | 2026-08-13 (R024) | R010, R013, R024 |
 | ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 0 | Never | — |
-| ramadan-2-bg.mp3 | 8 | 2026-08-10 (R021) | R014, R015, R016, R017, R018–R021 |
+| ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 
 ### Mascot stills
 
 | Still | Uses | Reel IDs |
 |---|---|---|
 | lamb-girl-garden-day-v1.png | 4 | R006, R007, R008, R009 |
-| lamb-boy-mosque-night-v3.png | 4 | R014, R015, R016, R017 |
+| lamb-boy-mosque-night-v3.png | 8 | R014–R017, R022–R025 |
 | lamb-girl-garden-day-v2.png | 4 | R018-R021 |
 
-**Note:** girl-lamb source PNG is NOT in the repo — recoverable only as a 480p frame from `out/talking/girl-garden-moral.mp4`. Regenerate at 4K via Nano Banana Pro before the next girl-lamb set (same method as the boy lamb, see P103). the girl-lamb source now exists at 4K, so that warning is resolved.
+**Note:** **Note:** both mascot sources now exist at 4K in the repo — `lamb-boy-mosque-night-v3.png` and `lamb-girl-garden-day-v2.png`. The earlier 480p-frame recovery warning is resolved.
 
 ### Background video clips (normalized library, 1080×1920)
 
@@ -149,16 +155,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 21 |
+| Total reels posted | 25 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
 | Adults reels | 9 |
-| Kids reels | 12 |
-| Avg duration | ~46s |
-| Avg file size | ~16 MB |
-| Hadiths used (unique) | 9 |
-| Hadith collections used | 2 (Sahih al-Bukhari ×19, Jami at-Tirmidhi ×2) |
-| Companions cited | 6 (Abu Hurairah ×7, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Kids reels | 16 |
+| Avg duration | ~43s |
+| Avg file size | ~15 MB |
+| Hadiths used (unique) | 10 |
+| Hadith collections used | 3 (Sahih al-Bukhari ×19, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
+| Companions cited | 6 (Abu Hurairah ×11, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
 ---
 
@@ -198,3 +204,4 @@ Then update:
 | 2026-08-09 | R013 — Bukhari #1 TJ adults; completes 4-lang set (was missing from this log) | Farhod / Claude |
 | 2026-08-10 | R014–R017 — Bukhari #1417 kids, 4 langs, first boy lamb + first 720p; P103 prompt fabrication fix, P104 mascot/voice split + OpenAI retired | Farhod / Claude |
 | 2026-08-11 | R018–R021 — Bukhari #8 kids, 4 langs, girl lamb; first full make-kids-reel.ps1 runs. P107 splat fix, P108 stale-selected + narrator/isnad prompt rules, P109 search wiring. Library cleanup: 4 duplicate rows removed, collection names normalised, Quran 41:35 removed | Farhod / Claude |
+| 2026-08-13 | R022–R025 — Sahih Muslim #482 kids, 4 langs, boy lamb; first non-Bukhari collection in the kids lane. P110 CI gate, P111 divine name + simile + attribution rules, P112 RU kids boy voice → Maxim | Farhod / Claude |
