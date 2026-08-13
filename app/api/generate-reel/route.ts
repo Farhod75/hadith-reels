@@ -142,7 +142,16 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
    nothing rather than supply one.
 10. If the hadith text is short, expand ONLY into documented historical context of
     the period. Do NOT compensate with narrative — a shorter story is correct;
-    an invented one is not.`
+    an invented one is not.
+11. Name narrators plainly - "narrated by Ibn Umar", nothing more. Do NOT add
+    epithets, honorific descriptions, family relationships, or standing among
+    the companions ("the great companion", "son of the second caliph", "one of
+    the closest companions"). Standard honorifics that follow a name in the
+    target language (RA, رضي الله عنه, розияллоҳу анҳу) are permitted.
+12. Use isnad verbs correctly. The Prophet ﷺ SAID the hadith; the companion
+    NARRATED or TRANSMITTED it. Never write that the Prophet ﷺ transmitted,
+    related, or passed on a hadith - in Russian use "сказал", not "передал"
+    or "рассказал"; the equivalent distinction applies in every language.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-4-6',

@@ -210,7 +210,14 @@ export default function AdminPage() {
     finally { setLoading(false) }
   }
 
-  useEffect(() => { if (authed) fetchHadiths() }, [filterGrade, lang])
+  // P108: clearing `selected` on lang change. The picker stores a snapshot of the
+  // hadith including text_display, which /api/reels resolves per language. Switching
+  // language after selecting left the old language's text in place — the RU #8
+  // caption shipped with English hadith text before this was caught.
+  useEffect(() => {
+    if (authed) fetchHadiths()
+    setSelected(null)
+  }, [filterGrade, lang])
 
   // ── Generate content ───────────────────────────────────────────────────────
   async function generate() {
