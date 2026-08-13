@@ -203,6 +203,8 @@ export default function AdminPage() {
     try {
       const params = new URLSearchParams({ lang, limit: '70' })
       if (filterGrade !== 'all') params.set('grade', filterGrade)
+      if (searchQ.trim()) params.set('q', searchQ.trim())
+      if (filterGrade !== 'all') params.set('grade', filterGrade)
       const res  = await fetch(`/api/reels?${params}`)
       const data = await res.json()
       setHadiths(data.reels || [])
@@ -214,10 +216,16 @@ export default function AdminPage() {
   // hadith including text_display, which /api/reels resolves per language. Switching
   // language after selecting left the old language's text in place — the RU #8
   // caption shipped with English hadith text before this was caught.
+  // P109: search now hits the server. The client-side `filtered` array only ever
+  // saw the 70 already-fetched rows and checked text/narrator/tags — never
+  // hadith_number — so "8" matched nothing while "salah" matched a loaded tag.
   useEffect(() => {
-    if (authed) fetchHadiths()
-    setSelected(null)
-  }, [filterGrade, lang])
+    if (!authed) return
+    const t = setTimeout(() => { fetchHadiths() }, 300)
+    return () => clearTimeout(t)
+  }, [filterGrade, lang, searchQ, authed])
+
+  
 
   // ── Generate content ───────────────────────────────────────────────────────
   async function generate() {
@@ -320,13 +328,11 @@ export default function AdminPage() {
   }
 
   // ── Filtered hadiths ───────────────────────────────────────────────────────
-  const filtered = hadiths.filter(h => {
-    if (!searchQ.trim()) return true
-    const q = searchQ.toLowerCase()
-    return (h.text_display || h.text_english).toLowerCase().includes(q) ||
-      h.narrator.toLowerCase().includes(q) ||
-      h.tags?.some(t => t.includes(q))
-  })
+  // P109: server-side search (q=) now does the filtering — /api/reels matches
+  // across all five text columns plus narrator, collection, and hadith_number.
+  // Re-filtering here dropped valid server results ("8" isn't in the text,
+  // narrator, or tags of hadith #8) and could only ever see the fetched page.
+  const filtered = hadiths
 
   // ─────────────────────────────────────────────────────────────────────────
   // LOGIN SCREEN
@@ -420,7 +426,7 @@ export default function AdminPage() {
                 <label className="text-xs text-slate-400 uppercase tracking-wide block mb-2">Language</label>
                 <div className="space-y-1">
                   {LANGS.map(l => (
-                    <button key={l.code} onClick={() => setLang(l.code)}
+                    <button key={l.code} onClick={() => { setLang(l.code); setSelected(null) }}
                       className={`w-full py-2 px-3 rounded-lg text-xs border text-left transition-colors ${
                         lang === l.code ? 'bg-indigo-600 text-white border-indigo-500' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}>
                       {l.flag} {l.label}

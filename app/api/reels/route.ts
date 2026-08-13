@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
       .from('hadith_library')
       .select('id, text_arabic, text_english, text_uzbek, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority', { count: 'exact' })
       .order('collection')
+      .order('hadith_number')
       .range(offset, offset + limit - 1)
 
     if (grade !== 'all') {
@@ -33,7 +34,9 @@ export async function GET(req: NextRequest) {
 
     // P089: server-side search across all languages + metadata (whole library)
     if (q) {
-      const esc = q.replace(/[%,]/g, ' ')  // strip wildcards/commas that break .or()
+      // P109: strip wildcards, commas, and leading #/" — users type "#salah" and
+      // "#8" naturally, but those characters reach Postgres literally and match nothing.
+      const esc = q.replace(/[%,]/g, ' ').replace(/["#]/g, '').trim()
       query = query.or(
         [
           `text_english.ilike.%${esc}%`,
@@ -44,6 +47,7 @@ export async function GET(req: NextRequest) {
           `narrator.ilike.%${esc}%`,
           `collection.ilike.%${esc}%`,
           `hadith_number.ilike.%${esc}%`,
+          //`tags.cs.{${esc}}`,
         ].join(',')
       )
     }
