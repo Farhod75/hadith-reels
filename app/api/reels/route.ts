@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
           `narrator.ilike.%${esc}%`,
           `collection.ilike.%${esc}%`,
           `hadith_number.ilike.%${esc}%`,
-          //`tags.cs.{${esc}}`,
+          `tags.cs.{${esc}}`,
         ].join(',')
       )
     }
