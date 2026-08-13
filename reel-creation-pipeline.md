@@ -1,257 +1,201 @@
-# HR Reel Creation Pipeline
+# reel-creation-pipeline.md
+# Hadith Reels — Production Pipeline
 
-End-to-end workflow for generating a Hadith Reel from admin UI to Telegram post.
+> **Owner:** Farhod Elbekov
+> **Last verified:** 2026-08-11 (kids path re-verified end to end on Bukhari #8)
+> **Companion docs:** `reel-tracker.md`, `fix_patterns.md`, `agent-architecture-roadmap.md`
 
-**Proven on:**
-- EN adults reel — May 14, 2026 (Fasting is a shield, Sahih al-Bukhari #1894)
-- UZ kids reel — May 15, 2026 (Tabassum — sadaqa, Jami at-Tirmidhi #1956)
+## Two pipelines
 
-Pipeline uses ffmpeg shell commands (NOT Remotion). Remotion compositions exist in repo but are not used in this flow.
+The channel produces two kinds of reel and they share almost nothing after the
+admin UI:
+
+| | Kids | Adults |
+|---|---|---|
+| Visual | Talking mascot (lamb), lip-synced | Animated scenes or looped background |
+| Renderer | `render-mascot-reel.ps1` | `render-reel.ps1` |
+| Subtitles | None | Whisper SRT (en/ru/ar only, P078) |
+| Wrapper | `make-kids-reel.ps1` — one command | None; run steps by hand |
+
+**The kids path below is current and verified. The adults path further down is
+older; treat it as a guide and verify against the scripts before relying on it.**
 
 ---
+
+# PART 1 — KIDS REELS (current)
 
 ## Prerequisites
 
-**Software (one-time setup):**
-- Node.js + npm (HR dev environment)
-- Python 3.10+ with `openai-whisper` package: `pip install openai-whisper`
-- FFmpeg installed at `C:\ffmpeg\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe` (or any path; add to PATH)
-
-**Environment:**
-- HR dev server running on port 3002 (`npm run dev`)
-- `.env.local` populated with `ELEVENLABS_API_KEY`, `OPENAI_API_KEY`, `ADMIN_PASSWORD` (quoted), Supabase keys
-
-**Assets (in `out/backgrounds/`):**
-- `garden.mp4` — kids reel background
-- `mosque.mp4` — adults reel background
-- Nasheed audio files: `nasheed-bg-1.mp3`, `mubarak-bg.mp3`, `path-to-jannah-bg.mp3`, `light-of-my-heart-bg.mp3`, `ramadan-bg.mp3`, `ramadan-1-bg.mp3`, `ramadan-2-bg.mp3`
-
----
-
-## Step 1 — Admin: generate content
-
-1. Open `localhost:3002/admin` in Chrome (regular, not incognito — hydration warnings noisy in regular but functional)
-2. Login with `ADMIN_PASSWORD` value
-3. Step 1 "Pick":
-   - Select **Style** (Adults / Kids)
-   - Select **Language** (EN / UZ / AR / RU / TJ)
-   - Find target hadith by number, tag, or text — click to select
-4. Step 2 "Generate":
-   - Click "Generate story + moral + seerah context"
-   - Wait ~30 sec for Claude (Sonnet) to produce: title, story (with appropriate Seerah source: Ar-Raheeq for EN/AR, Усваи Ҳасана for UZ/TJ/RU), moral lesson, social caption with attribution and hashtags
-5. Step 3 "Preview":
-   - Click "Generate Story narration" — produces story MP3 via TTS route
-   - **Right-click the audio player → "Save audio as..."** → save to `out/<style>-<lang>-narration-<keyword>.mp3` (e.g. `kids-uz-narration-tabassum.mp3`)
-   - Click "Generate Moral narration" — produces moral MP3
-   - Save to `out/moral-narration-<lang>-<keyword>.mp3`
-   - **Manual validation step:** listen to both. If pronunciation is unacceptable, retry the Generate button (Nova has run-to-run variance — sometimes second take is better). Accept when good enough or retries exhaust patience.
-
----
-## ⭐ Automated render (Steps 2–4 in ONE command) — Pillar 1
-
-Once both narration MP3s are saved with the naming convention, render the whole reel with one command — no need to run Steps 2–4 manually:
-
 ```powershell
 cd "C:\QA\Hadith verification AI app\hadith-reels"
-.\render-reel.ps1 -Style adults -Lang ru -Slug bukhari-1520 -Open
+npm run dev -- -p 3002          # separate window
+$env:FAL_KEY                     # must be ~69 chars; set permanently via
+                                 # [Environment]::SetEnvironmentVariable(...,'User')
 ```
 
-This does it all: concat story+moral → Whisper subtitles (auto-skipped for uz/tj per P078) → subtitle-review checkpoint (proofread before burn-in) → random-pick 3 Kaaba bg clips (resolution-guarded) → final merge with a random local nasheed + title overlay → reports MB and resolution.
+`make-kids-reel.ps1` validates all of this at Step 0 and fails loudly before
+spending anything.
 
-Flags: `-Nasheed <file>.mp3` (force a specific nasheed), `-NoReview` (skip the proofread pause), `-ForceNoSubs` (skip subtitles).
+## Folder layout (P106)
+out/
+├── backgrounds/ nasheeds + background video (shared, never moves)
+├── refs/ FLUX source stills, low-res mascot references
+├── data/ candidates.json, translations, sourcing state
+├── work/ CURRENT set only — {style}/{slug}/{lang}/
+├── published/ archive — same shape as work/
+└── _legacy/ tests and dead-convention files
 
-> Steps 2–4 below are the MANUAL commands this script automates — kept for reference/debugging. In normal use you do NOT run them by hand.
+assets/mascot/
+├── lamb-boy-mosque-night-v3.png 4K, moonlit mosque courtyard
+└── lamb-girl-garden-day-v2.png 4K, sunny mosque garden
 
----
-## Step 2 — Concatenate story + moral into one narration file
+Both mascot stills are committed. **Never let a source asset exist only inside a
+rendered video** — both were lost that way once and had to be recovered by
+extracting a 480p frame and regenerating at 4K in Nano Banana Pro (see P103).
 
-Combine the two audio files with a 1-second gap between them, so Whisper can transcribe both as one timeline.
+## Mascot rotation
+
+Alternate by hadith: boy → girl → boy. Voice follows the mascot (P104), so the
+mascot choice determines the voice in every language.
+
+| | girl lamb (female) | boy lamb (male) |
+|---|---|---|
+| EN | Danielle | Eric |
+| RU | Arabella Calm & Mature | Liam Youthful |
+| UZ | Mini | George |
+| TJ | Katherine Polished | Liam Viral |
+
+All ElevenLabs `eleven_v3`. OpenAI is fully retired from the TTS route.
+
+## Step 1 — Pick and generate
+
+`http://localhost:3002/admin` → login.
+
+- **Style:** Kids · **Mascot:** boy or girl · **Language**
+- Search by hadith number (exact), tag, narrator, collection, or text (P109)
+- Pick the hadith, then Generate
+
+**Switching language deselects the hadith** — by design (P108). Re-pick after
+switching, or the caption ships with the previous language's text.
+
+## Step 2 — Review the text (the step that catches everything)
+
+Every content defect this project has shipped was caught by a human reading the
+output. No test or gate has ever caught one. Read all three fields.
+
+- **Fabrication** — no invented occasion, setting, or audience. Most hadith have
+  no recorded occasion; "during a time when" is the softened form of the same
+  fabrication (P103)
+- **Narrator epithets** — "the great companion", "son of the second caliph".
+  Plain name only; honorifics (ра, رضي الله عنه, розияллоҳу анҳу) are fine (P108)
+- **Isnad verbs** — the Prophet ﷺ *said*; the companion *narrated*. Russian:
+  сказал, never передал/рассказал (P108)
+- **Grammar** — RU/UZ/TJ generations reliably contain 1-2 errors per set.
+  Recent: добрость→доброту, бандани→бандага, Равикунандаи→Ривоятгари,
+  столбов/столпов inconsistency
+- **No seerah attribution in captions** — removed in P105. If one appears, that's
+  a regression
+
+Fields are editable textareas. Fix inline; don't regenerate — regeneration
+reliably reintroduces the same errors.
+
+## Step 3 — Generate narrations
+
+Click Generate for Story and Moral. **The route writes both to disk
+automatically** (P106):
+out\work\kids{slug}{lang}\kids-{lang}-{slug}-story.mp3
+out\work\kids{slug}{lang}\kids-{lang}-{slug}-moral.mp3
+
+No download, no rename, no move. The ⬇ MP3 button still exists as a fallback.
+
+Listen to both. `eleven_v3` varies between takes; clicking Generate again gives
+a different one.
+
+## Step 4 — One command
 
 ```powershell
-$env:PATH += ";C:\ffmpeg\ffmpeg-master-latest-win64-gpl\bin"
-cd "C:\QA\Hadith verification AI app\hadith-reels"
-
-ffmpeg -y `
-  -i "out\<style>-<lang>-narration-<keyword>.mp3" `
-  -i "out\moral-narration-<lang>-<keyword>.mp3" `
-  -filter_complex "[0:a]apad=pad_dur=1[a0];[a0][1:a]concat=n=2:v=0:a=1[out]" `
-  -map "[out]" `
-  "out\<style>-<lang>-narration-<keyword>-full.mp3"
+.\make-kids-reel.ps1 -Lang ru -Slug bukhari-8 -Mascot girl -Nasheed ramadan-2-bg.mp3
 ```
 
-Verify file exists and has expected duration:
-```powershell
-Get-Item out\<style>-<lang>-narration-<keyword>-full.mp3 | Select-Object Name, Length
-```
+Chains: validate → concat (1s gap) → split if over 28s → fal Fabric lip-sync at
+720p per chunk → render. Pauses before Fabric (the only paid, irreversible step);
+`-Auto` skips the pause.
 
-Expected: ~100-200 KB for ~25-35 second audio.
+**Splitting** cuts at the story/moral silence, not at maximum length. If the
+story alone exceeds 28s the script stops with a clear message — shorten the text
+rather than splitting by hand. RU and UZ hit this regularly; EN rarely.
+
+Output: `out\work\kids\{slug}\{lang}\kids-{lang}-{slug}-mascot-reel.mp4`,
+1080×1920.
+
+## Step 5 — Watch
+
+- Audio through the full length, nothing clipped
+- The seam where clips join (mascot resets to the still — should land in silence)
+- Nasheed audible but under the voice
+- Headroom above the mascot's head stays stable (Fabric animates the whole frame,
+  so objects above the head drift with head motion)
+
+## Step 6 — Caption and publish
+
+Caption is generated deterministically (P106): title, hadith text in the target
+language, moral, reference, verify link, filtered tags. `TAG_BLOCKLIST` removes
+tags that pull the wrong audience (`date` → dating content, `hellfire` → metal).
+
+**Known gap:** collection and narrator stay Latin inside Cyrillic captions.
+Hand-correct to `📖 Сахих аль-Бухари №8, Ибн Умар` and the TJ/UZ equivalents.
+
+Publish order: Telegram → Instagram → TikTok → YouTube Shorts. YouTube needs
+title, description, and tags as separate fields, and Tags is under SHOW MORE at
+the bottom of the Details page.
+
+Then log in `reel-tracker.md` — row, duplicate-check index, theme coverage, asset
+reuse, production stats.
 
 ---
 
-## Step 3 — Whisper subtitles
+# PART 2 — ADULTS REELS (older; verify before relying on)
 
-```powershell
-whisper "out\<style>-<lang>-narration-<keyword>-full.mp3" `
-  --model small `
-  --language <lang> `
-  --output_format srt `
-  --output_dir "out" `
-  --word_timestamps True `
-  --max_line_width 35
-```
+Not re-verified in the 2026-08 sessions. The steps below reflect the last known
+state; check them against `render-reel.ps1` before a run.
 
-Where `<lang>` is one of: `en`, `uz`, `ru`, `tj` (Whisper uses `tg` internally for Tajik, but `uz` for Tajik often works too).
+- **Pillar 1:** looped background video from `out/backgrounds/`
+- **Pillar 2:** animated scenes — FLUX text-to-image (`generate-image.ps1`) →
+  human review → Kling image-to-video (`generate-scene.ps1`) → `render-reel.ps1`
+  with `-Scenes` (per-clip 1080×1920@30fps normalization)
+- Subtitles via Whisper, **en/ru/ar only** — auto-skipped for uz/tj (P078)
+- Voices: EN James, RU Abrar, UZ Opa Johann, TJ Meisam
 
-**Known issue:** Whisper transcribes Uzbek and Tajik in **Latin script**, not Cyrillic, regardless of input language. Latin output is acceptable for subtitles (Uzbeks read Latin officially since 1993). Cyrillic conversion is a post-Hajj enhancement.
-
-Verify SRT was created:
-```powershell
-Get-ChildItem out\<style>-<lang>-narration-<keyword>-full.srt | Select-Object Name, Length
-```
-
----
-
-## Step 4 — Final ffmpeg merge
-
-Combines: looping background video + narration + nasheed background music (volume 0.25) + subtitle overlay + "Hadith Reels" title text.
-
-```powershell
-ffmpeg -y `
-  -stream_loop -1 -i "out\backgrounds\<garden_or_mosque>.mp4" `
-  -i "out\<style>-<lang>-narration-<keyword>-full.mp3" `
-  -stream_loop -1 -i "out\backgrounds\<nasheed-file>.mp3" `
-  -filter_complex "[1:a]volume=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first[aout]" `
-  -vf "subtitles='out/<style>-<lang>-narration-<keyword>-full.srt':force_style='FontName=Arial,FontSize=22,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,Alignment=2,MarginV=80',drawtext=text='Hadith Reels <Kids or Adults>':fontsize=28:fontcolor=white:shadowcolor=black@0.9:shadowx=2:shadowy=2:box=1:boxcolor=black@0.4:boxborderw=8:x=(w-text_w)/2:y=30:font=Arial" `
-  -map 0:v -map "[aout]" `
-  -c:v libx264 -c:a aac -shortest `
-  -movflags +faststart `
-  "out\<style>-<lang>-<keyword>-reel.mp4"
-```
-
-**Variables to fill in per reel:**
-- Background video: `garden.mp4` for kids, `mosque.mp4` for adults
-- Nasheed file: pick from available list, vary per reel
-- Title text: "Hadith Reels Kids" or "Hadith Reels"
-
-Expected output: ~10MB MP4, 1080x1920 (vertical reel format from source), ~30 seconds duration.
-
----
-
-## Step 5 — Manual validation
-
-Open `out\<style>-<lang>-<keyword>-reel.mp4` in Windows Media Player or VLC. Check:
-
-- [ ] Audio plays (story + 1s gap + moral)
-- [ ] Background video visible and looping
-- [ ] Nasheed music audible but quiet under narration
-- [ ] Subtitles appear at correct timing
-- [ ] Title overlay readable
-- [ ] No visual glitches
-- [ ] Duration ≤ 60 seconds (Instagram/TikTok limit; Telegram unlimited)
-
-If any check fails, return to relevant earlier step.
-
----
-
-## Step 6 — Telegram post
-
-1. In admin Step 3, click **"Copy caption"** button — copies the auto-generated caption to clipboard
-2. Open Telegram → @SahihHadithReels (or via Telegram Desktop)
-3. Attach the MP4 file (drag-drop or paperclip → file)
-4. Paste the caption in the message field
-5. Verify caption shows: title, story, moral, attribution (collection + number + narrator + Seerah source), Verify link, hashtags
-6. Post
-
-**Cross-platform expansion (future):**
-- Instagram Reels: same MP4, copy caption, manual upload
-- TikTok: same MP4, modify hashtags
-- YouTube Shorts: same MP4, add title and description
-
----
-
-## Naming convention
-
-All reel artifacts in `out/` follow this pattern:
-
-```
-{style}-{lang}-{slug}-story.mp3        — story audio (from admin Step 2)
-{style}-{lang}-{slug}-moral.mp3        — moral audio (from admin Step 2)
-{style}-{lang}-{slug}-narration.mp3    — concatenated (render-reel.ps1 makes this)
-{style}-{lang}-{slug}-narration.srt    — Whisper subtitles (en/ru/ar only, per P078)
-{style}-{lang}-{slug}-reel.mp4         — final MP4
-```
-
-Where:
-- `{style}` ∈ {`kids`, `adults`}
-- `{lang}` ∈ {`en`, `uz`, `ru`, `tj`}  (AR skipped — not quality-checkable; was: en/uz/ar/ru/tj)
-- `{slug}` = collection-number, machine-dedupable (e.g. `bukhari-1520`, `tirmidhi-1956`)
-
-Example complete set for UZ kids tabassum reel:
-- `out/adults-ru-bukhari-1520-story.mp3`
-- `out/adults-ru-bukhari-1520-moral.mp3`
-- `out/adults-ru-bukhari-1520-narration.mp3`
-- `out/adults-ru-bukhari-1520-narration.srt`
-- `out/adults-ru-bukhari-1520-reel.mp4`
+**Open items on this path:** P100 (Whisper UTF-8 on Cyrillic) is session-only and
+not hardened in `render-reel.ps1`. R005 likely has the P099 frozen tail.
 
 ---
 
 ## Troubleshooting
 
-**ffmpeg not recognized:**
+**FAL_KEY 401** — key is wrong or truncated. Real keys are ~69 chars. Use single
+quotes when setting (`$env:FAL_KEY='...'`); double quotes interpolate `$`.
+
+**ffmpeg not recognized**
 ```powershell
 $env:PATH += ";C:\ffmpeg\ffmpeg-master-latest-win64-gpl\bin"
 ```
-(Permanent fix: add to system PATH via Environment Variables UI)
 
-**Whisper outputs Latin script for UZ/TJ (P078):**
-`render-reel.ps1` AUTO-SKIPS subtitles for uz/tj — only en/ru/ar get Whisper subs. Long-term path: Claude native audio input (Candidate 7) to fix UZ/TJ transliteration.
+**File locked on move/delete** — a persistent lock survives closing media players
+(antivirus or sync tool, same cause as the PowerShell silent-revert gotcha).
+Copy instead of moving; delete after a reboot.
 
-**Whisper call fails with "usage: ... --max_line_width requires --word_timestamps" (P081):**
-`--max_line_width` needs `--word_timestamps True` (they're a pair). render-reel.ps1 omits both and uses segment-level SRT (cleaner for reels). Don't half-remove paired flags.
+**PowerShell parse errors on a .ps1 you just edited** — check the file encoding.
+Windows-1252 mangles em dashes into bytes PowerShell can't parse inside strings.
+Save as UTF-8; prefer plain hyphens in PowerShell string literals.
 
-**Generated story has a grammar error (e.g. RU "Послание→Посланник"):**
-FIXED (P079) — story/moral/seerah are now EDITABLE textareas in admin Step 2. Just fix the text before generating audio; no regenerate cycle needed.
-
-**Whisper says "FP16 not supported on CPU":**
-Harmless warning. Uses FP32 instead. Slightly slower but accurate.
-
-**Audio pronunciation has accent issues (UZ/TJ):**
-Per P074, gpt-4o-mini-tts + instructions parameter mitigates ~80-90%. Persistent issues:
-- Retry Generate button (run-to-run variance)
-- Accept and ship; permanent fix is voice cloning post-Hajj
-- See `hr-ppd-spec.md` for phonetic dictionary backup approach
+**Repo file edits silently reverting** — never use PowerShell file APIs
+(`Set-Content`, `Add-Content`, `WriteAllText`) on repo files. VS Code only.
 
 ---
 
-## Future automation (Curator agent)
-**Status update (2026-06-11):** the render step is now AUTOMATED — `render-reel.ps1`
-turns the manual Steps 2–4 into one command (Pillar 1) and also stitches ordered
-animated scenes (Pillar 2, `-Scenes`). So the agent below no longer has to reinvent
-rendering; it would orchestrate the existing scripts. Remaining for a Curator agent:
+## Change log
 
-Per `hr-agent-fleet-roadmap.md`:
-- Orchestrator agent triggers daily cron at 06:00 UTC
-- Picks 1 hadith from `hadith_library`
-- Generates story + narrations
-- TTS-validating agent verifies pronunciation
-- Auto-renders MP4
-- Auto-posts to Telegram via Bot API
-- Logs to `hadith_reels` table
-
-The render-reel.ps1 / generate-scene.ps1 / generate-image.ps1 scripts become the agent's
-building blocks. See `animated-reel-scene-prompts.md` for Pillar 2 (animated) design + guardrails.
-
-## ════════════════════════════════════════════════════════
-## KIDS LANE — talking-mascot reels (added 2026-06-13)
-## ════════════════════════════════════════════════════════
-1. Library: ensure the hadith exists in hadith_library (4 lang) — add if missing.
-2. Admin (Kids/lang): generate story + moral -> VERIFY text (hard gate).
-3. TTS (kids voice per matrix) -> out/kids-{lang}-{slug}-story.mp3 + -moral.mp3
-4. Scene mascot: pick boy/girl to fit the hadith (assets/mascot/...-scene.png).
-5. Split: python split-narration.py --base kids-{lang}-{slug} --audio <story> <moral>
-6. Generate clips: loop generate-talking-clip.py over the chunks (same mascot).
-7. Render: .\render-mascot-reel.ps1 -Lang {lang} -Slug {slug} -Clips clip01.mp4,... [-Nasheed x.mp3]
-8. Output: out/kids-{lang}-{slug}-mascot-reel.mp4 -> human approval -> publish.
-
-Notes: one mascot + one voice per reel; Route-A scene motion coupling (keep
-objects off the head); subtitles skipped for uz/tj (P078).
+| Date | Change |
+|---|---|
+| 2026-08-11 | Rewritten. Kids path re-verified end to end on Bukhari #8. Removed the seerah-attribution instruction (P105 violation), the manual MP3 download step (P106), the P079 "not editable" note, and the dead `<keyword>-story-narration-<lang>` convention that contradicted the naming section below it. Adults path marked unverified. |
