@@ -185,6 +185,33 @@ Sample message (RU):
 
 (Don't send this without re-reading once fully awake post-Hajj.)
 
+## Related future series — standalone ayah reels
+
+Distinct from the dua series: reels built on a Qur'anic ayah that is NOT a dua
+(e.g. 41:35 on patience, 2:286 on hardship, 94:5-6 on ease after difficulty).
+
+**Why it needs its own treatment, not a hadith_library row:**
+Qur'an 41:35 was found sitting in `hadith_library` with `grade = 'sahih'`,
+`hadith_number = '41:35'`, and `narrator = 'Quran 41:35'` (removed 2026-08-11).
+Grading an ayah as sahih is a category error — hadith grading assesses the
+reliability of a transmission chain, and the Qur'an is mutawatir by definition,
+with no isnad to grade. On an app whose purpose is teaching what authentication
+means, that signal is actively confusing. It would also have been picked up by
+reel generation and cited as "this hadith is recorded in...".
+
+**Prerequisites before any ayah reel:**
+- Separate table or a `content_type` column — ayah rows must never carry a
+  hadith grade
+- Citation format: surah name + number:ayah, no narrator, no grade
+- generate-reel prompt handling: an ayah is Allah's speech, not a narration;
+  the seerah-source framing does not apply
+- Same Arabic recitation question as the dua series (see Option A/B/C above)
+- Tafsir sourcing rule — classical tafsir (Ibn Kathir, Tabari, Saadi) must be
+  cited, never paraphrased as though it were the ayah's plain meaning
+
+**Status:** idea only. Do not start before the dua series `duas` table exists —
+the schema work overlaps almost entirely.
+
 ## Change log
 
 | Date | Change | By |
