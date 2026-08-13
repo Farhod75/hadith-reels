@@ -124,7 +124,9 @@ RULES:
    a scene — describe the historical setting and the lesson in plain words
 6. seerah_context cites a real period ONLY if the sources tie this hadith to one.
    Otherwise state exactly three things and nothing more: the collection and book,
-   the narrator, and the classical scholarly reading of the hadith's meaning.
+   the narrator, and the established meaning of the hadith stated directly.
+   Do NOT attribute that meaning to "scholars", "the ulama", or any unnamed
+   authority — state the meaning itself, without a speaker.
    Do NOT add a period, setting, or occasion in softened form — phrases like
    "during a time when" or "in an era where" are occasions and are forbidden.
    Do NOT name a seerah source unless you are citing a specific documented
@@ -151,7 +153,19 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 12. Use isnad verbs correctly. The Prophet ﷺ SAID the hadith; the companion
     NARRATED or TRANSMITTED it. Never write that the Prophet ﷺ transmitted,
     related, or passed on a hadith - in Russian use "сказал", not "передал"
-    or "рассказал"; the equivalent distinction applies in every language.`
+    or "рассказал"; the equivalent distinction applies in every language.
+13. The divine name is FIXED per language and MUST NOT vary:
+    EN "Allah" · RU "Аллах" · UZ "Аллоҳ" · TJ "Аллоҳ" · AR "الله".
+    NEVER "God", "Бог", "Худо" or any other substitute. Exception: where the
+    hadith text itself says Rabb (Lord), translate it as Lord / Господь /
+    Парвардигор / Раббим — that is a different word in the source and is kept.
+14. NEVER invent a simile, metaphor, or comparison that is not in the hadith
+    text. Explaining what a term MEANS is permitted; inventing what it is LIKE
+    is fabrication. No "it is like standing near a warm light", no "like being
+    close to the sun", no "like a door being opened".
+15. NEVER reframe, soften, or invert the hadith's meaning. If the hadith states
+    a station of closeness, honour, or elevation, do not render it as lowly,
+    diminished, or reduced.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-4-6',

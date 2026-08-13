@@ -2302,3 +2302,72 @@ must normalize apostrophes (qo'shni → qoʻshni).
   CI E2E `BASE_URL` still points at production — tracked separately.
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 111: Prompt did not pin the divine name or block invented similes
+## ════════════════════════════════════════════════════════
+**ID:** P111
+**Type:** Content safety (prompt rules)
+**File:** app/api/generate-reel/route.ts
+**Commit:** fix: pin divine name per language, forbid similes and unsourced attribution (P111)
+
+**Symptom:**
+  Muslim #482 kids set, all four languages, caught at human review:
+  - EN rendered the divine name as "God" (7 occurrences incl. title);
+    TJ rendered it as "Худо" (6 occurrences incl. title).
+  - Every language invented a simile absent from the matn:
+    EN "like standing next to a warm, caring light"
+    UZ "sajda is like standing close to the sun — you feel its heat"
+    TJ "like a door of a house was opened — knock and make dua"
+  - RU, UZ and TJ opened the seerah block with unsourced authority
+    ("Учёные объясняют:", "Уламолар...", "Олимон...") naming no scholar.
+  - TJ additionally inverted the hadith's meaning, calling sujud
+    "поинтарин ҳолати бандагист" (the LOWEST station of servanthood).
+
+**Root cause:**
+  Three separate absences in the prompt, all confirmed by `git grep`:
+  1. Neither "Allah" nor "God" appears anywhere in the route. The divine
+     name was never pinned — every prior EN reel said "Allah" by chance,
+     not by rule. Nothing broke; the rule never existed.
+  2. P101 forbids invented incidents, attributed speech, inner states and
+     character descriptions. A SIMILE is none of those, so comparisons
+     invented by the model passed every existing rule. 4 of 4 languages
+     produced one — this is an unblocked category, not drift.
+  3. No rule forbids appealing to unnamed scholarly authority. Same class
+     as P105 (false source attribution), which covered credited books but
+     not vague "scholars say" framing.
+
+**Fix:**
+  Added to the prompt rules:
+  - Divine name is fixed per language and MUST NOT vary:
+      EN Allah · RU Аллах · UZ Аллоҳ · TJ Аллоҳ · AR الله
+    Never "God", "Бог", "Худо". Where the matn itself says *Rabb*,
+    translate as Lord (EN) / Господь (RU) / Парвардигор (TJ) — that is a
+    different word in the source and stays.
+  - No similes, metaphors or comparisons that are not in the matn.
+    Explaining what a word means is allowed; inventing what it is LIKE
+    is not.
+  - No appeal to unnamed authority. "Scholars say/explain/teach" is
+    forbidden unless a specific named source is cited and verified.
+    State the meaning directly instead.
+  - The seerah block must not reframe the hadith's meaning. Sujud is the
+    station of greatest CLOSENESS; do not render it as lowly or diminished.
+
+**Rule:**
+  A prohibition only blocks the categories it names. P101 enumerated four
+  fabrication types and the model routed around them into a fifth. When a
+  content rule is written, ask what ADJACENT form of the same fault it
+  leaves open — invented fact, invented quote, invented feeling, invented
+  comparison and invented authority are five distinct surfaces.
+  Corollary: a behaviour that has always been correct is not evidence of a
+  rule. Verify the rule exists before trusting the behaviour.
+
+**Detection:**
+  All four caught by human review before publish. No automated gate covers
+  any of these; the Auditor (agent-architecture-roadmap.md Phase 4) is
+  where they belong.
+
+**Related:** P101 (fabrication rules), P103 (rule conflict), P105 (false
+  source attribution).
+
+**Status:** FIXED
