@@ -36,6 +36,10 @@
 | R015 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | ru | Kids | bukhari-1417 | kids-ru-bukhari-1417-story.mp3 | kids-ru-bukhari-1417-moral.mp3 | kids-ru-bukhari-1417-narration.mp3 | kids-ru-bukhari-1417-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-ru-bukhari-1417-mascot-reel.mp4 | 29.5s | 7 MB | Boy lamb. FIRST reel on P104 mascot/voice split — Liam Youthful (male). RU kids migrated off OpenAI Nova; ElevenLabs now sole provider. First multi-clip mascot render; split-narration cut cleanly at story/moral seam (21.6s + 8.0s). Fixed "добрость"→"доброту". published TG/YT/IG/TikTok |
 | R016 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | uz | Kids | bukhari-1417 | kids-uz-bukhari-1417-story.mp3 | kids-uz-bukhari-1417-moral.mp3 | kids-uz-bukhari-1417-narration.mp3 | kids-uz-bukhari-1417-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-uz-bukhari-1417-mascot-reel.mp4 | 31.2s | 8.9 MB | Boy lamb; George (male, P104) — first Uzbek test for this voice, ҳ/қ/ғ/ж all clean. split-narration cut at 27.3s (mid-moral, greedy max-length) — recut manually at 21.8s to land on the story/moral silence. Fixed "бандани"→"бандага". published TG/YT/IG/TikTok |
 | R017 | 2026-08-10 | Sahih al-Bukhari #1417 | Adiy ibn Hatim | Sahih | Charity / Sadaqah | #charity #sadaqah #giving | tj | Kids | bukhari-1417 | kids-tj-bukhari-1417-story.mp3 | kids-tj-bukhari-1417-moral.mp3 | kids-tj-bukhari-1417-narration.mp3 | kids-tj-bukhari-1417-clip01.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-bukhari-1417-mascot-reel.mp4 | 27.3s | 8.1 MB | Boy lamb; Liam Viral (male, P104) — first Tajik test, ҳ/қ/ҷ/ғ/ӣ/ӯ clean. Completes the 4-language #1417 set. Cut a duplicate sourcing sentence from Story, which brought it under 28s and saved a split. Fixed "Равикунандаи"→"Ривоятгари"; dropped "саҳобаи бузург" per rule 9. published TG/YT/IG/TikTok |
+| R018 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | en | Kids | bukhari-8 | kids-en-bukhari-8-story.mp3 | kids-en-bukhari-8-moral.mp3 | kids-en-bukhari-8-narration.mp3 | kids-en-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-en-bukhari-8-mascot-reel.mp4 | 36.5s | 11.1 MB | GIRL LAMB returns (mascot rotation: #1417 boy → #8 girl). Girl still regenerated at 4K via Nano Banana Pro from the 480p out/refs reference and committed as lamb-girl-garden-day-v2.png. First reel produced by make-kids-reel.ps1 end to end; wrapper died at [4/4] on a PowerShell splat bug (P107) after both Fabric calls succeeded — rendered by hand, fix shipped same session. Voice Danielle. Files in out/work/ per P106. published TG/YT/IG/TikTok |
+| R019 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | ru | Kids | bukhari-8 | kids-ru-bukhari-8-story.mp3 | kids-ru-bukhari-8-moral.mp3 | kids-ru-bukhari-8-narration.mp3 | kids-ru-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-ru-bukhari-8-mascot-reel.mp4 | 33.7s | 9.6 MB | Girl lamb; Arabella Calm & Mature. First FULL wrapper run incl. render (P107 fix verified). Wrapper's seam check refused a 28.9s story twice — text trimmed rather than split by hand, which is the guard working as designed. Three regenerations reintroduced "Пророк ﷺ передал/рассказал" and companion epithets; fixed by hand, then prompt rules 11-12 added (P108). Caption initially shipped English hadith text from stale `selected` (P108). published TG/YT/IG/TikTok |
+| R020 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | uz | Kids | bukhari-8 | kids-uz-bukhari-8-story.mp3 | kids-uz-bukhari-8-moral.mp3 | kids-uz-bukhari-8-narration.mp3 | kids-uz-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-uz-bukhari-8-mascot-reel.mp4 | 34.3s | 10.4 MB | Girl lamb; Mini. Cleanest generation of the set — correct isnad verb ("айтдики") and no epithet, unprompted. Caption hadith text came back Latin against Cyrillic body; converted by hand. published TG/YT/IG/TikTok |
+| R021 | 2026-08-11 | Sahih al-Bukhari #8 | Ibn Umar | Sahih | Pillars of Islam | #pillars #salah #zakat #fasting #hajj | tj | Kids | bukhari-8 | kids-tj-bukhari-8-story.mp3 | kids-tj-bukhari-8-moral.mp3 | kids-tj-bukhari-8-narration.mp3 | kids-tj-bukhari-8-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-bukhari-8-mascot-reel.mp4 | 35.5s | 10.5 MB | Girl lamb; Katherine Polished. Completes the 4-language #8 set. Worst rule-9 breach of the session — narrator described as son of Umar ibn al-Khattab AND one of the greatest companions. Also "Равии"→"Ровии" and an ungrammatical opening ("Тасаввур кун хона дорад") caught by Farhod. published TG/YT/IG/TikTok |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -56,6 +60,7 @@
 | Sahih al-Bukhari #6009 | EN, RU, UZ, TJ | Kids | R006, R007, R008, R009 |
 | Sahih al-Bukhari #1 | EN, RU, UZ, TJ | Adults | R010, R011, R012, R013 |
 | Sahih al-Bukhari #1417 | EN, RU, UZ, TJ | Kids | R014, R015, R016, R017 |
+| Sahih al-Bukhari #8 | EN, RU, UZ, TJ | Kids | R018, R019, R020, R021 |
 
 ---
 
@@ -72,12 +77,13 @@
 | Dua / Supplication | 1 | R001 | RU |
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
 | Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
+| Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
 
 
 **Coverage gaps to consider for upcoming reels:**
 
 - ⚠️ Zakat / Wealth purification — partially covered; #1417 is from Kitab az-Zakat but framed as sadaqah, not zakat proper
-- ❌ Salah / Prayer — no reels yet
+- ⚠️ Salah / Prayer — covered within the Pillars set (R018-R021); no dedicated prayer reel yet
 - ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
 - ⚠️ Charity / Sadaqah — 5 reels (R003 smile-as-charity; R014–R017 full set)
 - ❌ Akhlaq / Patience / Anger management — no reels yet
@@ -106,7 +112,7 @@
 | light-of-my-heart-bg.mp3 | 2 | 2026-08-09 (R013) | R010, R013 |
 | ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 0 | Never | — |
-| ramadan-2-bg.mp3 | 4 | 2026-08-10 (R017) | R014, R015, R016, R017 |
+| ramadan-2-bg.mp3 | 8 | 2026-08-10 (R021) | R014, R015, R016, R017, R018–R021 |
 
 ### Mascot stills
 
@@ -114,8 +120,9 @@
 |---|---|---|
 | lamb-girl-garden-day-v1.png | 4 | R006, R007, R008, R009 |
 | lamb-boy-mosque-night-v3.png | 4 | R014, R015, R016, R017 |
+| lamb-girl-garden-day-v2.png | 4 | R018-R021 |
 
-**Note:** girl-lamb source PNG is NOT in the repo — recoverable only as a 480p frame from `out/talking/girl-garden-moral.mp4`. Regenerate at 4K via Nano Banana Pro before the next girl-lamb set (same method as the boy lamb, see P103).
+**Note:** girl-lamb source PNG is NOT in the repo — recoverable only as a 480p frame from `out/talking/girl-garden-moral.mp4`. Regenerate at 4K via Nano Banana Pro before the next girl-lamb set (same method as the boy lamb, see P103). the girl-lamb source now exists at 4K, so that warning is resolved.
 
 ### Background video clips (normalized library, 1080×1920)
 
@@ -142,16 +149,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 17 |
+| Total reels posted | 21 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
 | Adults reels | 9 |
-| Kids reels | 8 |
-| Avg duration | ~49s |
-| Avg file size | ~17 MB |
-| Hadiths used (unique) | 8 |
-| Hadith collections used | 2 (Sahih al-Bukhari ×15, Jami at-Tirmidhi ×2) |
-| Companions cited | 5 (Abu Hurairah ×7, Umar ibn al-Khattab ×4, Adiy ibn Hatim ×4, Abu Dharr ×1, Aisha ×1) |
+| Kids reels | 12 |
+| Avg duration | ~46s |
+| Avg file size | ~16 MB |
+| Hadiths used (unique) | 9 |
+| Hadith collections used | 2 (Sahih al-Bukhari ×19, Jami at-Tirmidhi ×2) |
+| Companions cited | 6 (Abu Hurairah ×7, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
 ---
 
@@ -190,3 +197,4 @@ Then update:
 | 2026-08-09 | R012 — Bukhari #1 UZ adults; P102 UZ/TJ moved to ElevenLabs v3 | Farhod / Claude |
 | 2026-08-09 | R013 — Bukhari #1 TJ adults; completes 4-lang set (was missing from this log) | Farhod / Claude |
 | 2026-08-10 | R014–R017 — Bukhari #1417 kids, 4 langs, first boy lamb + first 720p; P103 prompt fabrication fix, P104 mascot/voice split + OpenAI retired | Farhod / Claude |
+| 2026-08-11 | R018–R021 — Bukhari #8 kids, 4 langs, girl lamb; first full make-kids-reel.ps1 runs. P107 splat fix, P108 stale-selected + narrator/isnad prompt rules, P109 search wiring. Library cleanup: 4 duplicate rows removed, collection names normalised, Quran 41:35 removed | Farhod / Claude |
