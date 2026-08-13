@@ -2110,3 +2110,157 @@ must normalize apostrophes (qo'shni → qoʻshni).
 **Status:** SHIPPED 2026-08-11 — verified end to end on Al-Bayhaqi #2318 (TTS
   write) and Bukhari #1417 RU (caption). Wrapper validated through Step 0;
   full run pending the next hadith set.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 107: PowerShell splat by position bound to the wrong script
+## ════════════════════════════════════════════════════════
+**ID:** P107
+**Type:** Script defect
+**File:** make-kids-reel.ps1
+**Commit:** (P107 commit) — fix(pipeline): P107 - splat render args by name; Clips as array not joined string
+
+**Symptom:**
+  make-kids-reel.ps1 completed Fabric lip-sync then died at [4/4] with
+  "Cannot validate argument on parameter 'Lang'. The argument '-Lang' does not
+  belong to the set en,ru,uz,tj,ar". Both paid Fabric calls had already
+  succeeded, so nothing was lost — but the reel had to be rendered by hand.
+
+**Root cause:**
+  The render step built an array and splatted it:
+    $renderArgs = @('-Lang', $Lang, '-Slug', $Slug, '-Clips', $clipFiles)
+    & "$PSScriptRoot\render-mascot-reel.ps1" @renderArgs
+  Array splatting passes arguments POSITIONALLY. The literal string '-Lang'
+  landed in the first positional parameter, which is -Lang itself, so the
+  validator saw the flag name as the value.
+  Second defect in the same line: -Clips was passed as a comma-joined STRING
+  while render-mascot-reel.ps1 declares it [string[]].
+
+**Fix:**
+  Hashtable splatting, which binds by NAME:
+    $renderParams = @{ Lang = $Lang; Slug = $Slug; Clips = $clipFiles }
+    if ($Nasheed) { $renderParams['Nasheed'] = $Nasheed }
+    & "$PSScriptRoot\render-mascot-reel.ps1" @renderParams
+  $clipFiles is now a real array, not a joined string.
+
+**Rule going forward:**
+  In PowerShell, splat with a HASHTABLE when the target has named parameters.
+  Array splatting is positional and silently misbinds when the array contains
+  flag names.
+
+**Also:** the script file was first saved as Windows-1252, which mangled every
+  em dash into a byte sequence PowerShell could not parse inside strings
+  (10+ cascading parse errors). Repo .ps1 files must be UTF-8; prefer plain
+  hyphens over em dashes in PowerShell string literals.
+
+**Status:** FIXED — verified on kids-ru-bukhari-8 (full wrapper run, all 4 steps)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 108: Stale `selected` after language switch; narrator epithets and inverted isnad verbs
+## ════════════════════════════════════════════════════════
+**ID:** P108
+**Type:** State bug + prompt defect (extends P103)
+**Files:** app/admin/page.tsx, app/api/generate-reel/route.ts
+**Commit:** (P108 commit) — fix: P108 - clear selected on lang change; forbid narrator epithets and wrong isnad verbs
+
+**Symptom 1 — wrong-language hadith text in caption:**
+  The RU Bukhari #8 caption rendered with the ENGLISH hadith text while the
+  rest of the caption was Cyrillic. Caught before publishing.
+
+**Root cause 1:**
+  /api/reels resolves `text_display` per language (route.ts lines 66-73). The
+  picker stores a SNAPSHOT of the hadith in `selected` at click time. The
+  useEffect on [lang] refetched the list but never touched `selected`, so
+  selecting in EN and then switching to RU left English text in place.
+  P106's language-aware caption was correct; its input was stale.
+
+**Fix 1:**
+  Clear `selected` when the language button is clicked. NOT in a useEffect —
+  calling setState synchronously in an effect body triggers cascading renders
+  and React warns about it. The selection clears because the user changed
+  language, so the clear belongs in the click handler.
+
+**Symptom 2 — narrator epithets, every language:**
+  "сподвижник Ибн Умар", "Ибн Умар, сын второго халифа", "яке аз бузургтарин
+  саҳобаҳо", "one of the close companions of the Prophet ﷺ". Appeared in RU
+  (twice), TJ, and EN across the #8 set, and in TJ during the #1417 set
+  ("саҳобаи бузург").
+
+**Symptom 3 — inverted isnad verbs in Russian:**
+  "Пророк ﷺ передал нам" / "рассказал нам" in THREE consecutive Russian
+  generations. This inverts the chain of transmission: the Prophet ﷺ SAID the
+  hadith; the companion NARRATED it. In hadith terminology передал is what a
+  narrator does.
+
+**Root cause 2+3:**
+  Rule 9 forbids stating what a person felt, thought, saw, or DID. It does not
+  forbid describing WHO THEY WERE, and says nothing about which verb attaches
+  to whom in an isnad. Same shape as P103: the prohibition did not cover the
+  case, so the model filled the gap.
+
+**Fix 2+3 — two new prompt rules:**
+  Rule 11: name narrators plainly. No epithets, family relationships, or
+    standing among the companions. Standard honorifics that follow a name in
+    the target language (RA, رضي الله عنه, розияллоҳу анҳу) are permitted.
+  Rule 12: the Prophet ﷺ SAID; the companion NARRATED. Never write that the
+    Prophet ﷺ transmitted or related a hadith. In Russian: сказал, not
+    передал/рассказал.
+
+**Verified:** RU regeneration after the fix produced "Пророк ﷺ сказал" and
+  "Его передал Ибн Умар (ра)" — correct verb, plain narrator, honorific kept.
+
+**Note — metaphor drift was observed but NOT ruled on:**
+  History sections introduced a second metaphor competing with the Story's
+  (a "map" and "table legs" against an established house-and-pillars image).
+  Deliberately left unruled; the post-fix generation self-corrected to a
+  consistent metaphor, so a rule would have been premature.
+
+**Status:** FIXED — shipped 2026-08-11
+
+## ════════════════════════════════════════════════════════
+## PATTERN 109: Search box never called the API it was built for
+## ════════════════════════════════════════════════════════
+**ID:** P109
+**Type:** Wiring defect — feature existed, UI was never connected
+**Files:** app/api/reels/route.ts, app/admin/page.tsx
+**Commit:** (P109 commits) — fix: P109 - wire search box to server-side search
+
+**Symptom:**
+  Searching "8" or "#salah" in the admin returned 0 hadiths. Searching "salah"
+  worked. No pattern was obvious from the outside.
+
+**Diagnosis — the decisive observation:**
+  DevTools Network tab was EMPTY while typing. The search box never issued a
+  request. That single fact explained the whole pattern:
+  - `fetchHadiths()` built params with `lang` and `limit` only — never `q`
+  - a client-side `filtered` array checked text_display, narrator, and tags
+  - "salah" matched a TAG on rows already loaded, so it appeared to work
+  - "8" is not in any row's text, narrator, or tags, so it matched nothing
+  P089 built server-side search across all five text columns plus narrator,
+  collection, and hadith_number. The UI was never wired to it.
+  The client filter could also only ever see the 70 fetched rows — search
+  could not reach the rest of the library at all.
+
+**Fix:**
+  - fetchHadiths sends `q` when searchQ is non-empty
+  - useEffect refetches on [filterGrade, lang, searchQ] with a 300ms debounce
+  - `filtered` is now just `hadiths` — the server already applied the search;
+    re-filtering client-side dropped valid results
+  - strip `#` and `"` from the query: users type "#salah" and "#8" naturally,
+    and those characters reached Postgres literally and matched nothing
+  - added `tags.cs.{...}` to the .or() chain (tags were only ever searchable
+    via the client filter that was just removed)
+  - secondary sort by hadith_number (was ordered by collection alone, so rows
+    within a collection came back in insertion order)
+
+**Exact match on pure-digit queries:**
+  Substring matching on numbers does not scale — at 6k rows "1" would return
+  thousands. A query of only digits now uses .eq('hadith_number', q).
+  "8" returns 1 row; "salah" still returns 8. Text searches stay substring.
+
+**Lesson:**
+  When one search term works and another does not, check whether a request is
+  being made AT ALL before theorising about query syntax. Two wrong theories
+  (a malformed tags clause, then a broken .or() chain) were tested and
+  discarded before the empty Network tab settled it in seconds.
+
+**Status:** FIXED — shipped 2026-08-11
