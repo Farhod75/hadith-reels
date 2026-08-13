@@ -212,6 +212,59 @@ reel generation and cited as "this hadith is recorded in...".
 **Status:** idea only. Do not start before the dua series `duas` table exists —
 the schema work overlaps almost entirely.
 
+## Backlog — mascot expansion ideas (discussed 2026-08-11, not adopted)
+
+Recorded because this concept has now been lost twice to chat history. Nothing
+below is decided; the current pipeline (one lamb, boy/girl rotation per hadith)
+stays as is.
+
+### The concept
+Qur'anic animals as a recurring theme. Lamb remains the host; other animals
+appear when the hadith itself mentions or involves them (e.g. the dog given
+water in Bukhari #6009).
+
+### Why it's attractive
+The hard rule forbids depicting the Prophet ﷺ, prophets, angels, and named
+Sahaba. Animals are not covered by that rule, so an animal character is the only
+way to put a hadith's subject on screen without depicting a person.
+
+### Three shapes considered
+
+**A — animal present, does not speak.** Appears alongside the lamb, reacts,
+listens. The lamb narrates throughout. Safest; least engaging.
+
+**B — animal speaks as itself, never as narration.** "Salaam, I'm a dog — today's
+hadith is about someone who helped one like me" is framing. "I was thirsty that
+day" is fabricated testimony and forbidden. Hard line either way: the animal
+never narrates the hadith and never claims to have been present.
+
+**C — two speakers per reel.** One mascot narrates the story, a second delivers
+the moral. Mechanically the cheapest of the three: narration is already split
+into story and moral clips, and render-mascot-reel.ps1 already concatenates
+per-clip. Would need -Mascot to accept two values, and two voices per language
+(the P104 matrix already has both). Cost: the single-host identity dissolves —
+every reel becomes a duet and the lamb stops being the channel's face.
+
+**C+B combined** — lamb narrates the story, the animal delivers the moral, and
+the animal appears only when the hadith mentions it. Keeps the host role, gives
+the animal a speaking part with no fabrication risk, and needs no new pipeline.
+
+### Constraints if this is ever built
+- Animals tied to a specific prophet's narrative (the she-camel of Salih, the dog
+  of the Cave, the whale of Yunus) risk dragging that prophet into frame by
+  implication. Safer: creatures named in their own right — the bee (An-Nahl), the
+  ant, the spider (Al-Ankabut), birds.
+- Illustrating a hadith's *scene* (rather than characters talking to camera) is a
+  new fabrication surface. P101/P103 covered invented text; a generated scene
+  makes visual claims — the well, the time of day, what the animal did — none of
+  which are in the matn. A visual equivalent of those rules would have to exist
+  first.
+- Needs a rule for WHEN a guest appears, or it becomes decoration.
+
+**Status:** not adopted. Revisit only after the Auditor exists (see
+agent-architecture-roadmap.md Phase 4) — content-safety tooling should precede
+new content surfaces.
+
 ## Change log
 
 | Date | Change | By |
