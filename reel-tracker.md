@@ -44,6 +44,7 @@
 | R023 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | ru | Kids | muslim-482 | kids-ru-muslim-482-story.mp3 | kids-ru-muslim-482-moral.mp3 | kids-ru-muslim-482-narration.mp3 | kids-ru-muslim-482-clip01.mp4, clip02.mp4 | n/a (mascot spine) | path-to-jannah-bg.mp3 | No | kids-ru-muslim-482-mascot-reel.mp4 | 28.7s | 7.6 MB | Boy lamb. VOICE CHANGED: Liam Youthful produced a steady background hum in the raw ElevenLabs mp3 before any nasheed mix; EN was clean, isolating it to the voice. Replaced with Maxim Calm & Neutral (HcaxAsrhw4ByUo4CBCBN) after audition — P112. Seerah block opened with unsourced "Учёные объясняют" — removed by hand, covered by P111. Divine name held correctly here; «Господу» kept as the correct rendering of Rabb. published TG/IG/TikTok/YT |
 | R024 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | uz | Kids | muslim-482 | kids-uz-muslim-482-story.mp3 | kids-uz-muslim-482-moral.mp3 | kids-uz-muslim-482-narration.mp3 | kids-uz-muslim-482-clip01.mp4 | n/a (mascot spine) | light-of-my-heart-bg.mp3 | No | kids-uz-muslim-482-mascot-reel.mp4 | 23.1s | 7.0 MB | Boy lamb; George. Single clip — 23.1s under the 28s Fabric cap, no split, no seam. Shortest reel of the set. Invented simile again ("сажда — худди қуёшга яқин туриш кабидир", with felt heat) plus unsourced "Уламолар..." — both removed by hand. Caption pulled text_uzbek (Latin) into an otherwise-Cyrillic body; swapped to text_uzbek_cyrillic. DB row verified clean pre-production: mixed_script false, okina intact in the Latin column. published TG/IG/TikTok/YT |
 | R025 | 2026-08-13 | Sahih Muslim #482 | Abu Hurairah | Sahih | Sujud / Dua | #dua #sujud #prayer #salah #closeness | tj | Kids | muslim-482 | kids-tj-muslim-482-story.mp3 | kids-tj-muslim-482-moral.mp3 | kids-tj-muslim-482-narration.mp3 | kids-tj-muslim-482-clip01.mp4 | n/a (mascot spine) | ramadan-2-bg.mp3 | No | kids-tj-muslim-482-mascot-reel.mp4 | 26.0s | 7.4 MB | Boy lamb; Liam Viral. Single clip, no split. Completes the 4-language #482 set. Worst generation of the session — three distinct defects: invented simile ("мисли он аст, ки дари хона кушода шуд"), unsourced "Олимон...", and a MEANING INVERSION calling sujud "поинтарин ҳолати бандагист" (the lowest station) when the hadith describes the closest. Divine name also drifted to "Худо" (6×, incl. title). All hand-fixed; prompt rule 15 added for the inversion (P111). published TG/IG/TikTok/YT |
+| R026 | 2026-08-13 | Sunan Abu Dawud #3641 | Abu Darda | Sahih | Knowledge / Ilm | #knowledge #ilm #scholar #worship #learning | en | Adults | abudawud-3641 | adults-en-sunan-abu-dawud-3641-story.mp3 | adults-en-sunan-abu-dawud-3641-moral.mp3 | adults-en-abudawud-3641-narration.mp3 | ad3641-stars.mp4, ad3641-moon.mp4, ad3641-rahle.mp4, ad3641-window.mp4 | adults-en-abudawud-3641-narration.srt | ramadan-1-bg.mp3 | Yes | adults-en-abudawud-3641-reel.mp4 | 59.1s | 16.6 MB | FIRST ADULTS REEL SINCE AUG 9 — verified the animated path end to end after it was marked unverified in the pipeline doc. Voice ???. New companion (Abu Darda, 7th on the channel) and first Knowledge/Ilm theme. FOUR NEW KLING SCENES generated for this reel (stars → moonrise → manuscript → moonlit window), all MODE B, no figures: the hadith's own moon-over-stars image carried the visuals, so no simile had to be invented (P111 rule 14 satisfied by the matn itself). FLUX needed three rounds on the manuscript — negations ("no decorative borders") reinforced what they forbade; positive description (irregular line lengths, marginal annotations, ink blots, "a student's working notes") produced the notebook register wanted, away from a mushaf layout. Page turned by draft rather than hands, removing the last human element. Kling output 24fps as P082 predicted; -Scenes normalized it. Seerah block named Ar-Raheeq Al-Makhtum while stating nothing was found in it — removed by hand (P105 class: crediting a source not used). Render required hand-copying narration and scenes into pre-restructure paths; root cause shipped as P113. published TG/IG/TikTok/YT |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -66,6 +67,7 @@
 | Sahih al-Bukhari #1417 | EN, RU, UZ, TJ | Kids | R014, R015, R016, R017 |
 | Sahih al-Bukhari #8 | EN, RU, UZ, TJ | Kids | R018, R019, R020, R021 |
 | Sahih Muslim #482 | EN, RU, UZ, TJ | Kids | R022, R023, R024, R025 |
+| Sunan Abu Dawud #3641 | EN | Adults | R026 |
 
 ---
 
@@ -84,6 +86,7 @@
 | Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
 | Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
 | Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
+| Knowledge / Ilm | 1 | R026 | EN |
 
 
 **Coverage gaps to consider for upcoming reels:**
@@ -117,7 +120,7 @@
 | nasheed-bg-1.mp3 | 2 | 2026-08-13 (R022) | R012, R022 |
 | light-of-my-heart-bg.mp3 | 3 | 2026-08-13 (R024) | R010, R013, R024 |
 | ramadan-bg.mp3 | 4 | 2026-06-14 (R009) | R006, R007, R008, R009 |
-| ramadan-1-bg.mp3 | 0 | Never | — |
+| ramadan-1-bg.mp3 | 1 | last used 2026-08-13 (R026)| — |
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 
 ### Mascot stills
@@ -140,6 +143,10 @@
 | kaaba-crowd.mp4 | TBD | TBD |
 | Kaaba-drone.mp4 | TBD | TBD |
 | makka-tower.mp4 | TBD | TBD |
+| ad3641-stars.mp4 | 1 | R026 |
+| ad3641-moon.mp4 | 1 | R026 |
+| ad3641-rahle.mp4 | 1 | R026 |
+| ad3641-window.mp4 | 1 | R026 |
 
 **Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
 
@@ -155,16 +162,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 25 |
+| Total reels posted | 26 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
-| Adults reels | 9 |
+| Adults reels | 10 |
 | Kids reels | 16 |
 | Avg duration | ~43s |
 | Avg file size | ~15 MB |
-| Hadiths used (unique) | 10 |
-| Hadith collections used | 3 (Sahih al-Bukhari ×19, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
-| Companions cited | 6 (Abu Hurairah ×11, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Hadiths used (unique) | 11 |
+| Hadith collections used | 4 (Sahih al-Bukhari ×19, Sahih Muslim ×4, Jami at-Tirmidhi ×2, Sunan Abu Dawud ×1) |
+| Companions cited | 7 (Abu Hurairah ×11, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Darda ×) |
 
 ---
 
@@ -205,3 +212,4 @@ Then update:
 | 2026-08-10 | R014–R017 — Bukhari #1417 kids, 4 langs, first boy lamb + first 720p; P103 prompt fabrication fix, P104 mascot/voice split + OpenAI retired | Farhod / Claude |
 | 2026-08-11 | R018–R021 — Bukhari #8 kids, 4 langs, girl lamb; first full make-kids-reel.ps1 runs. P107 splat fix, P108 stale-selected + narrator/isnad prompt rules, P109 search wiring. Library cleanup: 4 duplicate rows removed, collection names normalised, Quran 41:35 removed | Farhod / Claude |
 | 2026-08-13 | R022–R025 — Sahih Muslim #482 kids, 4 langs, boy lamb; first non-Bukhari collection in the kids lane. P110 CI gate, P111 divine name + simile + attribution rules, P112 RU kids boy voice → Maxim | Farhod / Claude |
+| 2026-08-13 | R026 — Abu Dawud #3641 EN adults, 4 new Kling scenes, first Ilm theme; P113 adults work-tree fix | Farhod / Claude |
