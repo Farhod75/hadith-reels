@@ -62,12 +62,15 @@ function Ok   ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die  ($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
 
 $base    = "$Style-$Lang-$Slug"
-$story   = "out\$base-story.mp3"
-$moral   = "out\$base-moral.mp3"
-$narr    = "out\$base-narration.mp3"
-$srt     = "out\$base-narration.srt"
-$bgMixed = "out\backgrounds\$base-bg-mixed.mp4"
-$reel    = "out\$base-reel.mp4"
+$workDir = "out\work\$Style\$Slug\$Lang"
+New-Item -ItemType Directory -Force $workDir | Out-Null
+
+$story   = "$workDir\$base-story.mp3"
+$moral   = "$workDir\$base-moral.mp3"
+$narr    = "$workDir\$base-narration.mp3"
+$srt     = "$workDir\$base-narration.srt"
+$bgMixed = "$workDir\$base-bg-mixed.mp4"
+$reel    = "$workDir\$base-reel.mp4"
 $normDir = "out\backgrounds\new\normalized"
 
 # subtitles routing per P078: Latin transliteration breaks UZ/TJ -> skip

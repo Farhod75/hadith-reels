@@ -2413,3 +2413,59 @@ must normalize apostrophes (qo'shni → qoʻshni).
   P084/P085 (wrong-voice routing).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 113: Adults render path never received the P106 work-tree restructure
+## ════════════════════════════════════════════════════════
+**ID:** P113
+**Type:** Pipeline drift (path convention)
+**File:** render-reel.ps1
+**Commit:** fix: render-reel.ps1 reads and writes the per-reel work tree (P113)
+
+**Symptom:**
+  First adults reel since the out/ restructure (Sunan Abu Dawud #3641, EN)
+  could not be rendered without hand-copying files. render-reel.ps1 still
+  used the pre-restructure flat convention:
+    expected  out\adults-en-abudawud-3641-story.mp3
+    actual    out\work\adults\sunan-abu-dawud-3641\en\...-story.mp3
+  and wrote all six artifacts back to flat out\ and out\backgrounds\,
+  requiring four manual Move-Item calls after the render to reassemble
+  the set in one folder.
+
+**Root cause:**
+  P106 restructured out/ into out/work/{style}/{slug}/{lang}/ and pointed
+  the KIDS pipeline (render-mascot-reel.ps1, the TTS route) at the new
+  tree. render-reel.ps1 — the ADULTS path — was not updated, because no
+  adults reel was produced between the restructure and today. The drift
+  was invisible for four days and surfaced only on first use.
+
+**Fix:**
+  render-reel.ps1 now derives $workDir = out\work\{Style}\{Slug}\{Lang},
+  creates it if absent, and resolves story/moral/narration/srt/bg-mixed/
+  reel against it. $normDir (shared scene clips) deliberately unchanged —
+  scene clips are shared assets, not per-reel artifacts.
+
+**Rule:**
+  A restructure is not complete until every consumer of the old layout is
+  migrated. When a path convention changes, enumerate ALL scripts that
+  read or write those paths — not just the ones in the current session's
+  workflow. A path convention that only half the pipeline knows is worse
+  than the old one, because the working half hides the broken half until
+  the next time you use it.
+
+**Related gaps found in the same session (NOT fixed here):**
+  - TTS route derives a different slug for adults ("sunan-abu-dawud-3641")
+    than the render convention and the tracker ("abudawud-3641"). Two names
+    for one hadith breaks machine dedup. Needs one canonical rule.
+  - -Scenes resolves clip names only against normalized\, though animated
+    mode normalizes internally; Kling output lands in new\ and must be
+    copied by hand.
+  - Burned subtitles are oversized — they cover the generated scene
+    imagery. Reduce ~20% from the next reel.
+  - No convention for the Prophet ﷺ in burned subtitles: this reel shows
+    both the symbol and the spoken "peace be upon him".
+
+**Related:** P106 (out/ restructure + TTS to disk), P082 (per-clip
+  normalization in -Scenes mode).
+
+**Status:** FIXED
