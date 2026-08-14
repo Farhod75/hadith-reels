@@ -2469,3 +2469,54 @@ must normalize apostrophes (qo'shni → qoʻshni).
   normalization in -Scenes mode).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 114: Whisper crashed on Cyrillic; SRT still written to the pre-restructure path
+## ════════════════════════════════════════════════════════
+**ID:** P114
+**Type:** Encoding + path drift (render pipeline)
+**File:** render-reel.ps1
+**Commit:** fix: force UTF-8 for Whisper and write the SRT to the work tree (P114)
+
+**Symptom:**
+  First Cyrillic adults reel since the restructure (Abu Dawud #3641, RU)
+  died at Step 5:
+    UnicodeEncodeError: 'charmap' codec can't encode characters in
+    position 27-32 ... whisper/transcribe.py line 482, print(make_safe(line))
+  followed by "Skipping <narration>.mp3 due to UnicodeEncodeError" and a
+  hard fail on the missing SRT.
+
+**Root cause (two independent bugs, one edit):**
+  1. Whisper prints transcription progress to stdout. On Windows the child
+     process inherits a CP1252 console codec, which cannot encode Cyrillic,
+     so transcribe.py raises inside its own PROGRESS PRINT and abandons the
+     file. The transcription itself was never the problem — the crash is in
+     display, not in ASR. Known since P100 as a manual PYTHONIOENCODING
+     workaround that was never hardened into the script.
+  2. P113 migrated the script's path variables to the work tree but missed
+     the literal `--output_dir "out"` on the whisper invocation. Whisper
+     would have written the SRT to flat out\ while $srt pointed at the work
+     tree, so the Test-Path guard would have failed even after fix 1.
+     EN never exposed this because Latin output never reached bug 1.
+
+**Fix:**
+  Set $env:PYTHONIOENCODING = 'utf-8' around the whisper call (saved and
+  restored, same discipline as the existing $ErrorActionPreference flip
+  from P083), and changed --output_dir from "out" to "$workDir".
+
+**Rule:**
+  A crash inside a progress print is not a failure of the work — check
+  WHERE in the traceback the exception is raised before assuming the task
+  itself is unsupported. And: a path migration is not verified until it has
+  been run in every branch. P113 was tested on EN, which skips the whisper
+  branch entirely on Latin-script success; the untested branch carried the
+  miss for a full session.
+
+**Verified:** RU render completed end to end — SRT produced in the work
+  tree, Cyrillic intact, subtitles burned, reel at 48.4s / 13.9 MB.
+
+**Related:** P100 (original Cyrillic crash, workaround only), P113 (work
+  tree migration), P083 (whisper stderr under ErrorActionPreference Stop),
+  P078 (UZ/TJ subtitle skip).
+
+**Status:** FIXED

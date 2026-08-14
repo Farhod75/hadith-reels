@@ -146,8 +146,14 @@ if ($useSubs) {
     # flip to 'Continue' around the call (same pattern as Run()) and rely on the SRT check.
     $prevEAP = $ErrorActionPreference
     $ErrorActionPreference = 'Continue'
-    & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "out" 2>&1 |
-      ForEach-Object { if ("$_" -match 'Warning|FP16|usage:') {} else { Write-Host "        $_" -ForegroundColor DarkGray } }
+    # P100: whisper prints progress lines to stdout; on Windows the console codec is
+    # CP1252, so Cyrillic output raises UnicodeEncodeError inside transcribe.py and the
+    # transcription is abandoned. Forcing UTF-8 on the child process fixes it.
+    $prevPyIO = $env:PYTHONIOENCODING
+    $env:PYTHONIOENCODING = 'utf-8'
+    & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "$workDir" 2>&1 |
+      ForEach-Object { if ("$_" -match 'Warning|FP16|usage:') {} else { Write-Host "   $_" -ForegroundColor DarkGray } }
+    $env:PYTHONIOENCODING = $prevPyIO
     $ErrorActionPreference = $prevEAP
     if (-not (Test-Path $srt)) { Die "Whisper did not produce $srt (run it manually to see the error)" }
     Ok "$srt"
