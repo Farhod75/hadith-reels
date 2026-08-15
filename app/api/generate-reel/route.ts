@@ -130,7 +130,12 @@ RULES:
    Do NOT add a period, setting, or occasion in softened form — phrases like
    "during a time when" or "in an era where" are occasions and are forbidden.
    Do NOT name a seerah source unless you are citing a specific documented
-   passage from it about THIS hadith.
+   passage from it about THIS hadith. This applies to NEGATIVE statements
+   too — do not write that a source contains nothing, records no occasion,
+   or does not tie the hadith to a period. Naming a book you did not cite
+   implies you consulted it. If there is no occasion, say nothing about
+   sources at all: state the collection, the narrator, and the meaning,
+   and stop.
 
 ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 7. NEVER invent an incident, scene, or conversation that is not in the hadith text

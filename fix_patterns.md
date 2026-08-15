@@ -2520,3 +2520,64 @@ must normalize apostrophes (qo'shni → qoʻshni).
   P078 (UZ/TJ subtitle skip).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 115: Seerah source named in a negative claim
+## ════════════════════════════════════════════════════════
+**ID:** P115
+**Type:** Content safety (prompt rules)
+**File:** app/api/generate-reel/route.ts
+**Commit:** fix: forbid naming a seerah source in negative statements (P115)
+
+**Symptom:**
+  Abu Dawud #3641 produced the same defect in three of four languages,
+  caught at human review:
+    EN  "Neither this narration nor any passage in Ar-Raheeq Al-Makhtum
+         ties it to a specific occasion, setting, or audience..."
+    RU  "Ни сам хадис, ни «Усваи Ҳасана» не указывают на конкретный повод..."
+    TJ  "Манбаи Усваи Ҳасана рабти мушаххасеро бо ин ҳадис сабт накардааст..."
+  Each names a seerah book that was never consulted, in a sentence whose
+  only content is that the book contains nothing. A viewer reads this as
+  "we checked Ar-Raheeq Al-Makhtum" — a claim the pipeline cannot stand
+  behind. The RU instance additionally spelled the title with Tajik
+  letters inside Russian text.
+
+**Root cause:**
+  Rule 6 said: do not name a seerah source unless citing a specific
+  documented passage from it. The model satisfied this literally by naming
+  the source in a NEGATIVE claim — no passage is cited because the
+  sentence asserts there is none. The prohibition was written against
+  false positive citation and left false *implied consultation* open.
+  Same class as P111: a rule blocks only the category it names, and the
+  model routes into the adjacent one.
+
+  Note the rule was working in the sense that mattered most — no occasion
+  was invented, which is what P103 was for. The failure was in how the
+  refusal got narrated.
+
+**Fix:**
+  Extended rule 6: the prohibition now covers negative statements
+  explicitly — a source may not be named to say it contains nothing,
+  records no occasion, or does not tie the hadith to a period. Naming a
+  book you did not cite implies you consulted it. When there is no
+  occasion, say nothing about sources at all: collection, narrator,
+  meaning, stop.
+
+**Rule:**
+  A citation rule must cover the absence case. "Only cite what you
+  consulted" and "do not name what you did not consult" are different
+  rules, and a model will find the gap between them. When writing any
+  prohibition, ask what the model can still say that satisfies the letter
+  while producing the same false impression.
+  Also: narrating a refusal is itself content. The audience does not need
+  to hear which sources were searched and came back empty.
+
+**Detection:**
+  Human review, three languages of four. No automated gate covers this;
+  it is a candidate check for the content linter (deterministic: a known
+  seerah title appearing in the same sentence as a negation).
+
+**Related:** P111 (divine name / simile / unnamed authority), P105 (false
+  source attribution), P103 (rule conflict on occasions).
+
+**Status:** FIXED
