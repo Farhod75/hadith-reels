@@ -137,6 +137,22 @@ Catches the Latin-in-Cyrillic class of defect seen in R024 and R028 captions —
 different surface, same root cause: the wrong column or the wrong script reached
 the output.
 
+### Step 5b — Homoglyph detection
+
+Flag any word containing both Cyrillic characters and a Latin character that is
+visually identical to a Cyrillic one (a/а, c/с, e/е, o/о, p/р, x/х, y/у and the
+uppercase set). Report `homoglyph`, severity high, with the corrected spelling.
+
+**Grounding case (R027 RU, found 2026-08-15):** the human-corrected SRT
+contained `умaляет` with a Latin `a` and `знаниe` with a Latin `e`. Both were
+introduced during subtitle review by typing Cyrillic on a Latin keyboard layout.
+Both are burned into the published reel. They render identically on screen, so
+no reviewer can see them — but the words are unsearchable and fail every text
+comparison. This class of defect is invisible to human review by construction,
+which is the strongest argument for running this check.
+
+Applies only when the source text is predominantly Cyrillic.
+
 ### Step 6 — Prophet symbol convention
 
 `cleanForTTS()` converts ﷺ to spoken words before TTS, so Whisper transcribes
@@ -255,7 +271,14 @@ No finding blocks in v1. The human gate in `render-reel.ps1` is the block.
 - Reuses the S:/M:/H:/C: block parser from `scripts/lint-content.py` so the two
   agents read the same `draft.txt` format
 
-Stubs in v1. To be generated once this SKILL.md is approved.
+`scripts/stt-validate.py` is IMPLEMENTED (2026-08-15) and covers Steps 1–7 in a
+single file — `align.py` was not needed. Offline, no API calls. Validated
+against R027's SRT in three states: raw (finds the three Whisper defects),
+human-corrected (zero findings), and as-shipped (finds both homoglyphs).
+
+Known limitation: an inflection error on a word that appears elsewhere in the
+source in another form is not caught — `Знание` → `Знания` passed because
+`знания` occurs earlier. Lemmatisation would fix it; deferred.
 
 ## Governance compliance
 
