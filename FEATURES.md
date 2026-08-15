@@ -52,3 +52,46 @@ positives on the clean R029 TJ generation.
 not that the text is correct. Human review remains the gate. The `inversion`
 check is the weakest (word list only). Does not check translation accuracy,
 isnad verbs, or anything the reel's meaning depends on.
+
+### Subtitle validator (`scripts/stt-validate.py`)
+
+Diffs a Whisper-generated `.srt` against the narration text it was transcribed
+from. Not blind speech-to-text validation — the source text is known exactly, so
+the primary method is word-level alignment, not similarity scoring.
+
+| Check | Catches |
+|---|---|
+| `srt_malformed` | Unparseable cues, bad timestamps, empty text |
+| `timing_overlap` / `cue_too_short` | Overlapping or sub-0.3s cues |
+| `srt_exceeds_audio` | SRT longer than the narration — usually a stale file |
+| `split_or_merged` | One source word became two, or vice versa |
+| `unknown_word` | A word in the subtitle that is nowhere in the source |
+| `capitalised_non_source` | Whisper inventing a proper noun from a common word |
+| `near_miss` | Edit distance 1–2 — different word, changed meaning |
+| `homoglyph` | Latin characters hiding inside Cyrillic words |
+| `script_mismatch` | Latin runs in an otherwise-Cyrillic file |
+| `p078_violation` | An SRT exists for a language that should skip subtitles |
+
+Usage — run at the `render-reel.ps1` subtitle review gate:
+
+```powershell
+python scripts\stt-validate.py --srt "<...>-narration.srt" --source draft.txt --lang ru --narration "<...>-narration.mp3"
+```
+
+Offline: no API calls, no cost, deterministic. Runs only for `en`, `ru`, `ar`
+per P078.
+
+**Why alignment rather than similarity:** R027's SRT scored 0.974 whole-text
+similarity while containing `благороднейших в Диянии` for `благороднейших
+деяний` — a common noun split into a preposition plus a capitalised non-word.
+Any threshold check passes that file. Alignment flags it three ways.
+
+**Found in production on first real run:** `умaляет` and `знаниe` in the
+published R027 subtitles, each carrying one Latin homoglyph introduced during
+hand-correction on a Latin keyboard layout. They render identically on screen
+and are invisible to human review by construction.
+
+**Limits:** warn-only, never edits. An inflection error on a word appearing
+elsewhere in another form is not caught (`Знание` → `Знания` passed because
+`знания` occurs earlier). Does not judge translation accuracy — only fidelity to
+the source.

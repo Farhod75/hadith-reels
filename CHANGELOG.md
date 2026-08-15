@@ -1,6 +1,11 @@
 
 ## [2026-08-15]
+
 ### Added
+- `scripts/stt-validate.py` — offline subtitle validator diffing the
+  Whisper SRT against its source narration text. Word-level alignment plus
+  homoglyph detection. Found two Latin homoglyphs in published R027 subtitles
+  on first run.
 - `scripts/lint-content.py` — warn-only content linter running five
   deterministic checks (divine name, unnamed authority, seerah source, simile
   vs matn, meaning inversion) on generated text before TTS. Encodes P105, P111

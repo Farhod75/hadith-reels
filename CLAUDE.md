@@ -233,6 +233,18 @@ npm run test:multilingual
 7. A clean run means these five checks passed. It does NOT mean the text is
    correct — read it yourself. Human review is still the gate.
 
+### Workflow F — Validate subtitles at the render gate
+1. `render-reel.ps1` pauses at "REVIEW SUBTITLES before they are burned"
+2. In a second terminal, run:
+   `python scripts\stt-validate.py --srt "<srt>" --source draft.txt --lang <lang> --narration "<mp3>"`
+3. `draft.txt` must hold the SAME language's S:/M: blocks as the SRT — a
+   mismatch shows as ~0.01 similarity
+4. Fix every HIGH in VS Code, save, then press ENTER at the gate
+5. Type Cyrillic corrections on a Cyrillic layout — Latin homoglyphs are
+   invisible on screen and the check exists because they shipped once
+6. Warn-only. A clean run means these checks passed, not that the subtitles are
+   correct — read them
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)
