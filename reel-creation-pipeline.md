@@ -194,6 +194,43 @@ Save as UTF-8; prefer plain hyphens in PowerShell string literals.
 
 ---
 
+## Audio policy — background beds
+
+**Rule:** background audio must be vocal-only nasheed (voice, or voice + daf)
+or non-musical ambience. No string, wind, or keyboard instruments — no lute,
+oud, ney, flute, synth, or electric piano.
+
+**Why:** a viewer raised this on the Abu Dawud #3641 EN reel (YouTube,
+2026-08-13), objecting to instrumental music under hadith content. On audit,
+all seven beds then in use contained instruments — the library had been
+assembled from Pixabay searches in May without checking instrumentation, and
+every reel since inherited it. Scholars differ on instruments generally, but
+the daf has the strongest permitting position, and ambience is not music at
+all. Vocal-only sidesteps a dispute this project has no need to enter.
+
+**Current library** (`out/backgrounds/`, all Pixabay, royalty-free, cleared
+for monetised use):
+  vocal-nasheed-01..07.mp3   vocal-only background nasheeds
+  vocal-hamd-kids-01.mp3     hamd/naat, kids lane
+  light-of-my-heart-bg.mp3   vocal + daf
+  path-to-jannah-bg.mp3      vocal + daf
+  ambient-ocean-bg.mp3       generated (ffmpeg pink noise), mono
+  ambient-ocean-stereo-bg.mp3  generated, stereo
+
+**Retired:** the five instrumental beds are in `out/backgrounds/_instrumental/`
+— out of the random picker's reach, not deleted. 26 published reels carry them;
+whether to leave, re-render, or unlist is an open question for someone
+qualified, not an engineering decision.
+
+**KNOWN GAP:** render-reel.ps1 globs `out/backgrounds/*.mp3`, so it can pick
+a kids-lane hamd for an adults reel or ocean for a kids reel. Lane separation
+is by filename convention only and is not enforced in code.
+
+**Rule for new beds:** listen before adding. A search term is not a
+verification — "acapella nasheed" returns instrumental tracks.
+
+---
+
 ## Change log
 
 | Date | Change |

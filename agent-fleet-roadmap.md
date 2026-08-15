@@ -60,7 +60,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 
 ---
 
-## The 11 agents
+## The 12 agents
 
 ### Tier 1 — Critical (build first)
 
@@ -132,6 +132,16 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 - **Tools:** Pattern matching, web search for cited resources
 - **Watchlist source:** AGENTS_ADDENDUM.md Self-Upskilling section
 - **Repo:** Both
+
+#### 12. asset-auditing
+- **Status:** NOT BUILT — identified 2026-08-13 after a viewer flagged instrumental music under hadith narration on the Abu Dawud #3641 EN reel. Audit found every background bed instrumental; approved once, reused 26 times, never re-checked.
+- **Role:** Validates INHERITED assets, not generated output. Every file in `out/backgrounds/`, `out/refs/` and the mascot set carries a recorded classification (what it contains) and an approval (who cleared it, for which lane, when). Blocks a render that reaches for an asset not approved for that lane.
+- **Why it is distinct from the other ten:** every existing agent inspects something the pipeline just produced. This one inspects what the pipeline reuses. Generation-time review cannot catch a defect that entered the library before generation — which is why 26 reels shipped with it.
+- **Checks v1:** (a) asset is in the registry; (b) approved for the requesting lane (kids | adults); (c) audio beds carry an instrumentation classification (vocal-only | vocal+daf | ambience | instrumental-RETIRED); (d) flags any file in `out/backgrounds/` absent from the registry.
+- **Tools:** registry table in Supabase (same DB as the reel log, per principle 3 — not markdown), ffprobe for technical metadata, render-reel.ps1 / make-kids-reel.ps1 hook for the gate.
+- **Eval:** given the 12-file August 2026 library plus the 5 retired instrumental beds, correctly admits the 12 and refuses all 5; refuses an unregistered file dropped into the folder.
+- **Boundary:** classification is HUMAN-entered. The agent enforces a recorded judgement; it does not decide whether an instrument is permissible.
+- **Repo:** HR
 
 ---
 
@@ -206,6 +216,7 @@ End state: the agent system gets demonstrably more reliable each month as the ev
 | Two agents make conflicting changes | Low | git-managing serializes commits |
 | Agent leaks secrets in commit | Low | git-managing + gitleaks pre-push |
 | Agent generates religiously incorrect content | **Critical** | ab-comparing (Claude+ChatGPT+Kimi) flags divergence; human approval required for hadith content always |
+| Approved asset carries a defect nobody re-checks | **High** | No agent covers this today. Proven 2026-08-13: all 7 background beds were instrumental, cleared once in May and reused across 26 reels. ab-comparing inspects generated TEXT and would have passed every one. Needs asset-provenance checking (see agent 12). |
 
 ---
 
