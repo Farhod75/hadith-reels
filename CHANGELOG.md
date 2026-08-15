@@ -2,6 +2,9 @@
 ## [2026-08-15]
 
 ### Added
+- `assets/asset-registry.json` and `scripts/audit-assets.py` — per-asset
+  classification and lane approval, enforced as a hard gate in both render
+  paths (P117). 21 of 27 entries await human verification.
 - `scripts/stt-validate.py` — offline subtitle validator diffing the
   Whisper SRT against its source narration text. Word-level alignment plus
   homoglyph detection. Found two Latin homoglyphs in published R027 subtitles

@@ -95,3 +95,28 @@ and are invisible to human review by construction.
 elsewhere in another form is not caught (`Знание` → `Знания` passed because
 `знания` occurs earlier). Does not judge translation accuracy — only fidelity to
 the source.
+
+### Asset registry and lane gate (`assets/asset-registry.json`, `scripts/audit-assets.py`)
+
+Every reusable asset — background beds, mascot stills, scene clips — carries a
+recorded classification and a lane approval. The render scripts refuse assets
+not approved for the lane requesting them.
+
+- `--check FILE --lane kids|adults` — exit 1 if unregistered, retired, or wrong
+  lane. Wired into `render-reel.ps1` (Step 7) and `render-mascot-reel.ps1`
+  (Step 0). This one BLOCKS, unlike the warn-only linters: it is a lookup, not
+  a judgement.
+- `--audit` — sweeps the folders and reports unregistered files, missing
+  entries, retired-but-reachable assets, and entries no human has verified.
+
+Classifications: `vocal`, `vocal+daf`, `ambience`, `instrumental`, `mascot`,
+`mascot-reference`, `scene`. Retired assets carry `"lanes": []`.
+
+Classification stays human. The registry records a judgement; the script only
+enforces what was written. Nothing here decides whether an instrument is
+permissible.
+
+**Why it exists:** the picker crossed lanes twice on 2026-08-15 (a kids hamd
+onto an adults reel, adults ambience onto a kids reel), and before that every
+bed in the library was instrumental for months — approved once, reused across
+26 reels, caught by a viewer rather than any gate.

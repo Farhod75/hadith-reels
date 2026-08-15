@@ -245,6 +245,15 @@ npm run test:multilingual
 6. Warn-only. A clean run means these checks passed, not that the subtitles are
    correct — read them
 
+### Workflow G — Adding an asset to the library
+1. Put the file in `out/backgrounds/`, `assets/mascot/`, or
+   `out/backgrounds/new/normalized/`
+2. LISTEN to it or VIEW it. A search term is not a verification.
+3. Add an entry to `assets/asset-registry.json`: classification, lanes,
+   `verified: true`, and why
+4. `python scripts\audit-assets.py --audit` — should report zero unregistered
+5. An asset absent from the registry will BLOCK the render, by design
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)

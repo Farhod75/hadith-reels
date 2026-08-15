@@ -51,7 +51,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 
 | Primitive | Our usage |
 |---|---|
-| **Skills (KNOWLEDGE)** | Each of the 11 agents below is a Skill |
+| **Skills (KNOWLEDGE)** | Each of the 12 agents below is a Skill |
 | **MCP (ABILITY)** | Agents expose themselves as MCP tools for cross-session dispatch |
 | **Subagents (DELEGATION)** | Orchestrator uses Claude Code "agent view" to dispatch specialists in parallel |
 | **Hooks (AUTOMATION)** | `.githooks/pre-push` enforces things LLMs can't be trusted to remember |
@@ -134,7 +134,11 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 - **Repo:** Both
 
 #### 12. asset-auditing
-- **Status:** NOT BUILT — identified 2026-08-13 after a viewer flagged instrumental music under hadith narration on the Abu Dawud #3641 EN reel. Audit found every background bed instrumental; approved once, reused 26 times, never re-checked.
+
+- **Status:** BUILT 2026-08-15 (P117). `assets/asset-registry.json` +
+  `scripts/audit-assets.py`, gated into both render paths. Registry is JSON
+  rather than Supabase for now — 27 rows, reviewable in a git diff, single
+  writer. Move to the DB when agents start writing to it.
 - **Role:** Validates INHERITED assets, not generated output. Every file in `out/backgrounds/`, `out/refs/` and the mascot set carries a recorded classification (what it contains) and an approval (who cleared it, for which lane, when). Blocks a render that reaches for an asset not approved for that lane.
 - **Why it is distinct from the other ten:** every existing agent inspects something the pipeline just produced. This one inspects what the pipeline reuses. Generation-time review cannot catch a defect that entered the library before generation — which is why 26 reels shipped with it.
 - **Checks v1:** (a) asset is in the registry; (b) approved for the requesting lane (kids | adults); (c) audio beds carry an instrumentation classification (vocal-only | vocal+daf | ambience | instrumental-RETIRED); (d) flags any file in `out/backgrounds/` absent from the registry.
