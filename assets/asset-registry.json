@@ -1,0 +1,260 @@
+{
+  "_comment": "Asset registry — every reusable asset carries a classification (what it contains) and an approval (which lane it may be used in). The renderer refuses assets not approved for the lane requesting them. Classification is a HUMAN judgement recorded here; audit-assets.py only enforces what is written. See agent-fleet-roadmap.md agent 12 and the audio policy in reel-creation-pipeline.md.",
+  "_schema": {
+    "classification": "vocal | vocal+daf | ambience | instrumental | mascot | scene",
+    "lanes": "which lanes may use this asset: kids, adults, or both",
+    "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
+    "notes": "why it is classified this way, or why it was retired"
+  },
+  "updated": "2026-08-15",
+
+  "audio": {
+    "light-of-my-heart-bg.mp3": {
+      "classification": "vocal+daf",
+      "lanes": ["kids", "adults"],
+      "verified": true,
+      "notes": "Vocal with frame drum only, no lute or synth. Daf carries the strongest permitting position among instruments."
+    },
+    "path-to-jannah-bg.mp3": {
+      "classification": "vocal+daf",
+      "lanes": ["kids", "adults"],
+      "verified": true,
+      "notes": "Vocal plus drums, no melodic instruments."
+    },
+    "vocal-nasheed-01.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Listen and set verified."
+    },
+    "vocal-nasheed-02.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Used on R030. Confirm instrumentation."
+    },
+    "vocal-nasheed-03.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Used on R029. Confirm instrumentation."
+    },
+    "vocal-nasheed-04.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels."
+    },
+    "vocal-nasheed-05.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Used on R032. ~35s — will loop on longer reels."
+    },
+    "vocal-nasheed-06.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Used on R033. Confirm instrumentation."
+    },
+    "vocal-nasheed-07.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids", "adults"],
+      "verified": false,
+      "notes": "Pixabay, I_read_quran. Longest of the set. Confirm instrumentation."
+    },
+    "vocal-hamd-kids-01.mp3": {
+      "classification": "vocal",
+      "lanes": ["kids"],
+      "verified": false,
+      "notes": "Pixabay, foisal72. Hamd/naat, kids register. LANE-RESTRICTED: the random picker chose this for the R029 TJ ADULTS reel and it had to be re-rendered. This entry is why the lane field exists."
+    },
+    "ambient-ocean-bg.mp3": {
+      "classification": "ambience",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Generated with ffmpeg (filtered pink noise). Not music. Mono. Picked for the R030 EN KIDS reel by the random picker and was barely audible under a child's narration — hence adults-only."
+    },
+    "ambient-ocean-stereo-bg.mp3": {
+      "classification": "ambience",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Generated with ffmpeg, stereo, offset tremolo per channel."
+    },
+
+    "_instrumental/mubarak-bg.mp3": {
+      "classification": "instrumental",
+      "lanes": [],
+      "verified": true,
+      "notes": "RETIRED 2026-08-15. Lute, flute, drums. Moved out of the picker's reach after a viewer flagged instrumental music under hadith narration."
+    },
+    "_instrumental/nasheed-bg-1.mp3": {
+      "classification": "instrumental",
+      "lanes": [],
+      "verified": true,
+      "notes": "RETIRED. Synth pad. Used on R022 (published)."
+    },
+    "_instrumental/ramadan-1-bg.mp3": {
+      "classification": "instrumental",
+      "lanes": [],
+      "verified": true,
+      "notes": "RETIRED. Lute, drums, electric piano or synth. Used on R026 (published)."
+    },
+    "_instrumental/ramadan-2-bg.mp3": {
+      "classification": "instrumental",
+      "lanes": [],
+      "verified": true,
+      "notes": "RETIRED. Lute, drums. Used on R014-R021, R025 (published)."
+    },
+    "_instrumental/ramadan-bg.mp3": {
+      "classification": "instrumental",
+      "lanes": [],
+      "verified": true,
+      "notes": "RETIRED. Lute, drums. Used on R027 (published)."
+    }
+  },
+
+  "mascots": {
+    "lamb-boy-mosque-night-v3.png": {
+      "classification": "mascot",
+      "lanes": ["kids"],
+      "verified": true,
+      "notes": "Boy lamb, moonlit mosque, night. 4K, face-locked via Nano Banana Pro."
+    },
+    "lamb-girl-garden-day-v2.png": {
+      "classification": "mascot",
+      "lanes": ["kids"],
+      "verified": true,
+      "notes": "Girl lamb, mosque garden, day. 4K, regenerated from the 480p reference."
+    },
+    "lamb-boy-v1.png": {
+      "classification": "mascot-reference",
+      "lanes": [],
+      "verified": true,
+      "notes": "Face-lock reference for Nano Banana Pro scene generation, not a reel asset. Never rendered directly."
+    },
+    "lamb-girl-v1.png": {
+      "classification": "mascot-reference",
+      "lanes": [],
+      "verified": true,
+      "notes": "Face-lock reference for Nano Banana Pro scene generation, not a reel asset. Never rendered directly."
+    },
+    "lamb-boy-mosque-night-v2.png": {
+      "classification": "mascot",
+      "lanes": [],
+      "verified": true,
+      "notes": "SUPERSEDED by v3. Kept for provenance."
+    },
+    "lamb-girl-garden-day-v1.png": {
+      "classification": "mascot",
+      "lanes": [],
+      "verified": true,
+      "notes": "SUPERSEDED by v2 (the 4K regeneration). Kept for provenance."
+    }
+  },
+
+  "scenes": {
+    "ad3641-stars.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Night sky before moonrise. MODE B, no figures. Kling i2v from FLUX still."
+    },
+    "ad3641-moon.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Moonrise over dunes. MODE B, no figures."
+    },
+    "ad3641-rahle.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Manuscript on a rahle, page turned by draft. MODE B, no hands, no faces. Third FLUX round — negative prompting reinforced what it forbade."
+    },
+    "ad3641-window.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Moonlight through an arched mosque window. MODE B, empty hall."
+    },
+    "b1-scene1.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Used on R010-R013. Confirm MODE B compliance."
+    },
+    "b1-scene2.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Confirm MODE B compliance."
+    },
+    "b1-scene4.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Confirm MODE B compliance."
+    },
+    "b1520-dua.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Confirm MODE B compliance."
+    },
+    "b1520-path.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Confirm MODE B compliance."
+    },
+    "b1520-scene1.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Confirm MODE B compliance."
+    },
+    "kaaba.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Used on R004 or R005 (random pick, never logged)."
+    },
+    "kaaba-5s.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry."
+    },
+    "kaaba-balcony.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry."
+    },
+    "kaaba-crowd.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Crowd footage — confirm no identifiable faces."
+    },
+    "Kaaba-drone.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry."
+    },
+    "kaaba-roof.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry."
+    },
+    "makka-tower.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "Predates the registry. Modern architecture — confirm it suits a 7th-century-era reel before reuse."
+    }
+  }
+}
