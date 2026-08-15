@@ -48,6 +48,10 @@
 | R027 | 2026-08-14 | Sunan Abu Dawud #3641 | Abu Darda | Sahih | Knowledge / Ilm | #knowledge #ilm #scholar #worship #learning | ru | Adults | abudawud-3641 | adults-ru-sunan-abu-dawud-3641-story.mp3 | adults-ru-sunan-abu-dawud-3641-moral.mp3 | adults-ru-sunan-abu-dawud-3641-narration.mp3 | ad3641-stars.mp4, ad3641-moon.mp4, ad3641-rahle.mp4, ad3641-window.mp4 | adults-ru-sunan-abu-dawud-3641-narration.srt | ramadan-bg.mp3 | Yes | adults-ru-sunan-abu-dawud-3641-reel.mp4 | 48.4s | 13.9 MB | Scene clips reused from R026 — no FLUX/Kling spend. FIRST CYRILLIC ADULTS REEL SINCE THE RESTRUCTURE: Whisper died on UnicodeEncodeError (CP1252 console codec, crash inside transcribe.py's own progress print) and --output_dir was still hardcoded to flat out\ after P113 — both closed by P114, verified on this render. Seerah block again named a seerah source ("Усваи Ҳасана") only to say nothing was found in it — third occurrence on this hadith after EN; also spelled with Tajik letters in Russian text. Removed by hand. Whisper SRT needed three corrections: "деяний"→"в Диянии" (garbled into a false proper noun), "умаляет"→"умоляет", "Знание"→"Знания". published TG/IG/TikTok/YT |
 | R028 | 2026-08-14 | Sunan Abu Dawud #3641 | Abu Darda | Sahih | Knowledge / Ilm | #knowledge #ilm #scholar #worship #learning | uz | Adults | abudawud-3641 | adults-uz-sunan-abu-dawud-3641-story.mp3 | adults-uz-sunan-abu-dawud-3641-moral.mp3 | adults-uz-sunan-abu-dawud-3641-narration.mp3 | ad3641-stars.mp4, ad3641-moon.mp4, ad3641-rahle.mp4, ad3641-window.mp4 | n/a (P078 skip) | vocal-nasheed-01.mp3 | No | adults-uz-sunan-abu-dawud-3641-reel.mp4 | 63.5s | 18.3 MB | Longest reel of the set. FIRST REEL ON THE NEW VOCAL-ONLY NASHEED LIBRARY (see audio policy in reel-creation-pipeline.md) — vocal bed sits cleanly under narration at 0.20, answering whether a cappella tracks would compete with the voice. P111 held: divine name «Аллоҳ», no unnamed scholars, no uncited source. Hand fixes: «ёриқлиги»→«ёруғлиги» (crack→light), «раҳбарлик қилади»→«бошлайди» (wrong case government), caption quote Latin→Cyrillic. published TG/IG/TikTok/YT |
 | R029 | 2026-08-14 | Sunan Abu Dawud #3641 | Abu Darda | Sahih | Knowledge / Ilm | #knowledge #ilm #scholar #worship #learning | tj | Adults | abudawud-3641 | adults-tj-sunan-abu-dawud-3641-story.mp3 | adults-tj-sunan-abu-dawud-3641-moral.mp3 | adults-tj-sunan-abu-dawud-3641-narration.mp3 | ad3641-stars.mp4, ad3641-moon.mp4, ad3641-rahle.mp4, ad3641-window.mp4 | n/a (P078 skip) | vocal-nasheed-03.mp3 | No | adults-tj-sunan-abu-dawud-3641-reel.mp4 | 51.5s | 14.6 MB | Completes the 4-language #3641 set. BEST TJ GENERATION TO DATE — P111 held on every count: «Аллоҳ» throughout, no unnamed scholars, no meaning inversion, and the story explicitly noted the simile comes from the matn itself. Contrast R025, where TJ produced all four defects. Rendered twice: the random picker chose vocal-hamd-kids-01.mp3 (kids-lane bed) for an adults reel — the known lane-leak, since render-reel.ps1 globs all of out/backgrounds/ regardless of style. Re-rendered with -Nasheed explicit. Hand fixes: removed the Usvai Hasana non-citation (third on this hadith), «бигшо»→«бикшо», reference line Latin→Cyrillic. published TG/IG/TikTok/YT |
+| R030 | 2026-08-15 | Sunan Abu Dawud #1479 | Nu'man ibn Bashir | Sahih | Dua / Ibadah | #dua #supplication #worship #ibadah #prayer | en | Kids | abudawud-1479 | kids-en-sunan-abu-dawud-1479-story.mp3 | kids-en-sunan-abu-dawud-1479-moral.mp3 | kids-en-sunan-abu-dawud-1479-narration.mp3 | kids-en-sunan-abu-dawud-1479-clip01.mp4 | n/a (mascot spine) | vocal-nasheed-02.mp3 | No | kids-en-sunan-abu-dawud-1479-mascot-reel.mp4 | 25.1s | 7.4 MB | GIRL LAMB returns (rotation: #482 boy → #1479 girl). Voice Danielle. New companion — Nu'man ibn Bashir, 8th on the channel. SHORTEST MATN USED (30 chars EN: "Dua is worship") — first real test of prompt rule 10, and the generation correctly stayed short rather than padding. FIRST REEL LINTED BEFORE TTS with scripts/lint-content.py: clean, no findings, no false positives on uncorrected text. Single clip, 24.2s under the Fabric cap. Re-rendered once: the random picker chose ambient-ocean-bg.mp3 (adults-lane bed) and it was barely audible under narration — the wrapper re-ran Fabric on the re-render rather than reusing the existing clip, costing a second generation. published TG/IG/TikTok/YT |
+| R031 | 2026-08-15 | Sunan Abu Dawud #1479 | Nu'man ibn Bashir | Sahih | Dua / Ibadah | #dua #supplication #worship #ibadah #prayer | ru | Kids | abudawud-1479 | kids-ru-sunan-abu-dawud-1479-story.mp3 | kids-ru-sunan-abu-dawud-1479-moral.mp3 | kids-ru-sunan-abu-dawud-1479-narration.mp3 | kids-ru-sunan-abu-dawud-1479-clip01.mp4 | n/a (mascot spine) | vocal-nasheed-04.mp3 | No | kids-ru-sunan-abu-dawud-1479-mascot-reel.mp4 | 27.3s | 8.0 MB | Girl lamb; Arabella Calm & Mature — no hum, confirming the artifact was specific to Liam Youthful (P112). Cleanest generation of the set: divine name, attribution and simile rules all held with no hand fixes to S/M/H. Only change was the caption reference line English → Cyrillic. Linted clean pre-TTS. published TG/IG/TikTok/YT |
+| R032 | 2026-08-15 | Sunan Abu Dawud #1479 | Nu'man ibn Bashir | Sahih | Dua / Ibadah | #dua #supplication #worship #ibadah #prayer | uz | Kids | abudawud-1479 | kids-uz-sunan-abu-dawud-1479-story.mp3 | kids-uz-sunan-abu-dawud-1479-moral.mp3 | kids-uz-sunan-abu-dawud-1479-narration.mp3 | kids-uz-sunan-abu-dawud-1479-clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-05.mp3 | No | kids-uz-sunan-abu-dawud-1479-mascot-reel.mp4 | 32.0s | 9.8 MB | Girl lamb; Mini. Longest of the set — 32.2s narration split at the story/moral seam into 2 Fabric clips. Hand fixes: H claimed dua is "барча ибодатларнинг асоси" (the foundation of ALL worship), an elevation beyond a matn that says only that dua IS worship — rewritten. Grammar: «катта маъно бор» → «катта маънога эга» (эга takes the dative). Caption quote Latin → Cyrillic, third occurrence of that pattern. published TG/IG/TikTok/YT |
+| R033 | 2026-08-15 | Sunan Abu Dawud #1479 | Nu'man ibn Bashir | Sahih | Dua / Ibadah | #dua #supplication #worship #ibadah #prayer | tj | Kids | abudawud-1479 | kids-tj-sunan-abu-dawud-1479-story.mp3 | kids-tj-sunan-abu-dawud-1479-moral.mp3 | kids-tj-sunan-abu-dawud-1479-narration.mp3 | kids-tj-sunan-abu-dawud-1479-clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-06.mp3 | No | kids-tj-sunan-abu-dawud-1479-mascot-reel.mp4 | 28.7s | 8.5 MB | Girl lamb; Katherine Polished. Completes the 4-language #1479 set. Divine name held as «Аллоҳ» — no «Худо» drift, contrast R025 before P111. Hand fixes: H elevated dua to "аз ҳама баланд" (highest of all worship), same overstatement as UZ — rewritten; «Ин маъно дорад» → «Ин маънои онро дорад»; «ҳар вақте» → «ҳар вақте ки»; and «танҳо БАРОИ масҷид нест» → «танҳо ДАР масҷид нест», a wrong preposition that inverted the sentence to "dua is not for the mosque". That last one is invisible to every automated check and was caught only by reading. published TG/IG/TikTok/YT |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -71,6 +75,7 @@
 | Sahih al-Bukhari #8 | EN, RU, UZ, TJ | Kids | R018, R019, R020, R021 |
 | Sahih Muslim #482 | EN, RU, UZ, TJ | Kids | R022, R023, R024, R025 |
 | Sunan Abu Dawud #3641 | EN, RU, UZ, TJ | Adults | R026, R027, R028, R029 |
+| Sunan Abu Dawud #1479 | EN, RU, UZ, TJ | Kids | R030, R031, R032, R033 |
 
 ---
 
@@ -90,6 +95,7 @@
 | Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
 | Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
 | Knowledge / Ilm | 4 | R026, R027, R028, R029 | EN, RU, UZ, TJ |
+| Dua / Ibadah | 4 | R030, R031, R032, R033 | EN, RU, UZ, TJ |
 
 
 **Coverage gaps to consider for upcoming reels:**
@@ -127,6 +133,10 @@
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 | vocal-nasheed-01.mp3 | 1 | 2026-08-14 (R028) | R028 |
 | vocal-nasheed-03.mp3 | 1 | 2026-08-14 (R029) | R029 |
+| vocal-nasheed-02.mp3 | 1 | 2026-08-15 (R030) | R030 |
+| vocal-nasheed-04.mp3 | 1 | 2026-08-15 (R031) | R031 |
+| vocal-nasheed-05.mp3 | 1 | 2026-08-15 (R032) | R032 |
+| vocal-nasheed-06.mp3 | 1 | 2026-08-15 (R033) | R033 |
 
 ### Mascot stills
 
@@ -134,7 +144,7 @@
 |---|---|---|
 | lamb-girl-garden-day-v1.png | 4 | R006, R007, R008, R009 |
 | lamb-boy-mosque-night-v3.png | 8 | R014–R017, R022–R025 |
-| lamb-girl-garden-day-v2.png | 4 | R018-R021 |
+| lamb-girl-garden-day-v2.png | 8 | R018–R021, R030–R033 |
 
 **Note:** **Note:** both mascot sources now exist at 4K in the repo — `lamb-boy-mosque-night-v3.png` and `lamb-girl-garden-day-v2.png`. The earlier 480p-frame recovery warning is resolved.
 
@@ -167,16 +177,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 29 |
+| Total reels posted | 33 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
 | Languages remaining | 1 (AR) |
 | Adults reels | 13 |
-| Kids reels | 16 |
+| Kids reels | 20 |
 | Avg duration | ~43s |
 | Avg file size | ~15 MB |
-| Hadiths used (unique) | 11 |
-| Hadith collections used | 4 (Sahih al-Bukhari ×19, Sahih Muslim ×4, Sunan Abu Dawud ×4, Jami at-Tirmidhi ×2) |
-| Companions cited | 7 (Abu Hurairah ×11, Abu Darda ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Hadiths used (unique) | 12 |
+| Hadith collections used | 4 (Sahih al-Bukhari ×19, Sunan Abu Dawud ×8, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
+| Companions cited | 8 (Abu Hurairah ×11, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
 ---
 
@@ -219,3 +229,4 @@ Then update:
 | 2026-08-13 | R022–R025 — Sahih Muslim #482 kids, 4 langs, boy lamb; first non-Bukhari collection in the kids lane. P110 CI gate, P111 divine name + simile + attribution rules, P112 RU kids boy voice → Maxim | Farhod / Claude |
 | 2026-08-13 | R026 — Abu Dawud #3641 EN adults, 4 new Kling scenes, first Ilm theme; P113 adults work-tree fix | Farhod / Claude |
 | 2026-08-14 | R027–R029 — Abu Dawud #3641 RU/UZ/TJ, completing the first adults set since the restructure. P113 adults work tree, P114 Whisper UTF-8 + SRT path. Audio policy: instrumental beds retired after a viewer flag, library rebuilt vocal-only | Farhod / Claude |
+| 2026-08-15 | R030–R033 — Abu Dawud #1479 kids, girl lamb, 4 langs. First set linted pre-TTS with lint-content.py. Shipped P115, plus lint-content.py and stt-validate.py (found two Latin homoglyphs in published R027 subtitles) | Farhod / Claude |
