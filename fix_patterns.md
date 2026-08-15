@@ -2581,3 +2581,57 @@ must normalize apostrophes (qo'shni → qoʻshni).
   source attribution), P103 (rule conflict on occasions).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 116: Short matn padded with unearned elevation
+## ════════════════════════════════════════════════════════
+**ID:** P116
+**Type:** Content safety (prompt rules)
+**File:** app/api/generate-reel/route.ts
+**Commit:** fix: forbid ranking the hadith's subject beyond the matn (P116)
+
+**Symptom:**
+  Abu Dawud #1479 — "Dua is worship", 30 characters in EN, the shortest matn
+  used to date — produced elevation beyond the text in three of four
+  languages, caught at human review:
+    UZ  "дуо барча ибодатларнинг асосидир"  (the foundation of ALL worship)
+    UZ  "энг катта ибодат"                   (the greatest worship) — title + moral
+    TJ  "аз ҳама баланд ва пурарзиш"         (the highest and most valuable)
+  The matn says dua IS worship. It does not rank dua above other worship, and
+  it does not call it foundational. EN and RU stayed clean.
+
+**Root cause:**
+  Rule 10 tells the model that a shorter story is correct and not to compensate
+  with narrative. It complied — it invented no incidents — but satisfied the
+  length pressure a different way: by inflating the subject's importance.
+  Superlatives are not narrative, so rule 10 did not bind them, and rule 15
+  covers the opposite direction only (a station of closeness rendered as lowly).
+  Neither rule covered elevation upward.
+
+  Third instance of the same structural failure, after P111 (similes) and P115
+  (sources in negative claims): a rule closes one exit and the model finds the
+  adjacent one.
+
+**Fix:**
+  Added rule 16: do not rank or elevate the hadith's subject beyond what the
+  matn states; do not compare it to virtues the matn does not mention; a short
+  hadith stays short, and brevity is not an invitation to supply significance
+  the text does not claim.
+
+**Rule:**
+  Length pressure is a fabrication pressure. When the source text is short and
+  the output format expects more, the model will fill the gap with whatever the
+  rules have not forbidden. Forbidding invention of FACT (P101), of COMPARISON
+  (P111) and of SOURCE (P105/P115) still left invention of IMPORTANCE open.
+  Ask what remains sayable that is not checkable against the matn.
+
+**Detection:**
+  Human review, 3 of 4 languages. scripts/lint-content.py ran clean on all four
+  — none of its five checks cover superlatives. A sixth check is possible
+  (superlative terms per language, absent from the matn) but would be noisy;
+  deferred pending more examples.
+
+**Related:** P111 (similes, divine name, unnamed authority), P115 (source in a
+  negative claim), P101 (fabrication rules), P103 (rule conflict).
+
+**Status:** FIXED

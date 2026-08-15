@@ -170,7 +170,13 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     close to the sun", no "like a door being opened".
 15. NEVER reframe, soften, or invert the hadith's meaning. If the hadith states
     a station of closeness, honour, or elevation, do not render it as lowly,
-    diminished, or reduced.`
+    diminished, or reduced.
+16. NEVER rank or elevate the hadith's subject beyond what the matn states. If
+    the hadith says a thing IS worship, do not call it the greatest worship, the
+    highest worship, the foundation of all worship, or the most valuable of
+    deeds. If the hadith states a virtue, state that virtue — do not compare it
+    to virtues the matn does not mention. A short hadith stays short: brevity is
+    not an invitation to supply significance the text does not claim.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-4-6',
