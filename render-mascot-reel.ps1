@@ -111,6 +111,15 @@ if (-not $NoMusic) {
     $problems += "no nasheed .mp3 in out\backgrounds\ (or pass -NoMusic)"
   }
 }
+# P117: asset lane gate. This script is the kids lane by definition.
+if ($chosenNasheed) {
+  $assetName = Split-Path $chosenNasheed -Leaf
+  $auditOut  = & python "scripts\audit-assets.py" --check $assetName --lane kids 2>&1
+  if ($LASTEXITCODE -ne 0) {
+    $auditOut | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }
+    $problems += "nasheed rejected by the asset registry: $assetName"
+  }
+}
 
 # optional subtitles
 $srtPath = $null

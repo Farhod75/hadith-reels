@@ -254,6 +254,14 @@ Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + su
 # choose nasheed (specific or random from local library)
 $chosen = if ($Nasheed) { "out\backgrounds\$Nasheed" } else { ($nasheeds | Get-Random).FullName }
 Write-Host "        nasheed: $(Split-Path $chosen -Leaf)" -ForegroundColor DarkGray
+# P117: asset lane gate. A bed approved for the other lane is a lookup failure,
+# not a judgement call - twice on 2026-08-15 the random picker crossed lanes.
+$assetName = Split-Path $chosen -Leaf
+$auditOut  = & python "scripts\audit-assets.py" --check $assetName --lane $Style 2>&1
+if ($LASTEXITCODE -ne 0) {
+  $auditOut | ForEach-Object { Write-Host "        $_" -ForegroundColor Red }
+  Die "nasheed rejected by the asset registry: $assetName"
+}
 
 $title = "drawtext=text='Hadith Reels':fontsize=28:fontcolor=white:shadowcolor=black@0.9:shadowx=2:shadowy=2:box=1:boxcolor=black@0.4:boxborderw=8:x=(w-text_w)/2:y=30:font=Arial"
 

@@ -2635,3 +2635,73 @@ must normalize apostrophes (qo'shni → qoʻshni).
   negative claim), P101 (fabrication rules), P103 (rule conflict).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 117: No gate on which assets a lane may use
+## ════════════════════════════════════════════════════════
+**ID:** P117
+**Type:** Asset provenance (render gate)
+**File:** render-reel.ps1, render-mascot-reel.ps1, assets/asset-registry.json,
+  scripts/audit-assets.py
+**Commit:** feat: asset registry and lane gate in both render paths (P117)
+
+**Symptom:**
+  Both render scripts glob `out\backgrounds\*.mp3` and pick at random. Nothing
+  distinguishes a kids bed from an adults one, so the picker crossed lanes twice
+  in one day:
+    R029 TJ adults  -> vocal-hamd-kids-01.mp3 (kids-register hamd), re-rendered
+    R030 EN kids    -> ambient-ocean-bg.mp3 (adults ambience), barely audible
+                       under a child's narration, re-rendered
+  The deeper case is older: every bed in the library was instrumental from May
+  until 2026-08-15, approved once and reused across 26 reels. A viewer flagged
+  it, not any gate.
+
+**Root cause:**
+  Assets carried no recorded classification and no lane approval. Both are
+  lookups, not judgements — but nothing existed to look them up in. Every
+  existing check inspects what the pipeline just PRODUCED; nothing inspected
+  what it REUSES. Generation-time review cannot catch a defect that entered the
+  library before generation, which is why 26 reels shipped with it.
+
+**Fix:**
+  `assets/asset-registry.json` records, per asset: classification (vocal |
+  vocal+daf | ambience | instrumental | mascot | mascot-reference | scene),
+  the lanes approved for it, whether a human has verified the classification,
+  and why. Retired assets carry `"lanes": []`.
+
+  `scripts/audit-assets.py` has two modes. `--check FILE --lane LANE` exits 1
+  if the asset is unregistered, retired, or approved for a different lane —
+  this is the gate. `--audit` sweeps the folders and reports unregistered files,
+  missing entries, retired-but-reachable assets, and entries not yet verified.
+
+  Both render scripts now call `--check` after resolving the nasheed:
+  render-mascot-reel.ps1 appends to `$problems` at Step 0 (fails before any
+  work); render-reel.ps1 dies at Step 7 (after Whisper, since that is where the
+  bed is resolved).
+
+  The gate does NOT silently retry with another asset. A picker that quietly
+  reaches past a rejected file hides the fact that the library contains
+  something it should not reach.
+
+**Rule:**
+  A rule nobody can look up is not a rule. "Kids beds are vocal, adults get
+  ambience" lived only in conversation, so nothing enforced it and it broke
+  twice the same day it was decided. Any constraint that reduces to a lookup —
+  which lane, which grade, which language — belongs in a machine-readable
+  record with a gate, not in a person's memory.
+  Corollary: classification stays HUMAN. The registry records a judgement; the
+  script only enforces what was written. Nothing here decides whether an
+  instrument is permissible.
+
+**Known state at commit:**
+  21 of 27 entries are `verified: false` — 8 Pixabay nasheeds downloaded from an
+  "acapella nasheed" search (the search term is not a verification) and 13 scene
+  clips that predate the registry. They are usable but unconfirmed, and `--audit`
+  lists them until a human listens or views. `makka-tower.mp4` in particular is
+  modern architecture and sits oddly with the era guidance in
+  animated-reel-scene-prompts.md.
+
+**Related:** agent-fleet-roadmap.md agent 12 (asset-auditing), the audio policy
+  in reel-creation-pipeline.md, P093/P110 (gate integrity).
+
+**Status:** FIXED
