@@ -46,3 +46,6 @@ test-audio.mp3
 test-results/
 playwright-report/
 
+draft.txt
+draft-*.txt
+

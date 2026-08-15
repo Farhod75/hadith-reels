@@ -1,7 +1,7 @@
 # CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
-# Last updated: 2026-06-13
+# Last updated: 2026-08-15
 
 ---
 
@@ -222,6 +222,16 @@ npm run test:multilingual
 3. Video file: 15-60s, <50MB
 4. Captions synced (verified by `caption-sync.spec.ts`)
 5. Source attribution overlay present in last 3s
+
+### Workflow E — Lint generated reel text before TTS
+1. Generate story/moral/seerah in the admin
+2. Save the S:/M:/H:/C: blocks to `draft.txt` (gitignored)
+3. Pull the matn: `select text_<lang> from hadith_library where ...`
+4. Run: `python scripts\lint-content.py draft.txt --lang <lang> --matn "<matn>"`
+5. Read every FAIL and WARN — they are heuristics, not verdicts
+6. Fix in the admin, re-lint, then generate TTS
+7. A clean run means these five checks passed. It does NOT mean the text is
+   correct — read it yourself. Human review is still the gate.
 
 ---
 

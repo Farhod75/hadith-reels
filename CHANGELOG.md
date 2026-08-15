@@ -1,3 +1,11 @@
+
+## [2026-08-15]
+### Added
+- `scripts/lint-content.py` — warn-only content linter running five
+  deterministic checks (divine name, unnamed authority, seerah source, simile
+  vs matn, meaning inversion) on generated text before TTS. Encodes P105, P111
+  and P115. Validated against R022–R029.
+
 ### Fixed
 - Uzbek Latin orthography normalized across all 74 `hadith_library` rows: okina (U+02BB)
   in `oʻ`/`gʻ`, tutuq (U+02BC) for the glottal stop. Previously 41 rows carried ASCII `'`.
