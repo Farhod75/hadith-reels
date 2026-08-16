@@ -1,244 +1,260 @@
 ---
 name: tts-validating
-description: Validates audio output from the Hadith Reels TTS route (POST /api/tts) against the P061 contract and P071 dual-provider implementation. Use this skill whenever (a) the TTS route is changed, (b) a new voice or language is added, (c) a reel is generated that will be narrated, (d) the P071 fix patterns are referenced, or (e) any task mentions ElevenLabs, OpenAI Nova, OpenAI Onyx, voice testing, narration, audio output, or pronunciation. The skill captures generated audio via Playwright, transcribes it with Whisper (local for AR/EN, OpenAI Whisper API for RU/UZ/TJ Cyrillic), and asserts five things: route returns 200 not 400, audio is not silent, recognized language matches requested lang, recognized text matches input text within similarity threshold, and the Prophet PBUH symbol has been replaced per cleanForTTS. Blocks downstream tasks if any assertion fails. Run before posting any reel to @SahihHadithReels.
+description: Validates narration audio produced by the Hadith Reels TTS route (POST /api/tts) against the text that produced it. Use this skill whenever (a) app/api/tts/route.ts or VOICE_MAP changes, (b) a voice or language is added or swapped, (c) narration is generated for a reel, (d) P102, P103, P104, P112 or P118 are referenced, or (e) any task mentions ElevenLabs, voice testing, narration, pronunciation, or cleanForTTS. Transcribes the narration with local Whisper and asserts six things: the file is real audio of plausible length, the recognised language matches the request, the recognised text matches the input within threshold, the Prophet symbol was expanded to spoken words per cleanForTTS, the correct voice id was used for the language/style/mascot combination, and that voice id resolves to the voice its comment claims. Warn-only except the Prophet-symbol check, which blocks.
 ---
 
 # TTS-validating agent
 
-System under test: `app/api/tts/route.ts` (POST `/api/tts`, accepts `{ text, lang, style }`).
+System under test: `app/api/tts/route.ts` (POST `/api/tts`, accepts
+`{ text, lang, style, mascot, slug, section }`).
 
-This agent does not write code. It validates audio outputs and reports pass/fail with diagnostics. The orchestrator decides what to do with failures.
+This agent does not write code and does not regenerate audio. It reports
+pass/fail with diagnostics; the human at the pre-publish gate decides.
+
+> **REVISED 2026-08-15.** The previous version of this SKILL.md was written
+> before P102/P103/P104 and described a dual-provider system (ElevenLabs +
+> OpenAI Nova/Onyx) with James/Danielle voices, OpenAI Whisper API routing for
+> Cyrillic, and a bitrate heuristic to tell the two providers apart. **None of
+> that exists.** OpenAI is fully retired from this route; every language uses
+> ElevenLabs `eleven_v3`. The old spec would have had anyone implementing it
+> build against a system that has not existed since June. That is the reason
+> Step 7 is gone and Step 3 changed.
+
+## What changed in the stack, and what it means here
+
+| Was | Is | Consequence for this agent |
+|---|---|---|
+| ElevenLabs + OpenAI, per language | ElevenLabs `eleven_v3` only (P102, P104) | No provider inference. Old Step 7 deleted. |
+| Two kids voices per language | Kids split by mascot: boy and girl (P103) | The matrix is lang × style × mascot = 25 slots, not 10. |
+| Audio captured via Playwright | Route writes to `out/work/{style}/{slug}/{lang}/` (P106) | For reel validation the MP3 is already on disk. Playwright capture is only needed for synthetic cases. |
+| Cyrillic needed OpenAI Whisper API | Local Whisper works with `PYTHONIOENCODING=utf-8` (P114) | No API key, no cost, offline. |
 
 ## When to run this agent
 
-Run on any of these triggers:
-
-- Changes to `app/api/tts/route.ts`, `components/TTSPlayer.tsx`, or the voice matrix env vars (`ELEVENLABS_VOICE_*`, `OPENAI_API_KEY`)
-- Before posting any reel to a public channel (Telegram, Instagram, TikTok, YouTube)
-- Before merging any PR that touches narration, captions, or the reel generation pipeline
-- When a new language or voice is added to `VOICE_MAP`
-- When `cleanForTTS()` is modified
+- After generating narration for a reel, before the Fabric/render spend
+- After any change to `app/api/tts/route.ts`, `VOICE_MAP`, or `cleanForTTS()`
+- When a voice is swapped (P112 RU kids boy, P118 RU adults)
+- When a language is added
 - On-demand via orchestrator dispatch
-- As a CI step tagged `@real-api` (manual `workflow_dispatch` only — never in push CI, per `AGENTS_ADDENDUM.md` Golden Rule)
 
 ## Pre-task reads (mandatory)
 
-Before any validation run, read these files in order. Stop if any is missing.
-
-1. `references/voice-matrix.md` — current lang × style → provider+voice mapping (P071)
-2. `references/p061-tts-contract.md` — the `{text, lang, style}` request contract
-3. `references/p071-cleanforTTS.md` — Prophet symbol replacement rules per language
-4. `references/whisper-routing.md` — which Whisper backend to use per language
-5. `references/thresholds.md` — current pass/fail thresholds (v1: all moderate)
-
-If any of those files is missing, stop and report `setup_incomplete` — do not proceed with stale assumptions.
+1. `app/api/tts/route.ts` — VOICE_MAP is the source of truth for the matrix.
+   Do NOT keep a second copy of the voice table in this skill's references; two
+   copies drift, which is how P118 happened.
+2. `references/cleanforTTS.md` — the Prophet-symbol phrase per language
+3. `references/thresholds.md` — current pass/fail thresholds
 
 ## Inputs
 
-The orchestrator passes one or more test cases to this agent. Each case has:
+Either an existing reel narration:
+- `audio_path` — an MP3 under `out/work/{style}/{slug}/{lang}/`
+- `source_text` — the text that produced it (the S or M block of `draft.txt`)
+- `lang`, `style`, `mascot`
 
-- `text` — string to narrate (max 1000 chars per route)
-- `lang` — one of `en`, `ar`, `uz`, `ru`, `tj`
-- `style` — `adults` or `kids`
-- `expected_provider` — `elevenlabs` or `openai` (derived from lang; agent verifies)
-- `expected_voice_name` — human-readable voice name (Hijazi, Abrar, Nova, Onyx, James, Danielle) for diagnostic logging only
-
-For routine pre-publish checks, the agent runs the baseline eval set from `evals/evals.json` (5 cases — one per language).
+or a synthetic case for matrix coverage, in which case the agent POSTs to
+`/api/tts` itself and saves the response.
 
 ## Validation pipeline
 
-For each test case, run these steps in order. Fail-fast: stop at the first failure and report which step failed.
+### Step 1 — Audio sanity
 
-### Step 1 — Contract guard (catches P061 regressions)
+File size ≥ 10 KB; duration ≥ 1.0s via `ffprobe`. Below either is empty,
+header-only, or truncated. Fail `audio_too_small` / `audio_too_short`.
 
-POST `{ text, lang, style }` to `/api/tts`. Record:
+### Step 2 — Transcription (local Whisper)
 
-- HTTP status code
-- Response `Content-Type` header
-- Response time (ms)
+`whisper <file> --model small --language {lang} --output_format srt`, with
+`PYTHONIOENCODING=utf-8` set on the child process.
 
-**Assertions:**
-- `status !== 400` — if 400, this is a P061 regression (route demanding `voiceId` again). Report `p061_regression` and stop.
-- `status === 200` — any other non-200 is a different failure; report `route_error` with the status and response body.
-- `Content-Type === 'audio/mpeg'` — confirms binary audio, not JSON error.
+**That env var is not optional for Cyrillic.** Whisper prints progress to
+stdout; on Windows the console codec is CP1252 and Cyrillic raises
+`UnicodeEncodeError` *inside transcribe.py's own progress print*, abandoning the
+file. The transcription itself is fine — the crash is in display. See P100 and
+P114.
 
-### Step 2 — Audio file sanity
+UZ is the weak case: Whisper's Cyrillic Uzbek training data is thin. Treat
+similarity 0.05–0.10 below other languages as expected noise; below 0.70 is a
+real recognition problem.
 
-Save the response body as a temp `.mp3` file. Measure:
+TJ: Whisper returns `tg`, sometimes `fa` or `ru`. Accept `tg`; accept `fa`/`ru`
+with a warning; fail only on `en` or something unrelated.
 
-- File size in bytes
-- Duration in seconds (via `ffprobe` or `mutagen`)
+### Step 3 — Language match
 
-**Thresholds (v1 moderate):**
-- File size ≥ 10 KB — below this is empty or header-only
-- Duration ≥ 1.0 second — below this is silent or truncated
+Detected language equals the requested `lang`. Fail `language_mismatch` with
+the detected value.
 
-Fail with `audio_too_small` or `audio_too_short` if either threshold is missed.
+### Step 4 — Text similarity
 
-### Step 3 — Whisper transcription
+Levenshtein-normalised similarity between `cleanForTTS(source_text)` and the
+recognised text.
 
-Route to the correct Whisper backend per `references/whisper-routing.md`:
+Normalise first: lowercase, strip punctuation, collapse whitespace, remove
+Arabic diacritics for AR, normalise Cyrillic apostrophes for UZ/TJ.
 
-- `en`, `ar` → Whisper local (`openai-whisper` Python package, model: `small` for v1)
-- `ru`, `uz`, `tj` → OpenAI Whisper API (`/v1/audio/transcriptions`, model: `whisper-1`), explicit `language` parameter (`ru` for RU, `uz` for UZ, `tg` for TJ)
+**Threshold (v1):** ≥ 0.80. Fail `text_mismatch` with both texts truncated to
+200 chars.
 
-**Note on UZ:** Whisper's Cyrillic Uzbek training data is thin. The agent uses `language=uz` but should treat similarity scores 0.05–0.10 lower than other languages as expected baseline noise. The threshold (0.80 moderate) accounts for this; below 0.70 indicates a real recognition problem.
+Note this compares against the CLEANED text, not the raw source — the audio was
+made from the cleaned version, so comparing against the raw one flags the
+Prophet-symbol expansion as a defect. `scripts/stt-validate.py` hit exactly that
+and had to expand the symbol on both sides.
 
-Record from Whisper response:
-- Recognized text (`text` field)
-- Detected language (`language` field)
-- Language confidence — if Whisper API returns segment-level confidence, average across segments; otherwise default to 0.85 if `language` matched the request and `1 - WER` is reasonable
+### Step 5 — Prophet symbol expansion (hard block)
 
-### Step 4 — Language match assertion
+`cleanForTTS()` replaces ﷺ with a spoken phrase before the text reaches
+ElevenLabs. The recognised text must therefore contain the SPOKEN phrase and
+must NOT contain:
 
-**Threshold (v1 moderate):** detected language must equal `lang` parameter AND confidence ≥ 0.75.
+- the literal ﷺ (U+FDFA)
+- `PBUH`, `SAW`, `SAWS` or lowercase variants
+- `с.а.в.`, `с.а.с.`
+- any other untranslated form
 
-Special case for TJ: Whisper returns `tg` (Tajik) or sometimes `fa` (Persian) or `ru` (Russian, when Tajik is too close to Russian Cyrillic). Accept `tg` strictly; accept `fa` and `ru` with a warning. Fail only if detection is `en` or wildly unrelated.
+Fail `prophet_symbol_not_replaced`. **This is the only blocking check.** A reel
+that speaks an abbreviation instead of the full phrase is a religious defect,
+not a quality one.
 
-Fail with `language_mismatch` if assertion fails. Include the detected language and confidence in the report.
+### Step 6 — Voice identity (new in this revision)
 
-### Step 5 — Text similarity assertion
+Two assertions, both cheap, both grounded in P118:
 
-Compute Levenshtein-normalized similarity between input `text` and Whisper-recognized text.
+**6a — correct slot.** Given `lang`, `style` and `mascot`, read VOICE_MAP from
+`route.ts` and confirm the request would resolve to the expected id. Catches the
+P084/P085 class where a missing `mascot` field silently routes to the wrong
+gender.
 
-Normalization before comparison:
-- Lowercase both
-- Strip punctuation
-- Collapse whitespace
-- Remove Arabic diacritics for AR
-- Normalize Cyrillic apostrophes/spacing for UZ/TJ
+**6b — the id is the voice its comment claims.** GET
+`https://api.elevenlabs.io/v1/voices/{id}` and compare the returned `name` to
+the comment beside the id.
 
-**Threshold (v1 moderate):** similarity ≥ 0.80.
+P118: `ru.adults` was labelled Abrar and resolved to *Adam — Dominant, Firm*, an
+American voice, and shipped that way on R023 and R027. `ar.*` had the same
+defect. **A comment cannot be wrong loudly.** This is the only check in the
+fleet that validates a label against its referent, and it found two live
+defects the first time it was run by hand.
 
-Fail with `text_mismatch` if similarity < 0.80. Include both texts (truncated to 200 chars each) in the report so the reviewer can see what was misheard.
+Also assert every VOICE_MAP id is distinct except where sharing is deliberate
+and commented — two slots resolving to the same voice is the shape P118 took.
 
-### Step 6 — Prophet symbol replacement assertion (P071)
+**Note on env vars:** only `ELEVENLABS_VOICE_EN_KIDS` is set in `.env.local`.
+Every other slot resolves to its hardcoded fallback, so the fallbacks ARE the
+configuration. Do not dismiss a wrong fallback as unreachable.
 
-The `cleanForTTS()` function in the route must replace the Prophet symbol ﷺ with a language-specific phrase before sending to the TTS provider. The recognized text must NOT contain:
-
-- The literal Prophet symbol `ﷺ` (Unicode U+FDFA)
-- The English abbreviations `PBUH`, `SAW`, `SAWS`, `pbuh`, `saw`
-- The Russian transliteration `с.а.в.` or `с.а.с.`
-- Any other untranslated form per `references/p071-cleanforTTS.md`
-
-Fail with `prophet_symbol_not_replaced` if any banned string is found. This is the strictest check — the symbol must be fully replaced; partial replacement is a failure.
-
-### Step 7 — Provider verification (sanity check)
-
-The route doesn't return which provider was used, so the agent infers from headers and audio characteristics:
-
-- ElevenLabs MP3 frames have a distinctive ID3v2 header structure
-- OpenAI Nova/Onyx MP3 frames have a different bitrate profile (typically 32kbps mono vs ElevenLabs 64kbps)
-
-For v1, this is informational only — agent reports `inferred_provider` but does not fail on mismatch. Mismatch becomes a hard assertion in v2 once we have 30+ real samples to calibrate the heuristic.
+**AR is out of scope.** Arabic reels are not produced — the operator does not
+read Arabic fluently enough to review generated output, and review gates every
+publish. The AR ids are placeholders pointing at an English voice and are
+labelled as such. Skip AR cases; report `out_of_scope`.
 
 ## Outputs
-
-Return a structured report. Schema:
 
 ```json
 {
   "agent": "tts-validating",
-  "version": "v1",
+  "version": "v2",
   "timestamp": "ISO 8601",
-  "case_id": "string",
-  "request": { "text": "...", "lang": "...", "style": "..." },
+  "case": { "lang": "ru", "style": "adults", "mascot": null,
+            "slug": "sunan-abu-dawud-3641" },
   "result": "pass | fail",
-  "failed_step": "step_1_contract | step_2_audio_sanity | step_3_transcription | step_4_language_match | step_5_text_similarity | step_6_prophet_symbol | null",
+  "blocking_failure": "prophet_symbol_not_replaced | null",
+  "findings": [
+    { "severity": "high | medium | info", "code": "...", "note": "..." }
+  ],
   "diagnostics": {
-    "http_status": 200,
-    "content_type": "audio/mpeg",
-    "response_time_ms": 0,
     "audio_size_bytes": 0,
     "audio_duration_s": 0.0,
-    "whisper_backend": "local | openai_api",
-    "recognized_text": "...",
+    "recognised_text": "...",
     "detected_language": "...",
-    "language_confidence": 0.0,
     "text_similarity": 0.0,
-    "prophet_symbol_violations": [],
-    "inferred_provider": "elevenlabs | openai | unknown"
-  },
-  "warnings": []
+    "expected_voice_id": "...",
+    "resolved_voice_name": "...",
+    "comment_claims": "...",
+    "voice_label_matches": true,
+    "prophet_symbol_violations": []
+  }
 }
 ```
 
-If `result === "fail"`, include enough diagnostic detail that the orchestrator can decide whether to (a) retry, (b) escalate to a human, or (c) match against `fix_patterns.md` for a known issue.
-
 ## Self-validation (evals)
 
-The agent runs its own eval set from `evals/evals.json` whenever the SKILL.md or any reference is changed. Eval cases cover:
+Five cases covering the matrix as it now stands:
 
-1. EN adults — short authentic hadith (sanity baseline)
-2. AR adults — Arabic hadith with diacritics (Hijazi voice, diacritic-aware similarity)
-3. RU adults — Russian hadith (Abrar voice, OpenAI Whisper API)
-4. UZ kids — Uzbek Cyrillic hadith with Prophet symbol (Nova voice, P071 verification)
-5. TJ adults — Tajik Cyrillic hadith (Onyx voice, fallback language detection)
+1. **EN adults** — James. Baseline.
+2. **RU adults** — Marat (post-P118). Must confirm the id resolves to Marat,
+   not Adam. This case exists because it failed before P118.
+3. **UZ kids boy** — George, text containing ﷺ. Covers the mascot split (P103)
+   and the Prophet-symbol block in the hardest script.
+4. **TJ kids girl** — Katherine. Covers TJ language-detection fallback.
+5. **RU kids boy** — Maxim (post-P112). Regression guard on the voice swap; the
+   previous voice produced an audible background hum that no automated check
+   caught, only the operator's ear.
 
-Eval pass criteria: at least 4 of 5 cases pass for the agent to be considered green. The UZ case is the most likely to fail due to Whisper Cyrillic Uzbek limitations; we accept that as the known-flaky case for v1.
+Pass criteria: 5 of 5 on Step 5 and Step 6 (both deterministic). 4 of 5 overall,
+with UZ the accepted flaky case on Step 4.
 
-## Failure escalation paths
+**Case 5 is a known limitation, stated plainly:** the hum that caused P112 was
+an artefact in otherwise-correct speech. Transcription-based validation cannot
+hear it — similarity would have been high. Audio-quality assertions (noise
+floor, spectral anomalies) are a v3 question. Until then, listening remains a
+human step and this agent does not replace it.
 
-Each failure type has a defined escalation. The orchestrator follows this table.
+## Failure escalation
 
-| Failed step | Action | Notes |
-|---|---|---|
-| `step_1_contract` (status 400) | Block all downstream tasks. Match against P061. Open issue. | P061 regression — never ship. |
-| `step_1_contract` (other) | Retry once. If still fails, escalate to human. | Could be transient API issue. |
-| `step_2_audio_sanity` | Retry once. If still fails, check provider quota/status pages. | ElevenLabs and OpenAI status. |
-| `step_3_transcription` (Whisper error) | Retry once with fallback backend (local ↔ API). | Don't fail the case for Whisper issues. |
-| `step_4_language_match` | Block. Inspect voice matrix. Possible voice misassignment. | Real bug. |
-| `step_5_text_similarity` | Soft-block. Surface for human review. | Could be Whisper limitation, not route bug. |
-| `step_6_prophet_symbol` | **Hard block. Never publish.** Open critical issue. | P071 violation — religiously sensitive. |
+| Failed step | Action |
+|---|---|
+| `step_5_prophet_symbol` | **Hard block. Never publish.** Religiously sensitive. |
+| `step_6b_voice_label` | Block. The matrix is lying about itself (P118). |
+| `step_6a_wrong_slot` | Block. Wrong-voice routing (P084/P085). |
+| `step_1_audio_sanity` | Retry once, then check the ElevenLabs status page. |
+| `step_2_transcription` | Retry once. If `UnicodeEncodeError`, `PYTHONIOENCODING` is not set — that is P100/P114, not a TTS defect. |
+| `step_3_language_match` | Block. Likely a voice misassignment. |
+| `step_4_text_similarity` | Soft-block, surface for review. May be a Whisper limitation. |
 
 ## What this agent does NOT do
 
-- Does not modify `route.ts`, `cleanForTTS()`, or the voice matrix — that's the Code agent's job
-- Does not generate reels — that's the Reel-generating agent
-- Does not post to social media — that's a human decision per HR-AGENTS.md
-- Does not decide which voice to use — only validates that the chosen voice produced acceptable output
+- Does not modify `route.ts`, `cleanForTTS()`, or VOICE_MAP
+- Does not judge audio QUALITY — hum, artefacts, prosody. See case 5.
+- Does not check subtitles — that is `scripts/stt-validate.py`
+- Does not check content rules — that is `scripts/lint-content.py`, run earlier
+- Does not decide which voice to use, only that the chosen one was used
 
 ## Dependencies
 
-- Python 3.10+ with `openai-whisper`, `openai`, `mutagen`, `python-Levenshtein`
-- Playwright (TypeScript) with `--project=chromium` for audio capture
-- `ffprobe` on PATH (ships with FFmpeg, already installed per HR project memory)
-- Environment variables: `OPENAI_API_KEY`, `ELEVENLABS_API_KEY`, plus all `ELEVENLABS_VOICE_*` IDs
+- Python 3.10+ with `openai-whisper`, `python-Levenshtein`
+- `ffprobe` on PATH
+- `ELEVENLABS_API_KEY` for Step 6b only
+- **No OpenAI dependency.** `OPENAI_API_KEY` is still present in `.env.local`
+  but nothing in this pipeline calls it; it predates the P102/P104 migration.
 
 ## Scripts
 
-Implementation files live in `scripts/`:
+Not yet implemented. When built, reuse:
+- the S:/M:/H:/C: block parser from `scripts/lint-content.py`
+- the normalisation and Prophet-symbol expansion from `scripts/stt-validate.py`
+  (which already solved the compare-against-cleaned-text problem)
 
-- `scripts/capture-audio.ts` — Playwright script that hits `/api/tts` and saves the MP3
-- `scripts/transcribe.py` — Whisper routing (local vs OpenAI API per language)
-- `scripts/compare.py` — Levenshtein similarity with language-aware normalization
-- `scripts/run-evals.py` — runs the full eval set from `evals/evals.json` and prints the report
-- `scripts/check-prophet-symbol.py` — Step 6 banned-strings check
+## Governance
 
-These are stubs in v1. The Code agent generates them in follow-up tasks once this SKILL.md is approved.
-
-## Governance compliance
-
-This agent must follow:
-
-- `AGENTS_ADDENDUM.md` Golden Rule: never run as part of push CI; manual `workflow_dispatch` only (real OpenAI + ElevenLabs API calls)
-- `QA_STANDARDS_ADDENDUM.md` Section 6.5: tagged `@real-api`
-- `HR-AGENTS.md` Test agent rules: mocks not allowed in this agent's eval set — it explicitly tests real API behavior, by design, which is why it's gated to manual dispatch
-- `CI_WORKFLOW_TEMPLATE.md` Rule 1: never added to push-triggered CI steps
+- Steps 1–5 are offline and safe for push CI. Step 6b makes one ElevenLabs API
+  call per distinct voice id (13 total, cacheable) — cheap but networked, so
+  gate it as `@real-api` per `AGENTS_ADDENDUM.md` if run in CI.
+- Human approval before publish is unaffected.
 
 ## Versioning
 
-- **v1 (current):** Whisper-based validation, moderate thresholds, 5-case eval baseline, single-shot per case
-- **v2 (planned):** Provider verification (Step 7) becomes hard assertion; tightened thresholds; multi-shot for flaky cases; calibrated against 30+ real samples
-- **v3 (planned):** Add pronunciation-accent matching (e.g., Hijazi-specific phoneme assertions for AR); add prosody/intonation quality scoring; integrate with A/B-comparing agent for cross-LLM verdict on narration quality
+- **v1 (2026-06):** dual-provider, OpenAI Whisper routing, provider inference.
+  Superseded — described a stack that no longer exists.
+- **v2 (current, 2026-08-15):** ElevenLabs only, local Whisper, mascot split,
+  voice-identity checks, AR out of scope.
+- **v3 (planned):** audio-quality assertions (noise floor, spectral anomaly) to
+  cover the P112 hum class; Arabic phoneme checks if AR ever comes into scope.
 
-## Open questions for v2
+## Open questions
 
-These are intentionally deferred from v1 to keep the agent shippable today:
-
-- How to detect TJ when Whisper labels output as `ru` instead of `tg` — current accept-with-warning is too lenient
-- Whether to add a phoneme-level Arabic check for ﷺ replacement (current text-based check would miss if the replacement was spoken in transliteration)
-- How to score "compassionate tone" in the audio (HV principle: AI flags, humans decide — but agent could surface a flag for human review)
-- Whether to validate Uzbek Latin vs Uzbek Cyrillic separately when `lang=uz_latin` or `lang=uz_cyrillic` is passed (currently the route normalizes to `uz`)
-
-These move into v2 once we have data to ground them.
+- What noise-floor metric would have caught the P112 hum without flagging normal
+  room tone? Needs samples of both before a threshold can be set.
+- Should Step 6b run on every invocation or once per session? 13 API calls is
+  trivial but not free.
+- `OPENAI_API_KEY` is unused — remove it from `.env.local`, or keep it for the
+  sourcing scripts? Confirm nothing else reads it before deleting.
