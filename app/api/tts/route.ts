@@ -18,15 +18,20 @@ type VoiceSet = {
 }
 
 const VOICE_MAP: Record<string, VoiceSet> = {
+  // AR is NOT in production. Farhod does not read Arabic fluently enough to
+  // review generated Arabic output, and every reel depends on his review, so
+  // no AR reel is produced. These IDs are placeholders pointing at an English
+  // voice (Adam) and MUST be replaced with a verified Arabic voice before any
+  // AR reel is made. Do not treat this block as configured.
   ar: {
-    adults: process.env.ELEVENLABS_VOICE_HIJAZI    || 'pNInz6obpgDQGcFmaJgB',
+    adults: process.env.ELEVENLABS_VOICE_AR_ADULTS || 'pNInz6obpgDQGcFmaJgB',   // PLACEHOLDER - Adam, English
     kids: {
-      girl: process.env.ELEVENLABS_VOICE_AR_KIDS     || 'pNInz6obpgDQGcFmaJgB',
-      boy:  process.env.ELEVENLABS_VOICE_AR_KIDS_BOY || 'pNInz6obpgDQGcFmaJgB',
+      girl: process.env.ELEVENLABS_VOICE_AR_KIDS     || 'pNInz6obpgDQGcFmaJgB', // PLACEHOLDER - Adam, English
+      boy:  process.env.ELEVENLABS_VOICE_AR_KIDS_BOY || 'pNInz6obpgDQGcFmaJgB', // PLACEHOLDER - Adam, English
     },
   },
   ru: {
-    adults: process.env.ELEVENLABS_VOICE_ABRAR     || 'ErXwobaYiN019PkySvjV',
+    adults: process.env.ELEVENLABS_VOICE_RU_ADULTS || 'vQxSi2EuaRWwBw3nn6dK', // Marat - Warm, Calm and Friendly
     kids: {
       girl: process.env.ELEVENLABS_VOICE_RU_KIDS     || 'ocFEgn1SP9oWO9QrLDgb', // Arabella Calm & Mature
       boy:  process.env.ELEVENLABS_VOICE_RU_KIDS_BOY || 'HcaxAsrhw4ByUo4CBCBN', // Maxim Calm & Neutral

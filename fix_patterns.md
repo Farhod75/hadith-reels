@@ -2705,3 +2705,63 @@ must normalize apostrophes (qo'shni → qoʻshni).
   in reel-creation-pipeline.md, P093/P110 (gate integrity).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 118: Voice comments named voices the IDs did not resolve to
+## ════════════════════════════════════════════════════════
+**ID:** P118
+**Type:** Config drift (TTS voice matrix)
+**File:** app/api/tts/route.ts
+**Commit:** fix: RU adults voice was Adam, not Abrar; mark AR as out of scope (P118)
+
+**Symptom:**
+  Resolving every VOICE_MAP id against the ElevenLabs API found two slots
+  pointing at a voice other than the one the comment named:
+    ru.adults  ErXwobaYiN019PkySvjV  -> "Adam - Dominant, Firm" (american)
+                                        env var named ELEVENLABS_VOICE_ABRAR
+    ar.*       pNInz6obpgDQGcFmaJgB  -> "Adam - Dominant, Firm" (american)
+                                        env var named ELEVENLABS_VOICE_HIJAZI
+  R023 and R027 (RU adults) both shipped narrated by an American English voice.
+  Neither was caught by review — eleven_v3 carries Cyrillic through a non-native
+  voice well enough that it sounded acceptable.
+
+**Root cause:**
+  Two compounding things. The fallback ids were wrong, and — checked separately
+  — only ONE ELEVENLABS_VOICE_* var is set in .env.local
+  (ELEVENLABS_VOICE_EN_KIDS). Every other slot resolves to its hardcoded
+  fallback, so "it's only a fallback" was never true: the fallbacks ARE the
+  configuration.
+
+  The comments were the only record of intent, and a comment cannot be wrong
+  loudly. Nothing compared the label to the id until it was done by hand.
+
+**Fix:**
+  ru.adults -> vQxSi2EuaRWwBw3nn6dK ("Marat - Warm, Calm and Friendly", moscow),
+  resolved against the API before committing. Env var renamed
+  ELEVENLABS_VOICE_ABRAR -> ELEVENLABS_VOICE_RU_ADULTS to match every other
+  language's pattern; the old name referenced a voice never actually configured.
+
+  AR left on the placeholder ids but documented as NOT PRODUCTION: Arabic reels
+  are out of scope because Farhod does not read Arabic fluently enough to review
+  generated output, and human review gates every publish. A lane that cannot be
+  reviewed must not be produced. The block now says so, and the ids are marked
+  PLACEHOLDER - Adam, English.
+
+**Rule:**
+  An identifier and the comment beside it are two claims that drift apart
+  silently. Where an id is opaque — voice ids, model ids, place ids — resolve it
+  against the source of truth before trusting the label, and re-resolve when
+  touching the block. `curl -H "xi-api-key: $k" .../v1/voices/{id}` takes
+  seconds and would have caught this months ago.
+  Corollary: a fallback is not a fallback if the primary is unset. Check what
+  is actually in .env.local before dismissing a hardcoded default as unreachable.
+
+**Verified:** all 13 VOICE_MAP ids resolved against the API 2026-08-15. The
+  other 11 match their comments. Accent labels describe each voice's English
+  and do not constrain what it can read — George (british) reading Uzbek and
+  Katherine (south african) reading Tajik have both passed review repeatedly.
+
+**Related:** P102 (UZ/TJ to ElevenLabs), P103/P104 (kids voice split by mascot),
+  P112 (RU kids boy -> Maxim), P084/P085 (wrong-voice routing).
+
+**Status:** FIXED
