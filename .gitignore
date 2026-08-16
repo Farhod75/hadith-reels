@@ -49,3 +49,7 @@ playwright-report/
 draft.txt
 draft-*.txt
 
+# Python bytecode
+__pycache__/
+*.py[cod]
+
