@@ -37,19 +37,27 @@ export async function GET(req: NextRequest) {
       // P109: strip wildcards, commas, and leading #/" — users type "#salah" and
       // "#8" naturally, but those characters reach Postgres literally and match nothing.
       const esc = q.replace(/[%,]/g, ' ').replace(/["#]/g, '').trim()
-      query = query.or(
-        [
-          `text_english.ilike.%${esc}%`,
-          `text_russian.ilike.%${esc}%`,
-          `text_uzbek.ilike.%${esc}%`,
-          `text_tajik.ilike.%${esc}%`,
-          `text_arabic.ilike.%${esc}%`,
-          `narrator.ilike.%${esc}%`,
-          `collection.ilike.%${esc}%`,
-          `hadith_number.ilike.%${esc}%`,
-          `tags.cs.{${esc}}`,
-        ].join(',')
-      )
+
+      // P109: a pure-digit query means "this hadith number" — at 6k+ rows a
+      // substring match on "1" would return thousands. Exact match on digits,
+      // substring everywhere else.
+      if (/^\d+$/.test(esc)) {
+        query = query.eq('hadith_number', esc)
+      } else {
+        query = query.or(
+          [
+            `text_english.ilike.%${esc}%`,
+            `text_russian.ilike.%${esc}%`,
+            `text_uzbek.ilike.%${esc}%`,
+            `text_tajik.ilike.%${esc}%`,
+            `text_arabic.ilike.%${esc}%`,
+            `narrator.ilike.%${esc}%`,
+            `collection.ilike.%${esc}%`,
+            `hadith_number.ilike.%${esc}%`,
+            `tags.cs.{${esc}}`,
+          ].join(',')
+        )
+      }
     }
 
     const { data, error, count } = await query
