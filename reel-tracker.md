@@ -56,6 +56,10 @@
 | R035 | 2026-08-15 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | ru | Kids | bukhari-527 | kids-ru-bukhari-527-story.mp3 | kids-ru-bukhari-527-moral.mp3 | kids-ru-bukhari-527-narration.mp3 | kids-ru-bukhari-527-clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-03.mp3 | No | kids-ru-bukhari-527-mascot-reel.mp4 | 29.9s | 8.1 MB | Boy lamb; Maxim (P112). REGENERATED ONCE: cleanForTTS expands ﷺ but has no mapping for companion honorifics, so «(р.а.)» was read out as letters. Fixed by writing «да будет доволен им Аллах» in full in the source — a workaround, not a fix; cleanForTTS should expand companion honorifics per language. DB TEXT ERROR FOUND: text_russian read «любимее всего Аллахом» (instrumental) where it should be «Аллаху» (dative) — the caption had copied the DB faithfully and both were wrong. Corrected in hadith_library, which HV also reads. Also «(RA)» → «(р.а.)», and Latin "Sahih al-Bukhari" → Cyrillic in H. published TG/IG/TikTok/YT |
 | R036 | 2026-08-15 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | uz | Kids | bukhari-527 | kids-uz-bukhari-527-story.mp3 | kids-uz-bukhari-527-moral.mp3 | kids-uz-bukhari-527-narration.mp3 | kids-uz-bukhari-527-clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-05.mp3 | No | kids-uz-bukhari-527-mascot-reel.mp4 | 30.6s | 9.4 MB | Boy lamb; George. Honorific «розияллоҳу анҳу» written out in full so TTS reads it rather than spelling it — the R035 lesson applied ahead of generation. Caption quote came back Latin against a Cyrillic body (4th occurrence); replaced with text_uzbek_cyrillic from the DB rather than transliterating by hand. Title aligned «суюкли» → «севимли» to match the matn's wording. Linted clean. published TG/IG/TikTok/YT |
 | R037 | 2026-08-15 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | tj | Kids | bukhari-527 | kids-tj-bukhari-527-story.mp3 | kids-tj-bukhari-527-moral.mp3 | kids-tj-bukhari-527-narration.mp3 | kids-tj-bukhari-527-clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-07.mp3 | No | kids-tj-bukhari-527-mascot-reel.mp4 | 35.1s | 10.6 MB | Boy lamb; Liam Viral. Completes the 4-language #527 kids set. TWO REAL DEFECTS caught by reading, neither in any automated check: (1) the story opened with two sentences absent from the matn — "Allah sees our deeds. He loves some more than others" — framing supplied to fill space; (2) more seriously, the story stated the ranking as fact and NEVER ATTRIBUTED IT TO THE PROPHET ﷺ, unlike all three other languages. Rewritten to open from the question as the matn records it. SECOND DB TEXT ERROR: text_tajik read «Неки» where it should be «Некӣ»; corrected in hadith_library. published TG/IG/TikTok/YT |
+| R038 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | en | Adults | bukhari-527 | adults-en-bukhari-527-story.mp3 | adults-en-bukhari-527-moral.mp3 | adults-en-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-en-bukhari-527-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | Yes | adults-en-bukhari-527-reel.mp4 | 66.4s | 20.1 MB | First ADULTS treatment of a hadith already shipped in kids (R034–R037), so the DB row was already corrected and re-verified before production. FOUR NEW KLING SCENES, MODE B, no figures: dawn prayer mat → minaret at the turn of the hour → lamplit doorway → mosque courtyard at night. Unlike R026, the matn carries NO imagery of its own, so scenes were built from settings the hadith implies; a tea-cup concept was rejected as a P111 rule-14 simile. Kling took 505s on the doorway scene against a hardcoded 480s poll deadline — job was COMPLETED server-side and recovered via the fal status API rather than regenerated. Scene clips again needed a manual move from out\backgrounds\new\ to \normalized\ — third recurrence (June #1520, 8/11 #1, tonight), still undocumented. Linted clean; stt-validate clean, similarity 1.000, 9 cues. Whisper needed only "r.a." → "(RA)" and "bir" → "birr". Longest reel to date. EN adults voice still unlogged (R026 recorded it as "Voice ???"). published TG/IG/TikTok/YT |
+| R039 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | ru | Adults | bukhari-527 | adults-ru-bukhari-527-story.mp3 | adults-ru-bukhari-527-moral.mp3 | adults-ru-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-ru-bukhari-527-bg-mixed.mp4 | vocal-nasheed-06.mp3 | Yes | adults-ru-bukhari-527-reel.mp4 | 44.7s | 13.7 MB | FIRST RU ADULTS REEL SINCE P118 — R023 and R027 both shipped narrated by Adam (American English) under the Abrar label; this is the first confirmed Marat (vQxSi2EuaRWwBw3nn6dK, Moscow) run. RU is the ONLY language of the four where eleven_v3 mishandles the ﷺ glyph — EN, UZ and TJ all voice it correctly as "peace be upon him" and its equivalents, RU does not; «(р.а.)» was likewise spelled out letter by letter. Both honorifics written out in full before TTS (R036's lesson, now confirmed as RU-specific rather than universal). Whisper was materially worse on RU than EN — 8 hand-corrections against EN's 2. stt-validate then caught «Аллахам» (not a word) still burned in cue 2 after those corrections, forcing a re-render; the R027 defect class, caught pre-publish this time. Note «Аллахом» in the narration is correct instrumental case ("loved BY Allah") and was left as spoken, with the subtitle matched to it. 44.7s vs EN's 66.4s is a 33% gap, outside the ≤20% multilingual parity target in CLAUDE.md. published TG/IG/TikTok/YT |
+| R040 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | uz | Adults | bukhari-527 | adults-uz-bukhari-527-story.mp3 | adults-uz-bukhari-527-moral.mp3 | adults-uz-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-uz-bukhari-527-bg-mixed.mp4 | (not logged — render output not captured) | No | adults-uz-bukhari-527-reel.mp4 | 51.6s | 16.6 MB | Opa Johann. Caption quote came back Latin against a Cyrillic body — FIFTH occurrence of this pattern (R036 and three before it); replaced with text_uzbek_cyrillic from the DB rather than transliterating by hand. Companion honorific «розияллоҳу анҳу» was generated already written out, so R036's lesson is now holding at the prompt level. ﷺ expanded to «соллаллоҳу алайҳи ва саллам» before TTS as a precaution, then confirmed unnecessary — eleven_v3 voices the raw glyph correctly in UZ. Linted clean. No subtitles per P078. published TG/IG/TikTok/YT |
+| R041 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | tj | Adults | bukhari-527 | adults-tj-bukhari-527-story.mp3 | adults-tj-bukhari-527-moral.mp3 | adults-tj-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-tj-bukhari-527-bg-mixed.mp4 | vocal-nasheed-02.mp3 | No | adults-tj-bukhari-527-reel.mp4 | 39.8s | 13.3 MB | Meisam. Completes the 4-language #527 adults set — first hadith on the channel produced in BOTH styles across all four languages (8 reels total). R037's defect did NOT recur: the ranking was attributed to the Prophet ﷺ in the generated text without correction, and «некӣ» carried the correct U+04E3 diacritic throughout. Three hand-fixes: ﷺ left as the glyph (eleven_v3 voices it correctly in TJ), Latin attribution swapped to Cyrillic, and a sentence cut from the story — «ибодате, ки рӯйи банда ба сӯи Аллоҳ мегардонад, ва меҳрубонӣе, ки қалби банда ба сӯи оила мекашад» added metaphor absent from the matn (faces turning, hearts drawn) that the linter cannot catch because it is not a comparison. TITLE FIELD NOT EDITABLE (P079, still open) — generated title «Аллоҳ наздик — намоз ва модар муҳаббати» was ungrammatical and had to be corrected in the caption instead. Linter INFO on «ҳамчун» in the H block verified and ignored: explanatory gloss, and H is not narrated. No subtitles per P078. published TG/IG/TikTok/YT |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -79,8 +83,8 @@
 | Sahih al-Bukhari #8 | EN, RU, UZ, TJ | Kids | R018, R019, R020, R021 |
 | Sahih Muslim #482 | EN, RU, UZ, TJ | Kids | R022, R023, R024, R025 |
 | Sunan Abu Dawud #3641 | EN, RU, UZ, TJ | Adults | R026, R027, R028, R029 |
-| Sunan Abu Dawud #1479 | EN, RU, UZ, TJ | Kids | R030, R031, R032, R033 |
-| Sahih al-Bukhari #527 | EN, RU, UZ, TJ | Kids | R034, R035, R036, R037 |
+| Sunan Abu Dawud #1479 | EN, RU, UZ, TJ | Kids| R030, R031, R032, R033 |
+| Sahih al-Bukhari #527 | EN, RU, UZ, TJ | Kids, Adults | R034, R035, R036, R037, R038, R039, R040, R041 |
 
 ---
 
@@ -101,8 +105,7 @@
 | Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
 | Knowledge / Ilm | 4 | R026, R027, R028, R029 | EN, RU, UZ, TJ |
 | Dua / Ibadah | 4 | R030, R031, R032, R033 | EN, RU, UZ, TJ |
-| Prayer on time / Parents | 4 | R034, R035, R036, R037 | EN, RU, UZ, TJ |
-
+| Prayer on time / Parents | 8 | R034, R035, R036, R037, R038, R039, R040, R041 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -111,7 +114,7 @@
 - ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
 - ⚠️ Charity / Sadaqah — 5 reels (R003 smile-as-charity; R014–R017 full set)
 - ❌ Akhlaq / Patience / Anger management — no reels yet
-- ❌ Family / Marriage / Parents — no reels yet
+- ⚠️ Family / Marriage / Parents — 8 reels (R034–R041, birr al-walidayn); marriage and family ties still uncovered
 - ❌ Quran recitation / Tilawah — no reels yet
 - ❌ Death / Afterlife / Barzakh — no reels yet
 
@@ -133,16 +136,16 @@
 | path-to-jannah-bg.mp3 | 2 | 2026-08-13 (R023) | R004, R023 |
 | mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | 2026-08-13 (R022) | R012, R022 |
-| light-of-my-heart-bg.mp3 | 3 | 2026-08-13 (R024) | R010, R013, R024 |
+| light-of-my-heart-bg.mp3 | 4 | 2026-08-16 (R038) | R010, R013, R024, R038 |
 | ramadan-bg.mp3 | 5 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 1 | 2026-08-14 (R027)| R026, R027 |
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 | vocal-nasheed-01.mp3 | 2 | 2026-08-15 (R034) | R028, R034 |
 | vocal-nasheed-03.mp3 | 3 | 2026-08-15 (R035) | R029, R035 |
-| vocal-nasheed-02.mp3 | 1 | 2026-08-15 (R030) | R030 |
+| vocal-nasheed-02.mp3 | 2 | 2026-08-16 (R041) | R030, R041 |
 | vocal-nasheed-04.mp3 | 1 | 2026-08-15 (R031) | R031 |
 | vocal-nasheed-05.mp3 | 2 | 2026-08-15 (R036) | R032, R036 |
-| vocal-nasheed-06.mp3 | 1 | 2026-08-15 (R033) | R033 |
+| vocal-nasheed-06.mp3 | 2 | 2026-08-16 (R039) | R033, R039 |
 | vocal-nasheed-07.mp3 | 1 | 2026-08-15 (R037) | R037 |
 
 ### Mascot stills
@@ -169,6 +172,10 @@
 | ad3641-moon.mp4 | 4 | R026, R027, R028, R029 |
 | ad3641-rahle.mp4 | 4 | R026, R027, R028, R029 |
 | ad3641-window.mp4 | 4 | R026, R027, R028, R029 |
+| b527-dawn.mp4 | 4 | R038, R039, R040, R041 |
+| b527-minaret.mp4 | 4 | R038, R039, R040, R041 |
+| b527-doorway.mp4 | 4 | R038, R039, R040, R041 |
+| b527-night.mp4 | 4 | R038, R039, R040, R041 |
 
 **Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
 
@@ -184,17 +191,16 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 37 |
+| Total reels posted | 41 |
 | Languages active | 4 (RU, EN, UZ, TJ) |
-| Languages remaining | 1 (AR) |
-| Adults reels | 13 |
+| Languages remaining | 0 (AR formally out of scope, P118) |
+| Adults reels | 17 |
 | Kids reels | 24 |
-| Avg duration | ~43s |
+| Avg duration | ~44s |
 | Avg file size | ~15 MB |
 | Hadiths used (unique) | 13 |
-| Hadith collections used | 4 (Sahih al-Bukhari ×23, Sunan Abu Dawud ×8, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
-| Companions cited | 9 (Abu Hurairah ×11, Abdullah ibn Masud ×4, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
-
+| Hadith collections used | 4 (Sahih al-Bukhari ×27, Sunan Abu Dawud ×8, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
+| Companions cited | 9 (Abu Hurairah ×11, Abdullah ibn Masud ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 ---
 
 ## Template — adding new reels
@@ -238,3 +244,4 @@ Then update:
 | 2026-08-14 | R027–R029 — Abu Dawud #3641 RU/UZ/TJ, completing the first adults set since the restructure. P113 adults work tree, P114 Whisper UTF-8 + SRT path. Audio policy: instrumental beds retired after a viewer flag, library rebuilt vocal-only | Farhod / Claude |
 | 2026-08-15 | R030–R033 — Abu Dawud #1479 kids, girl lamb, 4 langs. First set linted pre-TTS with lint-content.py. Shipped P115, plus lint-content.py and stt-validate.py (found two Latin homoglyphs in published R027 subtitles) | Farhod / Claude |
 | 2026-08-15 | R034–R037 — Bukhari #527 kids, boy lamb, 4 langs. Two DB text errors found and fixed in hadith_library (RU case ending, TJ diacritic). Shipped P116, P117 (asset registry + lane gate), P118 (RU adults voice was Adam, not Abrar) | Farhod / Claude |
+| 2026-08-16 | R038–R041 — Bukhari #527 EN/RU/UZ/TJ adults, 4 new Kling scenes reused across all four. First hadith on the channel produced in BOTH styles across all four languages (8 reels). ﷺ glyph handling measured per language: EN/UZ/TJ voice it correctly on eleven_v3, RU does not — narrows the honorific fix to RU alone. stt-validate caught «Аллахам» burned into RU cue 2 after hand-correction, forcing a re-render pre-publish. Duration spread 39.8s–66.4s (67%), outside the ≤20% parity target in CLAUDE.md. Repo work: shipped P109 digit-search (2 months uncommitted, CI #129), tracked the applied Uzbek two-script migration, gitignored Python bytecode. Confirmed Phase 0 sourcing schema live but empty — hadith_candidates 0, hadith_promotions 0, hadith_library 69 (not 74). AR marked out of scope in stats per P118 | Farhod / Claude |
