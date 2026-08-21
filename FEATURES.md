@@ -120,3 +120,20 @@ permissible.
 onto an adults reel, adults ambience onto a kids reel), and before that every
 bed in the library was instrumental for months — approved once, reused across
 26 reels, caught by a viewer rather than any gate.
+
+### Library integrity audit (`scripts/audit-library.py`)
+
+Per-language checks over `hadith_library` and `hadith_candidates`. Read-only,
+warn-only, stdlib-only.
+
+Catches defects in the SOURCE ROWS — the class `lint-content.py` structurally
+cannot see, because it reads generated reel text and the generator paraphrases,
+so the DB sentence never appears verbatim in `draft.txt`.
+
+- **HIGH** — Tajik column is a copy of the Russian one (P050) · Latin homoglyph
+  inside a Cyrillic word (R027) · grade outside sahih/hasan
+- **WARN** — wrong okina in Uzbek, `o'` where `oʻ` (U+02BB) belongs (R024) ·
+  Latin and Cyrillic mixed between the two Uzbek columns (R036) · missing or
+  homepage-only source URL
+- **INFO** — empty language fields, showing which rows cannot produce a full
+  4-language set · long Tajik text carrying none of ӣ ӯ ҳ қ ғ ҷ

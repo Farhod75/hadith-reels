@@ -254,6 +254,23 @@ npm run test:multilingual
 4. `python scripts\audit-assets.py --audit` — should report zero unregistered
 5. An asset absent from the registry will BLOCK the render, by design
 
+### Workflow H — Audit the library before a sourcing batch
+1. `python scripts\audit-library.py` — all rows in `hadith_library`
+2. Or one row: `--row 527`  ·  candidates: `--table hadith_candidates`
+3. Read every HIGH — those are defects in the SOURCE ROW, and every reel
+   made from that row inherits them
+4. HIGH: Tajik column is a Russian copy (P050) · Latin homoglyph inside a
+   Cyrillic word (R027) · grade outside sahih/hasan
+5. WARN: wrong okina in Uzbek (R024) · Latin/Cyrillic mixed between the two
+   Uzbek columns (R036) · missing or homepage-only source URL
+6. INFO: empty language fields (which rows cannot make a 4-language set) ·
+   long Tajik text with no Tajik-specific letters
+7. Read-only — it never edits. Fix in Supabase, re-run
+8. `--strict` exits 1 on any HIGH, for use as a gate later
+9. Run it after ANY manual DB edit. lint-content.py cannot see these defects:
+   it reads generated reel text, and the generator paraphrases, so the DB
+   sentence never appears verbatim in draft.txt
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)
