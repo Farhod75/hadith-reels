@@ -1,5 +1,5 @@
 #!/bin/sh
-# .git/hooks/pre-push — hadith-reels (smart version)
+# .githooks/pre-push — hadith-reels (smart version)
 
 echo ""
 echo "🎬 Hadith Reels — Smart pre-push scanner..."
@@ -27,15 +27,17 @@ UI_PATTERNS="^app/page\.tsx$|^components/|^lib/"
 REMOTION_PATTERNS="^remotion/"
 CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
 TEST_PATTERNS="^tests/|\.spec\.ts$"
+PY_PATTERNS="\.py$"
 
 HAS_DOC=$(echo "$CHANGED_FILES" | grep -E "$DOC_PATTERNS" | wc -l | tr -d ' ')
 HAS_API=$(echo "$CHANGED_FILES" | grep -E "$API_PATTERNS" | wc -l | tr -d ' ')
 HAS_UI=$(echo "$CHANGED_FILES" | grep -E "$UI_PATTERNS" | wc -l | tr -d ' ')
 HAS_REMOTION=$(echo "$CHANGED_FILES" | grep -E "$REMOTION_PATTERNS" | wc -l | tr -d ' ')
+HAS_PY=$(echo "$CHANGED_FILES" | grep -E "$PY_PATTERNS" | wc -l | tr -d ' ')
 HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" | wc -l | tr -d ' ')
 NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
 
-echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG"
+echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY"
 echo ""
 
 # Doc-only → skip
@@ -63,6 +65,40 @@ fi
 # Remotion compositions → just tsc (can't render in pre-push)
 if [ "$HAS_REMOTION" -gt 0 ] && [ $FAILED -eq 0 ]; then
   echo "✅ Remotion changes — TypeScript check sufficient (render locally after push)"
+fi
+
+# Python agents → syntax parse + offline unit tests
+# tsc cannot read Python. Before this branch existed, a pure-Python commit
+# ran the TypeScript check, passed, and pushed untested — the four agents
+# that gate every published reel had no CI coverage at all.
+if [ "$HAS_PY" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ Python checks (agent scripts changed)..."
+
+  PY_BIN=""
+  for c in python python3 py; do
+    if command -v "$c" > /dev/null 2>&1; then PY_BIN="$c"; break; fi
+  done
+
+  if [ -z "$PY_BIN" ]; then
+    echo "❌ Python changed but no python interpreter on PATH"
+    FAILED=1
+  else
+    # every changed .py must at least parse
+    for f in $(echo "$CHANGED_FILES" | grep -E "$PY_PATTERNS"); do
+      if [ -f "$f" ]; then
+        "$PY_BIN" -c "import ast,sys; ast.parse(open(sys.argv[1],encoding='utf-8').read())" "$f" 2>&1
+        if [ $? -ne 0 ]; then echo "❌ Python syntax error in $f"; FAILED=1; fi
+      fi
+    done
+
+    # offline unit tests for the sourcing lib — no network, ~0.3s
+    if [ $FAILED -eq 0 ] && [ -d "scripts/lib" ]; then
+      "$PY_BIN" -m pytest scripts/lib -q 2>&1
+      if [ $? -ne 0 ]; then echo "❌ pytest failed"; FAILED=1; fi
+    fi
+  fi
+
+  [ $FAILED -eq 0 ] && echo "✅ Python OK"
 fi
 
 # API or UI → E2E tests
