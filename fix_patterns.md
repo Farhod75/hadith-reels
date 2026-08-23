@@ -2765,3 +2765,83 @@ must normalize apostrophes (qo'shni → qoʻshni).
   P112 (RU kids boy -> Maxim), P084/P085 (wrong-voice routing).
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 119: Pre-push hook blind to Python, and pointed at nothing
+## ════════════════════════════════════════════════════════
+**ID:** P119
+**Type:** Gate integrity — a check that could not fail
+**Files:** .githooks/pre-push, .git/config (core.hooksPath)
+**Commit:** 7b3b3ae, a85877d
+
+**Symptom:**
+  Committing `scripts/audit-library.py` — 404 lines of new Python — printed
+  `Classification: Doc=3 API=0 UI=0 Remotion=0 Config=0`, ran a TypeScript
+  check, reported `✅ All checks passed` and pushed. The Python was never
+  parsed, imported or tested.
+
+**Diagnosis — two independent faults, either alone sufficient:**
+
+  (1) NO PYTHON CATEGORY. The hook classified into Doc/API/UI/Remotion/Config.
+      A `.py` file matched none of them, so `NON_DOC` counted it and the
+      doc-only skip did not fire — but nothing downstream tested it either.
+      Control fell through to `npx tsc --noEmit`, which cannot read Python,
+      reported clean, and passed. A pure-Python commit therefore ran a
+      TypeScript compiler over unchanged TypeScript and called that a gate.
+      All four agents — lint-content.py, stt-validate.py, audit-assets.py,
+      audit-library.py — had zero pre-push coverage. These are the scripts
+      that gate what gets published.
+
+  (2) THE TRACKED HOOK WAS NOT THE RUNNING HOOK. `core.hooksPath` was unset,
+      so Git read `.git/hooks/pre-push`. The repo's `.githooks/pre-push` was
+      never executed. This is invisible from the outside: an older copy in
+      `.git/hooks/` runs and prints the same banner, so the hook looks alive
+      while edits to the tracked file do nothing. Every fix to `.githooks/`
+      since it was created had existed on one machine only.
+
+**Decisive observation:**
+  After adding the Python branch to `.githooks/pre-push`, a push still printed
+  the OLD classification line with no `Py=` field. The file on disk and the
+  file being executed were different files.
+
+**Proof the gate was absent, not merely weak:**
+  A file containing `def broken(:` was committed and pushed to main. Output:
+  `✅ TypeScript OK` → `✅ All checks passed` → `19c7f28..7b3b3ae`. A
+  syntactically invalid Python file reached the default branch through a hook
+  whose stated purpose is to prevent exactly that.
+
+**Fix:**
+  - `PY_PATTERNS="\.py$"` and `HAS_PY`, reported in the classification line
+  - A Python branch, placed before the E2E branch: syntax-parse every changed
+    `.py` via `ast.parse`, then run `python -m pytest scripts/lib -q`
+    (49 tests, offline, ~0.2s, no network and no credentials)
+  - Interpreter probe across `python` / `python3` / `py`; if none is found the
+    branch FAILS rather than passing silently — a missing interpreter must not
+    read as success
+  - `git config core.hooksPath .githooks`
+  - Removed a duplicated `Classification:` echo introduced during the edit
+
+**Verified in both directions:**
+  - `def broken(:` → `❌ Python syntax error` → `❌ Push blocked`, push refused
+  - valid `.py` → `Py=1`, 49 tests run and pass, push proceeds
+  A gate is not proven by passing. It is proven by failing on demand.
+
+**Incidental finding:**
+  The parse error reported was `SyntaxError: invalid non-printable character
+  U+FEFF` — a BOM written by `Out-File -Encoding utf8` in Windows PowerShell,
+  which emits UTF-8 WITH BOM. Python rejects a BOM mid-file. Never write a
+  `.py` from PowerShell without `-Encoding utf8NoBOM`; edit in VS Code
+  instead. Same family as the repo's standing rule against PowerShell file-API
+  writes.
+
+**Rule:**
+  A classifier that routes work to checks must fail closed on anything it does
+  not recognise. This one fell through to an unrelated check and reported its
+  success as the verdict. Ask of every gate: what input makes this fail? If
+  there is no answer, it is decoration. Third instance in this project after
+  P093 (Playwright webServer timeout returning EXIT_CODE=0 with zero tests
+  run) and P110 (continue-on-error masking the type gate).
+
+**Related:** P093 (gate that cannot fail), P110 (CI gate integrity)
+
+**Status:** FIXED

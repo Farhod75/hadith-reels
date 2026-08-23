@@ -271,6 +271,11 @@ npm run test:multilingual
    it reads generated reel text, and the generator paraphrases, so the DB
    sentence never appears verbatim in draft.txt
 
+   `core.hooksPath` must be `.githooks`. Check with `git config core.hooksPath`.
+If it is empty, Git reads `.git/hooks/` and the tracked hook does nothing —
+this was the state until 2026-08-23, and it is invisible: the hook appears to
+run because an older copy exists there.
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)
