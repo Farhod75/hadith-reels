@@ -159,3 +159,39 @@ translated (D4: Cyrillic canonical).
     python scripts/translate-candidates.py --row 527      # dry run
     python scripts/translate-candidates.py --limit 10     # D5 batch
     python scripts/translate-candidates.py --commit
+
+### Candidate translation, Stage 2 (`scripts/translate-candidates.py`, `scripts/derive-uzbek-latin.ts`)
+
+Translates the Arabic matn of a sourced candidate into EN, RU, Uzbek Cyrillic
+and Tajik. Dry-run by default; writes nothing until `--commit`.
+
+Translates from `text_arabic` ONLY. It refuses a candidate with no Arabic rather
+than fall back to another language column (G3). P075 built the current Tajik
+library column by translating `text_uzbek` → `text_tajik`; that is a translation
+of a translation, and «Неки» for «Некӣ» (R037) is what it produces. Translating
+#527 from the Arabic returned «Некӣ» with U+04E3 correctly.
+
+The system prompt carries the fabrication rules, not just register guidance: add
+no clause, supply no attribution the matn lacks, add no comparison, add no
+ranking or elevation, and emit `[UNCERTAIN: note]` rather than guess. A
+translator asked only for a "reverent" register will smooth a terse matn into
+something fuller — the same length-pressure failure as P116.
+
+Per-field provenance goes to `translation_meta`: `machine`, model, source field,
+timestamp. That is what routes a field to human review at Stage 4.
+
+`text_uzbek_latin` is DERIVED, never translated (D4: Cyrillic canonical).
+`derive-uzbek-latin.ts` calls `deriveBothScripts` in `scripts/lib/uzbek-translit.ts`,
+which is tested for okina (U+02BB after o/g) vs tutuq (U+02BC elsewhere) and folds
+every apostrophe variant to one result. Verified on #527: `oʻz`, `oʻqish`,
+`soʻngra` all carry U+02BB — the okina defect that reached five captions did not
+recur, and `audit-library.py` independently agrees.
+
+    python scripts/translate-candidates.py --row 527      # dry run
+    python scripts/translate-candidates.py --limit 10     # D5 batch
+    python scripts/translate-candidates.py --commit
+    npx tsx scripts/derive-uzbek-latin.ts                 # dry run
+    npx tsx scripts/derive-uzbek-latin.ts --commit
+
+Stage 3 must use a DIFFERENT model for pass B (D2) — a model may not be the sole
+verifier of its own output.

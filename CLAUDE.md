@@ -367,9 +367,14 @@ npm run test:multilingual
 5. Any `[UNCERTAIN: ...]` marker is the model abstaining — that field needs a
    human, not a retry
 6. `--commit` writes and sets `status='translated'`
-7. `text_uzbek_latin` stays empty — derive it from the canonical Cyrillic with
-   `scripts/lib/uzbek-translit.ts` (`deriveBothScripts`), which is tested for
-   okina vs tutuq. Do not transliterate by hand
+7. 7. Derive the Uzbek Latin from the canonical Cyrillic — never translate it,
+   never transliterate by hand (D4):
+   `npx tsx scripts/derive-uzbek-latin.ts`          # dry run, read the Latin
+   `npx tsx scripts/derive-uzbek-latin.ts --commit`
+   It calls `deriveBothScripts` in `scripts/lib/uzbek-translit.ts`, which is
+   tested for okina (U+02BB after o/g) vs tutuq (U+02BC elsewhere) and folds
+   every apostrophe variant to one result. Any ambiguity flags in the output
+   mean a human decides, not the script.
 8. ALWAYS from `text_arabic`. Never from another language column — P075 built
    the current Tajik by translating text_uzbek, and «Неки» for «Некӣ» (R037)
    is what that produces
