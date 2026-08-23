@@ -137,3 +137,25 @@ so the DB sentence never appears verbatim in `draft.txt`.
   homepage-only source URL
 - **INFO** — empty language fields, showing which rows cannot produce a full
   4-language set · long Tajik text carrying none of ӣ ӯ ҳ қ ғ ҷ
+
+  ### Candidate translation, Stage 2 (`scripts/translate-candidates.py`)
+
+Translates the Arabic matn of a sourced candidate into EN, RU, Uzbek Cyrillic
+and Tajik. Dry-run by default; writes nothing until `--commit`.
+
+Translates from `text_arabic` only. It refuses a candidate with no Arabic
+rather than fall back to another language column (G3).
+
+The system prompt carries the fabrication rules, not just register guidance:
+add no clause, supply no attribution the matn lacks, add no comparison, add no
+ranking or elevation, and emit `[UNCERTAIN: note]` rather than guess. A
+translator asked only for a "reverent" register will smooth a terse matn into
+something fuller — the same length-pressure failure as P116.
+
+Per-field provenance goes to `translation_meta`: `machine`, model, source
+field, timestamp. `text_uzbek_latin` is derived by `uzbek-translit.ts`, not
+translated (D4: Cyrillic canonical).
+
+    python scripts/translate-candidates.py --row 527      # dry run
+    python scripts/translate-candidates.py --limit 10     # D5 batch
+    python scripts/translate-candidates.py --commit

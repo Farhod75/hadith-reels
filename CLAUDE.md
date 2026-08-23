@@ -276,6 +276,22 @@ If it is empty, Git reads `.git/hooks/` and the tracked hook does nothing —
 this was the state until 2026-08-23, and it is invisible: the hook appears to
 run because an older copy exists there.
 
+### Workflow I — Stage 2: translate sourced candidates
+1. Candidates must be at `status='deduped'` with `text_arabic` present
+2. Dry run first: `python scripts\translate-candidates.py --limit 10`
+3. Read `out\candidate-translations.json` — the full text, not the previews
+4. Check against the Arabic: did anything get ADDED? A clause, an attribution,
+   a ranking, a comparison. The matn is the only thing the translation may say
+5. Any `[UNCERTAIN: ...]` marker is the model abstaining — that field needs a
+   human, not a retry
+6. `--commit` writes and sets `status='translated'`
+7. `text_uzbek_latin` stays empty — derive it from the canonical Cyrillic with
+   `scripts/lib/uzbek-translit.ts` (`deriveBothScripts`), which is tested for
+   okina vs tutuq. Do not transliterate by hand
+8. ALWAYS from `text_arabic`. Never from another language column — P075 built
+   the current Tajik by translating text_uzbek, and «Неки» for «Некӣ» (R037)
+   is what that produces
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)
