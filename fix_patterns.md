@@ -2844,4 +2844,15 @@ must normalize apostrophes (qo'shni → qoʻshni).
 
 **Related:** P093 (gate that cannot fail), P110 (CI gate integrity)
 
-**Status:** FIXED
+**Status:** FIXED  
+**Correction (2026-08-23, same day):** this pattern was written and marked FIXED
+before the hook was ever committed. `git status --short .githooks` returned
+empty and that was read as "already committed"; it actually meant the working
+file matched HEAD, i.e. the fix was not on disk. The download had silently not
+occurred, so the `Copy-Item` that installed it copied nothing. Verified only
+after a later push again showed no `Py=` field. The lesson is the pattern's own
+lesson applied to its own fix: `git status` reports a comparison, not a
+presence. To confirm a file's content is in git, ask git for the content —
+`git show HEAD:<path> | Select-String <token>`. Actually committed in 51c9656.
+
+**Status:** FIXED (verified in git 51c9656)

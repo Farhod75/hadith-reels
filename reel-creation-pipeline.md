@@ -189,6 +189,11 @@ Copy instead of moving; delete after a reboot.
 Windows-1252 mangles em dashes into bytes PowerShell can't parse inside strings.
 Save as UTF-8; prefer plain hyphens in PowerShell string literals.
 
+**PowerShell writing UTF-16 or BOM** — `>>` and `Out-File` default to UTF-16LE in
+PS 5.1 (turns text files binary; git shows `Bin` and shell scripts stop running);
+`Out-File -Encoding utf8` adds a BOM Python rejects. Use `Copy-Item`, VS Code, or
+`[System.IO.File]::WriteAllText()`. Verify: `python -c "d=open('<f>','rb').read(); print(len(d), d.count(b'\x00'))"`
+
 **Repo file edits silently reverting** — never use PowerShell file APIs
 (`Set-Content`, `Add-Content`, `WriteAllText`) on repo files. VS Code only.
 
