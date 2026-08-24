@@ -393,7 +393,7 @@ Then, regardless of mode:
 | 1 | Stage 0 adapters + daif-drop + provenance (pytest) | ✅ built · ⚠️ live run blocked on issue #3675 |
 | 2 | Stage 1 dedup (hard + fuzzy advisory) | ✅ built, pytest-covered |
 | 3 | Stage 2 translate + UZ transliterator | ✅ built 2026-08-23, verified on #527 |
-| 4 | Stage 3 A/B verify state machine | ⬜ **NEXT** — D2 resolved, scope set by P120 |
+| 4 | Stage 3 A/B verify state machine | ⬜ **built, proven both directions** — D2 resolved, scope set by P120 |
 | 5 | Stage 4 admin gate UI (Playwright) | ⬜ SQL gate in use meanwhile, by choice |
 | 6 | Stage 5 promote + audit + coverage refresh | ✅ built (P094) |
 
@@ -433,7 +433,7 @@ Read this before trusting anything above. Verify with `git show`, not memory.
 | Stage 0 acquire | `scripts/source-candidates.py`, `scripts/lib/source_{sunnah,dorar}.py` | built, blocked on key |
 | Stage 1 dedup | `scripts/lib/dedup.py`, `scripts/upload-candidates.py` | built |
 | Stage 2 translate | `scripts/translate-candidates.py`, `scripts/derive-uzbek-latin.ts` | built |
-| Stage 3 verify | — | **not built** |
+| Stage 3 verify | scripts/verify-candidates.py | built |
 | Stage 4 gate | SQL | by choice |
 | Stage 5 promote | `scripts/promote-candidates.py` | built (P094) |
 | Library audit | `scripts/audit-library.py` | built, 69 rows clean |
