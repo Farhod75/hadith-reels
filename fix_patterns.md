@@ -2856,3 +2856,81 @@ presence. To confirm a file's content is in git, ask git for the content —
 `git show HEAD:<path> | Select-String <token>`. Actually committed in 51c9656.
 
 **Status:** FIXED (verified in git 51c9656)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 120: Verifier competence is per-defect-class, not per-language
+## ════════════════════════════════════════════════════════
+**ID:** P120
+**Type:** Gate design — knowing what a check cannot see
+**Files:** scripts/probe-passb.py (throwaway), sourcing-pipeline-design.md §Stage 3
+**Context:** Stage 3 A/B verify. D2 requires pass B to be a different model from
+pass A. It says nothing about whether that model is competent in Tajik or Uzbek.
+
+**The question nobody had asked:**
+  A verifier that cannot read the language fails in the worst possible way — it
+  rubber-stamps, and from outside that is indistinguishable from a working gate.
+  The design doc flagged this as the "pass-B competence" caveat and it was never
+  tested. Building Stage 3 first would have meant discovering it at candidate 200.
+
+**Method:**
+  Bukhari #527, whose four translations are known-good (Stage 2 output, audited
+  clean, and cross-checked against eight shipped reels). For each language, two
+  prompts: the clean translation, and the same text with ONE planted defect drawn
+  from the actual reel log — not an invented one. Clean should pass, planted
+  should fail. Passing both means blind. Failing both means noise.
+  Planted: EN invented action + invented ranking (P105/P116) · RU dual→singular,
+  «родителям»→«матери» · UZ divine name «Аллоҳ»→«Худо» (R025) · TJ invented
+  simile + «Некӣ»→«Неки» (P111 r14 + R037).
+
+**Result — gpt-5.6-terra, two identical runs:**
+  EN pass/fail ✅ · RU pass/fail ✅ · TJ pass/fail ✅ · **UZ pass/PASS ❌**
+  Reproducible to the confidence level across both runs.
+
+**Diagnosis — the naive read is wrong:**
+  "GPT is blind in Uzbek" does not survive contact with the other results. It
+  caught the TAJIK invented simile, quoting the Arabic correctly — so it reads
+  Cyrillic Central Asian text well enough to detect added content. It caught the
+  Russian dual→singular shift and cited بِرُّ الْوَالِدَيْنِ as dual, which is
+  real Arabic competence.
+  What it missed in Uzbek was «Худо» for «Аллоҳ». Both words mean God, and the
+  Arabic does say اللَّه — so the translation is FAITHFUL. It is wrong on a
+  PROJECT RULE, not on the matn. The model was never told Худо is forbidden, so
+  it had no basis to fail it, and it said so at high confidence because it was
+  right about the question it was actually asked.
+  Same for the Tajik «Неки»: it caught the simile in that very sentence and said
+  nothing about the diacritic. Orthography is not faithfulness.
+
+**Rule:**
+  Ask of a verifier not "which languages can it read" but "which DEFECT CLASSES
+  can it see." Competence is per-class. A model judges faithfulness to a source;
+  it does not know your conventions unless they are in the prompt, and putting
+  them there turns a judgement engine into a rules engine — worse at both.
+
+**Resulting layering (each class has exactly one owner):**
+  | Defect class                                   | Owner              |
+  |------------------------------------------------|--------------------|
+  | Added content: action, ranking, simile, source | pass B (model)     |
+  | Omission, meaning change, register drift        | pass B (model)     |
+  | Divine name substitution                        | lint-content.py    |
+  | Diacritics, homoglyphs, okina, script mixing    | audit-library.py   |
+  | Grade, source URL, empty fields                 | audit-library.py   |
+  Both of pass B's misses already have deterministic owners that catch them
+  reliably — `Худо` is in lint-content.py's `DIVINE_SUBSTITUTES['uz']` at FAIL
+  level, and «Неки» is audit-library.py's TJ check. Nothing is uncovered. Pass B
+  is USABLE FOR ALL FOUR LANGUAGES, for what pass B is for.
+
+**Cost of finding out:** eight API calls, a few cents, one hadith.
+**Cost of not finding out:** an Uzbek gate that reports green forever.
+
+**Generalisation:** this is the P093/P110/P119 family again — a gate that cannot
+fail — but arrived at from the other direction. Those three were gates that could
+not fail for MECHANICAL reasons (wrong exit code, continue-on-error, wrong file).
+This one would have been a gate that could not fail for a SEMANTIC reason: the
+check was real, the model was competent, and it still could not see the defect
+because nobody had told it that defect existed. Before trusting any verifier,
+plant a known defect and confirm it screams.
+
+**Related:** P093, P110, P119 (gates that cannot fail); P111, P116 (the model
+finds the adjacent exit)
+
+**Status:** DOCUMENTED — informs Stage 3, which is not yet built
