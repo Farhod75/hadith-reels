@@ -401,6 +401,23 @@ npm run test:multilingual
 8. Reuse the same four scenes for all four languages — never regenerate per language
 9. Update `reel-tracker.md` after the COMPLETE set ships, not per reel
 
+### Workflow K — Stage 3: A/B verify translations
+1. Candidates must be at `status='translated'` with all language fields filled
+2. Run `audit-library.py --table hadith_candidates` FIRST — Stage 3 does not
+   check conventions, and a row with a divine-name or diacritic defect will
+   pass A/B cleanly (P120)
+3. Dry run: `python scripts\verify-candidates.py --limit 10`
+4. A = `claude-sonnet-5`, B = `gpt-5.6-terra`. B never sees A's output
+5. Read the disagreement rate at the bottom. Near 0% over a real batch means
+   the passes are correlated and B is buying nothing; very high means mistuned
+6. `--commit` writes `verify_a` / `verify_b` / `verify_agreement` and sets
+   `status='verified'` or `needs_human`
+7. **A `pass` is eligibility for human review, never an insert (G1).**
+   Disagreement is the output this stage exists to produce — never resolve it
+   with a third pass or by preferring one model
+8. Re-run `probe-passb.py` whenever either model version changes. Competence is
+   per-defect-class and is not inherited across versions (P120)
+
 ---
 
 ## 🐛 BUG LOG (auto-updated by Claude Code)

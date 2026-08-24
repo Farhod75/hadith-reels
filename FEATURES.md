@@ -195,3 +195,28 @@ recur, and `audit-library.py` independently agrees.
 
 Stage 3 must use a DIFFERENT model for pass B (D2) — a model may not be the sole
 verifier of its own output.
+
+### Translation verification, Stage 3 (`scripts/verify-candidates.py`)
+
+Two independent passes over every translation: `claude-sonnet-5` and
+`gpt-5.6-terra`, different companies, uncorrelated failure modes (D2). B never
+sees A's output, and both get an identical prompt — a divergent prompt would
+make disagreement uninterpretable.
+
+Scope is faithfulness to the matn only: added, omitted, changed, register.
+Conventions are owned by `lint-content.py` and `audit-library.py` and must be
+clean first (P120). The original design's ref-exists and grade checks are not
+here — those are API lookups Stage 0 already performs.
+
+An API error counts as a disagreement: absence of a verdict is not a verdict.
+A single failing language routes the whole candidate to `needs_human`, since a
+row is promoted or rejected whole.
+
+Proven in both directions on Bukhari #527: clean text passes on all four
+languages, and an English translation with a planted invented action and
+invented ranking is caught by both models independently at high confidence
+while the other three stay clean.
+
+    python scripts/verify-candidates.py --row 527    # dry run
+    python scripts/verify-candidates.py --limit 10   # D5 calibration batch
+    python scripts/verify-candidates.py --commit
