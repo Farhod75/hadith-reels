@@ -2934,3 +2934,173 @@ plant a known defect and confirm it screams.
 finds the adjacent exit)
 
 **Status:** DOCUMENTED — informs Stage 3, which is not yet built
+
+## ════════════════════════════════════════════════════════
+## PATTERN 121: The asset gate checked one asset class out of two
+## ════════════════════════════════════════════════════════
+**ID:** P121
+**Type:** Gate integrity — a real gate wired to the wrong scope
+**Files:** render-reel.ps1 (line ~260), scripts/audit-assets.py, assets/asset-registry.json
+**Found:** 2026-08-25, during the Muslim #2999 UZ render
+
+**Symptom:**
+  The UZ reel rendered with `ambient-ocean-bg.mp3` under the narration — an
+  ocean-ambience track, not a nasheed. The background policy is VOCAL-ONLY
+  nasheed; instrumentals were retired to `_instrumental` precisely so the random
+  picker could not reach them. This file is neither, and should not have been
+  reachable at all.
+
+**First finding — the file is invisible to the audit.**
+  `audit-assets.py --audit` lists eight `vocal-*` audio files and reports
+  `0 missing`. `ambient-ocean-bg.mp3` appears NOWHERE in the output: not
+  registered, not unregistered, not missing. Yet it passed `--check` at render
+  time and reached the merge. Either it is registered as something it is not, or
+  `--check` returns success for files it has never seen. A gate that passes
+  unknown input is not a gate.
+
+**Second finding — the bigger one — the scene clips were never checked.**
+  The same audit reports EIGHT scene clips as UNREGISTERED and states plainly:
+  "The render gate will BLOCK these."
+    b527-dawn / -doorway / -minaret / -night        (R038–R041)
+    m2999-dawn / -harvest / -storm / -steady        (R042–R045)
+  It did not block them. **Eight reels shipped over clips the audit itself says
+  should have been stopped.**
+
+**Diagnosis — the decisive line:**
+  render-reel.ps1:260
+      $assetName = Split-Path $chosen -Leaf
+      $auditOut  = & python "scripts\audit-assets.py" --check $assetName --lane $Style
+  `$chosen` is the RANDOMLY PICKED NASHEED. The gate is called with exactly one
+  filename: the one asset the script selected itself. Clips passed in by the
+  operator via `-Scenes` are never named to it and never reach it.
+  The comment two lines above says why, and it is honest:
+      "not a judgement call - twice on 2026-08-15 the random picker crossed lanes."
+  The gate was built to police the PICKER, because the picker was what had
+  failed. It was never widened to police the INPUT. So the gate is real, it
+  works, it is correctly wired — to half the problem.
+
+**Why this went unnoticed for eight reels:**
+  The audit and the gate are the same script but different verbs. `--audit`
+  reports and is run by a human occasionally; `--check` blocks and runs on every
+  render. The reporting half saw the unregistered clips every time it was run
+  and said so. Nobody connected "the audit lists them as blocked" with "the
+  renders are succeeding," because the audit's own wording — future tense, "will
+  BLOCK these" — reads as a description of what happens, not a claim to test.
+
+**Fix (not applied in this session — logged with the set shipping):**
+  1. `render-reel.ps1` must pass every `-Scenes` clip to `--check` before the
+     stitch, not only the picked nasheed.
+  2. `audit-assets.py --check` must FAIL CLOSED on a filename it does not
+     recognise. An unknown asset is the case the registry exists for.
+  3. Register the eight clips already in use, or retire them deliberately.
+  4. Account for `ambient-ocean-bg.mp3`: registered wrongly, or unregistered and
+     passed. Then remove it from the picker's reach.
+
+**Rule:**
+  A gate protects the inputs it is NAMED, not the inputs that exist. When a gate
+  is built in response to one failure, ask immediately what else travels the same
+  path and is not covered. And when a tool reports "this will be blocked," treat
+  that as a claim to verify, not a fact to read — the reporting half of a tool
+  and the enforcing half can disagree indefinitely without either being wrong.
+
+**Related:** P093 (Playwright gate returning 0 with zero tests run), P110
+(continue-on-error masking the type gate), P119 (hook blind to Python, and
+pointed at the wrong file), P120 (verifier blind to a defect class nobody named).
+Fourth in the family, and the first where the gate was correctly built and
+correctly reporting while still not covering the thing that mattered.
+
+**Status:** DOCUMENTED — fix pending
+
+## ════════════════════════════════════════════════════════
+## PATTERN 122: The same invented claim appears in all four languages
+## ════════════════════════════════════════════════════════
+**ID:** P122
+**Type:** Content safety — fabrication is prompt-level, not per-language
+**Files:** app/api/generate-reel/route.ts (prompt), scripts/lint-content.py
+**Found:** 2026-08-25, across the Muslim #2999 adults set (R042–R045)
+
+**The matn (Sahih Muslim 2999):**
+  "How wonderful is the affair of the believer — indeed, all of his affair is
+  good. If prosperity befalls him he is grateful, and if adversity befalls him
+  he is patient."
+  Four moves: wonder · the claim · condition-response · condition-response.
+  It makes no claim about WHY, about what kind of thing gratitude and patience
+  are, or about what the believer thereby wins.
+
+**What the generator produced, in four separate generations:**
+
+  EN  "These are not passive states but active disciplines"
+      "no moment in a believer's life is ever wasted or lost"
+  RU  «не как пассивное смирение, а как внутреннее действие»
+      «ни одно мгновение его жизни не оказывается пустым или потерянным»
+      «верующий находится в состоянии духовного выигрыша»
+  UZ  «ҳеч бир ҳол беҳуда эмас — чунки у Аллоҳга боғлиқлигини унутмайди»
+      «на фаровонликда кибрланади, на мусибатда умидсизланади»
+  TJ  «ин вижагии хоси мӯъмин аст»
+      «имон... на тавассути тағйири воқеият, балки тавассути тағйири посухи қалб»
+      title: «Мӯъмин ҳамеша ғолиб аст» (the believer is always VICTORIOUS)
+
+**The decisive observation:**
+  These are not four different mistakes. They are the SAME THREE MOVES, made
+  independently in four languages by four separate generation calls:
+
+  1. CHARACTERISE the response — "active not passive," «внутреннее действие»,
+     an inner state versus outward circumstance. The matn says he gives thanks
+     and is patient. It does not say what sort of thing that is.
+  2. TOTALISE the claim — "no moment ever wasted," «ҳеч бир ҳол беҳуда эмас».
+     The matn says his affair is good. "Never wasted" is a larger claim.
+  3. ESCALATE good → winning — «духовного выигрыша», «ғолиб аст» (victorious).
+     GOOD is what the hadith says. VICTORY is what the generator reaches for.
+
+  Independent recurrence across four languages means this is not a per-language
+  slip to be caught at review. It is a property of the PROMPT. The generator is
+  asked for a story of a certain length about a matn that is one sentence long,
+  and these three moves are where the remaining words come from.
+
+**Why the linter cannot catch it:**
+  `lint-content.py` checks divine name, unnamed authority, seerah sourcing,
+  simile markers, and meaning inversion. None of these are similes, none cite an
+  authority, none substitute a divine name. They are ASSERTIONS ABOUT THE
+  HADITH'S SIGNIFICANCE, expressed in ordinary declarative prose. There is no
+  lexical marker to match on. All four generations linted CLEAN.
+  Stage 3's A/B verify would catch them — but Stage 3 verifies TRANSLATIONS
+  against the matn, not generated reel text. Nothing currently checks the story.
+
+**Lineage — this is the fourth turn of the same screw:**
+  P101  rules requiring named figures in narrative action CAUSED the fabrications
+        the prohibition rules existed to prevent
+  P111  forbid invented FACT → it invents COMPARISON (rule 14)
+  P115  forbid comparison → it invents SOURCE, including in negative claims
+  P116  forbid source → it invents IMPORTANCE ("greatest", "foundation of all")
+  P122  forbid importance → it invents CHARACTER ("active not passive"),
+        TOTALITY ("never wasted"), and OUTCOME ("victorious")
+  Each prohibition closes one exit. The model does not stop; it finds the next
+  door. The doors are not random — they are, in order, the cheapest ways to add
+  words to a short text without contradicting it.
+
+**Fix (proposed, not applied):**
+  1. Prompt rule, stated positively rather than as another prohibition:
+     "The story may state what the matn states, in the order the matn states it,
+     and may explain a term the matn uses. It may not say what kind of thing the
+     matn describes, how much of life it covers, or what the person thereby
+     gains. If the matn is short, the story is short."
+  2. Address the ROOT: the length target. P101's lesson was that a specification
+     conflict causes fabrication more reliably than a weak prohibition prevents
+     it. A word count applied to a one-sentence matn IS such a conflict. The
+     story length should follow the matn, not a fixed target.
+  3. A linter check is possible but weak — the three moves have no reliable
+     lexical signature. Candidate heuristic: flag superlative and totalising
+     quantifiers ("never", "always", "every", "ҳеч бир", «ни одно») in the STORY
+     block when absent from the matn. Expect false positives; INFO, not FAIL.
+
+**Rule:**
+  When the same invented claim appears in independent generations across
+  languages, stop treating it as a review finding and treat it as a prompt
+  defect. Per-language review catches instances; only the prompt catches the
+  pattern. And before adding the next prohibition, ask what the model will reach
+  for once that exit is closed — because it will reach for something, as long as
+  it is being asked for more words than the source contains.
+
+**Related:** P101, P105, P111, P115, P116
+
+**Status:** DOCUMENTED — fix pending
