@@ -60,6 +60,11 @@
 | R039 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | ru | Adults | bukhari-527 | adults-ru-bukhari-527-story.mp3 | adults-ru-bukhari-527-moral.mp3 | adults-ru-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-ru-bukhari-527-bg-mixed.mp4 | vocal-nasheed-06.mp3 | Yes | adults-ru-bukhari-527-reel.mp4 | 44.7s | 13.7 MB | FIRST RU ADULTS REEL SINCE P118 — R023 and R027 both shipped narrated by Adam (American English) under the Abrar label; this is the first confirmed Marat (vQxSi2EuaRWwBw3nn6dK, Moscow) run. RU is the ONLY language of the four where eleven_v3 mishandles the ﷺ glyph — EN, UZ and TJ all voice it correctly as "peace be upon him" and its equivalents, RU does not; «(р.а.)» was likewise spelled out letter by letter. Both honorifics written out in full before TTS (R036's lesson, now confirmed as RU-specific rather than universal). Whisper was materially worse on RU than EN — 8 hand-corrections against EN's 2. stt-validate then caught «Аллахам» (not a word) still burned in cue 2 after those corrections, forcing a re-render; the R027 defect class, caught pre-publish this time. Note «Аллахом» in the narration is correct instrumental case ("loved BY Allah") and was left as spoken, with the subtitle matched to it. 44.7s vs EN's 66.4s is a 33% gap, outside the ≤20% multilingual parity target in CLAUDE.md. published TG/IG/TikTok/YT |
 | R040 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | uz | Adults | bukhari-527 | adults-uz-bukhari-527-story.mp3 | adults-uz-bukhari-527-moral.mp3 | adults-uz-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-uz-bukhari-527-bg-mixed.mp4 | (not logged — render output not captured) | No | adults-uz-bukhari-527-reel.mp4 | 51.6s | 16.6 MB | Opa Johann. Caption quote came back Latin against a Cyrillic body — FIFTH occurrence of this pattern (R036 and three before it); replaced with text_uzbek_cyrillic from the DB rather than transliterating by hand. Companion honorific «розияллоҳу анҳу» was generated already written out, so R036's lesson is now holding at the prompt level. ﷺ expanded to «соллаллоҳу алайҳи ва саллам» before TTS as a precaution, then confirmed unnecessary — eleven_v3 voices the raw glyph correctly in UZ. Linted clean. No subtitles per P078. published TG/IG/TikTok/YT |
 | R041 | 2026-08-16 | Sahih al-Bukhari #527 | Abdullah ibn Masud | Sahih | Prayer on time / Parents | #parents #prayer #salah #kindness #deeds | tj | Adults | bukhari-527 | adults-tj-bukhari-527-story.mp3 | adults-tj-bukhari-527-moral.mp3 | adults-tj-bukhari-527-narration.mp3 | b527-dawn.mp4, b527-minaret.mp4, b527-doorway.mp4, b527-night.mp4 | adults-tj-bukhari-527-bg-mixed.mp4 | vocal-nasheed-02.mp3 | No | adults-tj-bukhari-527-reel.mp4 | 39.8s | 13.3 MB | Meisam. Completes the 4-language #527 adults set — first hadith on the channel produced in BOTH styles across all four languages (8 reels total). R037's defect did NOT recur: the ranking was attributed to the Prophet ﷺ in the generated text without correction, and «некӣ» carried the correct U+04E3 diacritic throughout. Three hand-fixes: ﷺ left as the glyph (eleven_v3 voices it correctly in TJ), Latin attribution swapped to Cyrillic, and a sentence cut from the story — «ибодате, ки рӯйи банда ба сӯи Аллоҳ мегардонад, ва меҳрубонӣе, ки қалби банда ба сӯи оила мекашад» added metaphor absent from the matn (faces turning, hearts drawn) that the linter cannot catch because it is not a comparison. TITLE FIELD NOT EDITABLE (P079, still open) — generated title «Аллоҳ наздик — намоз ва модар муҳаббати» was ungrammatical and had to be corrected in the caption instead. Linter INFO on «ҳамчун» in the H block verified and ignored: explanatory gloss, and H is not narrated. No subtitles per P078. published TG/IG/TikTok/YT |
+| R042 | 2026-08-25 | Sahih Muslim #2999 | Suhaib | Sahih | Patience / Gratitude | #patience #sabr #gratitude #shukr #believer #iman | en | Adults | muslim-2999 | adults-en-muslim-2999-story.mp3 | adults-en-muslim-2999-moral.mp3 | adults-en-muslim-2999-narration.mp3 | m2999-dawn.mp4, m2999-harvest.mp4, m2999-storm.mp4, m2999-steady.mp4 | adults-en-muslim-2999-bg-mixed.mp4 | (confirm from render output) | Yes | adults-en-muslim-2999-reel.mp4 | 45.3s | 18.8 MB | FIRST REEL FROM A HADITH VERIFIED BY THE SOURCING PIPELINE BEFORE PRODUCTION, and the pipeline earned it: Stage 3 A/B verify found that the library's own EN and RU for #2999 OMITTED إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ ("indeed all of his affair is good") — a whole clause of the matn — while UZ and TJ relocated it to the end. Both models, independently, high confidence. No downstream check could have caught this: lint-content.py reads GENERATED text, and the generator would have faithfully paraphrased an already-incomplete source. All four translations rewritten and re-verified clean. A second A/B pass then flagged the Russian «он благодарен / он терпелив» (adjectives) against Arabic شَكَرَ / صَبَرَ (perfect verbs); changed to «благодарит / терпит» and both passes went to pass. FOUR NEW KLING SCENES, MODE B: dawn valley → wheat field → storm over desert → ancient olive. Unlike #527 this matn has its OWN structure (two conditions, two responses), so the scenes follow the hadith instead of settings being invented around it. Generation added "these are not passive states but active disciplines" and "no moment is ever wasted or lost" — both cut as P116-class invented significance; the SAME two claims then recurred independently in the RU, UZ and TJ generations. Linted clean; stt-validate clean, similarity 1.000, 7 cues. published TG/IG/TikTok/YT |
+| R043 | 2026-08-25 | Sahih Muslim #2999 | Suhaib | Sahih | Patience / Gratitude | #patience #sabr #gratitude #shukr #believer #iman | ru | Adults | muslim-2999 | adults-ru-muslim-2999-story.mp3 | adults-ru-muslim-2999-moral.mp3 | adults-ru-muslim-2999-narration.mp3 | m2999-dawn.mp4, m2999-harvest.mp4, m2999-storm.mp4, m2999-steady.mp4 | adults-ru-muslim-2999-bg-mixed.mp4 | vocal-nasheed-03.mp3 | Yes | adults-ru-muslim-2999-reel.mp4 | 31.3s | 12.1 MB | Marat. Generation produced «благодарит Аллах» THREE TIMES — accusative required, «Аллаха». Same defect class as «Аллахом» on R039: RU case endings on the divine name are now a recurring pattern across sets and a candidate for a deterministic linter rule, since lint-content.py checks WHICH divine name is used but not its case. Also carried the same two invented claims cut from the EN generation («ни одно мгновение не оказывается пустым или потерянным», and patience characterised as «не как пассивное смирение, а как внутреннее действие») — the generator reaches for the same additions in every language, which makes this a prompt-level pattern rather than a per-language slip. Both honorifics written out in full before TTS (RU is the only language where eleven_v3 mishandles the ﷺ glyph). Whisper needed three fixes, one of them a WORD-BOUNDARY INVENTION: «и хадис» heard as «Их Адис», a capitalised proper noun that does not exist — same shape as «Аллахам» on R039. SRT STRUCTURE BROKEN DURING EDITING: a blank-line separator was deleted, two cues merged, and stt-validate reported timestamps as unknown words ('2', '00', '04', '500') with the cue count dropping 9 → 8. Rewritten whole rather than patched; final run clean at similarity 1.000. published TG/IG/TikTok/YT |
+| R044 | 2026-08-25 | Sahih Muslim #2999 | Suhaib | Sahih | Patience / Gratitude | #patience #sabr #gratitude #shukr #believer #iman | uz | Adults | muslim-2999 | adults-uz-muslim-2999-story.mp3 | adults-uz-muslim-2999-moral.mp3 | adults-uz-muslim-2999-narration.mp3 | m2999-dawn.mp4, m2999-harvest.mp4, m2999-storm.mp4, m2999-steady.mp4 | adults-uz-muslim-2999-bg-mixed.mp4 | vocal-nasheed-01.mp3 | No | adults-uz-muslim-2999-reel.mp4 | 48.9s.| 20.7 MB | Opa Johann. RE-RENDERED: the first pass drew `ambient-ocean-bg.mp3` from the picker — an ocean ambience track, not a nasheed at all. The background policy is VOCAL-ONLY nasheed and instrumentals were retired to `_instrumental`, so this file should not be reachable. TWO GATE FAILURES FOUND (neither fixed in this session, both logged): (1) `audit-assets.py --audit` reports the eight b527-* and m2999-* scene clips as UNREGISTERED and states "The render gate will BLOCK these" — it did not, and seven reels have now shipped over them, because render-reel.ps1 line 260 calls `--check` on the CHOSEN NASHEED ONLY (`--check $assetName --lane $Style`); clips passed via `-Scenes` never reach the gate. (2) `ambient-ocean-bg.mp3` passed that same `--check` and does not appear anywhere in the audit output, so either it is registered as something it is not or `--check` passes unknown files. The gate is real, works, and is wired to one asset class out of two — P093/P110/P119 family. Second render forced `-Nasheed vocal-nasheed-01.mp3`. Generation added the most content of the four languages: never attributed the claim to the Prophet ﷺ (R037's defect shape), and built a chain of reasoning absent from the matn (that the believer's states are good «чунки у Аллоҳга боғлиқлигини унутмайди», and that he is «на фаровонликда кибрланади, на мусибатда умидсизланади»). Rewritten to the matn's three moves. Caption quote came back Latin against a Cyrillic body — SIXTH occurrence. ﷺ left as the glyph; UZ voices it correctly. No subtitles per P078. published TG/IG/TikTok/YT |
+| R045 | 2026-08-25 | Sahih Muslim #2999 | Suhaib | Sahih | Patience / Gratitude | #patience #sabr #gratitude #shukr #believer #iman | tj | Adults | muslim-2999 | adults-tj-muslim-2999-story.mp3 | adults-tj-muslim-2999-moral.mp3 | adults-tj-muslim-2999-narration.mp3 | m2999-dawn.mp4, m2999-harvest.mp4, m2999-storm.mp4, m2999-steady.mp4 | adults-tj-muslim-2999-bg-mixed.mp4 | vocal-nasheed-05.mp3 | No | adults-tj-muslim-2999-reel.mp4 | 39.6s | 17.5 MB | Meisam. Completes the #2999 adults set. R037's attribution defect did NOT recur — the generation attributed the claim to the Prophet ﷺ unprompted, second consecutive TJ set to do so. Diacritics correct throughout without correction (ӯ, ӣ, ҳ, қ). Three cuts, all invented significance rather than fabrication: «ин вижагии хоси мӯъмин аст» (the matn calls the affair wonderful, it does not assign the believer a distinguishing trait); a theory of faith in the H block — «имон як ҳолати дохилӣ аст... на тавассути тағйири воқеият, балки тавассути тағйири посухи қалб ба воқеият»; and the title «Мӯъмин ҳамеша ғолиб аст» (victorious), where the matn says his affair is GOOD, not that he wins. That last one is the same over-reach as the Russian «духовного выигрыша» in an earlier draft of R043 — "good" becoming "winning" is now a cross-language pattern. Nasheed specified explicitly rather than left to the picker, after R044's ocean-track defect. ﷺ left as the glyph; TJ voices it correctly. No subtitles per P078. published TG/IG/TikTok/YT |
+
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -85,6 +90,7 @@
 | Sunan Abu Dawud #3641 | EN, RU, UZ, TJ | Adults | R026, R027, R028, R029 |
 | Sunan Abu Dawud #1479 | EN, RU, UZ, TJ | Kids| R030, R031, R032, R033 |
 | Sahih al-Bukhari #527 | EN, RU, UZ, TJ | Kids, Adults | R034, R035, R036, R037, R038, R039, R040, R041 |
+| Sahih Muslim #2999 | EN, RU, UZ, TJ | Adults | R042, R043, R044, R045 |
 
 ---
 
@@ -106,6 +112,7 @@
 | Knowledge / Ilm | 4 | R026, R027, R028, R029 | EN, RU, UZ, TJ |
 | Dua / Ibadah | 4 | R030, R031, R032, R033 | EN, RU, UZ, TJ |
 | Prayer on time / Parents | 8 | R034, R035, R036, R037, R038, R039, R040, R041 | EN, RU, UZ, TJ |
+| Patience / Gratitude | 4 | R042, R043, R044, R045 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -140,13 +147,14 @@
 | ramadan-bg.mp3 | 5 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 1 | 2026-08-14 (R027)| R026, R027 |
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
-| vocal-nasheed-01.mp3 | 2 | 2026-08-15 (R034) | R028, R034 |
-| vocal-nasheed-03.mp3 | 3 | 2026-08-15 (R035) | R029, R035 |
+| vocal-nasheed-01.mp3 | 3 | 2026-08-25 (R044) | R028, R034, R044 |
+| vocal-nasheed-03.mp3 | 4 | 2026-08-25 (R043) | R029, R035, R043 |
 | vocal-nasheed-02.mp3 | 2 | 2026-08-16 (R041) | R030, R041 |
 | vocal-nasheed-04.mp3 | 1 | 2026-08-15 (R031) | R031 |
-| vocal-nasheed-05.mp3 | 2 | 2026-08-15 (R036) | R032, R036 |
+| vocal-nasheed-05.mp3 | 3 | 2026-08-25 (R045) | R032, R036, R045 |
 | vocal-nasheed-06.mp3 | 2 | 2026-08-16 (R039) | R033, R039 |
 | vocal-nasheed-07.mp3 | 1 | 2026-08-15 (R037) | R037 |
+
 
 ### Mascot stills
 
@@ -176,6 +184,10 @@
 | b527-minaret.mp4 | 4 | R038, R039, R040, R041 |
 | b527-doorway.mp4 | 4 | R038, R039, R040, R041 |
 | b527-night.mp4 | 4 | R038, R039, R040, R041 |
+| m2999-dawn.mp4 | 4 | R042, R043, R044, R045 |
+| m2999-harvest.mp4 | 4 | R042, R043, R044, R045 |
+| m2999-storm.mp4 | 4 | R042, R043, R044, R045 |
+| m2999-steady.mp4 | 4 | R042, R043, R044, R045 |
 
 **Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
 
@@ -191,16 +203,21 @@
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 41 |
-| Languages active | 4 (RU, EN, UZ, TJ) |
+| Total reels posted | 45 |
+| Languages active | 4 (EN, RU, UZ, TJ) |
 | Languages remaining | 0 (AR formally out of scope, P118) |
-| Adults reels | 17 |
+| Adults reels | 21 |
 | Kids reels | 24 |
 | Avg duration | ~44s |
-| Avg file size | ~15 MB |
-| Hadiths used (unique) | 13 |
-| Hadith collections used | 4 (Sahih al-Bukhari ×27, Sunan Abu Dawud ×8, Sahih Muslim ×4, Jami at-Tirmidhi ×2) |
-| Companions cited | 9 (Abu Hurairah ×11, Abdullah ibn Masud ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Avg file size | ~16 MB |
+| Hadiths used (unique) | 14 |
+| Library rows | 69 (14 used, 55 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×27, Sunan Abu Dawud ×8, Sahih Muslim ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 10 (Abu Hurairah ×11, Abdullah ibn Masud ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Suhaib ×4, Abu Dharr ×1, Aisha ×1) |
+
+**Unique hadiths finally moved: 13 → 14.** Forty-five reels from fourteen hadiths.
+The library, not the tooling, is still the ceiling — and Stage 0 cannot fetch a
+new one until Sunnah API issue #3675 is answered.
 ---
 
 ## Template — adding new reels
@@ -245,3 +262,4 @@ Then update:
 | 2026-08-15 | R030–R033 — Abu Dawud #1479 kids, girl lamb, 4 langs. First set linted pre-TTS with lint-content.py. Shipped P115, plus lint-content.py and stt-validate.py (found two Latin homoglyphs in published R027 subtitles) | Farhod / Claude |
 | 2026-08-15 | R034–R037 — Bukhari #527 kids, boy lamb, 4 langs. Two DB text errors found and fixed in hadith_library (RU case ending, TJ diacritic). Shipped P116, P117 (asset registry + lane gate), P118 (RU adults voice was Adam, not Abrar) | Farhod / Claude |
 | 2026-08-16 | R038–R041 — Bukhari #527 EN/RU/UZ/TJ adults, 4 new Kling scenes reused across all four. First hadith on the channel produced in BOTH styles across all four languages (8 reels). ﷺ glyph handling measured per language: EN/UZ/TJ voice it correctly on eleven_v3, RU does not — narrows the honorific fix to RU alone. stt-validate caught «Аллахам» burned into RU cue 2 after hand-correction, forcing a re-render pre-publish. Duration spread 39.8s–66.4s (67%), outside the ≤20% parity target in CLAUDE.md. Repo work: shipped P109 digit-search (2 months uncommitted, CI #129), tracked the applied Uzbek two-script migration, gitignored Python bytecode. Confirmed Phase 0 sourcing schema live but empty — hadith_candidates 0, hadith_promotions 0, hadith_library 69 (not 74). AR marked out of scope in stats per P118 | Farhod / Claude |
+| 2026-08-25 | R042–R045 — Muslim #2999 EN/RU/UZ/TJ adults, 4 new Kling scenes reused across all four. FIRST SET FROM A HADITH VERIFIED BY THE SOURCING PIPELINE BEFORE PRODUCTION, and it paid for itself immediately: Stage 3 A/B verify found the library's own EN and RU were MISSING a clause of the matn (إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ), which no downstream check could have caught. All four translations rewritten, re-verified clean, then produced. Two gate failures found and logged, not fixed: `-Scenes` clips bypass the asset gate entirely (render-reel.ps1:260 checks only the picked nasheed), and `ambient-ocean-bg.mp3` — not a nasheed — passed `--check` and reached a render, forcing a UZ re-render. Also shipped this session: Stage 2 (`translate-candidates.py`, `derive-uzbek-latin.ts`), Stage 3 (`verify-candidates.py`), `audit-library.py`, and P119/P120 | Farhod / Claude |
