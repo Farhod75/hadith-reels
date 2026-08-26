@@ -1,5 +1,9 @@
 #!/bin/sh
 # .githooks/pre-push — hadith-reels (smart version)
+#
+# REQUIRES core.hooksPath=.githooks. Check with `git config core.hooksPath`.
+# If it is empty, Git reads .git/hooks/ instead and this file does nothing,
+# invisibly — an older copy there prints the same banner (P119).
 
 echo ""
 echo "🎬 Hadith Reels — Smart pre-push scanner..."
@@ -28,16 +32,20 @@ REMOTION_PATTERNS="^remotion/"
 CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
 TEST_PATTERNS="^tests/|\.spec\.ts$"
 PY_PATTERNS="\.py$"
+PS1_PATTERNS="\.ps1$"
+JSON_PATTERNS="\.json$"
 
 HAS_DOC=$(echo "$CHANGED_FILES" | grep -E "$DOC_PATTERNS" | wc -l | tr -d ' ')
 HAS_API=$(echo "$CHANGED_FILES" | grep -E "$API_PATTERNS" | wc -l | tr -d ' ')
 HAS_UI=$(echo "$CHANGED_FILES" | grep -E "$UI_PATTERNS" | wc -l | tr -d ' ')
 HAS_REMOTION=$(echo "$CHANGED_FILES" | grep -E "$REMOTION_PATTERNS" | wc -l | tr -d ' ')
 HAS_PY=$(echo "$CHANGED_FILES" | grep -E "$PY_PATTERNS" | wc -l | tr -d ' ')
+HAS_PS1=$(echo "$CHANGED_FILES" | grep -E "$PS1_PATTERNS" | wc -l | tr -d ' ')
+HAS_JSON=$(echo "$CHANGED_FILES" | grep -E "$JSON_PATTERNS" | wc -l | tr -d ' ')
 HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" | wc -l | tr -d ' ')
 NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
 
-echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY"
+echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY Ps1=$HAS_PS1 Json=$HAS_JSON"
 echo ""
 
 # Doc-only → skip
@@ -47,6 +55,12 @@ if [ "$NON_DOC" -eq 0 ]; then
 fi
 
 FAILED=0
+
+# find a python interpreter once — used by the Python and JSON branches
+PY_BIN=""
+for c in python python3 py; do
+  if command -v "$c" > /dev/null 2>&1; then PY_BIN="$c"; break; fi
+done
 
 # TypeScript always
 echo "▶ TypeScript check..."
@@ -68,16 +82,11 @@ if [ "$HAS_REMOTION" -gt 0 ] && [ $FAILED -eq 0 ]; then
 fi
 
 # Python agents → syntax parse + offline unit tests
-# tsc cannot read Python. Before this branch existed, a pure-Python commit
-# ran the TypeScript check, passed, and pushed untested — the four agents
-# that gate every published reel had no CI coverage at all.
+# tsc cannot read Python. Before this branch existed (P119), a pure-Python
+# commit ran the TypeScript check, passed, and pushed untested — the four
+# agents that gate every published reel had no CI coverage at all.
 if [ "$HAS_PY" -gt 0 ] && [ $FAILED -eq 0 ]; then
   echo "▶ Python checks (agent scripts changed)..."
-
-  PY_BIN=""
-  for c in python python3 py; do
-    if command -v "$c" > /dev/null 2>&1; then PY_BIN="$c"; break; fi
-  done
 
   if [ -z "$PY_BIN" ]; then
     echo "❌ Python changed but no python interpreter on PATH"
@@ -99,6 +108,74 @@ if [ "$HAS_PY" -gt 0 ] && [ $FAILED -eq 0 ]; then
   fi
 
   [ $FAILED -eq 0 ] && echo "✅ Python OK"
+fi
+
+# PowerShell → parse without executing (P123)
+# render-reel.ps1 IS the render pipeline and IS the asset gate. Before this
+# branch, a change to it was checked only by `npx tsc --noEmit`, which cannot
+# read PowerShell. P121's own fix — the scene-clip gate — shipped that way.
+if [ "$HAS_PS1" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ PowerShell checks (scripts changed)..."
+
+  PS_BIN=""
+  for c in pwsh powershell; do
+    if command -v "$c" > /dev/null 2>&1; then PS_BIN="$c"; break; fi
+  done
+
+  if [ -z "$PS_BIN" ]; then
+    echo "❌ .ps1 changed but no pwsh/powershell on PATH — cannot verify"
+    FAILED=1
+  else
+    for f in $(echo "$CHANGED_FILES" | grep -E "$PS1_PATTERNS"); do
+      if [ -f "$f" ]; then
+        # Tokenize parses the file WITHOUT running it. A parse error is
+        # returned in $errs, not thrown, so exit non-zero explicitly.
+        "$PS_BIN" -NoProfile -NonInteractive -Command "
+          \$errs = \$null
+          \$null = [System.Management.Automation.PSParser]::Tokenize(
+            (Get-Content -Raw -LiteralPath '$f'), [ref]\$errs)
+          if (\$errs -and \$errs.Count -gt 0) {
+            \$errs | ForEach-Object { Write-Host \"  \$(\$_.Message) (line \$(\$_.Token.StartLine))\" }
+            exit 1
+          }
+          exit 0" 2>&1
+        if [ $? -ne 0 ]; then echo "❌ PowerShell parse error in $f"; FAILED=1; fi
+      fi
+    done
+  fi
+
+  [ $FAILED -eq 0 ] && echo "✅ PowerShell OK"
+fi
+
+# JSON → must parse (P123)
+# NOTE, honestly: this catches a trailing comma. It would NOT have caught the
+# 2026-08-25 asset-registry defect, where eight .mp4 entries were filed under
+# the "audio" section — that file was valid JSON and wrong anyway. Structural
+# correctness is audit-assets.py's job, not a syntax check's.
+if [ "$HAS_JSON" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ JSON checks..."
+
+  if [ -z "$PY_BIN" ]; then
+    echo "❌ .json changed but no python interpreter on PATH — cannot verify"
+    FAILED=1
+  else
+    for f in $(echo "$CHANGED_FILES" | grep -E "$JSON_PATTERNS"); do
+      if [ -f "$f" ]; then
+        "$PY_BIN" -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>&1
+        if [ $? -ne 0 ]; then echo "❌ invalid JSON in $f"; FAILED=1; fi
+      fi
+    done
+
+    # the asset registry has structure beyond syntax — let its own auditor speak
+    if [ $FAILED -eq 0 ] && echo "$CHANGED_FILES" | grep -q "assets/asset-registry.json"; then
+      if [ -f "scripts/audit-assets.py" ]; then
+        echo "  asset registry changed — running audit (reports only, never blocks):"
+        "$PY_BIN" scripts/audit-assets.py --audit 2>&1 | tail -6
+      fi
+    fi
+  fi
+
+  [ $FAILED -eq 0 ] && echo "✅ JSON OK"
 fi
 
 # API or UI → E2E tests
