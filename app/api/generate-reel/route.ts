@@ -54,7 +54,7 @@ function getAudienceInstruction(style: string): string {
   if (style === 'kids') {
     return `Audience: children aged 6-14.
 - Use SIMPLE, short sentences. Max 10 words per sentence.
-- Use vivid comparisons children understand (like a kind teacher, like the sun warming you)
+- Explain plainly in words a child knows. Do NOT invent comparisons. If the hadith itself contains an image, use that one; if it does not, describe the teaching directly.
 - No scholarly terms. No Arabic terms without immediate simple explanation.
 - Warm, encouraging, wonder-inspiring tone.
 - End with something a child can DO today.`
@@ -106,7 +106,7 @@ Seerah source to draw from:
 Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, no preamble):
 {
   "title": "Short engaging reel title — max 8 words, shareable, inspiring",
-  "story": "3-4 sentences explaining what this hadith teaches and why it matters, drawing on ${seerahSource.name} where it records something relevant. Warm and accessible, not academic. Use only what the hadith and that source actually record — if neither records an incident for this hadith, explain the teaching plainly. A shorter, plainer story is correct; an invented one is not.",
+  "story": "Follow the matn's own length. A one-sentence hadith gets a short story; do not pad to a target. Say what the hadith says, in the order it says it. You may explain a term it uses. You may NOT say what kind of thing it describes, how much of life it covers, or what the person thereby gains.",
   "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL differently after watching this reel? Make it actionable for modern life.",
   "seerah_context": "2-3 sentences of context. If the sources tie this hadith to a specific period or event, name it. If they do not, give the collection and book, the narrator, and the classical scholarly reading of the hadith's meaning — and nothing more. Do not supply a period, setting, or occasion that the sources do not record.",
   "source_attribution": "${seerahSource.attribution}",

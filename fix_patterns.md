@@ -3112,20 +3112,33 @@ correctly reporting while still not covering the thing that mattered.
   door. The doors are not random — they are, in order, the cheapest ways to add
   words to a short text without contradicting it.
 
-**Fix (proposed, not applied):**
-  1. Prompt rule, stated positively rather than as another prohibition:
-     "The story may state what the matn states, in the order the matn states it,
-     and may explain a term the matn uses. It may not say what kind of thing the
-     matn describes, how much of life it covers, or what the person thereby
-     gains. If the matn is short, the story is short."
-  2. Address the ROOT: the length target. P101's lesson was that a specification
-     conflict causes fabrication more reliably than a weak prohibition prevents
-     it. A word count applied to a one-sentence matn IS such a conflict. The
-     story length should follow the matn, not a fixed target.
-  3. A linter check is possible but weak — the three moves have no reliable
-     lexical signature. Candidate heuristic: flag superlative and totalising
-     quantifiers ("never", "always", "every", "ҳеч бир", «ни одно») in the STORY
-     block when absent from the matn. Expect false positives; INFO, not FAIL.
+**Fix (applied 2026-08-25):**
+  1. **The length target was the root cause.** `"story": "3-4 sentences..."` on a
+     matn that is ONE sentence long. The instruction already said "A shorter,
+     plainer story is correct; an invented one is not" — and the generator
+     invented anyway, in four languages. P101's shape exactly: a concrete count
+     beats a vague caution. Replaced with: follow the matn's own length, say what
+     it says in the order it says it, explain a term if needed, and NOT what kind
+     of thing it describes, how much of life it covers, or what the person gains.
+  2. **A second, worse defect found in the same file — the KIDS lane instructed
+     the very thing P111 rule 14 forbids.** Line 57 read: "Use vivid comparisons
+     children understand (like a kind teacher, like the sun warming you)."
+     A direct instruction to invent similes, with examples supplied. Every kids
+     reel since that line was written was generated under a standing contradiction
+     between two rules in one prompt. Replaced with: explain plainly; do not invent
+     comparisons; if the hadith contains an image, use that one.
+
+**Verified on a real generation:** kids EN for Muslim #2999, generated
+immediately after both edits. No invented comparison. Length tracked the matn —
+five short sentences, no padding. None of the three moves this pattern
+documents. First generation of this hadith across five attempts that needed no
+rewrite; the four before it each required one.
+
+**Residual, accepted:** the H block still contains "nothing that touches a
+believer is outside of good" — a mild totalising gloss, but defensible as a
+reading of كُلَّهُ خَيْرٌ, and H is not narrated. The caption title came back
+"Every Moment Is Good For The Believer" and was corrected by hand: the matn says
+his AFFAIR is good, not every moment. The move is weaker but not gone.
 
 **Rule:**
   When the same invented claim appears in independent generations across
@@ -3137,7 +3150,8 @@ correctly reporting while still not covering the thing that mattered.
 
 **Related:** P101, P105, P111, P115, P116
 
-**Status:** DOCUMENTED — fix pending
+**Status:** FIXED — verified on one generation. Watch the next three languages;
+a single clean run on a non-deterministic system is one sample.
 
 ## ════════════════════════════════════════════════════════
 ## PATTERN 123: The classifier's remaining blind spots — .ps1 and .json
