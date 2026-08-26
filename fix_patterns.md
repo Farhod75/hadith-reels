@@ -3138,3 +3138,87 @@ correctly reporting while still not covering the thing that mattered.
 **Related:** P101, P105, P111, P115, P116
 
 **Status:** DOCUMENTED — fix pending
+
+## ════════════════════════════════════════════════════════
+## PATTERN 123: The classifier's remaining blind spots — .ps1 and .json
+## ════════════════════════════════════════════════════════
+**ID:** P123
+**Type:** Gate coverage — closing the categories P119 left open
+**Files:** .githooks/pre-push
+**Commit:** 58a4c71
+
+**Symptom:**
+  Committing the P121 fix — a change to `render-reel.ps1` and
+  `assets/asset-registry.json` — printed
+  `Doc=1 API=0 UI=0 Remotion=0 Config=0 Py=0`, ran `npx tsc --noEmit`, and
+  pushed. The two files that actually changed were counted as nothing.
+
+**Why this is worse than it sounds:**
+  `render-reel.ps1` is not a helper. It IS the render pipeline and, since P121,
+  IS the asset gate. The commit being waved through was the one that added the
+  scene-clip check. A gate whose own patch is unverified is a gate on trust.
+  `asset-registry.json` is the sole record of which assets a human has approved
+  for which lane. A trailing comma there makes the registry unloadable, and
+  `audit-assets.py --check` would then fail on every asset — or, worse, the file
+  could be malformed in a way that silently drops entries.
+
+**Diagnosis:**
+  Identical in shape to P119. The classifier had Doc/API/UI/Remotion/Config/Py.
+  A `.ps1` matched none of them, so `NON_DOC` counted it and the doc-only skip
+  did not fire — but no branch downstream tested it either. Control fell through
+  to the TypeScript compiler, which cannot read PowerShell, and its success was
+  reported as the verdict. Same for `.json`.
+  P119 fixed the Python case specifically. It did not ask what ELSE travels the
+  same path — which is exactly the question P121's rule says to ask.
+
+**Fix:**
+  - `PS1_PATTERNS` / `HAS_PS1`, `JSON_PATTERNS` / `HAS_JSON`, both reported in
+    the classification line.
+  - PowerShell branch: `[System.Management.Automation.PSParser]::Tokenize()` on
+    each changed `.ps1`. This PARSES WITHOUT EXECUTING — a hook that ran
+    render-reel.ps1 would be a catastrophe, not a check. Tokenize returns parse
+    errors in a `[ref]` parameter rather than throwing, so the branch must
+    inspect the collection and exit non-zero explicitly.
+  - JSON branch: `json.load` on each changed `.json`.
+  - Both FAIL if their interpreter is absent (`pwsh`/`powershell`, `python`).
+    A missing checker must never read as success — P119's lesson applied twice.
+  - `PY_BIN` discovery hoisted above the branches, since two now use it.
+  - When `assets/asset-registry.json` changes, the branch also runs
+    `audit-assets.py --audit` and prints the tail. REPORTS ONLY, never blocks —
+    a pre-existing unverified asset must not stop an unrelated push.
+
+**What the JSON check does NOT do, stated plainly in the hook's own comment:**
+  It would not have caught the defect that prompted it. On 2026-08-25 eight
+  `.mp4` entries were added to `asset-registry.json` inside the `audio` section.
+  The file was perfectly valid JSON. The audit reported those eight as
+  UNREGISTERED *and* MISSING simultaneously — because `audit-assets.py` picks a
+  section by FILE EXTENSION, not by where the entry sits — while `--check`
+  passed them, matching on filename alone. Syntax checking cannot see structural
+  wrongness. That is `audit-assets.py`'s job, which is why the audit is invoked
+  alongside rather than a parse being treated as sufficient.
+
+**Verified in both directions:**
+  - `if ($true) {` unterminated → `The string is missing the terminator` +
+    `Missing closing '}'`, with line numbers → push blocked
+  - `{"a": 1,}` → `Illegal trailing comma before end of object: line 1 column 8`
+    → push blocked
+  - valid files → `Ps1=0 Json=0`, push proceeds
+
+**Known and accepted:** `.githooks` is itself in `DOC_PATTERNS`, so a hook-only
+change classifies as doc-only and skips every check — including its own. A hook
+cannot meaningfully test itself, and this is why both the P119 and P123 fixes
+were pushed without being exercised by the very branches they added. Both were
+instead proven by hand, before the commit, with deliberately broken files. That
+manual proof is not optional; it is the only verification this file ever gets.
+
+**Rule:**
+  When a gate is widened in response to one file type, enumerate every file type
+  in the repo and ask which branch would catch it. P119 closed Python and
+  stopped. Four days later the same hole ate the fix to a different gate. A
+  category-based classifier fails silently for exactly the categories nobody
+  thought to name.
+
+**Related:** P093, P110, P119, P120, P121 — the gates-that-cannot-fail family.
+This is the sixth.
+
+**Status:** FIXED

@@ -155,10 +155,19 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 
 ### 4. CI Smart Push Gate (HR pattern — applies to all projects)
 - TypeScript check on every push.
-- **Python check on every push where a `.py` changed (P119)** — `ast.parse` on each
-  changed file, then the offline `scripts/lib` pytest suite. Before P119 there was
-  no Python category at all: `.py` fell through to `npx tsc --noEmit`, which cannot
-  read Python, and pushed green. All four agents were unprotected.
+- **Python check (P119)** — `ast.parse` on each changed `.py`, then the offline
+  `scripts/lib` pytest suite (49 tests, no network).
+- **PowerShell check (P123)** — `PSParser::Tokenize` on each changed `.ps1`.
+  Parses without executing. `render-reel.ps1` IS the render pipeline and the
+  asset gate; before this it was checked only by `tsc`.
+- **JSON check (P123)** — `json.load` on each changed `.json`, plus
+  `audit-assets.py --audit` (reports only) when the asset registry changes.
+- All three FAIL if their interpreter is missing. A missing checker must never
+  read as success.
+- **The hook cannot check itself** — `.githooks` matches `DOC_PATTERNS`, so a
+  hook-only change skips everything. Prove hook changes by hand with a
+  deliberately broken file BEFORE committing. That manual proof is the only
+  verification this file gets.
 - Playwright tests block deploy if red.
 - log-agent generates `bug-queue.json` artifact after every run.
 - docs-agent auto-commits CHANGELOG.md on every push.
