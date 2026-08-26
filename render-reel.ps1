@@ -190,9 +190,17 @@ if ($useSubs -and -not $NoReview) {
 $animated = ($Scenes -and $Scenes.Count -gt 0)
 if ($animated) {
   Say "`n[3/5] Step 6 - stitching $($Scenes.Count) ordered scene clips (animated reel)..."
-  $picked = foreach ($name in $Scenes) {
+    $picked = foreach ($name in $Scenes) {
     $clip = Join-Path $normDir $name
     if (-not (Test-Path $clip)) { Die "scene clip not found: $clip" }
+    # P121: the same lane gate the nasheed gets. Before this, -Scenes clips
+    # reached the render unchecked -- eight reels shipped over clips the audit
+    # itself reported as unregistered. A gate protects the inputs it is NAMED.
+    $clipAudit = & python "scripts\audit-assets.py" --check $name --lane $Style 2>&1
+    if ($LASTEXITCODE -ne 0) {
+      $clipAudit | ForEach-Object { Write-Host "        $_" -ForegroundColor Red }
+      Die "scene clip rejected by the asset registry: $name"
+    }
     Get-Item $clip
   }
 } else {

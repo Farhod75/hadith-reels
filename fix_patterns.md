@@ -2987,14 +2987,48 @@ finds the adjacent exit)
   renders are succeeding," because the audit's own wording — future tense, "will
   BLOCK these" — reads as a description of what happens, not a claim to test.
 
-**Fix (not applied in this session — logged with the set shipping):**
-  1. `render-reel.ps1` must pass every `-Scenes` clip to `--check` before the
-     stitch, not only the picked nasheed.
-  2. `audit-assets.py --check` must FAIL CLOSED on a filename it does not
-     recognise. An unknown asset is the case the registry exists for.
-  3. Register the eight clips already in use, or retire them deliberately.
-  4. Account for `ambient-ocean-bg.mp3`: registered wrongly, or unregistered and
-     passed. Then remove it from the picker's reach.
+**Fix (applied 2026-08-25):**
+  1. `render-reel.ps1` now calls `--check` on EVERY `-Scenes` clip, inside the
+     existing resolve loop right after the file-exists check, so a clip is
+     rejected before any ffmpeg work happens.
+  2. The eight clips already in published reels registered retroactively as
+     `scene` / adults / verified. The operator watched each one before it
+     shipped, so the human check was real — it was just never recorded.
+  3. **The ambience half resolved the opposite way from the original diagnosis.**
+     `--check` does NOT pass unknown files: a made-up filename is BLOCKED with
+     exit 1. `ambient-ocean-bg.mp3` passed because it was REGISTERED — `ambience`,
+     `lanes: ["adults"]`, verified true, with a considered note ("Generated with
+     ffmpeg... Not music", restricted to adults after being inaudible under a
+     child's narration). The gate enforced the registry correctly; the REGISTRY
+     disagreed with an unwritten policy. Operator decision: backgrounds are VOCAL
+     NASHEED ONLY. Both ambience files set to `lanes: []`, moved to
+     `out/backgrounds/_retired/`, keys path-prefixed to match. Nasheed pool 12 → 10.
+  4. **A second defect surfaced during the fix:** the registry is SECTIONED
+     (`audio` / `mascots` / `scenes`) and `audit-assets.py` picks the section by
+     FILE EXTENSION, not by where the entry sits. The eight `.mp4` entries were
+     first added inside `audio`, so the audit reported them as UNREGISTERED *and*
+     MISSING simultaneously — while `--check` passed them, because it matches on
+     filename alone. Two halves of one script disagreeing again, same as the
+     `--audit`/`--check` split above. The extension rule is now stated in the
+     registry's own `_comment`.
+
+**Verified in both directions:**
+  - unregistered clip → `BLOCKED: m2999-dawn.mp4 is not in the asset registry`
+    → `FAILED: scene clip rejected` → no render
+  - registered clips → all four stitch, render completes
+  - retired ambience → `--check ambient-ocean-bg.mp3 --lane adults` exits 1
+    (it exited 0 the day before)
+  - `--audit` → 0 unregistered, 0 missing
+
+**Correction to the original diagnosis:** this pattern was first written as
+"`--check` passes unknown files." It does not. Verify what a gate actually does
+before describing what it failed to do.
+
+**Still open:** seven of the eight vocal nasheeds are `verified: false`, their
+notes admitting a Pixabay search term was the only basis for calling them
+acapella. Eight files are in rotation on an unchecked assumption.
+
+**Status:** FIXED
 
 **Rule:**
   A gate protects the inputs it is NAMED, not the inputs that exist. When a gate

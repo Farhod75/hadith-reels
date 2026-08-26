@@ -1,12 +1,12 @@
 {
-  "_comment": "Asset registry — every reusable asset carries a classification (what it contains) and an approval (which lane it may be used in). The renderer refuses assets not approved for the lane requesting them. Classification is a HUMAN judgement recorded here; audit-assets.py only enforces what is written. See agent-fleet-roadmap.md agent 12 and the audio policy in reel-creation-pipeline.md.",
+  "_comment": "Asset registry — every reusable asset carries a classification (what it contains) and an approval (which lane it may be used in). The renderer refuses assets not approved for the lane requesting them. Classification is a HUMAN judgement recorded here; audit-assets.py only enforces what is written. Section is chosen by FILE EXTENSION, not by where the entry sits: .mp3 -> audio, .png/.jpg -> mascots, .mp4 -> scenes. An entry filed under the wrong section shows up as both UNREGISTERED and MISSING in the audit. See agent-fleet-roadmap.md agent 12 and the audio policy in reel-creation-pipeline.md.",
   "_schema": {
-    "classification": "vocal | vocal+daf | ambience | instrumental | mascot | scene",
-    "lanes": "which lanes may use this asset: kids, adults, or both",
+    "classification": "vocal | vocal+daf | ambience | instrumental | mascot | mascot-reference | scene",
+    "lanes": "which lanes may use this asset: kids, adults, or both. An empty list means retired — approved for no lane, and the gate will block it.",
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-08-15",
+  "updated": "2026-08-25",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -25,7 +25,7 @@
       "classification": "vocal",
       "lanes": ["kids", "adults"],
       "verified": false,
-      "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Listen and set verified."
+      "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified."
     },
     "vocal-nasheed-02.mp3": {
       "classification": "vocal",
@@ -37,7 +37,7 @@
       "classification": "vocal",
       "lanes": ["kids", "adults"],
       "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R029. Confirm instrumentation."
+      "notes": "Pixabay, I_read_quran. Used on R029, R043. Confirm instrumentation."
     },
     "vocal-nasheed-04.mp3": {
       "classification": "vocal",
@@ -49,7 +49,7 @@
       "classification": "vocal",
       "lanes": ["kids", "adults"],
       "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R032. ~35s — will loop on longer reels."
+      "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels."
     },
     "vocal-nasheed-06.mp3": {
       "classification": "vocal",
@@ -69,19 +69,18 @@
       "verified": false,
       "notes": "Pixabay, foisal72. Hamd/naat, kids register. LANE-RESTRICTED: the random picker chose this for the R029 TJ ADULTS reel and it had to be re-rendered. This entry is why the lane field exists."
     },
-    "ambient-ocean-bg.mp3": {
+    "_retired/ambient-ocean-bg.mp3": {
       "classification": "ambience",
-      "lanes": ["adults"],
+      "lanes": [],
       "verified": true,
-      "notes": "Generated with ffmpeg (filtered pink noise). Not music. Mono. Picked for the R030 EN KIDS reel by the random picker and was barely audible under a child's narration — hence adults-only."
+      "notes": "RETIRED 2026-08-25 (P121). Non-musical — ffmpeg-generated filtered pink noise, mono — but backgrounds are VOCAL NASHEED ONLY, and ambience is not a nasheed. Was registered as adults-approved, so the gate correctly passed it and it reached the R044 UZ adults render via the random picker, forcing a re-render. The gate was not at fault; the registry disagreed with the policy. Moved to out/backgrounds/_retired/."
     },
-    "ambient-ocean-stereo-bg.mp3": {
+    "_retired/ambient-ocean-stereo-bg.mp3": {
       "classification": "ambience",
-      "lanes": ["adults"],
+      "lanes": [],
       "verified": true,
-      "notes": "Generated with ffmpeg, stereo, offset tremolo per channel."
+      "notes": "RETIRED 2026-08-25 (P121). Stereo sibling of ambient-ocean-bg.mp3, offset tremolo per channel. Same reason: backgrounds are vocal nasheed only."
     },
-
     "_instrumental/mubarak-bg.mp3": {
       "classification": "instrumental",
       "lanes": [],
@@ -177,6 +176,54 @@
       "lanes": ["adults"],
       "verified": true,
       "notes": "Moonlight through an arched mosque window. MODE B, empty hall."
+    },
+    "b527-dawn.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Prayer mat on a stone floor at dawn, light crossing it from a high window. No figures. Bukhari #527, used on R038-R041. Registered retroactively 2026-08-25 (P121) — watched before it shipped, so the human check was real, it was just never recorded."
+    },
+    "b527-minaret.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Minaret in silhouette at the turn of the hour. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
+    },
+    "b527-doorway.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Lamplit wooden doorway at dusk, worn stone path. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
+    },
+    "b527-night.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Mosque courtyard at night, hanging lamp reflected in still water. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
+    },
+    "m2999-dawn.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Wide valley at first light, mist in the hollows. No figures. Muslim #2999, used on R042-R045. Registered retroactively (P121)."
+    },
+    "m2999-harvest.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Ripe wheat field with a laden fruit tree at the edge — the prosperity branch of the matn. No figures. Muslim #2999, R042-R045. Registered retroactively (P121)."
+    },
+    "m2999-storm.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Storm sky over open desert, distant rain sheets — the adversity branch. No figures, no suffering depicted. Muslim #2999, R042-R045. Registered retroactively (P121)."
+    },
+    "m2999-steady.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Ancient olive on a rocky hillside, roots gripping stone. Judged at generation as a setting the matn implies rather than a simile for the believer (P111 rule 14). Muslim #2999, R042-R045. Registered retroactively (P121)."
     },
     "b1-scene1.mp4": {
       "classification": "scene",
