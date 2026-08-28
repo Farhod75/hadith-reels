@@ -75,6 +75,15 @@ function StepBar({ step }: { step: Step }) {
 }
 
 // ── Audio player ──────────────────────────────────────────────────────────────
+// P125: narration is re-generatable per block.
+// Before this, `toggle()` narrated on the first click and became playback-only
+// afterwards, so the audio stayed bound to whatever text existed at generation
+// time. Editing the textarea after that reached nothing, and the ONLY way to
+// re-narrate was the whole-reel Regenerate — which replaces all four blocks and
+// discards every hand-correction made in the pass (P124).
+// The backend already supported this: /api/tts takes a `section` and writes
+// per-section files (P106), so calling it twice for the same section is fine.
+// It was a UI state problem, not an API one.
 function AudioSection({ text, lang, style, mascot, slug, section, label, onAudioReady }: {
   text: string; lang: Lang; style: Style; mascot: Mascot
   slug: string; section: 'story' | 'moral'; label: string
@@ -84,10 +93,18 @@ function AudioSection({ text, lang, style, mascot, slug, section, label, onAudio
   const [playing, setPlaying]   = useState(false)
   const [audioUrl, setAudioUrl] = useState<string>('')
   const [error, setError]       = useState('')
+  // The exact text this audio was made from. Comparing it against the live
+  // `text` prop is what tells us the narration is stale.
+  const [narratedText, setNarratedText] = useState<string>('')
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const isDirty = !!audioUrl && text.trim() !== narratedText.trim()
 
   async function generate() {
     setLoading(true); setError('')
+    // stop anything currently playing — the old audio is about to be replaced
+    audioRef.current?.pause()
+    setPlaying(false)
     try {
       const res = await fetch('/api/tts', {
         method: 'POST',
@@ -97,7 +114,10 @@ function AudioSection({ text, lang, style, mascot, slug, section, label, onAudio
       if (!res.ok) throw new Error(`TTS ${res.status}`)
       const blob = await res.blob()
       const url  = URL.createObjectURL(blob)
+      // release the previous blob so repeated re-narrations don't leak
+      if (audioUrl) URL.revokeObjectURL(audioUrl)
       setAudioUrl(url)
+      setNarratedText(text)
       onAudioReady?.(url)
       // Auto-play
       const audio = new Audio(url)
@@ -125,18 +145,43 @@ function AudioSection({ text, lang, style, mascot, slug, section, label, onAudio
   }
 
   return (
-    <div className="flex items-center gap-2 flex-wrap mt-2">
-      <button onClick={toggle} disabled={loading}
-        className="text-xs px-3 py-1.5 rounded-lg bg-indigo-700 hover:bg-indigo-600 text-white border border-indigo-500 disabled:opacity-50 transition-colors flex items-center gap-1.5">
-        {loading ? '⌛ Generating...' : playing ? '⏸ Pause' : audioUrl ? `▶ ${label}` : `🎙 Generate ${label}`}
-      </button>
-      {audioUrl && (
-        <a href={audioUrl} download={`${label.toLowerCase().replace(/\s+/g, '-')}.mp3`}
-          className="text-xs px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 transition-colors">
-          ⬇ MP3
-        </a>
+    <div className="mt-2 space-y-1.5">
+      <div className="flex items-center gap-2 flex-wrap">
+        <button onClick={toggle} disabled={loading} data-test={`${section}-play`}
+          className="text-xs px-3 py-1.5 rounded-lg bg-indigo-700 hover:bg-indigo-600 text-white border border-indigo-500 disabled:opacity-50 transition-colors flex items-center gap-1.5">
+          {loading ? '⌛ Generating...' : playing ? '⏸ Pause' : audioUrl ? `▶ ${label}` : `🎙 Generate ${label}`}
+        </button>
+
+        {/* P125: always available once audio exists. Highlighted when the text
+            has been edited since it was narrated. */}
+        {audioUrl && (
+          <button onClick={generate} disabled={loading} data-test={`${section}-renarrate`}
+            title={isDirty ? 'Text changed since this was narrated' : 'Narrate this text again'}
+            className={`text-xs px-3 py-1.5 rounded-lg border disabled:opacity-50 transition-colors ${
+              isDirty
+                ? 'bg-amber-600 hover:bg-amber-500 text-white border-amber-400'
+                : 'bg-slate-700 hover:bg-slate-600 text-slate-200 border-slate-600'}`}>
+            ↻ Re-narrate
+          </button>
+        )}
+
+        {audioUrl && (
+          <a href={audioUrl} download={`${label.toLowerCase().replace(/\s+/g, '-')}.mp3`}
+            className="text-xs px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 transition-colors">
+            ⬇ MP3
+          </a>
+        )}
+        {error && <span className="text-xs text-red-400">{error}</span>}
+      </div>
+
+      {/* The warning that would have saved the UZ #2999 render: an over-long or
+          corrected story is silently still narrated with the OLD text. */}
+      {isDirty && (
+        <p className="text-xs text-amber-400" data-test={`${section}-stale`}>
+          ⚠ Text edited since narration — re-narrate before rendering, or the reel
+          will use the old audio.
+        </p>
       )}
-      {error && <span className="text-xs text-red-400">{error}</span>}
     </div>
   )
 }
