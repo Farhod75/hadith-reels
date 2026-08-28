@@ -3334,3 +3334,133 @@ writes, which is the capability the fix needs), P122 (the corrections this makes
 expensive to preserve)
 
 **Status:** DOCUMENTED — fix pending
+
+## ════════════════════════════════════════════════════════
+## PATTERN 125: Per-block re-narrate, and a stale-text warning
+## ════════════════════════════════════════════════════════
+**ID:** P125
+**Type:** Workflow fix — the implementation of P124
+**Files:** app/admin/page.tsx (AudioSection)
+**Commit:** f4195ae
+
+**What P124 described:** editing a generated block after clicking
+"Generate narration" reached nothing. The audio stayed bound to the text that
+existed at generation time, and the only re-narrate path was the whole-reel
+Regenerate, which replaces all four blocks and discards every hand-correction.
+
+**The cause, in one function:**
+    function toggle() {
+      if (!audioUrl) { generate(); return }   // first click -> narrate
+      ...                                      // every click after -> play/pause
+    }
+  `audioUrl` is local state in `AudioSection`. Once set, `generate()` was
+  unreachable. The `text` prop was ALWAYS current — `updateField` updates it
+  live as you type — so the component knew the new text and simply never used
+  it. And the backend was never the obstacle: `/api/tts` takes a `section` and
+  writes per-section files (P106), so calling it twice for one section already
+  worked. This was UI state, not an API limitation.
+
+**Fix:**
+  - `narratedText` state records the exact text each narration was made from.
+  - `isDirty = !!audioUrl && text.trim() !== narratedText.trim()`.
+  - A `↻ Re-narrate` button appears once audio exists and ALWAYS calls
+    `generate()`. It turns amber when `isDirty`.
+  - A warning line renders when dirty: "Text edited since narration —
+    re-narrate before rendering, or the reel will use the old audio." That is
+    the message that would have caught the over-long UZ #2999 story at the
+    textarea instead of at the Fabric chunker.
+  - Previous blob URLs are revoked on re-narration, so repeated takes do not leak.
+  - `data-test` hooks on the play button, the re-narrate button, and the warning.
+
+**Verified in the browser, both states at once:** with the story untouched and
+the moral edited, the story's Re-narrate rendered grey and the moral's rendered
+amber with the warning beneath it. Re-narrating the moral produced audio of the
+EDITED text — the colour change proves detection, the audio proves the fix.
+
+**Rule:** when a control's behaviour depends on whether an artifact exists, the
+"already exists" branch needs its own escape hatch. `if (!x) create(); else
+use();` silently removes the ability to re-create, and the loss is invisible
+until someone needs it — here, three months and roughly forty reels later.
+
+**Related:** P124 (the diagnosis), P079 (editable textareas, the fix this
+completes), P106 (per-section TTS writes, the capability this relies on)
+
+**Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 126: The classifier's third blind spot — and the map of the rest
+## ════════════════════════════════════════════════════════
+**ID:** P126
+**Type:** Gate coverage — enumerating the hole instead of patching it again
+**Files:** .githooks/pre-push
+**Commit:** 80ab8f3
+
+**Symptom:**
+  Pushing the P125 fix — a change to `app/admin/page.tsx`, the entire content
+  pipeline — printed every counter at zero:
+      Doc=0 API=0 UI=0 Remotion=0 Config=0 Py=0 Ps1=0 Json=0
+  and ran `npx tsc --noEmit` alone.
+
+**Why:**
+      UI_PATTERNS="^app/page\.tsx$|^components/|^lib/"
+  `^app/page\.tsx$` is anchored to exactly the public homepage. `app/admin/`
+  matches nothing. The admin studio — hadith picker, generation, editing, TTS,
+  caption, publish — has never been covered by any branch of this hook.
+
+**Third occurrence of the same shape (P119 Python, P123 .ps1/.json).** So this
+time the hole was ENUMERATED rather than patched, per P123's own rule. Every
+tracked file was listed against every pattern:
+
+  | Uncovered | Risk |
+  |---|---|
+  | `app/admin/page.tsx`, `layout.tsx` | the whole content pipeline |
+  | `scripts/*.ts` (7 files) | **`uzbek-translit.ts` has 11 passing tests the hook never ran** |
+  | `scripts/merge-reel.js`, `.claude/hooks/log-session.js` | no `.js` branch at all |
+  | `app/layout.tsx`, `app/globals.css` | site shell |
+  | `.github/workflows/ci.yml` | YAML, unchecked |
+  | `supabase/migrations/*.sql` | SQL, unchecked — and these touch the SHARED table |
+  | images, SVGs, favicon, `.mjs` configs | correctly uncovered, not code |
+
+**The sharpest item was not the admin.** `scripts/lib/uzbek-translit.ts` carries
+a passing 11-test suite covering okina vs tutuq and apostrophe folding — the
+single defect class that reached five published captions — and the hook had
+never invoked it. Tests existing but never run is precisely the P119 shape.
+
+**Fixed here (part A):**
+  - `TS_SCRIPT_PATTERNS="^scripts/.*\.ts$"`, `HAS_TSSCRIPT`, reported as
+    `TSScript=` in the classification line.
+  - Branch runs `npx tsx scripts/lib/uzbek-translit.test.ts` — 11 tests, ~17ms,
+    offline. Cheap enough for every push.
+
+**Proven by breaking the thing it guards:** `const OKINA` was temporarily set
+from `'\u02BB'` to `'\u0027'` — the ASCII apostrophe, the actual historical
+defect. Result: `TSScript=1`, 6 of 11 failed with `"ro'za" !== 'roʻza'` and
+`"bo'lsa" !== 'boʻlsa'`, push blocked. Reverted, 11/11, pushed.
+
+**NOT fixed here, and deliberately (part B):**
+  Widening `UI_PATTERNS` to include `^app/admin/` was the obvious one-line fix
+  and would have been WORSE THAN NOTHING. `tests/hadith-reels.spec.ts` contains
+  no reference to `admin` at all — the E2E suite never loads that page. Adding
+  the pattern would run 25 public-site tests on an admin change and report
+  green: a change "verified" by tests that cannot see it. That is P123's lesson
+  exactly, and the reason the pattern stays narrow until admin tests exist.
+  Order required: (1) write admin E2E tests — the P125 `data-test` hooks are
+  already in place for the dirty-state case — then (2) widen `UI_PATTERNS`.
+
+  Also outstanding: `.js` files, `.yml`, and `.sql`. SQL has no cheap checker
+  and touches the shared `hadith_library`; better to print it as explicitly
+  unchecked than let it count as nothing.
+
+**Rule:** patching a classifier for the one file type that just bit you
+guarantees a fourth occurrence. Enumerate every file the repo tracks against
+every pattern, and for each gap decide: covered, deliberately uncovered, or
+uncovered-and-logged. "Uncovered and nobody noticed" is the only unacceptable
+state — and a pattern that routes to a check which cannot see the change is
+that state wearing a green tick.
+
+**Related:** P093, P110, P119, P120, P121, P123 — the gates-that-cannot-fail
+family. Seventh.
+
+**Status:** PARTLY FIXED — scripts/*.ts covered; admin E2E and the .js/.yml/.sql
+gaps remain
+
