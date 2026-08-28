@@ -49,20 +49,6 @@ HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" | wc -l | tr -d 
 NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
 
 echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY Ps1=$HAS_PS1 Json=$HAS_JSON TSScript=$HAS_TSSCRIPT Test=$HAS_TEST"
-# P127: a pattern defined but never counted is a silent hole. TEST_PATTERNS sat
-# unused since the hook was written. This asserts every *_PATTERNS variable has
-# a matching HAS_* counter, so the next dead pattern announces itself.
-for p in DOC API UI REMOTION CONFIG TEST PY PS1 JSON TS_SCRIPT; do
-  case "$p" in
-    TS_SCRIPT) counter="HAS_TSSCRIPT" ;;
-    *)         counter="HAS_$p" ;;
-  esac
-  eval "val=\${$counter+set}"
-  if [ "$val" != "set" ]; then
-    echo "⚠  ${p}_PATTERNS is defined but $counter is never computed — dead pattern"
-  fi
-done
-
 echo ""
 
 # Doc-only → skip
@@ -72,6 +58,21 @@ if [ "$NON_DOC" -eq 0 ]; then
 fi
 
 FAILED=0
+
+# P127: an empty or undefined *_PATTERNS is a live misrouting bug, not a style
+# issue. `grep -E ""` matches EVERY line, so the counter reads high and the
+# wrong branch runs — proven by renaming PY_PATTERNS, which produced Py=1 on a
+# hook-only change. The first version of this check tested whether the COUNTER
+# was set; it always is, because an empty pattern still yields a number. Test
+# the pattern itself.
+for p in DOC_PATTERNS API_PATTERNS UI_PATTERNS REMOTION_PATTERNS CONFIG_PATTERNS \
+         TEST_PATTERNS PY_PATTERNS PS1_PATTERNS JSON_PATTERNS TS_SCRIPT_PATTERNS; do
+  eval "val=\$$p"
+  if [ -z "$val" ]; then
+    echo "❌ $p is empty or undefined — an empty regex matches EVERY file"
+    FAILED=1
+  fi
+done
 
 # find a python interpreter once — used by the Python and JSON branches
 PY_BIN=""
