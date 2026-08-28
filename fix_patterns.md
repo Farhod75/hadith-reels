@@ -773,6 +773,15 @@ End of P072-P075 appendix.
   type-checking this change).
   Verified: manual admin test (RU reel) — edited text narrated correctly; tsc clean.
   Original workaround (regenerate until correct) no longer required.
+**Follow-on (2026-08-27, see P124):** this fix made the blocks editable BEFORE
+  narration, and that has been carrying the whole correction workflow since —
+  every hand-fix to a generation lands in these textareas. The boundary it left
+  is documented in P124: once "Generate narration" is clicked, the button becomes
+  playback and the audio stays bound to the text that existed at generation time.
+  Editing afterwards reaches nothing. The only re-narrate path is Regenerate,
+  which replaces all four blocks. So the editable window is exactly one pass —
+  which makes this fix load-bearing rather than convenient, and makes P124's
+  per-block re-narrate the natural completion of it.
 
   ================================================================
 
@@ -3236,3 +3245,92 @@ manual proof is not optional; it is the only verification this file ever gets.
 This is the sixth.
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 124: Generated text cannot be edited after narration
+## ════════════════════════════════════════════════════════
+**ID:** P124
+**Type:** Workflow defect — the correction path is a full regeneration
+**Files:** app/admin/page.tsx
+**Found:** 2026-08-27, Muslim #2999 UZ kids
+**Supersedes the scope of:** P079, which recorded this as "title field not
+editable." It is not the title field. It is every generated block.
+
+**Symptom:**
+  `make-kids-reel.ps1` refused to chunk the UZ kids narration:
+      FAILED: story/moral seam at 28.3s doesn't fit the 28s cap
+  The story alone ran 27.8s. The fix is obvious — shorten the story, re-narrate.
+  It could not be done.
+
+**Diagnosis:**
+  The admin exposes "Generate Story narration" per block. BEFORE the first
+  click, the textarea is editable and the edit is what gets narrated. AFTER the
+  click, the button becomes playback for the audio that already exists, and the
+  audio stays bound to whatever text was present at generation time. Editing the
+  textarea afterwards changes nothing that reaches TTS.
+  The only path to re-narrate is **Regenerate**, which replaces ALL FOUR blocks
+  — story, moral, seerah and caption — with fresh model output.
+
+**Why that is worse than it sounds:**
+  Every reel this week required hand-corrections before narration: divine-name
+  case in RU, Latin captions in UZ, invented claims in all four languages, the
+  escalation move, honorific expansion for RU. Regenerate discards all of it and
+  returns text that must be reviewed and corrected again from scratch — and, on
+  a non-deterministic model, corrected DIFFERENTLY, because the new text
+  contains different defects. The correction is not idempotent.
+  So the editable window is exactly one pass: read the generation, fix
+  everything, and generate narration once. Any defect noticed after that point —
+  including one that only surfaces at the render gate, like an over-long story —
+  costs a full re-review of four blocks.
+
+**Workaround used (did not regenerate):**
+  The narration audio was already correct; only its LENGTH was wrong. Split the
+  existing audio instead of re-authoring the text:
+      python split-narration.py --base kids-uz-muslim-2999 \
+        --audio "<story>.mp3" "<moral>.mp3" --outdir "<work dir>"
+  It cuts at SILENCE POINTS rather than only the story/moral seam, so it can
+  split inside the story: 27.8s+8.7s became 25.7s + 11.4s. The seam then falls
+  mid-story between two flowing sentences and still reads cleanly at the cut,
+  because the mascot resets to base pose either way.
+  **Rule of thumb:** if the TEXT is wrong, you must regenerate. If only the
+  LENGTH is wrong, split the audio and keep the reviewed text.
+
+**Second finding, same set (2026-08-26, RU kids):**
+  The generator returned S and M IDENTICAL — the same paragraph twice, verbatim.
+  Not a truncation and not a style choice; the moral is specified as a distinct
+  actionable takeaway. Caught by reading, and nothing automated would have
+  caught it: `lint-content.py` checks each block against its own rules, not
+  blocks against each other. First occurrence. A duplicate-block check is cheap
+  and belongs in the linter.
+
+**Third finding, same set (2026-08-28, TJ kids):**
+  The `C:` label was omitted from the generation, so the caption title was
+  absorbed into the end of the H block. A parse-shape failure, distinct from
+  content. Also cheap to check: the linter can assert all four labels are
+  present before anything else runs.
+
+**Fix (proposed, not applied):**
+  1. **Admin:** keep the block editable after narration and re-enable
+     "Generate Story narration" as a re-narrate action per block. The TTS route
+     already takes a `section` parameter (P106) and writes per-section files, so
+     the backend supports this — it is a UI state problem, not an API one.
+     This was already logged as the P120-era "per-block TTS regenerate" item;
+     P124 is the evidence for why it matters.
+  2. **lint-content.py:** two structural checks before the five content checks —
+     all four of S/M/H/C present, and no two blocks identical.
+  3. Until (1) ships, the workflow rule stands: **fix everything before the
+     first narration click.** Trim the story pre-emptively if the language runs
+     long — UZ and RU both do — because it cannot be trimmed afterwards.
+
+**Rule:**
+  A correction workflow whose only path is "start over" is not a correction
+  workflow. Where a system generates several artifacts together and a human
+  reviews them, each artifact must be independently re-committable, or the cost
+  of fixing one defect is re-reviewing everything — and on a non-deterministic
+  generator, "everything" comes back different each time.
+
+**Related:** P079 (narrower statement of the same defect), P106 (per-section TTS
+writes, which is the capability the fix needs), P122 (the corrections this makes
+expensive to preserve)
+
+**Status:** DOCUMENTED — fix pending
