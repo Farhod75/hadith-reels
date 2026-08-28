@@ -250,4 +250,133 @@ test.describe('API — smoke tests', () => {
     })
     expect(res.status()).toBe(400)
   })
+
+  // ── ADMIN STUDIO ────────────────────────────────────────────────────────────
+// P126 part B: the admin studio — picker, generation, editing, TTS, caption,
+// publish — had NO test coverage at all, and UI_PATTERNS in the pre-push hook
+// is anchored to `^app/page\.tsx$` so it never matched `app/admin/`. Widening
+// that pattern before these tests existed would have run 25 public-site tests
+// on an admin change and reported green.
+//
+// All mocked per P043 — including /api/admin/verify, so ADMIN_PASSWORD is not
+// needed and no secret enters the repo.
+
+const ADMIN_URL = `${BASE_URL}/admin`
+
+async function mockAdminAuth(page: Page, accept = true) {
+  await page.route('**/api/admin/verify', route =>
+    route.fulfill({
+      status: accept ? 200 : 401,
+      contentType: 'application/json',
+      body: JSON.stringify(accept ? { ok: true } : { error: 'nope' }),
+    }))
+}
+
+async function mockGenerate(page: Page) {
+  await page.route('**/api/generate-reel', route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        title:          'Fasting Is A Shield',
+        story:          'The Prophet said that fasting is a shield.',
+        moral:          'Fast one voluntary day this month.',
+        seerah_context: 'Recorded in Sahih al-Bukhari, number 1894.',
+        caption_intro:  '',
+      }),
+    }))
+}
+
+// A one-frame silent MP3 is enough — the component only needs a blob to build
+// an object URL from. It never inspects the audio.
+async function mockTts(page: Page) {
+  await page.route('**/api/tts', route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'audio/mpeg',
+      body: Buffer.from('\xFF\xFB\x90\x00', 'binary'),
+    }))
+}
+
+async function loginAndPick(page: Page) {
+  await mockAdminAuth(page)
+  await mockReels(page)
+  await page.goto(ADMIN_URL)
+  await page.getByPlaceholder('Admin password').fill('anything')
+  await page.getByRole('button', { name: /Enter Studio/i }).click()
+  // P048: assert FUNCTIONALITY — if hadiths render, the picker works
+  await expect(page.getByText('Fasting is a shield.').first()).toBeVisible()
+}
+
+test.describe('Admin — auth gate', () => {
+  test('rejects a wrong password and stays on the login screen', async ({ page }) => {
+    await mockAdminAuth(page, false)
+    await page.goto(ADMIN_URL)
+    await page.getByPlaceholder('Admin password').fill('wrong')
+    await page.getByRole('button', { name: /Enter Studio/i }).click()
+    await expect(page.getByText(/Incorrect password/i)).toBeVisible()
+    await expect(page.getByPlaceholder('Admin password')).toBeVisible()
+  })
+
+  test('accepts a valid password and loads the picker', async ({ page }) => {
+    await loginAndPick(page)
+  })
+})
+
+test.describe('Admin — generate to preview', () => {
+  test('selecting a hadith and generating reaches the preview step', async ({ page }) => {
+    await loginAndPick(page)
+    await mockGenerate(page)
+
+    await page.getByText('Fasting is a shield.').first().click()
+    await page.getByRole('button', { name: /Generate/ }).first().click()
+    await page.getByRole('button', { name: /Generate story/i }).click()
+
+    await expect(page.locator('[data-test="story-edit"]')).toBeVisible()
+    await expect(page.locator('[data-test="moral-edit"]')).toBeVisible()
+    await expect(page.locator('[data-test="story-edit"]'))
+      .toHaveValue(/fasting is a shield/i)
+  })
+})
+
+// P125: before the fix, narration was generated once and the button became
+// playback only — editing the textarea afterwards reached nothing, and the
+// only re-narrate path was the whole-reel Regenerate. These two tests are the
+// regression guard for that, and they are why this file exists.
+test.describe('Admin — P125 re-narrate', () => {
+  async function toPreview(page: Page) {
+    await loginAndPick(page)
+    await mockGenerate(page)
+    await mockTts(page)
+    await page.getByText('Fasting is a shield.').first().click()
+    await page.getByRole('button', { name: /Generate/ }).first().click()
+    await page.getByRole('button', { name: /Generate story/i }).click()
+    await expect(page.locator('[data-test="story-edit"]')).toBeVisible()
+  }
+
+  test('re-narrate appears only after narration exists', async ({ page }) => {
+    await toPreview(page)
+    await expect(page.locator('[data-test="story-renarrate"]')).toHaveCount(0)
+    await page.locator('[data-test="story-play"]').click()
+    await expect(page.locator('[data-test="story-renarrate"]')).toBeVisible()
+  })
+
+  test('editing the story after narration raises the stale warning', async ({ page }) => {
+    await toPreview(page)
+    await page.locator('[data-test="story-play"]').click()
+    await expect(page.locator('[data-test="story-renarrate"]')).toBeVisible()
+
+    // clean: no warning yet
+    await expect(page.locator('[data-test="story-stale"]')).toHaveCount(0)
+
+    // dirty: the exact case that shipped the wrong audio on UZ #2999
+    await page.locator('[data-test="story-edit"]').fill('A deliberately different story.')
+    await expect(page.locator('[data-test="story-stale"]')).toBeVisible()
+
+    // re-narrating clears it
+    await page.locator('[data-test="story-renarrate"]').click()
+    await expect(page.locator('[data-test="story-stale"]')).toHaveCount(0)
+  })
+})
+
 })

@@ -27,7 +27,7 @@ echo ""
 
 DOC_PATTERNS="\.md$|\.txt$|fix_patterns|CLAUDE|AGENTS|QA_STANDARDS|CI_WORKFLOW|README|CHANGELOG|\.githooks"
 API_PATTERNS="^app/api/|route\.ts$"
-UI_PATTERNS="^app/page\.tsx$|^components/|^lib/"
+UI_PATTERNS="^app/page\.tsx$|^app/admin/|^app/layout\.tsx$|^components/|^lib/"
 REMOTION_PATTERNS="^remotion/"
 CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
 TEST_PATTERNS="^tests/|\.spec\.ts$"
