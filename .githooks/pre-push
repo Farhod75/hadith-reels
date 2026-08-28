@@ -31,6 +31,7 @@ UI_PATTERNS="^app/page\.tsx$|^components/|^lib/"
 REMOTION_PATTERNS="^remotion/"
 CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
 TEST_PATTERNS="^tests/|\.spec\.ts$"
+TS_SCRIPT_PATTERNS="^scripts/.*\.ts$"
 PY_PATTERNS="\.py$"
 PS1_PATTERNS="\.ps1$"
 JSON_PATTERNS="\.json$"
@@ -40,12 +41,13 @@ HAS_API=$(echo "$CHANGED_FILES" | grep -E "$API_PATTERNS" | wc -l | tr -d ' ')
 HAS_UI=$(echo "$CHANGED_FILES" | grep -E "$UI_PATTERNS" | wc -l | tr -d ' ')
 HAS_REMOTION=$(echo "$CHANGED_FILES" | grep -E "$REMOTION_PATTERNS" | wc -l | tr -d ' ')
 HAS_PY=$(echo "$CHANGED_FILES" | grep -E "$PY_PATTERNS" | wc -l | tr -d ' ')
+HAS_TSSCRIPT=$(echo "$CHANGED_FILES" | grep -E "$TS_SCRIPT_PATTERNS" | wc -l | tr -d ' ')
 HAS_PS1=$(echo "$CHANGED_FILES" | grep -E "$PS1_PATTERNS" | wc -l | tr -d ' ')
 HAS_JSON=$(echo "$CHANGED_FILES" | grep -E "$JSON_PATTERNS" | wc -l | tr -d ' ')
 HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" | wc -l | tr -d ' ')
 NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
 
-echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY Ps1=$HAS_PS1 Json=$HAS_JSON"
+echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY Ps1=$HAS_PS1 Json=$HAS_JSON TSScript=$HAS_TSSCRIPT"
 echo ""
 
 # Doc-only → skip
@@ -108,6 +110,22 @@ if [ "$HAS_PY" -gt 0 ] && [ $FAILED -eq 0 ]; then
   fi
 
   [ $FAILED -eq 0 ] && echo "✅ Python OK"
+fi
+
+# scripts/*.ts → run the transliterator suite (P126)
+# uzbek-translit.ts has 11 passing tests that the hook never invoked. It is the
+# only thing standing between the pipeline and okina corruption in every Uzbek
+# reel — the defect that reached five captions. Tests existing but never run is
+# the P119 shape: the gate cannot fail for a category nobody named.
+if [ "$HAS_TSSCRIPT" -gt 0 ] && [ $FAILED -eq 0 ]; then
+  echo "▶ TypeScript script checks..."
+
+  if [ -f "scripts/lib/uzbek-translit.test.ts" ]; then
+    npx tsx scripts/lib/uzbek-translit.test.ts 2>&1
+    if [ $? -ne 0 ]; then echo "❌ uzbek-translit tests failed"; FAILED=1; fi
+  fi
+
+  [ $FAILED -eq 0 ] && echo "✅ TypeScript scripts OK"
 fi
 
 # PowerShell → parse without executing (P123)
