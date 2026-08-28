@@ -32,7 +32,7 @@ REMOTION_PATTERNS="^remotion/"
 CONFIG_PATTERNS="next\.config|playwright\.config|tsconfig|package\.json$"
 TEST_PATTERNS="^tests/|\.spec\.ts$"
 TS_SCRIPT_PATTERNS="^scripts/.*\.ts$"
-PY_PATTERNSX="\.py$"
+PY_PATTERNS="\.py$"
 PS1_PATTERNS="\.ps1$"
 JSON_PATTERNS="\.json$"
 
