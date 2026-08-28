@@ -3464,3 +3464,81 @@ family. Seventh.
 **Status:** PARTLY FIXED — scripts/*.ts covered; admin E2E and the .js/.yml/.sql
 gaps remain
 
+## ════════════════════════════════════════════════════════
+## PATTERN 127: A dead pattern, and why an undefined one is worse
+## ════════════════════════════════════════════════════════
+**ID:** P127
+**Type:** Gate integrity — the classifier's own configuration was unverified
+**Files:** .githooks/pre-push
+**Commit:** 97a71aa
+
+**Found by watching the classification line.** Pushing five new admin E2E tests
+printed `UI=0` and ran `tsc` alone. The suite was not run — by the very hook
+that runs the suite.
+
+**First finding — TEST_PATTERNS was dead.**
+      TEST_PATTERNS="^tests/|\.spec\.ts$"
+  Defined, and never referenced again. No `HAS_TEST`, no counter in the echo, no
+  branch. It has apparently been dead since the hook was written. **The test
+  file had no test coverage:** a change to the suite ran a TypeScript check and
+  pushed. Eighth instance of the gates-that-cannot-fail family, and the most
+  pointed one — the thing not being checked was the checker.
+  Fixed: `HAS_TEST` counted, reported as `Test=`, and folded into the E2E
+  condition — `$((HAS_API + HAS_UI + HAS_TEST))`.
+
+**Second finding — and this one was not predicted.**
+  Having found one dead pattern, the obvious move was a self-check: assert every
+  `*_PATTERNS` has a matching `HAS_*` counter. That check was written, and it
+  did not work. Proving it is what produced the real finding.
+  `PY_PATTERNS` was renamed to `PY_PATTERNSX` and the hook run. Expected: a
+  warning. Actual: **`Py=1` on a hook-only change**, and silence.
+  `grep -E ""` — an empty pattern — **matches every line**. So an undefined
+  pattern does not produce zero matches. It produces a match on EVERY changed
+  file, the counter reads high, and the wrong branch runs. On a larger commit
+  that would have run the Python branch over files containing no Python, or the
+  build check on a doc change.
+  The first self-check tested whether the COUNTER was set. It always is:
+  `HAS_PY=$(...)` assigns a number whether the pattern is empty or not. The
+  check was structurally incapable of firing — a gate that could not fail,
+  written while fixing gates that could not fail.
+
+**The corrected check tests the pattern, not the counter:**
+      for p in DOC_PATTERNS API_PATTERNS UI_PATTERNS ... TS_SCRIPT_PATTERNS; do
+        eval "val=\$$p"
+        if [ -z "$val" ]; then
+          echo "❌ $p is empty or undefined — an empty regex matches EVERY file"
+          FAILED=1
+        fi
+      done
+  `FAILED=1`, not a warning: an empty pattern is a live misrouting bug.
+  Placement matters — it must sit AFTER `FAILED=0`. The first attempt put it
+  above the doc-only skip, where `FAILED=1` would be set on an undeclared
+  variable and then overwritten by `FAILED=0` moments later. It would have
+  detected the fault and discarded the result.
+
+**Verified in both directions:**
+  - `TEST_PATTERNS` live: a trailing newline in the spec file → `Test=1`, all
+    30 tests run, push proceeds.
+  - `PY_PATTERNSX`: → `Py=2` (the empty regex matching both changed files, one
+    a shell script and one a spec) → `❌ PY_PATTERNS is empty or undefined` →
+    push blocked.
+
+**Known limitation:** on a doc-only push the script exits before the check runs.
+Acceptable, because the dangerous case is covered: if `DOC_PATTERNS` itself were
+empty, `NON_DOC` would equal the file count, the skip would not fire, and the
+check would run.
+
+**Rule:**
+  Configuration is code. A classifier's pattern table is the part most likely to
+  drift and least likely to be read, and a regex engine's behaviour on empty
+  input is a footgun with no error message — the failure is louder counters, not
+  quieter ones. Assert the config, not the symptom. And when you write a check
+  because a check was missing, prove THAT check fails on demand before trusting
+  it; the first version here did not, and only breaking it deliberately revealed
+  why.
+
+**Related:** P093, P110, P119, P120, P121, P123, P126 — eighth in the family,
+and the first where the fix for the family was itself an instance of it.
+
+**Status:** FIXED
+
