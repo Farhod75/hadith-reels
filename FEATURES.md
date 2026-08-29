@@ -53,6 +53,15 @@ not that the text is correct. Human review remains the gate. The `inversion`
 check is the weakest (word list only). Does not check translation accuracy,
 isnad verbs, or anything the reel's meaning depends on.
 
+Two structural checks run before the five content ones (P128). They compare
+blocks against each other and against the expected shape, which no per-block
+check can do: `missing-block` (a dropped S/M/H/C label silently merges the
+block into the previous one) and `duplicate-block` (two blocks with identical
+text). Both come from the Muslim #2999 kids set, where each fired once and
+neither was caught by anything automated. The missing-label case was already
+detected but printed only as a quiet `note:` above "no findings" — it is now a
+real Finding that sorts and counts.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

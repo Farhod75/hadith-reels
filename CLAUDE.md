@@ -319,7 +319,13 @@ npm run test:multilingual
 2. Save the S:/M:/H:/C: blocks to `draft.txt` (gitignored)
 3. Pull the matn: `select text_<lang> from hadith_library where ...`
 4. Run: `python scripts\lint-content.py draft.txt --lang <lang> --matn "<matn>"`
-5. Read every FAIL and WARN — they are heuristics, not verdicts
+5. Read every FAIL and WARN — they are heuristics, not verdicts.
+   Two are STRUCTURAL (P128), added after the #2999 kids set:
+   - `missing-block` WARN — a dropped label MERGES two blocks. TJ #2999 lost
+     its C: label and the caption title ended up inside the seerah block.
+     Check the END of the block above, not just for absent content.
+   - `duplicate-block` FAIL — two blocks with identical text. RU #2999 returned
+     S and M as the same paragraph; the reel would have narrated it twice.
 6. Fix in the admin, re-lint, then generate TTS
 7. **Re-sync `draft.txt` after ANY edit made in the admin.** Workflow F compares
    the SRT against this file; a stale draft produces false mismatches and, worse,

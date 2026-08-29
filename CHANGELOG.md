@@ -1,3 +1,8 @@
+
+## [2026-08-29
+]
+### Added
+- `lint-content.py` structural checks (P128): `missing-block` and `duplicate-block`. Verified in both directions before shipping — clean input silent, a dropped `C:` label raises WARN, and identical S/M blocks raise FAIL — then confirmed no false positive on the real TJ #2999 draft. Check count 5 → 7.
 ## [2026-08-24]
 
 ### Added
