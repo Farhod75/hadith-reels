@@ -229,3 +229,4 @@ while the other three stay clean.
     python scripts/verify-candidates.py --row 527    # dry run
     python scripts/verify-candidates.py --limit 10   # D5 calibration batch
     python scripts/verify-candidates.py --commit
+

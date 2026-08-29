@@ -3542,3 +3542,68 @@ and the first where the fix for the family was itself an instance of it.
 
 **Status:** FIXED
 
+## ════════════════════════════════════════════════════════
+## PATTERN 128: Structural defects no per-block check can see
+## ════════════════════════════════════════════════════════
+**ID:** P128
+**Type:** Checker coverage — a whole defect class had no owner
+**Files:** scripts/lint-content.py
+**Commit:** 0a368e4
+**Implements:** the two linter items identified in P124
+
+**The two defects, both from the Muslim #2999 kids set:**
+
+  1. **RU: S and M came back IDENTICAL.** The generator returned the same
+     paragraph for the story and the moral, verbatim. The reel would have
+     narrated it twice — a viewer hears the same words at 0:00 and again at
+     0:21. Caught only by reading.
+  2. **TJ: the `C:` label was dropped.** The caption title
+     «Ҳамаи кори мӯъмин хайр аст!» was absorbed into the END of the seerah
+     block. The content was not missing; it was in the wrong place, which is
+     harder to notice than absence.
+
+**Why the existing five checks were structurally incapable of seeing either:**
+  Every content check reads ONE block and asks whether its text breaks a rule —
+  divine name, unnamed authority, seerah source, invented simile, meaning
+  inversion. Both defects here are perfectly legal at that level. Two identical
+  blocks are two individually valid blocks. A merged block is one valid block
+  containing more than it should. The defect only exists in the RELATIONSHIP
+  between blocks, or between the file and its expected shape, and nothing was
+  looking there.
+
+**A near-miss worth recording.** The missing-label case WAS already detected:
+      missing = [k for k in 'SMHC' if k not in blocks]
+      if missing: print(f'  note: no {...} block(s) in this file')
+  A bare `note:` — not a Finding. It did not sort with the results, did not
+  appear in the FAIL/WARN/INFO counts, and printed one line above
+  `no findings.` On the TJ run it was there, on screen, and was read straight
+  past. Detection without severity is not a check; it is a comment. Promoted to
+  a real Finding at WARN.
+
+**Fix:** two structural checks, run BEFORE the content ones, since a missing or
+duplicated block changes what those are even examining.
+  - `missing-block` (WARN) — names the absent label AND says where to look:
+    "that block's text is now sitting INSIDE the previous one — check the end
+    of the block above it."
+  - `duplicate-block` (FAIL) — compares every block body pairwise. FAIL rather
+    than WARN: identical blocks are never intentional.
+  Check count 5 → 7.
+
+**Verified in three directions before shipping:**
+  - clean four-block input → `no findings`
+  - `C:` label removed → `[WARN] missing-block`
+  - S and M identical → `[FAIL] duplicate-block`, naming the MORAL block
+  Then run against the real TJ #2999 `draft.txt` to confirm no false positive
+  on genuine reel content — clean.
+
+**Rule:** when a checker examines items one at a time, ask what defects live
+BETWEEN items. Per-item validation cannot see duplication, ordering, absence,
+or merging, and those failures look like valid content from inside every
+individual item. And a detection that prints without a severity level will be
+read past — if it is worth detecting, give it a level and let it into the count.
+
+**Related:** P124 (where both defects were diagnosed), P105/P111/P115 (the five
+content checks this sits alongside)
+
+**Status:** FIXED
+
