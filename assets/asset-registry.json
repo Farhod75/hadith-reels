@@ -24,50 +24,50 @@
     "vocal-nasheed-01.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified."
     },
     "vocal-nasheed-02.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R030. Confirm instrumentation."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-03.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R029, R043. Confirm instrumentation."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R029, R043. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-04.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-05.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-06.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Used on R033. Confirm instrumentation."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R033. LISTENED 2026-08-29: vocal only, confirmed. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-07.mp3": {
       "classification": "vocal",
       "lanes": ["kids", "adults"],
-      "verified": false,
-      "notes": "Pixabay, I_read_quran. Longest of the set. Confirm instrumentation."
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-hamd-kids-01.mp3": {
       "classification": "vocal",
       "lanes": ["kids"],
-      "verified": false,
-      "notes": "Pixabay, foisal72. Hamd/naat, kids register. LANE-RESTRICTED: the random picker chose this for the R029 TJ ADULTS reel and it had to be re-rendered. This entry is why the lane field exists."
+      "verified": true,
+       "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. LANE-RESTRICTED: the random picker chose this for the R029 TJ ADULTS reel and it had to be re-rendered. This entry is why the lane field exists."
     },
     "_retired/ambient-ocean-bg.mp3": {
       "classification": "ambience",
