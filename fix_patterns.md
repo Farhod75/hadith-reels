@@ -3036,6 +3036,13 @@ before describing what it failed to do.
 **Still open:** seven of the eight vocal nasheeds are `verified: false`, their
 notes admitting a Pixabay search term was the only basis for calling them
 acapella. Eight files are in rotation on an unchecked assumption.
+**Resolved 2026-08-29:** all eight vocal nasheeds listened to and confirmed
+voice-only, plus `vocal-hamd-kids-01.mp3`. `verified: true` on all nine. The
+Pixabay search term turned out accurate — which is luck, not method: the files
+were in rotation across nine published reels on nothing but a search phrase, and
+if any had carried a lute the defect would already have shipped. Audit
+unverified count 21 → 13; the remainder are pre-registry scene clips needing a
+viewing pass.
 
 **Status:** FIXED
 
