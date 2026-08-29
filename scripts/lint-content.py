@@ -3,10 +3,10 @@
 """
 lint-content.py - deterministic pre-TTS checks on generated reel text.
 
-Encodes the defects caught by human review in P105, P111 and P115. Warn-only:
-it never blocks and never edits. Every finding is a heuristic - read the line
-it points at and decide. A clean run does NOT mean the text is correct; it
-means these five known failure modes are absent.
+Encodes the defects caught by human review in P105, P111, P115 and P124.
+Warn-only: it never blocks and never edits. Every finding is a heuristic - read
+the line it points at and decide. A clean run does NOT mean the text is
+correct; it means these seven known failure modes are absent.
 
 USAGE
   python scripts/lint-content.py draft.txt --lang uz
@@ -24,6 +24,15 @@ A block runs until the next label or end of file.
   --lang   en | ru | uz | tj | ar   (required)
   --matn   the hadith text from hadith_library, for the simile check.
            Without it, check 4 flags every simile marker.
+
+TWO CLASSES OF CHECK
+  CONTENT  (5) - what a block says: divine name, unnamed authority, seerah
+                 source, invented simile, meaning inversion.
+  STRUCTURE (2) - the SHAPE of the file: a missing block, and two blocks that
+                 are identical. Added after the Muslim #2999 kids set, where
+                 both fired and neither was caught by anything automated (P124).
+                 No per-block check can see these - they compare blocks against
+                 each other and against the expected shape.
 """
 
 import argparse
@@ -162,7 +171,13 @@ def normalise(s):
     return ''.join(c for c in s if not unicodedata.combining(c))
 
 
+def block_body(lines):
+    """Join a block's lines into one comparable string."""
+    return ' '.join(l.strip() for _, l in lines).strip()
+
+
 # ---------------------------------------------------------------- checks
+# ---- content ------------------------------------------------------------
 
 
 def check_divine_name(blocks, lang):
@@ -254,6 +269,52 @@ def check_inversion(blocks, lang):
     return scan(blocks, pats, 'WARN', 'inversion', note)
 
 
+# ---- structure ----------------------------------------------------------
+
+
+def check_missing_block(blocks):
+    """A dropped label silently MERGES two blocks.
+
+    TJ kids #2999 lost its C: label and the caption title was absorbed into
+    the end of the seerah block. Nothing failed, nothing looked wrong, and the
+    only signal this script gave was a quiet 'note:' line printed above
+    'no findings.' - easy to read straight past, which is what happened.
+    Promoted to a real Finding so it sorts, counts, and is impossible to miss.
+    """
+    missing = [k for k in 'SMHC' if k not in blocks]
+    if not missing:
+        return []
+    names = ', '.join(f'{k} ({BLOCK_NAMES[k]})' for k in missing)
+    return [Finding(
+        'WARN', 'missing-block', 'FILE', 0, '',
+        f'no {names} block. If the generation dropped a label, that block\'s '
+        f'text is now sitting INSIDE the previous one - check the end of the '
+        f'block above it before assuming the content is simply absent.')]
+
+
+def check_duplicate_blocks(blocks):
+    """Two blocks with identical text.
+
+    RU kids #2999 returned S and M as the same paragraph, verbatim - the
+    narration would have repeated itself word for word mid-reel. Caught by
+    reading; no per-block check can see it, because each block is individually
+    fine. It is only visible by comparing blocks against each other.
+    """
+    out = []
+    joined = [(k, block_body(v)) for k, v in blocks.items() if block_body(v)]
+    for i in range(len(joined)):
+        for j in range(i + 1, len(joined)):
+            (ka, a), (kb, b) = joined[i], joined[j]
+            if a == b:
+                out.append(Finding(
+                    'FAIL', 'duplicate-block', BLOCK_NAMES[kb],
+                    blocks[kb][0][0], b,
+                    f'identical to the {BLOCK_NAMES[ka]} block. Each block '
+                    f'must say something different - S and M identical means '
+                    f'the reel narrates the same paragraph twice.'))
+    return out
+
+
 # ---------------------------------------------------------------- main
 
 
@@ -282,9 +343,12 @@ def main():
         print('FAILED: no S:/M:/H:/C: blocks found. Check the input format.')
         return 2
 
-    missing = [k for k in 'SMHC' if k not in blocks]
-
     findings = []
+    # structure first - a missing or duplicated block changes what the content
+    # checks below are even looking at
+    findings += check_missing_block(blocks)
+    findings += check_duplicate_blocks(blocks)
+    # content
     findings += check_divine_name(blocks, args.lang)
     findings += check_unnamed_authority(blocks, args.lang)
     findings += check_seerah_source(blocks)
@@ -300,16 +364,14 @@ def main():
     print(f' content lint - {args.file}  (lang: {args.lang})')
     print('=' * width)
 
-    if missing:
-        print(f'  note: no {", ".join(missing)} block(s) in this file')
-
     if not findings:
         print('  no findings.')
     else:
         for f in findings:
             print()
             print(f'  [{f.level}] {f.check}  -  {f.block}, line {f.line_no}')
-            print(f'    {f.line[:150]}')
+            if f.line:
+                print(f'    {f.line[:150]}')
             print(f'    -> {f.note}')
 
     counts = {lvl: sum(1 for f in findings if f.level == lvl)
@@ -321,7 +383,7 @@ def main():
     if not args.matn:
         print('  (no --matn given; simile findings are unverified)')
     print('  warn-only: nothing was blocked or changed. Human review still')
-    print('  decides - a clean run only means these five checks passed.')
+    print('  decides - a clean run only means these seven checks passed.')
     print('-' * width)
     print()
     return 0
