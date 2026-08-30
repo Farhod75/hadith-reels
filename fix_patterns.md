@@ -3614,3 +3614,111 @@ content checks this sits alongside)
 
 **Status:** FIXED
 
+## ════════════════════════════════════════════════════════
+## PATTERN 133: The title had no constraint, so it escalated
+## ════════════════════════════════════════════════════════
+**ID:** P133
+**Type:** Content safety — a prompt fix that stopped at the wrong boundary
+**Files:** app/api/generate-reel/route.ts
+**Commit:** 294cc01
+**NOTE ON NUMBERING:** that commit message says "P132". Wrong — P132 is HV's,
+in the shared global sequence. This is P133. Recorded rather than force-pushed.
+
+**Symptom:** P122 stopped two of three invented moves. The third survived every
+set — "good" became "wins":
+      RU  «Верующий побеждает всегда»      (the believer always WINS)
+      UZ  «Мўмин доим ютади»               (the believer always WINS)
+      TJ  «Мӯъмин ҳамеша ғолиб аст»        (the believer is always VICTORIOUS)
+  Three languages, independently, on a matn that says his affair is GOOD. And
+  in all three it appeared in the TITLE.
+
+**Cause — two instructions pushing the same way, and no counterweight:**
+      line 108: "title": "... max 8 words, shareable, inspiring"
+      line 122: 4. title MUST be shareable — would someone click on this?
+  Meanwhile P122 had tightened the STORY to "you may NOT say what kind of thing
+  it describes, how much of life it covers, or what the person thereby gains" —
+  and left the title with no constraint at all. So the escalation the story
+  could no longer make, the title made freely, one field away.
+  Same specification-conflict shape as P101: a concrete demand ("would someone
+  click?") beats a vague caution every time, and here there was not even a
+  caution to beat.
+
+**Fix:** replace the demand, do not add a prohibition. P122's lineage shows each
+prohibition just moves the model to the next door.
+  - title spec now: state what the hadith is ABOUT or quote its own words; it
+    may not promise an outcome, name a benefit, or rank the deed — **with a
+    worked negative example**, "'Two Deeds Allah Loves' is right; 'The Believer
+    Always Wins' is not." P103 showed an abstract rule gets reinterpreted; a
+    concrete wrong answer is harder to argue with.
+  - rule 4 rewritten from "would someone click" to "a title that promises more
+    than the hadith states is fabrication in the most-read line of the reel."
+
+**Verified on the hardest available case.** Tested against Bukhari #6446 —
+"Richness is not having many possessions, but richness is contentment of the
+soul" — a definitional statement about what something IS, which is exactly the
+shape that invites "The Secret To True Wealth" or "How To Be Truly Rich."
+Result: **"Richness Is Contentment of the Soul"** — the matn's own words. Held.
+
+**Not yet proven outside English.** RU, UZ and TJ produced this move
+independently, so an English-only pass is not evidence. Next three languages of
+the #6446 set are the real test.
+
+**Rule:** when tightening one field, check the adjacent fields for the same
+freedom. A constraint applied to the story and not the title does not remove the
+option — it relocates it, and in this case relocated it to the single most-read
+line in the reel.
+
+**Related:** P101 (specification conflict), P111/P115/P116/P122 (the lineage of
+invented moves), P103 (concrete examples beat abstract rules)
+
+**Status:** FIXED in EN — pending confirmation in RU/UZ/TJ
+
+## ════════════════════════════════════════════════════════
+## PATTERN 134: A poll deadline set from a guess, not a measurement
+## ════════════════════════════════════════════════════════
+**ID:** P134
+**Type:** Tooling — a timeout that turned completed work into apparent failure
+**Files:** scripts/generate-scene.ps1
+**Commit:** 9176262
+
+**Symptom, four times across three sets:**
+      FAILED: timed out after 8 min (request <id>, last status IN_PROGRESS)
+  Each time the job had NOT failed. Kling finished it server-side; only the
+  poll gave up. The operator then either paid to regenerate or recovered by
+  hand through the fal status API — looking the commands up again each time.
+
+**Measured inference times, all master-tier 10s i2v at 1080x1920:**
+      b527-doorway    505s   (8.4 min)
+      b6446-market    564s   (9.4 min)
+      b6446-dunes    1678s  (28.0 min)
+  Against a hardcoded `(Get-Date).AddMinutes(8)`. The 8 was never measured —
+  the script's own banner says "video gen takes ~1-4 min", which was true when
+  it was written and has not been true for months.
+
+**Not a network issue.** `inference_time` is reported BY fal, measured on their
+GPUs. The local side sends a few hundred bytes every 8 seconds. The 3.3x spread
+between the fastest and slowest job, same prompt shape and resolution and the
+same connection throughout, is queue contention on their side.
+
+**Fix:**
+  - deadline 8 → 20 minutes, with the measurements recorded in a comment so the
+    next person changing it knows what it was set from
+  - **the timeout message now carries the recovery commands**, with the request
+    ID and output path already interpolated. They had been looked up three
+    times; the fourth time they were in the error.
+
+**Known incomplete.** 20 minutes is not a safe ceiling — b6446-dunes took 28.
+And a script that blocks a terminal for half an hour is its own problem. The
+right shape is: poll to a reasonable limit, write the request ID to a file, exit
+cleanly, and offer `--resume` to collect it later. That turns a timeout from a
+failure into a handoff. Not built.
+
+**Rule:** a timeout is an assertion about how long something takes. If it was
+never measured, it is a guess wearing a number — and when it fires on work that
+actually succeeded, it converts a slow success into a false failure and invites
+paying twice. Record the measurements next to the constant, and put the recovery
+path in the error message rather than in someone's memory.
+
+**Status:** MITIGATED — deadline raised, recovery documented in the error;
+resume-by-request-id not built
+
