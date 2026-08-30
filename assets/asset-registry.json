@@ -153,6 +153,30 @@
   },
 
   "scenes": {
+        "b6446-market.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Stone market arcade at rest, goods stacked and unattended — the 'abundance of possessions' half of the matn. No figures. Bukhari #6446."
+    },
+    "b6446-dunes.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Vast empty dunes, nothing built and nothing owned. No figures. Bukhari #6446. Took 1678s to generate — see P133."
+    },
+    "b6446-lamp.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Bare stone niche lit by one lamp, mat and a single jar — sufficiency, not accumulation. No figures. Bukhari #6446."
+    },
+    "b6446-dawn.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Kling v2.1, MODE B. Open sky before sunrise over a still plain. No figures. Bukhari #6446."
+    },
     "ad3641-stars.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
