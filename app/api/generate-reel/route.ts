@@ -105,7 +105,7 @@ Seerah source to draw from:
 
 Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, no preamble):
 {
-  "title": "Short engaging reel title — max 8 words, shareable, inspiring",
+  "title": "Max 8 words. State what the hadith is ABOUT, or quote its own words. It may not promise the reader an outcome, name a benefit, or rank the deed — the matn says what it says, and the title says no more. 'Two Deeds Allah Loves' is right; 'The Believer Always Wins' is not.",
   "story": "Follow the matn's own length. A one-sentence hadith gets a short story; do not pad to a target. Say what the hadith says, in the order it says it. You may explain a term it uses. You may NOT say what kind of thing it describes, how much of life it covers, or what the person thereby gains.",
   "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL differently after watching this reel? Make it actionable for modern life.",
   "seerah_context": "2-3 sentences of context. If the sources tie this hadith to a specific period or event, name it. If they do not, give the collection and book, the narrator, and the classical scholarly reading of the hadith's meaning — and nothing more. Do not supply a period, setting, or occasion that the sources do not record.",
@@ -119,7 +119,7 @@ RULES:
    cited seerah source record them. If neither records an incident for this
    hadith, do NOT construct one — explain the teaching itself instead.
 3. moral MUST be practical — what to do TODAY
-4. title MUST be shareable — would someone click on this?
+4. title is drawn from the matn, not from what would make someone click. A title that promises more than the hadith states is fabrication in the most-read line of the reel.
 5. For Kids style: use simple, concrete language a child can follow. Do NOT invent
    a scene — describe the historical setting and the lesson in plain words
 6. seerah_context cites a real period ONLY if the sources tie this hadith to one.
