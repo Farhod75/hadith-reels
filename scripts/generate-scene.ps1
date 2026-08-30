@@ -104,7 +104,12 @@ Ok "queued: $reqId"
 
 # --- 2) POLL until completed -------------------------------------------------
 Say "`n[2/3] Generating (video gen takes ~1-4 min)..."
-$deadline = (Get-Date).AddMinutes(8)
+# P133: Kling master-tier i2v regularly exceeds 8 minutes — measured at 505s
+# (b527-doorway), 564s (b6446-market), and rising. The job COMPLETES; only the
+# poll gives up, and the operator then pays again or recovers by hand through
+# the fal status API. 20 minutes is well past observed worst case and costs
+# nothing when generation is fast.
+$deadline = (Get-Date).AddMinutes(20)
 do {
   Start-Sleep -Seconds 8
   try {
@@ -115,7 +120,17 @@ do {
   Write-Host "        status: $($st.status)" -ForegroundColor DarkGray
   if ($st.status -eq 'COMPLETED') { break }
   if ($st.status -in @('FAILED','ERROR','CANCELLED')) { Die "generation failed (status: $($st.status), request $reqId)" }
-  if ((Get-Date) -gt $deadline) { Die "timed out after 8 min (request $reqId, last status $($st.status))" }
+  if ((Get-Date) -gt $deadline) {
+    Die @"
+timed out after 20 min (request $reqId, last status $($st.status))
+The job may still COMPLETE server-side. Recover it rather than regenerating:
+  `$key = (Get-Content .env.local | Select-String '^FAL_KEY=').ToString().Split('=',2)[1].Trim()
+  Invoke-RestMethod -Uri "https://queue.fal.run/fal-ai/kling-video/requests/$reqId/status" -Headers @{ Authorization = "Key `$key" }
+  # when COMPLETED:
+  `$r = Invoke-RestMethod -Uri "https://queue.fal.run/fal-ai/kling-video/requests/$reqId" -Headers @{ Authorization = "Key `$key" }
+  Invoke-WebRequest -Uri `$r.video.url -OutFile "out\backgrounds\new\$Name.mp4"
+"@
+  }
 } while ($true)
 Ok "generation complete"
 
