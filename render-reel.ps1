@@ -128,7 +128,11 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
 # --- STEP 4: concat story + moral (1s pause) into one narration --------------
 Say "`n[1/5] Step 4 - concatenating story + moral narration..."
 $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$story,"-i",$moral,
-  "-filter_complex","[0:a]apad=pad_dur=1[a0];[a0][1:a]concat=n=2:v=0:a=1[out]",
+  # P135: pad was 1s, but ElevenLabs leaves trailing silence on the story MP3,
+  # so the perceived gap ran to ~2s. 0.5 here reads as ~1.5s in the finished
+  # reel. The real fix is trimming the source silence before padding
+  # (silenceremove) — deferred, since that needs testing across languages.
+  "-filter_complex","[0:a]apad=pad_dur=0.5[a0];[a0][1:a]concat=n=2:v=0:a=1[out]",
   "-map","[out]",$narr)
 if (-not (Test-Path $narr)) { Die "narration concat failed ($narr not created)" }
 Ok "$narr ($([math]::Round((Get-Item $narr).Length/1KB)) KB)"
