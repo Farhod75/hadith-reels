@@ -28,6 +28,7 @@
    -ForceNoSubs (optional) skip subtitles even for en/ru/ar
    -NoReview    (optional) skip the subtitle proofreading pause (for trusted reels)
    -Open        (optional) auto-play the finished reel
+   -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
 ================================================================================
 #>
 
@@ -39,7 +40,8 @@ param(
   [string[]]$Scenes,     # ordered clip names (in normalized\) for an ANIMATED reel; omit = random 3
   [switch]$ForceNoSubs,
   [switch]$NoReview,
-  [switch]$Open
+  [switch]$Open,
+  [switch]$ValidateOnly
 )
 
 $ErrorActionPreference = 'Stop'
@@ -125,7 +127,7 @@ if ($problems.Count -gt 0) {
 }
 Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.Count) nasheeds"
 
-# --- STEP 4: concat story + moral (1s pause) into one narration --------------
+# --- STEP 4: concat story + moral (0.5s pause, P135) into one narration ------
 Say "`n[1/5] Step 4 - concatenating story + moral narration..."
 $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$story,"-i",$moral,
   # P135: pad was 1s, but ElevenLabs leaves trailing silence on the story MP3,

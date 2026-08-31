@@ -177,8 +177,25 @@ if [ "$HAS_PS1" -gt 0 ] && [ $FAILED -eq 0 ]; then
       fi
     done
   fi
-
-  [ $FAILED -eq 0 ] && echo "✅ PowerShell OK"
+   
+    # A line ending in ` continues the statement. If the next line is a comment,
+    # the continuation dies and one statement silently becomes two. This lexes
+    # clean, so Tokenize cannot catch it — shipped 2026-08-31 in
+    # make-kids-reel.ps1 and passed this gate twice.
+    for f in $(echo "$CHANGED_FILES" | grep -E "$PS1_PATTERNS"); do
+      if [ -f "$f" ]; then
+        hits=$(awk 'prev && /^[[:space:]]*#/ { print NR } { prev = /`[[:space:]]*$/ }' "$f")
+        if [ -n "$hits" ]; then
+          for ln in $hits; do
+            echo "❌ $f:$ln comment after a line-continuation backtick (breaks the statement)"
+          done
+          FAILED=1
+        fi
+      fi
+    done
+        
+    rm -rf out/work/kids/__smoke__ out/work/adults/__smoke__ 2>/dev/null
+    [ $FAILED -eq 0 ] && echo "✅ PowerShell parses (not executed)"
 fi
 
 # JSON → must parse (P123)

@@ -3783,3 +3783,66 @@ P106 (the kids chain this pad sits inside)
 
 **Status:** MITIGATED — both lanes at 0.5s; silenceremove not built
 
+## ════════════════════════════════════════════════════════
+## PATTERN 136: A gate that lexed instead of checking
+## ════════════════════════════════════════════════════════
+**ID:** P136
+**Type:** Gate integrity — a success message wider than the check behind it
+**Files:** .githooks/pre-push, make-kids-reel.ps1, render-reel.ps1
+**Commit:** <this commit>
+
+**Symptom:** `make-kids-reel.ps1` was edited to add a P135 comment. The comment
+landed between a line ending in a backtick and the line it continued, which
+ends the statement. ffmpeg ran with no output file and PowerShell then tried to
+execute `-f` as a command. The pre-push hook reported `✅ PowerShell OK` and
+pushed it.
+
+**Why the hook missed it:** the PowerShell branch (P123) calls
+`PSParser::Tokenize`, which is a LEXER. It splits text into tokens and reports
+malformed ones. The broken file was not malformed — a complete `ffmpeg ...`
+statement, a comment, then a new statement starting with `-f`. Every token
+valid. It lexed clean because it WAS clean; it just wasn't the program anyone
+meant. Tokenizing cannot catch this class, and no stricter parser can either.
+
+**Two things were wrong, and only one was the check:**
+  1. the message. `✅ PowerShell OK` claims correctness; the branch's own
+     comment on line 147 says "parse without executing". Now reads
+     `✅ PowerShell parses (not executed)`.
+  2. the missing check. Added a deterministic scan: a line ending in a
+     backtick followed by a comment line. There is no legitimate reason to
+     write that, so a match is always a defect. No execution required.
+
+**A wrong fix shipped first, and is the more useful half of this pattern.**
+The initial attempt added `-ValidateOnly` to both render scripts — a switch
+exiting after step 0 — and had the hook invoke it as a smoke test. It passed
+the broken file. `-ValidateOnly` exits at line 71; the defect was at line 77.
+The smoke test never reached it. A gate built to catch a specific defect, in
+the same commit as a pattern about gates that cannot fail, could not catch that
+defect. It was found only because the gate was deliberately broken and tested
+before shipping — the rule from P129–P132, applied to the fix for P129–P132.
+
+**Proof of failure (required before this shipped):** comment moved between the
+backtick and its continuation, committed, pushed. Output:
+`❌ make-kids-reel.ps1:76 comment after a line-continuation backtick`,
+push blocked, exit non-zero. Restored, re-run, clean.
+
+**Kept:** `-ValidateOnly` stays on both scripts. It is useful by hand and costs
+nothing. It is NOT wired into the hook — it proves a script reaches step 0 and
+nothing beyond.
+
+**Note on placement:** the same comment is legal inside `@(...)`, which is why
+`render-reel.ps1`'s P135 comment — sitting inside an ffmpeg argument array —
+never broke. Continuation backticks are the hazard, not comments.
+
+**Rule:** a gate's success message must state what was verified, not what the
+reader hopes was verified. `OK` and `parses (not executed)` describe the same
+check; only one of them can mislead. And a new gate is not shipped until it has
+been proven to fail on the defect that motivated it.
+
+**Related:** P123 (the PowerShell branch this extends), P129–P132 (hook that
+never ran, suite that never passed), P121 (asset gate wired to one of two
+classes), P127 (dead TEST_PATTERNS)
+
+**Status:** FIXED — message corrected in both repos, check added in HR,
+proven to fail
+
