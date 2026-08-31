@@ -3779,5 +3779,7 @@ string and in an arithmetic offset that was chosen relative to it.
 **Related:** P099 (amix vs -shortest — the previous audio-timing assumption),
 P106 (the kids chain this pad sits inside)
 
+**Commit:** 0cd3dd3 (adults), 0cc2279 (kids)
+
 **Status:** MITIGATED — both lanes at 0.5s; silenceremove not built
 
