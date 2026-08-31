@@ -2,7 +2,8 @@
 # Hadith Reels — Production Pipeline
 
 > **Owner:** Farhod Elbekov
-> **Last verified:** 2026-08-11 (kids path re-verified end to end on Bukhari #8)
+> **Last verified:** 2026-08-31 (voice table and concat gap corrected; kids path
+> last re-verified end to end 2026-08-11 on Bukhari #8)
 > **Companion docs:** `reel-tracker.md`, `fix_patterns.md`, `agent-architecture-roadmap.md`
 
 ## Two pipelines
@@ -61,7 +62,7 @@ mascot choice determines the voice in every language.
 | | girl lamb (female) | boy lamb (male) |
 |---|---|---|
 | EN | Danielle | Eric |
-| RU | Arabella Calm & Mature | Liam Youthful |
+| RU | Arabella Calm & Mature | Maxim Calm & Neutral (P112) |
 | UZ | Mini | George |
 | TJ | Katherine Polished | Liam Viral |
 
@@ -117,7 +118,7 @@ a different one.
 .\make-kids-reel.ps1 -Lang ru -Slug bukhari-8 -Mascot girl -Nasheed ramadan-2-bg.mp3
 ```
 
-Chains: validate → concat (1s gap) → split if over 28s → fal Fabric lip-sync at
+Chains: validate → concat (0.5s gap, P135) → split if over 28s → fal Fabric lip-sync at
 720p per chunk → render. Pauses before Fabric (the only paid, irreversible step);
 `-Auto` skips the pause.
 
