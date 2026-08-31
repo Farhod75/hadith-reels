@@ -276,6 +276,41 @@ When CI fails:
 - Both must pass for CI to be green
 - If only one fails → it is a browser-specific issue, not a code bug
 
+### 6.5 MANDATORY: Pre-push test protocol
+
+> A second §6.5 exists further down, from an un-renumbered addendum
+> ("CI yml must NEVER contain"). This one is authoritative for hook
+> configuration. Full renumbering pending.
+
+**Hook location:** `.githooks/pre-push`, with `core.hooksPath = .githooks`.
+
+NOT `.git/hooks/pre-push`. A hook placed there does not run once
+`core.hooksPath` is set, and git reports nothing — the push simply succeeds
+with no checks. This is not hypothetical: HV shipped a live production 500 on
+`/api/voice-intent` behind exactly this, alongside a 68-test suite that had
+never passed (P129–P132). Verify on any machine before trusting the gate:
+
+    git config core.hooksPath        # must print .githooks
+    ls .githooks/pre-push            # must exist and be executable
+
+If `core.hooksPath` prints nothing, the hook is not installed. Set it:
+
+    git config core.hooksPath .githooks
+
+**The hook classifies changed files and runs only the mapped checks.** Read the
+`📊 Classification` line it prints. A `.ps1` change must show `Ps1=1`; a doc-only
+change shows `Doc=1` and correctly skips tests. A code change that classifies as
+`Doc=1` is a classifier defect, not a convenience — that shape is P123, P126,
+P127, P130, P131, P132.
+
+**A green hook is not proof.** Known gap as of 2026-08-31: the PowerShell check
+passes a script whose backtick continuation chain is broken, which cannot execute
+past its first statement. Run the script once after editing it.
+
+**Gate integrity rule:** a gate must be proven capable of failing. Break it
+deliberately, confirm it blocks, then restore. A gate that has never failed and
+a gate that cannot fail are indistinguishable from the outside.
+
 ## ════════════════════════════════════════════════════════
 ## SECTION 7: EXTERNAL KNOWLEDGE SOURCES
 ## Updated automatically as new sources are validated
