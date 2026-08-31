@@ -16,6 +16,7 @@
     -Mascot    (optional) boy|girl — default boy. Picks the still.
     -Nasheed   (optional) file in out\backgrounds\; else render script picks
     -Auto      (optional) skip the pre-Fabric confirmation pause
+    -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
     -MaxLen    (optional) chunk cap in seconds, default 28
 #>
 
@@ -25,6 +26,7 @@ param(
   [ValidateSet('boy','girl')][string]$Mascot = 'boy',
   [string]$Nasheed,
   [switch]$Auto,
+  [switch]$ValidateOnly,
   [double]$MaxLen = 28
 )
 
@@ -66,11 +68,13 @@ foreach ($e in @('ffmpeg','ffprobe','python')) {
 }
 if ($problems) { $problems | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }; Die "fix the above first" }
 Ok "inputs present; mascot: $(Split-Path $still -Leaf); ffmpeg/python ready"
+if ($ValidateOnly) { Ok "validate-only: parsed and executed to step 0"; exit 0 }
 
 # --- STEP 1: concat story + 1s gap + moral -----------------------------------
 Say "`n[1/4] Concatenating narration..."
+
 ffmpeg -hide_banner -loglevel error -y -i $story `
-  # P135: 1s here plus ElevenLabs' own trailing silence read as ~2s.
+# P135: 1s here plus ElevenLabs' own trailing silence read as ~2s.
   -f lavfi -t 0.5 -i anullsrc=r=44100:cl=mono -i $moral `
   -filter_complex "[0:a][1:a][2:a]concat=n=3:v=0:a=1[out]" -map "[out]" $narr
 if ($LASTEXITCODE -ne 0) { Die "ffmpeg concat failed" }
