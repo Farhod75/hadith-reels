@@ -3843,6 +3843,8 @@ been proven to fail on the defect that motivated it.
 never ran, suite that never passed), P121 (asset gate wired to one of two
 classes), P127 (dead TEST_PATTERNS)
 
+**Commit:** eb7ee9a
+
 **Status:** FIXED — message corrected in both repos, check added in HR,
 proven to fail
 
