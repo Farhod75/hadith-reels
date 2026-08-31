@@ -1,4 +1,8 @@
 # Agent Fleet Roadmap
+> **Status 2026-08-31:** the dates below are the original post-Hajj plan and have
+> passed. 1 of 13 agents is built (asset-auditing, P117); tts-validating has a
+> SKILL.md and no scripts. The fleet was deferred through August in favour of
+> shipping reels — 57 to date, from 15 hadiths. Re-scope before building.
 
 The plan for building the autonomous agent system for HV + HR.
 
@@ -13,7 +17,7 @@ The plan for building the autonomous agent system for HV + HR.
 Transform HV+HR from "Farhod manually drives each task" to "Farhod approves agent-proposed work in a human-in-the-loop." The user (Farhod) stays in the decision seat. The agents do the implementation, validation, and reporting.
 
 **Concretely:**
-- Daily reel posts run autonomously at 06:00 UTC
+- Each day's reel is assembled, linted and staged by 06:00 UTC, awaiting human approval
 - New hadith verdicts validate without manual eyeballing
 - CI failures get diagnosed and proposed-fixed automatically
 - Translations stay current across all 5 languages
@@ -147,6 +151,59 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 - **Boundary:** classification is HUMAN-entered. The agent enforces a recorded judgement; it does not decide whether an instrument is permissible.
 - **Repo:** HR
 
+#### 13. reel-producing
+
+- **Status:** SCOPED 2026-08-31, not built. Added after the fleet was found to
+  contain no agent that produces a reel — all twelve above validate or maintain,
+  while the roadmap's finish line was an autonomous daily reel post. The
+  orchestrator would have had nothing to dispatch.
+- **Role:** Drives the text half of the reel pipeline for one language, from
+  hadith selection to a staged render command. Stops at every human gate.
+- **Repo:** HR
+- **Tier:** 1 — highest daily return of anything unbuilt
+
+**Does:**
+1. Takes hadith number + language + style + mascot
+2. Generates the four blocks (S/M/H/C)
+3. Checks them against the recurring-defect table in
+   `reel-creation-pipeline.md`, reporting each hit with the block and the line
+4. Pulls the matn from the correct DB column (`text_uzbek_cyrillic` for UZ;
+   `hadith_number` is TEXT and must be quoted) — never from the caption, since
+   that compares generated text against generated text and hides a bad row
+5. Writes `draft.txt` in S:/M:/H:/C: form
+6. Runs `lint-content.py` and reports the output verbatim
+7. Picks a nasheed from the tracker's usage table — least-used, not used in this
+   language recently, not already used in this set — and states the reason
+8. Assembles the `make-kids-reel.ps1` / `render-reel.ps1` command
+9. **Stops.**
+
+**Never:** clicks Generate narration · answers the Fabric or Kling gate ·
+publishes to any platform · edits the tracker · picks the hadith itself.
+
+**Human gates, unchanged:** content review before TTS · narration listen ·
+the paid-generation confirmation · watching the finished reel · publishing.
+
+**Why the boundary sits there:** every defect that mattered on the #6446 kids
+set was caught by reading or listening — an attribution boundary left open, the
+қаноат drift surviving a corrected DB column, «оз» voiced as «ўз». The linter
+passed all four languages clean. The agent removes the mechanical work around
+the review; it does not become the review.
+
+**Eval set — ground truth from R054–R057, 2026-08-31:**
+| Case | Must flag |
+|---|---|
+| EN | attribution boundary left open after "The Prophet ﷺ said:"; Allah absent from moral |
+| RU | isnad line placed in the story block; moral rendered as self-talk, no Allah |
+| UZ | H drifts to «нафснинг қаноати» against a corrected DB column; «деди» singular; caption quote Latin against Cyrillic body |
+| TJ | «гуфт» singular; қаноат drift in both S and H; «дилаш» where the matn says nafs |
+
+Threshold v1: flags ≥3 of 4 sets, no false positive on a clean block.
+
+**Explicitly out of reach:** «оз» → «ўз» is a TTS artifact, audible only after
+narration. No text-stage agent catches it. It stays human.
+
+**Depends on:** the per-language E2E checklist in `reel-creation-pipeline.md`
+(written 2026-08-31) — that document IS this agent's specification.
 ---
 
 ## Build sequence (post-Hajj)
@@ -172,7 +229,17 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 **Phase E — Growth (week 5+, ~07/04 onward)**
 11. upskilling
 
-**First production dispatch:** target 07/04/2026 — first agentic daily reel post via orchestrator at 06:00 UTC.
+**First production dispatch:** **First production dispatch:** first agentic reel ASSEMBLY — generated, linted,
+`draft.txt` synced, render command staged, awaiting human review. Publishing is
+never dispatched.
+
+**The hard rules below are the ceiling on this entire document.** Where any goal
+above appears to grant an agent autonomy over reel content or channel posts, the
+hard rule wins. This was a live contradiction until 2026-08-31: the goal section
+promised autonomous daily posting while the hard rules forbade exactly that. Same
+specification-conflict shape as P101, P103, P122 and P133 — a document demanding
+what it elsewhere forbids. Fixed by removing the demand, not by strengthening the
+prohibition.
 
 ---
 
