@@ -70,14 +70,15 @@ Ok "inputs present; mascot: $(Split-Path $still -Leaf); ffmpeg/python ready"
 # --- STEP 1: concat story + 1s gap + moral -----------------------------------
 Say "`n[1/4] Concatenating narration..."
 ffmpeg -hide_banner -loglevel error -y -i $story `
-  -f lavfi -t 1 -i anullsrc=r=44100:cl=mono -i $moral `
+  # P135: 1s here plus ElevenLabs' own trailing silence read as ~2s.
+  -f lavfi -t 0.5 -i anullsrc=r=44100:cl=mono -i $moral `
   -filter_complex "[0:a][1:a][2:a]concat=n=3:v=0:a=1[out]" -map "[out]" $narr
 if ($LASTEXITCODE -ne 0) { Die "ffmpeg concat failed" }
 
 function Dur ($p){ [double](ffprobe -v error -show_entries format=duration -of csv=p=0 $p) }
 $storyDur = Dur $story
 $totalDur = Dur $narr
-Ok ("narration {0:N1}s  (story {1:N1}s + 1.0s gap + moral {2:N1}s)" -f $totalDur, $storyDur, (Dur $moral))
+Ok ("narration {0:N1}s  (story {1:N1}s + 0.5s gap + moral {2:N1}s)" -f $totalDur, $storyDur, (Dur $moral))
 
 # --- STEP 2: split only if over the cap --------------------------------------
 Say "`n[2/4] Chunking..."
@@ -89,7 +90,8 @@ if ($totalDur -le $MaxLen) {
 } else {
   # P106: cut at the story/moral silence rather than greedy max-length.
   # split-narration.py maximises chunk length, which cuts mid-sentence.
-  $cut = $storyDur + 0.5
+  # P135: was +0.5 to land mid-gap when the gap was 1s. Now half of 0.5.
+  $cut = $storyDur + 0.25
   if ($cut -gt $MaxLen -or ($totalDur - $cut) -gt $MaxLen) {
     Die ("story/moral seam at {0:N1}s doesn't fit the {1}s cap - shorten the text or split by hand" -f $cut, $MaxLen)
   }

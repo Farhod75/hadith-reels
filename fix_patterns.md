@@ -3722,3 +3722,62 @@ path in the error message rather than in someone's memory.
 **Status:** MITIGATED — deadline raised, recovery documented in the error;
 resume-by-request-id not built
 
+## ════════════════════════════════════════════════════════
+## PATTERN 135: A fixed pad on top of a variable silence
+## ════════════════════════════════════════════════════════
+**ID:** P135
+**Type:** Audio — a constant that assumed its input started at zero
+**Files:** render-reel.ps1 (adults), make-kids-reel.ps1 (kids)
+**Commit:** 0cd3dd3 (adults), <this commit> (kids)
+**NOTE ON NUMBERING:** 0cd3dd3 shipped the adults fix with "P135" in the commit
+message and an inline comment, but the pattern block was never written. Authored
+here, after the fact, covering both lanes. The number was already bound to the
+change in two places; renumbering would have broken those references.
+
+**Symptom:** the gap between the story and the moral read as roughly 2 seconds
+in the finished reel — long enough to sound like the audio had stopped.
+
+**Measured on TJ #6446, adults:**
+      story      19.330563
+      moral       6.034250
+      narration  26.364898
+  19.330563 + 1 + 6.034250 = 26.364898 exactly. The script's pad was doing
+  precisely what it said. The other second was already inside the story MP3 —
+  ElevenLabs leaves a variable tail of silence at the end of a generation.
+
+**Two call sites, same defect, different mechanism:**
+  - adults, render-reel.ps1:131 — `apad=pad_dur=1` on the story, then concat
+  - kids, make-kids-reel.ps1 step 1 — a 1s `anullsrc` as a middle input to
+    `concat=n=3`
+  Both insert a fixed duration after an input whose own trailing silence is
+  unknown and unmeasured. Same voices, same provider, same tail.
+
+**Fix:** 1s → 0.5s at both sites, which reads as ~1.5s in the finished reel.
+In the kids lane two coupled values moved with it:
+  - the `[1/4]` progress line hardcoded "1.0s gap" in its output and would have
+    reported a duration the script no longer produced
+  - the chunker's seam, `$cut = $storyDur + 0.5`, was placed to land mid-gap.
+    With a 0.5s gap that lands exactly on the moral's first sample, risking a
+    clipped opening phoneme on clip02. Now `+ 0.25`.
+
+**Known incomplete.** 0.5 is a second guess at a number that should not be
+guessed. The gap is still `constant + whatever ElevenLabs left`, so it varies
+by generation and language; this only makes the variation smaller. The real fix
+is `silenceremove` to trim the story's tail before padding, which would give a
+true 1s regardless of input — deferred because it is a filter change needing
+testing across four languages, and it was raised mid-set.
+
+**Cost of the delay:** R050–R052 published with the 1s pad, R053 with 0.5s.
+Accepted deliberately — nobody watches four language versions consecutively.
+
+**Rule:** padding is an assertion that the input ends where you think it ends.
+When the input comes from a generative API, it does not — so a fixed pad is
+measuring from a moving origin. Trim to a known boundary first, then pad. And
+when a constant changes, grep for it: the value was also living in a progress
+string and in an arithmetic offset that was chosen relative to it.
+
+**Related:** P099 (amix vs -shortest — the previous audio-timing assumption),
+P106 (the kids chain this pad sits inside)
+
+**Status:** MITIGATED — both lanes at 0.5s; silenceremove not built
+
