@@ -93,6 +93,42 @@ library row is necessary and not sufficient.
 moral with gratitude and no object — "tell yourself", "thank your family",
 "notice how that feels". The action must be directed to Allah.
 
+### Step 2b — Independent matn comparison (A/B)
+
+Step 2 reads the blocks against a table of known defects. It catches what has
+gone wrong before. It cannot catch what has not.
+
+So the blocks get a second, independent pass, and the passes must not share a
+starting point:
+
+- **Pass A (step 2)** — blocks against the recurring-defect table.
+- **Pass B** — without reference to A's findings, reconstruct what each block
+  *claims*, clause by clause, and compare it against the matn retrieved in
+  step 3. Every clause in S and H must be traceable to the matn or marked as
+  explanation. Anything asserted that the matn does not support is a finding,
+  whether or not it appears in the defect table.
+
+Run step 3 first when using B; the matn is B's only reference.
+
+**Why two passes and not one better pass.** Two reviews by the same model share
+the same blind spots — a term neither pass understands is missed twice, with
+two confident clean reports as the output. B is not a second opinion; it is a
+different *method*, anchored to an external source rather than to prior
+experience. That is what makes the failure modes uncorrelated.
+
+The evidence is on the record. Stage 3 A/B caught `text_uzbek` and `text_tajik`
+rendering غِنَى النَّفْسِ as contentment before the #6446 adults set, and caught
+missing clauses in EN and RU on earlier sets. It works because it compares
+against the matn, not against a checklist.
+
+**Report both.** Findings from either pass go to the human. A finding raised by
+only one pass is marked `single-pass` — not downgraded, flagged as a
+disagreement worth a closer read.
+
+**What this does not fix.** A shorter, cleaner report is easier to skim. A/B
+removes correlated blind spots; it does not remove the pull toward approving a
+tidy diff instead of reading the text. The human gate stays a human gate.
+
 ### Step 3 — Matn retrieval
 
 ```sql
@@ -182,6 +218,12 @@ answers the Fabric gate, watches the reel, publishes.
             "style": "kids", "mascot": "boy", "slug": "bukhari-6446" },
   "blocks": { "story": "...", "moral": "...", "context": "...", "caption": "..." },
   "findings": [
+      "pass_b": {
+    "unsupported_clauses": [
+      { "block": "H", "clause": "...", "note": "not traceable to the matn" }
+    ],
+    "agreement": "both | pass_a_only | pass_b_only"
+  },
     { "severity": "high | medium | info", "block": "S | M | H | C",
       "defect": "...", "pattern": "P101", "note": "..." }
   ],
@@ -278,10 +320,12 @@ Not yet implemented. When built, reuse:
 
 ## Open questions
 
-- Should the agent propose corrected text for each finding, or only flag? On
-  #6446 corrected blocks were provided and accepted every time — but that
-  shortens the human's read from "judge this text" to "approve this diff",
-  which is a weaker gate. Unresolved.
+- Should the agent propose corrected text for each finding, or only flag?
+  Corrected blocks were provided and accepted on every finding on #6446, which
+  shortens the human's task from "judge this text" to "approve this diff."
+  Step 2b addresses the blind-spot half of that risk; the anchoring half
+  remains open. One option not yet tried: flag first, withhold corrections
+  until the human has read the blocks.
 - The қаноат drift survived a corrected DB column in two languages. Is a
   per-hadith "known drift" note in `hadith_library` worth the schema change, or
   does the defect table cover it?
