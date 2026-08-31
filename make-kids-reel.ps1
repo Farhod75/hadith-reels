@@ -72,8 +72,8 @@ if ($ValidateOnly) { Ok "validate-only: parsed and executed to step 0"; exit 0 }
 
 # --- STEP 1: concat story + 1s gap + moral -----------------------------------
 Say "`n[1/4] Concatenating narration..."
-# P135: 1s here plus ElevenLabs' own trailing silence read as ~2s.
 ffmpeg -hide_banner -loglevel error -y -i $story `
+# P135: 1s here plus ElevenLabs' own trailing silence read as ~2s.
   -f lavfi -t 0.5 -i anullsrc=r=44100:cl=mono -i $moral `
   -filter_complex "[0:a][1:a][2:a]concat=n=3:v=0:a=1[out]" -map "[out]" $narr
 if ($LASTEXITCODE -ne 0) { Die "ffmpeg concat failed" }
