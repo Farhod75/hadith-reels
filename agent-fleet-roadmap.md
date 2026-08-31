@@ -272,6 +272,18 @@ Per Self-Upskilling pattern in AGENTS_ADDENDUM.md:
 2. Failure surfaces patterns → fix patterns get added → `doc-writing` agent updates `fix_patterns.md`
 3. `upskilling` agent surfaces external resources matching current task → human approves integration → SKILL.md gets updated
 4. Eval set grows with each fixed bug → regression coverage compounds
+5. An agent's own eval failures update its own SKILL.md, versioned in place.
+   Nothing above does this — points 2 and 3 route learning into `fix_patterns.md`
+   and in from outside, but no step corrects a spec against its own behaviour.
+   `tts-validating` v1 described a dual-provider stack that had not existed
+   since June and would have had anyone implementing it build against a system
+   that was gone. It was corrected in August by a human rereading it, not by
+   this loop.
+
+> **Status 2026-08-31:** this loop does not run. It requires `evals/`
+> directories, `doc-writing` and `upskilling` — none of which exist. `agents/`
+> contains three SKILL.md files and no scripts. The end state below describes a
+> machine whose parts are not yet built.
 
 End state: the agent system gets demonstrably more reliable each month as the eval corpus and pattern catalog grow.
 
