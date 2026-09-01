@@ -610,21 +610,38 @@ Eliminates all guessing about what the page looked like during failure.
 ## SECTION 9 UPDATE: TTS and audio quality rules (NEW)
 ## ════════════════════════════════════════════════════════
 
-### 9.4 TTS voice quality by language
-| Language | Primary | Fallback | Quality |
-|---|---|---|---|
-| AR | ElevenLabs Hijazi/Abu Salem | ar-SA browser | High |
-| RU | ElevenLabs Abrar Sabbah | ru-RU browser | High |
-| EN | ElevenLabs EN voice | en-US browser | High |
-| UZ | ElevenLabs multilingual | uz-UZ browser | Medium |
-| TJ | ElevenLabs (ru voice) | ru-RU browser | Low — no native TJ |
+| Slot | Voice | Notes |
+|---|---|---|
+| EN adults | James | |
+| EN kids | Danielle (girl) · Eric (boy) | mascot split, P103 |
+| RU adults | Marat | `vQxSi2EuaRWwBw3nn6dK`, Moscow accent. P118 — was labelled Abrar and resolved to *Adam*, an American voice, shipped on R023/R027 |
+| RU kids | Arabella Calm & Mature (girl) · Maxim Calm & Neutral (boy) | Maxim replaced Liam Youthful, P112 — audible background hum |
+| UZ adults | Opa Johann | |
+| UZ kids | Mini (girl) · George (boy) | |
+| TJ adults | Meisam | |
+| TJ kids | Katherine Polished | |
+| AR | out of scope | placeholders point at an English voice; no AR reels are produced |
 
-### 9.5 Tajik narration — real voice recommendation
-ElevenLabs has no native Tajik voice. Options for authentic TJ narration:
-1. islamhouse.com — free Tajik Islamic audio (CC licensed)
-2. Custom ElevenLabs voice clone from real Tajik scholar recording
-3. Phase 4: integrate a Tajik TTS API (e.g. SalomAI by Uzbek/Tajik teams)
-Current acceptable behavior: ru-RU voice for TJ (sounds Russian — acceptable)
+All slots are ElevenLabs `eleven_v3`. **OpenAI is fully retired from this
+route** (P102, P104) — there is no fallback provider and no browser
+SpeechSynthesis path for narration.
+
+`app/api/tts/route.ts`'s VOICE_MAP is the source of truth. This table is a
+summary and will drift; check the route before acting on it. Two copies
+disagreeing is exactly how P118 happened.
+
+### 9.5 Tajik narration
+
+**Resolved.** TJ adults are narrated by **Meisam**, TJ kids by **Katherine
+Polished**, both ElevenLabs `eleven_v3`. Native TJ voices are no longer needed
+and the ru-RU fallback is retired.
+
+The previous version of this section recommended islamhouse.com audio, a custom
+voice clone from a Tajik scholar recording, or integrating SalomAI, and recorded
+"ru-RU voice for TJ (sounds Russian — acceptable)" as current behaviour. All of
+that predates P102/P104. TJ has since shipped across multiple sets and is the
+cleanest lane in the pipeline — divine name held, diacritics correct without
+correction.
 
 ### 9.6 Text sanitization before TTS (mandatory)
 sanitizeForTTS() must be called before ANY TTS provider:
