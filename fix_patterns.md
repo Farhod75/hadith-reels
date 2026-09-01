@@ -3848,3 +3848,68 @@ classes), P127 (dead TEST_PATTERNS)
 **Status:** FIXED — message corrected in both repos, check added in HR,
 proven to fail
 
+## ════════════════════════════════════════════════════════
+## PATTERN 137: Recovery that existed only as a printed suggestion
+## ════════════════════════════════════════════════════════
+**ID:** P137
+**Type:** Cost — a documented manual workaround where a supported path belonged
+**Files:** scripts/generate-scene.ps1
+**Commit:** <this commit>
+
+**Symptom:** Kling jobs regularly outlive the poll. When the deadline passes,
+the job usually still completes server-side — only the script gives up. P134
+raised the deadline 8→20 min and printed a hand-run recovery snippet in the
+failure message: fetch status, fetch result, download by URL. Four lines to
+retype under time pressure, in a shell, with the request id copied by eye.
+
+**What that cost.** The snippet is easy to skip and easy to get wrong, so the
+practical response to a timeout was to regenerate — paying a second time for a
+clip already sitting on fal's servers. P134 was logged INCOMPLETE for this
+reason and stayed that way for two sets.
+
+**Fix:** `-Resume <request_id>`. The script skips submission, builds the status
+and result URLs from the id, and drops into the existing poll loop unchanged:
+
+    .\scripts\generate-scene.ps1 -Name b6446-market -Resume 01a0524c-...
+
+Three supporting changes were needed and are the interesting part:
+
+  1. `-Prompt` was `[Parameter(Mandatory)]`. A resume has no prompt — the job's
+     parameters were fixed at submission. Made optional, with an explicit guard
+     so a normal run without `-Prompt` still fails loudly rather than
+     submitting an empty one.
+  2. The queue URLs use the base app id `fal-ai/kling-video`, NOT the full
+     model path in `$Model`. Building them from `$Model` returns 404.
+  3. The header printed `$Model`, `$Duration` and `$Prompt` — all defaults on a
+     resume, none of them true of the job being recovered. A resumed 10s
+     image-to-video clip announced itself as 5s text-to-video. Suppressed.
+
+**The timeout message now prints the real command**, with `$Name` and `$reqId`
+interpolated, so it is copy-pasteable rather than a template to adapt.
+
+**Proof (required before shipping):**
+  - guard: `-Name test-noprompt` with no prompt →
+    `FAILED: -Prompt is required unless -Resume <request_id> is given`
+  - resume: a completed job id → `status: COMPLETED` on the first poll,
+    14.75 MB downloaded at 1080x1920, nothing submitted, nothing charged.
+
+**Also fixed here:** the deadline comment was labelled P133 (the title-escalation
+pattern). It is P134. A comment pointing at the wrong pattern sends the next
+reader to an unrelated entry — the P118 shape, where a label disagreed with its
+referent.
+
+**Still open:** `generate-talking-clip.py` (fal VEED Fabric) has the same gap and
+no resume. A TLS timeout on R057 forced a re-run that regenerated BOTH clips,
+paying twice for one that had already succeeded. Same fix, different API and
+language; not attempted here.
+
+**Rule:** if the failure message has to tell the operator how to recover by
+hand, the recovery belongs in the script. A printed workaround is a feature with
+the implementation left to the person least able to do it — mid-failure, under
+time pressure, with money on the line.
+
+**Related:** P134 (the deadline this completes), P118 (label disagreeing with
+referent), P136 (a gate that could not fail)
+
+**Status:** FIXED — Kling resumable and proven. Fabric still exposed.
+

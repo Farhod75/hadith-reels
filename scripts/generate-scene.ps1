@@ -27,12 +27,14 @@
 
 param(
   [Parameter(Mandatory)][string]$Name,
-  [Parameter(Mandatory)][string]$Prompt,           # text-to-video: scene desc | image-to-video: MOTION desc
+  [string]$Prompt,           # text-to-video: scene desc | image-to-video: MOTION desc
   [string]$Image,                                  # optional: local image path -> image-to-video mode
   [ValidateSet('5','10')][string]$Duration = '5',
-  [string]$Model                                  # auto-set by mode if not given
-  
+  [string]$Model,                           # auto-set by mode if not given
+  [string]$Resume         # request_id from a timed-out run: poll it, do not re-submit
 )
+  
+
 
 # Mode = image-to-video if -Image supplied, else text-to-video. Pick matching default model.
 $imageMode = -not [string]::IsNullOrWhiteSpace($Image)
@@ -51,6 +53,10 @@ function Ok ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
 
 # --- read FAL_KEY from .env.local (never typed on the command line) ----------
+$resuming = -not [string]::IsNullOrWhiteSpace($Resume)
+if (-not $resuming -and [string]::IsNullOrWhiteSpace($Prompt)) {
+  Die "-Prompt is required unless -Resume <request_id> is given"
+}
 if (-not (Test-Path ".env.local")) { Die ".env.local not found in repo root" }
 $keyLine = Select-String -Path ".env.local" -Pattern '^\s*FAL_KEY\s*=' | Select-Object -First 1
 if (-not $keyLine) { Die "FAL_KEY not found in .env.local" }
@@ -83,28 +89,37 @@ $body = $payload | ConvertTo-Json -Depth 5
 
 Say "================================================================"
 Say " Kling scene -> $outFile"
-Say "   model: $Model | ${Duration}s | 9:16"
+if ($resuming) { Say "   resuming request $Resume" }
+else           { Say "   model: $Model | ${Duration}s | 9:16" }
 Say "================================================================"
-Write-Host "  prompt: $Prompt" -ForegroundColor DarkGray
+if (-not $resuming) { Write-Host "  prompt: $Prompt" -ForegroundColor DarkGray }
 
-# --- 1) SUBMIT to the queue --------------------------------------------------
-Say "`n[1/3] Submitting to fal.ai queue..."
-try {
-  $submit = Invoke-RestMethod -Method Post -Uri "https://queue.fal.run/$Model" `
-    -Headers $headers -Body $body
-} catch {
-  Die "submit failed: $($_.Exception.Message) -- check FAL_KEY is valid and has credits"
+# --- 1) SUBMIT to the queue (or resume an existing job) ----------------------
+if ($resuming) {
+  Say "`n[1/3] Resuming request $Resume (no submission, nothing charged)..."
+  $reqId     = $Resume
+  $statusUrl = "https://queue.fal.run/fal-ai/kling-video/requests/$reqId/status"
+  $resultUrl = "https://queue.fal.run/fal-ai/kling-video/requests/$reqId"
+  Ok "resuming: $reqId"
+} else {
+  Say "`n[1/3] Submitting to fal.ai queue..."
+  try {
+    $submit = Invoke-RestMethod -Method Post -Uri "https://queue.fal.run/$Model" `
+      -Headers $headers -Body $body
+  } catch {
+    Die "submit failed: $($_.Exception.Message) -- check FAL_KEY is valid and has credits"
+  }
+  $reqId     = $submit.request_id
+  $statusUrl = $submit.status_url
+  $resultUrl = $submit.response_url
+  if (-not $reqId) { Die "no request_id returned (response: $($submit | ConvertTo-Json -Compress))" }
+  Ok "queued: $reqId"
 }
-$reqId    = $submit.request_id
-$statusUrl = $submit.status_url
-$resultUrl = $submit.response_url
-if (-not $reqId) { Die "no request_id returned (response: $($submit | ConvertTo-Json -Compress))" }
-Ok "queued: $reqId"
 
 
 # --- 2) POLL until completed -------------------------------------------------
 Say "`n[2/3] Generating (video gen takes ~1-4 min)..."
-# P133: Kling master-tier i2v regularly exceeds 8 minutes — measured at 505s
+# P134: Kling master-tier i2v regularly exceeds 8 minutes — measured at 505s
 # (b527-doorway), 564s (b6446-market), and rising. The job COMPLETES; only the
 # poll gives up, and the operator then pays again or recovers by hand through
 # the fal status API. 20 minutes is well past observed worst case and costs
@@ -121,14 +136,14 @@ do {
   if ($st.status -eq 'COMPLETED') { break }
   if ($st.status -in @('FAILED','ERROR','CANCELLED')) { Die "generation failed (status: $($st.status), request $reqId)" }
   if ((Get-Date) -gt $deadline) {
-    Die @"
+        Die @"
 timed out after 20 min (request $reqId, last status $($st.status))
-The job may still COMPLETE server-side. Recover it rather than regenerating:
-  `$key = (Get-Content .env.local | Select-String '^FAL_KEY=').ToString().Split('=',2)[1].Trim()
-  Invoke-RestMethod -Uri "https://queue.fal.run/fal-ai/kling-video/requests/$reqId/status" -Headers @{ Authorization = "Key `$key" }
-  # when COMPLETED:
-  `$r = Invoke-RestMethod -Uri "https://queue.fal.run/fal-ai/kling-video/requests/$reqId" -Headers @{ Authorization = "Key `$key" }
-  Invoke-WebRequest -Uri `$r.video.url -OutFile "out\backgrounds\new\$Name.mp4"
+The job may still COMPLETE server-side. Resume it rather than regenerating:
+
+  .\scripts\generate-scene.ps1 -Name $Name -Resume $reqId
+
+That polls the existing job and downloads it. Nothing is re-submitted and
+nothing is charged again. (P137)
 "@
   }
 } while ($true)
