@@ -4040,3 +4040,70 @@ scan over a pattern with no legitimate use)
 
 **Status:** FIXED — accusative and prepositional cases covered, vocative
 preserved, check count derived
+
+## ════════════════════════════════════════════════════════
+## PATTERN 140: Reading the first content block
+## ════════════════════════════════════════════════════════
+**ID:** P140
+**Type:** API contract — a positional assumption plus a silent default
+**Files:** app/api/generate-reel/route.ts, scripts/translate-tajik.ts
+**Commit:** 3df65d1
+
+**Symptom:** after moving `/api/generate-reel` from `claude-sonnet-4-6` to
+`claude-sonnet-5`, generation returned HTTP 200 after 14.6 seconds with every
+field empty. Title blank, story blank, moral blank, and the caption rendered
+the literal string "undefined" where the moral belonged.
+
+**Cause:**
+
+    const raw = response.content[0].type === 'text' ? response.content[0].text : '{}'
+
+`content` is an ARRAY OF BLOCKS, not a single answer. sonnet-5 returns a
+thinking block first, so `content[0].type` is `'thinking'`, the ternary fell to
+its default, and `'{}'` parsed cleanly into an object with no keys. Confirmed by
+logging: `P140 blocks: ["thinking","text"]`. The text was always there, one
+index further along.
+
+**Two defects, and the second is the one that hid the first:**
+
+  1. **Indexing by position.** Block order is not part of the contract. Filter
+     by type: `response.content.find(b => b.type === 'text')`.
+
+  2. **A silent default on an unrecognised shape.** `: '{}'` converts "I do not
+     understand this response" into "the model returned nothing" — and `{}`
+     parses without error, so every downstream check passed. Fifteen seconds of
+     paid generation was discarded behind a 200. The route now returns 500 and
+     names the block types it actually received.
+
+**Scope, found by grepping `content[0]` across both repos:**
+  - HR `app/api/generate-reel/route.ts` — silent `'{}'`. The reel generator.
+  - HR `scripts/translate-tajik.ts` — threw on non-text, so it would at least
+    have failed loudly. Still positional.
+  - HV `app/api/voice-intent/route.ts` — silent `''`. LIVE IN PRODUCTION.
+  - HV `agents/playwright_agent.py` — positional.
+
+**Model strings updated in the same pass**, since the two travel together:
+`generate-reel` (4-6), `translate-tajik` (4-5, older than everything else),
+`playwright_agent.py` (4-6), `telegram_bot.py` (4-6), and `setup_agent.ps1`,
+which REWRITES both HV files to 4-6 and would have silently undone this fix on
+its next run. Five call sites, each hardcoding the model independently — which
+is why they drifted apart in the first place.
+
+**Note on P129.** That entry attributes an empty 500 on `/api/voice-intent` to
+the retired model string. `voice-intent` also carried THIS defect, on a route
+already running sonnet-5. Whichever caused the original outage, the positional
+read was present and would produce the same silent failure. The two are easily
+confused and the distinction matters when reading P129.
+
+**Method worth reusing:** the log that found it printed the block TYPES, not the
+content — `response.content.map(b => b.type)`. One line, and it turned "the
+model returned nothing" into "the model returned two blocks and we read the
+wrong one."
+
+**Rule:** when an API returns a list, never assume the item you want is first.
+And never default a parse failure to an empty-but-valid value — an unrecognised
+shape must fail loudly, or every check downstream will pass on nothing.
+
+**Related:** P129 (the empty 500 on the same route), P123
+
+**Status:** FIXED — all four sites filter by type, all model strings on sonnet-5
