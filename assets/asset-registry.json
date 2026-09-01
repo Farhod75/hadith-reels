@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-08-25",
+    "updated": "2026-09-01",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {

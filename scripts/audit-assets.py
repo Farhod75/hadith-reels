@@ -116,7 +116,7 @@ def cmd_audit(reg):
     print(f' asset audit   (registry updated: {reg.get("updated", "unknown")})')
     print('=' * width)
 
-    unregistered, missing, unverified, retired_present = [], [], [], []
+    unregistered, missing, unverified = [], [], []
 
     for section, (folder, exts) in SECTIONS.items():
         entries = reg.get(section, {})
@@ -135,7 +135,8 @@ def cmd_audit(reg):
             unregistered.append((section, os.path.join(folder, f)))
 
         for base, (key, val) in sorted(registered.items()):
-            # retired entries live in a subfolder; check there too
+            # fall back to the bare filename: registry keys sometimes carry a
+            # path prefix that no longer matches where the file sits
             path = os.path.join(folder, key)
             if not os.path.exists(path):
                 if base in on_disk:
@@ -145,8 +146,20 @@ def cmd_audit(reg):
                     continue
             if not val.get('verified', False):
                 unverified.append((section, base, val.get('notes', '')))
-            if not val.get('lanes') and base in on_disk:
-                retired_present.append((section, base))
+                        # P141: an asset with lanes:[] whose file is still on disk is the
+            # EXPECTED state, not a finding. The gate blocks it by lane at
+            # render time (line 90), so its presence in the folder is harmless
+            # and its registry entry is the only record of WHY it was retired.
+            # Reporting it every run produced a permanent 4-line non-finding —
+            # the shape P138 fixed in the Fabric gate: a warning that fires when
+            # nothing is wrong teaches the reader to skip the whole report.
+            #
+            # The comment above ("retired entries live in a subfolder") describes
+            # a convention that was never implemented — os.listdir on line 126 is
+            # not recursive and nothing checks a _retired/ path. Same shape as
+            # P127's dead TEST_PATTERNS. Removed rather than built: moving the
+            # files would make them report as MISSING, which is a real alarm
+            # state, and would strand the retirement notes.
 
     if unregistered:
         print()
@@ -154,13 +167,6 @@ def cmd_audit(reg):
         print('  registry. The render gate will BLOCK these.')
         for section, path in unregistered:
             print(f'    [{section}] {path}')
-
-    if retired_present:
-        print()
-        print(f'  RETIRED BUT REACHABLE  ({len(retired_present)}) - approved')
-        print('  for no lane, yet sitting where the picker can find them.')
-        for section, base in retired_present:
-            print(f'    [{section}] {base}')
 
     if missing:
         print()
@@ -177,17 +183,15 @@ def cmd_audit(reg):
             if note:
                 print(f'        {note[:100]}')
 
-    total = len(unregistered) + len(missing) + len(unverified) + \
-        len(retired_present)
+    total = len(unregistered) + len(missing) + len(unverified)
     print()
     print('-' * width)
     if total == 0:
         print('  registry and disk agree; every entry is human-verified.')
     else:
         print(f'  {len(unregistered)} unregistered   '
-              f'{len(retired_present)} retired-but-reachable')
-        print(f'  {len(missing)} missing        '
-              f'{len(unverified)} unverified')
+              f'{len(missing)} missing')
+        print(f'  {len(unverified)} unverified')
     print('  audit reports only. --check is the gate that blocks.')
     print('-' * width)
     print()

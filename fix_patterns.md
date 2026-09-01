@@ -4107,3 +4107,65 @@ shape must fail loudly, or every check downstream will pass on nothing.
 **Related:** P129 (the empty 500 on the same route), P123
 
 **Status:** FIXED — all four sites filter by type, all model strings on sonnet-5
+
+## ════════════════════════════════════════════════════════
+## PATTERN 141: A report line for the expected state
+## ════════════════════════════════════════════════════════
+**ID:** P141
+**Type:** Signal quality — a permanent finding that was never a problem
+**Files:** scripts/audit-assets.py
+**Commit:** <this commit>
+
+**Symptom:** every `--audit` run printed four lines under RETIRED BUT REACHABLE:
+"approved for no lane, yet sitting where the picker can find them." Four
+mascot files, every run, indefinitely.
+
+**Why it was wrong.** `lanes: []` means the render gate refuses the asset — and
+it does, verifiably (`--check` still prints `BLOCKED: ... is RETIRED`). A
+retired asset whose file remains on disk is therefore the EXPECTED state, not a
+defect. Its registry entry is also the only record of why it was retired, so
+the file staying put is what preserves that history.
+
+**And two of the four were not retired at all.** `lamb-boy-v1.png` and
+`lamb-girl-v1.png` carry `lanes: []` because they are FACE-LOCK REFERENCES for
+Nano Banana Pro scene generation — working tooling that is never rendered
+directly. The audit was reporting live infrastructure as a problem, because
+`lanes: []` was read as "retired" when it actually means "not for any render
+lane."
+
+**Fix:** removed the category. `lanes: []` is enforced at the gate; it does not
+also need reporting. The audit now prints "registry and disk agree" on a clean
+run instead of four permanent lines to scroll past.
+
+**Second defect found in the same block, and it is the more interesting one:**
+
+    # retired entries live in a subfolder; check there too
+
+That comment sat above code that checks no subfolder. `os.listdir` on line 126
+is not recursive and nothing anywhere resolves a `_retired/` path. The fallback
+it annotates does something else entirely — retries the bare filename in the
+same flat folder when a registry key carries a stale path prefix.
+
+So a convention was designed, documented, and never built, and the comment has
+been telling readers otherwise since. Same shape as P127's dead `TEST_PATTERNS`
+and P136's `✅ PowerShell OK`: the text asserted more than the code did.
+
+**Moving the files was considered and rejected.** `_retired/` would make all
+four report as MISSING — a real alarm state — because existence is checked with
+`os.path.join(folder, key)` against the flat directory. Hiding a non-finding by
+creating a false finding is not an improvement.
+
+**Proof:** `--audit` reports "registry and disk agree; every entry is
+human-verified." `--check assets\mascot\lamb-boy-v1.png --lane kids` still
+prints `BLOCKED: lamb-boy-v1.png is RETIRED`. Noise removed, enforcement intact
+— both halves verified, because removing a warning is only safe if the thing it
+warned about is still prevented.
+
+**Rule:** a report should contain findings, not states. If a line appears on
+every clean run, it is not telling anyone anything — and it trains the reader to
+skim past the lines that are.
+
+**Related:** P138 (a gate warning about a cost that was not being incurred),
+P136, P127 (declared mechanisms that did not exist), P117 (this registry)
+
+**Status:** FIXED — category removed, gate verified still blocking
