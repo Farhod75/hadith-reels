@@ -4036,5 +4036,7 @@ are different questions, and passing the first reads like passing both.
 **Related:** P135 (a hardcoded constant that did not move), P136 (deterministic
 scan over a pattern with no legitimate use)
 
+**Commit:** 298f702
+
 **Status:** FIXED — accusative and prepositional cases covered, vocative
 preserved, check count derived
