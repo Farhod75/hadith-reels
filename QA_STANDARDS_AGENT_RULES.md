@@ -527,24 +527,14 @@ When CI yml references a file, verify exact filename with:
 ## Covers: Pre-push protocol, P040-P059 rules, agent auto-update
 ## ════════════════════════════════════════════════════════
 
-### 6.5 MANDATORY: Pre-push test protocol (added after CI #122-143)
-NEVER run `git push` without running tests locally first.
-20+ CI failures were caused by skipping this step.
+### 6.5 → MOVED
 
-```powershell
-# hadith-verifier — run before EVERY push:
-npx tsc --noEmit
-npx playwright test tests/hadith-verifier.spec.ts --project=chromium
-npx playwright test tests/api.spec.ts --project=chromium
-
-# hadith-reels — run before EVERY push:
-npx tsc --noEmit
-npm run build
-npx playwright test tests/hadith-reels.spec.ts --project=chromium
-```
-
-Automated via .git/hooks/pre-push script in both projects.
-Doc-only commits bypass with: git push --no-verify
+The pre-push protocol lives at §6.5 in Section 6 above (line ~279). The version
+that stood here documented `.git/hooks/pre-push` — inert once
+`core.hooksPath = .githooks` is set — and offered `git push --no-verify` as a
+doc-only bypass. Both were wrong, and the first is the configuration that hid a
+live production 500 behind a suite that had never passed (P129–P132). Removed
+2026-09-01; the corrected protocol is authoritative.
 
 ### 6.6 CI yml forbidden steps (P045/P046)
 NEVER add these to push-triggered CI:
