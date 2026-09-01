@@ -3978,3 +3978,63 @@ P136 (a success message wider than its check; this is the inverse)
 **Status:** FIXED — re-runs cost only what failed. Fabric post-submission
 recovery still absent.
 
+## ════════════════════════════════════════════════════════
+## PATTERN 139: The right name in the wrong case
+## ════════════════════════════════════════════════════════
+**ID:** P139
+**Type:** Content check — a rule that validated identity but not form
+**Files:** scripts/lint-content.py
+**Commit:** <this commit>
+
+**Symptom:** R043 shipped "благодарит Аллах" where the accusative "Аллаха" is
+required. `check_divine_name` passed it — that check validates WHICH name is
+used («Аллах» not «Бог») and nothing validated its grammatical form. A
+substituted name failed loudly; a declined one did not fail at all.
+
+**Why this was left open for eleven reels.** Russian declines Аллах across five
+cases, and knowing which one a clause requires needs a parser. The obvious
+implementation — flag non-nominative forms, or flag nominative outside subject
+position — produces false positives on correct text, and a false positive here
+is worse than the miss: it teaches the operator that the divine-name check
+cries wolf.
+
+**Fix: two collocations with no legitimate nominative form.**
+  1. transitive verbs governing the accusative, followed by nominative —
+     благодар*, проси*, помни*, люби*, слав*, восхвал*, бойся/боится
+  2. prepositions governing an oblique case, followed by nominative —
+     к, ко, от, у, для, с, со, перед, про, без, ради, кроме
+
+No parsing, no guessing at intent. Same philosophy as P136's backtick scan: a
+pattern with no correct use, checked deterministically.
+
+**«о» and «об» are deliberately excluded.** "О Аллах!" is the vocative and is
+correct — including those prepositions would flag every dua in the corpus. This
+exclusion is the whole design, not a footnote: the rule earns its place by what
+it declines to flag.
+
+**Proof (required before shipping):** one line containing the real R043 defect
+alongside the vocative and three correct accusatives —
+"Сегодня благодарит Аллах ... О Аллах, помоги нам. Проси Аллаха о помощи и
+благодари Аллаха каждый день." Result: exactly one FAIL, on the defect. The
+vocative and all three correct forms passed. The false-positive half is the
+half that was tested hardest.
+
+**Also fixed here:** the summary line read "these seven checks passed" as a
+literal, with eight checks registered. The checks are now a list that is both
+iterated and counted, so the number cannot disagree with what ran. Identical
+shape to P135's hardcoded "1.0s gap" — a constant describing behaviour that
+moved without it.
+
+**Not covered:** R039's «Аллахом». Instrumental is correct in ordinary
+constructions ("создан Аллахом"), and without the original sentence any rule
+would be a guess. Left uncovered deliberately rather than approximated.
+
+**Rule:** a check that validates identity should be asked whether it also needs
+to validate form. "Is it the right word" and "is the right word used correctly"
+are different questions, and passing the first reads like passing both.
+
+**Related:** P135 (a hardcoded constant that did not move), P136 (deterministic
+scan over a pattern with no legitimate use)
+
+**Status:** FIXED — accusative and prepositional cases covered, vocative
+preserved, check count derived

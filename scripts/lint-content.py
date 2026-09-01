@@ -189,6 +189,34 @@ def check_divine_name(blocks, lang):
     note = (f'substitute for the divine name - use "{correct}". '
             f'(Rabb/Lord IS allowed where the matn says it: {allowed})')
     return scan(blocks, subs, 'FAIL', 'divine-name', note, flags=0)
+# P139: the divine name in the wrong grammatical case. check_divine_name above
+# validates WHICH name is used; nothing validated its form. R043 shipped
+# "благодарит Аллах" where the accusative "Аллаха" was required.
+#
+# Russian declines Аллах: Аллаха (gen/acc), Аллаху (dat), Аллахом (inst),
+# Аллахе (prep). Deciding which case a clause requires needs a parser, so this
+# does not attempt that. It flags two collocations that have NO legitimate
+# form with the nominative — the same philosophy as the backtick check in P136:
+# a pattern with no correct use, checked deterministically.
+DIVINE_CASE_RU = [
+    # transitive verbs governing the accusative, followed by nominative
+    r'\b(благодар\w+|проси\w*|попроси\w*|помни\w*|любит?\w*|'
+    r'слав\w+|восхвал\w+|бойся|боится|боятся)\s+Аллах\b',
+    # prepositions governing an oblique case, followed by nominative.
+    # NOTE: "о"/"об" are deliberately absent — "О Аллах!" is the vocative and
+    # is correct. Including them would flag every dua.
+    r'\b(к|ко|от|у|для|с|со|перед|про|без|ради|кроме)\s+Аллах\b',
+]
+
+
+def check_divine_name_case(blocks, lang):
+    if lang != 'ru':
+        return []
+    note = ('divine name in the nominative where the grammar requires an '
+            'oblique case - e.g. "благодари Аллаха", not "благодари Аллах". '
+            'Vocative "О Аллах!" is correct and is not flagged.')
+    return scan(blocks, DIVINE_CASE_RU, 'FAIL', 'divine-name-case', note,
+                flags=0)
 
 
 def check_unnamed_authority(blocks, lang):
@@ -343,17 +371,26 @@ def main():
         print('FAILED: no S:/M:/H:/C: blocks found. Check the input format.')
         return 2
 
+        # Each entry is (name, callable). The summary line counts this list, so the
+    # number it prints cannot drift from the checks that actually ran — P139
+    # found "these seven checks" hardcoded after the eighth was added, the same
+    # shape as P135's hardcoded "1.0s gap".
+    checks = [
+        # structure first - a missing or duplicated block changes what the
+        # content checks below are even looking at
+        ('missing-block',     lambda: check_missing_block(blocks)),
+        ('duplicate-blocks',  lambda: check_duplicate_blocks(blocks)),
+        # content
+        ('divine-name',       lambda: check_divine_name(blocks, args.lang)),
+        ('divine-name-case',  lambda: check_divine_name_case(blocks, args.lang)),
+        ('unnamed-authority', lambda: check_unnamed_authority(blocks, args.lang)),
+        ('seerah-source',     lambda: check_seerah_source(blocks)),
+        ('simile',            lambda: check_simile(blocks, args.lang, args.matn)),
+        ('inversion',         lambda: check_inversion(blocks, args.lang)),
+    ]
     findings = []
-    # structure first - a missing or duplicated block changes what the content
-    # checks below are even looking at
-    findings += check_missing_block(blocks)
-    findings += check_duplicate_blocks(blocks)
-    # content
-    findings += check_divine_name(blocks, args.lang)
-    findings += check_unnamed_authority(blocks, args.lang)
-    findings += check_seerah_source(blocks)
-    findings += check_simile(blocks, args.lang, args.matn)
-    findings += check_inversion(blocks, args.lang)
+    for _name, fn in checks:
+        findings += fn()
 
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2}
     findings.sort(key=lambda f: (order[f.level], f.line_no))
@@ -383,7 +420,7 @@ def main():
     if not args.matn:
         print('  (no --matn given; simile findings are unverified)')
     print('  warn-only: nothing was blocked or changed. Human review still')
-    print('  decides - a clean run only means these seven checks passed.')
+    print(f'  decides - a clean run only means these {len(checks)} checks passed.')
     print('-' * width)
     print()
     return 0
