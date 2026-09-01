@@ -3915,3 +3915,64 @@ referent), P136 (a gate that could not fail)
 
 **Status:** FIXED — Kling resumable and proven. Fabric still exposed.
 
+## ════════════════════════════════════════════════════════
+## PATTERN 138: Paying twice for work already done
+## ════════════════════════════════════════════════════════
+**ID:** P138
+**Type:** Cost — a paid step with no idempotency, behind a gate that overstated it
+**Files:** make-kids-reel.ps1
+**Commit:** <this commit>
+
+**Symptom:** R057, the TJ leg of the #6446 kids set. Fabric returned clip01 and
+saved it; clip02 died in `fal_client.upload_file` with a TLS handshake timeout.
+The re-run regenerated BOTH clips. clip01 was paid for twice — a 22.4s clip at
+720p, $0.15/sec.
+
+**Why the obvious fix was the wrong one.** This was logged as needing
+resume-by-request-id, matching P134/P137 for Kling. It does not. The failure
+happened during UPLOAD, before submission — no request id existed, and no
+resume could have recovered it. The waste was not the failed clip. It was the
+SUCCEEDED clip, regenerated because nothing checked whether it was already
+there.
+
+**Fix:** skip generation when the output mp4 exists; `-ForceRegen` to override.
+Two lines of real logic in the loop.
+
+**The gate was lying too, and that is the more interesting half.** The
+pre-Fabric confirmation printed "About to submit 2 clip(s) to fal Fabric at
+720p (paid)" before any existence check ran. On a re-run where both clips were
+already present, it announced a cost that was not about to be incurred and
+asked for confirmation of a decision that no longer existed. A warning that
+fires when nothing is at stake trains the operator to click through the one
+gate that guards real money. The prompt now counts what will ACTUALLY be
+generated, names what is being reused, and disappears entirely when there is
+nothing to pay for.
+
+**Deliberately not clever:** stale clips are NOT detected by comparing mp3 and
+mp4 timestamps. If the narration changes and the run is repeated, the old clips
+are reused and `-ForceRegen` is required. A timestamp heuristic is more clever
+and more surprising when it guesses wrong; an explicit flag fails in the
+direction the operator can see.
+
+**Proof (required before shipping):** re-ran the TJ leg with both clips on disk.
+Before: prompt claimed 2 paid submissions. After: `all 2 clip(s) already
+generated - nothing to submit, nothing to pay`, no prompt, `0 generated, 2
+reused`, zero Fabric calls. Render completed normally.
+
+**Still open:** `generate-talking-clip.py` uses `fal_client.subscribe()`, which
+submits and polls in one blocking call and never exposes the request id. So
+Fabric jobs lost AFTER submission are still unrecoverable — a narrower gap than
+this pattern closes, and it needs `submit()` plus id capture before a `--resume`
+is even possible.
+
+**Rule:** a paid step must be idempotent, and the gate in front of it must
+describe what is about to happen rather than what usually happens. Both halves
+matter — idempotency without an honest gate still teaches the operator that the
+warning means nothing.
+
+**Related:** P137 (Kling resume — the fix this one was mistaken for), P134,
+P136 (a success message wider than its check; this is the inverse)
+
+**Status:** FIXED — re-runs cost only what failed. Fabric post-submission
+recovery still absent.
+

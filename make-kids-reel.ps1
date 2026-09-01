@@ -16,6 +16,7 @@
     -Mascot    (optional) boy|girl — default boy. Picks the still.
     -Nasheed   (optional) file in out\backgrounds\; else render script picks
     -Auto      (optional) skip the pre-Fabric confirmation pause
+    -ForceRegen (optional) re-generate talking clips even if the mp4 exists (costs money)
     -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
     -MaxLen    (optional) chunk cap in seconds, default 28
 #>
@@ -27,6 +28,7 @@ param(
   [string]$Nasheed,
   [switch]$Auto,
   [switch]$ValidateOnly,
+  [switch]$ForceRegen,
   [double]$MaxLen = 28
 )
 
@@ -105,8 +107,17 @@ if ($totalDur -le $MaxLen) {
 }
 
 # --- STEP 3: confirm before spending fal credits -----------------------------
-if (-not $Auto) {
-  Write-Host "`n  About to submit $($clips.Count) clip(s) to fal Fabric at 720p (paid)." -ForegroundColor Yellow
+# P138: count what will ACTUALLY be generated. Warning about a cost that is not
+# about to be incurred trains the operator to click through the one gate that
+# guards real money.
+$pending = @($clips | Where-Object { $ForceRegen -or -not (Test-Path "$workDir\$_.mp4") })
+if ($pending.Count -eq 0) {
+  Ok "all $($clips.Count) clip(s) already generated - nothing to submit, nothing to pay"
+} elseif (-not $Auto) {
+  Write-Host "`n  About to submit $($pending.Count) of $($clips.Count) clip(s) to fal Fabric at 720p (paid)." -ForegroundColor Yellow
+  if ($pending.Count -lt $clips.Count) {
+    Write-Host "  Reusing: $(($clips | Where-Object { $_ -notin $pending }) -join ', ')" -ForegroundColor DarkGray
+  }
   Write-Host "  Listen to the narration first: $narr" -ForegroundColor Yellow
   $ans = Read-Host "  Continue? (y/N)"
   if ($ans -ne 'y') { Say "`nStopped before Fabric. Nothing spent."; exit 0 }
@@ -114,12 +125,24 @@ if (-not $Auto) {
 
 # --- STEP 4: lip-sync each chunk, then render --------------------------------
 Say "`n[3/4] Lip-syncing $($clips.Count) clip(s) via fal Fabric (720p)..."
+# P138: Fabric is the paid step. A mid-set failure used to re-pay for every
+# clip that had already succeeded — R057 lost a 720p generation that way when
+# clip02's upload hit a TLS timeout and the re-run regenerated clip01 too.
+$made = 0; $kept = 0
 foreach ($c in $clips) {
+  $clipMp4 = "$workDir\$c.mp4"
+  if ((Test-Path $clipMp4) -and -not $ForceRegen) {
+    $kb = [math]::Round((Get-Item $clipMp4).Length/1KB)
+    Ok "$c.mp4 already exists (${kb} KB) - skipping, not re-paying. -ForceRegen to override."
+    $kept++
+    continue
+  }
   python generate-talking-clip.py --image $still `
     --audio "$workDir\$c.mp3" --out "$workDir\$c.mp4" --resolution 720p
   if ($LASTEXITCODE -ne 0) { Die "Fabric failed on $c" }
+  $made++
 }
-Ok "$($clips.Count) talking clip(s) generated"
+Ok "$($clips.Count) talking clip(s) ready ($made generated, $kept reused)"
 
 Say "`n[4/4] Rendering..."
 $clipFiles = $clips | ForEach-Object { "$_.mp4" }
