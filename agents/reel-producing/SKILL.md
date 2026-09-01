@@ -98,28 +98,37 @@ moral with gratitude and no object — "tell yourself", "thank your family",
 Step 2 reads the blocks against a table of known defects. It catches what has
 gone wrong before. It cannot catch what has not.
 
-So the blocks get a second, independent pass, and the passes must not share a
-starting point:
+So the blocks get a second pass, and the passes must not share a starting point:
 
-- **Pass A (step 2)** — blocks against the recurring-defect table.
-- **Pass B** — without reference to A's findings, reconstruct what each block
-  *claims*, clause by clause, and compare it against the matn retrieved in
-  step 3. Every clause in S and H must be traceable to the matn or marked as
-  explanation. Anything asserted that the matn does not support is a finding,
-  whether or not it appears in the defect table.
+- **Pass A (step 2)** — blocks against the recurring-defect table, this model.
+- **Pass B** — a **different model**, given the matn and the blocks and nothing
+  else. No defect table, no findings from A. It reconstructs what each block
+  claims, clause by clause, and reports anything the matn does not support.
 
-Run step 3 first when using B; the matn is B's only reference.
+Run step 3 first; the matn is B's only reference.
 
-**Why two passes and not one better pass.** Two reviews by the same model share
-the same blind spots — a term neither pass understands is missed twice, with
-two confident clean reports as the output. B is not a second opinion; it is a
-different *method*, anchored to an external source rather than to prior
-experience. That is what makes the failure modes uncorrelated.
+**Pass B must be a different model, not a different prompt.** This is D2 from
+the Stage 3 design, and the reason is measured rather than assumed — see P120.
 
-The evidence is on the record. Stage 3 A/B caught `text_uzbek` and `text_tajik`
-rendering غِنَى النَّفْسِ as contentment before the #6446 adults set, and caught
-missing clauses in EN and RU on earlier sets. It works because it compares
-against the matn, not against a checklist.
+**What pass B is for, and what it is blind to.** `scripts/probe-passb.py`
+tested this directly on Bukhari #527: clean translations against the same text
+with one planted defect, per language, two runs, identical results.
+
+| Defect class | Owner | Evidence |
+|---|---|---|
+| Added content — invented action, ranking, simile | **pass B** | caught in EN and TJ, both runs |
+| Meaning change — dual → singular, narrowing | **pass B** | caught in RU, citing بِرُّ الْوَالِدَيْنِ as dual |
+| Divine name substitution («Худо» for «Аллоҳ») | **`lint-content.py`** | pass B missed it twice, high confidence |
+| Diacritics, homoglyphs, okina | **`audit-library.py`** | pass B silent on «Некӣ» → «Неки» both runs |
+
+Pass B judges **faithfulness to the matn**. It is not a rules engine and must
+not be made into one. Its two misses are project conventions, not translation
+errors, and both already have deterministic owners that catch them reliably.
+
+**Scope this correctly or the gate is fake.** Caption script mismatch, singular
+verbs for the Prophet ﷺ, and divine-name case are all in this agent's
+expectation files — and all are the class pass B cannot see. They belong to
+pass A and to the linter. Expecting B to catch them is a gate that cannot fail.
 
 **Report both.** Findings from either pass go to the human. A finding raised by
 only one pass is marked `single-pass` — not downgraded, flagged as a
