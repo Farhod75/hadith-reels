@@ -239,25 +239,27 @@ answers the Fabric gate, watches the reel, publishes.
 
 ## Self-validation (evals)
 
-Ground truth from R054–R057, 2026-08-31 — four real generations with defects
-found by hand and recorded in the tracker.
+`evals/` — four cases from the #6446 kids set (R054–R057, 2026-08-31), with the
+defects found in them by hand.
 
-| Case | Must flag |
-|---|---|
-| 1. EN kids #6446 | attribution boundary left open after "The Prophet ﷺ said:"; "richness is already inside you" contradicting the moral; Allah absent from the moral |
-| 2. RU kids #6446 | isnad line («Это передал…») placed in the story block; moral rendered as self-talk with no Allah |
-| 3. UZ kids #6446 | H drifting to «нафснинг қаноати» against a corrected DB column; «деди» singular for the Prophet ﷺ; caption quote Latin against a Cyrillic body |
-| 4. TJ kids #6446 | «гуфт» singular; қаноат drift in both S and H; «дилаш» where the matn says nafs |
+evals/README.md layout, pass criteria, provenance
+evals/cases/NNN-{lang}-{n}.md raw blocks as generated
+evals/expected/NNN-{lang}-{n}.json required · optional · must_not_flag · out_of_scope
 
-**Pass criteria v1:** flags ≥3 of 4 cases, with no false positive on a block
-that shipped unchanged.
+**Pass criteria v1:** every `required` finding produced on ≥3 of 4 cases, and
+zero `must_not_flag` hits across all four.
 
-**A known limitation, stated plainly.** On case 3 the UZ narration voiced «оз»
-(few) as «ўз» (one's own), inverting the sentence. That is a TTS artefact,
-audible only after generation, invisible in text. No text-stage agent catches
-it. Same shape as the P112 hum that `tts-validating` cannot hear. Listening
-remains a human step.
+A false positive fails the run outright. A missed finding costs a human catch,
+which is the design; a false positive costs the human's attention, which breaks
+the gate.
 
+**Do not restate the cases here.** `evals/README.md` documents them, including
+the corpus's own gaps — one hadith, one style, one mascot; no clean case; no
+adversarial case. Two copies drift.
+
+**Known limitation, unchanged:** the «оз» → «ўз» defect on case 003 is a
+narration artefact, invisible in text, recorded under `out_of_scope`. Same
+shape as the P112 hum that `tts-validating` cannot hear. Listening stays human.
 ## Failure escalation
 
 | Finding | Action |
