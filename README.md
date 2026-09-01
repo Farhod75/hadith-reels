@@ -67,7 +67,9 @@ Create `.env.local` in the repo root with:
 | `SUPABASE_SERVICE_ROLE_KEY` | " |
 | `ELEVENLABS_API_KEY` | narration (`eleven_v3`) |
 | `FAL_KEY` | Kling video, VEED Fabric lip-sync, FLUX stills |
-| `TELEGRAM_BOT_TOKEN` | channel posting |
+| `TELEGRAM_CHANNEL_CHAT_ID` | channel posting |
+| `TELEGRAM_ALERT_BOT_TOKEN` | operational alerts |
+| `ADMIN_PASSWORD` | gates `/admin` |
 
 ### Also required on PATH
 
