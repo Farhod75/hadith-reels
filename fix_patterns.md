@@ -3973,6 +3973,8 @@ warning means nothing.
 **Related:** P137 (Kling resume — the fix this one was mistaken for), P134,
 P136 (a success message wider than its check; this is the inverse)
 
+**Commit:** 0d9d98f
+
 **Status:** FIXED — re-runs cost only what failed. Fabric post-submission
 recovery still absent.
 
