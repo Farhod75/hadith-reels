@@ -4168,4 +4168,6 @@ skim past the lines that are.
 **Related:** P138 (a gate warning about a cost that was not being incurred),
 P136, P127 (declared mechanisms that did not exist), P117 (this registry)
 
+**Commit:** 53ea4fa
+
 **Status:** FIXED — category removed, gate verified still blocking
