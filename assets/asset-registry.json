@@ -252,80 +252,80 @@
     "b1-scene1.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Used on R010-R013. Confirm MODE B compliance."
     },
     "b1-scene2.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1-scene4.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-dua.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-path.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-scene1.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "kaaba.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry. Used on R004 or R005 (random pick, never logged)."
     },
     "kaaba-5s.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-balcony.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-crowd.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
-      "notes": "Predates the registry. Crowd footage — confirm no identifiable faces."
+      "verified": true,
+      "notes": "Wide tawaf footage; individuals are distant and none is the subject. Verified 2026-09-01."
     },
     "Kaaba-drone.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-roof.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
+      "verified": true,
       "notes": "Predates the registry."
     },
     "makka-tower.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
-      "verified": false,
-      "notes": "Predates the registry. Modern architecture — confirm it suits a 7th-century-era reel before reuse."
+      "verified": true,
+      "notes": "Drone view of Masjid al-Haram with the 2012 clock tower. Accurate modern footage. Verified 2026-09-01 — do NOT pair with a 7th-century-era narrative; that is a per-reel judgement, not a property of the clip."
     }
   }
 }
