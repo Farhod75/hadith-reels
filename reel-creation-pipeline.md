@@ -153,8 +153,259 @@ the bottom of the Details page.
 Then log in `reel-tracker.md` — row, duplicate-check index, theme coverage, asset
 reuse, production stats.
 
+## Per-language E2E checklist (kids lane)
+
+> Written 2026-08-31 after the #6446 set. The stages above describe WHAT each
+> step does; this is the ORDER, and the order is where the mistakes happen.
+> Steps marked ⚠ have each cost a re-run or a re-render at least once.
+
+Repeat 1–13 per language. EN → RU → UZ → TJ.
+
+1. `/admin`, switch Language. ⚠ **Re-search and re-select the hadith** — the
+   language switch deselects it (P108), and generating without re-selecting
+   ships the previous language's caption.
+2. Mascot: alternate per hadith, not per language. Check the Mascot stills table
+   in the tracker for which lamb the last set used.
+3. **Generate** → read all four blocks (S/M/H/C) before anything else.
+4. Review against the recurring-defect list below. Read every line; the linter
+   catches none of these.
+5. ⚠ **Edit inline in the textareas. NEVER click Regenerate** — it replaces all
+   four blocks and discards the review (P079). Per-block re-narrate exists
+   (P125); full regeneration is not the way back.
+6. ⚠ **Sync `draft.txt`** (repo root, gitignored, VS Code only — PowerShell file
+   writes get silently reverted on this machine). This happens BEFORE TTS, not
+   after. Text narrated but never linted in its final form has shipped before.
+7. Pull the matn from the DB, not from the caption:
+   `select text_<lang> from hadith_library where hadith_number = '<n>';`
+   UZ uses `text_uzbek_cyrillic`. `hadith_number` is TEXT — quote it.
+   Using the caption instead compares generated text against generated text,
+   and a wrong DB row stays invisible.
+8. `python scripts\lint-content.py draft.txt --lang <lang> --matn "<matn>"`
+   Clean means seven checks passed, not that the text is right.
+9. **Story narration**, then the moral's. Separate buttons, per block.
+10. Listen to both. A TTS defect found now costs one re-narrate; found after
+    Fabric it costs a paid regeneration.
+11. ⚠ Render with the nasheed named explicitly — never let the picker choose:
+    `.\make-kids-reel.ps1 -Lang <lang> -Slug <slug> -Mascot <boy|girl> -Nasheed <file>`
+    Pick from the tracker's Nasheed usage table: least-used, and not one already
+    used in this language or this set. The picker has drawn an ocean ambience
+    track (R044) and an adults-lane bed (R029, R030).
+12. `y` at the Fabric gate. This is the paid, irreversible step. Nothing before
+    it costs money; answering N is free and the default.
+13. Watch the reel, then publish: **TG → IG → YT Shorts → TikTok**, one platform
+    at a time. YT "Made for kids" = Yes on the kids lane. TikTok caption is
+    shortened — it truncates hard in-feed.
+
+After the FULL set, not per reel — update every one of these tracker sections:
+Active reels · Duplicate-check index · Theme coverage · Nasheed usage ·
+Mascot stills · Production stats (replace the summary line, don't append a
+second one) · Change log. Then one commit, `Doc=1`.
+
+### Recurring defects — check every generation for these
+
+| Defect | Seen on | Note |
+|---|---|---|
+| Attribution boundary left open after "The Prophet ﷺ said:" | R054 EN | Paraphrase inside the attributed span with no close. P101 family. Make it indirect. |
+| Allah absent from the moral | R054–R057, all four first drafts | Gratitude with no object; "tell yourself" instead of thanking Allah. |
+| Meaning drift the DB fix doesn't prevent | R052, R056, R057 | Corrected `text_uzbek`/`text_tajik` still produced «қаноат» in generation. The generator re-derives the shift from the concept. |
+| Escalation: "good" → "wins" | Every set before P133 | Fixed, but check the title anyway. |
+| Isnad verb in the story block | R055 RU | «Это передал…» belongs in H, not the narrated span. |
+| Singular verb for the Prophet ﷺ | R056 UZ, R057 TJ | «деди»→«дедилар», «гуфт»→«гуфтанд». |
+| Caption quote Latin against Cyrillic body | 8 occurrences | Pull `text_uzbek_cyrillic`; never transliterate by hand. |
+| Divine-name case (RU) | R039, R043 | Linter checks WHICH name, not its case. Still unfixed. |
+| Preposition inverting meaning (TJ) | R033 | «барои»→«дар». Invisible to every check. |
+
+### Language-specific
+
+- **RU** — the only language where `eleven_v3` mishandles ﷺ and «(р.а.)».
+  Write BOTH honorifics out in full before TTS.
+- **UZ** — consistently the longest. If the story alone exceeds 28s the chunker
+  refuses to cut mid-story; the way out is `split-narration.py` on the existing
+  narration (R048), not a regenerate.
+- **TJ** — cleanest lane for three sets. Watch «Худо» for «Аллоҳ», and adjacent
+  near-identical words («ғанӣ ғании») which slur in TTS.
+
+### Known gaps
+
+- Fabric has no resume-by-request-id. A TLS timeout mid-set regenerates every
+  clip on re-run and pays twice (R057). P134 logged the same gap for Kling.
+- The pre-push hook reports `✅ PowerShell OK` on a script with a broken
+  backtick continuation that cannot execute past line 1.
+
+---
+## Per-language E2E checklist (adults lane)
+
+> Written 2026-09-01, against `render-reel.ps1`, `scripts/generate-image.ps1`
+> and `scripts/generate-scene.ps1` as they stand at `09138e0`. The kids
+> checklist above is the base; this documents where adults diverges.
+> Steps marked ⚠ have each cost a re-run, a re-render, or a paid regeneration.
+
+### Steps 1–8 — identical to the kids lane
+
+Generate → defect review → matn from the DB → `draft.txt` → lint → caption
+script check → narration → listen. Same order, same gates, same recurring
+defects. **Read the kids checklist above; it is not repeated here.**
+
+Two differences only:
+
+- **Voices** are the adults slots: EN James · RU Marat · UZ Opa Johann ·
+  TJ Meisam. All `eleven_v3`.
+- **No mascot.** `-Mascot` does not exist on `render-reel.ps1`.
+
+Everything below is what the adults lane adds.
+
 ---
 
+### Step 9 — Scene prompts
+
+Per `animated-reel-scene-prompts.md`: hadith text → scene-prompt JSON, 3–4
+beats forming an arc (journey → worship → destination → path is the proven
+shape from #1520).
+
+**MODE B is the standing setting** — no detailed faces, figures from behind, at
+distance, or in silhouette. The spec presents A and B as a choice; in practice
+every shipped animated reel is B, and it stays B.
+
+Hard blocks, non-negotiable, from the spec's §2: never depict the Prophet ﷺ,
+any prophet, angels, Allah, or named Sahaba. Era and clothing must match the
+hadith's period.
+
+**⚠ This JSON is the religious gate.** Approve or edit it before a single
+image is generated. A bad prompt approved here becomes a paid clip and then a
+published reel.
+
+### Step 10 — Stills (cheap, reviewable)
+
+```powershell
+.\scripts\generate-image.ps1 -Name "b6446-market" -Count 3 -Prompt "<approved prompt>"
+```
+
+→ `out\refs\b6446-market-1.jpg` … `-3.jpg`. A few cents per call.
+
+Review all three, keep the best. **Image-first exists because a still is
+cheaper and far easier to judge than a video** — approve the frame, then
+animate it.
+
+For hands and the Kaaba, prefer your own photos or footage. Generators fumble
+both, and the negative prompt in `generate-scene.ps1` lists deformed and fused
+fingers for exactly this reason.
+
+### Step 11 — Animate
+
+Image-to-video, the normal path — the `-Prompt` here describes **motion**, not
+the scene:
+
+```powershell
+.\scripts\generate-scene.ps1 -Name "b6446-market" -Image "out\refs\b6446-market-2.jpg" -Prompt "gentle drifting motion, light shifting warmly, cloth moving in a soft breeze"
+```
+
+Text-to-video when no still is needed — same script, omit `-Image`.
+
+→ `out\backgrounds\new\b6446-market.mp4`. Roughly $0.35–0.50 per 5s clip.
+
+**⚠ Kling regularly exceeds 8 minutes and has been measured at 505s and 564s.**
+The poll deadline is 20 minutes (P134 — note the inline comment mislabels this
+as P133). If it times out, the job usually still completes server-side:
+**recover it by request id, do not regenerate.** The recovery snippet is printed
+in the failure message. Regenerating pays twice.
+
+### Step 12 — Watch every clip
+
+The script opens it automatically. Two questions, both yours:
+
+1. Is it reel-worthy?
+2. Is it religiously appropriate — MODE B held, nothing in §2's never-depict
+   list, era plausible?
+
+A clip that fails either is discarded, not fixed in post.
+
+> **Backlog note:** 13 generated clips are unreviewed as of 2026-09-01. Clips
+> cannot be selected for a reel until watched, so that pass is a prerequisite
+> for the next animated set, not a separate chore.
+
+### Step 13 — Stage into `normalized\`
+
+⚠ **Manual. There is no script for this** — it is an open to-do item.
+
+Already 1080×1920:
+```powershell
+Copy-Item "out\backgrounds\new\<name>.mp4" "out\backgrounds\new\normalized\<name>.mp4"
+```
+
+Otherwise:
+```powershell
+ffmpeg -y -i "out\backgrounds\new\<name>.mp4" -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" -c:v libx264 -pix_fmt yuv420p -an "out\backgrounds\new\normalized\<name>.mp4"
+```
+
+`render-reel.ps1`'s animated mode rebuilds every clip to 1080×1920 @ 30fps
+before concat, so mismatched sources no longer break the stitch — the framerate
+trap that made a 24fps clip flash past in one frame is fixed. Staging here is
+therefore about **placement**, not correctness: `-Scenes` reads from
+`normalized\` and nothing else.
+
+### Step 14 — Render
+
+```powershell
+.\render-reel.ps1 -Style adults -Lang <lang> -Slug <slug> -Nasheed <file> -Scenes clip1.mp4,clip2.mp4,clip3.mp4,clip4.mp4
+```
+
+`-Scenes` is **ordered** — the list is the visual arc, so the order is an
+editorial decision, not a formality.
+
+Omitting `-Scenes` falls back to picking 3 clips at random. That path still
+exists and is not used; every shipped animated reel names its clips.
+
+Nasheed named explicitly, same rule as kids. Add `-Open` to play the result.
+
+### Step 15 — Subtitle review checkpoint
+
+**Only fires for EN, RU and AR.** `$subLangs = @('en','ru','ar')` — UZ and TJ
+ship without subtitles (P078), so this gate does not exist on half the set.
+
+Whisper transcribes the narration, then the script opens the SRT in VS Code and
+blocks. Fix any grammar or transcription errors and save, then ENTER to burn
+them in. Type `S` to ship without subtitles.
+
+⚠ **This is the second human gate and the last one before burn-in.** After
+ENTER the subtitles are in the video.
+
+If an SRT already exists Whisper is skipped — so a stale SRT from an earlier run
+will be reused silently. Delete it if the narration changed.
+
+Two env fixes are baked in and should not be removed: `PYTHONIOENCODING=utf-8`
+(P100 — Cyrillic crashes Whisper's own progress printer on a CP1252 console) and
+the `$ErrorActionPreference` flip around the call (P083 — Whisper's harmless
+FP16 warning goes to stderr and would otherwise terminate the script).
+
+### Step 16 — Watch, then publish
+
+Same as kids: **TG → IG → YT Shorts → TikTok**, one platform at a time.
+YT "Made for kids" = **No** on this lane.
+
+---
+
+### Adults-lane costs, per language
+
+| Stage | Cost |
+|---|---|
+| Stills, 3 variants | a few cents |
+| Kling clip, 5s | ~$0.35–0.50 |
+| A 4-scene reel | ~$1.50–2.00 in clips |
+
+Scenes are per hadith, not per language — the same four clips serve all four
+language versions. Generate once, reuse across the set.
+
+### Known gaps in this lane
+
+- No script stages clips from `new\` into `normalized\` (step 13).
+- No resume-by-request-id for Kling; recovery is a hand-run snippet (P134,
+  logged incomplete). Fabric has the same gap and it cost a duplicate
+  generation on R057.
+- `animated-reel-scene-prompts.md` still describes Kling as "not yet built" and
+  the agent fleet as "deferred". Both are stale; the doc is a pre-POC plan for a
+  lane that has since shipped 25 reels.
+
+  
 # PART 2 — ADULTS REELS (older; verify before relying on)
 
 Not re-verified in the 2026-08 sessions. The steps below reflect the last known
