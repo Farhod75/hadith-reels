@@ -1,0 +1,49 @@
+{
+  "case": "001-en-6446",
+  "reel": "R054",
+  "required": [
+    {
+      "block": "S",
+      "defect": "attribution_boundary_open",
+      "pattern": "P101",
+      "severity": "high",
+      "locus": "The Prophet ﷺ said: being rich is not about having lots of things.",
+      "note": "A paraphrase placed directly after 'said:' with no closing boundary. The three sentences that follow sit inside the same construction, so a child hears all of it as his words. Not fabrication — attribution leaking."
+    },
+    {
+      "block": "S",
+      "defect": "claim_unsupported_by_matn",
+      "severity": "high",
+      "locus": "The richness is already inside you.",
+      "note": "Contradicts the moral's own exercise: if the child already has it, there is nothing to do. Also misstates the matn — contentment of the nafs is cultivated, not possessed."
+    },
+    {
+      "block": "M",
+      "defect": "allah_absent_from_moral",
+      "severity": "medium",
+      "locus": "Today, look at three things you own and say: I am thankful for this.",
+      "note": "Gratitude with no object — thankful to whom. Also points the child back at possessions, the anchor the matn denies."
+    }
+  ],
+  "optional": [
+    {
+      "block": "M",
+      "defect": "meaning_reduced_to_sensation",
+      "severity": "medium",
+      "locus": "Notice how that feels inside your chest. That feeling is real richness.",
+      "note": "Qana'ah is a settled disposition, not a momentary sensation. Credited if flagged; overlaps with allah_absent_from_moral."
+    }
+  ],
+  "must_not_flag": [
+    {
+      "block": "C",
+      "locus": "«Richness is not having many possessions, but richness is contentment of the soul.»",
+      "note": "Matches text_english verbatim. Flagging this as drift is a false positive."
+    },
+    {
+      "block": "H",
+      "locus": "Sahih al-Bukhari, Book of Ar-Riqaq (Softening of Hearts), number 6446, narrated by Abu Hurairah",
+      "note": "Attribution is correct. 6446 is Kitab ar-Riqaq; Abu Hurairah is the narrator."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "case": "003-uz-6446",
+  "reel": "R056",
+  "required": [
+    {
+      "block": "H",
+      "defect": "meaning_drift_against_corrected_column",
+      "severity": "high",
+      "locus": "ҳақиқий бойлик — нафснинг қаноати",
+      "note": "Reduces richness of the nafs to contentment — the exact reading Stage 3 corrected in text_uzbek before the adults set. The S block held «нафснинг бойлигидир» correctly, so the drift is internal to the generation, not inherited from the library. A corrected DB row is necessary and not sufficient."
+    },
+    {
+      "block": "C",
+      "defect": "caption_script_mismatch",
+      "severity": "high",
+      "locus": "«Boylik mol-mulkning koʻpligida emas, balki boylik nafsning boyligidir.»",
+      "note": "Latin quote against a Cyrillic body. Eighth occurrence. Fix is to take text_uzbek_cyrillic verbatim, never to transliterate by hand."
+    },
+    {
+      "block": "S",
+      "defect": "singular_verb_for_prophet",
+      "severity": "medium",
+      "locus": "шундай деди",
+      "note": "Should be «дедилар» — plural respectful. Every prior UZ reel uses it."
+    }
+  ],
+  "optional": [
+    {
+      "block": "S",
+      "defect": "epithet_form",
+      "severity": "info",
+      "locus": "Пайғамбаримиз",
+      "note": "'Our Prophet'. Prior UZ reels use «Пайғамбар ﷺ»."
+    },
+    {
+      "block": "M",
+      "defect": "gratitude_misdirected",
+      "severity": "medium",
+      "locus": "оилангга шукр айт",
+      "note": "Reads as thanking your family. Thanks go to Allah FOR them. Allah is absent from the moral entirely, as in EN and RU."
+    },
+    {
+      "block": "C",
+      "defect": "caption_language_mismatch",
+      "severity": "medium",
+      "locus": "📖 Sahih al-Bukhari #6446, Abu Hurairah · 🔍 Verify: · English hashtags",
+      "note": "Reference line and hashtags in English against a Cyrillic body."
+    }
+  ],
+  "must_not_flag": [
+    {
+      "block": "S",
+      "locus": "Асл бойлик — нафснинг бойлигидир.",
+      "note": "Correct. Holds the matn's own wording, no drift to қаноат. Flagging this is a false positive — and the contrast with H is the point of the case."
+    },
+    {
+      "block": "H",
+      "locus": "Абу Ҳурайра розияллоҳу анҳу томонидан ривоят қилинган",
+      "note": "Correct attribution and correct isnad verb, in the right block."
+    }
+  ],
+  "out_of_scope": [
+    {
+      "defect": "tts_phoneme_collision",
+      "locus": "Сенда оз нарса",
+      "note": "«оз» (few) voiced as «ўз» (one's own), inverting the sentence. Caught by ear at the narration stage. No text-stage agent can catch this — recorded so a reader comparing against R056's tracker notes does not expect a finding."
+    }
+  ]
+}

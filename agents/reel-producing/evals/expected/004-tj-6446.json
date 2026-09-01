@@ -1,0 +1,69 @@
+{
+  "case": "004-tj-6446",
+  "reel": "R057",
+  "required": [
+    {
+      "block": "S",
+      "defect": "meaning_drift_against_corrected_column",
+      "severity": "high",
+      "locus": "агар дили ту қаноатманд бошад",
+      "note": "Reduces richness of the nafs to contentment of the heart. Same reading Stage 3 corrected in text_tajik before the adults set."
+    },
+    {
+      "block": "H",
+      "defect": "meaning_drift_against_corrected_column",
+      "severity": "high",
+      "locus": "дилаш қаноатманд ва ором бошад",
+      "note": "The drift again, plus «дилаш» (his heart) where the matn says nafs — the identical narrowing logged on the adults reel. Two findings in one clause."
+    },
+    {
+      "block": "S",
+      "defect": "singular_verb_for_prophet",
+      "severity": "medium",
+      "locus": "Паёмбар ﷺ гуфт",
+      "note": "Should be «гуфтанд» — plural respectful, matching «дедилар» in UZ and prior TJ reels."
+    }
+  ],
+  "optional": [
+    {
+      "block": "M",
+      "defect": "allah_absent_from_moral",
+      "severity": "medium",
+      "locus": "аз он шукр гузор",
+      "note": "Thank for it — thanking nobody. No Allah, no alhamdulillah, unlike the other three languages."
+    },
+    {
+      "block": "H",
+      "defect": "book_name_inaccurate",
+      "severity": "info",
+      "locus": "китоби дили нарм кунанда",
+      "note": "Kitab ar-Riqaq. Corrected to «китоби нарм кардани дилҳо» at production."
+    },
+    {
+      "block": "C",
+      "defect": "tts_hazard_in_title",
+      "severity": "info",
+      "locus": "Ғанӣ дар молу мулк нест, ғанӣ ғании нафс аст",
+      "note": "Adjacent near-identical words slurred to «салани» on the adults reel. The title is not narrated so this is cosmetic; the quote line keeps the collision because it is the matn verbatim."
+    },
+    {
+      "block": "C",
+      "defect": "caption_language_mismatch",
+      "severity": "medium",
+      "locus": "📖 Sahih al-Bukhari #6446, Abu Hurairah · English hashtags",
+      "note": "Reference line and hashtags in English against a Cyrillic body."
+    }
+  ],
+  "must_not_flag": [
+    {
+      "block": "S",
+      "locus": "Ғании ҳақиқӣ ғании нафс аст.",
+      "note": "Correct — holds the matn. The drift is in the sentence AFTER this one, not in this one."
+    },
+    {
+      "block": "all",
+      "locus": "Аллоҳ / diacritics",
+      "note": "Divine name never drifts to «Худо» and diacritics are correct throughout without correction. TJ's cleanest recurring strength — flagging either is a false positive."
+    }
+  ]
+}

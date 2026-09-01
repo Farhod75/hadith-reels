@@ -1,0 +1,55 @@
+{
+  "case": "002-ru-6446",
+  "reel": "R055",
+  "required": [
+    {
+      "block": "S",
+      "defect": "isnad_verb_in_story_block",
+      "severity": "high",
+      "locus": "Это передал Абу Хурайра (р.а.).",
+      "note": "An isnad line placed inside the narrated span. The checklist reserves сказал for the Prophet ﷺ and keeps передал in H. EN's story block carried no equivalent."
+    },
+    {
+      "block": "M",
+      "defect": "allah_absent_from_moral",
+      "severity": "medium",
+      "locus": "Скажи себе: мне этого достаточно.",
+      "note": "Self-talk. EN's moral thanks Allah for three blessings; RU turns it inward. Meaning shift, not a translation choice."
+    }
+  ],
+  "optional": [
+    {
+      "block": "S",
+      "defect": "honorifics_unexpanded",
+      "severity": "medium",
+      "locus": "ﷺ · (р.а.)",
+      "note": "RU is the only language where eleven_v3 mishandles both — ﷺ dropped, (р.а.) spelled letter by letter. Fixed at TTS-prep, and tts-validating owns the Prophet-symbol check as its one hard block. Credited here because it is cheaper to fix in text than to catch after narration. This agent flags and hands off; it does not own the check."
+    },
+    {
+      "block": "H",
+      "defect": "book_name_inaccurate",
+      "severity": "info",
+      "locus": "книга о мягкости сердца",
+      "note": "Kitab ar-Riqaq is softening of the heartS, plural. Corrected to «книга о смягчении сердец» at production."
+    },
+    {
+      "block": "C",
+      "defect": "caption_language_mismatch",
+      "severity": "medium",
+      "locus": "📖 Sahih al-Bukhari #6446, Abu Hurairah · 🔍 Verify: · #gratitude #contentment ...",
+      "note": "Reference line and hashtags in English against a Russian body."
+    }
+  ],
+  "must_not_flag": [
+    {
+      "block": "C",
+      "locus": "Богатство — не в имуществе, а в душе",
+      "note": "Title matches R051's proven rendering. P133 holding — flagging it as escalation is a false positive."
+    },
+    {
+      "block": "S",
+      "locus": "S and M are distinct",
+      "note": "R047's identical-S-and-M defect did not recur here."
+    }
+  ]
+}
