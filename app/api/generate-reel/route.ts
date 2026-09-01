@@ -179,12 +179,24 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     not an invitation to supply significance the text does not claim.`
 
     const response = await anthropic.messages.create({
-      model:      'claude-sonnet-4-6',
+      model:      'claude-sonnet-5',
       max_tokens: 1200,
       messages:   [{ role: 'user', content: prompt }],
     })
 
-    const raw = response.content[0].type === 'text' ? response.content[0].text : '{}'
+    // P140: never index content blocks by position. sonnet-5 returns a thinking
+    // block first; content[0].type !== 'text' silently fell through to '{}',
+    // which parses fine and yields an empty result behind a 200.
+    const textBlock = response.content.find((b: any) => b.type === 'text')
+    if (!textBlock) {
+      console.error('P140: no text block. Got:', response.content.map((b: any) => b.type).join(','))
+      return NextResponse.json(
+        { error: 'Model returned no text block (got: ' +
+                 response.content.map((b: any) => b.type).join(', ') + ')' },
+        { status: 500 }
+      )
+    }
+    const raw = (textBlock as any).text
 
     let result: any
     try {

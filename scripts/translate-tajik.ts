@@ -77,7 +77,7 @@ interface TranslationResult {
 // ── Main ──────────────────────────────────────────────────────────────────
 async function translateOne(uzbekText: string): Promise<string> {
   const response = await claude.messages.create({
-    model: 'claude-sonnet-4-5',
+    model: 'claude-sonnet-5',
     max_tokens: 1500,
     system: SYSTEM_PROMPT,
     messages: [
@@ -88,9 +88,14 @@ async function translateOne(uzbekText: string): Promise<string> {
     ],
   })
 
-  const block = response.content[0]
-  if (block.type !== 'text') {
-    throw new Error('Unexpected non-text response block')
+  // P140: never index content blocks by position. sonnet-5 emits a thinking
+  // block first, so content[0] is not the answer.
+  const block = response.content.find(b => b.type === 'text')
+  if (!block || block.type !== 'text') {
+    throw new Error(
+      'No text block in response (got: ' +
+      response.content.map(b => b.type).join(', ') + ')'
+    )
   }
   return block.text.trim()
 }
