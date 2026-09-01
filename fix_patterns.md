@@ -3911,5 +3911,7 @@ time pressure, with money on the line.
 **Related:** P134 (the deadline this completes), P118 (label disagreeing with
 referent), P136 (a gate that could not fail)
 
+**Commit:** 21d52dd
+
 **Status:** FIXED — Kling resumable and proven. Fabric still exposed.
 
