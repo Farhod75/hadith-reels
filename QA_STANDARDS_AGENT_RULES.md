@@ -50,6 +50,18 @@
 - All final moderation actions require human review
 - This applies to both HV and HR
 
+**A gate must be proven capable of failing.** Break it deliberately, confirm it
+blocks, restore it. A gate that has never failed and a gate that cannot fail are
+indistinguishable from outside. P129–P132 (hook never ran, 68 tests never
+passed), P136 (PowerShell branch lexed without checking — and its own first fix
+also could not fail, caught only because the gate was tested before shipping).
+
+**Specification conflicts are defects.** When a document demands what it
+elsewhere forbids, the conflict is the bug — and it is fixed by removing the
+demand, not by strengthening the prohibition. P101, P103, P122, P133, and the
+agent-fleet roadmap's autonomous-posting goal against its own human-approval
+rule.
+
 ## ════════════════════════════════════════════════════════
 ## SECTION 2: CODE AGENT RULES
 ## Source: CTFL v4.0 · Playwright best practices
@@ -245,6 +257,15 @@ vercel env add KEY_NAME preview
 - Push again before previous CI run completes
 - Mix HV + HR in same push
 
+**⚠ NEVER write to repo files via PowerShell file APIs.** `Set-Content`,
+`Add-Content`, `Out-File`, `[System.IO.File]::WriteAllText` and
+`WriteAllBytes` are silently reverted on this machine — suspected antivirus
+controlled-folder-access or a sync tool. Root cause unconfirmed. The write
+appears to succeed and the file is unchanged moments later.
+
+**Use VS Code for every repo file edit.** `Copy-Item` and `Expand-Archive` are
+safe; it is the file-API writes that revert.
+
 ## ════════════════════════════════════════════════════════
 ## SECTION 6: CI MONITOR AGENT RULES
 ## Source: fix_patterns.md P037–P043 · GitHub Actions best practices
@@ -431,6 +452,23 @@ Copy-Item "QA_STANDARDS_AGENT_RULES.md" `
 - Kids style: bright, simple language, age 6-14
 - Daily reel limit: 1 Adults + 1 Kids per day (cron job)
 - Shared Supabase: never modify hadith_library schema without updating HV too
+**Content safety, absolute:** never depict the Prophet ﷺ, any prophet, angels,
+Allah, or named Sahaba — in generated imagery, scene prompts, or any visual
+asset. MODE B (no detailed faces) is the standing setting for animated scenes.
+See `animated-reel-scene-prompts.md` §2.
+
+**Human approval gates every publish.** No agent posts to a channel. No reel
+publishes without a human watching it first.
+
+**Asset registry gate:** `assets/asset-registry.json` + `scripts/audit-assets.py`,
+enforced as a hard block in both render scripts (P117).
+
+**Stage 3 A/B verification** runs before any reel is produced from a library
+row. It caught `text_uzbek` and `text_tajik` mistranslating غِنَى النَّفْسِ on
+#6446 and missing clauses on #2999. Pass B must be a **different model** and
+judges faithfulness only — it is blind to project conventions like divine-name
+form and diacritics, which belong to `lint-content.py` and
+`audit-library.py` (P120).
 
 ### 9.3 Idris Learning App overrides
 - ASD-appropriate content: clear, structured, no ambiguity
@@ -609,6 +647,7 @@ Eliminates all guessing about what the page looked like during failure.
 ## ════════════════════════════════════════════════════════
 ## SECTION 9 UPDATE: TTS and audio quality rules (NEW)
 ## ════════════════════════════════════════════════════════
+
 
 | Slot | Voice | Notes |
 |---|---|---|
