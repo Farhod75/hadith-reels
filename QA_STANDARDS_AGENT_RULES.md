@@ -278,9 +278,10 @@ When CI fails:
 
 ### 6.5 MANDATORY: Pre-push test protocol
 
-> A second §6.5 exists further down, from an un-renumbered addendum
-> ("CI yml must NEVER contain"). This one is authoritative for hook
-> configuration. Full renumbering pending.
+> Renumbered 2026-09-01. Two addenda had been appended without renumbering,
+> leaving nine section numbers pointing at two different rules each. §6.6–6.11
+> are the first addendum, §6.12–6.18 the second, §9.4–9.6 the Section 9 update.
+> Nothing outside this file cited the old numbers.
 
 **Hook location:** `.githooks/pre-push`, with `core.hooksPath = .githooks`.
 
@@ -446,7 +447,7 @@ Copy-Item "QA_STANDARDS_AGENT_RULES.md" `
 ## Append to bottom of QA_STANDARDS_AGENT_RULES.md Section 6
 ## ════════════════════════════════════════════════════════
 
-### 6.5 CI yml must NEVER contain (P045)
+### 6.6 CI yml must NEVER contain (P045)
 These step types cause non-deterministic CI failures:
 ```yaml
 # NEVER add these to push-triggered CI steps:
@@ -455,7 +456,7 @@ These step types cause non-deterministic CI failures:
 - name: Run @real-api tests       # any tagged real-api tests
 ```
 
-### 6.6 Correct CI yml structure (permanent template)
+### 6.7 Correct CI yml structure (permanent template)
 ```yaml
 on:
   push:
@@ -482,12 +483,12 @@ jobs:
       - Run audit_spec.ts        # real Claude, post-deploy
 ```
 
-### 6.7 CI timeout budget
+### 6.8 CI timeout budget
 - Push CI timeout: 20 minutes maximum (was 55 — wasteful)
 - If tests need >20 min → too many real API calls in CI suite
 - Target: all CI push tests in <5 minutes
 
-### 6.8 Deterministic vs non-deterministic test separation
+### 6.9 Deterministic vs non-deterministic test separation
 ALWAYS ask: "Does this test need Claude to return a specific value?"
 - YES → it is a non-deterministic test → mock it OR tag @real-api
 - NO  → it tests deterministic logic → unit test it directly
@@ -499,7 +500,7 @@ Examples:
   Claude returns Arabic text → language test → mock with Arabic MOCK_RESPONSE
   Claude returns compassionate tone → quality test → audit_spec (post-deploy)
 
-### 6.9 How to run audit manually (two options — add to all project READMEs)
+### 6.10 How to run audit manually (two options — add to all project READMEs)
 Option A — PowerShell (local):
 ```powershell
 $env:BASE_URL="https://[your-production-url].com"
@@ -513,7 +514,7 @@ Option B — GitHub Actions manual dispatch:
 4. Set run_audit = true
 5. Click "Run workflow"
 
-### 6.10 Spec file naming convention (P045 lesson)
+### 6.11 Spec file naming convention (P045 lesson)
 ALWAYS use underscores in spec filenames — NEVER dots except the .spec extension:
   ✅ audit_spec.ts
   ✅ api_spec.ts
@@ -527,7 +528,7 @@ When CI yml references a file, verify exact filename with:
 ## Covers: Pre-push protocol, P040-P059 rules, agent auto-update
 ## ════════════════════════════════════════════════════════
 
-### 6.5 → MOVED
+### 6.12 → MOVED
 
 The pre-push protocol lives at §6.5 in Section 6 above (line ~279). The version
 that stood here documented `.git/hooks/pre-push` — inert once
@@ -536,36 +537,36 @@ doc-only bypass. Both were wrong, and the first is the configuration that hid a
 live production 500 behind a suite that had never passed (P129–P132). Removed
 2026-09-01; the corrected protocol is authoritative.
 
-### 6.6 CI yml forbidden steps (P045/P046)
+### 6.13 CI yml forbidden steps (P045/P046)
 NEVER add these to push-triggered CI:
 - audit_spec.ts (14+ real Claude calls)
 - language-speech.spec.ts (real ElevenLabs)
 - Any @real-api tagged tests
 Use workflow_dispatch for audit runs instead.
 
-### 6.7 Deterministic vs non-deterministic test rule (P044)
+### 6.14 Deterministic vs non-deterministic test rule (P044)
 NEVER test a deterministic function through a non-deterministic AI API.
 Pure functions (getSeverity, mapLang, getRateLimit) → unit test directly.
 AI output quality → @real-api tagged tests only.
 
-### 6.8 Emoji tab button locator rule (P047/P048)
+### 6.15 Emoji tab button locator rule (P047/P048)
 NEVER use getByText() or filter({hasText}) on buttons containing emojis.
 Test FUNCTIONAL OUTCOME (content that loads) not UI LABEL TEXT.
 Use page.evaluate() to click emoji buttons by partial textContent.
 
-### 6.9 TTS text sanitization rule (P059)
+### 6.16 TTS text sanitization rule (P059)
 ALWAYS sanitize text before sending to TTS (ElevenLabs or browser):
 Remove: URLs (https://...), bullet chars (◆♦•·), hadith refs (#1234, bukhari:8)
 Remove: markdown (**bold**), tier labels ([tier1])
 Function: sanitizeForTTS() in TTSPlayer.tsx
 
-### 6.10 BCP-47 language codes for browser SpeechSynthesis (P058)
+### 6.17 BCP-47 language codes for browser SpeechSynthesis (P058)
 Browser SpeechSynthesis requires full BCP-47 codes:
   en → en-US  |  uz → uz-UZ  |  ar → ar-SA  |  ru → ru-RU  |  tj → ru-RU
 'uz' alone is NOT recognized — browser falls back to English voice.
 'tj' has no native voice — ru-RU is closest available.
 
-### 6.11 Native binary packages in Next.js routes (P054/P055)
+### 6.18 Native binary packages in Next.js routes (P054/P055)
 NEVER import native binary packages in Next.js API routes without externalizing:
 - @remotion/renderer, @remotion/bundler — use serverExternalPackages
 - Sharp, Canvas, FFmpeg, node-gyp packages — same rule
@@ -609,7 +610,7 @@ Eliminates all guessing about what the page looked like during failure.
 ## SECTION 9 UPDATE: TTS and audio quality rules (NEW)
 ## ════════════════════════════════════════════════════════
 
-### 9.1 TTS voice quality by language
+### 9.4 TTS voice quality by language
 | Language | Primary | Fallback | Quality |
 |---|---|---|---|
 | AR | ElevenLabs Hijazi/Abu Salem | ar-SA browser | High |
@@ -618,14 +619,14 @@ Eliminates all guessing about what the page looked like during failure.
 | UZ | ElevenLabs multilingual | uz-UZ browser | Medium |
 | TJ | ElevenLabs (ru voice) | ru-RU browser | Low — no native TJ |
 
-### 9.2 Tajik narration — real voice recommendation
+### 9.5 Tajik narration — real voice recommendation
 ElevenLabs has no native Tajik voice. Options for authentic TJ narration:
 1. islamhouse.com — free Tajik Islamic audio (CC licensed)
 2. Custom ElevenLabs voice clone from real Tajik scholar recording
 3. Phase 4: integrate a Tajik TTS API (e.g. SalomAI by Uzbek/Tajik teams)
 Current acceptable behavior: ru-RU voice for TJ (sounds Russian — acceptable)
 
-### 9.3 Text sanitization before TTS (mandatory)
+### 9.6 Text sanitization before TTS (mandatory)
 sanitizeForTTS() must be called before ANY TTS provider:
 - ElevenLabs API call
 - Browser SpeechSynthesis
