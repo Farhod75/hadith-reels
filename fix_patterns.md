@@ -4171,3 +4171,108 @@ P136, P127 (declared mechanisms that did not exist), P117 (this registry)
 **Commit:** 53ea4fa
 
 **Status:** FIXED — category removed, gate verified still blocking
+
+## ════════════════════════════════════════════════════════
+## PATTERN 142: Nothing verified the matn against its source
+## ════════════════════════════════════════════════════════
+**ID:** P142
+**Type:** Verification gap — a chain of checks with no first link
+**Files:** scripts/verify-matn-source.py (new), hadith_library (4 rows)
+**Commit:** a8e3638
+**Found:** 2026-09-02, from an outside report
+
+**How it surfaced.** An external comparison of the channel against its sources
+flagged three library rows as mis-graded. All three were real. Checking why
+they were there found a fourth, and a hole underneath all four.
+
+**The four rows, all filed under Al-Bayhaqi, all graded hasan:**
+
+  #2318 "Prayer is the pillar of the religion", Muadh ibn Jabal.
+        The Arabic stored was الصلاة عماد الدين — the standalone wording, which
+        as-Sakhawi, as-Suyuti and al-Albani all grade weak. Muadh's ACTUAL
+        narration is different text: رأس الأمر الإسلام وعموده الصلاة وذروة
+        سنامه الجهاد, Tirmidhi 2616, hasan sahih. So a weak wording carried a
+        sound narration's narrator and grade.
+        → CORRECTED to Tirmidhi 2616, translations nulled for re-run.
+
+  #1120 "The death of a scholar is a calamity that cannot be compensated",
+        Abu Darda. al-Albani: ضعيف جداً, very weak (Da'if at-Targhib 73).
+        → DELETED.
+
+  #8497 "The right of the child upon the parent — writing, swimming, archery",
+        Ibn Umar. The wording is ABU RAFI'S, not Ibn Umar's, and is weak
+        (Isa ibn Ibrahim, whom Ibn Hibban placed in al-Majruhin). The genuine
+        Ibn Umar text is different and graded munkar.
+        → DELETED.
+
+  #5486 "Whoever gets married has completed half of the religion", Anas.
+        This one was LEGITIMATE — Shu'ab al-Iman 5486 really is this
+        narration, and al-Albani graded it hasan li-ghayrihi. Deleted anyway,
+        on the operator's call: hasan li-ghayrihi is hasan by corroboration,
+        and al-Haythami, Ibn al-Jawzi and al-Iraqi all weakened it. A channel
+        that publishes only sahih and hasan cannot carry a contested grade.
+        → DELETED.
+
+Library 69 → 66. **None of the four had ever been used for a reel.**
+
+**Why the source URLs looked right and were not.** Every row cited a
+sunnah.com Tirmidhi URL while claiming Al-Bayhaqi as its collection. #2318's
+URL was genuinely related (tirmidhi:2616, also about prayer as a pillar) — but
+#1120's pointed at "Islam is built on five", and #8497's at the silver
+hand-guard of the Prophet's sword. The citations were arbitrary. An early
+assumption that the URL told us what each row was MEANT to be held for one row
+and was wrong for the rest.
+
+**The hole, which is the actual pattern.**
+
+  - Stage 3 A/B compares TRANSLATION against MATN. #2318's translations were
+    faithful in all five languages. The Arabic was wrong. A/B passes this.
+  - 55 of 66 rows were bulk-inserted straight into hadith_library on
+    2026-05-12, before the candidate pipeline existed. They never met any gate.
+  - HV, which exists to catch exactly this class of circulating weak narration,
+    had never been pointed at the library. It analyses what a user pastes.
+
+So the system had a check for translation fidelity, a check for asset
+registration, a check for content rules — and no check that the Arabic in a row
+is the hadith at the URL it cites. Every downstream verification assumed a
+correct matn as its starting point.
+
+**Fix:** `scripts/verify-matn-source.py`. Fetch the cited page, normalise both
+sides (strip harakat, tatweel, alef and ya variants, punctuation), and measure
+what fraction of the stored matn appears as one contiguous run. Deliberately
+dumb — no model, no grading opinion. One question: is this text on that page.
+
+Calibrated on the real case:
+
+      correct matn                     1.000
+      correct matn, diacritics removed 1.000
+      the weak wording that was stored 0.333
+      an unrelated hadith              0.000
+      correct matn, one word dropped   0.714  → REVIEW
+
+**A sliding-window difflib comparison was tried first and rejected** — it
+scored the genuinely-correct matn at 0.875, below the pass line, because window
+offsets stepped past the right alignment by one word. Longest contiguous run
+has no alignment to get wrong.
+
+**BLOCKED: sunnah.com returns 403.** Not a User-Agent problem — browser-like
+headers were refused identically, so the block is at the TLS/edge layer.
+Impersonating a browser more convincingly was rejected: sunnah.com is
+donation-funded and publishes an API so that scripts do not scrape it. The fix
+is the key blocked on sunnah-com/api issue #3675, open since 2026-08-21. That
+issue now blocks TWO things — new sourcing AND verification of existing rows.
+Everything but the fetch layer is finished and tested.
+
+**Rule:** a verification chain needs a first link. Checking that a translation
+matches its matn, that a matn has a grade, and that a grade meets policy all
+assume the matn is the hadith it claims to be — and nothing was checking that.
+When every gate validates a transformation, ask what validates the input.
+
+**Also:** "verified" meant different things depending on when a row was created
+and nothing recorded which. A `matn_verified_at` column is the follow-up.
+
+**Related:** P120 (pass-B competence — what A/B can and cannot see), P117
+(asset registry, the same shape for assets)
+
+**Status:** LIBRARY CLEAN — 4 rows resolved, 66 remain, none verified
+matn-to-source. Script complete, blocked on #3675.
