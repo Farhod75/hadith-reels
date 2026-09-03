@@ -180,7 +180,13 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-5',
-      max_tokens: 1200,
+      // P144: 1200 was sized for a non-thinking model, where the whole budget
+      // went to output. sonnet-5 spends it on thinking FIRST — so a harder
+      // generation (Uzbek, a contested point, a long context block) exhausts
+      // the budget before emitting any text and returns a thinking block
+      // alone. That is the "no text block (got: thinking)" failure, three
+      // times in a row on UZ #82 while EN and RU succeeded on the same route.
+      max_tokens: 4000,
       messages:   [{ role: 'user', content: prompt }],
     })
 

@@ -4326,3 +4326,54 @@ actually decides.
 **Commit:** be903b1
 
 **Status:** FIXED — adults lane only; kids lane was never affected
+
+## ════════════════════════════════════════════════════════
+## PATTERN 144: A token budget spent before the answer
+## ════════════════════════════════════════════════════════
+**ID:** P144
+**Type:** API contract — a limit sized for a model that no longer exists
+**Files:** app/api/generate-reel/route.ts
+**Commit:** <this commit>
+
+**Symptom:** generating the UZ leg of Muslim #82 failed three times with
+"Model returned no text block (got: thinking)". EN and RU had succeeded on the
+same route minutes earlier.
+
+**Cause:** `max_tokens: 1200`. That number was chosen for a model where the
+whole budget went to output. sonnet-5 spends it on thinking FIRST, so a harder
+generation exhausts the budget mid-reasoning and returns a thinking block with
+nothing after it.
+
+**Why UZ and not EN or RU.** Nothing language-specific. This generation was
+simply the most expensive of the four — Uzbek, a theologically contested point
+requiring the scholarly disagreement to be stated, and an extended context
+block. It crossed the line the others sat under. A limit that fails only on
+your hardest inputs is one that will keep surprising you.
+
+**Fix:** `max_tokens: 4000`.
+
+**The error message is the other half of this entry.** P140 replaced a silent
+`'{}'` default with a 500 naming the block types received. That is what made
+this diagnosable in one screenshot instead of a debugging session — the old
+code would have shown four empty fields behind a 200, exactly as it did on
+2026-09-01. Two days apart, the same underlying model behaviour surfaced twice:
+once as silent corruption, once as a clear error. The difference was entirely
+in how the failure was reported.
+
+**This was already on the open-items list** as "max_tokens: 1200 in
+generate-reel", logged weeks ago when the number was merely tight. It became a
+failure when the model changed underneath it. A limit noted as tight is a limit
+that has not failed YET.
+
+**Check elsewhere:** every route calling this model has a max_tokens sized
+before the change. HV's `/api/analyze` runs the same SDK against the same model
+and its budget has not been reviewed.
+
+**Rule:** when a model gains a new phase, every limit measured against the old
+one is stale — not wrong yet, stale. Thinking consumes the same budget as
+output, so a number that was generous for text alone can be insufficient for
+thinking plus text.
+
+**Related:** P140 (the same model change, surfacing as silent corruption), P123
+
+**Status:** FIXED in generate-reel. Other routes' budgets not yet reviewed.
