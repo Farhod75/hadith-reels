@@ -4376,4 +4376,6 @@ thinking plus text.
 
 **Related:** P140 (the same model change, surfacing as silent corruption), P123
 
+**Commit:** 19c9d33
+
 **Status:** FIXED in generate-reel. Other routes' budgets not yet reviewed.
