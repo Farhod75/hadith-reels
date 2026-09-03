@@ -290,10 +290,17 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   "-stream_loop","-1","-i",$bgMixed,
   "-i",$narr,
   "-stream_loop","-1","-i",$chosen,
-  "-filter_complex","[1:a]volume=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+  # P143: apad on the narration BEFORE amix. amix=duration=first makes [aout]
+  # exactly as long as its first input, and -shortest then cuts the video
+  # there — so -t alone could not add a tail. Padding the narration makes the
+  # shortest stream genuinely 1s longer and all three agree.
+  "-filter_complex","[1:a]volume=1.0,apad=pad_dur=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
   "-vf",$vf,
   "-map","0:v","-map","[aout]",
-  "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur,2),"-movflags","+faststart",
+  # P143: was -t $narrDur exactly, so the video ended on the last syllable and
+  # the loop restarted before the final word and the outro card had any time on
+  # screen. On Instagram that reads as the end being cut off. 1s tail.
+  "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur + 1.0,2),"-movflags","+faststart",
   $reel)
 
 if (-not (Test-Path $reel)) { Die "final merge failed ($reel not created)" }

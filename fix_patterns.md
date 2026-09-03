@@ -4276,3 +4276,51 @@ and nothing recorded which. A `matn_verified_at` column is the follow-up.
 
 **Status:** LIBRARY CLEAN — 4 rows resolved, 66 remain, none verified
 matn-to-source. Script complete, blocked on #3675.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 143: A tail that three flags refused to allow
+## ════════════════════════════════════════════════════════
+**ID:** P143
+**Type:** Render — a video ending on its own last syllable
+**Files:** render-reel.ps1
+**Commit:** <this commit>
+**Found:** 2026-09-03, reported from Instagram playback
+
+**Symptom:** on Instagram, adults reels appeared to have their last seconds cut
+off. Not a platform behaviour — IG does not trim Reels.
+
+**Cause:** the final merge ran `-t $narrDur` with no margin, so the video was
+exactly as long as the narration and the last frame landed on the last
+syllable. The loop then restarted before the closing word had finished
+rendering and before the outro card had any time on screen. Kids reels were
+unaffected: `render-mascot-reel.ps1` uses neither `-t` nor `-shortest`.
+
+**The first fix did nothing, and that is the useful part.** Changing `-t` to
+`$narrDur + 1.0` produced a 25.865s file from a 25.865s narration — no tail at
+all. Two other flags on the same line were overriding it:
+
+  - `amix=duration=first` makes `[aout]` exactly as long as its first input,
+    the narration
+  - `-shortest` then cuts the video at the end of the shortest stream, which
+    is that audio
+
+So `-t` could only ever shorten, never extend. Three length controls on one
+command, and the most visible one was the one with no authority.
+
+**Fix:** pad the narration BEFORE the mix —
+`[1:a]volume=1.0,apad=pad_dur=1.0[narration]`. The shortest stream is now
+genuinely 1s longer, so `amix`, `-shortest` and `-t` all agree. The nasheed
+continues under the tail rather than stopping dead.
+
+**Verified:** narration 25.864898s → reel 26.860000s. Before the fix both read
+25.86s.
+
+**Rule:** when a duration flag has no effect, look for the other flags that
+also govern duration. `-t`, `-shortest` and `amix=duration=` were each doing
+something reasonable; the bug was that nobody had asked which of the three
+actually decides.
+
+**Related:** P135 (a pad measured from a moving origin), P099 (amix vs
+-shortest — the same two flags, a previous timing assumption)
+
+**Status:** FIXED — adults lane only; kids lane was never affected
