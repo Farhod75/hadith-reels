@@ -1,99 +1,107 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-verify-matn-source.py - does each library row's Arabic actually appear at the
-URL it cites?
+verify-matn-source.py - is each library row's Arabic actually IN the collection
+it claims to come from?
 
 WHY THIS EXISTS (P142). Nothing verified matn against source. Stage 3 A/B
 compares TRANSLATION against MATN - it asks whether the Russian says what the
 Arabic says. It cannot notice that the Arabic itself is not the hadith at the
-cited URL.
+cited reference.
 
-hadith_library #2318 stored الصلاة عماد الدين - a weak, widely-circulated
-wording - under Muadh ibn Jabal's name, citing sunnah.com/tirmidhi:2616, which
-actually serves رأس الأمر الإسلام وعموده الصلاة. Every translation of that row
-was faithful. The Arabic was wrong. A/B would have passed it, and did not run
-on it at all: 55 of 66 rows were bulk-inserted straight into hadith_library on
-2026-05-12 and never entered the candidate pipeline.
+Two rows proved the failure mode:
 
-So this is the missing check, and it is deliberately DUMB: fetch the page,
-normalise both sides, compare. No model, no judgement, no grading opinion. It
-answers one question - is this text on that page - and leaves everything else
-to a human.
+  #2318 stored الصلاة عماد الدين - a weak, widely-circulated wording - under
+        Muadh ibn Jabal's name, citing sunnah.com/tirmidhi:2616, which actually
+        serves رأس الأمر الإسلام وعموده الصلاة. Every translation of that row
+        was faithful. The Arabic was wrong.
 
-BLOCKED AS OF 2026-09-02. sunnah.com returns HTTP 403 to this script. Not a
-User-Agent problem - a browser-like UA, Accept and Accept-Language were tried
-and refused identically, so the block is at the TLS/edge layer. Impersonating
-a browser more convincingly was rejected as an approach: sunnah.com is
-donation-funded and publishes an API precisely so scripts do not scrape the
-site.
+  #3104 stored الجنة تحت أقدام الأمهات - graded munkar by al-Albani from Anas -
+        under an-Nasai 3104, which actually records Mu'awiyah ibn Jahimah:
+        فالزمها فإن الجنة تحت رجليها. Popular weak wording on a sound
+        narration's number and grade.
 
-The fix is api.sunnah.com, which needs the key blocked on
-github.com/sunnah-com/api issue #3675 - open since 2026-08-21. That issue now
-blocks TWO things: new sourcing (Stage 0) and verification of the 66 rows
-already in the library.
+WHY A LOCAL MIRROR (P145). The first version fetched sunnah.com per row.
+sunnah.com returns HTTP 403 to scripted clients - not a User-Agent problem,
+browser-like headers were refused identically. Their API needs a key blocked
+on sunnah-com/api issue #3675, and that repo has API requests open since
+March, so waiting is not a plan.
 
-Everything except the fetch layer is finished and tested. When the key lands,
-replace fetch_page() with an api.sunnah.com call; normalisation, coverage,
-thresholds and reporting are unchanged.
+This reads a local clone of AhmedBaset/hadith-json instead - a scraped mirror
+of sunnah.com, 50,884 hadiths across the nine books.
+
+WHAT THIS CHECK IS, PRECISELY. Not a lookup by number: the mirror numbers
+hadiths differently from sunnah.com's URLs (Bukhari 6446 there is 6207). The
+question asked is better than a number match anyway -
+
+    does our stored Arabic appear ANYWHERE in the collection it claims?
+
+Both real defects answer NO: الصلاة عماد الدين is not in Tirmidhi, and
+الجنة تحت أقدام الأمهات is not in an-Nasai. Both would have been flagged.
+
+THREE LIMITS, STATED PLAINLY. This screens; it does not certify.
+
+  1. NOT FOUND means REVIEW, never FAIL. It can mean our text is wrong. It can
+     also mean the mirror is incomplete or carries a different edition's
+     wording. A human decides.
+  2. FOUND verifies the TEXT only - not the grade, not the narrator. #3104 had
+     a correct grade and the wrong narrator; this check cannot see that.
+  3. The mirror is a THIRD-PARTY SCRAPE. Nothing is marked matn_verified_at on
+     its say-so. A match narrows the field; a human confirms.
+
+KNOWN GAP: the mirror's README states Musnad Ahmad chapters 8-30 are missing
+from the source data. Ahmad rows returning NOT FOUND may be that gap rather
+than a defect - the output says so.
 
 USAGE
-  python scripts/verify-matn-source.py                 # all rows
-  python scripts/verify-matn-source.py --limit 5       # first 5, for a smoke test
-  python scripts/verify-matn-source.py --number 6446   # one row
-  python scripts/verify-matn-source.py --no-cache      # ignore cached pages
+  python scripts/verify-matn-source.py --mirror "C:/QA/Hadith verification AI app/hadith-json"
+  python scripts/verify-matn-source.py --mirror ... --number 6446
+  python scripts/verify-matn-source.py --mirror ... --unverified-only
 
 OUTPUT
-  A table, plus out/matn-verify-report.json for follow-up.
-
-NOTE ON WHAT PASSING MEANS. A PASS says the stored Arabic appears at the cited
-URL. It says nothing about whether the GRADE is right, whether the narrator is
-right, or whether the English translation is faithful. Those are separate
-questions with separate owners.
+  A table, plus out/matn-verify-report.json.
 """
 import argparse
 import difflib
-import html
 import json
 import os
 import re
 import sys
-import time
 import unicodedata
-import ssl
-import urllib.error
 import urllib.parse
 import urllib.request
-
-try:
-    import certifi
-    # Python on Windows does not use the OS certificate store, so urllib has
-    # no trusted roots and every https fetch fails CERTIFICATE_VERIFY_FAILED.
-    # Point it at certifi's bundle. NEVER disable verification instead - this
-    # script's entire value is that the page it read came from sunnah.com.
-    SSL_CTX = ssl.create_default_context(cafile=certifi.where())
-except ImportError:
-    sys.exit('FAILED: certifi not installed. Run: pip install certifi')
 
 URL_KEYS = ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL')
 SERVICE_KEYS = ('SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SERVICE_KEY',
                 'SERVICE_ROLE_KEY', 'SUPABASE_KEY')
 
-CACHE_DIR = os.path.join('out', '.cache', 'sunnah')
 REPORT = os.path.join('out', 'matn-verify-report.json')
 
-# Politeness. sunnah.com is a free service run on donations; do not hammer it.
-DELAY_S = 1.5
+# Library collection name -> mirror filename under db/by_book/the_9_books/.
+# Collections absent here are reported out-of-scope rather than guessed at.
+COLLECTION_FILES = {
+    'Sahih al-Bukhari': 'bukhari.json',
+    'Sahih Muslim':     'muslim.json',
+    'Jami at-Tirmidhi': 'tirmidhi.json',
+    'Sunan Abu Dawud':  'abudawud.json',
+    'Sunan an-Nasai':   'nasai.json',
+    'Sunan Ibn Majah':  'ibnmajah.json',
+    'Musnad Ahmad':     'ahmed.json',
+}
 
-# Thresholds. A stored matn is usually an EXCERPT of a longer hadith, so exact
-# equality is the wrong test - containment of the excerpt is what matters.
-PASS_RATIO = 0.90
-REVIEW_RATIO = 0.60
+# Collections the mirror covers only partially. A MISSING here is weak
+# evidence and the report says so.
+PARTIAL_COVERAGE = {
+    'Musnad Ahmad': 'mirror README: chapters 8-30 missing from source data',
+}
+
+FOUND_RATIO = 0.90
+PARTIAL_RATIO = 0.60
 
 
 # ---------------------------------------------------------------- env
 def load_env(path='.env.local'):
-    """Read KEY=value pairs. Values may be quoted - strip them, or the quote
+    """KEY=value pairs. Values may be quoted - strip them, or the quote
     character travels into the header and produces a 401 that looks like a
     bad key."""
     env = {}
@@ -114,22 +122,24 @@ def pick(env, keys, label):
         v = os.environ.get(k) or env.get(k)
         if v:
             return v
-    sys.exit(f'FAILED: none of {keys} found in environment or .env.local ({label})')
+    sys.exit(f'FAILED: none of {keys} in environment or .env.local ({label})')
 
 
 # ---------------------------------------------------------------- arabic
-# Harakat, tanwin, shadda, sukun, superscript alef, and the Quranic marks that
-# sunnah.com carries but a stored matn usually does not.
 DIACRITICS = re.compile(r'[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]')
-
-ALEF = re.compile(r'[\u0622\u0623\u0625\u0671]')      # آ أ إ ٱ  -> ا
-YA = re.compile(r'\u0649')                            # ى -> ي
+ALEF = re.compile(r'[\u0622\u0623\u0625\u0671]')
+YA = re.compile(r'\u0649')
 NON_ARABIC = re.compile(r'[^\u0621-\u063A\u0641-\u064A\s]')
 
 
 def normalise_arabic(s):
-    """Strip everything that varies between a printed matn and a web page:
-    diacritics, tatweel, alef and ya variants, punctuation, whitespace."""
+    """Strip what varies between one printing of a matn and another:
+    diacritics, tatweel, alef and ya variants, punctuation, whitespace.
+
+    Not optional. Searching the mirror for غنى النفس returns nothing until
+    both sides are normalised, because it stores الْغِنَى غِنَى النَّفْسِ.
+    That was tried by hand first and returned zero hits.
+    """
     if not s:
         return ''
     s = unicodedata.normalize('NFKC', s)
@@ -141,23 +151,22 @@ def normalise_arabic(s):
 
 
 def coverage(needle_words, hay_words):
-    """What fraction of the stored matn appears as ONE CONTIGUOUS RUN on the page?
+    """What fraction of the stored matn appears as ONE CONTIGUOUS RUN?
 
-    Not a similarity score. The question is containment: a stored matn is
-    normally an excerpt of a longer hadith, so it should appear intact
-    somewhere on the correct page.
+    Containment, not similarity. A stored matn is normally an excerpt of a
+    longer hadith, so it should appear intact somewhere in the entry.
 
     A sliding-window difflib comparison was tried first and rejected - it
     scored the genuinely-correct #2616 matn at 0.875, below the pass line,
-    because the window offsets stepped past the right alignment by one word.
+    because window offsets stepped past the right alignment by one word.
     Longest contiguous run has no alignment to get wrong.
 
-    Measured on the real #2318 case:
+    Calibrated on the real #2318 case:
         correct matn                     1.000
         correct matn, diacritics removed 1.000
         the weak wording that was stored 0.333
         an unrelated hadith              0.000
-        correct matn, one word dropped   0.714  -> REVIEW, correctly
+        correct matn, one word dropped   0.714  -> PARTIAL, correctly
     """
     if not needle_words or not hay_words:
         return 0.0
@@ -166,55 +175,87 @@ def coverage(needle_words, hay_words):
     return m.size / len(needle_words)
 
 
-# ---------------------------------------------------------------- fetch
-def cache_path(url):
-    safe = re.sub(r'[^A-Za-z0-9]+', '_', url).strip('_')
-    return os.path.join(CACHE_DIR, safe + '.html')
+def gapped_recall(needle_words, hay_words):
+    """What fraction of the stored matn's words appear IN ORDER, gaps allowed?
 
+    Added after the first full run. Contiguous-run coverage under-scores a
+    legitimate EXCERPT: Muslim #2999 stores the believer's-affair hadith with
+    two phrases dropped (وليس ذاك لأحد إلا للمؤمن, and فكان خيرا له after each
+    condition). Every word is genuine and in order, but the omissions break the
+    run, so it scored 0.47 and was reported MISSING. It is published across
+    eight reels and is perfectly sound.
 
-def fetch_page(url, use_cache=True):
-    cp = cache_path(url)
-    if use_cache and os.path.exists(cp):
-        with open(cp, encoding='utf-8') as fh:
-            return fh.read(), True
-    req = urllib.request.Request(url, headers={
-        'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                       'AppleWebKit/537.36 (KHTML, like Gecko) '
-                       'Chrome/126.0 Safari/537.36'),
-        'Accept': 'text/html,application/xhtml+xml',
-        'Accept-Language': 'en-US,en;q=0.9',
-    })
-    with urllib.request.urlopen(req, timeout=30, context=SSL_CTX) as resp:
-        body = resp.read().decode('utf-8', errors='replace')
-    os.makedirs(CACHE_DIR, exist_ok=True)
-    with open(cp, 'w', encoding='utf-8') as fh:
-        fh.write(body)
-    return body, False
+    A check that flags sound rows teaches the reader to skim it - the P138
+    lesson. So both measures are computed and the verdict takes the higher.
 
+    Measured:
+                                contiguous   gapped
+        #2999 elided, genuine        0.467    1.000
+        #2318 wrong wording          0.333    0.333
+        #2616 correct excerpt        1.000    1.000
+        common particles only        0.000    0.000
 
-def page_arabic(body):
-    """Everything Arabic on the page, as one normalised word list.
-
-    Deliberately crude - no attempt to isolate the matn from the isnad or the
-    chapter heading. A false PASS would need the stored text to appear
-    somewhere on the correct page, which is the thing being checked anyway.
+    The particle control matters: Arabic function words (من، في، الله، و) are
+    everywhere, so a short matn could in principle score high by accident. It
+    scores zero, because get_matching_blocks requires ORDER, not just presence.
     """
-    text = re.sub(r'<script.*?</script>', ' ', body, flags=re.S | re.I)
-    text = re.sub(r'<style.*?</style>', ' ', text, flags=re.S | re.I)
-    text = re.sub(r'<[^>]+>', ' ', text)
-    text = html.unescape(text)
-    return normalise_arabic(text)
+    if not needle_words or not hay_words:
+        return 0.0
+    sm = difflib.SequenceMatcher(None, needle_words, hay_words, autojunk=False)
+    return sum(b.size for b in sm.get_matching_blocks()) / len(needle_words)
+
+
+# ---------------------------------------------------------------- mirror
+_cache = {}
+
+
+def load_collection(mirror, filename):
+    """Load a collection and pre-normalise every hadith ONCE. The whole file
+    is scanned per row; normalising inside the comparison loop would turn
+    seconds into minutes."""
+    if filename in _cache:
+        return _cache[filename]
+    path = os.path.join(mirror, 'db', 'by_book', 'the_9_books', filename)
+    if not os.path.exists(path):
+        _cache[filename] = None
+        return None
+    with open(path, encoding='utf-8') as fh:
+        data = json.load(fh)
+    entries = [{'idInBook': h.get('idInBook'),
+                'words': normalise_arabic(h.get('arabic', '')).split()}
+               for h in data.get('hadiths', [])]
+    _cache[filename] = entries
+    return entries
+
+
+def best_match(needle_words, entries):
+    """Best entry by gapped recall, reporting both measures for it.
+
+    Ranked on gapped rather than contiguous because an excerpt with internal
+    omissions is still the right entry - see gapped_recall above.
+    """
+    best_g, best_c, best_id = 0.0, 0.0, None
+    for e in entries:
+        g = gapped_recall(needle_words, e['words'])
+        if g > best_g:
+            best_g = g
+            best_c = coverage(needle_words, e['words'])
+            best_id = e['idInBook']
+            if best_g >= 0.999:
+                break
+    return best_g, best_c, best_id
 
 
 # ---------------------------------------------------------------- supabase
-def fetch_rows(base_url, key, number=None, limit=None):
+def fetch_rows(base_url, key, number=None, unverified_only=False):
     q = (f'{base_url}/rest/v1/hadith_library'
-         '?select=id,hadith_number,collection,narrator,grade,text_arabic,source_url'
+         '?select=id,hadith_number,collection,narrator,grade,text_arabic,'
+         'source_url,matn_verified_at'
          '&order=collection.asc,hadith_number.asc')
     if number:
         q += f'&hadith_number=eq.{urllib.parse.quote(str(number))}'
-    if limit:
-        q += f'&limit={int(limit)}'
+    if unverified_only:
+        q += '&matn_verified_at=is.null'
     req = urllib.request.Request(q, headers={
         'apikey': key,
         'Authorization': f'Bearer {key}',
@@ -227,92 +268,103 @@ def fetch_rows(base_url, key, number=None, limit=None):
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser(
-        description='Verify each row\'s Arabic matn appears at its cited URL.')
+        description='Screen library rows against a local hadith-json mirror.')
+    ap.add_argument('--mirror', required=True,
+                    help='path to a clone of AhmedBaset/hadith-json')
     ap.add_argument('--number', help='check one hadith_number')
-    ap.add_argument('--limit', type=int, help='check the first N rows')
-    ap.add_argument('--no-cache', action='store_true',
-                    help='re-fetch pages instead of using out/.cache/sunnah')
+    ap.add_argument('--unverified-only', action='store_true',
+                    help='only rows where matn_verified_at is null')
     args = ap.parse_args()
+
+    if not os.path.isdir(os.path.join(args.mirror, 'db', 'by_book')):
+        sys.exit(f'FAILED: no db/by_book under {args.mirror}. '
+                 'Clone https://github.com/AhmedBaset/hadith-json first.')
 
     env = load_env()
     base = pick(env, URL_KEYS, 'Supabase URL').rstrip('/')
     key = pick(env, SERVICE_KEYS, 'Supabase service key')
 
-    rows = fetch_rows(base, key, args.number, args.limit)
+    rows = fetch_rows(base, key, args.number, args.unverified_only)
     if not rows:
         sys.exit('FAILED: no rows returned.')
 
-    width = 74
+    width = 78
     print()
     print('=' * width)
-    print(f' matn -> source verification   ({len(rows)} rows)')
+    print(f' matn -> collection screening   ({len(rows)} rows)')
+    print(' local mirror, third-party scrape. SCREENS, does not certify.')
     print('=' * width)
 
-    results, counts = [], {'PASS': 0, 'REVIEW': 0, 'FAIL': 0, 'ERROR': 0}
-    fetched = 0
+    counts = {'FOUND': 0, 'PARTIAL': 0, 'MISSING': 0, 'SKIP': 0}
+    report = []
 
     for r in rows:
         num = r.get('hadith_number')
         coll = r.get('collection') or ''
-        url = r.get('source_url')
         stored = r.get('text_arabic')
         label = f'{coll} #{num}'
+        mid = None
+        ratio = 0.0
+        contig = 0.0
 
-        if not url:
-            verdict, ratio, note = 'ERROR', 0.0, 'no source_url'
+        fname = COLLECTION_FILES.get(coll)
+        if not fname:
+            verdict, note = 'SKIP', 'collection not in mirror'
         elif not stored:
-            verdict, ratio, note = 'ERROR', 0.0, 'no text_arabic'
+            verdict, note = 'SKIP', 'no text_arabic'
         else:
-            try:
-                body, cached = fetch_page(url, use_cache=not args.no_cache)
-                if not cached:
-                    fetched += 1
-                    time.sleep(DELAY_S)
-                hay = page_arabic(body).split()
+            entries = load_collection(args.mirror, fname)
+            if entries is None:
+                verdict, note = 'SKIP', f'{fname} not found in mirror'
+            else:
                 needle = normalise_arabic(stored).split()
-                ratio = coverage(needle, hay)
-                if ratio >= PASS_RATIO:
-                    verdict, note = 'PASS', ''
-                elif ratio >= REVIEW_RATIO:
-                    verdict, note = 'REVIEW', 'partial match - read both'
+                ratio, contig, mid = best_match(needle, entries)
+                if ratio >= FOUND_RATIO:
+                    verdict = 'FOUND'
+                    note = f'mirror id {mid}'
+                    if contig < PARTIAL_RATIO:
+                        note += f' (excerpt: contiguous {contig:.2f})'
+                elif ratio >= PARTIAL_RATIO:
+                    verdict = 'PARTIAL'
+                    note = f'partial, mirror id {mid} - read both'
                 else:
-                    verdict, note = 'FAIL', 'stored matn is not on that page'
-            except urllib.error.HTTPError as e:
-                verdict, ratio, note = 'ERROR', 0.0, f'HTTP {e.code}'
-            except Exception as e:                       # noqa: BLE001
-                verdict, ratio, note = 'ERROR', 0.0, str(e)[:60]
+                    verdict = 'MISSING'
+                    note = 'stored matn not in this collection'
+                    if coll in PARTIAL_COVERAGE:
+                        note += f' (NB: {PARTIAL_COVERAGE[coll]})'
 
         counts[verdict] += 1
-        results.append({
+        report.append({
             'hadith_number': num, 'collection': coll,
             'narrator': r.get('narrator'), 'grade': r.get('grade'),
-            'source_url': url, 'verdict': verdict,
-            'ratio': round(ratio, 3), 'note': note,
+            'verdict': verdict, 'ratio': round(ratio, 3),
+            'contiguous': round(contig, 3),
+            'mirror_id': mid, 'note': note,
+            'already_verified': bool(r.get('matn_verified_at')),
         })
 
-        mark = {'PASS': 'ok  ', 'REVIEW': 'HMM ',
-                'FAIL': 'FAIL', 'ERROR': 'ERR '}[verdict]
-        line = f'  {mark} {label:<34} {ratio:.2f}'
-        if note:
-            line += f'  {note}'
-        print(line)
+        mark = {'FOUND': 'ok  ', 'PARTIAL': 'HMM ',
+                'MISSING': 'MISS', 'SKIP': '--  '}[verdict]
+        print(f'  {mark} {label:<30} {ratio:.2f}  {note}')
 
     os.makedirs(os.path.dirname(REPORT), exist_ok=True)
     with open(REPORT, 'w', encoding='utf-8') as fh:
-        json.dump(results, fh, ensure_ascii=False, indent=2)
+        json.dump(report, fh, ensure_ascii=False, indent=2)
 
     print()
     print('-' * width)
-    print(f'  {counts["PASS"]} pass   {counts["REVIEW"]} review   '
-          f'{counts["FAIL"]} fail   {counts["ERROR"]} error')
-    print(f'  {fetched} page(s) fetched, rest from cache')
+    print(f'  {counts["FOUND"]} found   {counts["PARTIAL"]} partial   '
+          f'{counts["MISSING"]} missing   {counts["SKIP"]} skipped')
     print(f'  report: {REPORT}')
     print()
-    print('  A PASS means the stored Arabic is on the cited page. It says')
-    print('  NOTHING about the grade, the narrator, or the translation.')
+    print('  FOUND = the stored Arabic is somewhere in that collection. It says')
+    print('  NOTHING about the grade or the narrator, and the mirror is a')
+    print('  third-party scrape - confirm against sunnah.com before setting')
+    print('  matn_verified_at. MISSING = read it yourself; it may be our text,')
+    print('  or a gap in the mirror.')
     print('-' * width)
 
-    return 1 if counts['FAIL'] or counts['ERROR'] else 0
+    return 0
 
 
 if __name__ == '__main__':
