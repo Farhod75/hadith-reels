@@ -56,8 +56,15 @@ extracting a 480p frame and regenerating at 4K in Nano Banana Pro (see P103).
 
 ## Mascot rotation
 
-Alternate by hadith: boy → girl → boy. Voice follows the mascot (P104), so the
-mascot choice determines the voice in every language.
+**Full rotation, in order:** adults → kids (boy) → adults → kids (girl) → repeat.
+
+Adults and kids alternate set by set; within the kids lane the mascot alternates
+too. Voice follows the mascot (P104), so the mascot choice determines the voice
+in every language.
+
+Check the tracker's last two sets rather than counting from memory — the Mascot
+stills table records which lamb each set used, and the Active reels table shows
+the style.
 
 | | girl lamb (female) | boy lamb (male) |
 |---|---|---|
@@ -164,7 +171,8 @@ Repeat 1–13 per language. EN → RU → UZ → TJ.
 1. `/admin`, switch Language. ⚠ **Re-search and re-select the hadith** — the
    language switch deselects it (P108), and generating without re-selecting
    ships the previous language's caption.
-2. Mascot: alternate per hadith, not per language. Check the Mascot stills table
+2. Mascot: set by the rotation above, not per language — all four languages of a
+   set use the same lamb. Check the Mascot stills table
    in the tracker for which lamb the last set used.
 3. **Generate** → read all four blocks (S/M/H/C) before anything else.
 4. Review against the recurring-defect list below. Read every line; the linter
@@ -405,7 +413,7 @@ language versions. Generate once, reuse across the set.
   the agent fleet as "deferred". Both are stale; the doc is a pre-POC plan for a
   lane that has since shipped 25 reels.
 
-  
+
 # PART 2 — ADULTS REELS (older; verify before relying on)
 
 Not re-verified in the 2026-08 sessions. The steps below reflect the last known
