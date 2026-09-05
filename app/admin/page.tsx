@@ -7,6 +7,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { buildTags } from '@/lib/tags'
+import { buildRef } from '@/lib/refs'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
 type Style  = 'adults' | 'kids'
@@ -323,12 +324,15 @@ export default function AdminPage() {
       }
       const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
       const hadithText = selected.text_display || selected.text_english
-      const ref = `${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}`
+      // P150: localised collection with the Latin name kept in parentheses —
+      // the citation has to stay verifiable, and some readers read only their
+      // own language.
+      const ref = buildRef(selected.collection, selected.hadith_number, selected.narrator, lang)
       setCaption(
         `${data.title}\n\n` +
         `«${hadithText}»\n\n` +
         `${data.moral}\n\n` +
-        `📖 ${ref}, ${selected.narrator}\n` +
+        `📖 ${ref}\n` +
         `🔍 ${l10n.verify}: hadithverifier.com\n\n` +
         `${tags} ${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''} ${l10n.lang}`
       )
