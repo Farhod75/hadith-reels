@@ -6,6 +6,7 @@
 // Step 4: Render + Publish
 
 import { useState, useEffect, useRef } from 'react'
+import { buildTags } from '@/lib/tags'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
 type Style  = 'adults' | 'kids'
@@ -303,11 +304,13 @@ export default function AdminPage() {
       // dating content; #hellfire skews to metal/gaming. Sourced from the hadith
       // library, so filter at caption time rather than editing the library.
       const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'death', 'women', 'men']
-      const tags = (selected.tags || [])
-        .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
-        .slice(0, 6)
-        .map(t => `#${t}`)
-        .join(' ')
+      // P150: emit BOTH the localised and English form of each topic tag —
+      // two discovery paths, and hashtags cost nothing. The operator searches
+      // in his own language first and so does the audience.
+      const tags = buildTags(
+        (selected.tags || []).filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase())).slice(0, 6),
+        lang
+      )
       // P150: verify line and hashtags were hardcoded English and appended to
       // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
       // they come from the library's `tags` column and travel across languages.
