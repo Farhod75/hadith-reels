@@ -308,7 +308,17 @@ export default function AdminPage() {
         .slice(0, 6)
         .map(t => `#${t}`)
         .join(' ')
-      const langLabel = LANGS.find(l => l.code === lang)?.label || 'English'
+      // P150: verify line and hashtags were hardcoded English and appended to
+      // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
+      // they come from the library's `tags` column and travel across languages.
+      const CAPTION_L10N: Record<string, { verify: string; tags: string; kids: string; lang: string }> = {
+        en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english' },
+        ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский' },
+        uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча' },
+        tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ' },
+        ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية' },
+      }
+      const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
       const hadithText = selected.text_display || selected.text_english
       const ref = `${selected.collection}${selected.hadith_number ? ` #${selected.hadith_number}` : ''}`
       setCaption(
@@ -316,8 +326,8 @@ export default function AdminPage() {
         `«${hadithText}»\n\n` +
         `${data.moral}\n\n` +
         `📖 ${ref}, ${selected.narrator}\n` +
-        `🔍 Verify: hadithverifier.com\n\n` +
-        `${tags} #hadith #islamic #authentic${style === 'kids' ? ' #kids' : ''} #${langLabel.toLowerCase()}`
+        `🔍 ${l10n.verify}: hadithverifier.com\n\n` +
+        `${tags} ${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''} ${l10n.lang}`
       )
       setStep('preview')
     } catch (e: any) { setGenError(e.message || 'Generation failed') }
