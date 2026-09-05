@@ -69,15 +69,20 @@ ALLOWED_RABB = {
 }
 
 # P111 / P105: appeals to unnamed scholarly authority.
+# P111 / P105: appeals to unnamed scholarly authority.
+# P149: the EN patterns required a verb from a fixed list IMMEDIATELY after
+# "scholars". R062 published with "scholars have suggested" — `suggested` was
+# not in the list, and `have` sat between noun and verb, so the pattern could
+# not match on two counts. RU caught the identical phrase because its pattern
+# matches the bare noun. Every language now matches the NOUN; a named authority
+# is the exception, and naming one means the noun is not standing alone.
 UNNAMED_AUTHORITY = {
-    'en': [r'\bscholars\s+(say|explain|teach|hold|note|agree)',
-           r'\bthe\s+ulama\b', r'\bscholars\s+of\s+hadith\b',
-           r'\bit\s+is\s+said\s+that\b', r'\bsome\s+scholars\b'],
-    'ru': [r'\bУчён?ые\b', r'\bучён?ые\s+(говорят|объясняют|считают|пишут)',
-           r'\bуламо\b', r'\bбогословы\b'],
-    'uz': [r'\bУламолар\b', r'\bолимлар\s+(айтади|тушунтир|дейди)',
-           r'\bуламо\b'],
-    'tj': [r'\bОлимон\b', r'\bуламо\b', r'\bолимон\s+(мегӯянд|шарҳ)'],
+    'en': [r'\bscholars\b', r'\bthe\s+ulama\b', r'\bit\s+is\s+said\s+that\b',
+           r'\bsome\s+say\b', r'\bmany\s+believe\b'],
+    'ru': [r'\bУчён?ые\b', r'\bучён?ые\b', r'\bуламо\b', r'\bбогословы\b',
+           r'\bнекоторые\s+говорят\b'],
+    'uz': [r'\bУламолар\b', r'\bуламо\b', r'\bолимлар\b'],
+    'tj': [r'\bОлимон\b', r'\bолимон\b', r'\bуламо\b'],
     'ar': [r'العلماء'],
 }
 

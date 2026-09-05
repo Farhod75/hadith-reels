@@ -4578,3 +4578,103 @@ miss — a name like `hadith_number` promises identity it cannot deliver.
 P145
 **Commit:** 031d5a8
 **Status:** DOCUMENTED — admin selection and query discipline still to fix
+
+## ════════════════════════════════════════════════════════
+## PATTERN 148: A real filename used as a placeholder
+## ════════════════════════════════════════════════════════
+**ID:** P148
+**Type:** Ergonomics — a template that reads as filled in
+**Files:** split-narration.py
+**Commit:** <this commit>
+
+**Symptom:** `split-narration.py` prints a ready-to-run block for turning each
+chunk into a talking clip. Its first line was:
+
+    $img = "assets\mascot\lamb-boy-mosque-night-v3.png"   # <- pick the mascot scene
+
+The code comment above it reads "user fills in the mascot image", so a
+placeholder was intended. A REAL, VALID filename was used as that placeholder,
+with the instruction to change it sitting beside it as a comment.
+
+**It fired three times in one session.** The Bukhari #574 set is the GIRL
+mascot. Every language that overran the 28s chunk cap — RU, UZ and TJ — routed
+through this script, and each time the printed block would have generated the
+boy lamb had it been pasted as printed. Three reels, wrong mascot, on a set
+whose whole visual identity is the mascot.
+
+**The resolution was wrong too:** `--resolution 480p`, from the POC. Every
+shipped kids reel is 720p. So the block would have produced the wrong character
+at half the resolution, and both values look deliberate.
+
+**Why a comment did not save it.** A placeholder that is syntactically valid
+and semantically plausible does not read as a placeholder. It reads as a
+default someone chose. The comment competes with the value, and the value wins,
+because the value is what runs.
+
+**Fix:** `<MASCOT>` and `<NASHEED>` — placeholders that cannot execute — with
+the real options listed in the comment rather than one of them promoted to the
+line itself. Default resolution corrected to 720p. `-Nasheed` added to the
+printed render command, since omitting it hands the choice to the random picker
+that drew an ocean-ambience track on R044 and an adults-lane bed on R029/R030.
+
+**Rule:** a placeholder must be impossible to run. If a template can be pasted
+unedited and will work — just wrongly — it will be pasted unedited. The failure
+is silent, produces a plausible artefact, and is caught only by someone noticing
+the wrong face in a finished video.
+
+**Related:** P118 (a comment asserting what its value was not), P136 (a message
+wider than its check)
+
+**Status:** FIXED — placeholders now fail loudly
+
+## ════════════════════════════════════════════════════════
+## PATTERN 149: A rule enforced in one language and not another
+## ════════════════════════════════════════════════════════
+**ID:** P149
+**Type:** Content check — the same rule, four implementations, one lax
+**Files:** scripts/lint-content.py
+**Commit:** <this commit>
+
+**Symptom:** the RU leg of Bukhari #574 failed the linter on «учёные
+предполагали». The EN leg of the SAME SET, carrying the identical phrase
+"though scholars have suggested", passed clean — and shipped as R062 to four
+platforms.
+
+**Cause, and it is two independent failures in one pattern:**
+
+    'en': [r'\bscholars\s+(say|explain|teach|hold|note|agree)', ...]
+
+  1. `suggested` was not in the verb list.
+  2. `have` sits between the noun and the verb, so `\bscholars\s+(verb)` could
+     not match even if `suggested` had been listed.
+
+RU caught it because its pattern matches the BARE NOUN — `\bУчён?ые\b` — with
+no verb requirement. Same rule, stricter implementation, and the difference was
+invisible until one phrase went through both.
+
+**Fix:** every language now matches the noun. A correct attribution names
+someone — "Ibn Hajar in Fath al-Bari" — and does not use the word *scholars*,
+so real citations still pass. That is what the corrected RU, UZ and TJ blocks
+in this set do.
+
+**Proof:** the exact published R062 sentence now FAILS `unnamed-authority`.
+
+**The wider point.** A rule with a per-language pattern table has four chances
+to be wrong and no mechanism to notice. The verb-list approach was
+enumeration - it can only catch what someone thought to list, and the failure
+is silent. Matching the noun inverts that: it catches everything and admits
+the exception by construction.
+
+**Not corrected in R062.** The published phrase is honest — scholars have
+suggested this, and the reel claims nothing more. The rule exists to stop
+FABRICATED authority; this was a rule the linter should have enforced, not a
+false claim. RU, UZ and TJ in the same set name Ibn Hajar.
+
+**Rule:** when the same rule is implemented per language, the strictest
+implementation is the specification and the others are bugs. Check them against
+each other, not each against its own intent.
+
+**Related:** P111/P105 (the rule), P139 (the RU divine-name case check, added
+because a rule validated identity but not form)
+
+**Status:** FIXED — all five languages match the noun

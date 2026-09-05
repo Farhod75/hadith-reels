@@ -170,15 +170,21 @@ def main():
     # print a ready next-step block (user fills in the mascot image)
     mp4_clips = ",".join(f"{args.base}-clip{i+1:02d}.mp4" for i in range(len(made)))
     print("\n--- NEXT: generate a talking clip per chunk, then render ---")
-    print('  $img   = "assets\\mascot\\lamb-boy-mosque-night-v3.png"   # <- pick the mascot scene')
+    # P148: this was a REAL filename standing in for a placeholder -
+    # lamb-boy-mosque-night-v3.png with "# <- pick the mascot scene" beside it.
+    # It reads as filled in, so it gets pasted. On the Bukhari #574 set it
+    # would have shipped the BOY mascot on three girl-lane reels. A placeholder
+    # must be impossible to run.
+    print('  $img   = "assets\\mascot\\<MASCOT>.png"   # boy: lamb-boy-mosque-night-v3 | girl: lamb-girl-garden-day-v2')
     print(f'  $chunks = Get-ChildItem "{args.outdir}\\{args.base}-clip*.mp3" | Sort-Object Name')
     print('  foreach ($c in $chunks) {')
     print('    $out = $c.FullName -replace "\\.mp3$",".mp4"')
-    print('    python generate-talking-clip.py --image $img --audio $c.FullName --out $out --resolution 480p')
+    # P148: 480p was the POC resolution and every shipped kids reel is 720p.
+    print('    python generate-talking-clip.py --image $img --audio $c.FullName --out $out --resolution 720p')
     print('  }')
     lang = args.base.split("-")[1] if len(args.base.split("-")) > 1 else "en"
     slug = "-".join(args.base.split("-")[2:]) if len(args.base.split("-")) > 2 else "slug"
-    print(f'  .\\render-mascot-reel.ps1 -Lang {lang} -Slug {slug} -Clips {mp4_clips} -Open')
+    print(f'  .\\render-mascot-reel.ps1 -Lang {lang} -Slug {slug} -Clips {mp4_clips} -Nasheed <NASHEED>.mp3')
 
 
 if __name__ == "__main__":
