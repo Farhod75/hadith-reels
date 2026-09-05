@@ -4683,3 +4683,73 @@ each other, not each against its own intent.
 because a rule validated identity but not form)
 **Commit:** 55a4db8
 **Status:** FIXED — all five languages match the noun
+
+## ════════════════════════════════════════════════════════
+## PATTERN 150: Twenty reels of hand-fixing a two-line defect
+## ════════════════════════════════════════════════════════
+**ID:** P150
+**Type:** Localisation — text the model never saw, corrected downstream instead
+**Files:** app/admin/page.tsx, lib/tags.ts (new), lib/refs.ts (new)
+**Commit:** 14dcb36
+
+**Symptom:** every RU, UZ and TJ caption came out with English hashtags, an
+English "Verify:" label and a Latin collection name, appended to a Cyrillic
+body. The assistant corrected them by hand on every language of every set —
+roughly twenty reels, logged as "caption in English" nine or ten times in the
+tracker as though it were a generation defect.
+
+**It was never a generation defect.** The prompt asks for `caption_intro`; the
+reference line, verify label and hashtags are assembled in `app/admin/page.tsx`
+AFTER the model returns. Hardcoded, English, unreachable by any prompt change:
+
+    `🔍 Verify: hadithverifier.com\n\n` +
+    `${tags} #hadith #islamic #authentic${style === 'kids' ? ' #kids' : ''} #${langLabel.toLowerCase()}`
+
+Twenty corrections were applied to the symptom without anyone reading the line
+that produced it. Every one of those was a downstream patch on a defect whose
+source was three lines of TypeScript.
+
+**Why both languages ship, not one.** The operator, a Uzbek speaker, put it
+plainly: he searches in his own language first, and so does the audience — an
+Uzbek speaker looking for hadith content searches «ҳадис», not #hadith. But
+hashtags are free and each is a separate discovery path, so dropping the
+English set would cost the global audience for nothing. The caption now emits
+both forms of every topic tag, collapsing to one when lang is English.
+
+**The tag vocabulary had to be deduplicated before it could be translated.**
+The library's `tags` column held ~100 values with heavy overlap — prayer/salah,
+charity/sadaqah/giving, knowledge/ilm/learning/education, forgiveness/
+repentance/tawbah, blessing/blessings, good deeds/good-deeds, judgment-day/
+qiyamah. Translating those separately would have multiplied the mess by four.
+`lib/tags.ts` maps raw tags onto 56 canonical concepts, each carrying its four
+forms.
+
+**A third of them are not translations.** salah, dua, sadaqah, iman, sabr,
+shukr, taqwa, tawbah, ilm, jannah, akhirah, ibadah, dhikr, barakah, deen are
+Arabic loanwords that already exist in Russian, Uzbek and Tajik Islamic
+vocabulary. They are transliterated — намоз, дуо, садақа, иймон, сабр — and
+they are the terms the audience actually uses.
+
+**The reference line keeps BOTH forms of the collection and one of the
+narrator.** Collection plus number is the CITATION — what someone types to
+verify the hadith independently — so the Latin form has to survive. The
+narrator is not part of that lookup, so it is localised only and the line stays
+readable:
+
+    📖 Ҷомеъи Тирмизӣ (Jami at-Tirmidhi) №1956, Абӯзарр
+
+`№` rather than `#`, which is the numeral sign those languages use.
+
+**Unmapped values fall back to English rather than vanishing.** A new tag,
+collection or narrator appearing in the library should look wrong in a caption,
+not silently disappear from it.
+
+**Rule:** when the same correction is made by hand more than twice, stop making
+it and find where the text comes from. Nine tracker entries recorded this
+defect as a property of the generation. It was a hardcoded string, and reading
+one function would have found it at any point in the preceding month.
+
+**Related:** P106 (the tag blocklist, in the same assembly), P111, P139
+
+**Status:** FIXED — verify label, hashtags and reference line all localised;
+Latin citation preserved
