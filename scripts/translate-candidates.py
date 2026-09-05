@@ -206,6 +206,9 @@ def main():
                     help='retranslate fields that already have text')
     ap.add_argument('--commit', action='store_true',
                     help='write to the DB. Without this, nothing is written.')
+    ap.add_argument('--library', action='store_true',
+                    help='translate rows in hadith_library instead of candidates '
+                    '(P151: for rows whose matn was corrected after promotion)')
     args = ap.parse_args()
 
     langs = args.lang or list(TARGETS)
@@ -221,16 +224,30 @@ def main():
         print('FAILED: need ANTHROPIC_API_KEY in .env.local')
         return 2
 
-    params = {'select': '*', 'status': 'eq.deduped',
-              'limit': str(args.limit), 'order': 'created_at.asc'}
-    if args.row:
-        params['hadith_number'] = f'eq.{args.row}'
-        params.pop('status')
-
+        # P151: a corrected matn needs re-translating, but the row is already in
+    # hadith_library and will never appear in hadith_candidates again. Six matn
+    # corrections on 2026-09-04 left three library rows with null translations
+    # and no supported way to refill them.
+    table = 'hadith_library' if args.library else 'hadith_candidates'
+    if args.library:
+        # No status column in the library. Default to rows whose translations
+        # are missing, which is exactly the post-correction case.
+        params = {'select': '*', 'limit': str(args.limit),
+                  'order': 'hadith_number.asc'}
+        if args.row:
+            params['hadith_number'] = f'eq.{args.row}'
+        else:
+            params['text_russian'] = 'is.null'
+    else:
+        params = {'select': '*', 'status': 'eq.deduped',
+                  'limit': str(args.limit), 'order': 'created_at.asc'}
+        if args.row:
+            params['hadith_number'] = f'eq.{args.row}'
+            params.pop('status')
     try:
-        rows = sb_get(base, key, 'hadith_candidates', params)
+        rows = sb_get(base, key, table, params)
     except Exception as e:  # noqa: BLE001
-        print(f'FAILED reading hadith_candidates: {e}')
+        print(f'FAILED reading {table}: {e}')
         return 2
 
     if not rows:
@@ -282,19 +299,30 @@ def main():
         if not proposed:
             continue
 
-        results.append({'candidate_id': row.get('candidate_id'), 'ref': ref,
+        results.append({'candidate_id': row.get('candidate_id') or row.get('id'), 'ref': ref,
                         'text_arabic': arabic, 'proposed': proposed,
                         'translation_meta': meta})
 
         if args.commit:
             payload = dict(proposed)
             payload['translation_meta'] = meta
-            payload['status'] = 'translated'
-            payload['updated_at'] = now_iso()
+            if args.library:
+                # P151: a re-translation is UNVERIFIED until Stage 3 passes.
+                # Clearing matn_verified_at prevents a corrected row carrying a
+                # verification stamp for translations nobody has checked - the
+                # exact mistake made on #2616 on 2026-09-04.
+                payload.pop('translation_meta', None)   # not a library column
+                payload['matn_verified_at'] = None
+                match = {'id': f'eq.{row["id"]}'}
+                done = 'written, matn_verified_at cleared - run Stage 3'
+            else:
+                payload['status'] = 'translated'
+                payload['updated_at'] = now_iso()
+                match = {'candidate_id': f'eq.{row["candidate_id"]}'}
+                done = 'written, status=translated'
             try:
-                sb_patch(base, key, 'hadith_candidates',
-                         {'candidate_id': f'eq.{row["candidate_id"]}'}, payload)
-                print('    -> written, status=translated')
+                sb_patch(base, key, table, match, payload)
+                print(f'    -> {done}')
             except Exception as e:  # noqa: BLE001
                 print(f'    -> WRITE FAILED: {e}')
 
@@ -305,8 +333,12 @@ def main():
     print('\n' + '-' * width)
     print(f'  {len(results)} candidate(s) translated -> {OUT_PATH}')
     if args.commit:
-        print('  WRITTEN. status=translated. Uzbek Latin is still empty -')
-        print('  derive it with uzbek-translit.ts, then Stage 3 verifies.')
+        if args.library:
+            print('  WRITTEN to hadith_library. matn_verified_at CLEARED -')
+            print('  these translations are unverified until Stage 3 passes.')
+        else:
+            print('  WRITTEN. status=translated. Uzbek Latin is still empty -')
+            print('  derive it with uzbek-translit.ts, then Stage 3 verifies.')
     else:
         print('  DRY RUN - nothing written. Read the JSON, then --commit.')
     print('  A translation is machine output. The human gate is Stage 4.')

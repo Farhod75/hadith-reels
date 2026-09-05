@@ -4753,3 +4753,75 @@ one function would have found it at any point in the preceding month.
 
 **Status:** FIXED — verify label, hashtags and reference line all localised;
 Latin citation preserved
+
+## ════════════════════════════════════════════════════════
+## PATTERN 151: A corrected matn had nowhere to go
+## ════════════════════════════════════════════════════════
+**ID:** P151
+**Type:** Pipeline — a stage that only ran forwards
+**Files:** scripts/translate-candidates.py, scripts/verify-candidates.py
+**Commit:** <this commit>
+
+**Symptom:** six matn corrections on 2026-09-04 left three library rows with
+null translations and no supported way to refill them. Stages 2 and 3 read
+`hadith_candidates` at `status='deduped'` and `status='translated'`. A promoted
+row never re-enters that flow, so a row whose Arabic was corrected after
+promotion could be translated by hand or not at all.
+
+The pipeline was built for material moving one direction. Corrections move the
+other way, and nothing accounted for that.
+
+**Fix:** `--library` on both scripts. The table was already a parameter on
+`sb_get` and `sb_patch` — it was hardcoded only at the call sites. Selection
+differs by necessity: candidates filter on `status`, library rows filter on
+`text_russian is null` for Stage 2 and `matn_verified_at is null` for Stage 3.
+
+**Stage 3 is REPORT-ONLY on library rows, and that is deliberate.**
+`matn_verified_at` has meant "a human read this against a source" for every row
+carrying it — eleven rows, all read by hand. Letting a model pass set it would
+silently change what the column means and make the hand-read rows
+indistinguishable from machine-passed ones. `hadith_library` also has no
+`verify_a` / `verify_b` / `verify_agreement` / `status` / `updated_at` columns,
+so a write would 400 on five of them. The human sets the timestamp, which is
+what the script's own footer already said: the human gate is Stage 4.
+
+**Stage 2 CLEARS `matn_verified_at` when it writes to a library row.** A
+re-translation is unverified until Stage 3 runs. Without this, a corrected row
+would carry a verification stamp for translations nobody had checked — the
+mistake made on #2616 on 2026-09-04, where an UPDATE scoped by `hadith_number`
+hit two rows and stamped one that had never been read.
+
+**A/B EARNED ITS KEEP ON THE FIRST REAL RUN.** #1899's UZ translation rendered
+singular الوالد as «ота-она», parents dual — the exact drift corrected in the
+DB that morning, reappearing in a fresh machine translation. Both passes caught
+it independently at high confidence, neither seeing the other's output. That is
+the mirror of the defect P120 PLANTED to probe pass B's competence, arising
+naturally, in a language the probe covered less. The design assumption held.
+
+It also caught a lost verb parallel in TJ #2616 (تُطْفِئُ used for both sin and
+fire, flattened in one clause), a dropped سنامه in EN, and an added «(модарат)»
+gloss plus a dual-to-plural shift in TJ #3104.
+
+**Two objections overruled, recorded so they are not re-litigated.** B holds
+الوالد means "parent" not "father"; overruled, because the singular number is
+the more consequential fidelity point and al-Munawi extends it to the mother a
+fortiori. B read TJ «қуллаи кӯҳони он» as "peak of its mountain"; overruled,
+кӯҳон is the camel's hump.
+
+**A failed API call was reported as a disagreement.** #3104's UZ pass B returned
+`SSL: SSLV3_ALERT_BAD_RECORD_MAC` and the row was marked `disagree` — a network
+error adjudicated as a verdict. It cleared on retry. NOT FIXED: an `error` from
+either pass should mark the row `incomplete` and queue a retry, never contribute
+to agreement. Logged here rather than patched, because it needs a change to how
+verdicts are combined.
+
+**Rule:** a pipeline that only runs forwards has no answer for a correction. Ask
+what happens when something already through the gates turns out to be wrong —
+the answer should not be "do it by hand."
+
+**Related:** P120 (pass-B competence, probed with planted defects), P147
+(`hadith_number` is not unique — the UPDATE that stamped an unverified row),
+P142
+
+**Status:** FIXED — both stages take `--library`; three rows re-translated,
+verified and stamped. Error-as-verdict still open.

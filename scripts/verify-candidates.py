@@ -232,6 +232,9 @@ def main():
     ap.add_argument('--limit', type=int, default=10, help='batch size (D5)')
     ap.add_argument('--commit', action='store_true',
                     help='write verdicts and status. Without this, nothing is written.')
+    ap.add_argument('--library', action='store_true',
+                    help='verify rows in hadith_library instead of candidates '
+                    '(P151: for rows re-translated after a matn correction)')
     args = ap.parse_args()
 
     env = load_env()
@@ -247,16 +250,26 @@ def main():
         print(f'FAILED: missing in .env.local: {", ".join(missing)}')
         return 2
 
-    params = {'select': '*', 'status': 'eq.translated',
-              'limit': str(args.limit), 'order': 'created_at.asc'}
-    if args.row:
-        params['hadith_number'] = f'eq.{args.row}'
-        params.pop('status')
-
+        # P151: a matn correction re-translates a row that is already in
+    # hadith_library and will never re-enter the candidate flow.
+    table = 'hadith_library' if args.library else 'hadith_candidates'
+    if args.library:
+        params = {'select': '*', 'limit': str(args.limit),
+                  'order': 'hadith_number.asc'}
+        if args.row:
+            params['hadith_number'] = f'eq.{args.row}'
+        else:
+            params['matn_verified_at'] = 'is.null'
+    else:
+        params = {'select': '*', 'status': 'eq.translated',
+                  'limit': str(args.limit), 'order': 'created_at.asc'}
+        if args.row:
+            params['hadith_number'] = f'eq.{args.row}'
+            params.pop('status')
     try:
-        rows = sb_get(base, sb_key, 'hadith_candidates', params)
+        rows = sb_get(base, sb_key, table, params)
     except Exception as e:  # noqa: BLE001
-        print(f'FAILED reading hadith_candidates: {e}')
+        print(f'FAILED reading {table}: {e}')
         return 2
 
     if not rows:
@@ -335,12 +348,26 @@ def main():
                 'status': status,
                 'updated_at': now_iso(),
             }
-            try:
-                sb_patch(base, sb_key, 'hadith_candidates',
-                         {'candidate_id': f'eq.{row["candidate_id"]}'}, payload)
-                print(f'    -> written, status={status}')
-            except Exception as e:  # noqa: BLE001
-                print(f'    -> WRITE FAILED: {e}')
+            if args.library:
+                # P151: REPORT ONLY on library rows. Deliberate, not an
+                # omission. matn_verified_at has meant "a human read this
+                # against a source" for every row carrying it; letting a model
+                # pass set it would silently change what the column means and
+                # make the hand-read rows indistinguishable from machine-passed
+                # ones. hadith_library also has no verify_a / verify_b /
+                # verify_agreement / status / updated_at columns - a write here
+                # would 400 on all five. The human sets the timestamp, which is
+                # what this script's own footer says: the human gate is Stage 4.
+                print(f'    -> agreement={overall}, NOT written '
+                      f'(library rows are report-only; set matn_verified_at '
+                      f'by hand after reading)')
+            else:
+                try:
+                    sb_patch(base, sb_key, table,
+                             {'candidate_id': f'eq.{row["candidate_id"]}'}, payload)
+                    print(f'    -> written, status={status}')
+                except Exception as e:  # noqa: BLE001
+                    print(f'    -> WRITE FAILED: {e}')
 
     os.makedirs('out', exist_ok=True)
     with open(OUT_PATH, 'w', encoding='utf-8') as fh:
