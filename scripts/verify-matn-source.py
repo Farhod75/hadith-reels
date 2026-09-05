@@ -97,6 +97,8 @@ PARTIAL_COVERAGE = {
 
 FOUND_RATIO = 0.90
 PARTIAL_RATIO = 0.60
+# P146: a high gapped score with no contiguous run is coincidence, not a match.
+MIN_CONTIGUOUS = 0.30
 
 
 # ---------------------------------------------------------------- env
@@ -229,19 +231,43 @@ def load_collection(mirror, filename):
 
 
 def best_match(needle_words, entries):
-    """Best entry by gapped recall, reporting both measures for it.
+    """Best entry, ranked on (contiguous, gapped) in that order.
 
-    Ranked on gapped rather than contiguous because an excerpt with internal
-    omissions is still the right entry - see gapped_recall above.
+    P146. Ranking on gapped alone selected the WRONG ENTRY, not merely a noisy
+    score. Tirmidhi #3373 (من لم يسأل الله يغضب عليه) was matched to mirror
+    entry 1104 - a hadith about marriage without a guardian - while the correct
+    entry 3457 sat right there. Two effects compounded:
+
+      1. Gapped recall rises with HAYSTACK LENGTH. A long entry gives more
+         chances for six common words (من، لا، الله، عليه) to appear in order
+         by coincidence. The particle control that cleared this measure was run
+         against a SHORT entry, so it could not surface that.
+      2. Ties went to file order. `if g > best_g` keeps the first of equal
+         scores, and 1104 precedes 3457.
+
+    Contiguous is the discriminating measure - a real run of consecutive words
+    is hard to hit by accident:
+
+                                  contiguous   gapped
+        #3373 vs correct 3457          0.667    0.833
+        #3373 vs spurious 1104         0.333    0.833   <- tie on gapped
+        #2999 vs correct entry         0.467    1.000
+
+    So rank on contiguous, break ties on gapped, and let gapped classify the
+    verdict afterwards. #2999 still reads FOUND-as-excerpt; #3373 and #4811 now
+    point at the right entries.
     """
-    best_g, best_c, best_id = 0.0, 0.0, None
+    best_key, best_g, best_c, best_id = (-1.0, -1.0), 0.0, 0.0, None
     for e in entries:
+        c = coverage(needle_words, e['words'])
+        # Cheap skip: gapped can never be below contiguous, but an entry that
+        # cannot beat the current contiguous score cannot win on this key.
+        if (c, 1.0) < best_key:
+            continue
         g = gapped_recall(needle_words, e['words'])
-        if g > best_g:
-            best_g = g
-            best_c = coverage(needle_words, e['words'])
-            best_id = e['idInBook']
-            if best_g >= 0.999:
+        if (c, g) > best_key:
+            best_key, best_g, best_c, best_id = (c, g), g, c, e['idInBook']
+            if best_c >= 0.999:
                 break
     return best_g, best_c, best_id
 
@@ -319,11 +345,17 @@ def main():
             else:
                 needle = normalise_arabic(stored).split()
                 ratio, contig, mid = best_match(needle, entries)
-                if ratio >= FOUND_RATIO:
+                if ratio >= FOUND_RATIO and contig >= MIN_CONTIGUOUS:
                     verdict = 'FOUND'
                     note = f'mirror id {mid}'
                     if contig < PARTIAL_RATIO:
                         note += f' (excerpt: contiguous {contig:.2f})'
+                elif ratio >= FOUND_RATIO:
+                    # High gapped, almost no contiguous run: the coincidence
+                    # shape from P146. Never FOUND on that evidence alone.
+                    verdict = 'PARTIAL'
+                    note = (f'gapped {ratio:.2f} but contiguous only '
+                            f'{contig:.2f}, mirror id {mid} - read both')
                 elif ratio >= PARTIAL_RATIO:
                     verdict = 'PARTIAL'
                     note = f'partial, mirror id {mid} - read both'

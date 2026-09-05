@@ -4467,3 +4467,68 @@ is wrong), P136
 
 **Status:** WORKING — 65 rows screened to a 10-row reading list. Rows remain
 unverified until read; the mirror screens, it does not certify.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 146: A ranking change that picked the wrong hadith
+## ════════════════════════════════════════════════════════
+**ID:** P146
+**Type:** Measurement — a fix that broke the cases it was not tested against
+**Files:** scripts/verify-matn-source.py
+**Commit:** <this commit>
+
+**What P145 changed and why it was wrong.** Contiguous-run coverage
+under-scored legitimate excerpts, so gapped recall was added and the match was
+ranked on it. That fixed Muslim #2999. It also silently broke row selection.
+
+**Tirmidhi #3373** — «من لم يسأل الله يغضب عليه» — was matched to mirror entry
+**1104, a hadith about marriage without a guardian**, while the correct entry
+3457 sat in the same file. Abu Dawud #4811 matched entry 1906, Jabir's hajj
+narration. Neither contains a word of the stored matn.
+
+Not a noisy score. The WRONG ENTRY, reported with a confident number.
+
+**Two effects compounded:**
+
+  1. **Gapped recall rises with haystack length.** A long entry gives more
+     chances for six common words (من، لا، الله، عليه) to appear in order by
+     coincidence. Every stored matn that scored badly was short; every spurious
+     match was long.
+  2. **Ties went to file order.** `if g > best_g` keeps the FIRST of equal
+     scores. Both 1104 and 3457 scored 0.833, and 1104 comes first.
+
+**The particle control that cleared gapped recall could not have caught this.**
+It tested a short needle against a SHORT entry. The false-positive rate scales
+with the haystack, so the control was run in the one condition where the defect
+does not appear. A control that cannot fail is the P136 shape, applied to a
+measurement instead of a gate.
+
+**Fix:** rank on `(contiguous, gapped)` as a tuple — contiguous primary, gapped
+as tie-break — and refuse FOUND when contiguous is below 0.30 however high
+gapped runs. Contiguous is the discriminating measure; a run of consecutive
+words is hard to hit by accident.
+
+                                  contiguous   gapped
+      #3373 vs correct 3457            0.667    0.833
+      #3373 vs spurious 1104           0.333    0.833   <- tie, wrong winner
+      #2999 vs correct entry           0.467    1.000
+
+**Result:** 65 rows, 54 found, 8 partial, 3 missing — from 52/10/3. #3373 and
+#4811 now resolve to 3457 and 4813 at 1.00. No row dropped OUT of FOUND, so no
+coincidental match was hiding among the previous run's passes.
+
+**Two corrections found while chasing this**, both genuine wording defects the
+tool existed to surface:
+  - #3373 stored «من **لا** يسأل الله»; the narration reads «من **لم** يسأل».
+  - #4811 stored «من لا يشكر الناس لا يشكر الله»; Abu Dawud has the clauses
+    inverted — «لا يشكر الله من لا يشكر الناس».
+Same meaning, not the narration's wording. Both corrected.
+
+**Rule:** when a measure is changed to fix one case, re-run the cases it
+already handled. P145 shipped on the strength of a single improved result
+without checking what the change might displace — and it displaced correct
+answers, which is worse than the noise it removed.
+
+**Related:** P145 (the change this corrects), P138, P136
+
+**Status:** FIXED — reading list down to 8 rows, 3 MISSING are the mirror's
+documented Musnad Ahmad gap
