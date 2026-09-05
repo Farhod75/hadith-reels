@@ -4533,3 +4533,48 @@ answers, which is worse than the noise it removed.
 **Commit:** 6e1b801
 **Status:** FIXED — reading list down to 8 rows, 3 MISSING are the mirror's
 documented Musnad Ahmad gap
+
+## ════════════════════════════════════════════════════════
+## PATTERN 147: A key that identifies nothing
+## ════════════════════════════════════════════════════════
+**ID:** P147
+**Type:** Data model — a column treated as a primary key that was never unique
+**Files:** hadith_library, app/admin/page.tsx
+**Commit:** <this commit>
+
+**`hadith_number` does not uniquely identify a row, and code assumes it does.**
+
+Bukhari #1469 has two rows; Bukhari #6018 has two; Tirmidhi #2616 has two. None
+are errors — they are separate excerpts of multi-clause hadiths. #6018 alone
+carries three clauses (speak good or stay silent, honour the neighbour, honour
+the guest), and the library holds two of them.
+
+**It has caused two real failures:**
+
+  1. **A stale admin selection.** After #2318 was renumbered to 2616, the admin
+     still displayed `Selected: Al-Bayhaqi #2318` while the hadith card beside
+     it showed Muslim #82. The UI keys off a number that does not identify a
+     row, so it held a selection for a row that no longer existed. Caught only
+     because the mismatch was visible on screen. Same family as P108.
+
+  2. **A false verification, committed by the assistant.** An UPDATE written as
+     `where hadith_number in ('82','2616')` matched BOTH #2616 rows and set
+     matn_verified_at on the charity excerpt, which nobody had checked. That is
+     precisely the failure the column exists to prevent, committed an hour
+     after the non-uniqueness had been established in the same session.
+
+**Every query against this table must scope by `id`, or by
+`(collection, hadith_number)` and accept that it may still return more than
+one row.** `hadith_number` alone is a search term, never an identifier.
+
+**Not fixed by deduplication.** The duplicate rows are legitimate content. The
+defect is in what reads them.
+
+**Rule:** a column that looks like a key invites being used as one. If it is
+not unique, either make it unique or make the non-uniqueness impossible to
+miss — a name like `hadith_number` promises identity it cannot deliver.
+
+**Related:** P108 (language switch silently deselecting the hadith), P142,
+P145
+
+**Status:** DOCUMENTED — admin selection and query discipline still to fix
