@@ -4624,7 +4624,7 @@ the wrong face in a finished video.
 
 **Related:** P118 (a comment asserting what its value was not), P136 (a message
 wider than its check)
-
+**Commit:** 55a4db8
 **Status:** FIXED — placeholders now fail loudly
 
 ## ════════════════════════════════════════════════════════
@@ -4676,5 +4676,5 @@ each other, not each against its own intent.
 
 **Related:** P111/P105 (the rule), P139 (the RU divine-name case check, added
 because a rule validated identity but not form)
-
+**Commit:** 55a4db8
 **Status:** FIXED — all five languages match the noun
