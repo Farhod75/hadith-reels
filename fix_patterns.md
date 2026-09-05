@@ -4551,11 +4551,14 @@ the guest), and the library holds two of them.
 
 **It has caused two real failures:**
 
-  1. **A stale admin selection.** After #2318 was renumbered to 2616, the admin
-     still displayed `Selected: Al-Bayhaqi #2318` while the hadith card beside
-     it showed Muslim #82. The UI keys off a number that does not identify a
-     row, so it held a selection for a row that no longer existed. Caught only
-     because the mismatch was visible on screen. Same family as P108.
+  1. **A stale admin selection — RETRACTED 2026-09-05.** Originally recorded
+     here as a defect: after #2318 was renumbered to 2616, the admin displayed
+     `Selected: Al-Bayhaqi #2318` beside a card showing Muslim #82. The
+     operator identified the actual cause — the new hadith had not been
+     clicked, so the field was correctly showing the previous selection. The UI
+     was working. Recorded rather than removed, because the assistant reached
+     for a code defect on the strength of a screenshot without asking what the
+     operator had done.
 
   2. **A false verification, committed by the assistant.** An UPDATE written as
      `where hadith_number in ('82','2616')` matched BOTH #2616 rows and set
@@ -4577,7 +4580,9 @@ miss — a name like `hadith_number` promises identity it cannot deliver.
 **Related:** P108 (language switch silently deselecting the hadith), P142,
 P145
 **Commit:** 031d5a8
-**Status:** DOCUMENTED — admin selection and query discipline still to fix
+**Status:** DOCUMENTED — one real failure (the UPDATE), one retracted. Query
+discipline stands: scope by `id`, or by `(collection, hadith_number)` and
+expect more than one row.
 
 ## ════════════════════════════════════════════════════════
 ## PATTERN 148: A real filename used as a placeholder
