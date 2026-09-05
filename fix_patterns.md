@@ -4576,5 +4576,5 @@ miss — a name like `hadith_number` promises identity it cannot deliver.
 
 **Related:** P108 (language switch silently deselecting the hadith), P142,
 P145
-
+**Commit:** 031d5a8
 **Status:** DOCUMENTED — admin selection and query discipline still to fix
