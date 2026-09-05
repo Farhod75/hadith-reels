@@ -4822,6 +4822,6 @@ the answer should not be "do it by hand."
 **Related:** P120 (pass-B competence, probed with planted defects), P147
 (`hadith_number` is not unique — the UPDATE that stamped an unverified row),
 P142
-
+**Commit:** e7c3276
 **Status:** FIXED — both stages take `--library`; three rows re-translated,
 verified and stamped. Error-as-verdict still open.
