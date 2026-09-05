@@ -4379,3 +4379,91 @@ thinking plus text.
 **Commit:** 19c9d33
 
 **Status:** FIXED in generate-reel. Other routes' budgets not yet reviewed.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 145: Screening 65 rows when the source refuses to talk
+## ════════════════════════════════════════════════════════
+**ID:** P145
+**Type:** Verification — a check redesigned around a blocked dependency
+**Files:** scripts/verify-matn-source.py
+**Commit:** 28ed174
+
+**Starting position (P142).** Nothing verified matn against source, and two
+rows proved the failure mode: #2318 held a weak wording under a sound
+narration's narrator and number, #3104 held a munkar wording under an-Nasai's
+sound Mu'awiyah ibn Jahimah narration. Both had faithful translations of wrong
+Arabic. The check was written and immediately blocked: sunnah.com returns 403
+to scripted clients, browser-like headers refused identically, and the API key
+sits behind sunnah-com/api #3675 — a repo with access requests open since
+March. Dorar's API returns a Cloudflare challenge to the same client.
+
+**Waiting was not a plan.** Reworked to read a local clone of
+AhmedBaset/hadith-json — a scraped mirror of sunnah.com, 50,884 hadiths across
+the nine books. No key, no rate limit, no load on a donation-funded site.
+
+**The mirror numbers hadiths differently.** Bukhari 6446 is 6207 there. That
+looked like a blocker and was an improvement: instead of looking up a number,
+the check asks
+
+    does our stored Arabic appear ANYWHERE in the collection it claims?
+
+Both real defects answer NO — الصلاة عماد الدين is not in Tirmidhi,
+الجنة تحت أقدام الأمهات is not in an-Nasai. Both would have been caught.
+
+**First full run: 40 found, 16 partial, 9 missing.** Too much noise, and the
+noise had one cause.
+
+**Contiguous-run coverage under-scores a legitimate EXCERPT.** Muslim #2999
+stores the believer's-affair hadith with two phrases dropped — وليس ذاك لأحد
+إلا للمؤمن, and فكان خيرا له after each condition. Every word genuine, every
+word in order, but the omissions break the run, so it scored 0.47 and reported
+MISSING. It is published across eight reels (R042–R049) and is perfectly sound.
+
+A check that flags sound rows teaches the reader to skim it — P138's lesson,
+arriving from the other direction.
+
+**Fix: also compute gapped recall** — what fraction of the stored matn's words
+appear IN ORDER, gaps allowed, via `get_matching_blocks`. Rank on that, report
+both, and label a row whose contiguous score is low as an excerpt so the
+difference is visible rather than hidden.
+
+                                contiguous   gapped
+      #2999 elided, genuine          0.467    1.000
+      #2318 wrong wording            0.333    0.333
+      #2616 correct excerpt          1.000    1.000
+      common particles only          0.000    0.000
+
+**The particle control was the check on the check.** Arabic function words
+(من، في، الله، و) are everywhere, so a short matn could in principle score
+high by accident. It scores zero, because matching blocks require ORDER, not
+presence. Tested before shipping, because a measure that passes everything is
+the failure mode being fixed.
+
+**Second run: 52 found, 10 partial, 3 missing.** All three MISSING are Musnad
+Ahmad — the mirror's README states chapters 8-30 are absent from its source, so
+that is a known gap, not evidence. The mirror holds nothing against any row.
+
+**What this does NOT do, stated in the script's own output every run:**
+  - FOUND verifies the TEXT only. Not the grade, not the narrator. #3104 had a
+    correct grade and the wrong narrator and this check cannot see that.
+  - The mirror is a THIRD-PARTY SCRAPE. Nothing is marked matn_verified_at on
+    its say-so; a match narrows the field and a human confirms.
+  - MISSING means READ IT, never "it is wrong."
+
+**Found while running it, and worth its own entry eventually:** `hadith_number`
+does not uniquely identify a row. Bukhari #1469 and #6018 each have two rows —
+legitimate excerpts of multi-clause hadiths — and Tirmidhi #2616 gained a
+second when #2318 was renumbered onto an occupied number. An UPDATE written as
+`where hadith_number in ('82','2616')` then set matn_verified_at on a row
+nobody had verified. That is this column's exact failure mode, committed an
+hour after establishing the non-uniqueness.
+
+**Rule:** when a dependency refuses you, ask what question the blocked tool was
+really answering. "Is this text at that URL" became "is this text in that
+collection" — no key, no numbering to reconcile, and a better question.
+
+**Related:** P142 (the gap this fills), P138 (a warning that fires when nothing
+is wrong), P136
+
+**Status:** WORKING — 65 rows screened to a 10-row reading list. Rows remain
+unverified until read; the mirror screens, it does not certify.
