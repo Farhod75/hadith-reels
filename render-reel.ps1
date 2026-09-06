@@ -50,10 +50,94 @@ $ErrorActionPreference = 'Stop'
 function Run($exe, [string[]]$cmdArgs) {
   $prev = $ErrorActionPreference
   $ErrorActionPreference = 'Continue'
-  & $exe @cmdArgs 2>&1 | Out-Null
+  # P154: this was `2>&1 | Out-Null` - every ffmpeg error, in every step, was
+  # discarded. When the final merge started failing, nothing could say why,
+  # because the only thing that could was being thrown away. Captured now and
+  # printed ONLY on a non-zero exit: quiet when it works, loud when it does not.
+  $out = & $exe @cmdArgs 2>&1
   $code = $LASTEXITCODE
   $ErrorActionPreference = $prev
+  if ($code -ne 0) {
+    Write-Host "  --- $exe exit $code ---" -ForegroundColor DarkYellow
+    $out | Select-Object -Last 20 | ForEach-Object { Write-Host "  $_" -ForegroundColor DarkYellow }
+  }
   return $code
+}
+
+# --- SRT hygiene (P154) ------------------------------------------------------
+# Two problems, one place. A caption was once pasted into an open SRT tab in
+# VS Code and saved; libass then reported "Unable to open" and, because Run
+# discarded ffmpeg's stderr and the merge check only tested whether the output
+# EXISTED, three days of renders reported success while silently reusing the
+# previous file. And Whisper cuts at pauses, so a long sentence becomes one
+# 17-word cue that wraps to five lines and covers a third of the frame.
+function Assert-ValidSrt([string]$path) {
+  $first = (Get-Content $path -TotalCount 1)
+  if ($null -eq $first -or $first -notmatch '^\uFEFF?\d+\s*$') {
+    Write-Host "  first line: $first" -ForegroundColor Red
+    Die "$path is not a subtitle file - an SRT starts with a cue number. Delete it and re-run to regenerate."
+  }
+}
+
+function ConvertFrom-SrtTime([string]$t) {
+  $x = $t.Trim() -split '[:,]'
+  return [TimeSpan]::FromMilliseconds([int]$x[0]*3600000 + [int]$x[1]*60000 + [int]$x[2]*1000 + [int]$x[3])
+}
+
+function ConvertTo-SrtTime([TimeSpan]$ts) {
+  return ('{0:00}:{1:00}:{2:00},{3:000}' -f [int]$ts.TotalHours, $ts.Minutes, $ts.Seconds, $ts.Milliseconds)
+}
+
+# Splits at a punctuation boundary nearest the midpoint, falling back to the
+# midpoint itself. Timing divides by CHARACTER COUNT, not word count - words
+# differ enough in length that word-count splitting drifts audibly.
+function Split-Cue($start, $end, [string]$text, [int]$maxWords, [double]$minSec) {
+  $words = $text -split '\s+' | Where-Object { $_ }
+  $dur = ($end - $start).TotalSeconds
+  if ($words.Count -le $maxWords -or $dur -lt ($minSec * 2)) {
+    return ,([pscustomobject]@{ Start = $start; End = $end; Text = $text })
+  }
+  $mid = [int]($words.Count / 2)
+  $best = -1; $bestDist = [int]::MaxValue
+  for ($i = 0; $i -lt $words.Count - 1; $i++) {
+    if ($words[$i] -match '[,;:.!?]$') {
+      $d = [math]::Abs($i - $mid)
+      if ($d -lt $bestDist) { $bestDist = $d; $best = $i }
+    }
+  }
+  if ($best -lt 0) { $best = $mid - 1 }
+  $left  = ($words[0..$best] -join ' ')
+  $right = ($words[($best + 1)..($words.Count - 1)] -join ' ')
+  $ratio = $left.Length / [double]($left.Length + $right.Length)
+  $cut = $start.Add([TimeSpan]::FromSeconds($dur * $ratio))
+  return (@(Split-Cue $start $cut $left $maxWords $minSec) + @(Split-Cue $cut $end $right $maxWords $minSec))
+}
+
+function Split-LongCues([string]$path, [int]$maxWords = 10) {
+  Assert-ValidSrt $path
+  $raw = (Get-Content $path -Raw -Encoding UTF8).Trim()
+  $blocks = [regex]::Split($raw, '\r?\n\s*\r?\n') | Where-Object { $_ -match '\S' }
+  $out = @()
+  foreach ($b in $blocks) {
+    $lines = $b -split '\r?\n'
+    if ($lines.Count -lt 3) { continue }
+    $t = $lines[1] -split '-->'
+    $start = ConvertFrom-SrtTime $t[0]
+    $end   = ConvertFrom-SrtTime $t[1]
+    $text  = (($lines[2..($lines.Count - 1)]) -join ' ').Trim()
+    $out += Split-Cue $start $end $text $maxWords 0.8
+  }
+  $sb = New-Object System.Text.StringBuilder
+  for ($i = 0; $i -lt $out.Count; $i++) {
+    [void]$sb.AppendLine([string]($i + 1))
+    [void]$sb.AppendLine("$(ConvertTo-SrtTime $out[$i].Start) --> $(ConvertTo-SrtTime $out[$i].End)")
+    [void]$sb.AppendLine($out[$i].Text)
+    [void]$sb.AppendLine()
+  }
+  # No BOM: libass is happier without one and VS Code will not add it back
+  # unless someone saves over the file.
+  [System.IO.File]::WriteAllText((Resolve-Path $path).Path, $sb.ToString(), (New-Object System.Text.UTF8Encoding($false)))
+  return @{ Before = $blocks.Count; After = $out.Count }
 }
 
 # --- operate from the repo root (where this script lives) ---------------------
@@ -170,6 +254,17 @@ if ($useSubs) {
   if (Test-Path $srt) { Remove-Item $srt }  # avoid a stale SRT sneaking into 7A
 }
 
+# P154: split long cues BEFORE the review gate, so what is proofread is
+# exactly what gets burned in. Whisper cuts at pauses, so a long sentence
+# arrives as one 17-word cue that wraps to five lines and covers a third of
+# the frame. Shorter cues read better than a smaller font does.
+if ($useSubs) {
+  $splitStats = Split-LongCues $srt 10
+  if ($splitStats.After -gt $splitStats.Before) {
+    Ok "cues split for readability: $($splitStats.Before) -> $($splitStats.After)"
+  }
+}
+
 # --- SUBTITLE REVIEW CHECKPOINT (human approval before burn-in) --------------
 # Catches grammar/transcription errors BEFORE they are burned into the video.
 if ($useSubs -and -not $NoReview) {
@@ -280,8 +375,23 @@ if ($LASTEXITCODE -ne 0) {
 $title = "drawtext=text='Hadith Reels':fontsize=28:fontcolor=white:shadowcolor=black@0.9:shadowx=2:shadowy=2:box=1:boxcolor=black@0.4:boxborderw=8:x=(w-text_w)/2:y=30:font=Arial"
 
 if ($useSubs) {
-  $subStyle = "force_style='FontName=Arial,FontSize=22,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,Alignment=2,MarginV=80'"
-  $vf = "subtitles='$($srt -replace '\\','/')':$subStyle,$title"
+  $subStyle = "force_style='FontName=Arial,FontSize=18,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,Alignment=2,MarginV=80'"
+  # P154: the relative path failed with "Unable to open" - a filtergraph does
+  # not resolve paths the way an input argument does. Absolute, forward slashes,
+  # and the drive colon escaped as C\: because ':' separates filter arguments.
+  # Invisible for three days: Run discarded ffmpeg's stderr and the merge check
+  # tested only whether the file existed, which it did, from the previous run.
+  # P154: libass could not open the SRT at its real path. Absolute vs relative
+  # made no difference and neither did escaping the drive colon - the cause is
+  # the SPACE in "Hadith verification AI app", which does not survive the
+  # filtergraph parser. Copy to a space-free temp path for the burn only.
+  # Invisible for three days: Run discarded ffmpeg's stderr, and the merge
+  # check tested only whether the output file existed - which it did, from the
+  # previous run.
+  $srtTmp = Join-Path $env:TEMP ("hr-" + [IO.Path]::GetFileName($srt))
+  Copy-Item $srt $srtTmp -Force
+  $srtEsc = ($srtTmp -replace '\\','/').Replace(':', '\:')
+  $vf = "subtitles='$srtEsc':$subStyle,$title"
 } else {
   $vf = $title
 }
@@ -303,7 +413,16 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur + 1.0,2),"-movflags","+faststart",
   $reel)
 
+# P154: this tested only whether $reel EXISTS. ffmpeg can fail before writing
+# anything, in which case -y overwrites nothing, Test-Path finds the PREVIOUS
+# run's file and the script reports success - printing that stale file's size
+# as confirmation. Three checks now: the exit code, the file, and its age.
+if ($rc -ne 0) { Die "final merge failed (ffmpeg exit $rc)" }
 if (-not (Test-Path $reel)) { Die "final merge failed ($reel not created)" }
+$reelAgeMin = [int]((Get-Date) - (Get-Item $reel).LastWriteTime).TotalMinutes
+if ($reelAgeMin -gt 5) {
+  Die "final merge wrote nothing - $reel is $reelAgeMin min old. ffmpeg returned 0 but produced no new file."
+}
 
 # --- STEP 8: verify ----------------------------------------------------------
 Say "`n[5/5] Done."
