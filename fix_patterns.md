@@ -4825,3 +4825,99 @@ P142
 **Commit:** e7c3276
 **Status:** FIXED — both stages take `--library`; three rows re-translated,
 verified and stamped. Error-as-verdict still open.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 152: A failed call counted as a disagreement
+## ════════════════════════════════════════════════════════
+**ID:** P152
+**Type:** Gate integrity — absence of a verdict reported as a verdict
+**Files:** scripts/verify-candidates.py
+**Commit:** <this commit>
+
+**Symptom:** four transport failures in one session — two SSL resets from pass
+B, two truncated JSON responses from pass A — each marked its row `disagree`
+and `needs_human`. A human was sent to adjudicate verdicts that were never
+produced.
+
+**It was a deliberate choice, and it was wrong.** The code said so:
+
+    """pass | fail | disagree. An error on either side is a disagreement -
+    absence of a verdict is not a verdict."""
+
+Conservative reasoning: if we could not check it, let a human look. In practice
+it made the gate noisier than the thing it checks. Three of four verifications
+on an-Nasai #463 reported `disagree` when two of them were network failures,
+and the operator had nothing to read.
+
+**It also corrupted the calibration figure.** The script prints a disagreement
+rate for D5 tuning and explains what it means: near 0% says the passes are
+correlated, very high says the gate is mistuned. Counting transport failures as
+disagreements made that number meaningless in exactly the sessions where it
+would have mattered. The rate now divides by adjudicated rows only.
+
+**Fix:** `incomplete` as a fourth verdict — not pass, not fail, not disagree.
+It says the true thing: this was not checked. Rows roll up to `incomplete` only
+when nothing worse happened, so a real fail or disagreement still reaches the
+human. The summary prints the count separately and says plainly: re-run them,
+do not send them to Stage 4.
+
+**Pass A's truncation was a token budget (P144 again).** `max_tokens: 1000`
+predated thinking models, and an-Nasai #463's matn quadrupled when its
+continuation was restored, so A's responses grew past the limit and came back
+as JSON cut mid-string. Raised to 3000. Every UNPARSEABLE in this session was
+that.
+
+**Rule:** a gate must distinguish "I checked and disagree" from "I could not
+check". Collapsing them is safe-looking and produces a report the operator
+learns to skim — which is the failure the gate exists to prevent.
+
+**Related:** P144 (a budget sized before the model changed), P138 (a warning
+that fires when nothing is wrong), P136
+
+**Status:** FIXED — errors report as incomplete, A's budget raised, calibration
+excludes unchecked rows
+
+## ════════════════════════════════════════════════════════
+## PATTERN 153: The source was never shown
+## ════════════════════════════════════════════════════════
+**ID:** P153
+**Type:** Verifiability — a claim published without its evidence
+**Files:** app/admin/page.tsx
+**Commit:** <this commit>
+
+**The Arabic matn was in the database, in the admin card, and in every
+verification pass — and never in a caption.** Sixty-five reels published a
+translation with no way for a reader to check it against the source.
+
+**Found by the operator asking.** The assistant had just argued that the
+translations are defensible partly because "anyone with Arabic can check you —
+that's already in the captions." It was not. The claim was made confidently and
+was simply false; the operator went and looked.
+
+**Why it matters more here than elsewhere.** These translations are generated
+from the matn by a model and verified by two others. No muhaddith reviews them
+and no published translation is used (P075's guardrail: never translate a
+translation). The whole case for that pipeline rests on the output being
+checkable — and the one audience able to check it, Arabic readers, was given
+nothing to check against.
+
+**Fix:** full matn in the caption, under the translated quote and above the
+moral. Translation first because that is what most readers read; the Arabic
+under it as the source.
+
+**Full matn, never truncated.** an-Nasai #463 is four clauses and roughly forty
+words after its continuation was restored, which is a long block in a TikTok
+caption where the moral may fall below the fold. Accepted: a clipped scripture
+is worse than a long caption.
+
+**Description, not title.** Titles truncate at 40-60 characters on most
+platforms and mixing RTL Arabic with a Latin collection name renders
+unpredictably.
+
+**Rule:** if the argument for trusting an output is that someone can verify it,
+check that they have been given what they need to. The verification story was
+sound and the artefact did not carry it.
+
+**Related:** P150 (the same caption assembly), P151, P075
+
+**Status:** FIXED — all four platforms

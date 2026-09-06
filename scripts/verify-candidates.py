@@ -167,7 +167,11 @@ def user_msg(arabic, lang_name, translation):
 
 def pass_a(key, arabic, lang_name, translation):
     body = json.dumps({
-        'model': MODEL_A, 'max_tokens': 1000, 'system': SYSTEM,
+        # P152: 1000 predates thinking models and predates matn lengths like
+        # an-Nasai #463, which quadrupled when its continuation was restored.
+        # A returned JSON truncated mid-string four times in one session and
+        # each truncation surfaced as UNPARSEABLE -> error -> disagree.
+        'model': MODEL_A, 'max_tokens': 3000, 'system': SYSTEM,
         'messages': [{'role': 'user',
                       'content': user_msg(arabic, lang_name, translation)}],
     }, ensure_ascii=False).encode('utf-8')
@@ -196,11 +200,23 @@ def pass_b(key, arabic, lang_name, translation):
 
 
 def agreement(a, b):
-    """pass | fail | disagree. An error on either side is a disagreement -
-    absence of a verdict is not a verdict."""
+    """pass | fail | disagree | incomplete.
+
+    P152: an error USED to be a disagreement, on the reasoning that absence of
+    a verdict is not a verdict and a human should look. Conservative, and wrong
+    in practice. Four transport failures in one session — two SSL resets from
+    B, two truncated responses from A — each routed a row to the human gate
+    with nothing to adjudicate, and each counted toward the disagreement rate
+    the script prints for D5 calibration. A gate that reports contested when
+    nothing was checked is noise, and noise is what teaches an operator to skim
+    the report (P138).
+
+    `incomplete` says the true thing: this was not checked. It is not a verdict
+    and does not pretend to be one.
+    """
     va, vb = a.get('verdict'), b.get('verdict')
     if va == 'error' or vb == 'error':
-        return 'disagree'
+        return 'incomplete'
     if va == vb == 'pass':
         return 'pass'
     if va == vb == 'fail':
@@ -214,11 +230,17 @@ def roll_up(per_lang):
     or rejected whole, so it is judged whole."""
     vals = [v['agreement'] for v in per_lang.values()]
     if not vals:
-        return 'disagree'
+        return 'incomplete'
+    # P152: a real verdict outranks a missing one — a fail or a disagreement in
+    # any language still routes the row to a human, whether or not another
+    # language failed to be checked. Only when nothing worse happened does an
+    # unchecked language decide the outcome, and then it says so.
     if 'disagree' in vals:
         return 'disagree'
     if 'fail' in vals:
         return 'fail'
+    if 'incomplete' in vals:
+        return 'incomplete'
     return 'pass'
 
 
@@ -286,7 +308,7 @@ def main():
     print(' lint-content.py and audit-library.py, not here (P120).')
     print('=' * w)
 
-    results, tally = [], {'pass': 0, 'fail': 0, 'disagree': 0}
+    results, tally = [], {'pass': 0, 'fail': 0, 'disagree': 0, 'incomplete': 0}
 
     for row in rows:
         ref = f'{row.get("collection")} #{row.get("hadith_number")}'
@@ -334,7 +356,12 @@ def main():
 
         overall = roll_up(per_lang)
         tally[overall] += 1
-        status = 'verified' if overall == 'pass' else 'needs_human'
+        # P152: an incomplete row was not checked — it does not need a human,
+        # it needs re-running. Marking it needs_human sends someone to
+        # adjudicate a verdict that was never produced.
+        status = ('verified' if overall == 'pass'
+                  else 'incomplete' if overall == 'incomplete'
+                  else 'needs_human')
         print(f'    -> {overall}  (status would be {status})')
 
         results.append({'candidate_id': row.get('candidate_id'), 'ref': ref,
@@ -373,11 +400,21 @@ def main():
     with open(OUT_PATH, 'w', encoding='utf-8') as fh:
         json.dump(results, fh, ensure_ascii=False, indent=2)
 
-    n = max(1, sum(tally.values()))
+    # P152: the calibration rate measures the two passes against EACH OTHER, so
+    # rows nobody checked cannot be in the denominator. Counting transport
+    # failures as disagreements made the rate meaningless in exactly the
+    # sessions where it mattered.
+    adjudicated = tally['pass'] + tally['fail'] + tally['disagree']
+    n = max(1, adjudicated)
     print('\n' + '-' * w)
     print(f'  pass {tally["pass"]}   fail {tally["fail"]}   '
-          f'disagree {tally["disagree"]}   -> {OUT_PATH}')
-    print(f'  disagreement rate: {tally["disagree"] / n:.0%}  (D5 calibration)')
+          f'disagree {tally["disagree"]}   incomplete {tally["incomplete"]}'
+          f'   -> {OUT_PATH}')
+    print(f'  disagreement rate: {tally["disagree"] / n:.0%} '
+          f'of {adjudicated} adjudicated  (D5 calibration)')
+    if tally['incomplete']:
+        print(f'  {tally["incomplete"]} row(s) NOT CHECKED - an API call failed. '
+              're-run them; do not send them to Stage 4.')
     print('    near 0% over a real batch = the passes are correlated and the')
     print('    second is buying nothing. very high = mistuned, Stage 4 drowns.')
     if args.commit:
