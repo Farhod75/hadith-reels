@@ -331,6 +331,11 @@ export default function AdminPage() {
       setCaption(
         `${data.title}\n\n` +
         `«${hadithText}»\n\n` +
+        // P153: the Arabic was in the DB and in the admin card but never
+        // reached a viewer, so nobody with Arabic could check the translation
+        // against the source — which is the one external check this project
+        // has. Full matn, never truncated.
+        (selected.text_arabic ? `${selected.text_arabic}\n\n` : '') +
         `${data.moral}\n\n` +
         `📖 ${ref}\n` +
         `🔍 ${l10n.verify}: hadithverifier.com\n\n` +
