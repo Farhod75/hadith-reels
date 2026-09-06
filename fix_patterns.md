@@ -4921,3 +4921,78 @@ sound and the artefact did not carry it.
 **Related:** P150 (the same caption assembly), P151, P075
 **Commit:** a991fff
 **Status:** FIXED — all four platforms
+
+## ════════════════════════════════════════════════════════
+## PATTERN 154: Fifteen exchanges to read an error message
+## ════════════════════════════════════════════════════════
+**ID:** P154
+**Type:** Diagnosability — a failure with its own explanation discarded
+**Files:** render-reel.ps1
+**Commit:** 007416d
+
+**What was actually wrong:** on 2026-09-03 a Russian caption was pasted into
+the open SRT tab in VS Code and saved. `adults-en-muslim-82-narration.srt`
+stopped being a subtitle file and became draft text. libass could not parse it,
+the final merge failed, and every adults render with subtitles failed from that
+day on.
+
+**Nobody knew, because three separate things hid it:**
+
+  1. `Run` was `& $exe @cmdArgs 2>&1 | Out-Null`. EVERY ffmpeg error, in every
+     step, for the life of the script, was discarded. libass was reporting
+     "Unable to open" each time and nothing was listening.
+  2. The merge check was `if (-not (Test-Path $reel))`. ffmpeg failed BEFORE
+     writing, so `-y` overwrote nothing, `Test-Path` found the previous run's
+     file, and the script reported success — printing that three-day-old file's
+     size as confirmation.
+  3. The subtitle gate opens the SRT in VS Code every render. The operator saw
+     Russian draft text open on an English reel repeatedly and reasonably
+     assumed the script was opening the wrong file. It was opening the right
+     file, which contained the wrong thing.
+
+**Found only because the operator asked about font size.** Nothing about the
+symptom pointed at subtitles; the renders reported success.
+
+**The diagnosis is the part worth recording.** Once `Run` was fixed and the
+error appeared, it took one command to find the cause. Before that, fifteen
+exchanges of guesswork: the assistant proposed an absolute path, then escaping
+the drive colon as `C\:`, then copying the SRT to a space-free temp directory —
+three fixes for a problem that was none of them. Each was plausible BECAUSE
+there was no error text to contradict it. A silent failure does not merely hide
+its cause; it makes every wrong theory survive.
+
+Two of those wrong fixes were applied to a file the assistant had already
+tangled, which produced new failures that looked like progress. The file was
+eventually reset with `git checkout` and rebuilt from the committed version.
+
+**Five changes:**
+
+  - `Run` captures output and prints the last 20 lines ONLY on a non-zero exit.
+    Quiet when it works, loud when it does not.
+  - The merge checks the exit code, the file, AND its age. A file older than
+    five minutes after a "successful" merge means ffmpeg wrote nothing.
+  - `Assert-ValidSrt` — a file whose first line is not a cue number is not a
+    subtitle file. It fails with that sentence and a suggestion to delete and
+    regenerate, instead of handing it to libass.
+  - Long cues split before the review gate, so what is proofread is what gets
+    burned. Whisper cuts at pauses, so one sentence became a 17-word cue that
+    wrapped to five lines and covered a third of the frame. Splits at
+    punctuation nearest the midpoint, timing divided by character count.
+    Measured: 5 cues became 11, at 7-10 words each.
+  - Subtitle FontSize 22 → 18. The font was the smaller half of the problem;
+    shorter cues did more than a smaller font could.
+
+**R058 is unaffected** — it rendered on 2026-09-03 before the corruption and
+shipped with correct subtitles. A scan of every other SRT in `out/work` found
+none corrupted.
+
+**Rule:** a tool that discards stderr is not quiet, it is lying by omission.
+The information needed to fix this existed on every failed run for three days
+and was thrown away each time. And a check that a file EXISTS is not a check
+that a step SUCCEEDED — the previous run's output satisfies it perfectly.
+
+**Related:** P136 (a success message wider than its check), P143 (a duration
+flag with no authority), P100 (Whisper's own output discarded on Windows), P83
+
+**Status:** FIXED — errors surface, the merge is verified, corrupt SRTs are
+rejected, cues are split
