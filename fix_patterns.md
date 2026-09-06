@@ -4873,7 +4873,7 @@ learns to skim — which is the failure the gate exists to prevent.
 
 **Related:** P144 (a budget sized before the model changed), P138 (a warning
 that fires when nothing is wrong), P136
-
+**Commit:** a991fff
 **Status:** FIXED — errors report as incomplete, A's budget raised, calibration
 excludes unchecked rows
 
@@ -4919,5 +4919,5 @@ check that they have been given what they need to. The verification story was
 sound and the artefact did not carry it.
 
 **Related:** P150 (the same caption assembly), P151, P075
-
+**Commit:** a991fff
 **Status:** FIXED — all four platforms
