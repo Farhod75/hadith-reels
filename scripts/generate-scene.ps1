@@ -17,11 +17,23 @@
  PARAMS:
    -Name     output filename (no extension) -> out\backgrounds\new\<Name>.mp4
    -Prompt   the approved scene prompt (from the scene-prompt JSON)
-   -Duration 5 or 10 seconds (default 5 -- cheapest for POC)
-   -Model    fal model id (default = cheapest current standard tier)
+   -Duration 5 or 10 seconds (default 5)
+   -Model    fal model id (default: Kling 2.1 MASTER, the premium tier)
 
- COST NOTE: ~5s standard-tier clip is roughly $0.35-0.50. A single POC test is
- well under $1. You also have ~$10 free signup credits.
+ COST, CHECKED 2026-09-06. The note here used to read "~5s standard-tier clip is
+ roughly $0.35-0.50" and described a tier this script does not use. The default
+ is fal-ai/kling-video/v2.1/master, and fal charges:
+
+     Kling 2.1 Master   $1.40 for 5s, +$0.28 per additional second
+     Kling 2.1 Pro      $0.49 for 5s, +$0.098 per additional second
+     Kling 2.6 Pro      $0.07 per second, audio off  ($0.35 for 5s)
+
+ So a four-clip scene set on the current default costs about $5.60, not the
+ $1.50-2.00 the pipeline checklist has been quoting. Kling 2.6 Pro is a LATER
+ architecture than 2.1 Master, not a downgrade, and four 10s clips on it cost
+ $2.80 - what four 5s Master clips cost today, with twice the hold and no
+ sequence looping on a 40s reel. Untested for quality on atmospheric scenes;
+ test one clip before switching the default.
 ================================================================================
 #>
 

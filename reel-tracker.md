@@ -186,6 +186,32 @@
 | vocal-nasheed-06.mp3 | 5 | 2026-08-27 (R060) | R033, R039, R048, R060, R066 |
 | vocal-nasheed-07.mp3 | 4 | 2026-08-31 (R063) | R037, R049, R055, R063 |
 
+### Background scene usage
+
+Added 2026-09-06 after FIVE consecutive adults reels ran on `b527-*` without
+anyone noticing. Nasheeds had a usage table and scenes did not, so the same
+four clips carried R058–R061 and were proposed again for R066.
+
+Scenes are per-hadith, so a set of four is reused across all four languages —
+that is intended. The rule is at the SET level: don't reuse a scene set within
+three sets.
+
+| Clip set | Uses | Last used | Reels |
+|---|---|---|---|
+| b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| ad3641-window, rahle, moon, stars | 1 set | 2026-09-06 (R066–R069) | R066–R069 |
+| b6446-dawn, dunes, lamp, market | 1 set | 2026-08-30 (R050–R053) | R050–R053 |
+| m2999-dawn, harvest, steady, storm | 1 set | 2026-08-28 (R042–R045) | R042–R045 |
+| b1520-dua, path, scene1 | 1 set | 2026-06-11 | R018–R021 |
+| b1-scene1, scene2, scene4 | 1 set | 2026-08-08 | R010–R013 |
+| kaaba-* (stock footage) | — | 2026-05-16 | R004, R005 |
+
+**Note on clip length.** Every clip is 5s. Step 6 concatenates them and the
+final merge loops the whole sequence, so a four-clip set gives 20s before it
+repeats — on a 40s reel the sequence plays twice. FEWER clips does not mean
+longer holds; it means more repetition. Longer holds need longer SOURCE clips
+(`-Duration 10` in generate-scene.ps1). See the cost note in that script.
+
 
 ### Mascot stills
 

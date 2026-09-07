@@ -94,7 +94,11 @@ function ConvertTo-SrtTime([TimeSpan]$ts) {
 function Split-Cue($start, $end, [string]$text, [int]$maxWords, [double]$minSec) {
   $words = $text -split '\s+' | Where-Object { $_ }
   $dur = ($end - $start).TotalSeconds
-  if ($words.Count -le $maxWords -or $dur -lt ($minSec * 2)) {
+    # P154 tuning: also refuse to split when either half would fall below six
+  # words. RU produced two 2-word tails - "же правилу" and "сверх предписанного"
+  # - because the midpoint fallback ignores grammar and the recursion re-splits
+  # each half. A floor is simpler than teaching it syntax.
+  if ($words.Count -le $maxWords -or $dur -lt ($minSec * 2) -or $words.Count -lt 12) {
     return ,([pscustomobject]@{ Start = $start; End = $end; Text = $text })
   }
   $mid = [int]($words.Count / 2)
@@ -259,7 +263,7 @@ if ($useSubs) {
 # arrives as one 17-word cue that wraps to five lines and covers a third of
 # the frame. Shorter cues read better than a smaller font does.
 if ($useSubs) {
-  $splitStats = Split-LongCues $srt 10
+  $splitStats = Split-LongCues $srt 12
   if ($splitStats.After -gt $splitStats.Before) {
     Ok "cues split for readability: $($splitStats.Before) -> $($splitStats.After)"
   }
