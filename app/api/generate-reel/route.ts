@@ -107,7 +107,7 @@ Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, 
 {
   "title": "Max 8 words. State what the hadith is ABOUT, or quote its own words. It may not promise the reader an outcome, name a benefit, or rank the deed — the matn says what it says, and the title says no more. 'Two Deeds Allah Loves' is right; 'The Believer Always Wins' is not.",
   "story": "Follow the matn's own length. A one-sentence hadith gets a short story; do not pad to a target. Say what the hadith says, in the order it says it. You may explain a term it uses. You may NOT say what kind of thing it describes, how much of life it covers, or what the person thereby gains.",
-  "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL differently after watching this reel? Make it actionable for modern life.",
+  "moral": "1-2 sentences. A concrete action, and the reason the hadith gives for it. The action must be something a person does BEFORE ALLAH — thanking Him, obeying Him, guarding what He commanded, seeking what He promised — not a self-improvement tip that would read the same in a secular post. 'Notice how that feels in your chest' is wrong; 'say alhamdulillah — Allah promised Paradise to the one who guards them' is right. Name Allah, or name what He promised, or name the act of worship. State the ground plainly, as the hadith states it — do not explain what the hadith 'ties' or 'shows' or 'teaches', and do not describe how Allah made something known. Say the thing, not a comment about the text. The hadith is the Prophet's ﷺ speech unless the matn itself says Allah said it. Never attribute the wording to Allah — that would make it a hadith qudsi, which it is not. Do not add a promise the matn does not make.",
   "seerah_context": "2-3 sentences of context. If the sources tie this hadith to a specific period or event, name it. If they do not, give the collection and book, the narrator, and the classical scholarly reading of the hadith's meaning — and nothing more. Do not supply a period, setting, or occasion that the sources do not record.",
   "source_attribution": "${seerahSource.attribution}",
   "caption_intro": "First 2 lines of social media caption — must grab attention immediately. No hashtags here."
@@ -118,7 +118,9 @@ RULES:
 2. story may reference the Prophet ﷺ or his companions ONLY as the hadith and
    cited seerah source record them. If neither records an incident for this
    hadith, do NOT construct one — explain the teaching itself instead.
-3. moral MUST be practical — what to do TODAY
+3. moral MUST be practical AND directed to Allah. "What to do today" alone
+   produced twenty consecutive generations with no mention of Allah in the
+   moral — the action had no addressee because none was asked for (P155).
 4. title is drawn from the matn, not from what would make someone click. A title that promises more than the hadith states is fabrication in the most-read line of the reel.
 5. For Kids style: use simple, concrete language a child can follow. Do NOT invent
    a scene — describe the historical setting and the lesson in plain words

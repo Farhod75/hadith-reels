@@ -4996,3 +4996,66 @@ flag with no authority), P100 (Whisper's own output discarded on Windows), P83
 
 **Status:** FIXED — errors surface, the merge is verified, corrupt SRTs are
 rejected, cues are split
+
+## ════════════════════════════════════════════════════════
+## PATTERN 155: Twenty morals with no one to address
+## ════════════════════════════════════════════════════════
+**ID:** P155
+**Type:** Specification — the prompt asked for exactly what it got
+**Files:** app/api/generate-reel/route.ts
+**Commit:** <this commit>
+
+**Symptom:** five consecutive sets — twenty generations, every language — came
+back with a moral that never mentioned Allah. "Look at three things you own and
+say I am thankful for this." "Tell yourself: this is enough for me." "Sit with
+her. Listen to her. That is precious." Gratitude with no object, an action with
+no addressee. Corrected by hand every time and logged in the tracker as a
+recurring content defect.
+
+**It was not a content defect. It was the spec.**
+
+    "moral": "1-2 sentence practical takeaway. What should someone DO or FEEL
+              differently after watching this reel? Make it actionable for
+              modern life."
+    3. moral MUST be practical — what to do TODAY
+
+Nothing in there asks for Allah. The model produced a self-improvement brief
+because a self-improvement brief is what was requested, twenty times, correctly.
+P103, P122 and P133 again: the defect is caused by what the spec DEMANDS, and
+adding a prohibition elsewhere would have fought the instruction rather than
+fixed it.
+
+**Three rounds to get it right, and the intermediate failures matter more than
+the final wording** — each fix closed one failure and opened a narrower one:
+
+  1. **Omission.** Asked for an action directed to Allah, with a worked
+     contrast: "notice how that feels in your chest" is wrong, "say
+     alhamdulillah — Allah promised Paradise to the one who guards them" is
+     right. Allah appeared. So did a new defect.
+
+  2. **Commentary on the text.** "for the hadith ties the Lord's pleasure to
+     theirs", "Аллах через его слова показал" — the moral began citing the
+     hadith as its authority instead of stating the ground. A note ABOUT the
+     text where the text itself belonged. Fixed by requiring the ground stated
+     plainly, with 'ties' / 'shows' / 'teaches' named as the shape to avoid.
+
+  3. **Misattributing the speaker.** TJ produced «Зеро Парвардигор гуфтааст» —
+     *because the Lord has said*. That makes it hadith qudsi, which it is not.
+     The most serious of the three: it changes the CATEGORY of the text, not
+     just its framing. Fixed by stating that the hadith is the Prophet's ﷺ
+     speech unless the matn itself says otherwise.
+
+**Verified across three languages** after round three: EN, RU and TJ each named
+Allah, stated the ground directly, and attributed the wording to the Prophet ﷺ,
+with no correction by hand.
+
+**Rule:** when the same correction is made by hand more than twice, read the
+instruction that produced it. Twenty tracker entries recorded this as something
+the model kept doing. It was something the prompt kept asking for. And when
+tightening a prompt, expect the next failure to be narrower and adjacent — test
+the same inputs again rather than assuming the fix is complete.
+
+**Related:** P103, P122, P133 (a spec demanding what it elsewhere forbade),
+P150 (twenty hand-corrections of a hardcoded string)
+
+**Status:** FIXED — verified on #1899 and #3104 in three languages
