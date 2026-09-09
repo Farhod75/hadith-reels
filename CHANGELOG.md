@@ -1,3 +1,26 @@
+## [2026-09-09]
+
+### Added
+- Five-mascot rotation for the kids lane. `camel-dawn-v1`, `hoopoe-garden-v1`
+  and `bee-orchard-v1` registered in `assets/asset-registry.json` alongside the
+  two lambs, all human-verified, all approved for the kids lane only. Each is a
+  Qur'anic animal in regional dress with its own cap, palette and nature
+  setting — deliberately not all Central Asian, since the audience is heavily
+  Russian-speaking and includes Tatars, Chechens and Azerbaijanis. Driven by
+  analytics read for the first time this session: kids reels draw 4–180 views
+  against 1,500–4,800 for adults, and the Instagram grid had become fifteen
+  near-identical lamb thumbnails. Backgrounds are nature, never mosque
+  architecture. Still to generate: horse (Tatar kalfak), ant (Chechen papakha).
+
+### Changed
+- Voice selection now follows the mascot's GENDER rather than lamb identity
+  (P104 generalised). No new voice slots: male mascots take Eric / Maxim /
+  George / Liam Viral, female mascots Danielle / Arabella / Mini / Katherine.
+- Kids captions address the parent rather than the child («Покажите детям»).
+  Kids cadence set to weekly, measured on views, shares and comments over a
+  two-week window.
+- `assets/asset-registry.json` — registry date bumped to 2026-09-09.
+
 
 ## [2026-08-29
 ]

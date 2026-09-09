@@ -114,6 +114,24 @@
   },
 
   "mascots": {
+        "camel-dawn-v1.png": {
+      "classification": "mascot",
+      "lanes": ["kids"],
+      "verified": true,
+      "notes": "Camel, Chust doppa, desert dawn. 4K, Nano Banana Pro. Fabric lip-sync tested clean."
+    },
+    "hoopoe-garden-v1.png": {
+      "classification": "mascot",
+      "lanes": ["kids"],
+      "verified": true,
+      "notes": "Hoopoe, Kyrgyz kalpak, garden midday. 4K, Nano Banana Pro. Fabric lip-sync not yet tested."
+    },
+    "bee-orchard-v1.png": {
+      "classification": "mascot",
+      "lanes": ["kids"],
+      "verified": true,
+      "notes": "Bee, Tajik toqi, girl, orchard afternoon. 4K, Nano Banana Pro. Fabric lip-sync not yet tested."
+    },
     "lamb-boy-mosque-night-v3.png": {
       "classification": "mascot",
       "lanes": ["kids"],

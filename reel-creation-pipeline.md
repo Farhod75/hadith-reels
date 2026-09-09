@@ -47,26 +47,54 @@ out/
 └── _legacy/ tests and dead-convention files
 
 assets/mascot/
-├── lamb-boy-mosque-night-v3.png 4K, moonlit mosque courtyard
-└── lamb-girl-garden-day-v2.png 4K, sunny mosque garden
+├── lamb-boy-mosque-night-v3.png    4K, moonlit courtyard, Uzbek tyubeteika
+├── lamb-girl-garden-day-v2.png     4K, sunny garden, khan-atlas ikat
+├── camel-dawn-v1.png               4K, desert dawn, Chust doppa
+├── hoopoe-garden-v1.png            4K, garden midday, Kyrgyz kalpak
+└── bee-orchard-v1.png              4K, orchard afternoon, Tajik toqi
 
-Both mascot stills are committed. **Never let a source asset exist only inside a
+All five mascot stills are committed. **Never let a source asset exist only inside a
 rendered video** — both were lost that way once and had to be recovered by
 extracting a 480p frame and regenerating at 4K in Nano Banana Pro (see P103).
 
 ## Mascot rotation
 
-**Full rotation, in order:** adults → kids (boy) → adults → kids (girl) → repeat.
+**Full rotation, in order:** adults → kids → adults → kids → repeat.
 
-Adults and kids alternate set by set; within the kids lane the mascot alternates
-too. Voice follows the mascot (P104), so the mascot choice determines the voice
-in every language.
+Adults and kids alternate set by set; within the kids lane the mascot advances
+one position through the table below. Voice follows the mascot's GENDER (P104),
+so the mascot choice determines the voice in every language. The non-lamb
+mascots added no new voices — a male mascot uses the male column, a female
+mascot the female column.
 
 Check the tracker's last two sets rather than counting from memory — the Mascot
-stills table records which lamb each set used, and the Active reels table shows
-the style.
+stills table records which mascot each set used, and the Active reels table
+shows the style.
 
-| | girl lamb (female) | boy lamb (male) |
+### The five mascots
+
+| Order | Mascot | Gender | Cap / dress | Setting |
+|---|---|---|---|---|
+| 1 | lamb-boy-mosque-night-v3 | male | Uzbek tyubeteika | moonlit courtyard, night |
+| 2 | lamb-girl-garden-day-v2 | female | khan-atlas ikat | garden, day |
+| 3 | camel-dawn-v1 | male | Chust doppa | desert, dawn |
+| 4 | hoopoe-garden-v1 | male | Kyrgyz kalpak | garden, midday |
+| 5 | bee-orchard-v1 | female | Tajik toqi | orchard, afternoon |
+
+Every mascot is a Qur'anic animal in regional dress, each with its own cap,
+palette and setting. The dress is deliberately not all Central Asian — the
+audience is heavily Russian-speaking and includes Tatars, Chechens and
+Azerbaijanis. Backgrounds are nature, never mosque architecture.
+
+The rotation replaced the single-lamb look on 2026-09-09: kids reels were
+drawing 4–180 views against 1,500–4,800 for adults, and the Instagram grid had
+become fifteen near-identical lamb thumbnails.
+
+Still to generate: horse (Tatar kalfak, female), ant (Chechen papakha, male).
+
+### Voices by gender
+
+| | female mascot | male mascot |
 |---|---|---|
 | EN | Danielle | Eric |
 | RU | Arabella Calm & Mature | Maxim Calm & Neutral (P112) |
@@ -74,6 +102,10 @@ the style.
 | TJ | Katherine Polished | Liam Viral |
 
 All ElevenLabs `eleven_v3`. OpenAI is fully retired from the TTS route.
+
+New mascots must be registered in `assets/asset-registry.json` before any
+render — `audit-assets.py --check <file> --lane kids` is the gate and exits 1
+on an unregistered file (P117/P121).
 
 ## Step 1 — Pick and generate
 
@@ -152,6 +184,10 @@ tags that pull the wrong audience (`date` → dating content, `hellfire` → met
 
 **Known gap:** collection and narrator stay Latin inside Cyrillic captions.
 Hand-correct to `📖 Сахих аль-Бухари №8, Ибн Умар` and the TJ/UZ equivalents.
+
+**Kids captions address the PARENT, not the child** — «Покажите детям», not
+«Смотри». The account holding the phone is the parent's. Kids cadence is
+weekly, measured on views, shares and comments over a two-week window.
 
 Publish order: Telegram → Instagram → TikTok → YouTube Shorts. YouTube needs
 title, description, and tags as separate fields, and Tags is under SHOW MORE at
@@ -500,4 +536,5 @@ verification — "acapella nasheed" returns instrumental tracks.
 
 | Date | Change |
 |---|---|
+| 2026-09-09 | Mascot rotation expanded from two lambs to five Qur'anic animals in varied regional dress, driven by kids-lane analytics. Voice now follows mascot gender rather than lamb identity. Kids captions address the parent. Weekly kids cadence. |
 | 2026-08-11 | Rewritten. Kids path re-verified end to end on Bukhari #8. Removed the seerah-attribution instruction (P105 violation), the manual MP3 download step (P106), the P079 "not editable" note, and the dead `<keyword>-story-narration-<lang>` convention that contradicted the naming section below it. Adults path marked unverified. |
