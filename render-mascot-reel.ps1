@@ -43,6 +43,7 @@ param(
   [Parameter(Mandatory)][string[]]$Clips,
   [string]$Nasheed,
   [switch]$NoMusic,
+  [switch]$ValidateOnly,
   [string]$Subs,
   [switch]$Open
 )
@@ -99,16 +100,39 @@ $clipPaths = foreach ($name in $Clips) {
 }
 
 # nasheed (unless voice-only)
+# P159: lane-filtered, no-repeat random pick. The old picker globbed every mp3
+# in out\backgrounds\, so a kids reel could draw ambient ocean and an adults
+# reel a kids hamd -- the KNOWN GAP in the audio policy. It also had no memory,
+# so the same bed could land on consecutive reels. Lane is by filename
+# convention: *-kids-* is kids-only, ambient-* is adults-only, the rest shared.
 $chosenNasheed = $null
 if (-not $NoMusic) {
-  $nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
+  $all = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
+  # this script is the kids renderer, so the kids lane is the filter here
+  $lane = 'kids'
+  $pool = @($all | Where-Object { $_.Name -notlike 'ambient-*' })
+
   if ($Nasheed) {
     if (Test-Path "out\backgrounds\$Nasheed") { $chosenNasheed = "out\backgrounds\$Nasheed" }
     else { $problems += "requested nasheed not found: out\backgrounds\$Nasheed" }
-  } elseif ($nasheeds.Count -ge 1) {
-    $chosenNasheed = ($nasheeds | Get-Random).FullName
+  } elseif ($pool.Count -ge 1) {
+    $stateFile = "out\backgrounds\.last-used.json"
+    $state = @{}
+    if (Test-Path $stateFile) {
+      try { (Get-Content $stateFile -Raw | ConvertFrom-Json).PSObject.Properties | ForEach-Object { $state[$_.Name] = $_.Value } }
+      catch { Say "  last-used state unreadable, ignoring" }
+    }
+    $last = $state[$lane]
+    $candidates = @($pool | Where-Object { $_.Name -ne $last })
+    if ($candidates.Count -eq 0) { $candidates = $pool }   # only one bed in the lane
+    $pick = $candidates | Get-Random
+    $chosenNasheed = $pick.FullName
+    $state[$lane] = $pick.Name
+    try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
+    catch { Say "  could not record last-used nasheed" }
+    Say "  nasheed: $($pick.Name)  (lane: $lane, $($pool.Count) beds, avoided: $(if($last){$last}else{'none'}))"
   } else {
-    $problems += "no nasheed .mp3 in out\backgrounds\ (or pass -NoMusic)"
+    $problems += "no lane-eligible nasheed .mp3 in out\backgrounds\ (or pass -NoMusic)"
   }
 }
 # P117: asset lane gate. This script is the kids lane by definition.
@@ -143,6 +167,7 @@ if ($problems.Count -gt 0) {
   exit 1
 }
 Ok "$($Clips.Count) clip(s) present; ffmpeg ready$(if($chosenNasheed){"; nasheed: $(Split-Path $chosenNasheed -Leaf)"}else{'; voice-only'})"
+if ($ValidateOnly) { Ok "validate-only: picker ran, nothing rendered"; exit 0 }
 
 # --- STEP 1: normalize each clip to identical 1080x1920@30fps (KEEP audio) ----
 # Unlike the background path in render-reel.ps1 (which drops audio with -an), the

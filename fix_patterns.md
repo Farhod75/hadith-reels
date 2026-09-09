@@ -5206,3 +5206,49 @@ payload omitting the field gets a female voice silently. Left for its own fix.
 **Related:** P157, P118 (AR out of scope), P103/P104 (voice follows mascot)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 159: A random picker with no lane and no memory
+## ════════════════════════════════════════════════════════
+**ID:** P159
+**Type:** Asset selection — unfiltered glob, no state
+**Files:** render-mascot-reel.ps1, .gitignore
+**Found:** 2026-09-09, rendering the first camel set
+
+**Symptom:**
+  The pipeline checklist said "render with the nasheed named explicitly — never
+  let the picker choose." That instruction had been in the doc since 2026-08-31
+  and was followed on every set. It is a workaround written in place of a fix.
+
+**Diagnosis:**
+  `Get-ChildItem "out\backgrounds\*.mp3" | Get-Random` had two defects the audio
+  policy already named as a KNOWN GAP and left standing:
+  - No lane filter. The glob included `ambient-ocean-*`, so a kids reel could
+    draw ocean noise and an adults reel a kids hamd. Lane separation existed
+    only as a filename convention nobody enforced.
+  - No memory. Nothing recorded the previous pick, so the same bed could land on
+    consecutive reels — invisible per-reel, obvious to anyone scrolling the feed.
+
+**Fix:**
+  - Lane filter by filename convention: `ambient-*` excluded from the kids
+    renderer, leaving 10 vocal beds.
+  - `out\backgrounds\.last-used.json` records the last pick per lane and the
+    next draw excludes it, falling back to the full pool if that would empty it.
+  - `-ValidateOnly` added to render-mascot-reel.ps1 so the picker can be proven
+    without a render. There was no way to test this code path before.
+  - `-Nasheed` still overrides, for when a specific bed is wanted.
+
+**Proven:** two consecutive validate-only runs picked vocal-nasheed-05 then
+path-to-jannah, the second reporting `avoided: vocal-nasheed-05.mp3`.
+
+**Rule:**
+  A documented workaround is an unfixed defect with a note attached. When the
+  doc tells the operator to route around the code, the instruction is evidence,
+  not a solution — and the audio policy had even labelled this one KNOWN GAP.
+
+**Still open:** render-reel.ps1 (adults lane) has the same unfiltered glob at
+line 110. Same fix, different lane constant.
+
+**Related:** P117/P121 (gate coverage), audio policy KNOWN GAP
+
+**Status:** FIXED (kids lane only)
