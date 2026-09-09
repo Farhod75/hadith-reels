@@ -96,6 +96,10 @@
 | R075 | 2026-09-09 | Sunan Ibn Majah #4251 | Anas ibn Malik | Hasan | Repentance / Mercy | #forgiveness #tawbah #sins #mercy | ru | Adults | sunan-ibn-majah-4251 | adults-ru-sunan-ibn-majah-4251-story.mp3 | adults-ru-sunan-ibn-majah-4251-moral.mp3 | adults-ru-sunan-ibn-majah-4251-narration.mp3 | b4251-path.mp4, b4251-rain.mp4, b4251-door.mp4, b4251-dawn.mp4 | adults-ru-sunan-ibn-majah-4251-bg-mixed.mp4 | vocal-nasheed-06.mp3 | Yes | adults-ru-sunan-ibn-majah-4251-reel.mp4 | 28.2s | 9.2 MB | Marat. Shortest reel of the set. «ошибается» inherited correctly from the corrected column and the plurals held. Defects: «таввабом» used as if التوّاب named the ACT of repentance — it names the PERSON who repents, so the phrase read as "with repentance — with a repenter"; H reintroduced «греха», the exact word corrected out of the DB an hour earlier; and «Его смысл заключается в том» — the settled-meaning formula, appearing in all four languages this set. Whisper ran «из ошибающихся» together as «и зашибающихся» TWICE and «потомок Адама» as «потом акадома». P155 HELD: Allah named in the moral unprompted, second language running. Lint clean pre-TTS. published TG/IG/TikTok/YT |
 | R076 | 2026-09-09 | Sunan Ibn Majah #4251 | Anas ibn Malik | Hasan | Repentance / Mercy | #forgiveness #tawbah #sins #mercy | uz | Adults | sunan-ibn-majah-4251 | adults-uz-sunan-ibn-majah-4251-story.mp3 | adults-uz-sunan-ibn-majah-4251-moral.mp3 | adults-uz-sunan-ibn-majah-4251-narration.mp3 | b4251-path.mp4, b4251-rain.mp4, b4251-door.mp4, b4251-dawn.mp4 | adults-uz-sunan-ibn-majah-4251-bg-mixed.mp4 | vocal-nasheed-02.mp3 | No (P078) | adults-uz-sunan-ibn-majah-4251-reel.mp4 | 38.1s | 11.9 MB | Opa Johann. THE HONORIFIC WAS PRESENT throughout and «айтдилар» was correct unprompted — both were defects on the previous UZ set, so this is a recovery rather than a pattern. Defects: caption quote came back Latin against a Cyrillic body, TENTH occurrence, replaced from text_uzbek_cyrillic; H introduced «гуноҳдан», sin, where the Arabic says errs — the same slip RU made in the same set; and the moral added instruction the hadith does not give («do not hide it or try to forget it»). Lint clean pre-TTS. published TG/IG/TikTok/YT |
 | R077 | 2026-09-09 | Sunan Ibn Majah #4251 | Anas ibn Malik | Hasan | Repentance / Mercy | #forgiveness #tawbah #sins #mercy | tj | Adults | sunan-ibn-majah-4251 | adults-tj-sunan-ibn-majah-4251-story.mp3 | adults-tj-sunan-ibn-majah-4251-moral.mp3 | adults-tj-sunan-ibn-majah-4251-narration.mp3 | b4251-path.mp4, b4251-rain.mp4, b4251-door.mp4, b4251-dawn.mp4 | adults-tj-sunan-ibn-majah-4251-bg-mixed.mp4 | vocal-nasheed-01.mp3 | No (P078) | adults-tj-sunan-ibn-majah-4251-reel.mp4 | 35.2s | 11.2 MB | Meisam. Completes the #4251 adults set. «хато» held throughout, divine name clean. Defects: the story OPENED WITH COMMENTARY rather than the hadith — «ин суннати табиии инсон аст», *this is the natural sunnah of man*, a theological framing placed before the attribution, and «суннат» carries a specific meaning that does not apply; «гуфт» singular; «Маънои муқарраршудаи он», the settled-meaning formula again. THE LINTER FIRED A FALSE POSITIVE the assistant chose to respect rather than overrule: «на ҳамчун истисно» tripped the simile check because «ҳамчун» reads as a comparison marker, though the sentence negates a category rather than drawing a likeness. Reworded to «онро истисно намешуморад» — the rule exists because inventing what something is LIKE is fabrication, and dismissing it would train the wrong habit. TTS INSERTED A WORD THAT WAS NOT THERE: the moral came back with «кале» between «онҳое нестанд» and «ки», inverting the meaning to *not those who never slip*. Caught by ear, fixed by moving the negation to the front («на онҳое ҳастанд, ки»), moral re-narrated alone. Lint clean pre-TTS. published TG/IG/TikTok/YT |
+| R078 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | EN | Kids | bukhari-5971 | kids-en-bukhari-5971-story.mp3 | kids-en-bukhari-5971-moral.mp3 | kids-en-bukhari-5971-narration.mp3 | clip01.mp4 | n/a (mascot spine) | light-of-my-heart-bg.mp3 | No | kids-en-bukhari-5971-mascot-reel.mp4 | 26.8s | 5.7 MB | First camel-dawn-v1 reel. Single clip — story cut from 31.3s to 18.5s by stripping attribution scaffolding, all four asks kept. |
+| R079 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | RU | Kids | bukhari-5971 | kids-ru-bukhari-5971-story.mp3 | kids-ru-bukhari-5971-moral.mp3 | kids-ru-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-02.mp3 | No | kids-ru-bukhari-5971-mascot-reel.mp4 | 32.0s | 5.8 MB | Honorific spelled out for TTS (P112 lane). Split at story/moral seam. |
+| R080 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | UZ | Kids | bukhari-5971 | kids-uz-bukhari-5971-story.mp3 | kids-uz-bukhari-5971-moral.mp3 | kids-uz-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-07.mp3 | No | kids-uz-bukhari-5971-mascot-reel.mp4 | 31.6s | 6.0 MB | text_uzbek_latin and legacy text_uzbek were NULL after the matn re-translation; filled via P160 before generating. Caption quote from text_uzbek_cyrillic. |
+| R081 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | TJ | Kids | bukhari-5971 | kids-tj-bukhari-5971-story.mp3 | kids-tj-bukhari-5971-moral.mp3 | kids-tj-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-03.mp3 | No | kids-tj-bukhari-5971-mascot-reel.mp4 | 29.9s | 5.7 MB | Generator produced ӱ (U+04F1) for ӯ twice in H — corrected by hand, DB row was clean. «Марде» mis-voiced as «Мардэ», replaced with «Як мард». Re-rendered off vocal-hamd-kids-01 (upbeat tempo). |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -156,6 +160,7 @@
 | Prayer / Reckoning | 4 | R066–R069 | EN, RU, UZ, TJ |
 | Parents / Mother | 4 | R070–R073 | EN, RU, UZ, TJ |
 | Repentance / Mercy | 4 | R074–R077 | EN, RU, UZ, TJ |
+| Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -186,16 +191,18 @@
 | path-to-jannah-bg.mp3 | 2 | 2026-08-13 (R023) | R004, R023 |
 | mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | 2026-08-13 (R022) | R012, R022 |
-| light-of-my-heart-bg.mp3 | 4 | 2026-08-16 (R038) | R010, R013, R024, R038 |
+| light-of-my-heart-bg.mp3 | 5 | 2026-09-09 (R078) | R010, R013, R024, R038, R078 |
 | ramadan-bg.mp3 | 5 | 2026-06-14 (R009) | R006, R007, R008, R009 |
 | ramadan-1-bg.mp3 | 1 | 2026-08-14 (R027)| R026, R027 |
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 | vocal-nasheed-01.mp3 | 7 | 2026-08-31 (R077) | R028, R034, R044, R057, R061, R065, R068, R077 |
-| vocal-nasheed-02.mp3 | 8 | 2026-08-31 (R076) | R030, R041, R046, R056, R064, R071, R076 |
-| vocal-nasheed-03.mp3 | 6 | 2026-08-25 (R070) | R029, R035, R043, R058, R070 |
+| vocal-nasheed-02.mp3 | 9 | 2026-09-09 (R079) | R030, R041, R046, R056, R064, R071, R076, R079 |
+| vocal-nasheed-03.mp3 | 7 | 2026-09-09 (R081) | R029, R035, R043, R058, R070, R081 |
 | vocal-nasheed-04.mp3 | 6 | 2026-08-31 (R074) | R031, R047, R054, R062, R067, R074 |
 | vocal-nasheed-05.mp3 | 5 | 2026-08-25 (R069) | R032, R036, R045, R059, R069 |
 | vocal-nasheed-06.mp3 | 7 | 2026-08-27 (R075) | R033, R039, R048, R060, R066, R073, R075 |
+| vocal-nasheed-07.mp3 | 1 | 2026-09-09 (R080) | R080 |
+| vocal-hamd-kids-01.mp3 | 0 | — | none shipped. Drawn for R081 then replaced: upbeat tempo read as flippant under a hadith on a mother's right. Kids-lane only (P117 lane field exists because of R029). |
 | vocal-nasheed-07.mp3 | 5 | 2026-08-31 (R072) | R037, R049, R055, R063, R072 |
 
 ### Background scene usage
@@ -232,6 +239,7 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 | lamb-girl-garden-day-v1.png | 4 | R006, R007, R008, R009 |
 | lamb-boy-mosque-night-v3.png | 12 | R014–R017, R022–R025, R034–R037, R070–R073 |
 | lamb-girl-garden-day-v2.png | 16 | R018–R021, R030–R033, R046–R049, R062–R065 |
+| camel-dawn-v1.png | 4 | R078–R081 |
 
 
 **Note:** **Note:** both mascot sources now exist at 4K in the repo — `lamb-boy-mosque-night-v3.png` and `lamb-girl-garden-day-v2.png`. The earlier 480p-frame recovery warning is resolved.
@@ -278,22 +286,20 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 77 |
+| Total reels posted | 81 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
 | Adults reels | 37 |
-| Kids reels | 40 |
-| Avg duration | ~40s |
-| Avg file size | ~14 MB |
-| Hadiths used (unique) | 20 |
-| Library rows | 65 (20 used, 45 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×35, Sahih Muslim ×12, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 10 (Abu Hurairah ×19, Abdullah ibn Masud ×8, Suhaib ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Kids reels | 44 |
+| Avg duration | ~39s |
+| Avg file size | ~13 MB |
+| Hadiths used (unique) | 21 |
+| Library rows | 65 (21 used, 44 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×39, Sahih Muslim ×12, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 10 (Abu Hurairah ×23, Abdullah ibn Masud ×8, Suhaib ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
-**57 reels from 15 hadiths.** #527, #2999 and #6446 account for 24 between them.
-The library, not the tooling, remains the ceiling — Stage 0 cannot fetch a new
-hadith until Sunnah API issue #3675 is answered.
-
-**Unique hadiths finally moved: 13 → 14.** Forty-five reels from fourteen hadiths.
+**81 reels from 21 hadiths.** The library, not the tooling, remains the ceiling
+— Stage 0 cannot fetch a new hadith until Sunnah API issue #3675 is answered.
+Twenty-one of 65 library rows have been used; 44 remain.
 The library, not the tooling, is still the ceiling — and Stage 0 cannot fetch a
 new one until Sunnah API issue #3675 is answered.
 ---
@@ -352,3 +358,4 @@ Then update:
 | 2026-09-06 | R066–R069 — Sunan an-Nasai #463 EN/RU/UZ/TJ adults. First set carrying the Arabic matn in the caption (P153) and the localised reference line and bilingual hashtags (P150). THE MATN WAS EXTENDED MID-SET: the row held only the opening clause, and the generation kept reaching for the continuation in three separate blocks — not invention, an incomplete row, and the hadith's mercy is in the part that was missing. Restored, all four languages re-translated and taken through Stage 3 over four rounds. THE OPERATOR CORRECTED THE UZBEK ROW on something A/B cannot see: «тўлдирсин»→«тўлдирилсин» and «юрадир»→«юритилади». Both passes judge faithfulness to the Arabic; whether a rendering is natural Uzbek is outside that scope, and only a speaker sees it. A named attribution was ALSO caught: the assistant wrote «Ibn Hajar in Fath al-Bari» with a claim about the Prophet's consistency in nawafil — verification found the discussion is IBN RAJAB's Fath al-Bari, a different work with the same title, and the claim was invented. A named attribution nobody checks is more dangerous than an unnamed one. P154 WAS FOUND DURING THIS SET and is the largest defect of the week: a caption pasted into an open SRT tab on 2026-09-03 corrupted the file, and every adults render with subtitles failed silently for three days — `Run` discarded every ffmpeg error the script has ever produced, and the merge check tested only whether the output EXISTED, which it did, from the previous run. Fixed alongside cue splitting and FontSize 22→18. Also learned: fewer background clips does NOT mean longer holds — the sequence loops, so fewer clips means more repetition. Kling 2.1 Master costs $1.40/5s, not the $0.35–0.50 the script documents; Kling 2.6 Pro is $0.07/s, so four 10s clips would cost what four 5s clips cost today | Farhod / Claude |
 | 2026-09-06 | R070–R073 — Sunan an-Nasai #3104 EN/RU/UZ/TJ kids, boy lamb. FIRST REEL FROM A ROW RESCUED THE SAME DAY: that morning #3104 carried «الجنة تحت أقدام الأمهات», which al-Albani graded munkar, from Anas, sitting under a sound narration's number and hasan grade. Corrected to what an-Nasai 3104 actually records — Mu'awiyah ibn Jahimah, his father asking whether to go out and fight, and the Prophet ﷺ pointing him to his mother. No generation reached for the popular wording, and all four descriptions name it as weak, which is the channel's whole premise applied to its own library. THREE DEFECTS, one per language: RU rendered الجهاد as «war for the faith» in a children's reel; UZ dropped the honorific ﷺ entirely across three occurrences, a first; TJ was the worst — it removed the narrative and had the Prophet ﷺ address the listener directly, when the words were spoken to one man about his own mother, with two commentary sentences leaking inside the quoted span. Changing who was addressed changes what was said. P148 confirmed working: split-narration.py printed unrunnable placeholders and defaulted to 720p. Allah absent from the moral in all four first drafts, fifth set running — worth adding to the defect table as near-certain rather than occasional | Farhod / Claude |
 | 2026-09-09 | R074–R077 — Sunan Ibn Majah #4251 EN/RU/UZ/TJ adults. FIRST SCENE SET ON KLING 2.6 PRO AT 10s: four clips for $3.50 including a redo, against $5.60 for four 5s clips on 2.1 Master, and 40s of scene time against 28–38s narrations, so nothing loops for the first time. generate_audio DEFAULTS TO TRUE on 2.6 Pro — the first test cost double and came back with an AAC track mixed into a clip meant to be a silent background; now sent as false, and only to v2.6, since Master rejects the parameter. THE COST NOTE IN generate-scene.ps1 HAD BEEN WRONG BY 3x: it documented "$0.35-0.50 standard tier" while the script defaulted to Master at $1.40/5s. Corrected. ANALYTICS READ FOR THE FIRST TIME, and several standing assumptions were wrong: YouTube is at 14.1K views in 28 days, up 965%; Tajikistan is the largest audience (24% YouTube, 51% TikTok), not Uzbekistan; every top-performing video is RUSSIAN, which Tajik and Uzbek speakers also watch; and adults reels with scene backgrounds get 1,500–4,800 views against 4–180 for kids reels with the lamb mascot. The assistant had been quoting "57 views a reel" for days from a single Instagram screenshot — Instagram is the weakest platform and that number was never representative. ALL fal SPEND IS FABRIC LIP-SYNC, $45.12 in eight days, 100% of one endpoint; Kling does not appear. So the kids lane costs the most and reaches the least. AGREED NEXT: vary the kids mascot by hadith context using Qur'anic animals, address captions to the PARENT rather than the child, weekly kids reels, two-week measurement | Farhod / Claude |
+| 2026-09-09 | R078–R081 — Bukhari #5971 kids, 4 langs, FIRST CAMEL SET. Five-mascot rotation replaces the two lambs (P157 mandatory -Mascot + gated still, P158 admin picker + gender at the API boundary + lang default ar→ru, P159 lane-filtered no-repeat nasheed picker, P160 --library on derive-uzbek-latin.ts). Kids captions now address the parent; weekly kids cadence | Farhod / Claude |
