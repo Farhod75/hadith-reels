@@ -153,7 +153,32 @@
   },
 
   "scenes": {
-        "b6446-market.mp4": {
+      "b4251-path.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Worn path through dry grass at dusk. Ibn Majah #4251, R074-. First scene set generated on Kling 2.6 Pro at 10s."
+    },
+      "b4251-rain.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Rain striking pools on cracked earth. Ibn Majah #4251, R074-."
+    },
+      "b4251-door.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Plank door drifting open onto dawn over hills. Ibn Majah #4251, R074-. Regenerated twice: the first prompt held the door static, the second kept warm lamplight beyond it instead of dawn."
+    },
+      "b4251-dawn.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Mist lifting after rain, light strengthening. Ibn Majah #4251, R074-."
+    },
+
+      "b6446-market.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
       "verified": true,

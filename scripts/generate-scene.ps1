@@ -51,8 +51,8 @@ param(
 # Mode = image-to-video if -Image supplied, else text-to-video. Pick matching default model.
 $imageMode = -not [string]::IsNullOrWhiteSpace($Image)
 if (-not $Model) {
-  $Model = if ($imageMode) { 'fal-ai/kling-video/v2.1/master/image-to-video' }
-           else            { 'fal-ai/kling-video/v2.1/master/text-to-video' }
+  $Model = if ($imageMode) { 'fal-ai/kling-video/v2.6/pro/image-to-video' }
+         else            { 'fal-ai/kling-video/v2.6/pro/text-to-video' }
 }
 
 $ErrorActionPreference = 'Stop'
@@ -86,6 +86,12 @@ $payload = @{
   aspect_ratio    = "9:16"
   negative_prompt = "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
 }
+# P156: Kling 2.6 Pro defaults generate_audio to TRUE. That doubles the rate
+# from $0.07/s to $0.14/s AND mixes generated sound into a clip meant to be a
+# silent background - the nasheed and narration are added at render time. 2.1
+# Master does not accept the parameter, so only send it to 2.6.
+if ($Model -match 'v2\.6') { $payload['generate_audio'] = $false }
+
 if ($imageMode) {
   if (-not (Test-Path $Image)) { Die "image not found: $Image" }
   # encode the local image as a base64 data URI (fal accepts this directly as a file input)
