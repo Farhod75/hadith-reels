@@ -8,10 +8,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { buildTags } from '@/lib/tags'
 import { buildRef } from '@/lib/refs'
+import { MASCOTS, mascotGender, type MascotKey } from '@/lib/mascots'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
 type Style  = 'adults' | 'kids'
-type Mascot = 'boy' | 'girl'
 type Step   = 'login' | 'pick' | 'generate' | 'preview' | 'publish'
 
 interface Hadith {
@@ -87,7 +87,7 @@ function StepBar({ step }: { step: Step }) {
 // per-section files (P106), so calling it twice for the same section is fine.
 // It was a UI state problem, not an API one.
 function AudioSection({ text, lang, style, mascot, slug, section, label, onAudioReady }: {
-  text: string; lang: Lang; style: Style; mascot: Mascot
+  text: string; lang: Lang; style: Style; mascot: MascotKey
   slug: string; section: 'story' | 'moral'; label: string
   onAudioReady?: (url: string) => void
 }) {
@@ -111,7 +111,7 @@ function AudioSection({ text, lang, style, mascot, slug, section, label, onAudio
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot, slug, section }),
+        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot: mascotGender(mascot), slug, section }),
       })
       if (!res.ok) throw new Error(`TTS ${res.status}`)
       const blob = await res.blob()
@@ -201,9 +201,12 @@ export default function AdminPage() {
   const [searchQ, setSearchQ] = useState('')
   const [filterGrade, setFilterGrade] = useState('all')
 
-  const [lang, setLang]   = useState<Lang>('ar')
+  // AR is out of scope (P118) and its kids voice slots are still English
+  // placeholders — defaulting to it means a wrong-voice narration in silence.
+  // RU is the largest audience and every top-performing reel is Russian.
+  const [lang, setLang]   = useState<Lang>('ru')
   const [style, setStyle] = useState<Style>('adults')
-  const [mascot, setMascot] = useState<Mascot>('girl')
+  const [mascot, setMascot] = useState<MascotKey>('camel')
 
   const [generating, setGenerating] = useState(false)
   const [genError, setGenError]     = useState('')
@@ -474,17 +477,17 @@ export default function AdminPage() {
               {style === 'kids' && (
                 <div>
                   <label className="text-xs text-slate-400 uppercase tracking-wide block mb-2">Mascot</label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {(['girl','boy'] as Mascot[]).map(m => (
-                      <button key={m} onClick={() => setMascot(m)}
-                        className={`py-2 px-3 rounded-lg text-xs border transition-colors ${
-                          mascot === m ? 'bg-indigo-600 text-white border-indigo-500' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}>
-                        {m === 'girl' ? '🧕 Girl lamb' : '🧒 Boy lamb'}
+                  <div className="grid grid-cols-1 gap-2">
+                    {MASCOTS.map(m => (
+                      <button key={m.key} onClick={() => setMascot(m.key)}
+                        className={`py-2 px-3 rounded-lg text-xs border transition-colors text-left ${
+                          mascot === m.key ? 'bg-indigo-600 text-white border-indigo-500' : 'bg-slate-700 text-slate-300 border-slate-600 hover:bg-slate-600'}`}>
+                        {m.emoji} {m.label}
                       </button>
                     ))}
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
-                    {mascot === 'girl' ? 'Female voice' : 'Male voice'}
+                    {mascotGender(mascot) === 'girl' ? 'Female voice' : 'Male voice'}
                   </p>
                 </div>
               )}

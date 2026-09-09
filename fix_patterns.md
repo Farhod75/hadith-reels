@@ -5159,3 +5159,50 @@ P148 (a real mascot filename used as a placeholder — same lane, same asset,
 also silent)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 158: The admin knew two mascots and defaulted to a dead language
+## ════════════════════════════════════════════════════════
+**ID:** P158
+**Type:** UI/backend contract + silent defaults
+**Files:** lib/mascots.ts (new), app/admin/page.tsx
+**Found:** 2026-09-09, wiring the five-mascot rotation through the admin
+
+**Symptom:**
+  P157 taught `make-kids-reel.ps1` five mascots. The admin still offered two,
+  so the camel set could be rendered but not GENERATED — the text and narration
+  step had no way to select it.
+
+**Diagnosis:**
+  `type Mascot = 'boy' | 'girl'` was declared in three places with no shared
+  source: the admin's local type, the TTS route's voice map, and the render
+  script's `$stillMap`. They agreed only because nobody had changed one.
+
+  The TTS route turned out to be RIGHT and needed no edit. Its `boy`/`girl` are
+  VOICE SLOTS, not lamb identities — the contract was always gender. The admin
+  was the layer conflating mascot with gender, because with two lamb mascots
+  the two concepts were the same string.
+
+**Fix:**
+  - `lib/mascots.ts` — one source of truth: key, label, emoji, gender, and the
+    registry `still` filename. `mascotGender(key)` throws on an unknown key.
+  - Admin imports it, renders `MASCOTS.map()`, and converts at the API boundary:
+    `mascot: mascotGender(mascot)`. The TTS contract is untouched.
+  - Language default `'ar'` → `'ru'`. AR is out of scope (P118) and its kids
+    voice IDs are English placeholders, so the default shipped a wrong-voice
+    narration with no error. RU is the largest audience.
+
+**Rule:**
+  When two concepts share a string because they happen to have the same
+  cardinality, they will be treated as one concept until the cardinality
+  changes. Separate them at the boundary, not in every consumer.
+  Third silent default found in one session (P157, this, and the TTS route's
+  own `mascot = 'girl'` fallback, still open). Defaults are guesses made when
+  the option set was small enough to hold in your head.
+
+**Still open:** `app/api/tts/route.ts:141` defaults `mascot = 'girl'`. An admin
+payload omitting the field gets a female voice silently. Left for its own fix.
+
+**Related:** P157, P118 (AR out of scope), P103/P104 (voice follows mascot)
+
+**Status:** FIXED
