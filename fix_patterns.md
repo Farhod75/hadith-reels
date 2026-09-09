@@ -5059,3 +5059,56 @@ the same inputs again rather than assuming the fix is complete.
 P150 (twenty hand-corrections of a hardcoded string)
 **Commit:** 3fe4a4e
 **Status:** FIXED — verified on #1899 and #3104 in three languages
+
+## ════════════════════════════════════════════════════════
+## PATTERN 156: A default that doubled the bill
+## ════════════════════════════════════════════════════════
+**ID:** P156
+**Type:** API contract — an unsent parameter is not an absent one
+**Files:** scripts/generate-scene.ps1
+**Commit:** deb3db5
+
+**Kling 2.6 Pro defaults `generate_audio` to TRUE.** The script does not send
+the parameter, so every clip was generated with native audio: $0.14 per second
+instead of $0.07, and an AAC track inside a file that exists only to be a
+SILENT background — the nasheed and narration are mixed in at render time.
+
+The first test clip, 5 seconds, cost $0.70 rather than $0.35 and came back with
+audio confirmed by `ffprobe -select_streams a`.
+
+**Found by reading the schema, not by testing.** The model page lists duration
+and per-second cost but not parameter defaults. The OpenAPI schema, behind the
+Schema button, gives `"generate_audio": {"type": "boolean", "default": true}`.
+One click, before spending $2.80 on four clips that would have cost $5.60 and
+carried unwanted sound.
+
+**Fix:** `if ($Model -match 'v2\.6') { $payload['generate_audio'] = $false }` —
+conditional because 2.1 Master does not accept the parameter and would reject
+the request.
+
+**THE COST NOTE IN THIS SCRIPT WAS WRONG BY 3x**, and had been since the POC:
+
+    COST NOTE: ~5s standard-tier clip is roughly $0.35-0.50
+
+The script's default was `fal-ai/kling-video/v2.1/master`, which is $1.40 for
+5s. So a four-clip scene set cost $5.60, not the $1.50-2.00 the pipeline
+checklist quoted. Every cost estimate downstream of that comment was wrong.
+
+**Real rates, checked 2026-09-09:**
+
+      Kling 2.1 Master   $1.40 / 5s,  +$0.28 per additional second
+      Kling 2.1 Pro      $0.49 / 5s,  +$0.098
+      Kling 2.6 Pro      $0.07 / second, audio off   ($0.70 for 10s)
+
+2.6 Pro is a LATER architecture than 2.1 Master, not a downgrade. Compared
+side by side against an existing Master clip, the quality difference did not
+justify paying double for atmospheric backgrounds seen behind text.
+
+**Rule:** a parameter you do not send still has a value. Read the schema before
+the first paid call — the model page documents what the model DOES, the schema
+documents what it will do by default, and the difference between those two cost
+double here.
+
+**Related:** P144 (a limit sized before the model changed), P137, P134
+
+**Status:** FIXED — audio off on 2.6, cost note corrected, default switched
