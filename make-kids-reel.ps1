@@ -7,13 +7,15 @@
 
   USAGE
     .\make-kids-reel.ps1 -Lang en -Slug bukhari-1417
-    .\make-kids-reel.ps1 -Lang uz -Slug bukhari-1417 -Mascot boy -Auto
+    .\make-kids-reel.ps1 -Lang uz -Slug bukhari-1417 -Mascot camel -Auto
     .\make-kids-reel.ps1 -Lang ru -Slug bukhari-1417 -Nasheed ramadan-2-bg.mp3
 
   PARAMS
     -Lang      (required) en|ru|uz|tj|ar
     -Slug      (required) e.g. bukhari-1417
-    -Mascot    (optional) boy|girl — default boy. Picks the still.
+    -Mascot    (required) lamb-boy|lamb-girl|camel|hoopoe|bee. Picks the still.
+               No default — five mascots in rotation, a default is a silent
+               wrong-asset path.
     -Nasheed   (optional) file in out\backgrounds\; else render script picks
     -Auto      (optional) skip the pre-Fabric confirmation pause
     -ForceRegen (optional) re-generate talking clips even if the mp4 exists (costs money)
@@ -24,7 +26,7 @@
 param(
   [Parameter(Mandatory)][ValidateSet('en','ru','uz','tj','ar')][string]$Lang,
   [Parameter(Mandatory)][string]$Slug,
-  [ValidateSet('boy','girl')][string]$Mascot = 'boy',
+  [Parameter(Mandatory)][ValidateSet('lamb-boy','lamb-girl','camel','hoopoe','bee')][string]$Mascot,
   [string]$Nasheed,
   [switch]$Auto,
   [switch]$ValidateOnly,
@@ -46,8 +48,11 @@ $moral   = "$workDir\$base-moral.mp3"
 $narr    = "$workDir\$base-narration.mp3"
 
 $stillMap = @{
-  boy  = 'assets\mascot\lamb-boy-mosque-night-v3.png'
-  girl = 'assets\mascot\lamb-girl-garden-day-v2.png'
+  'lamb-boy'  = 'assets\mascot\lamb-boy-mosque-night-v3.png'
+  'lamb-girl' = 'assets\mascot\lamb-girl-garden-day-v2.png'
+  'camel'     = 'assets\mascot\camel-dawn-v1.png'
+  'hoopoe'    = 'assets\mascot\hoopoe-garden-v1.png'
+  'bee'       = 'assets\mascot\bee-orchard-v1.png'
 }
 $still = $stillMap[$Mascot]
 
@@ -61,6 +66,10 @@ $problems = @()
 if (-not (Test-Path $story)) { $problems += "missing story mp3: $story" }
 if (-not (Test-Path $moral)) { $problems += "missing moral mp3: $moral" }
 if (-not (Test-Path $still)) { $problems += "missing mascot still: $still" }
+else {
+  $mascotAudit = & python "scripts\audit-assets.py" --check (Split-Path $still -Leaf) --lane kids 2>&1
+  if ($LASTEXITCODE -ne 0) { $problems += "asset gate rejected mascot: $mascotAudit" }
+}
 if (-not $env:FAL_KEY)       { $problems += "FAL_KEY not set - fal Fabric will fail" }
 if ($env:FAL_KEY -and $env:FAL_KEY.Length -lt 40) {
   $problems += "FAL_KEY looks wrong ($($env:FAL_KEY.Length) chars; expected ~69)"

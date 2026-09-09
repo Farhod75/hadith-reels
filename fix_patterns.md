@@ -5112,3 +5112,50 @@ double here.
 **Related:** P144 (a limit sized before the model changed), P137, P134
 
 **Status:** FIXED — audio off on 2.6, cost note corrected, default switched
+
+## ════════════════════════════════════════════════════════
+## PATTERN 157: A default that was harmless with two options
+## ════════════════════════════════════════════════════════
+**ID:** P157
+**Type:** Gate coverage — operator input reaching no gate, plus a silent default
+**Files:** make-kids-reel.ps1
+**Found:** 2026-09-09, registering the five-mascot rotation
+
+**Symptom:**
+  None yet. Found by reading the script before the first camel render rather
+  than by a bad reel shipping — the one time in this log that order held.
+
+**Diagnosis — two defects, one line apart:**
+  `[ValidateSet('boy','girl')][string]$Mascot = 'boy'` behaved correctly while
+  the library held exactly two mascots. With five registered, the same line is
+  two problems. `ValidateSet` rejects `-Mascot camel` loudly, which is fine.
+  The DEFAULT does not: omit the flag and the set renders the boy lamb with no
+  error, no prompt, and a correct-looking log line. A default is a guess the
+  script makes on the operator's behalf, and it stops being safe the moment the
+  option set outgrows the guess.
+
+  Separately, `$stillMap` resolves a path the operator chose and hands it
+  straight to Fabric. The asset gate is called on the NASHEED the render script
+  picks for itself — never on the mascot still. P121 said the gate protects the
+  inputs it is NAMED, and asked what else travels the same path. The mascot
+  still is the answer, three weeks later.
+
+**Fix:**
+  - `-Mascot` is `[Parameter(Mandatory)]` with no default; ValidateSet extended
+    to the five registered mascot keys.
+  - `$stillMap` extended to five entries.
+  - Step 0 now runs `audit-assets.py --check <still> --lane kids` and appends to
+    `$problems`, so an unregistered or wrong-lane mascot fails before any fal
+    spend, alongside the existing nasheed check.
+
+**Rule:**
+  A default is a decision made in advance for a situation you can still hold in
+  your head. When the option set grows past the assumption the default encoded,
+  the default does not become wrong loudly — it becomes wrong silently, which is
+  worse. Re-read every default when its domain expands.
+
+**Related:** P117 (registry and gate), P121 (gate wired to half the inputs),
+P148 (a real mascot filename used as a placeholder — same lane, same asset,
+also silent)
+
+**Status:** FIXED
