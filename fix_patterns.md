@@ -5252,3 +5252,49 @@ line 110. Same fix, different lane constant.
 **Related:** P117/P121 (gate coverage), audio policy KNOWN GAP
 
 **Status:** FIXED (kids lane only)
+
+## ════════════════════════════════════════════════════════
+## PATTERN 160: The derive script only knew about candidates
+## ════════════════════════════════════════════════════════
+**ID:** P160
+**Type:** Script scope — a table the workflow outgrew
+**Files:** scripts/derive-uzbek-latin.ts
+**Found:** 2026-09-09, generating UZ for Bukhari #5971
+
+**Symptom:**
+  The admin card showed ENGLISH text with Uzbek selected. Not a UI bug — the
+  card reads legacy `text_uzbek`, found NULL, and fell back. `text_uzbek_latin`
+  was NULL too; only `text_uzbek_cyrillic` was populated, at 308 chars.
+
+**Diagnosis:**
+  The matn was extended and re-translated, and that path writes Cyrillic only.
+  `derive-uzbek-latin.ts` fills Latin from Cyrillic, but reads
+  `hadith_candidates` — the Stage 2 sourcing table. #5971 is a LIBRARY row, so
+  the script could not see it at all. The same gap P151 fixed twice already, in
+  translate-candidates.py and verify-candidates.py, for the same reason:
+  re-translating a library row after a matn correction was not a workflow the
+  candidates-era scripts were written for, and it is now routine.
+
+  Had generation run, the Uzbek reel would have been built from English text.
+  Nothing downstream catches that: the linter compares against the matn passed
+  on the command line, and the operator would naturally pass the Cyrillic one.
+
+**Fix:**
+  - `--library` and `--number` flags; table and key column selected from them.
+  - On library rows the patch also writes legacy `text_uzbek` from the LATIN
+    (P097), matching all 74 rows backfilled in August.
+  - `.select()` chained to the update (P096) — the bare `.update()` reported a
+    zero-row match as success. It earned its place on the first run: the write
+    failed on a missing `updated_at` column, which `hadith_library` does not
+    have and `hadith_candidates` does. Column now set only on the candidates
+    path.
+
+**Rule:**
+  When a script names a table, it names an assumption about which workflow it
+  belongs to. Check every sibling script when one of them needs a --library
+  flag; this is the third.
+
+**Related:** P151 (same flag, two other scripts), P096 (silent zero-row update),
+P097 (legacy column takes Latin), P147 (hadith_number is not unique)
+
+**Status:** FIXED
