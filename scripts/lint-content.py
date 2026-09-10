@@ -301,6 +301,53 @@ def check_inversion(blocks, lang):
             'closeness, honour or elevation, do not render it as lowly')
     return scan(blocks, pats, 'WARN', 'inversion', note)
 
+# ---- script integrity (P161) --------------------------------------------
+# audit-library.py catches this class on LIBRARY rows; nothing checked the
+# GENERATOR's output. R081 came back with ӱ U+04F1 where Tajik uses ӯ U+04EF,
+# twice in H, from a DB row that was clean. Caught by eye, not by tooling.
+
+RU_BASE = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+
+CYRILLIC_OK = {
+    'ru': RU_BASE,
+    'uz': RU_BASE | set('ўқғҳ'),
+    'tj': RU_BASE | set('ғӣқӯҳҷ'),
+}
+
+CYR_CHAR = re.compile(r'[\u0400-\u052F]')
+LAT_CHAR = re.compile(r'[A-Za-z]')
+
+
+def check_script(blocks, lang):
+    """Wrong-alphabet Cyrillic, and Latin/Cyrillic mixed words.
+
+    S/M/H only. The C block legitimately mixes scripts - Arabic matn, Latin
+    collection name in parentheses, Latin hashtags - so scanning it is noise.
+    """
+    allowed = CYRILLIC_OK.get(lang)
+    if not allowed:
+        return []                      # en/ar are not Cyrillic lanes
+
+    out = []
+    for key in ('S', 'M', 'H'):
+        for line_no, line in blocks.get(key, []):
+            bad = sorted({c for c in line
+                          if CYR_CHAR.match(c) and c.lower() not in allowed})
+            if bad:
+                detail = ', '.join('%s U+%04X' % (c, ord(c)) for c in bad)
+                out.append(Finding(
+                    'FAIL', 'wrong-alphabet', BLOCK_NAMES[key], line_no, line,
+                    'not in the %s Cyrillic alphabet: %s. Compare against the '
+                    'DB row - the generator can introduce these from a clean '
+                    'source.' % (lang.upper(), detail)))
+
+            for word in re.findall(r'\S+', line):
+                if CYR_CHAR.search(word) and LAT_CHAR.search(word):
+                    out.append(Finding(
+                        'FAIL', 'mixed-script', BLOCK_NAMES[key], line_no, line,
+                        '"%s" mixes Cyrillic and Latin letters - homoglyph '
+                        'substitution (R027 class).' % word))
+    return out
 
 # ---- structure ----------------------------------------------------------
 
@@ -385,6 +432,7 @@ def main():
         # content checks below are even looking at
         ('missing-block',     lambda: check_missing_block(blocks)),
         ('duplicate-blocks',  lambda: check_duplicate_blocks(blocks)),
+        ('script-integrity',  lambda: check_script(blocks, args.lang)),
         # content
         ('divine-name',       lambda: check_divine_name(blocks, args.lang)),
         ('divine-name-case',  lambda: check_divine_name_case(blocks, args.lang)),

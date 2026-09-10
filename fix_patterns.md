@@ -5298,3 +5298,49 @@ line 110. Same fix, different lane constant.
 P097 (legacy column takes Latin), P147 (hadith_number is not unique)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 161: The library was checked for homoglyphs, the generator wasn't
+## ════════════════════════════════════════════════════════
+**ID:** P161
+**Type:** Check coverage — a defect class gated on one side only
+**Files:** scripts/lint-content.py
+**Found:** 2026-09-09, generating TJ for R081
+
+**Symptom:**
+  The TJ H block came back with ӱ (U+04F1) where Tajik uses ӯ (U+04EF), twice.
+  The DB row was clean — the generator introduced it. `lint-content.py` returned
+  0 fail 0 warn. It was caught by reading the text, not by tooling.
+
+**Diagnosis:**
+  `audit-library.py` has caught this class since 2026-08-21 (R027 homoglyph) —
+  but it reads `hadith_library` rows. Nothing checked the text the GENERATOR
+  produces, which is what actually reaches TTS. A clean source row does not
+  imply clean output, and the whole point of the M and S blocks is that they are
+  rewritten rather than copied.
+
+  Same shape as P121: a gate built where a failure was first seen, never widened
+  to the other end of the same path. The library end was guarded because the
+  library end was where the first homoglyph turned up.
+
+**Fix:**
+  `check_script()` — per-language Cyrillic alphabet whitelist plus a mixed-script
+  word detector, FAIL on both, wired with the structure checks since a wrong
+  letter changes what the content checks are reading. S/M/H only: the C block
+  legitimately mixes Arabic matn, a Latin collection name and Latin hashtags.
+  Alphabets are permissive — full Russian base for all three lanes plus each
+  language's own extras — so a loanword does not fire. Check count 8 → 9,
+  printed from len(checks) rather than a literal.
+
+**Proven in both directions:** fires on the exact R081 line naming ӱ U+04F1 and
+its block; silent on the real shipped TJ, UZ and RU drafts.
+
+**Rule:**
+  When a check guards a data store, ask what writes to it and what reads from
+  it. Both ends need the check, and the end that produces new text needs it more
+  than the end that stores reviewed text.
+
+**Related:** P121 (gate wired to half the inputs), P160 (third script needing
+--library), R027 (first homoglyph, library side), P128 (structure checks)
+
+**Status:** FIXED
