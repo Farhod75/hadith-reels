@@ -5486,3 +5486,68 @@ mascot:'boy' 200, adults with no mascot 200.
 their reasoning)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 165: Stage 0 was blocked on the only source that needed a key
+## ════════════════════════════════════════════════════════
+**ID:** P165
+**Type:** Pipeline unblock — a dependency nobody re-examined
+**Files:** scripts/lib/source_hadeethenc.py, scripts/lib/test_source_hadeethenc.py
+**Found:** 2026-09-10, asking whether #3675 had a workaround
+
+**Symptom:**
+  Stage 0 had been blocked since 2026-08-21 waiting on Sunnah API issue #3675.
+  The design named three Tier-1 sources; the tracker said "adapters built."
+
+**Diagnosis:**
+  Only Sunnah acquires. `source_dorar.py` exists but CONFIRMS grades — it is
+  called from `confirm_via_dorar`, on a candidate that already exists.
+  `source_hadeethenc.py` was never written at all. So "adapters built" was true
+  of the two that existed and hid the absence of the third, and the one source
+  needing a key became the only source.
+
+  Rejected on the way: `sunnah-now/database` GitHub dumps. Unaffiliated with
+  sunnah.com, Bukhari only, unverified provenance. §4 says nothing outside the
+  curated table is a source, and a community mirror is precisely what this
+  channel exists to correct.
+
+**Fix:**
+  `source_hadeethenc.py`, mirroring the Sunnah adapter's pure-parse / thin-fetch
+  split. Keyless. Supplies Arabic matn, isnad opener, grade, and AUTHORITATIVE
+  translations — uz comes back native Cyrillic, tg comes back real Tajik with
+  the correct ӯ (U+04EF), the very letter the generator got wrong in R081.
+
+**Four things the API does that a trusting parser gets wrong:**
+  1. `language=ar` has NO `hadeeth_ar` key — the Arabic is in `hadeeth`, and the
+     isnad in `hadeeth_intro`. Every other language returns both. Cost a
+     debugging round; now a regression test.
+  2. A missing translation returns **200 with an empty string**, not 404, not
+     null. `present()` treats absence explicitly at every field.
+  3. Default `Python-urllib` User-Agent gets 403 while curl succeeds. And
+     because `HTTPError` subclasses `URLError`, the first `fetch_langs` would
+     have swallowed that 403 as "no translations" — a blocked fetch and a
+     genuinely absent language were indistinguishable. Now only 404 means
+     absent; everything else raises. Proven live when DNS dropped mid-session:
+     it raised instead of returning three silently blank languages.
+  4. No hadith NUMBER. `reference` looks like it has one, but it is free-text
+     Arabic bibliography with volume/page pairs and commentary works, and lists
+     TWO Bukhari numbers for hadeeth 66511. Kept raw as a cross-check; never
+     parsed. `citation_pending=True` until Dorar supplies collection + number.
+
+**Licence, enforced by usage not by code:**
+  HadeethEnc terms are (1) no modification, addition or deletion, (2) credit the
+  source. Resolution: their translation is reproduced VERBATIM as the caption
+  matn or not used at all; story and moral are written from `text_arabic`, never
+  from their translation; credit line in every caption that uses their text.
+  Stage 4 becomes accept-or-reject for these rows — if a translation needs
+  fixing, reject and translate from the Arabic rather than edit theirs.
+
+**Rule:**
+  "Adapters built" is a claim about code, not about capability. When a pipeline
+  stage is blocked, check whether the blocker covers every path or only the one
+  that happened to be wired first.
+
+**Related:** P151 (--library on two other scripts), P160 (the third), P121 (half
+the inputs), P161 (the ӯ this source gets right)
+
+**Status:** FIXED — adapter live and tested; Stage 0 orchestration to follow.
