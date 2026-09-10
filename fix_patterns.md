@@ -5393,3 +5393,47 @@ both died on missing narration before any ffmpeg ran.
 coverage), P123 (hook tokenizes .ps1)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 163: A default that was protective until the caller changed
+## ════════════════════════════════════════════════════════
+**ID:** P163
+**Type:** Silent default — outlived its reasoning
+**Files:** app/api/tts/route.ts
+**Found:** 2026-09-10, closing the P157/P158 family
+
+**Symptom:**
+  None shipped. Found by reading the route while fixing the admin.
+
+**Diagnosis:**
+  `mascot = 'girl'` was a DELIBERATE default, and the comment above it said why:
+  P103 wanted a payload missing the field to fall back to shipped voices rather
+  than switch gender. That was correct reasoning about a caller that sent
+  'boy'/'girl' directly and might omit it.
+
+  P158 changed the caller. The admin now computes the value with
+  `mascotGender(mascot)`, so an absent field no longer means "an older client
+  omitted it" — it means the caller is broken. Worse, the selection is a
+  ternary: `mascot === 'boy' ? boy : girl`. ANY unexpected value lands on girl,
+  including a mascot KEY like 'camel' if a future caller sends the key instead
+  of the gender. The default's stated purpose was to prevent silently narrating
+  in the wrong gender; after P158 it produces exactly that.
+
+**Fix:**
+  Default removed. Kids requests validate `mascot` is 'boy' or 'girl' and 400
+  otherwise, with the received value in the message. Adults ignore the field as
+  before.
+
+**Proven in both directions:** missing mascot 400, mascot:'camel' 400,
+mascot:'boy' 200, adults with no mascot 200.
+
+**Rule:**
+  A default encodes an assumption about who is calling. When the caller changes,
+  re-read every default on that boundary — the reasoning in the comment may
+  still be sound and still no longer apply. Fourth silent default in two
+  sessions (P157 -Mascot, P158 lang 'ar', this, and P159's picker with no
+  memory).
+
+**Related:** P157, P158, P103 (the original default and its reasoning), P084
+
+**Status:** FIXED

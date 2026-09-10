@@ -135,14 +135,26 @@ function cleanForTTS(text: string, lang: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    // P103: `mascot` defaults to 'girl' — if the admin payload omits the field
-    // (the P084 failure mode), reels fall back to the voices already shipped
-    // rather than silently switching gender.
-    const { text, lang = 'en', style = 'adults', mascot = 'girl',
+    // P163: no default for `mascot`. P103 defaulted it to 'girl' so a payload
+    // missing the field fell back to shipped voices rather than switching
+    // gender — sound with two lamb mascots. Since P158 the caller computes this
+    // via mascotGender(), so an absent or unexpected value means the CALLER is
+    // broken, and defaulting narrates a male mascot in a female voice: the exact
+    // outcome the default existed to prevent. Validated below instead.
+    const { text, lang = 'en', style = 'adults', mascot,
             slug = '', section = '' } = await req.json()
 
     if (!text?.trim()) {
       return NextResponse.json({ error: 'text required' }, { status: 400 })
+    }
+
+    // Kids voices are selected by GENDER, not by mascot identity. Anything
+    // other than 'boy'/'girl' here — including a mascot key like 'camel' —
+    // would fall through the ternary below and silently pick the girl voice.
+    if (style === 'kids' && mascot !== 'boy' && mascot !== 'girl') {
+      return NextResponse.json(
+        { error: `kids TTS requires mascot 'boy' or 'girl' (voice gender), got ${JSON.stringify(mascot)}` },
+        { status: 400 })
     }
 
     const cleanText = cleanForTTS(text, lang)
