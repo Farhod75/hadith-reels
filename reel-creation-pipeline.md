@@ -111,7 +111,7 @@ on an unregistered file (P117/P121).
 
 `http://localhost:3002/admin` → login.
 
-- **Style:** Kids · **Mascot:** boy or girl · **Language**
+- **Style:** Kids · **Mascot:** one of the five (P158) · **Language** (defaults to RU, P158)
 - Search by hadith number (exact), tag, narrator, collection, or text (P109)
 - Pick the hadith, then Generate
 
@@ -154,12 +154,23 @@ a different one.
 ## Step 4 — One command
 
 ```powershell
-.\make-kids-reel.ps1 -Lang ru -Slug bukhari-8 -Mascot girl -Nasheed ramadan-2-bg.mp3
+.\make-kids-reel.ps1 -Lang ru -Slug bukhari-8 -Mascot camel
 ```
 
-Chains: validate → concat (0.5s gap, P135) → split if over 28s → fal Fabric lip-sync at
-720p per chunk → render. Pauses before Fabric (the only paid, irreversible step);
+Chains: validate → concat (0.5s gap, P135) → split if over 28s → fal Fabric lip-sync
+per chunk → render. Pauses before Fabric (the only paid, irreversible step);
 `-Auto` skips the pause.
+
+`-Mascot` is REQUIRED and takes `lamb-boy|lamb-girl|camel|hoopoe|bee` — there is
+no default, because with five mascots one would be a silent wrong-asset path
+(P157). Step 0 runs `audit-assets.py --check` on the still before any spend.
+
+`-Resolution` defaults to **480p** ($0.08/sec against $0.15 for 720p). Side by
+side at phone width the two are indistinguishable; 720p only holds up under a
+hard crop. Pass `-Resolution 720p` for a set that warrants it (P164).
+
+`-Nasheed` is optional. The picker is lane-filtered and will not repeat the
+previous pick (P159) — name a bed only to override it.
 
 **Splitting** cuts at the story/moral silence, not at maximum length. If the
 story alone exceeds 28s the script stops with a clear message — shorten the text
@@ -208,8 +219,8 @@ Repeat 1–13 per language. EN → RU → UZ → TJ.
    language switch deselects it (P108), and generating without re-selecting
    ships the previous language's caption.
 2. Mascot: set by the rotation above, not per language — all four languages of a
-   set use the same lamb. Check the Mascot stills table
-   in the tracker for which lamb the last set used.
+   set use the same mascot. Check the Mascot stills table
+   in the tracker for which mascot the last set used.
 3. **Generate** → read all four blocks (S/M/H/C) before anything else.
 4. Review against the recurring-defect list below. Read every line; the linter
    catches none of these.
@@ -225,15 +236,19 @@ Repeat 1–13 per language. EN → RU → UZ → TJ.
    Using the caption instead compares generated text against generated text,
    and a wrong DB row stays invisible.
 8. `python scripts\lint-content.py draft.txt --lang <lang> --matn "<matn>"`
-   Clean means seven checks passed, not that the text is right.
+   Clean means the checks passed, not that the text is right. The count is
+   printed from `len(checks)` and rises as checks are added — 9 as of P161.
 9. **Story narration**, then the moral's. Separate buttons, per block.
 10. Listen to both. A TTS defect found now costs one re-narrate; found after
     Fabric it costs a paid regeneration.
-11. ⚠ Render with the nasheed named explicitly — never let the picker choose:
-    `.\make-kids-reel.ps1 -Lang <lang> -Slug <slug> -Mascot <boy|girl> -Nasheed <file>`
-    Pick from the tracker's Nasheed usage table: least-used, and not one already
-    used in this language or this set. The picker has drawn an ocean ambience
-    track (R044) and an adults-lane bed (R029, R030).
+11. Render. The picker is now lane-filtered with no-repeat memory (P159), so
+    let it choose:
+    `.\make-kids-reel.ps1 -Lang <lang> -Slug <slug> -Mascot <mascot>`
+    It excludes `ambient-*`, excludes the previous pick for this lane, and
+    prints what it drew and what it avoided. Name `-Nasheed <file>` only to
+    override — e.g. R081, where the drawn bed was upbeat enough to read as
+    flippant under a hadith on a mother's right. An override does NOT update
+    the no-repeat state.
 12. `y` at the Fabric gate. This is the paid, irreversible step. Nothing before
     it costs money; answering N is free and the default.
 13. Watch the reel, then publish: **TG → IG → YT Shorts → TikTok**, one platform
@@ -538,3 +553,4 @@ verification — "acapella nasheed" returns instrumental tracks.
 |---|---|
 | 2026-09-09 | Mascot rotation expanded from two lambs to five Qur'anic animals in varied regional dress, driven by kids-lane analytics. Voice now follows mascot gender rather than lamb identity. Kids captions address the parent. Weekly kids cadence. |
 | 2026-08-11 | Rewritten. Kids path re-verified end to end on Bukhari #8. Removed the seerah-attribution instruction (P105 violation), the manual MP3 download step (P106), the P079 "not editable" note, and the dead `<keyword>-story-narration-<lang>` convention that contradicted the naming section below it. Adults path marked unverified. |
+| 2026-09-10 | Step 4 and step 11 corrected: -Mascot is mandatory with five values (P157), -Resolution defaults to 480p (P164), and the nasheed picker is lane-filtered with no-repeat memory so naming a bed is now an override, not the rule (P159). Lint check count is printed, not hardcoded (P161). |
