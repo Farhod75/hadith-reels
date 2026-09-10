@@ -5437,3 +5437,52 @@ mascot:'boy' 200, adults with no mascot 200.
 **Related:** P157, P158, P103 (the original default and its reasoning), P084
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 164: 720p was a June choice nobody priced
+## ════════════════════════════════════════════════════════
+**ID:** P164
+**Type:** Cost / unexamined constant
+**Files:** make-kids-reel.ps1
+**Found:** 2026-09-10, checking Fabric's real duration cap
+
+**Symptom:**
+  None. Nothing was broken. 100% of fal spend is Fabric lip-sync, $45 in 8 days,
+  and every clip had been generated at 720p since the lane was built.
+
+**Diagnosis:**
+  Two assumptions surfaced together while checking the "~30s" cap, and both had
+  the same shape — a number chosen once and never re-read:
+
+  1. **The cap is real.** fal and VEED's API pages both document 30s. VEED's
+     5-minute figure describes their editor, not this endpoint. 28s is a correct
+     margin and there is no narration room to reclaim.
+  2. **Splitting costs nothing.** Fabric bills per second of OUTPUT with no
+     minimums, so 21s + 9s bills the same as one 30s clip. The earlier reasoning
+     that a split "pays twice" was wrong. What a split actually costs is the
+     mascot reset seam, which is a quality question, not a cost one.
+
+  Then the real finding: 720p is $0.15/sec against 480p at $0.08. The clip is
+  normalised into a 1080x1920 frame either way and the audience watches at phone
+  width. Side by side at feed size the two were indistinguishable; only under a
+  hard crop did 720p show finer embroidery and eye highlights.
+
+  `generate-talking-clip.py` had defaulted to 480p all along. The wrapper
+  overrode it to 720p in three places, two of which were only display strings —
+  so the cost decision lived in a hardcoded argument nobody had cause to read.
+
+**Fix:**
+  `-Resolution` parameter, ValidateSet 480p|720p, default 480p. The confirmation
+  prompt now prints the resolution AND the per-second rate, so the paid step
+  states its own price. 720p remains one flag away for a set that warrants it.
+
+**Rule:**
+  A constant chosen before the delivery format was known is a guess that has
+  outlived its evidence. Price every paid parameter against the size the output
+  is actually consumed at — and put the price in the confirmation prompt, so the
+  next person does not have to go looking for it.
+
+**Related:** P138 (Fabric idempotency), P157/P158/P163 (defaults that outlived
+their reasoning)
+
+**Status:** FIXED

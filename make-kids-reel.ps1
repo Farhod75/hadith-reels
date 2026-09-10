@@ -15,7 +15,7 @@
     -Slug      (required) e.g. bukhari-1417
     -Mascot    (required) lamb-boy|lamb-girl|camel|hoopoe|bee. Picks the still.
                No default — five mascots in rotation, a default is a silent
-               wrong-asset path.
+               wrong-asset path.   [ValidateSet('480p','720p')][string]$Resolution = '480p',
     -Nasheed   (optional) file in out\backgrounds\; else render script picks
     -Auto      (optional) skip the pre-Fabric confirmation pause
     -ForceRegen (optional) re-generate talking clips even if the mp4 exists (costs money)
@@ -123,7 +123,8 @@ $pending = @($clips | Where-Object { $ForceRegen -or -not (Test-Path "$workDir\$
 if ($pending.Count -eq 0) {
   Ok "all $($clips.Count) clip(s) already generated - nothing to submit, nothing to pay"
 } elseif (-not $Auto) {
-  Write-Host "`n  About to submit $($pending.Count) of $($clips.Count) clip(s) to fal Fabric at 720p (paid)." -ForegroundColor Yellow
+  $rate = if ($Resolution -eq '720p') { 0.15 } else { 0.08 }
+  Write-Host "`n  About to submit $($pending.Count) of $($clips.Count) clip(s) to fal Fabric at $Resolution (paid, ~`$$rate/sec of output)." -ForegroundColor Yellow
   if ($pending.Count -lt $clips.Count) {
     Write-Host "  Reusing: $(($clips | Where-Object { $_ -notin $pending }) -join ', ')" -ForegroundColor DarkGray
   }
@@ -133,7 +134,7 @@ if ($pending.Count -eq 0) {
 }
 
 # --- STEP 4: lip-sync each chunk, then render --------------------------------
-Say "`n[3/4] Lip-syncing $($clips.Count) clip(s) via fal Fabric (720p)..."
+Say "`n[3/4] Lip-syncing $($clips.Count) clip(s) via fal Fabric ($Resolution)..."
 # P138: Fabric is the paid step. A mid-set failure used to re-pay for every
 # clip that had already succeeded — R057 lost a 720p generation that way when
 # clip02's upload hit a TLS timeout and the re-run regenerated clip01 too.
@@ -147,7 +148,7 @@ foreach ($c in $clips) {
     continue
   }
   python generate-talking-clip.py --image $still `
-    --audio "$workDir\$c.mp3" --out "$workDir\$c.mp4" --resolution 720p
+    --audio "$workDir\$c.mp3" --out "$workDir\$c.mp4" --resolution $Resolution
   if ($LASTEXITCODE -ne 0) { Die "Fabric failed on $c" }
   $made++
 }
