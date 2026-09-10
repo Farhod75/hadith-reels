@@ -65,9 +65,9 @@
     },
     "vocal-hamd-kids-01.mp3": {
       "classification": "vocal",
-      "lanes": ["kids"],
+      "lanes": [],
       "verified": true,
-       "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. LANE-RESTRICTED: the random picker chose this for the R029 TJ ADULTS reel and it had to be re-rendered. This entry is why the lane field exists.TONE: upbeat, faster tempo. Reads as flippant under solemn content — pulled from the TJ #5971 set (parental respect) after listening. Suitable for light kids topics, not for hadith about rights, death, or reverence."
+             "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. RETIRED 2026-09-10. Three strikes: (1) the random picker chose it for the R029 TJ ADULTS reel and it had to be re-rendered — this entry is why the lane field exists; (2) pulled from the TJ #5971 set, upbeat tempo read as flippant under a hadith on a mother's right; (3) drawn again for RU #6018 and it sounds like it is playing at 2x speed. The tempo is wrong for narration, not just for solemn topics. File kept on disk; approved for no lane."
     },
     "_retired/ambient-ocean-bg.mp3": {
       "classification": "ambience",
@@ -120,12 +120,18 @@
       "verified": true,
       "notes": "Camel, Chust doppa, desert dawn. 4K, Nano Banana Pro. Fabric lip-sync tested clean."
     },
-    "hoopoe-garden-v1.png": {
+        "hoopoe-garden-v1.png": {
       "classification": "mascot",
-      "lanes": ["kids"],
+      "lanes": [],
       "verified": true,
-      "notes": "Hoopoe, Kyrgyz kalpak, garden midday. 4K, Nano Banana Pro. Fabric lip-sync not yet tested."
+      "notes": "RETIRED 2026-09-10, never shipped. Closed beak: Fabric animated a mouth behind the rigid beak, which read as anatomically wrong. Superseded by hoopoe-garden-v2.png with the beak parted. Do not re-approve — see P167."
     },
+    "hoopoe-garden-v2.png": {
+        "classification": "mascot",
+        "lanes": ["kids"],
+        "verified": true,
+        "notes": "Hoopoe, Kyrgyz kalpak, garden midday. 4K, Nano Banana Pro. BEAK PARTED in the still — v1 had a closed beak and Fabric animated a mouth behind it, which read as anatomically wrong. Any non-lipped mascot needs a parted mouth in the still (P167)."
+      },
     "bee-orchard-v1.png": {
       "classification": "mascot",
       "lanes": ["kids"],

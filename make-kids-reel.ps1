@@ -52,7 +52,7 @@ $stillMap = @{
   'lamb-boy'  = 'assets\mascot\lamb-boy-mosque-night-v3.png'
   'lamb-girl' = 'assets\mascot\lamb-girl-garden-day-v2.png'
   'camel'     = 'assets\mascot\camel-dawn-v1.png'
-  'hoopoe'    = 'assets\mascot\hoopoe-garden-v1.png'
+  'hoopoe'    = 'assets\mascot\hoopoe-garden-v2.png'
   'bee'       = 'assets\mascot\bee-orchard-v1.png'
 }
 $still = $stillMap[$Mascot]

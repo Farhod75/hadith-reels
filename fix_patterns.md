@@ -5599,3 +5599,52 @@ the inputs), P161 (the ӯ this source gets right)
 that would have caught the missing files on a clean clone)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 167: A mascot with no mouth to open
+## ════════════════════════════════════════════════════════
+**ID:** P167
+**Type:** Asset design constraint — a property of the still, not the tool
+**Files:** assets/mascot/hoopoe-garden-v2.png, assets/asset-registry.json,
+           lib/mascots.ts, make-kids-reel.ps1
+**Found:** 2026-09-10, first hoopoe render
+
+**Symptom:**
+  The hoopoe's lip-sync looked wrong in a way the camel's never had. The beak
+  stayed rigid and a mouth opened behind and below it.
+
+**Diagnosis:**
+  Fabric animates mouth-corner articulation on whatever face it is given. The
+  camel and both lambs have LIPS, so it had a mouth to move. The hoopoe has a
+  closed beak — no aperture — so it invented one underneath. Not a Fabric
+  defect and not a resolution defect: the still gave it nothing to work with.
+
+  This is a property of the ASSET, discoverable before any spend, and it
+  generalises: the ant (Chechen papakha) would have failed the same way, and
+  the bee is borderline.
+
+**Fix:**
+  hoopoe-garden-v2 regenerated with the BEAK PARTED — mandibles separated, a
+  hint of interior visible — so Fabric animates the beak itself. Proven on the
+  8.3s moral clip alone at 480p ($0.70) before committing to the set.
+  v1 retired in the registry with `lanes: []` and the reason recorded, rather
+  than deleted: the gate then blocks it WITH an explanation.
+
+**Two things learned generating it:**
+  - Nano Banana Pro drifts badly on an edit. The first attempt returned an ibis
+    in three-quarter profile with a different kalpak and a flattened background.
+    Character lock needs the change stated as one narrow instruction plus an
+    explicit list of what must not move.
+  - The reference image was rejected once as "conflicts with our safety
+    policies" — a false positive on a cartoon bird. Retrying in a fresh chat
+    cleared it. Do not reword around it.
+
+**Rule:**
+  Before adding a mascot, ask whether the character HAS a mouth that opens. If
+  the mouth is a beak, mandibles, or anything rigid, the still must be generated
+  already parted. Test on the shortest clip in the set before rendering the rest.
+
+**Related:** P164 (480p, which this was briefly mistaken for), P117 (registry
+retirement with a reason)
+
+**Status:** FIXED

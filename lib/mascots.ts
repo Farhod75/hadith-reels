@@ -18,7 +18,7 @@ export const MASCOTS: Mascot[] = [
   { key: 'lamb-boy',  label: 'Boy lamb · Uzbek tyubeteika', emoji: '🐑', gender: 'boy',  still: 'lamb-boy-mosque-night-v3.png' },
   { key: 'lamb-girl', label: 'Girl lamb · khan-atlas',      emoji: '🐑', gender: 'girl', still: 'lamb-girl-garden-day-v2.png' },
   { key: 'camel',     label: 'Camel · Chust doppa',         emoji: '🐪', gender: 'boy',  still: 'camel-dawn-v1.png' },
-  { key: 'hoopoe',    label: 'Hoopoe · Kyrgyz kalpak',      emoji: '🐦', gender: 'boy',  still: 'hoopoe-garden-v1.png' },
+  { key: 'hoopoe',    label: 'Hoopoe · Kyrgyz kalpak',      emoji: '🐦', gender: 'boy',  still: 'hoopoe-garden-v2.png' },
   { key: 'bee',       label: 'Bee · Tajik toqi',            emoji: '🐝', gender: 'girl', still: 'bee-orchard-v1.png' },
 ]
 

@@ -100,6 +100,10 @@
 | R079 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | RU | Kids | bukhari-5971 | kids-ru-bukhari-5971-story.mp3 | kids-ru-bukhari-5971-moral.mp3 | kids-ru-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-02.mp3 | No | kids-ru-bukhari-5971-mascot-reel.mp4 | 32.0s | 5.8 MB | Honorific spelled out for TTS (P112 lane). Split at story/moral seam. |
 | R080 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | UZ | Kids | bukhari-5971 | kids-uz-bukhari-5971-story.mp3 | kids-uz-bukhari-5971-moral.mp3 | kids-uz-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-07.mp3 | No | kids-uz-bukhari-5971-mascot-reel.mp4 | 31.6s | 6.0 MB | text_uzbek_latin and legacy text_uzbek were NULL after the matn re-translation; filled via P160 before generating. Caption quote from text_uzbek_cyrillic. |
 | R081 | 2026-09-09 | Sahih al-Bukhari #5971 | Abu Hurairah | Sahih | Parents / Family | #parents #mother #father #respect #family | TJ | Kids | bukhari-5971 | kids-tj-bukhari-5971-story.mp3 | kids-tj-bukhari-5971-moral.mp3 | kids-tj-bukhari-5971-narration.mp3 | clip01.mp4, clip02.mp4 | n/a (mascot spine) | vocal-nasheed-03.mp3 | No | kids-tj-bukhari-5971-mascot-reel.mp4 | 29.9s | 5.7 MB | Generator produced ӱ (U+04F1) for ӯ twice in H — corrected by hand, DB row was clean. «Марде» mis-voiced as «Мардэ», replaced with «Як мард». Re-rendered off vocal-hamd-kids-01 (upbeat tempo). |
+| R082 | 2026-09-10 | Sahih al-Bukhari #6018 | Abu Hurairah | Sahih | Speech / Manners | #speech #akhlaq #iman #character | EN | Kids | bukhari-6018 | kids-en-bukhari-6018-story.mp3 | kids-en-bukhari-6018-moral.mp3 | kids-en-bukhari-6018-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-05.mp3 | No | kids-en-bukhari-6018-mascot-reel.mp4 | 16.2s | 5.8 MB | First hoopoe set, first reel at 480p (P164). Mascot regenerated as hoopoe-garden-v2 with the beak PARTED — v1's closed beak made Fabric animate a mouth behind it (P167). Original M block inverted the hadith (silence better than bad speech); the matn gives two options and bad speech is not one — caught by review, not the linter. |
+| R083 | 2026-09-10 | Sahih al-Bukhari #6018 | Abu Hurairah | Sahih | Speech / Manners | #speech #akhlaq #iman #character | RU | Kids | bukhari-6018 | kids-ru-bukhari-6018-story.mp3 | kids-ru-bukhari-6018-moral.mp3 | kids-ru-bukhari-6018-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-04.mp3 | No | kids-ru-bukhari-6018-mascot-reel.mp4 | 18.9s | 5.7 MB | Honorific spelled out for TTS. First drawn vocal-hamd-kids-01, which sounded like 2x playback — re-rendered and the bed RETIRED (third strike). |
+| R084 | 2026-09-10 | Sahih al-Bukhari #6018 | Abu Hurairah | Sahih | Speech / Manners | #speech #akhlaq #iman #character | UZ | Kids | bukhari-6018 | kids-uz-bukhari-6018-story.mp3 | kids-uz-bukhari-6018-moral.mp3 | kids-uz-bukhari-6018-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-04.mp3 | No | kids-uz-bukhari-6018-mascot-reel.mp4 | 21.1s | 6.9 MB | Caption quote came back LATIN again (10th occurrence) — replaced from text_uzbek_cyrillic. C label was dropped on paste; P128's missing-block check caught it. |
+| R085 | 2026-09-10 | Sahih al-Bukhari #6018 | Abu Hurairah | Sahih | Speech / Manners | #speech #akhlaq #iman #character | TJ | Kids | bukhari-6018 | kids-tj-bukhari-6018-story.mp3 | kids-tj-bukhari-6018-moral.mp3 | kids-tj-bukhari-6018-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-02.mp3 | No | kids-tj-bukhari-6018-mascot-reel.mp4 | 23.4s | 7.6 MB | ӯ correct throughout this time (P161 live). Library row says «рӯзи оқибат» where standard Tajik is «рӯзи охират» — caption shipped verbatim per rule, narration uses охират. Row needs a native check. |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -132,6 +136,9 @@
 | Sunan an-Nasai #463 | EN, RU, UZ, TJ | Adults | R066, R067, R068, R069 |
 | Sunan an-Nasai #3104 | EN, RU, UZ, TJ | Kids | R070, R071, R072, R073 |
 | Sunan Ibn Majah #4251 | EN, RU, UZ, TJ | Adults | R074, R075, R076, R077 |
+| Sahih al-Bukhari #5971 | EN, RU, UZ, TJ | Kids | R078, R079, R080, R081 |
+| Sahih al-Bukhari #6018 (speak good or remain silent) | EN, RU, UZ, TJ | Kids | R082, R083, R084, R085 |
+| Sahih al-Bukhari #6018 (honor his neighbor) | — | — | UNUSED — same number, DIFFERENT hadith. hadith_number is not unique (P147): match the wording, not just the number. |
 
 ---
 
@@ -161,6 +168,7 @@
 | Parents / Mother | 4 | R070–R073 | EN, RU, UZ, TJ |
 | Repentance / Mercy | 4 | R074–R077 | EN, RU, UZ, TJ |
 | Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
+| Speech / Manners | 4 | R082–R085 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -196,13 +204,15 @@
 | ramadan-1-bg.mp3 | 1 | 2026-08-14 (R027)| R026, R027 |
 | ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
 | vocal-nasheed-01.mp3 | 7 | 2026-08-31 (R077) | R028, R034, R044, R057, R061, R065, R068, R077 |
-| vocal-nasheed-02.mp3 | 9 | 2026-09-09 (R079) | R030, R041, R046, R056, R064, R071, R076, R079 |
+| vocal-nasheed-02.mp3 | 10 | 2026-09-10 (R085) | R030, R041, R046, R056, R064, R071, R076, R079, R085 |
 | vocal-nasheed-03.mp3 | 7 | 2026-09-09 (R081) | R029, R035, R043, R058, R070, R081 |
 | vocal-nasheed-04.mp3 | 6 | 2026-08-31 (R074) | R031, R047, R054, R062, R067, R074 |
 | vocal-nasheed-05.mp3 | 5 | 2026-08-25 (R069) | R032, R036, R045, R059, R069 |
 | vocal-nasheed-06.mp3 | 7 | 2026-08-27 (R075) | R033, R039, R048, R060, R066, R073, R075 |
 | vocal-nasheed-07.mp3 | 1 | 2026-09-09 (R080) | R080 |
-| vocal-hamd-kids-01.mp3 | 0 | — | none shipped. Drawn for R081 then replaced: upbeat tempo read as flippant under a hadith on a mother's right. Kids-lane only (P117 lane field exists because of R029). |
+| vocal-nasheed-05.mp3 | 1 | 2026-09-10 (R082) | R082 |
+| vocal-nasheed-04.mp3 | 2 | 2026-09-10 (R084) | R083, R084 |
+| vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. NOTE: the picker filters on filename, not the registry, so a retired bed is still DRAWN and then blocked at the gate — it kills the render rather than being skipped. |
 | vocal-nasheed-07.mp3 | 5 | 2026-08-31 (R072) | R037, R049, R055, R063, R072 |
 
 ### Background scene usage
@@ -240,6 +250,8 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 | lamb-boy-mosque-night-v3.png | 12 | R014–R017, R022–R025, R034–R037, R070–R073 |
 | lamb-girl-garden-day-v2.png | 16 | R018–R021, R030–R033, R046–R049, R062–R065 |
 | camel-dawn-v1.png | 4 | R078–R081 |
+| hoopoe-garden-v2.png | 4 | R082–R085 |
+| hoopoe-garden-v1.png | 0 | RETIRED, never shipped — closed beak, unusable for lip-sync (P167) |
 
 
 **Note:** **Note:** both mascot sources now exist at 4K in the repo — `lamb-boy-mosque-night-v3.png` and `lamb-girl-garden-day-v2.png`. The earlier 480p-frame recovery warning is resolved.
@@ -286,20 +298,20 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 81 |
+| Total reels posted | 85 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
 | Adults reels | 37 |
-| Kids reels | 44 |
+| Kids reels | 48 |
 | Avg duration | ~39s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 21 |
-| Library rows | 65 (21 used, 44 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×39, Sahih Muslim ×12, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 10 (Abu Hurairah ×23, Abdullah ibn Masud ×8, Suhaib ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Hadiths used (unique) | 22 |
+| Library rows | 65 (22 used, 43 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×43, Sahih Muslim ×12, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 10 (Abu Hurairah ×27, Abdullah ibn Masud ×8, Suhaib ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
-**81 reels from 21 hadiths.** The library, not the tooling, remains the ceiling
+**85 reels from 22 hadiths.** The library, not the tooling, remains the ceiling
 — Stage 0 cannot fetch a new hadith until Sunnah API issue #3675 is answered.
-Twenty-one of 65 library rows have been used; 44 remain.
+Twenty-two of 65 library rows have been used; 43 remain.
 The library, not the tooling, is still the ceiling — and Stage 0 cannot fetch a
 new one until Sunnah API issue #3675 is answered.
 ---
@@ -359,3 +371,4 @@ Then update:
 | 2026-09-06 | R070–R073 — Sunan an-Nasai #3104 EN/RU/UZ/TJ kids, boy lamb. FIRST REEL FROM A ROW RESCUED THE SAME DAY: that morning #3104 carried «الجنة تحت أقدام الأمهات», which al-Albani graded munkar, from Anas, sitting under a sound narration's number and hasan grade. Corrected to what an-Nasai 3104 actually records — Mu'awiyah ibn Jahimah, his father asking whether to go out and fight, and the Prophet ﷺ pointing him to his mother. No generation reached for the popular wording, and all four descriptions name it as weak, which is the channel's whole premise applied to its own library. THREE DEFECTS, one per language: RU rendered الجهاد as «war for the faith» in a children's reel; UZ dropped the honorific ﷺ entirely across three occurrences, a first; TJ was the worst — it removed the narrative and had the Prophet ﷺ address the listener directly, when the words were spoken to one man about his own mother, with two commentary sentences leaking inside the quoted span. Changing who was addressed changes what was said. P148 confirmed working: split-narration.py printed unrunnable placeholders and defaulted to 720p. Allah absent from the moral in all four first drafts, fifth set running — worth adding to the defect table as near-certain rather than occasional | Farhod / Claude |
 | 2026-09-09 | R074–R077 — Sunan Ibn Majah #4251 EN/RU/UZ/TJ adults. FIRST SCENE SET ON KLING 2.6 PRO AT 10s: four clips for $3.50 including a redo, against $5.60 for four 5s clips on 2.1 Master, and 40s of scene time against 28–38s narrations, so nothing loops for the first time. generate_audio DEFAULTS TO TRUE on 2.6 Pro — the first test cost double and came back with an AAC track mixed into a clip meant to be a silent background; now sent as false, and only to v2.6, since Master rejects the parameter. THE COST NOTE IN generate-scene.ps1 HAD BEEN WRONG BY 3x: it documented "$0.35-0.50 standard tier" while the script defaulted to Master at $1.40/5s. Corrected. ANALYTICS READ FOR THE FIRST TIME, and several standing assumptions were wrong: YouTube is at 14.1K views in 28 days, up 965%; Tajikistan is the largest audience (24% YouTube, 51% TikTok), not Uzbekistan; every top-performing video is RUSSIAN, which Tajik and Uzbek speakers also watch; and adults reels with scene backgrounds get 1,500–4,800 views against 4–180 for kids reels with the lamb mascot. The assistant had been quoting "57 views a reel" for days from a single Instagram screenshot — Instagram is the weakest platform and that number was never representative. ALL fal SPEND IS FABRIC LIP-SYNC, $45.12 in eight days, 100% of one endpoint; Kling does not appear. So the kids lane costs the most and reaches the least. AGREED NEXT: vary the kids mascot by hadith context using Qur'anic animals, address captions to the PARENT rather than the child, weekly kids reels, two-week measurement | Farhod / Claude |
 | 2026-09-09 | R078–R081 — Bukhari #5971 kids, 4 langs, FIRST CAMEL SET. Five-mascot rotation replaces the two lambs (P157 mandatory -Mascot + gated still, P158 admin picker + gender at the API boundary + lang default ar→ru, P159 lane-filtered no-repeat nasheed picker, P160 --library on derive-uzbek-latin.ts). Kids captions now address the parent; weekly kids cadence | Farhod / Claude |
+| 2026-09-10 | R082–R085 — Bukhari #6018 kids, 4 langs, FIRST HOOPOE SET and first at 480p. All four single-clip, no splitting needed. hoopoe-garden-v1 and vocal-hamd-kids-01 both retired. | Farhod / Claude |
