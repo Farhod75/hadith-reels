@@ -31,7 +31,8 @@ param(
   [switch]$Auto,
   [switch]$ValidateOnly,
   [switch]$ForceRegen,
-  [double]$MaxLen = 28
+  [double]$MaxLen = 28,
+  [ValidateSet('480p','720p')][string]$Resolution = '480p'
 )
 
 Set-Location $PSScriptRoot

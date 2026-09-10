@@ -5551,3 +5551,51 @@ their reasoning)
 the inputs), P161 (the ӯ this source gets right)
 
 **Status:** FIXED — adapter live and tested; Stage 0 orchestration to follow.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 166: Committed the reference, not the thing
+## ════════════════════════════════════════════════════════
+**ID:** P166
+**Type:** Incomplete commit — the artifact described was never added
+**Files:** make-kids-reel.ps1, assets/mascot/*.png
+**Found:** 2026-09-10, first render of the hoopoe set
+
+**Symptom:**
+  Two failures, one shape.
+  1. `make-kids-reel.ps1` printed `at  (paid, ~$0.08/sec)` and Fabric died with
+     `--resolution: expected one argument`. No spend — argparse rejected it.
+  2. `git ls-files assets/mascot/` listed only the six lamb PNGs. camel-dawn-v1,
+     hoopoe-garden-v1 and bee-orchard-v1 were never staged.
+
+**Diagnosis:**
+  P164 added `-Resolution` in three places that USE the variable and never the
+  param block that DECLARES it. `$Resolution` was therefore an undefined
+  variable, which PowerShell expands to an empty string rather than raising —
+  so the tokenizer check passed, `-ValidateOnly` passed, and the failure
+  surfaced at the paid step.
+
+  P157 committed registry entries for three mascots and never `git add`ed the
+  images. The registry pointed at files the repo did not contain: a fresh clone
+  fails the asset gate, and R078–R081 are not reproducible. Both `git add` lines
+  named the JSON and the docs, never the binaries.
+
+  In both cases the commit MESSAGE was accurate about intent and wrong about
+  content, and every check we ran was blind to the gap: a tokenizer cannot see
+  an undefined variable, and a doc commit cannot see a missing binary.
+
+**Fix:**
+  - `-Resolution` declared in the param block with its ValidateSet and 480p
+    default; `$MaxLen` gains the comma it needed.
+  - The three mascot PNGs staged and committed.
+
+**Rule:**
+  When a commit adds a flag, run the thing with the flag before committing —
+  not a syntax check, the actual path. When a commit adds a registry entry,
+  `git status --untracked-files=all` on the directory it references. An
+  undefined PowerShell variable and a missing binary both fail silently, and
+  both were described accurately in a message that did not match the diff.
+
+**Related:** P164 (the flag), P157 (the registry entries), P117/P121 (the gate
+that would have caught the missing files on a clean clone)
+
+**Status:** FIXED
