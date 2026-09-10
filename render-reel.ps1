@@ -196,11 +196,51 @@ if (-not (Test-Path $moral)) { $problems += "missing moral narration: $moral" }
 $clips = @(Get-ChildItem "$normDir\*.mp4" -ErrorAction SilentlyContinue)
 if ($clips.Count -lt 3) { $problems += "need >=3 background clips in $normDir (found $($clips.Count))" }
 
-# nasheeds: all *.mp3 directly under out\backgrounds\
+# nasheeds: lane-eligible *.mp3 directly under out\backgrounds\ (P162)
+# Filter here rather than let the P117 gate at step 7 kill the render after all
+# the ffmpeg work. ambient-* is already retired to _retired\; *-kids-* is the
+# lane crossing that happened twice on 2026-08-15.
 $nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
-if ($nasheeds.Count -lt 1) { $problems += "no nasheed .mp3 found in out\backgrounds\" }
+if ($Style -eq 'adults') { $nasheeds = @($nasheeds | Where-Object { $_.Name -notlike '*-kids-*' }) }
+if ($nasheeds.Count -lt 1) { $problems += "no lane-eligible nasheed .mp3 in out\backgrounds\ (lane: $Style)" }
 if ($Nasheed -and -not (Test-Path "out\backgrounds\$Nasheed")) {
   $problems += "requested nasheed not found: out\backgrounds\$Nasheed"
+}
+
+# P162: pick the nasheed and gate it HERE, not at step 7. The pick used to sit
+# after the background mix, so a lane-rejected bed killed the render only after
+# all the ffmpeg work had run -- and the picker itself could never be tested
+# without a full paid render.
+$chosen = $null
+if ($nasheeds.Count -ge 1) {
+  $stateFile = "out\backgrounds\.last-used.json"
+  if ($Nasheed) {
+    $chosen = "out\backgrounds\$Nasheed"
+    $avoided = 'n/a (override)'
+  } else {
+    $state = @{}
+    if (Test-Path $stateFile) {
+      try { (Get-Content $stateFile -Raw | ConvertFrom-Json).PSObject.Properties |
+              ForEach-Object { $state[$_.Name] = $_.Value } }
+      catch { Write-Host "  last-used state unreadable, ignoring" -ForegroundColor DarkGray }
+    }
+    $last = $state[$Style]
+    $cand = @($nasheeds | Where-Object { $_.Name -ne $last })
+    if ($cand.Count -eq 0) { $cand = $nasheeds }
+    $pick = $cand | Get-Random
+    $chosen = $pick.FullName
+    $avoided = if ($last) { $last } else { 'none' }
+    $state[$Style] = $pick.Name
+    try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
+    catch { Write-Host "  could not record last-used nasheed" -ForegroundColor DarkGray }
+  }
+  Write-Host "  nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $avoided)" -ForegroundColor DarkGray
+
+  # P117: asset lane gate. A bed approved for the other lane is a lookup
+  # failure, not a judgement call - twice on 2026-08-15 the picker crossed lanes.
+  $assetName = Split-Path $chosen -Leaf
+  $auditOut  = & python "scripts\audit-assets.py" --check $assetName --lane $Style 2>&1
+  if ($LASTEXITCODE -ne 0) { $problems += "nasheed rejected by the asset registry: $assetName - $auditOut" }
 }
 
 # guard: don't silently overwrite an existing final reel
@@ -364,9 +404,27 @@ Ok "$bgMixed"
 $narrDur = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
 Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + subs'}))..."
 
-# choose nasheed (specific or random from local library)
-$chosen = if ($Nasheed) { "out\backgrounds\$Nasheed" } else { ($nasheeds | Get-Random).FullName }
-Write-Host "        nasheed: $(Split-Path $chosen -Leaf)" -ForegroundColor DarkGray
+# nasheed was chosen and lane-gated in the validation block above (P162).
+$stateFile = "out\backgrounds\.last-used.json"
+$chosen = if ($Nasheed) {
+  "out\backgrounds\$Nasheed"
+} else {
+  $state = @{}
+  if (Test-Path $stateFile) {
+    try { (Get-Content $stateFile -Raw | ConvertFrom-Json).PSObject.Properties |
+            ForEach-Object { $state[$_.Name] = $_.Value } }
+    catch { Write-Host "        last-used state unreadable, ignoring" -ForegroundColor DarkGray }
+  }
+  $last = $state[$Style]
+  $cand = @($nasheeds | Where-Object { $_.Name -ne $last })
+  if ($cand.Count -eq 0) { $cand = $nasheeds }
+  $pick = $cand | Get-Random
+  $state[$Style] = $pick.Name
+  try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
+  catch { Write-Host "        could not record last-used nasheed" -ForegroundColor DarkGray }
+  $pick.FullName
+}
+Write-Host "        nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $(if($last){$last}else{'none'}))" -ForegroundColor DarkGray
 # P117: asset lane gate. A bed approved for the other lane is a lookup failure,
 # not a judgement call - twice on 2026-08-15 the random picker crossed lanes.
 $assetName = Split-Path $chosen -Leaf

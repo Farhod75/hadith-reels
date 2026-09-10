@@ -5344,3 +5344,52 @@ its block; silent on the real shipped TJ, UZ and RU drafts.
 --library), R027 (first homoglyph, library side), P128 (structure checks)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 162: The adults picker, and a gate that ran too late to be tested
+## ════════════════════════════════════════════════════════
+**ID:** P162
+**Type:** Asset selection — no state, plus gate placement
+**Files:** render-reel.ps1
+**Found:** 2026-09-10, porting P159 to the adults lane
+
+**Symptom:**
+  None shipped. P159 fixed the kids picker and left the adults one, which had
+  the same unfiltered glob and no memory of its last pick.
+
+**Correction to the P159 write-up:** the adults lane was NOT silently broken.
+  Line 373 already ran the P117 gate on the picked bed, so a kids-only nasheed
+  was rejected, not used. The claim that this lane had "the same defect" was
+  wrong and is corrected here. What was actually wrong was smaller and in two
+  places.
+
+**Diagnosis:**
+  1. No no-repeat memory, so the same bed could land on consecutive adults reels.
+  2. The pick and its gate sat at step 7, AFTER the background mix. A
+     lane-rejected bed therefore killed the render only once all the ffmpeg work
+     had run — and more importantly, the picker could not be exercised without a
+     full paid render. Untestable code is how P121 survived eight reels.
+
+**Fix:**
+  - `*-kids-*` filtered out of the adults pool at validation time, so a crossing
+    bed is never picked rather than picked and then rejected.
+  - Shared `out\backgrounds\.last-used.json`, keyed by lane, so kids and adults
+    keep independent histories.
+  - Pick and P117 gate MOVED into the validation block, ahead of all ffmpeg. The
+    step-7 site is now one comment pointing here; `$chosen` is still in scope.
+
+**Proven in both directions:** two consecutive runs on a bogus slug picked
+light-of-my-heart then path-to-jannah, the second reporting `avoided:
+light-of-my-heart-bg.mp3`, pool 9 not 10 with the kids hamd filtered out, and
+both died on missing narration before any ffmpeg ran.
+
+**Rule:**
+  Where a gate runs decides whether it can be tested. A check placed after
+  expensive work is a check nobody exercises deliberately — move it to where a
+  dry run reaches it, and the cost of being wrong drops from a render to a
+  second.
+
+**Related:** P159 (kids lane, same picker), P117/P121 (the lane gate and its
+coverage), P123 (hook tokenizes .ps1)
+
+**Status:** FIXED
