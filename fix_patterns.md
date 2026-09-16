@@ -5648,3 +5648,57 @@ that would have caught the missing files on a clean clone)
 retirement with a reason)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 168: Retirement the picker couldn't see
+## ════════════════════════════════════════════════════════
+**ID:** P168
+**Type:** Two sources of truth for one decision
+**Files:** scripts/audit-assets.py, render-mascot-reel.ps1, render-reel.ps1
+**Found:** 2026-09-16, after vocal-hamd-kids-01 was retired
+
+**Symptom:**
+  vocal-hamd-kids-01 was retired in the registry on 2026-09-10 with `lanes: []`.
+  The very next render still reported "10 beds" and could draw it — the gate
+  then killed the render. Retiring an asset made renders FAIL rather than route
+  around it.
+
+**Diagnosis:**
+  Eligibility was decided twice. The registry held the real answer; the pickers
+  re-implemented it as a filename filter — `ambient-*` in the kids renderer,
+  `*-kids-*` in the adults one. Those filters were correct on the day they were
+  written (P159, P162) and could not see a decision recorded anywhere else.
+  So a retired asset stayed in the pool, got drawn, and was rejected at the
+  gate: the gate did its job, and the pool never learned.
+
+**Fix:**
+  `audit-assets.py --list --lane LANE [--section SECTION]` — the registry
+  answers "what may I use?" once, and both renderers ask it instead of
+  guessing. Filenames no longer encode lane membership anywhere.
+
+  Failure is explicit: if the list cannot be read or comes back empty, the
+  render stops with a message. It does NOT fall back to "use everything",
+  which would reintroduce exactly this bug.
+
+**Two things the wiring cost, both about the CALLER not the code:**
+  - `--list` first printed a count to stderr. PowerShell turns native stderr
+    into an ErrorRecord, and `$ErrorActionPreference='Stop'` makes that
+    terminating. A machine-readable command must write NOTHING but its output.
+  - The interface was verified by running the Python directly, which passed,
+    and only broke when called from PowerShell. Test a machine interface from
+    the caller that will actually use it.
+
+**Also observed:** with the ambience beds already retired to `_retired/`, both
+lanes now return the same 9 files. The lane field currently separates nothing
+in audio — vocal-hamd-kids-01 was the only asset it ever distinguished. It
+still earns its place for mascots.
+
+**Rule:**
+  When a gate and a chooser both decide the same thing, the chooser must ask
+  the gate. Two implementations of one rule stay in sync only until one of them
+  is updated.
+
+**Related:** P159 (kids picker), P162 (adults picker), P117/P121 (the gate),
+P167 (the retirement that exposed this)
+
+**Status:** FIXED

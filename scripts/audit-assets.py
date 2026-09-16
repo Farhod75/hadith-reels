@@ -196,7 +196,38 @@ def cmd_audit(reg):
     print('-' * width)
     print()
     return 0
+def cmd_list(reg, lane, classification=None):
+    """
+    P168: print the filenames approved for a lane, one per line, nothing else.
+    The render scripts filtered the pool by FILENAME (`ambient-*`, `*-kids-*`)
+    while retirement lives in the registry, so a retired asset was still DRAWN
+    and then blocked at the gate — killing the render instead of being skipped.
+    This is the registry answering "what may I use?" rather than each caller
+    re-implementing the rule.
 
+    stdout is machine-readable on purpose: callers split on newlines. NOTHING
+    is written to stderr — PowerShell turns native stderr into an ErrorRecord,
+    and with $ErrorActionPreference='Stop' in the render scripts that is a
+    terminating error. A count line on stderr broke the caller twice.
+    """
+    section_for = {'audio': 'audio', 'mascots': 'mascots', 'scenes': 'scenes'}
+    out = []
+    for section, entries in reg.items():
+        if section.startswith('_') or section == 'updated':
+            continue
+        if classification and section != section_for.get(classification, classification):
+            continue
+        if not isinstance(entries, dict):
+            continue
+        for name, meta in entries.items():
+            if not isinstance(meta, dict):
+                continue
+            if lane in (meta.get('lanes') or []):
+                out.append(name)
+    for name in sorted(out):
+        print(name)
+
+    return 0
 
 def main():
     ap = argparse.ArgumentParser(
@@ -208,17 +239,25 @@ def main():
                     help='required with --check')
     ap.add_argument('--audit', action='store_true',
                     help='sweep the asset folders and report')
+    ap.add_argument('--list', action='store_true',
+                    help='print filenames approved for --lane, one per line')
+    ap.add_argument('--section', choices=['audio', 'mascots', 'scenes'],
+                    help='restrict --list to one section')
     args = ap.parse_args()
 
-    if not args.check and not args.audit:
-        ap.error('give --audit or --check FILE --lane LANE')
+    if not args.check and not args.audit and not args.list:
+        ap.error('give --audit, --list --lane LANE, or --check FILE --lane LANE')
     if args.check and not args.lane:
         ap.error('--check requires --lane')
+    if args.list and not args.lane:
+        ap.error('--list requires --lane')
 
     reg = load_registry(args.registry)
 
     if args.check:
         return cmd_check(reg, args.check, args.lane)
+    if args.list:
+        return cmd_list(reg, args.lane, args.section)
     return cmd_audit(reg)
 
 

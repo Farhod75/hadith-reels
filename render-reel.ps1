@@ -198,10 +198,15 @@ if ($clips.Count -lt 3) { $problems += "need >=3 background clips in $normDir (f
 
 # nasheeds: lane-eligible *.mp3 directly under out\backgrounds\ (P162)
 # Filter here rather than let the P117 gate at step 7 kill the render after all
-# the ffmpeg work. ambient-* is already retired to _retired\; *-kids-* is the
-# lane crossing that happened twice on 2026-08-15.
-$nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
-if ($Style -eq 'adults') { $nasheeds = @($nasheeds | Where-Object { $_.Name -notlike '*-kids-*' }) }
+# the ffmpeg work. Eligibility comes from the registry (P168), not the
+# filename — a retired bed used to be drawn and then blocked.
+$approved = @(& python "scripts\audit-assets.py" --list --lane $Style --section audio)
+if ($LASTEXITCODE -ne 0 -or $approved.Count -eq 0) {
+  $problems += "could not read the approved nasheed list from the registry (lane: $Style)"
+  $approved = @()
+}
+$nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue |
+              Where-Object { $approved -contains $_.Name })
 if ($nasheeds.Count -lt 1) { $problems += "no lane-eligible nasheed .mp3 in out\backgrounds\ (lane: $Style)" }
 if ($Nasheed -and -not (Test-Path "out\backgrounds\$Nasheed")) {
   $problems += "requested nasheed not found: out\backgrounds\$Nasheed"
@@ -408,7 +413,9 @@ Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + su
 $stateFile = "out\backgrounds\.last-used.json"
 $chosen = if ($Nasheed) {
   "out\backgrounds\$Nasheed"
-} else {
+} else {$nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
+if ($Style -eq 'adults') { $nasheeds = @($nasheeds | Where-Object { $_.Name -notlike '*-kids-*' }) }
+if ($nasheeds.Count -lt 1) { $problems += "no lane-eligible nasheed .mp3 in out\backgrounds\ (lane: $Style)" }
   $state = @{}
   if (Test-Path $stateFile) {
     try { (Get-Content $stateFile -Raw | ConvertFrom-Json).PSObject.Properties |

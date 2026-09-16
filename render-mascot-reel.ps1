@@ -103,14 +103,22 @@ $clipPaths = foreach ($name in $Clips) {
 # P159: lane-filtered, no-repeat random pick. The old picker globbed every mp3
 # in out\backgrounds\, so a kids reel could draw ambient ocean and an adults
 # reel a kids hamd -- the KNOWN GAP in the audio policy. It also had no memory,
-# so the same bed could land on consecutive reels. Lane is by filename
-# convention: *-kids-* is kids-only, ambient-* is adults-only, the rest shared.
+# so the same bed could land on consecutive reels. Lane was by filename
+# convention until P168; the registry decides it now.
 $chosenNasheed = $null
 if (-not $NoMusic) {
-  $all = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
-  # this script is the kids renderer, so the kids lane is the filter here
+  # P168: the registry decides eligibility, not the filename. Filtering on
+  # `ambient-*` meant a RETIRED bed was still drawn and then blocked at the
+  # gate below -- killing the render rather than being skipped, which is how
+  # vocal-hamd-kids-01 reached R083 after being pulled from R081.
   $lane = 'kids'
-  $pool = @($all | Where-Object { $_.Name -notlike 'ambient-*' })
+  $approved = @(& python "scripts\audit-assets.py" --list --lane $lane --section audio)
+  if ($LASTEXITCODE -ne 0 -or $approved.Count -eq 0) {
+    $problems += "could not read the approved nasheed list from the registry (lane: $lane)"
+    $approved = @()
+  }
+  $all  = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
+  $pool = @($all | Where-Object { $approved -contains $_.Name })
 
   if ($Nasheed) {
     if (Test-Path "out\backgrounds\$Nasheed") { $chosenNasheed = "out\backgrounds\$Nasheed" }
