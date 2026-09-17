@@ -5702,3 +5702,49 @@ still earns its place for mascots.
 P167 (the retirement that exposed this)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 169: Ten Latin captions the generator never wrote
+## ════════════════════════════════════════════════════════
+**ID:** P169
+**Type:** Wrong column selected — a defect blamed on the wrong layer
+**Files:** app/api/reels/route.ts
+**Found:** 2026-09-16, after the tenth occurrence
+
+**Symptom:**
+  Every UZ caption came back with a LATIN matn quote inside an otherwise
+  Cyrillic caption. Corrected by hand on ten consecutive sets and logged each
+  time against the generation step.
+
+**Diagnosis:**
+  Not the generator. `/api/reels` never SELECTed `text_uzbek_cyrillic` — the
+  column was not in the query at all — so the response fell through to
+  `text_uzbek`, which holds LATIN by design (P097, matching the 74 rows
+  backfilled in August). The generator echoed faithfully what the API gave it.
+
+  Ten log entries attributed this to the generation step because that is where
+  it was SEEN. Nobody checked what the API returned, because the admin card
+  showed the same Latin text and looked like independent confirmation — it was
+  the same defect, rendered twice.
+
+  The same select drove search: `text_uzbek.ilike` only, so a Cyrillic query
+  matched nothing while every other language searched its own script.
+
+**Fix:**
+  `text_uzbek_cyrillic` added to the select; caption prefers it and falls back
+  to Latin then English. Search now covers both Uzbek scripts.
+
+**Proven:** searching «Аллоҳга» returns 6 hadiths where it previously returned
+none, the cards render Cyrillic, and a fresh kids caption (Tirmidhi #3479) came
+back fully Cyrillic with no correction.
+
+**Rule:**
+  A defect observed downstream is not evidence about where it originates. Ten
+  occurrences went into the log against the wrong layer because the symptom was
+  visible there and the cause was one query away. When the same wrong value
+  appears in two places, suspect one source, not two bugs.
+
+**Related:** P097 (why the legacy column holds Latin), P050 (a language falling
+back silently), P147
+
+**Status:** FIXED

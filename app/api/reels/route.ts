@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
 
     let query = sb
       .from('hadith_library')
-      .select('id, text_arabic, text_english, text_uzbek, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority', { count: 'exact' })
+      .select('id, text_arabic, text_english, text_uzbek, text_uzbek_cyrillic, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority', { count: 'exact' })
       .order('collection')
       .order('hadith_number')
       .range(offset, offset + limit - 1)
@@ -49,6 +49,7 @@ export async function GET(req: NextRequest) {
             `text_english.ilike.%${esc}%`,
             `text_russian.ilike.%${esc}%`,
             `text_uzbek.ilike.%${esc}%`,
+            `text_uzbek_cyrillic.ilike.%${esc}%`,
             `text_tajik.ilike.%${esc}%`,
             `text_arabic.ilike.%${esc}%`,
             `narrator.ilike.%${esc}%`,
@@ -77,7 +78,10 @@ export async function GET(req: NextRequest) {
       ...h,
       text_display:
         lang === 'uz' || lang === 'uz_cyrillic' || lang === 'uz_latin'
-          ? (h.text_uzbek   || h.text_english)
+          // P169: text_uzbek is the LEGACY column and holds LATIN by design
+          // (P097). Reading it put a Latin quote inside a Cyrillic caption on
+          // ten consecutive sets. Cyrillic is the canonical script for reels.
+          ? (h.text_uzbek_cyrillic || h.text_uzbek || h.text_english)
           : lang === 'tj'
           ? (h.text_tajik   || h.text_russian || h.text_english)
           : lang === 'ru'
