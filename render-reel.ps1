@@ -409,37 +409,11 @@ Ok "$bgMixed"
 $narrDur = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
 Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + subs'}))..."
 
-# nasheed was chosen and lane-gated in the validation block above (P162).
-$stateFile = "out\backgrounds\.last-used.json"
-$chosen = if ($Nasheed) {
-  "out\backgrounds\$Nasheed"
-} else {$nasheeds = @(Get-ChildItem "out\backgrounds\*.mp3" -ErrorAction SilentlyContinue)
-if ($Style -eq 'adults') { $nasheeds = @($nasheeds | Where-Object { $_.Name -notlike '*-kids-*' }) }
-if ($nasheeds.Count -lt 1) { $problems += "no lane-eligible nasheed .mp3 in out\backgrounds\ (lane: $Style)" }
-  $state = @{}
-  if (Test-Path $stateFile) {
-    try { (Get-Content $stateFile -Raw | ConvertFrom-Json).PSObject.Properties |
-            ForEach-Object { $state[$_.Name] = $_.Value } }
-    catch { Write-Host "        last-used state unreadable, ignoring" -ForegroundColor DarkGray }
-  }
-  $last = $state[$Style]
-  $cand = @($nasheeds | Where-Object { $_.Name -ne $last })
-  if ($cand.Count -eq 0) { $cand = $nasheeds }
-  $pick = $cand | Get-Random
-  $state[$Style] = $pick.Name
-  try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
-  catch { Write-Host "        could not record last-used nasheed" -ForegroundColor DarkGray }
-  $pick.FullName
-}
-Write-Host "        nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $(if($last){$last}else{'none'}))" -ForegroundColor DarkGray
-# P117: asset lane gate. A bed approved for the other lane is a lookup failure,
-# not a judgement call - twice on 2026-08-15 the random picker crossed lanes.
-$assetName = Split-Path $chosen -Leaf
-$auditOut  = & python "scripts\audit-assets.py" --check $assetName --lane $Style 2>&1
-if ($LASTEXITCODE -ne 0) {
-  $auditOut | ForEach-Object { Write-Host "        $_" -ForegroundColor Red }
-  Die "nasheed rejected by the asset registry: $assetName"
-}
+# P170: the nasheed was chosen and lane-gated in the validation block above
+# (P162). A second, older picker used to sit here and ran AFTER it -- so the
+# bed that shipped was drawn from an ungated pool with the pre-P168 filename
+# filter, the P117 gate checked a different file than the one in the reel, and
+# .last-used.json was written twice per render. $chosen is already set.
 
 $title = "drawtext=text='Hadith Reels':fontsize=28:fontcolor=white:shadowcolor=black@0.9:shadowx=2:shadowy=2:box=1:boxcolor=black@0.4:boxborderw=8:x=(w-text_w)/2:y=30:font=Arial"
 

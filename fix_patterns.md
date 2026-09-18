@@ -5748,3 +5748,52 @@ back fully Cyrillic with no correction.
 back silently), P147
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 170: The old picker was left behind the comment that replaced it
+## ════════════════════════════════════════════════════════
+**ID:** P170
+**Type:** Dead code that still ran — a move that only added
+**Files:** render-reel.ps1
+**Found:** 2026-09-17, first adults render since P162
+
+**Symptom:**
+  The render printed the nasheed TWICE. Step 0 chose vocal-nasheed-07; step 7
+  then chose vocal-nasheed-01, and that is the bed in the reel.
+
+**Diagnosis:**
+  P162 moved the pick into the validation block and left a comment at step 7
+  saying so — but the original block underneath was never deleted. It ran, and
+  ran LAST, so it won.
+
+  Three consequences, none visible in the output:
+  - The P117 gate checked vocal-nasheed-07 while vocal-nasheed-01 shipped. The
+    gate was live and testing the wrong file, which is worse than no gate: it
+    reports a pass for something that is not what ships.
+  - The leftover still carried the PRE-P168 filename filter and rebuilt
+    `$nasheeds` from an ungated `Get-ChildItem`, so a retired bed could reach a
+    reel through it. P168's fix was real and simply bypassed.
+  - `.last-used.json` was written twice per render, so no-repeat was one behind.
+
+  Both the P162 and P168 test runs passed, because both used `-ValidateOnly` or
+  died at validation. Neither reached step 7. The code path that shipped reels
+  was the one no test exercised.
+
+**Fix:**
+  Leftover block deleted; the comment at step 7 now states what is NOT there
+  and why. `$chosen` from validation is used directly.
+
+**Rule:**
+  Moving code means deleting it from where it was. A comment saying "this
+  happens earlier now" is not a deletion, and the reader who most needs it is
+  the one skimming for the line that assigns the variable — which was still
+  right there, still assigning it.
+
+  And: a validation-only smoke test proves the validation path. It says nothing
+  about the code after it. P162 and P168 were both verified this way and both
+  left this defect untouched for five reels.
+
+**Related:** P162 (the move), P168 (the filter it bypassed), P117 (the gate it
+misdirected)
+
+**Status:** FIXED

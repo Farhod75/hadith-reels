@@ -177,7 +177,25 @@
   },
 
   "scenes": {
-      "b4251-path.mp4": {
+    "b4248-sky.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Night sky over empty desert, Milky Way, slow upward tilt. Kling 2.6 Pro 10s, generate_audio off. MODE B — no figures, no structures. Generated for Ibn Majah #4248 (repentance)."
+    },
+    "b4248-clearing.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Storm cloud breaking, warm light falling through the gap onto an empty plain. Kling 2.6 Pro 10s. MODE B. Carries the theme most directly of the three."
+    },
+    "b4248-tide.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Thin sheet of water sliding over wet sand, leaving the surface unmarked. Kling 2.6 Pro 10s. MODE B."
+    },
+    "b4251-path.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
       "verified": true,
