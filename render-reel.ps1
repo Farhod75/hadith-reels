@@ -447,7 +447,7 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   # exactly as long as its first input, and -shortest then cuts the video
   # there — so -t alone could not add a tail. Padding the narration makes the
   # shortest stream genuinely 1s longer and all three agree.
-  "-filter_complex","[1:a]volume=1.0,apad=pad_dur=1.0[narration];[2:a]volume=0.25[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+  "-filter_complex","[1:a]volume=1.4,apad=pad_dur=1.0[narration];[2:a]volume=0.12[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
   "-vf",$vf,
   "-map","0:v","-map","[aout]",
   # P143: was -t $narrDur exactly, so the video ended on the last syllable and

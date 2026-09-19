@@ -5797,3 +5797,46 @@ back silently), P147
 misdirected)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 171: The mix nobody had listened to on a phone
+## ════════════════════════════════════════════════════════
+**ID:** P171
+**Type:** Audio balance — a default carried since the first reel
+**Files:** render-reel.ps1
+**Found:** 2026-09-17, rendering R089
+
+**Symptom:**
+  The nasheed sat too close to the narration. Not a defect — nothing failed,
+  eighty-five reels shipped this way — but on a phone speaker the bed competed
+  with the voice, and the voice is the point.
+
+**Diagnosis:**
+  narration 1.0 / music 0.25 had been in the filtergraph since the pipeline was
+  built and was never revisited. About 12 dB of separation, chosen once on
+  desktop monitoring and never checked against the device 97% of views arrive
+  on. Same shape as P164's 720p: a number picked before the delivery context
+  was known.
+
+**Fix:**
+  narration 1.4 / music 0.12 — roughly 21 dB. amix applies 1/n scaling across
+  inputs, so 1.4 peaks near 0.7 of full scale with headroom; that is the
+  practical ceiling before loud syllables clip. If the voice still sits back
+  after this, the fix is normalising the ElevenLabs source, not raising the
+  multiplier further.
+
+  ADULTS LANE ONLY. render-mascot-reel.ps1 is still at 0.20 and untouched —
+  kids narration is a mascot voice over a bed, a different balance question.
+
+**Note:** the three already-rendered languages of the set were re-rendered at
+the new mix and the two already-published reels re-uploaded, rather than
+shipping a set mixed two ways. Re-rendering is free; only Fabric and Kling cost.
+
+**Rule:**
+  Check output defaults against the device the output is consumed on, not the
+  one it is produced on. Second time this session — 720p was the first.
+
+**Related:** P164 (resolution priced against delivery size), P143 (the amix
+duration trap in the same filtergraph)
+
+**Status:** FIXED
