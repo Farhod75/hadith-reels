@@ -284,6 +284,16 @@ second one) · Change log. Then one commit, `Doc=1`.
 - **TJ** — cleanest lane for three sets. Watch «Худо» for «Аллоҳ», and adjacent
   near-identical words («ғанӣ ғании») which slur in TTS.
 
+  **Pronunciation watch-list** — `eleven_v3` mis-voices these. Rewrite around
+  them rather than fighting them:
+  - «Марде» → voiced «Мардэ» (R081). Replaced with «Як мард».
+  - «Даре» → voiced «Доре» (R089). Replaced with «Он дар».
+
+  NOT a suffix rule. «гуноҳе» carries the same indefinite -е and voices
+  correctly in the very same reel as «Даре», and the two failures are not even
+  the same defect: «Марде» changed the SUFFIX vowel, «Даре» changed the STEM
+  vowel. Add entries as found; look for a real pattern at ~5, not before.
+
 ### Known gaps
 
 - Fabric has no resume-by-request-id. A TLS timeout mid-set regenerates every

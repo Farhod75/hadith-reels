@@ -64,7 +64,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 
 ---
 
-## The 12 agents
+## The 14 agents
 
 ### Tier 1 — Critical (build first)
 
@@ -159,6 +159,35 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
   orchestrator would have had nothing to dispatch.
 - **Role:** Drives the text half of the reel pipeline for one language, from
   hadith selection to a staged render command. Stops at every human gate.
+- **Repo:** HR
+
+#### 14. competitor-auditing
+
+- **Status:** SPEC ONLY — 2026-09-20. Build after #1 orchestrating: a thirteenth
+  agent that cannot yet be triggered by the first is backwards.
+- **Role:** Finds other channels posting hadith reels and compares them against
+  ours on shared criteria. Its most valuable output is not views — it is running
+  their captions through HV, so the comparison measures what this channel exists
+  for: whether what is posted is authentic.
+- **Why it is distinct:** every other agent inspects our own pipeline. This one
+  inspects the environment the reels compete in, and uses HV — the other half of
+  the project — as its instrument.
+- **Data access — YOUTUBE ONLY.** YouTube Data API v3 gives search, view/like/
+  comment counts, upload dates and captions through an official interface.
+  TikTok and Instagram offer no open API for other people's content; getting it
+  means scraping, which breaks their terms and breaks without warning. Browsing
+  is excluded too: on 2026-09-20 an LLM browse reported two library rows as live
+  that had been deleted on 2026-09-03, because the public page is client-rendered
+  and the tool read a three-week-old cache.
+- **Checks v1:** (a) per competitor reel: hadith cited, grade claimed, source and
+  number given or absent; (b) HV verdict on the caption matn; (c) likes/views and
+  comments/views ratios — NOT raw views, which are dominated by subscriber count;
+  (d) posting cadence; (e) duration.
+- **Tools:** YouTube Data API v3, HV analyze endpoint, Supabase for results.
+- **Eval:** given 20 hand-graded competitor reels, HV verdicts agree with the
+  human grading; ratios match a manual count on 5.
+- **Boundary:** reports, never publishes. Comparing and correcting another
+  channel's content is a human decision, made per the channel's comment policy.
 - **Repo:** HR
 - **Tier:** 1 — highest daily return of anything unbuilt
 
