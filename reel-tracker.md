@@ -25,9 +25,10 @@
 | R003 | 2026-05-14* | Jami at-Tirmidhi #1956 | Abu Dharr | Hasan | Charity / Akhlaq | #smile #charity #akhlaq #brotherhood | UZ | Adults | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | Smile-as-charity hadith. Source: Усваи Ҳасана. Backfill post-Hajj. |
 | R004 | 2026-05-15 | Sahih al-Bukhari #1773 | Abu Hurairah | Sahih (mutafaqun alayh) | Hajj / Umrah | #hajj #umrah #expiation #pilgrimage #mabrur | TJ | Adults | umra-to-umra | umra-to-umra-narration.mp3 | umra-to-umra-moral-narration.mp3 | umra-to-umra-narration-full.mp3 | TBD (3 random of 6) | tj-adults-bg-mixed.mp4 | path-to-jannah-bg.mp3 | No (P078 — UZ/TJ Whisper Latin drift) | adults-tj-umra-reel-v2.mp4 | 50.7s | 33 MB | Source: Сарчашма: Усваи Ҳасана. Pre-Hajj pick. |
 | R005 | 2026-05-16 | Sahih al-Bukhari #1520 | Aisha | Sahih | Hajj / Women's jihad | #hajj #jihad #women #pilgrimage #mabrur #virtue | RU | Adults | hajj-women | hajj-women-story-narration-ru.mp3 | hajj-women-moral-narration-ru.mp3 | hajj-women-narration-ru-full.mp3 | 3 random from out/backgrounds/new/normalized/ | ru-adults-bg-mixed.mp4 | mubarak-bg.mp3 | No (regenerate cycle, audio fixed, subs skipped to ship clean) | adults-ru-hajj-women-reel-v2.mp4 | 49.1s | 22 MB | Source: Источник: Усваи Хасана. Required 1 regenerate cycle (P079 — "Послание к Аллаха" → "Посланник Аллаха"). |
-| R006 | 2026-06-13 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | en | kids | bukhari-6009 | kids-en-bukhari-6009-story.mp3 | kids-en-bukhari-6009-moral.mp3 | (split clip01–02) | kids-en-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-en-bukhari-6009-mascot-reel.mp4 | ~40s | 12.9 MB | First talking-mascot kids reel (girl lamb, Route A); fal Fabric lip-sync; published TG/YT/IG/TikTok | | R007 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | ru | kids | bukhari-6009 | kids-ru-bukhari-6009-story.mp3 | kids-ru-bukhari-6009-moral.mp3 | (split clip01–02) | kids-ru-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-ru-bukhari-6009-mascot-reel.mp4 | ~51s | 17.5 MB | Girl lamb; Nova RU kids voice (P085); published TG/YT/IG/TikTok |
-| R008 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | uz | kids | bukhari-6009 | kids-uz-bukhari-6009-story.mp3 | kids-uz-bukhari-6009-moral.mp3 | (split clip01–03) | kids-uz-bukhari-6009-clip01.mp4, clip02.mp4, clip03.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-uz-bukhari-6009-mascot-reel.mp4 | ~69s | 24.6 MB | Girl lamb; Nova UZ kids voice + ҳ/ж/ғ tuning (P087); published 4 platforms |
-| R009 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Huraira | Sahih | Kindness to animals | #kindness #animals #mercy | tj | kids | bukhari-6009 | kids-tj-bukhari-6009-story.mp3 | kids-tj-bukhari-6009-moral.mp3 | (split clip01–02) | kids-tj-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-tj-bukhari-6009-mascot-reel.mp4 | ~54s | ~18 MB | Girl lamb; native Tajik text (not RU dup); Nova TJ ҷ/ӯ OK; published 4 platforms |
+| R006 | 2026-06-13 | Sahih al-Bukhari #6009 | Abu Hurairah | Sahih | Kindness to animals | #kindness #animals #mercy | en | kids | bukhari-6009 | kids-en-bukhari-6009-story.mp3 | kids-en-bukhari-6009-moral.mp3 | (split clip01–02) | kids-en-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-en-bukhari-6009-mascot-reel.mp4 | ~40s | 12.9 MB | First talking-mascot kids reel (girl lamb, Route A); fal Fabric lip-sync; published TG/YT/IG/TikTok  |
+| R007 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Hurairah | Sahih | Kindness to animals | #kindness #animals #mercy | ru | kids | bukhari-6009 | kids-ru-bukhari-6009-story.mp3 | kids-ru-bukhari-6009-moral.mp3 | (split clip01–02) | kids-ru-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-ru-bukhari-6009-mascot-reel.mp4 | ~51s | 17.5 MB | Girl lamb; Nova RU kids voice (P085); published TG/YT/IG/TikTok |
+| R008 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Hurairah | Sahih | Kindness to animals | #kindness #animals #mercy | uz | kids | bukhari-6009 | kids-uz-bukhari-6009-story.mp3 | kids-uz-bukhari-6009-moral.mp3 | (split clip01–03) | kids-uz-bukhari-6009-clip01.mp4, clip02.mp4, clip03.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-uz-bukhari-6009-mascot-reel.mp4 | ~69s | 24.6 MB | Girl lamb; Nova UZ kids voice + ҳ/ж/ғ tuning (P087); published 4 platforms |
+| R009 | 2026-06-14 | Sahih al-Bukhari #6009 | Abu Hurairah | Sahih | Kindness to animals | #kindness #animals #mercy | tj | kids | bukhari-6009 | kids-tj-bukhari-6009-story.mp3 | kids-tj-bukhari-6009-moral.mp3 | (split clip01–02) | kids-tj-bukhari-6009-clip01.mp4, clip02.mp4 | n/a (mascot spine) | ramadan-bg.mp3 | No | kids-tj-bukhari-6009-mascot-reel.mp4 | ~54s | ~18 MB | Girl lamb; native Tajik text (not RU dup); Nova TJ ҷ/ӯ OK; published 4 platforms |
 | R010 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | en | Adults | bukhari-1 | adults-en-bukhari-1-story.mp3 | adults-en-bukhari-1-moral.mp3 | adults-en-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-en-bukhari-1-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | Yes | adults-en-bukhari-1-reel.mp4 | 78.8s | 23 MB | Pillar 2 animated, MODE B. First Tawheed-theme reel. Scenes 1/2/4 new (FLUX+Kling), scene 3 reused from R005. Fixed P098 (Kling poll loop) + P099 (amix tail) during production.; published TG/YT/IG/TikTok |
 | R011 | 2026-08-08 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | ru | Adults | bukhari-1 | adults-ru-bukhari-1-story.mp3 | adults-ru-bukhari-1-moral.mp3 | adults-ru-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-ru-bukhari-1-bg-mixed.mp4 | mubarak-bg.mp3 | Yes | adults-ru-bukhari-1-reel.mp4 | 58.2s | 17.3 MB | Scenes reused from R010. Story hand-written after 2 generations fabricated Prophet ﷺ dialogue. Whisper UnicodeEncodeError on Cyrillic (P100); 4 transcription fixes incl. мерзкую→мирскую. ; published TG/YT/IG/TikTok |
 | R012 | 2026-08-09 | Sahih al-Bukhari #1 | Umar ibn al-Khattab | Sahih | Tawheed / Intentions | #niyyah #intentions #deeds #hadith | uz | Adults | bukhari-1 | adults-uz-bukhari-1-story.mp3 | adults-uz-bukhari-1-moral.mp3 | adults-uz-bukhari-1-narration.mp3 | b1-scene1.mp4, b1-scene2.mp4, b1520-path.mp4, b1-scene4.mp4 | adults-uz-bukhari-1-bg-mixed.mp4 | nasheed-bg-1.mp3 | No (P078) | adults-uz-bukhari-1-reel.mp4 | 67.5s | 19.1 MB | Scenes reused from R010. First reel on ElevenLabs eleven_v3 for UZ (P102) — Opa Johann; OpenAI onyx/nova both hardened plain г to ғ. Story rephrased to attribute Hijra timing to scholars; published TG/YT/IG/TikTok |
@@ -108,6 +109,10 @@
 | R087 | 2026-09-17 | Sunan Ibn Majah #4248 | Abu Hurairah | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #sins | RU | Adults | sunan-ibn-majah-4248 | adults-ru-sunan-ibn-majah-4248-story.mp3 | adults-ru-sunan-ibn-majah-4248-moral.mp3 | adults-ru-sunan-ibn-majah-4248-narration.mp3 | b4248-sky.mp4, b4248-clearing.mp4, b4248-tide.mp4 | adults-ru-sunan-ibn-majah-4248-bg-mixed.mp4 | vocal-nasheed-01.mp3 | Yes | adults-ru-sunan-ibn-majah-4248-reel.mp4 | 29.3s | 11.2 MB | Whisper hallucinated a subtitler credit («Субтитры… И.Бойкова») as a 10th cue over trailing silence — caught at the review gate, first hallucination that gate has stopped. Also fixed the mangled honorific and «Ни»→«Не». |
 | R088 | 2026-09-17 | Sunan Ibn Majah #4248 | Abu Hurairah | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #sins | UZ | Adults | sunan-ibn-majah-4248 | adults-uz-sunan-ibn-majah-4248-story.mp3 | adults-uz-sunan-ibn-majah-4248-moral.mp3 | adults-uz-sunan-ibn-majah-4248-narration.mp3 | b4248-sky.mp4, b4248-clearing.mp4, b4248-tide.mp4 | adults-uz-sunan-ibn-majah-4248-bg-mixed.mp4 | vocal-nasheed-04.mp3 | No | adults-uz-sunan-ibn-majah-4248-reel.mp4 | 42.5s | 16.1 MB | Caption quote came back CYRILLIC unprompted — first set since P169, ending ten consecutive sets of hand correction. Ran 42.5s against the set's ~30s; shipped as-is, scenes loop from 30s. |
 | R089 | 2026-09-17 | Sunan Ibn Majah #4248 | Abu Hurairah | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #sins | TJ | Adults | sunan-ibn-majah-4248 | adults-tj-sunan-ibn-majah-4248-story.mp3 | adults-tj-sunan-ibn-majah-4248-moral.mp3 | adults-tj-sunan-ibn-majah-4248-narration.mp3 | b4248-sky.mp4, b4248-clearing.mp4, b4248-tide.mp4 | adults-tj-sunan-ibn-majah-4248-bg-mixed.mp4 | vocal-nasheed-03.mp3 | No | adults-tj-sunan-ibn-majah-4248-reel.mp4 | 30.5s | 11.7 MB | «Даре» mis-voiced as «Доре» — third time the TJ indefinite -е suffix has broken on eleven_v3 (after «Марде» in R081). Replaced with «Он дар». ӯ correct throughout. |
+| R090 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | EN | Kids | muslim-1005 | kids-en-muslim-1005-story.mp3 | kids-en-muslim-1005-moral.mp3 | kids-en-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-02.mp3 | No | kids-en-muslim-1005-mascot-reel.mp4 | 15.2s | 5.8 MB | FIRST BEE SET and first girl-voice set since the lambs. The bee's lip-sync works because it has a real mouth — P167 is about beaks and rigid mandibles, not non-human faces. Shortest matn used at 33 chars. First generation came out in the adults voice: the Style toggle was on Adults. |
+| R091 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | RU | Kids | muslim-1005 | kids-ru-muslim-1005-story.mp3 | kids-ru-muslim-1005-moral.mp3 | kids-ru-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | light-of-my-heart-bg.mp3 | No | kids-ru-muslim-1005-mascot-reel.mp4 | 22.9s | 8.3 MB | Honorific spelled out for TTS. Narration uses «садака»; the caption quote keeps the library's «милостыня» verbatim — the conventional rendering, though it leans toward alms-to-the-poor, which is the narrowing this hadith exists to correct. Same caption-verbatim rule as R085. |
+| R092 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | UZ | Kids | muslim-1005 | kids-uz-muslim-1005-story.mp3 | kids-uz-muslim-1005-moral.mp3 | kids-uz-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-03.mp3 | No | kids-uz-muslim-1005-mascot-reel.mp4 | 20.5s | 8.1 MB | Caption quote Cyrillic unprompted, third set since P169. Generation wrote the honorific out in full in all four blocks — UZ voices the ﷺ glyph correctly, so it was reverted to the glyph, saving ~2s per occurrence. |
+| R093 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | TJ | Kids | muslim-1005 | kids-tj-muslim-1005-story.mp3 | kids-tj-muslim-1005-moral.mp3 | kids-tj-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-05.mp3 | No | kids-tj-muslim-1005-mascot-reel.mp4 | 19.4s | 6.9 MB | «хубе» voiced CORRECTLY — third clean -е word («гуноҳе», «хубе») against two failures («Марде», «Даре»), further evidence there is no suffix rule to encode. H had imported another hadith's examples (smile, help, kind word); cut. |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -143,6 +148,7 @@
 | Sahih al-Bukhari #5971 | EN, RU, UZ, TJ | Kids | R078, R079, R080, R081 |
 | Sahih al-Bukhari #6018 (speak good or remain silent) | EN, RU, UZ, TJ | Kids | R082, R083, R084, R085 |
 | Sunan Ibn Majah #4248 | EN, RU, UZ, TJ | Adults | R086, R087, R088, R089 |
+| Sahih Muslim #1005 | EN, RU, UZ, TJ | Kids | R090, R091, R092, R093 |
 | Sahih al-Bukhari #6018 (honor his neighbor) | — | — | UNUSED — same number, DIFFERENT hadith. hadith_number is not unique (P147): match the wording, not just the number. |
 
 ---
@@ -174,6 +180,7 @@
 | Repentance / Mercy | 8 | R074–R077, R086–R089 | EN, RU, UZ, TJ |
 | Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
 | Speech / Manners | 4 | R082–R085 | EN, RU, UZ, TJ |
+| Kindness / Charity | 4 | R090–R093 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -201,24 +208,21 @@
 
 | Nasheed | Uses | Last used | Reel IDs |
 |---|---|---|---|
-| path-to-jannah-bg.mp3 | 2 | 2026-08-13 (R023) | R004, R023 |
-| mubarak-bg.mp3 | 2 | 2026-08-08 (R011) | R005, R011 |
-| nasheed-bg-1.mp3 | 2 | 2026-08-13 (R022) | R012, R022 |
-| light-of-my-heart-bg.mp3 | 5 | 2026-09-09 (R078) | R010, R013, R024, R038, R078 |
-| ramadan-bg.mp3 | 5 | 2026-06-14 (R009) | R006, R007, R008, R009 |
-| ramadan-1-bg.mp3 | 1 | 2026-08-14 (R027)| R026, R027 |
-| ramadan-2-bg.mp3 | 9 | 2026-08-13 (R025) | R014–R021, R025 |
-| vocal-nasheed-01.mp3 | 8 | 2026-09-17 (R087) | R028, R034, R044, R057, R061, R065, R068, R077, R087 |
-| vocal-nasheed-02.mp3 | 10 | 2026-09-10 (R085) | R030, R041, R046, R056, R064, R071, R076, R079, R085 |
-| vocal-nasheed-03.mp3 | 8 | 2026-09-17 (R089) | R029, R035, R043, R058, R070, R081, R089 |
-| vocal-nasheed-04.mp3 | 6 | 2026-08-31 (R074) | R031, R047, R054, R062, R067, R074 |
-| vocal-nasheed-05.mp3 | 5 | 2026-08-25 (R069) | R032, R036, R045, R059, R069 |
-| vocal-nasheed-06.mp3 | 7 | 2026-08-27 (R075) | R033, R039, R048, R060, R066, R073, R075 |
-| vocal-nasheed-07.mp3 | 2 | 2026-09-17 (R086) | R080, R086 |
-| vocal-nasheed-05.mp3 | 1 | 2026-09-10 (R082) | R082 |
-| vocal-nasheed-04.mp3 | 3 | 2026-09-17 (R088) | R083, R084, R088 |
-| vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. NOTE: the picker filters on filename, not the registry, so a retired bed is still DRAWN and then blocked at the gate — it kills the render rather than being skipped. |
-| vocal-nasheed-07.mp3 | 5 | 2026-08-31 (R072) | R037, R049, R055, R063, R072 |
+| vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
+| ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
+| vocal-nasheed-04.mp3 | 9 | R088 | R031, R047, R054, R062, R067, R074, R083, R084, R088 |
+| vocal-nasheed-01.mp3 | 8 | R087 | R028, R034, R044, R057, R065, R068, R077, R087 |
+| vocal-nasheed-03.mp3 | 8 | R092 | R029, R035, R043, R058, R070, R081, R089, R092 |
+| vocal-nasheed-05.mp3 | 7 | R093 | R032, R036, R045, R059, R069, R082, R093 |
+| vocal-nasheed-06.mp3 | 7 | R075 | R033, R039, R048, R060, R066, R073, R075 |
+| vocal-nasheed-07.mp3 | 7 | R086 | R037, R049, R055, R063, R072, R080, R086 |
+| light-of-my-heart-bg.mp3 | 6 | R091 | R010, R013, R024, R038, R078, R091 |
+| ramadan-bg.mp3 | 4 | R027 | R006, R008, R009, R027 |
+| mubarak-bg.mp3 | 2 | R011 | R005, R011 |
+| nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
+| path-to-jannah-bg.mp3 | 2 | R023 | R004, R023 |
+| ramadan-1-bg.mp3 | 1 | R026 | R026 |
+| vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
 ### Background scene usage
 
@@ -256,6 +260,7 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 | lamb-girl-garden-day-v2.png | 16 | R018–R021, R030–R033, R046–R049, R062–R065 |
 | camel-dawn-v1.png | 4 | R078–R081 |
 | hoopoe-garden-v2.png | 4 | R082–R085 |
+| bee-orchard-v1.png | 4 | R090–R093 |
 | hoopoe-garden-v1.png | 0 | RETIRED, never shipped — closed beak, unusable for lip-sync (P167) |
 
 
@@ -294,7 +299,7 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 ### Production rule of thumb
 
 - Don't use the same nasheed on **2 consecutive reels in the same language**
-- Don't reuse the exact same 3-clip combination within **5 consecutive reels** (math: 6 clips choose 3 = 20 combos, so 1-in-20 collision is unlikely if random, but check)
+- Don't reuse a SCENE SET within **three sets** (set-level rule, added 2026-09-06 — supersedes the older 3-clip/5-reel line, which counted reels and still missed five consecutive adults reels on `b527-*`)
 - After 10 reels, rotate in 3-5 new background clips from Pexels to refresh the library
 
 ---
@@ -303,22 +308,20 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 89 |
+| Total reels posted | 93 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
 | Adults reels | 37 |
-| Kids reels | 48 |
+| Kids reels | 52 |
 | Avg duration | ~39s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 23 |
-| Library rows | 65 (23 used, 42 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×43, Sahih Muslim ×12, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 10 (Abu Hurairah ×27, Abdullah ibn Masud ×8, Suhaib ×8, Abu Darda ×4, Nu'man ibn Bashir ×4, Ibn Umar ×4, Adiy ibn Hatim ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Hadiths used (unique) | 24 |
+| Library rows | 65 (24 used, 41 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×43, Sahih Muslim ×16, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 14 (Abu Hurairah ×34, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×4, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
 
-**89 reels from 23 hadiths.** The library, not the tooling, remains the ceiling
+**93 reels from 24 hadiths.** The library, not the tooling, remains the ceiling
 — Stage 0 cannot fetch a new hadith until Sunnah API issue #3675 is answered.
-Twenty-three of 65 library rows have been used; 42 remain.
-The library, not the tooling, is still the ceiling — and Stage 0 cannot fetch a
-new one until Sunnah API issue #3675 is answered.
+Twenty-four of 65 library rows have been used; 41 remain.
 ---
 
 ## Template — adding new reels
@@ -378,3 +381,4 @@ Then update:
 | 2026-09-09 | R078–R081 — Bukhari #5971 kids, 4 langs, FIRST CAMEL SET. Five-mascot rotation replaces the two lambs (P157 mandatory -Mascot + gated still, P158 admin picker + gender at the API boundary + lang default ar→ru, P159 lane-filtered no-repeat nasheed picker, P160 --library on derive-uzbek-latin.ts). Kids captions now address the parent; weekly kids cadence | Farhod / Claude |
 | 2026-09-10 | R082–R085 — Bukhari #6018 kids, 4 langs, FIRST HOOPOE SET and first at 480p. All four single-clip, no splitting needed. hoopoe-garden-v1 and vocal-hamd-kids-01 both retired. | Farhod / Claude |
 | 2026-09-17 | R086–R089 — Ibn Majah #4248 adults, 4 langs, first set chosen from analytics (stakes-and-consequence shape) rather than by topic label. New scenes b4248-sky/clearing/tide; audio mix changed to narration 1.4 / nasheed 0.12 (P171). | Farhod / Claude |
+| 2026-09-24 | R090–R093 — Muslim #1005 kids, 4 langs, FIRST BEE SET and first girl-voice set since the lambs. The bee lip-syncs correctly, scoping P167 to beaks rather than non-human faces. Selection now follows a four-slot cycle — mercy, deed, accountability, character — so analytics chooses within a slot rather than choosing the slot; #4248 was slot 1 and this is slot 2. Also this session: P168 (pickers read the registry, not filenames), P169 (/api/reels never selected text_uzbek_cyrillic — ten Latin captions blamed on the generator for a query defect), P170 (a leftover step-7 picker that ran after the P162 one and misdirected the gate), P171 (adults mix 1.4/0.12), agent 14 spec, TJ pronunciation watch-list instead of a lint rule the evidence did not support | Farhod / Claude |
