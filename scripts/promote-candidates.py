@@ -116,7 +116,16 @@ def pick_deeplink(source_urls) -> str:
 # ── candidate -> hadith_library row (the mapping) ────────────────────────────
 def map_to_library(c: dict) -> dict:
     cyr = c.get("text_uzbek_cyrillic")
+    # P174: HadeethEnc's licence requires crediting them per row that carries
+    # their text. `authority` already holds the GRADING source (Dorar), which
+    # is a different provenance — conflating the two is how mis-graded rows
+    # got their wrong authority. Two values only: 'hadeethenc' or NULL
+    # (in-house). A finer split was considered and dropped: the caption emits
+    # the same credit either way, and which language came from where is
+    # recoverable from the candidate JSON.
+    tsrc = c.get("translation_source")
     return {
+        "translation_source":  tsrc,
         "text_arabic":         c.get("text_arabic"),
         "text_english":        c.get("text_english"),
         "text_russian":        c.get("text_russian"),
@@ -140,6 +149,7 @@ LIBRARY_COLS = [
     "text_arabic", "text_english", "text_russian", "text_uzbek_cyrillic",
     "text_uzbek_latin", "text_uzbek", "text_tajik", "narrator", "collection",
     "book", "hadith_number", "grade", "tags", "source_url", "authority",
+    "translation_source",
 ]
 
 
@@ -180,6 +190,18 @@ def main():
         # belt-and-suspenders guard (gate should have caught these)
         if grade not in ("sahih", "hasan") or not c.get("grade_confirmed"):
             print(f"   ⏭  skip {coll} {num}: grade guard ({grade})")
+            skipped += 1
+            continue
+
+        # P174: syn_number() in upload-candidates.py mints "auto-<hash>" when
+        # Dorar gives no number, so the UNIQUE(collection, hadith_number) key
+        # cannot collapse distinct hadiths. That is right for a candidate and
+        # WRONG for the library: it is a dedup key, not a citation, and it
+        # would reach a caption as "#auto-3f2a91b04c". Nothing refused it
+        # before; no such row has ever been promoted, so this closes the gap
+        # while it is still theoretical.
+        if str(num or "").startswith("auto-"):
+            print(f"   ⏭  skip {coll} {num}: synthetic dedup number, not a citation")
             skipped += 1
             continue
 

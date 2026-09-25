@@ -5960,3 +5960,60 @@ or translations, so reviewing one means re-fetching it.
 **Related:** P172 (the wiring), P165 (per-hadith language coverage), P147
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 174: A dedup key is not a citation
+## ════════════════════════════════════════════════════════
+**ID:** P174
+**Type:** Latent citation defect + provenance column
+**Files:** promote-candidates.py, hadith_library schema
+**Found:** 2026-09-25, designing promotion for HadeethEnc candidates
+
+**Two things, both about what a row claims.**
+
+**1. translation_source.** HadeethEnc's licence requires crediting them per row
+carrying their text. `authority` already holds the GRADING source (Dorar) —
+conflating two provenances in one column is how mis-graded rows ended up with
+the wrong authority attached. New column, two values: 'hadeethenc.com' or NULL
+(in-house). NULL on all 65 existing rows; no backfill, since writing to
+verified rows to state the status quo is risk without benefit.
+
+  A three-value split ('hadeethenc-partial') was designed and dropped: the
+  caption emits the same credit either way, so the distinction would have been
+  stored and never read. Which language came from where is recoverable from the
+  candidate JSON.
+
+  The spelling came from the parser, not from the design: source_hadeethenc.py
+  already wrote "hadeethenc.com". Two spellings of one fact is how the nasheed
+  usage table drifted, so the existing tested value won.
+
+**2. syn_number mints citations that are not citations.** upload-candidates.py
+generates "auto-<sha1[:10]>" when Dorar gives no number, so
+UNIQUE(collection, hadith_number) cannot collapse distinct hadiths. Correct for
+a candidate. WRONG for the library — it is a dedup key, and it would reach a
+caption as "#auto-3f2a91b04c" on a channel whose premise is verifiable
+citation. Nothing refused it. Zero such rows exist in either table, so this
+closes the gap while it is still theoretical rather than after a reel ships.
+
+**A measurement that reversed a decision.** The plan was to refuse
+mixed-provenance rows so the column could stay unambiguous. Measured first: of
+57 hadeeths in the mercy slot, only 22 (38%) carry all four languages, and the
+gap is structural — uz and tg missing together on 33 of 35, ru on 2. Refusing
+would have discarded 62% of the thinnest and best-performing slot. The
+assumption was wrong and the measurement was cheap.
+
+**Rule:**
+  Before a value reaches a caption, ask what it IS, not where it came from. A
+  hash that guarantees uniqueness and a number that identifies a hadith are
+  both strings in the same column, and only one of them can be cited.
+
+**Still open:** HadeethEnc candidates cannot yet be promoted.
+hadith_promotions.candidate_id is NOT NULL, so a JSON-sourced row has no audit
+trail, and upload-candidates.py's to_row() writes text_arabic only — it would
+discard exactly the translations that make this source worth using. The upload
+path needs its own mapping.
+
+**Related:** P172/P173 (the sourcing path), P160 (the missing Uzbek Latin,
+which this path reproduces), P169 (a column nothing selects is invisible)
+
+**Status:** PARTIAL — column and guard shipped; promotion path not built.
