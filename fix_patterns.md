@@ -5840,3 +5840,58 @@ shipping a set mixed two ways. Re-rendering is free; only Fabric and Kling cost.
 duration trap in the same filtergraph)
 
 **Status:** FIXED
+
+## ════════════════════════════════════════════════════════
+## PATTERN 172: Stage 0 wired to a source that needs no key
+## ════════════════════════════════════════════════════════
+**ID:** P172
+**Type:** Pipeline completion — an adapter built and left unconnected
+**Files:** scripts/source-candidates.py
+**Found:** 2026-09-25, two weeks after P165
+
+**Symptom:**
+  Stage 0 was still described as blocked on Sunnah API issue #3675, and the
+  library had not gained a row since August. `source_hadeethenc.py` had been
+  built, tested with 14 offline tests and committed on 2026-09-10 — and never
+  called by anything.
+
+**Diagnosis:**
+  Building the adapter was the visible half. The runner still imported only
+  `source_sunnah`, so the keyless path existed and was unreachable. Same shape
+  as P165 itself: "adapters built" was true of the code and false of the
+  capability.
+
+**Fix:**
+  `--provider sunnah|hadeethenc` on source-candidates.py. Distinct from
+  `--source mock|live`, which is a Sunnah endpoint switch and was left alone.
+
+  The citation is the whole difficulty. HadeethEnc gives no hadith number, so
+  Dorar now supplies collection + number as well as the grade, through
+  `canonical_collection()` — which already refuses commentaries and takhrij
+  works, so no new mapping was invented. A candidate whose citation does not
+  resolve is DROPPED: it cannot be deduped, since hard_key needs both fields,
+  and it cannot be cited in a caption.
+
+  `--provider hadeethenc --no-dorar` is an argparse error rather than a silent
+  total loss, since Dorar is the only citation source for those candidates.
+
+**Proven live on two refs, and the DROP is the better half:**
+  - 66515 → Muslim #1599, sahih, Dorar match 0.894, citation_pending resolved
+    to False, dedup `new`, all four translations present. UZ came back native
+    Cyrillic and TJ real Tajik, both carrying the isnad opener with the
+    honorific already correct — content the pipeline has been hand-fixing.
+  - 66511 → DROPPED. Dorar returned «غريب جدا والمحفوظ حديث عمر» — a takhrij
+    verdict on a variant route, not a grade. The hadith itself is Bukhari #1
+    and sahih, but the matched card was a weak variant, and
+    classify_dorar_grade correctly refused to read that as a grade. A hadith
+    being sound does not make a particular card citable.
+
+**Rule:**
+  An adapter is not a capability until something calls it. When a stage is
+  reported blocked, check what the RUNNER imports, not what exists in lib/.
+
+**Related:** P165 (the adapter), P160/P151 (the same "built but not wired"
+shape), P147 (hadith_number is not unique)
+
+**Status:** FIXED — acquisition live. Promotion to hadith_library is still a
+separate gated step and unchanged.
