@@ -5895,3 +5895,68 @@ shape), P147 (hadith_number is not unique)
 
 **Status:** FIXED — acquisition live. Promotion to hadith_library is still a
 separate gated step and unchanged.
+
+## ════════════════════════════════════════════════════════
+## PATTERN 173: Refs by query, and drops that were only console output
+## ════════════════════════════════════════════════════════
+**ID:** P173
+**Type:** Pipeline usability — finding candidates, and not losing them
+**Files:** scripts/he-refs.py (new), scripts/source-candidates.py
+**Found:** 2026-09-25, first real batch through the HadeethEnc path
+
+**Two problems, one session.**
+
+**1. There was no way to choose what to source.** `out/source-refs.txt` did not
+exist and the runner fell back to two sample ids. HadeethEnc organises by
+CATEGORY, so the four-slot content cycle (mercy, deed, accountability,
+character) maps onto category ids and a refs file falls out of a query rather
+than out of browsing.
+
+  `he-refs.py --slot mercy --limit 10 --exclude-langs` writes ids with the
+  title as a comment. `--exclude-langs` drops ids whose translations list
+  lacks uz or tg — coverage is PER HADITH (P165), and a candidate missing
+  either would need machine translation, which is what this source exists to
+  avoid.
+
+  Supply is uneven and the thinnest slot is the best-performing one: mercy 57
+  hadeeths, deed 91, accountability 240, character 283.
+
+**2. Four in ten were dropped, and the drops existed only as console output.**
+  The first real batch: 10 refs → 6 candidates, all 6 grade-confirmed, 1 caught
+  as a hard duplicate. The four drops were three different causes:
+  - 5456 — «غريب لا نعرفه إلا من هذا الوجه»: a takhrij note, not a grade.
+  - 65063 — «عارضة الأحوذي», Ibn al-Arabi's COMMENTARY on Tirmidhi, with a
+    volume/page "number" of 6/115.
+  - 58240 — «المستدرك على الصحيحين», a primary collection outside the map.
+  - 66537 — «صحيح الترمذي 2632», al-Albani's grading work.
+
+**Two alias additions were considered and REFUSED, deliberately:**
+  - «صحيح الترمذي» → Tirmidhi. Refused. Al-Albani's Sahih Sunan al-Tirmidhi is
+    a SELECTION with its own sequential numbering that does not reliably track
+    the Jami's. Mapping it would risk a caption citing a number that points at
+    a different hadith — the exact defect shape of #3104 and #8497, which this
+    channel exists to correct in others. A dropped candidate costs one reel; a
+    wrong number costs the premise.
+  - al-Mustadrak → primary. Refused for a different reason: it IS primary, but
+    al-Hakim is known for leniency, the channel has never cited it, and adding
+    a collection changes what appears in captions as an authority. That is a
+    decision to take with a scholar, not a side effect of widening an alias map
+    to rescue a candidate.
+
+**Fix:** drops now written to `out/candidates-dropped.json`. A daif drop is
+final, but a CITATION drop is not a ruling on the hadith — it is a statement
+about which card Dorar matched. Per G2 a human admits, never a score, so these
+are a review queue rather than waste. Nothing in that file enters the pipeline.
+
+**Known gap:** the dropped record carries only `ref` and `reason`, not the matn
+or translations, so reviewing one means re-fetching it.
+
+**Rule:**
+  When a gate rejects something, ask whether the rejection is a JUDGEMENT or an
+  UNRESOLVED LOOKUP. A judgement can be final and silent. An unresolved lookup
+  belongs in front of a human, because the thing it could not resolve may be
+  resolvable by someone who knows the field.
+
+**Related:** P172 (the wiring), P165 (per-hadith language coverage), P147
+
+**Status:** FIXED

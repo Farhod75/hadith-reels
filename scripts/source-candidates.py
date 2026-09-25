@@ -220,6 +220,16 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
+    # P173: drops used to exist only as console output. A daif drop is final,
+    # but a CITATION drop is not a ruling on the hadith -- it means Dorar's
+    # source was a commentary, a grading work with its own numbering, or a
+    # collection outside the curated map. Those are a human's call (G2: a
+    # human admits, never a similarity score), so they are written out instead
+    # of lost. Nothing here enters the pipeline; this is a review queue.
+    dropped_out = "out/candidates-dropped.json"
+    with open(dropped_out, "w", encoding="utf-8") as f:
+        json.dump(dropped, f, ensure_ascii=False, indent=2)
+
     new = sum(1 for r in results if r["queue_status"] == "new")
     dup = sum(1 for r in results if r["queue_status"] == "duplicate")
     fz = sum(1 for r in results if r["queue_status"] == "review_fuzzy")
@@ -231,7 +241,7 @@ def main():
     pending = sum(1 for r in results if r.get("citation_pending"))
     if pending:
         print(f"   ⚠ citation still pending: {pending} (should be 0 — these cannot be promoted)")
-    print(f"🗑  dropped at door: {len(dropped)}")
+    print(f"🗑  dropped at door: {len(dropped)} → {dropped_out}")
     for d in dropped[:10]:
         print(f"    {d['ref']}: {d['reason']}")
     print("━" * 40)
