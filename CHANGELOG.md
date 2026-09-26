@@ -1,3 +1,22 @@
+## [2026-09-26]
+
+### Added
+- `scripts/upload-candidates.py --from-json` (P175) — upload path for HadeethEnc
+  candidates. Its own row mapping, deliberately not `to_row()`: the Dorar-search
+  mapping writes `text_arabic` only and discards every translation, which is the
+  one thing that makes a HadeethEnc candidate worth having. Per-language
+  provenance goes into `translation_meta` rather than a scalar source field,
+  because HadeethEnc carries all four languages for only part of its corpus — one
+  field would lie about the rest. Rows land at `status='translated'`, so Stage 3
+  verify and the human gate both stay ahead of promotion. Synthetic `auto-`
+  numbers are refused at the door rather than deferring the failure to P174's
+  guard at promotion, and `review_fuzzy` rows need `--allow-fuzzy` (G2:
+  similarity never decides admission). First live batch: 5 of 6 inserted —
+  Bukhari 2654 / 6871 / 6857 / 31 and Muslim 2628, all four languages each;
+  Muslim 2759 correctly dropped as a hard duplicate of the live library.
+  `text_uzbek_latin` left NULL by design — `scripts/derive-uzbek-latin.ts`
+  already owns the tested transliteration (P097).
+
 ## [2026-09-09]
 
 ### Added

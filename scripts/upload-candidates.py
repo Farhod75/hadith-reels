@@ -105,14 +105,180 @@ def insert_candidates(url: str, key: str, rows: list) -> int:
         return r.status
 
 
+# ── Stage-0 JSON → hadith_candidates row (P175) ──────────────────────────────
+# Deliberately NOT to_row(). to_row() is the Dorar-search path: it writes
+# text_arabic only and discards every translation — which is precisely the
+# thing that makes a HadeethEnc candidate worth uploading at all.
+#
+# No syn_number() here either. A HadeethEnc candidate reaches this stage with a
+# Dorar-resolved collection + number (source-candidates.py resolves
+# citation_pending before writing the JSON). Minting auto-<sha1> would only
+# defer the failure: P174 refuses synthetic numbers at promotion, so the row
+# would land in the table and then be permanently unpromotable.
+_LANG_COLS = {
+    "text_english":        "en",
+    "text_russian":        "ru",
+    "text_uzbek_cyrillic": "uz",
+    "text_tajik":          "tg",
+}
+
+
+def json_to_row(c: dict, now_iso: str):
+    """Map one candidates.json entry to a hadith_candidates row.
+    Returns (row, None) on success, or (None, "skip reason")."""
+    coll = (c.get("collection") or "").strip()
+    num = str(c.get("hadith_number") or "").strip()
+    if not coll or not num:
+        return None, "no citation (collection/hadith_number empty)"
+    if num.startswith("auto-"):
+        return None, f"synthetic number {num} — not a citation"
+    if c.get("citation_pending"):
+        return None, "citation_pending still true — Dorar never resolved it"
+
+    ar = (c.get("text_arabic") or "").strip()
+    if not ar:
+        return None, "no text_arabic"
+
+    src = c.get("translation_source") or "hadeethenc.com"
+    meta = {}
+    row = {
+        "text_arabic":     ar,
+        "narrator":        c.get("narrator"),
+        "collection":      coll,
+        "hadith_number":   num,
+        "grade":           c.get("grade"),
+        "grading_source":  c.get("grading_source"),
+        "grade_confirmed": bool(c.get("grade_confirmed")),
+        "source_urls":     c.get("source_urls") or [],
+        # 'translated', not 'verified': the text exists but has NOT been through
+        # the Stage 3 A/B pass. promote-candidates.py reads status='approved'
+        # only, so the human gate stays exactly where it is.
+        "status":          "translated",
+    }
+    for col, lang in _LANG_COLS.items():
+        val = (c.get(col) or "").strip()
+        if not val:
+            continue
+        row[col] = val
+        # Per-language provenance, because only ~38% of HadeethEnc rows carry
+        # all four languages. A scalar source field would lie about the other 62%.
+        meta[col] = {"at": now_iso, "provenance": src,
+                     "source_field": "hadeethenc", "lang": lang}
+    if not meta:
+        return None, "no translations present — nothing this path adds"
+
+    row["translation_meta"] = meta
+    # text_uzbek_latin is deliberately left NULL. It is derived from the
+    # canonical Cyrillic by scripts/derive-uzbek-latin.ts, which already owns
+    # the tested deriveBothScripts + normalizeLatinApostrophes (P097). A second
+    # transliterator in Python would be a second thing to keep correct.
+    return row, None
+
+
+def run_from_json(path: str, commit: bool, allow_fuzzy: bool) -> int:
+    """--from-json path. Self-contained: own env, own POST, own exit code."""
+    import datetime
+    now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
+
+    env = {**load_env(), **os.environ}
+    url = env.get("NEXT_PUBLIC_SUPABASE_URL")
+    key = env.get("SUPABASE_SERVICE_ROLE_KEY")
+    if not url or not key:
+        print("Missing NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY in .env.local")
+        return 1
+
+    try:
+        with open(path, encoding="utf-8") as f:
+            cands = json.load(f)
+    except FileNotFoundError:
+        print(f"not found: {path}")
+        print("   run:  python scripts/source-candidates.py --provider hadeethenc --refs out/source-refs.txt")
+        return 1
+    if not isinstance(cands, list):
+        print(f"{path} is not a JSON list of candidates")
+        return 1
+
+    print("=" * 60)
+    print(f"  --from-json {path}   ({len(cands)} entries)   {'COMMIT' if commit else 'DRY RUN'}")
+    print("=" * 60)
+
+    rows, skipped = [], 0
+    for c in cands:
+        qs = c.get("queue_status")
+        if qs == "duplicate":
+            print(f"   skip {c.get('collection')} {c.get('hadith_number')}: hard duplicate of library row")
+            skipped += 1
+            continue
+        if qs == "review_fuzzy" and not allow_fuzzy:
+            hits = (c.get("dedup") or {}).get("fuzzy_hits") or []
+            top = hits[0]["score"] if hits else "?"
+            print(f"   skip {c.get('collection')} {c.get('hadith_number')}: fuzzy {top} — pass --allow-fuzzy to override")
+            skipped += 1
+            continue
+        row, reason = json_to_row(c, now_iso)
+        if row is None:
+            print(f"   skip {c.get('collection')} {c.get('hadith_number')}: {reason}")
+            skipped += 1
+            continue
+        langs = " ".join(k.split("_", 1)[1] for k in row["translation_meta"])
+        print(f"   -> {row['collection']} {row['hadith_number']} [{row['grade']}]  langs: {langs}")
+        rows.append(row)
+
+    print("-" * 60)
+    print(f"   ready: {len(rows)}   skipped: {skipped}")
+    if not rows:
+        return 0
+    if not commit:
+        print("   DRY RUN — nothing written. Re-run with --commit.")
+        return 0
+
+    body = json.dumps(rows, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(
+        f"{url}/rest/v1/hadith_candidates",
+        data=body, method="POST",
+        headers={
+            "apikey": key,
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+            # return=representation so a zero-row insert cannot report success:
+            # P096's lesson, one table over.
+            "Prefer": "return=representation,resolution=ignore-duplicates",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            inserted = json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        print(f"   insert failed: HTTP {e.code} {e.read().decode('utf-8', 'replace')[:500]}")
+        return 1
+
+    print(f"   inserted: {len(inserted)} of {len(rows)} "
+          f"({len(rows) - len(inserted)} ignored as existing citations)")
+    for r_ in inserted:
+        print(f"      {r_.get('candidate_id')}  {r_.get('collection')} {r_.get('hadith_number')}")
+    print("   NEXT: derive text_uzbek_latin, then Stage 3 verify, then the human gate.")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--queries", default="out/source-queries.txt")
+    ap.add_argument("--from-json", metavar="PATH",
+                    help="upload candidates from a Stage-0 JSON (out/candidates.json) "
+                         "instead of searching Dorar — keeps the translations")
+    ap.add_argument("--allow-fuzzy", action="store_true",
+                    help="--from-json only: also upload rows Stage 1 marked review_fuzzy "
+                         "(default: skip them — G2, a human admits those)")
     ap.add_argument("--commit", action="store_true", help="insert into hadith_candidates")
     ap.add_argument("--max-per-query", type=int, default=20)
     ap.add_argument("--debug", action="store_true", help="print raw Dorar response for the first query")
     ap.add_argument("--show-drops", action="store_true", help="print why candidates were dropped")
     args = ap.parse_args()
+
+    # P175: --from-json is its own path — different input, different mapping,
+    # different table semantics. Exits before the Dorar-search flow below.
+    if args.from_json:
+        sys.exit(run_from_json(args.from_json, args.commit, args.allow_fuzzy))
 
     env = {**load_env(), **os.environ}
     url, key = env.get("NEXT_PUBLIC_SUPABASE_URL"), env.get("SUPABASE_SERVICE_ROLE_KEY")

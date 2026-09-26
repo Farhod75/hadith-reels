@@ -6017,3 +6017,59 @@ path needs its own mapping.
 which this path reproduces), P169 (a column nothing selects is invisible)
 
 **Status:** PARTIAL — column and guard shipped; promotion path not built.
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 175: The upload mapping discards what the source was for
+## ═══════════════════════════════════════════════════════════
+**ID:** P175
+**Type:** Wrong-shape reuse + provenance granularity
+**Files:** upload-candidates.py, hadith_candidates schema
+**Found:** 2026-09-26, building the upload path for HadeethEnc candidates
+
+**The trap was reuse.** upload-candidates.py already had a candidate→row
+mapping, so the obvious move was to point --from-json at to_row(). But to_row()
+serves the Dorar-search path, where a candidate IS only an Arabic matn — it
+writes text_arabic and nothing else. Routing HadeethEnc through it would have
+dropped all four translations, which are the entire reason HadeethEnc is worth
+fetching. The insert would have succeeded. The rows would have looked fine in
+the table. Stage 2 would then have spent model calls re-translating text that
+came from a Tier-1 source with a human translator behind it. Hence a separate
+mapping, json_to_row(). Reusing the name would have been the defect.
+
+**Provenance granularity, resolved the opposite way from P174.**
+hadith_candidates.translation_meta is jsonb and already carried per-language
+records ({at, model, provenance, source_field}) from Stage 2. So the candidates
+table gets per-language provenance while the library keeps P174's scalar
+translation_source. Not an inconsistency: the caption reads one scalar and needs
+one answer, while the candidate is the audit record and has to say which
+language came from where. Two tables, two jobs — and P174's measurement that
+only 38% of a slot carries all four languages is exactly why the audit record
+cannot flatten it.
+
+**Guards placed where the information is, not where the failure lands.** Three
+refusals sit in json_to_row() rather than downstream: missing citation, an
+auto- synthetic number, and citation_pending still true. P174 already refuses
+auto- numbers at promotion, so a synthetic row would have been insertable and
+then permanently unpromotable — a dead row nothing cleans up. Refusing at the
+door costs one line and leaves no residue. review_fuzzy rows are skipped unless
+--allow-fuzzy is passed: G2 says similarity never decides admission, and
+defaulting to upload would have let it decide.
+
+**status='translated', not 'verified'.** The text exists; it has not been
+through the Stage 3 A/B pass. promote-candidates.py reads status='approved'
+only, so the human gate stays exactly where it was. Choosing 'verified' here
+would have moved a gate by picking a string.
+
+**One thing deliberately not built.** text_uzbek_latin is left NULL.
+derive-uzbek-latin.ts already owns the tested deriveBothScripts +
+normalizeLatinApostrophes. A second transliterator in Python would be a second
+thing to keep correct, and P097 is precisely the defect that appears when one
+of two copies drifts.
+
+**Proven:** first live batch, 5 of 6 inserted — Bukhari 2654 / 6871 / 6857 / 31
+and Muslim 2628, all four languages each. Muslim 2759 dropped as a hard
+duplicate, so the live dedup baseline was read and honoured. Dry run first; the
+commit matched it row for row.
+
+**Status:** FIXED
