@@ -17,6 +17,15 @@
   `text_uzbek_latin` left NULL by design — `scripts/derive-uzbek-latin.ts`
   already owns the tested transliteration (P097).
 
+  - `translation_source` now reaches the caption (P176) — `buildTranslationCredit()`
+  in `lib/refs.ts`, wired through the `/api/reels` select and the admin caption
+  assembly. A separate line from the citation and a different label from the
+  seerah source, so one caption never carries two lines called Источник pointing
+  at different things. Emits nothing at all on in-house rows, newline included.
+  Proven both ways on Bukhari #6018: NULL leaves the caption unchanged;
+  'hadeethenc.com' renders «🌐 Таржима: HadeethEnc.com» in UZ and «🌐 Перевод:»
+  in RU, from the label map rather than the English fallback.
+
 ## [2026-09-09]
 
 ### Added

@@ -79,3 +79,45 @@ export function buildRef(
   const coll = c ? `${c} (${collection})` : collection
   return `${coll}${num}, ${n || narrator}`
 }
+
+// P176 — translation credit line.
+//
+// WHY. HadeethEnc's licence requires crediting them on every row carrying their
+// text. `translation_source` holds that (P174); NULL means in-house, and an
+// in-house row emits NOTHING rather than an empty label.
+//
+// A SEPARATE LINE from buildRef(), and a different word. The ref line is the
+// CITATION — what someone types to check the hadith. Who translated it is a
+// different claim. The caption already uses Источник / Манба / Сарчашма for the
+// seerah source, so reusing that label here would put two identically-named
+// lines in one caption pointing at two different things.
+//
+//   🌐 Таржима: HadeethEnc.com
+//
+// UNMAPPED SOURCES fall back to the stored string, same rule as COLLECTIONS: a
+// new source should look wrong in the caption, not vanish from it.
+
+const TRANSLATION_LABEL: Record<string, string> = {
+  en: 'Translation',
+  ar: 'الترجمة',
+  ru: 'Перевод',
+  uz: 'Таржима',
+  tj: 'Тарҷума',
+}
+
+const SOURCE_DISPLAY: Record<string, string> = {
+  'hadeethenc.com': 'HadeethEnc.com',
+}
+
+export function buildTranslationCredit(
+  translationSource: string | null | undefined,
+  lang: string,
+): string {
+  const src = (translationSource || '').trim()
+  if (!src) return ''                       // NULL = in-house, nothing to credit
+  // uz_cyrillic / uz_latin both take the Uzbek label, matching getSeerahSource().
+  const key = lang && lang.startsWith('uz') ? 'uz' : lang
+  const name = SOURCE_DISPLAY[src.toLowerCase()] || src
+  const label = TRANSLATION_LABEL[key] || TRANSLATION_LABEL.en
+  return `🌐 ${label}: ${name}`
+}

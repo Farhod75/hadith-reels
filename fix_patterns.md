@@ -6073,3 +6073,55 @@ duplicate, so the live dedup baseline was read and honoured. Dry run first; the
 commit matched it row for row.
 
 **Status:** FIXED
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 176: Wiring a column all the way to the reader
+## ═══════════════════════════════════════════════════════════
+**ID:** P176
+**Type:** Loop closure + caption localisation
+**Files:** app/api/reels/route.ts, lib/refs.ts, app/admin/page.tsx
+**Found:** 2026-09-26, making P174's translation_source actually visible
+
+**P169 is why this is a pattern and not a chore.** That defect ran for ten
+consecutive sets — the generator got blamed for Latin Uzbek captions when the
+real cause was /api/reels never selecting text_uzbek_cyrillic. A column that
+exists in the table and is read by nothing is not a feature; it is decoration
+shaped like one. P174 added translation_source, and this closes the path from
+it to a reader in three hops — API select, builder, caption. None of the three
+is optional, and the first one was missing.
+
+**A separate line, not a suffix on buildRef().** The ref line is the CITATION:
+collection plus number, what someone types to check the hadith independently.
+Who translated it is a different claim about a different object. Folding it in
+would have made the citation longer and harder to scan for no gain.
+
+**A different word from the seerah source.** The caption already spends
+Источник / Манба / Сарчашма on the seerah attribution. Reusing that label here
+would have put two identically-named lines in one caption pointing at two
+different things — worse than omitting the credit. Перевод / Таржима / Тарҷума
+/ Translation instead, with 🌐 rather than 📖, so the lines are distinguishable
+before the word is read.
+
+**Empty means empty, including the newline.** Emitted as
+(credit ? `${credit}\n` : '') rather than a plain interpolation, so an in-house
+row produces no blank gap where the credit would sit. All 65 library rows are
+NULL — that is the common path, not the edge.
+
+**uz_cyrillic / uz_latin.** getSeerahSource() accepts those variants, so the
+label lookup normalises any lang starting with 'uz'. Without it the Uzbek
+caption would have silently fallen back to the English word — the exact
+failure mode P150 exists to prevent.
+
+**The type had to change too.** interface Hadith is explicit, so adding the
+column to the API select did not add it to the TS shape; tsc caught it.
+Declared string | null rather than ?: string — NULL is the normal case for an
+in-house row, and optional-only would have understated that.
+
+**Proven in both directions.** With translation_source NULL the caption is
+identical to before, no blank line. With it set to 'hadeethenc.com' on Bukhari
+#6018, UZ rendered «🌐 Таржима: HadeethEnc.com» and RU «🌐 Перевод:
+HadeethEnc.com» — the label map, not the English fallback. Row reverted to NULL
+after the test.
+
+**Status:** FIXED

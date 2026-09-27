@@ -7,7 +7,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { buildTags } from '@/lib/tags'
-import { buildRef } from '@/lib/refs'
+import { buildRef, buildTranslationCredit } from '@/lib/refs'
 import { MASCOTS, mascotGender, type MascotKey } from '@/lib/mascots'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
@@ -25,6 +25,9 @@ interface Hadith {
   grade: string
   tags?: string[]
   source_url?: string
+  // P176: NULL on every in-house row (all 65 of them), so `| null` rather than
+  // just optional — null is the normal case here, not an edge.
+  translation_source?: string | null
 }
 
 interface Generated {
@@ -331,6 +334,9 @@ export default function AdminPage() {
       // the citation has to stay verifiable, and some readers read only their
       // own language.
       const ref = buildRef(selected.collection, selected.hadith_number, selected.narrator, lang)
+      // P176: HadeethEnc's licence requires crediting them on every row carrying
+      // their text. Returns '' for in-house rows, so nothing is emitted.
+      const credit = buildTranslationCredit(selected.translation_source, lang)
       setCaption(
         `${data.title}\n\n` +
         `«${hadithText}»\n\n` +
@@ -341,6 +347,9 @@ export default function AdminPage() {
         (selected.text_arabic ? `${selected.text_arabic}\n\n` : '') +
         `${data.moral}\n\n` +
         `📖 ${ref}\n` +
+        // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
+        // blank line where the credit would have been.
+        (credit ? `${credit}\n` : '') +
         `🔍 ${l10n.verify}: hadithverifier.com\n\n` +
         `${tags} ${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''} ${l10n.lang}`
       )

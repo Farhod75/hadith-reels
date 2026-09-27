@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
 
     let query = sb
       .from('hadith_library')
-      .select('id, text_arabic, text_english, text_uzbek, text_uzbek_cyrillic, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority', { count: 'exact' })
+      .select('id, text_arabic, text_english, text_uzbek, text_uzbek_cyrillic, text_russian, text_tajik, narrator, collection, hadith_number, grade, tags, source_url, authority, translation_source', { count: 'exact' })
       .order('collection')
       .order('hadith_number')
       .range(offset, offset + limit - 1)
