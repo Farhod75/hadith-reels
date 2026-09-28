@@ -6125,3 +6125,115 @@ HadeethEnc.com» — the label map, not the English fallback. Row reverted to NU
 after the test.
 
 **Status:** FIXED
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 177: The review gate reviewed a draft that was thrown away
+## ═══════════════════════════════════════════════════════════
+**ID:** P177
+**Type:** Non-deterministic gate + prompt conventions
+**Files:** translate-candidates.py
+**Found:** 2026-09-27, re-translating five HadeethEnc candidates
+
+**Dry run and commit were separate invocations, each generating its own text.**
+The script printed "DRY RUN - nothing written. Read the JSON, then --commit",
+so the workflow read one artifact and shipped a different one. Three rolls on
+Bukhari #2654 produced three different Uzbek openings; roll 2 removed a
+parenthetical gloss and roll 3 put it back. We reviewed clean text and
+committed text with the defect, and nothing downstream could catch it: Stage 3
+refuses conventions by design (P120) and lint-content.py runs on generated reel
+text, not candidates. Same family as P154, where the merge check tested only
+that a file existed, and P162, where the nasheed picker could not be tested
+without a paid render. A check that does not check the thing it names.
+
+**--apply writes out/candidate-translations.json as-is, with no model calls.**
+Generate, review, apply. The reviewed text is the text written. It also means a
+correction belongs IN the reviewed JSON, not in an SQL patch after the write —
+we had already patched two rows by hand before this existed. Deliberately the
+same shape as P175's --from-json on the uploader, so the pipeline has one
+pattern rather than two.
+
+**Prompt conventions, each earned by a defect the same day.** Honorifics per
+TARGET language; no parenthetical glosses; رسول الله is the Messenger, never an
+envoy («элчи»). The first version of the honorific rule was written in
+Uzbek/Tajik forms and applied to all four languages, so English came back
+"Narrated 'Abdullah ibn 'Amr ibn al-'As, розияллоҳу анҳумо" — Cyrillic inside
+English. A rule stated in one language's convention is not a rule.
+
+**Still open.** The gloss appeared in five of roughly twelve translations
+reviewed today, in round brackets, square brackets and once as a dash aside.
+The prose rule slowed it and did not stop it. The next version should be
+structural — no bracketed aside anywhere in the output — rather than describing
+the behaviour and hoping.
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 178: Tier-1 for grading is not Tier-1 for translation
+## ═══════════════════════════════════════════════════════════
+**ID:** P178
+**Type:** Source-quality measurement
+**Files:** source_hadeethenc.py, sourcing-pipeline-design.md
+**Found:** 2026-09-27, first Stage 3 run over a HadeethEnc batch
+
+**Measured, not assumed.** Stage 3 over seven candidates — five from
+HadeethEnc, two translated in-house by translate-candidates.py:
+
+    in-house (#2999, #6446):  8 of 8 language-passes clean, high confidence
+    HadeethEnc (five rows):   EN 3/5, RU 0/5, UZ 0/5, TJ 1/5
+
+**The defects are one type: interpretive expansion.** One Arabic phrase split
+into two (قول الزور → false witness AND false speech), terms upgraded (حامل
+المسك, the CARRIER of musk, → "musk seller"; نافخ الكير, the bellows-blower, →
+"blacksmith"), narrative detail invented («тик туриб» — stood up — where the
+Arabic has فَجَلَسَ, sat up), and qualifiers added. The worst was «бегуноҳ» —
+INNOCENT — attached to قَتْلُ النَّفْسِ in both Uzbek and Tajik on #6871, flagged
+four times independently. That changes the ruling being reported, on a channel
+whose premise is that altered narrations spread.
+
+**So HadeethEnc's role changes, and does not shrink.** It stays what unblocked
+Stage 0: keyless, Tier-1, and it supplies the Arabic matn plus, via Dorar, the
+citation and the grade. Its RU/UZ/TJ are discarded and re-translated from the
+Arabic. English goes too — 3 of 5 is not reliable, and one row translated three
+ways in-house and one way from HadeethEnc is a provenance mess for no gain. In
+consequence translation_source stays NULL on these rows, and P176's credit line
+is the guard for if HadeethEnc text ever does ship.
+
+**The disagreement rate turned out to be a source signal.** 0% on the in-house
+rows, 4 of 5 on HadeethEnc, almost all A=pass / B=fail with B substantively
+right (الْغَافِلَاتِ is heedless, not innocent; رضي الله عنهما is dual). The D5
+number reads as mistuning when it is high — here it was measuring the source.
+
+**Status:** FIXED (policy); adapter unchanged, it still fetches translations
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 179: The adapter put the isnad where the narrator goes
+## ═══════════════════════════════════════════════════════════
+**ID:** P179
+**Type:** Shape mismatch with the library
+**Files:** source_hadeethenc.py, hadith_candidates
+**Found:** 2026-09-27, building the caption ref line for the five new rows
+
+**Two columns, same cause.** narrator held the entire Arabic isnad chain —
+«عَنْ أَبِي مُوسَى رضي الله عنه عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ:» — where
+the other 65 library rows hold a name. And text_arabic carried that same isnad
+in front of the matn, where the library holds matn only. That is why these five
+ran 300-450 characters against a library average under 130, and why every
+translation opened with "From Abu Bakrah, may Allah be pleased with him".
+
+**The caption is where it would have shown.** buildRef() looks the narrator up
+in NARRATORS and falls back to printing it verbatim (P150), so a full Arabic
+isnad would have rendered in the ref line, and the narrator would have appeared
+twice — once inside the Arabic, once after it.
+
+**Fixed in the data, not yet at the source.** The isnad prefix in text_arabic
+was exactly the narrator string, so one UPDATE stripped it and set proper
+names. All five were then re-translated from the matn and re-verified. The
+adapter still extracts this way, so the next batch will arrive the same shape.
+
+**Also:** lib/refs.ts gained Abu Bakra — a new narrator entering the library
+needs a NARRATORS entry or the caption prints Latin inside Cyrillic. Note he is
+NOT Abu Bakr as-Siddiq: أبو بكرة with ta marbuta is Nufay' ibn al-Harith
+ath-Thaqafi.
+
+**Status:** DATA FIXED — adapter OPEN

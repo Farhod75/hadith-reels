@@ -1,3 +1,32 @@
+## [2026-09-27]
+
+### Added
+- `scripts/translate-candidates.py --apply` (P177) — writes the reviewed
+  `out/candidate-translations.json` to the DB with no model calls. Dry run and
+  commit had been separate invocations, each generating fresh, so the JSON under
+  review was never the JSON that shipped; three rolls on Bukhari #2654 gave three
+  different Uzbek openings and re-introduced a gloss a previous roll had removed.
+  Corrections now go in the reviewed JSON instead of an SQL patch after the write.
+- Stage 2 prompt now pins three conventions, each from a defect the same day:
+  honorifics in the target language's own form, no parenthetical glosses, and
+  رسول الله as the Messenger rather than an envoy.
+- `lib/refs.ts` — Abu Bakra added to NARRATORS (أبو بكرة, not Abu Bakr as-Siddiq).
+
+### Changed
+- HadeethEnc is now a discovery + Arabic + citation source, not a translation
+  source (P178). Measured over seven candidates: in-house translations passed 8
+  of 8 language-checks at high confidence, HadeethEnc's passed 0 of 5 in Russian
+  and Uzbek. Its translations expand interpretively — one Arabic phrase split in
+  two, حامل المسك rendered as a musk *seller*, and «бегуноҳ» (innocent) attached
+  to قتل النفس, which changes the ruling. All five re-translated from the Arabic
+  and re-verified; all five now pass on both models.
+
+### Fixed
+- The five HadeethEnc candidates carried the Arabic isnad in the `narrator`
+  column and again at the head of `text_arabic` (P179), where the library holds a
+  name and a matn. Stripped and re-translated. The adapter is unchanged, so the
+  next batch will arrive the same way.
+
 ## [2026-09-26]
 
 ### Added

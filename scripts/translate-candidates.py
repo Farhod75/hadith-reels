@@ -90,6 +90,19 @@ ABSOLUTE RULES:
   any ranking the Arabic does not state. A short hadith stays short. Brevity
   is not an invitation to supply significance.
 - Preserve the honorific ﷺ exactly where it appears, as the glyph.
+- Companion honorifics: use the form standard in the TARGET language, written
+  out in full, never abbreviated to "(р)" and never invented fresh.
+    en: "may Allah be pleased with him" / "...with them both"
+    ru: «да будет доволен им Аллах» / «да будет доволен ими обоими Аллах»
+    uz: «розияллоҳу анҳу» / «розияллоҳу анҳумо»
+    tj: «розияллоҳу анҳу» / «розияллоҳу анҳумо»
+  Never carry the Uzbek/Tajik Arabic form into English or Russian, and never
+  render it in Uzbek as a paraphrase («Аллоҳ ундан рози бўлсин»).
+- No parenthetical glosses. A bracketed clarification is an addition even when
+  it is defensible: «сухани дурӯғ (шаҳодати бардурӯғ)» states the translator's
+  reading of قول الزور, not what the matn says. Translate the term and stop.
+- رَسُولُ اللهِ is the Messenger of Allah: Аллоҳнинг Расули / Расули Аллоҳ /
+  Посланник Аллаха. Never "envoy", never «элчи», never «посол».
 - Keep proper names as names.
 - If any part of the Arabic is unclear to you, output the marker
   [UNCERTAIN: your note] inline at that point rather than guessing. Abstaining
@@ -194,10 +207,76 @@ def translate(api_key, arabic, lang):
 # ---------------------------------------------------------------- main
 
 
+def apply_from_json(base, key, path=OUT_PATH):
+    """
+    P177: write the REVIEWED translations to the DB. No model calls.
+
+    Dry run and commit were two separate invocations, each generating its own
+    text, so the JSON you read was never the JSON that shipped. Three rolls on
+    Bukhari #2654 gave three different Uzbek openings and re-introduced a
+    parenthetical gloss the previous roll had removed. A review gate that
+    reviews a discarded artifact is not a gate.
+
+    Hand-edit the JSON before applying - that is the point. A correction
+    belongs in the reviewed text, not in an SQL patch after the write.
+
+    Candidates only. --library has its own matn_verified_at semantics (P151)
+    and is not worth folding in until something needs it.
+    """
+    try:
+        with open(path, encoding='utf-8') as fh:
+            results = json.load(fh)
+    except FileNotFoundError:
+        print(f'  not found: {path} - run a dry run first')
+        return 1
+    if not results:
+        print(f'  {path} is empty - nothing to apply')
+        return 0
+
+    width = 74
+    print('=' * width)
+    print(f' stage 2 APPLY - {len(results)} candidate(s) from {path}')
+    print(' no model calls. the reviewed text is the text written.')
+    print('=' * width)
+
+    written = failed = 0
+    for r in results:
+        ref = r.get('ref', '?')
+        cid = r.get('candidate_id')
+        proposed = r.get('proposed') or {}
+        if not cid or not proposed:
+            print(f'  SKIP {ref}: no candidate_id or no proposed text')
+            failed += 1
+            continue
+        payload = dict(proposed)
+        payload['translation_meta'] = r.get('translation_meta') or {}
+        payload['status'] = 'translated'
+        payload['updated_at'] = now_iso()
+        try:
+            sb_patch(base, key, 'hadith_candidates',
+                     {'candidate_id': f'eq.{cid}'}, payload)
+            print(f'  {ref}: written ({", ".join(sorted(proposed))})')
+            written += 1
+        except Exception as e:  # noqa: BLE001
+            print(f'  {ref}: WRITE FAILED: {e}')
+            failed += 1
+
+    print('-' * width)
+    print(f'  written: {written}   failed: {failed}')
+    print('  status=translated. Re-derive Uzbek Latin if the Cyrillic changed.')
+    print('  Stage 3 verifies; Stage 4 is the human gate.')
+    print('-' * width)
+    return 1 if failed else 0
+
+
 def main():
     ap = argparse.ArgumentParser(
         description='Stage 2 - translate candidate matn into EN/RU/UZ/TJ.')
     ap.add_argument('--row', help='one hadith_number only')
+    ap.add_argument('--apply', action='store_true',
+                    help='P177: write out/candidate-translations.json to the DB '
+                         'as-is, with NO model calls - the reviewed text is the '
+                         'text that ships')
     ap.add_argument('--lang', choices=sorted(TARGETS), action='append',
                     help='limit to these languages (repeatable)')
     ap.add_argument('--limit', type=int, default=10,
@@ -228,6 +307,11 @@ def main():
     # hadith_library and will never appear in hadith_candidates again. Six matn
     # corrections on 2026-09-04 left three library rows with null translations
     # and no supported way to refill them.
+    # P177: --apply writes the reviewed JSON and returns. No model calls, no
+    # row query - the text under review is the text that ships.
+    if args.apply:
+        return apply_from_json(base, key)
+
     table = 'hadith_library' if args.library else 'hadith_candidates'
     if args.library:
         # No status column in the library. Default to rows whose translations
