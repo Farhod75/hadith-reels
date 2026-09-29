@@ -133,7 +133,10 @@ def json_to_row(c: dict, now_iso: str):
     if num.startswith("auto-"):
         return None, f"synthetic number {num} — not a citation"
     if c.get("citation_pending"):
-        return None, "citation_pending still true — Dorar never resolved it"
+        return None, "citation_pending still true — Dorar did not resolve it"
+    if c.get("matn_intro_stripped") is False:
+        return None, ("isnad intro present in text_arabic but not strippable — "
+                      "trim it by hand and re-run (P179)")
 
     ar = (c.get("text_arabic") or "").strip()
     if not ar:

@@ -5,16 +5,24 @@
 # Offline only. Every fixture is shaped from a REAL response captured on
 # 2026-09-10 (ids 66511 and 1751) -- no network in this file, so the pre-push
 # hook stays fast.
+#
+# Contract as of 2026-09-29 (P178 + P179): HadeethEnc supplies DISCOVERY, the
+# ARABIC MATN and the CITATION deep link, and nothing else. Their translations
+# are not carried, narrator is not derived, and an isnad intro that cannot be
+# cut cleanly flags the row instead of being guessed at.
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from source_hadeethenc import (parse_hadeeth, classify_grade, build_source_url,
-                               present)
+                               present, _clean_body)
 
 # ---- Fixtures shaped like the HadeethEnc /hadeeths/one/ payload ----
 
 # Fetched with language=ar: there is NO hadeeth_ar key, the Arabic is in
 # `hadeeth`, and the isnad opener is in `hadeeth_intro`. This asymmetry cost a
 # debugging round on 2026-09-10 -- it is the reason this fixture exists.
+#
+# Note also that hadeeth_intro is NOT a byte prefix of hadeeth here: the intro
+# carries the honorific and the body does not. That is load-bearing for P179.
 AR_PAYLOAD = {
     "id": "66511",
     "_language": "ar",
@@ -58,8 +66,10 @@ NO_ARABIC_PAYLOAD = {"id": "9003", "_language": "ru", "hadeeth": "текст",
                      "hadeeth_ar": "", "grade_ar": "صحيح"}
 NO_ID_PAYLOAD = dict(RU_PAYLOAD, id="")
 
-HTML_PAYLOAD = dict(RU_PAYLOAD, id="9004",
-                    hadeeth="<p>Поистине,&nbsp;все дела</p>\r\n  оцениваются")
+# Built from parts rather than typed out, so the fixture cannot drift from the
+# assertion by one diacritic. The strippable case depends on byte equality.
+INTRO_EXACT = "عَنْ عُمَرَ قَالَ:"
+MATN = "إنَّمَا الأَعْمَالُ بِالنِّيَّاتِ"
 
 
 def test_arabic_language_payload_parses():
@@ -69,30 +79,72 @@ def test_arabic_language_payload_parses():
     assert r["status"] == "candidate", r["reason"]
     c = r["candidate"]
     assert c["text_arabic"].startswith("عَنْ عُمَرَ")
-    assert c["narrator"].startswith("عَنْ عُمَرَ")      # from hadeeth_intro
+    assert c["narrator"] is None          # P179: no narrator NAME in the payload
     assert c["grade"] == "sahih"
 
 
-def test_translations_collected():
+def test_intro_not_a_byte_prefix_is_flagged_not_guessed():
+    """P179. Real capture: hadeeth_intro carries «رضي الله عنه» and the body
+    does not, so the intro is not a byte prefix of the matn. The adapter must
+    refuse to guess the boundary -- it leaves text_arabic alone and flags the
+    row, and upload-candidates.py rejects it on that flag."""
+    c = parse_hadeeth(AR_PAYLOAD)["candidate"]
+    assert c["matn_intro_stripped"] is False
+    assert c["matn_intro_raw"].startswith("عَنْ عُمَرَ")
+    assert c["text_arabic"].startswith("عَنْ عُمَرَ")     # still there, on purpose
+
+
+def test_intro_that_is_an_exact_prefix_is_stripped():
+    """The 2026-09-27 batch shape: the intro repeated verbatim at the head of
+    the matn. That one is safe to cut, and must be -- those five rows ran
+    300-450 characters against a library average under 130."""
+    c = parse_hadeeth(dict(RU_PAYLOAD, id="66512",
+                           hadeeth_intro_ar=INTRO_EXACT,
+                           hadeeth_ar=f"{INTRO_EXACT} {MATN}"))["candidate"]
+    assert c["matn_intro_stripped"] is True
+    assert c["text_arabic"] == MATN
+
+
+def test_no_intro_field_leaves_the_flag_unset():
+    """Three states, not two: None means there was no intro to act on, so the
+    gate has nothing to hold the row for."""
+    c = parse_hadeeth(dict(RU_PAYLOAD, id="66513",
+                           hadeeth_intro_ar=""))["candidate"]
+    assert c["matn_intro_stripped"] is None
+    assert c["matn_intro_raw"] is None
+
+
+def test_their_translations_are_not_carried():
+    """P178: measured EN 3/5, RU 0/5, UZ 0/5, TJ 1/5 clean against 8/8
+    in-house. The defects are interpretive expansion; the worst added
+    «бегуноҳ» (innocent) to قتل النفس on #6871 in both UZ and TJ, which changes
+    the ruling. `translations` is still accepted -- it remains the Arabic
+    fallback -- but nothing from it reaches a text column, and
+    translation_source stays NULL so a row holding our own text never credits
+    them."""
     r = parse_hadeeth(RU_PAYLOAD, {"uz": UZ_PAYLOAD, "tg": TG_PAYLOAD})
     c = r["candidate"]
     assert r["status"] == "candidate"
-    assert c["text_russian"].startswith("Поистине")      # own language
-    assert c["text_uzbek_cyrillic"].startswith("Амаллар")
-    assert c["text_tajik"].startswith("Савоби")
-    assert c["translation_source"] == "hadeethenc.com"
+    assert c["text_english"] == ""
+    assert c["text_russian"] == ""
+    assert c["text_uzbek_cyrillic"] == ""
+    assert c["text_tajik"] == ""
+    assert c["translation_source"] is None
+    assert c["text_arabic"].startswith("إنَّمَا")          # the Arabic still lands
 
 
 def test_empty_string_is_absent_not_content():
     """The trap this adapter exists to avoid: a missing language returns 200
-    with '', so a parser that trusts the response writes blank fields."""
+    with '', so a parser that trusts the response writes blank fields. Still
+    load-bearing for the Arabic even though every text column is empty by
+    design now -- EMPTY_PAYLOAD must not satisfy the matn requirement."""
     assert present("") is False
     assert present("   ") is False
     assert present(None) is False
     assert present("текст") is True
-    r = parse_hadeeth(RU_PAYLOAD, {"uz": EMPTY_PAYLOAD})
-    assert r["candidate"]["text_uzbek_cyrillic"] == ""
-    assert "uz" not in [k for k, v in r["candidate"].items() if v == "Амаллар"]
+    r = parse_hadeeth(EMPTY_PAYLOAD)
+    assert r["status"] == "dropped"
+    assert "no Arabic" in r["reason"]
 
 
 def test_daif_is_dropped():
@@ -130,10 +182,12 @@ def test_arabic_recovered_from_translation_payload():
 
 def test_citation_always_pending():
     """HadeethEnc gives no hadith number. Dorar must supply collection and
-    number before promotion -- a candidate from here is never citable alone."""
+    number before promotion -- a candidate from here is never citable alone.
+    Since P179 the narrator joins that list: there is no name in the payload."""
     c = parse_hadeeth(RU_PAYLOAD, {})["candidate"]
     assert c["citation_pending"] is True
     assert c["collection"] == "" and c["hadith_number"] == ""
+    assert c["narrator"] is None
     assert c["attribution_raw"] == "متفق عليه"
 
 
@@ -156,11 +210,17 @@ def test_grade_read_from_arabic_not_localized():
 
 
 def test_html_and_whitespace_cleaned():
-    c = parse_hadeeth(HTML_PAYLOAD)["candidate"]
-    assert "<p>" not in c["text_russian"]
-    assert "\r" not in c["text_russian"] and "\n" not in c["text_russian"]
-    assert "&nbsp;" not in c["text_russian"]
-    assert c["text_russian"] == "Поистине, все дела оцениваются"
+    """Tested directly now. It used to be observed through text_russian, which
+    is empty by design since P178 -- the only cleaned text field left on the
+    row is text_arabic."""
+    assert _clean_body("<p>Поистине,&nbsp;все дела</p>\r\n  оцениваются") == \
+        "Поистине, все дела оцениваются"
+    c = parse_hadeeth(dict(RU_PAYLOAD, id="9004", hadeeth_intro_ar="",
+                           hadeeth_ar="<p>" + MATN + "</p>\r\n  &nbsp;"))["candidate"]
+    assert "<p>" not in c["text_arabic"]
+    assert "\r" not in c["text_arabic"] and "\n" not in c["text_arabic"]
+    assert "&nbsp;" not in c["text_arabic"]
+    assert c["text_arabic"].startswith("إنَّمَا")
 
 
 def test_deeplink_not_homepage():
@@ -175,7 +235,7 @@ def test_available_langs_is_what_exists_not_what_was_fetched():
     records availability, never coverage."""
     c = parse_hadeeth(RU_PAYLOAD, {"uz": UZ_PAYLOAD})["candidate"]
     assert "tg" in c["available_langs"]        # listed
-    assert c["text_tajik"] == ""               # but not fetched
+    assert c["text_tajik"] == ""               # and never carried (P178)
 
 
 if __name__ == "__main__":
@@ -186,5 +246,8 @@ if __name__ == "__main__":
             f(); passed += 1; print(f"PASS {n}")
         except AssertionError as e:
             failed += 1; print(f"FAIL {n}: {e}")
+        except Exception as e:      # an AttributeError is a failed test, not a
+            failed += 1             # reason to abandon the remaining ones
+            print(f"ERROR {n}: {type(e).__name__}: {e}")
     print(f"\n{passed} passed, {failed} failed")
     sys.exit(1 if failed else 0)

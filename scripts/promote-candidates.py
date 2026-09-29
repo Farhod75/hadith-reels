@@ -114,7 +114,7 @@ def pick_deeplink(source_urls) -> str:
 
 
 # ── candidate -> hadith_library row (the mapping) ────────────────────────────
-def map_to_library(c: dict) -> dict:
+def map_to_library(c: dict, tags: list[str] | None = None) -> dict:
     cyr = c.get("text_uzbek_cyrillic")
     # P174: HadeethEnc's licence requires crediting them per row that carries
     # their text. `authority` already holds the GRADING source (Dorar), which
@@ -138,7 +138,7 @@ def map_to_library(c: dict) -> dict:
         "book":                None,                      # not in candidates
         "hadith_number":       c.get("hadith_number"),
         "grade":               c.get("grade"),
-        "tags":                [],                        # empty — red_flags is a verifier concept
+        "tags":                list(tags or []),          # P181: from --tags, not derived                        # empty — red_flags is a verifier concept
         "source_url":          pick_deeplink(c.get("source_urls")),
         "authority":           c.get("grading_source"),
         # created_at: let DB default / or set explicitly if no default
@@ -158,7 +158,22 @@ def main():
     ap.add_argument("--commit", action="store_true", help="actually write (default: dry-run)")
     ap.add_argument("--show", action="store_true", help="print full mapping for each candidate")
     ap.add_argument("--reviewer", default="farhod", help="reviewed_by value for audit")
+    # P181: candidates carry no theme data, so tags cannot be derived — they are
+    # supplied here for the batch being promoted. Previously hardcoded to [], which
+    # silently landed every promoted row untagged; found only after 5 rows shipped
+    # and had to be patched by SQL. The guard below makes the empty case loud.
+    ap.add_argument("--tags", default="",
+                    help="comma-separated tags applied to every row in this batch, "
+                         "e.g. --tags kabair,accountability")
+    ap.add_argument("--no-tags", action="store_true",
+                    help="promote with no tags (explicit opt-out)")
     args = ap.parse_args()
+
+    tags = [t.strip() for t in args.tags.split(",") if t.strip()]
+    if tags and args.no_tags:
+        sys.exit("--tags and --no-tags are mutually exclusive")
+    if not tags and not args.no_tags:
+        sys.exit("refusing to promote untagged rows: pass --tags a,b or --no-tags")
 
     env = load_env()
     url = env.get("NEXT_PUBLIC_SUPABASE_URL")
@@ -205,7 +220,7 @@ def main():
             skipped += 1
             continue
 
-        lib_row = map_to_library(c)
+        lib_row = map_to_library(c, tags)
         deeplink = lib_row["source_url"]
 
         print(f"   → {coll} {num} [{grade}]  uzbek_cyr={'✓' if lib_row['text_uzbek_cyrillic'] else '—'} "

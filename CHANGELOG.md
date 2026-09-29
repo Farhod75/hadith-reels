@@ -1,3 +1,46 @@
+## [2026-09-29]
+
+### Added
+- `scripts/promote-candidates.py --tags` (P181) — tags are supplied for the
+  batch being promoted, and the promoter refuses to write without either
+  `--tags a,b` or an explicit `--no-tags`. It had hardcoded `[]` behind a true
+  but irrelevant comment (*red_flags is a verifier concept*): candidates carry
+  no theme data, so tags cannot be derived, and the promoter filled the gap
+  with a plausible empty value rather than demanding one. Nothing downstream
+  complains about an untagged row — it verifies, renders and publishes — so the
+  2026-09-27 batch of five surfaced only when the library was queried for theme
+  coverage, and patching it took three SQL attempts.
+- `matn_intro_raw` and `matn_intro_stripped` on HadeethEnc candidates, with a
+  reject on the latter in `upload-candidates.py` beside `citation_pending`.
+  Three states: None (no intro field), True (removed from the matn), False
+  (present but not removable by byte comparison, so the row must not promote).
+- Regression tests for both intro shapes and for the unset flag. AR_PAYLOAD's
+  intro/body asymmetry is now documented in the fixture as load-bearing rather
+  than incidental — tidying the honorific into the body would have killed the
+  test silently.
+
+### Changed
+- The HadeethEnc adapter writes none of their translations into the text
+  columns and leaves `translation_source` NULL, closing P178 at the source. The
+  `translations` parameter stays: it is still the fallback that finds
+  `hadeeth_ar` when the payload was fetched in another language.
+- Both offline test runners catch `Exception`, not `AssertionError` alone. An
+  `AttributeError` was ending the whole run at the first test, so stale
+  assertions surfaced one invocation at a time.
+
+### Fixed
+- `narrator` is no longer derived from `hadeeth_intro_ar`, and the intro is
+  stripped from `text_arabic` when it is a byte-exact prefix (P179, closed).
+  HadeethEnc carries no narrator-NAME field at all, so narrator is resolved
+  with the citation like collection and hadith_number. The intro is often not
+  an exact prefix — id 66511 has the honorific in the intro and not in the body
+  — so the boundary is never inferred; that case is flagged and rejected at
+  upload instead.
+- The admin caption wrapped `hadithText` in « » unconditionally (P180), so a
+  library row whose text already opened with « rendered as ««…»». #2654's Uzbek
+  was one of them. The wrapper checks first now — the same guard is owed
+  anywhere a sigil is concatenated onto a library column.
+
 ## [2026-09-27]
 
 ### Added
@@ -24,8 +67,8 @@
 ### Fixed
 - The five HadeethEnc candidates carried the Arabic isnad in the `narrator`
   column and again at the head of `text_arabic` (P179), where the library holds a
-  name and a matn. Stripped and re-translated. The adapter is unchanged, so the
-  next batch will arrive the same way.
+  name and a matn. Stripped and re-translated. Closed at the source on
+  2026-09-29; see that entry.
 
 ## [2026-09-26]
 

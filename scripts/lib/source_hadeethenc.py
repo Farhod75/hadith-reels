@@ -18,11 +18,11 @@
 # Licence (hadeethenc.com API terms), enforced by how we USE the output:
 #   1. No modification, addition, or deletion of the content.
 #   2. Clearly credit the publisher and source (HadeethEnc.com).
-#   => Their translation is reproduced VERBATIM as the caption matn or not used
-#      at all. Story/moral blocks are written from text_arabic, never from
-#      their translation. Stage 4 becomes accept-or-reject for these rows:
-#      if a translation needs fixing, reject it and translate from the Arabic;
-#      never edit theirs and keep the attribution.
+#   => Moot as of P178: their translations are not carried at all. We take the
+#      Arabic matn, the grade, and the deep link, and translate in-house. The
+#      credit obligation therefore does not attach to our text columns --
+#      translation_source stays NULL on these rows and the HadeethEnc deep
+#      link in source_urls is the attribution for what we did take.
 #
 # Split (mirrors source_sunnah.py):
 #   parse_hadeeth(obj, ...)   -> PURE, offline-testable. Drops daif here.
@@ -99,8 +99,9 @@ def parse_hadeeth(obj: dict, translations: dict | None = None) -> dict:
     Parse one HadeethEnc `hadeeths/one` object into a Stage-0 result.
 
     obj          -- the Arabic-or-any-language payload (must carry hadeeth_ar).
-    translations -- optional {lang: payload} for extra languages, each parsed
-                    for its `hadeeth` field only. Empty strings are dropped.
+    translations -- optional {lang: payload}. P178: their translations are no
+                    longer carried into the row; this is consulted only as a
+                    fallback source for the Arabic matn (hadeeth_ar).
 
     Returns {status, reason, candidate} exactly like parse_sunnah_hadith.
     Daif / ungraded are DROPPED at the door (G: sahih/hasan only).
@@ -123,34 +124,51 @@ def parse_hadeeth(obj: dict, translations: dict | None = None) -> dict:
     if not present(ar):
         return {"status": "dropped", "reason": "no Arabic matn", "candidate": None}
 
+    # P179: hadeeth_ar arrives as isnad-intro + matn, while the library holds
+    # matn only. That is why the first five rows ran 300-450 characters against
+    # a library average under 130, and why every translation opened with "From
+    # Abu Bakrah, may Allah be pleased with him". The intro is its own field, so
+    # strip it when it is literally the prefix -- and only then. A mismatch means
+    # HadeethEnc changed shape and belongs in front of a human, not silently
+    # trimmed to look right.
+    intro = (_clean_body(obj.get("hadeeth_intro_ar"))
+             or (_clean_body(obj.get("hadeeth_intro"))
+                 if (obj.get("_language") or "").lower() == "ar" else ""))
+    intro_stripped = None
+    if present(intro):
+        if ar.startswith(intro):
+            ar = ar[len(intro):].strip()
+            intro_stripped = True
+        else:
+            # id 66511: the intro carries «رضي الله عنه» and the body does not,
+            # so a byte comparison misses. Never guess the boundary -- a wrong
+            # cut damages the matn and a right-looking one is unverifiable.
+            intro_stripped = False
+    if not present(ar):
+        return {"status": "dropped",
+                "reason": "Arabic was intro only, no matn", "candidate": None}
+
     bucket, conflict = classify_grade(obj.get("grade_ar", ""), obj.get("grade", ""))
     if bucket not in ("sahih", "hasan"):
         return {"status": "dropped",
                 "reason": f"grade={bucket} (sahih/hasan only)",
                 "candidate": None}
 
-    texts = {}
-    for lang, payload in (translations or {}).items():
-        if not isinstance(payload, dict):
-            continue
-        body = _clean_body(payload.get("hadeeth"))
-        if present(body):
-            texts[lang] = body
-
-    # The payload's own language, if it is one we ship.
-    own = _clean_body(obj.get("hadeeth"))
-    own_lang = (obj.get("_language") or "").strip().lower()
-    if own_lang in WANTED_LANGS and present(own) and own_lang not in texts:
-        texts[own_lang] = own
-
     candidate = {
         "collection": "",          # HadeethEnc gives no collection id -- Dorar supplies
         "hadith_number": "",       # nor a number -- Dorar supplies
         "citation_pending": True,  # MUST be resolved before promotion
-        "narrator": (_clean_body(obj.get("hadeeth_intro_ar"))
-                     or (_clean_body(obj.get("hadeeth_intro"))
-                         if (obj.get("_language") or "").lower() == "ar" else "")
-                     or None),
+        # P179: HadeethEnc has no narrator-NAME field. hadeeth_intro_ar is the
+        # isnad phrase, so filling narrator from it wrote a chain where the
+        # library holds a name -- and buildRef() falls back to printing the
+        # narrator verbatim (P150), so it would have reached the caption. There
+        # is nothing in the payload to derive a name from, so it is left unset
+        # and resolved with the citation, like collection/hadith_number above.
+        "narrator": None,
+        # None = no intro field at all, True = removed from the matn,
+        # False = present and NOT removable, so the row must not promote.
+        "matn_intro_raw": intro or None,
+        "matn_intro_stripped": intro_stripped,
         "grade": bucket,
         "grading_source": "hadeethenc.com (preliminary — confirm via Dorar)",
         "grade_conflict": conflict,
@@ -165,11 +183,18 @@ def parse_hadeeth(obj: dict, translations: dict | None = None) -> dict:
         "reference_raw": _clean_body(obj.get("reference")),
         "source_urls": {"hadeethenc": build_source_url(hadeeth_id)},
         "text_arabic": ar,
-        "text_english": texts.get("en", ""),
-        "text_russian": texts.get("ru", ""),
-        "text_uzbek_cyrillic": texts.get("uz", ""),
-        "text_tajik": texts.get("tg", ""),
-        "translation_source": "hadeethenc.com",
+        # P178: HadeethEnc's own translations are not carried. Stage 3 measured
+        # them at EN 3/5, RU 0/5, UZ 0/5, TJ 1/5 clean against 8/8 for in-house.
+        # The defects are interpretive expansion; the worst added «бегуноҳ»
+        # (innocent) to قتل النفس on #6871 in both UZ and TJ, which changes the
+        # ruling. HadeethEnc is discovery + Arabic matn + citation only.
+        "text_english": "",
+        "text_russian": "",
+        "text_uzbek_cyrillic": "",
+        "text_tajik": "",
+        # Set by whoever actually produces the text. A row carrying our own
+        # translation must not credit them (P174 cuts both ways).
+        "translation_source": None,
         "available_langs": [l for l in (obj.get("translations") or [])
                             if isinstance(l, str)],
         "hadeethenc_id": hadeeth_id,

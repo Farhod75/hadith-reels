@@ -6173,7 +6173,7 @@ the behaviour and hoping.
 ## ═══════════════════════════════════════════════════════════
 **ID:** P178
 **Type:** Source-quality measurement
-**Files:** source_hadeethenc.py, sourcing-pipeline-design.md
+**Files:** scripts/lib/source_hadeethenc.py, sourcing-pipeline-design.md
 **Found:** 2026-09-27, first Stage 3 run over a HadeethEnc batch
 
 **Measured, not assumed.** Stage 3 over seven candidates — five from
@@ -6204,6 +6204,12 @@ rows, 4 of 5 on HadeethEnc, almost all A=pass / B=fail with B substantively
 right (الْغَافِلَاتِ is heedless, not innocent; رضي الله عنهما is dual). The D5
 number reads as mistuning when it is high — here it was measuring the source.
 
+**Closed at the source 2026-09-29.** parse_hadeeth() no longer writes their
+text into text_english/russian/uzbek_cyrillic/tajik, and translation_source is
+left NULL for whoever produces the text to set. The `translations` parameter
+stays: it is still the fallback that finds hadeeth_ar when the payload was
+fetched in another language.
+
 **Status:** FIXED (policy); adapter unchanged, it still fetches translations
 
 ## ═══════════════════════════════════════════════════════════
@@ -6211,7 +6217,7 @@ number reads as mistuning when it is high — here it was measuring the source.
 ## ═══════════════════════════════════════════════════════════
 **ID:** P179
 **Type:** Shape mismatch with the library
-**Files:** source_hadeethenc.py, hadith_candidates
+**Files:** scripts/lib/source_hadeethenc.py, hadith_candidates
 **Found:** 2026-09-27, building the caption ref line for the five new rows
 
 **Two columns, same cause.** narrator held the entire Arabic isnad chain —
@@ -6226,14 +6232,96 @@ in NARRATORS and falls back to printing it verbatim (P150), so a full Arabic
 isnad would have rendered in the ref line, and the narrator would have appeared
 twice — once inside the Arabic, once after it.
 
-**Fixed in the data, not yet at the source.** The isnad prefix in text_arabic
-was exactly the narrator string, so one UPDATE stripped it and set proper
-names. All five were then re-translated from the matn and re-verified. The
-adapter still extracts this way, so the next batch will arrive the same shape.
+**Fixed in the data first.** The isnad prefix in text_arabic was exactly the
+narrator string, so one UPDATE stripped it and set proper names. All five were
+then re-translated from the matn and re-verified.
+
+**Closed at the source 2026-09-29.** narrator is None: the payload has no
+narrator-NAME field at all, so it is resolved with the citation like collection
+and hadith_number. text_arabic has the intro stripped when it is a byte-exact
+prefix — and only then. It frequently is not: id 66511 carries
+«...رضي الله عنه قَالَ:» in hadeeth_intro and «...قَالَ:» without the honorific
+in the body. The shapes differ row to row, so the boundary cannot be inferred:
+a wrong cut damages the matn, and a right-looking cut is unverifiable.
+
+**The unstrippable case is flagged, not quietly passed through.**
+matn_intro_stripped carries three states — None (no intro field), True
+(removed), False (present and not removable) — and upload-candidates.py rejects
+on False, beside the existing citation_pending check. That reader is the whole
+point. P181 is this same lesson from the other end: a flag nobody reads is only
+a quieter silence.
+
+**Known limitation.** The intro is read from the primary payload only. When the
+Arabic is recovered from a translation payload, that payload's intro is not
+consulted. Low risk — the non-Arabic shapes keep hadeeth_ar matn-only and the
+concatenation appears only in the language=ar shape — but it is not covered.
+
+**Tests.** test_source_hadeethenc.py pins all three flag states and both intro
+shapes, 17 passing. AR_PAYLOAD's intro/body asymmetry is now documented in the
+fixture as load-bearing — adding the honorific to the body to tidy it would
+silently kill the regression.
 
 **Also:** lib/refs.ts gained Abu Bakra — a new narrator entering the library
 needs a NARRATORS entry or the caption prints Latin inside Cyrillic. Note he is
 NOT Abu Bakr as-Siddiq: أبو بكرة with ta marbuta is Nufay' ibn al-Harith
 ath-Thaqafi.
 
-**Status:** DATA FIXED — adapter OPEN
+**Status:** FIXED
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 180: The caption wrapped text that already carried its own quotes
+## ═══════════════════════════════════════════════════════════
+**ID:** P180
+**Type:** Non-idempotent decoration
+**Files:** app/admin/page.tsx
+**Found:** 2026-09-29, building the R094–R097 captions
+
+**The wrapper did not ask first.** The caption assembled the body as
+`«${hadithText}»`, unconditionally. Most library rows hold bare text, so this
+was right for 65 of them — but rows whose text already opens with « came out
+as ««…»», and #2654's Uzbek was one of them.
+
+**The fix is a guard, not a cleanup.** Stripping quotes on the way in would have
+been the wrong direction: the library is allowed to hold either shape, and it is
+the caption's job to arrive at one. So the wrapper now checks before it wraps:
+
+    (hadithText.trim().startsWith('«') ? `${hadithText}\n\n` : `«${hadithText}»\n\n`)
+
+**The class, not the instance.** Any decoration applied to data that may already
+carry it needs this check — quote marks, the ﷺ glyph, the 🌐 credit prefix. The
+same bug is latent anywhere the caption concatenates a sigil onto a library
+column without testing for it first.
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 181: The promoter hardcoded empty tags and said nothing
+## ═══════════════════════════════════════════════════════════
+**ID:** P181
+**Type:** Silent default
+**Files:** promote-candidates.py, hadith_library
+**Found:** 2026-09-29, after five promoted rows had already shipped untagged
+
+**A true comment defending the wrong behaviour.** map_to_library returned
+`"tags": []` with the note *red_flags is a verifier concept* — correct, and
+beside the point. Candidates carry no theme data at all, so tags genuinely
+cannot be derived at promote time. The defect is that the promoter filled that
+gap with a plausible empty value instead of refusing to guess.
+
+**Nothing downstream complained.** An untagged library row promotes, verifies,
+renders and publishes without a single warning; the gap only surfaced when the
+2026-09-27 batch of five was queried for theme coverage. Patching them took
+three SQL attempts — ambiguous column in RETURNING, then text[] against jsonb —
+all of it avoidable at the point of promotion.
+
+**Fixed by making the empty case loud.** `--tags a,b` supplies the batch's tags
+(one invocation per theme, which is how a reviewed batch is promoted anyway),
+`--no-tags` is the explicit opt-out, and the guard exits before any write when
+neither is given. A default that cannot be derived should be demanded, never
+assumed.
+
+**Also:** lib/tags.ts still has no Cyrillic pair for `kabair` or `shirk`.
+Tagging a row correctly does not reach the caption until that is filled.
+
+**Status:** FIXED

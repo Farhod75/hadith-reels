@@ -84,5 +84,8 @@ if __name__ == "__main__":
             f(); passed += 1; print(f"✔ {n}")
         except AssertionError as e:
             failed += 1; print(f"✘ {n}: {e}")
+        except Exception as e:      # an AttributeError is a failed test, not a
+            failed += 1             # reason to abandon the remaining ones
+            print(f"✘ {n}: {type(e).__name__}: {e}")
     print(f"\n{passed} passed, {failed} failed")
     sys.exit(1 if failed else 0)

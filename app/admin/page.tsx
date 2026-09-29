@@ -339,7 +339,12 @@ export default function AdminPage() {
       const credit = buildTranslationCredit(selected.translation_source, lang)
       setCaption(
         `${data.title}\n\n` +
-        `«${hadithText}»\n\n` +
+        // P180: these matns begin with « themselves (the first words are the
+        // Prophet's speech), so the wrapper produced «« and a lone closing ».
+        // Only wrap text that isn't already quoted.
+        (hadithText.trim().startsWith('«')
+          ? `${hadithText}\n\n`
+          : `«${hadithText}»\n\n`) +
         // P153: the Arabic was in the DB and in the admin card but never
         // reached a viewer, so nobody with Arabic could check the translation
         // against the source — which is the one external check this project
