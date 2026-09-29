@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-    "updated": "2026-09-01",
+    "updated": "2026-09-28",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -177,6 +177,38 @@
   },
 
   "scenes": {
+    "b2654-ripples.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Stone basin of still water in an empty pre-dawn courtyard, three drops falling in sequence, rings overlapping. Kling 2.6 Pro 10s, generate_audio off. MODE B. Carries the question asked three times. Architecture reads as a Roman cloister rather than anything Islamic — ambiguous, accepted."
+    },
+    "b2654-dawn-v3.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Vast empty dunes at first light, one sun clearing the horizon. Kling 2.6 Pro 10s. MODE B. Third attempt at the shirk beat: a lamp in a niche generated a temple shrine, and a fracturing reflection generated the moon splitting, which collides with a different hadith. Depicts tawhid rather than shirk, so there is nothing to literalise wrongly."
+    },
+    "b2654-threshold.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Warm lamplight from an open doorway at dusk, shoes on the earthen step, folded blanket on a low bench. Kling 2.6 Pro 10s. MODE B. Carries honouring parents without depicting anyone."
+    },
+    "b2654-ink-v2.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Clear celadon bowl on dark stone filling completely opaque black from a pouring stream of ink. Kling 2.6 Pro 10s. MODE B. Carries false speech. v1 dropped a single blob that sank and left the water clear, so the irreversibility never landed."
+    },
     "b4248-sky.mp4": {
       "classification": "scene",
       "lanes": ["adults"],

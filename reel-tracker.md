@@ -113,6 +113,10 @@
 | R091 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | RU | Kids | muslim-1005 | kids-ru-muslim-1005-story.mp3 | kids-ru-muslim-1005-moral.mp3 | kids-ru-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | light-of-my-heart-bg.mp3 | No | kids-ru-muslim-1005-mascot-reel.mp4 | 22.9s | 8.3 MB | Honorific spelled out for TTS. Narration uses «садака»; the caption quote keeps the library's «милостыня» verbatim — the conventional rendering, though it leans toward alms-to-the-poor, which is the narrowing this hadith exists to correct. Same caption-verbatim rule as R085. |
 | R092 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | UZ | Kids | muslim-1005 | kids-uz-muslim-1005-story.mp3 | kids-uz-muslim-1005-moral.mp3 | kids-uz-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-03.mp3 | No | kids-uz-muslim-1005-mascot-reel.mp4 | 20.5s | 8.1 MB | Caption quote Cyrillic unprompted, third set since P169. Generation wrote the honorific out in full in all four blocks — UZ voices the ﷺ glyph correctly, so it was reverted to the glyph, saving ~2s per occurrence. |
 | R093 | 2026-09-24 | Sahih Muslim #1005 | Jabir ibn Abdullah | Sahih | Kindness / Charity | #sadaqah #kindness #deeds #maruf | TJ | Kids | muslim-1005 | kids-tj-muslim-1005-story.mp3 | kids-tj-muslim-1005-moral.mp3 | kids-tj-muslim-1005-narration.mp3 | clip01.mp4 | n/a (mascot spine) | vocal-nasheed-05.mp3 | No | kids-tj-muslim-1005-mascot-reel.mp4 | 19.4s | 6.9 MB | «хубе» voiced CORRECTLY — third clean -е word («гуноҳе», «хубе») against two failures («Марде», «Даре»), further evidence there is no suffix rule to encode. H had imported another hadith's examples (smile, help, kind word); cut. |
+| R094 | 2026-09-29 | Sahih al-Bukhari #2654 | Abu Bakra | Sahih | Major Sins / Accountability | #sins #kabair #shirk #parents #speech | EN | Adults | bukhari-2654 | adults-en-bukhari-2654-story.mp3 | adults-en-bukhari-2654-moral.mp3 | adults-en-bukhari-2654-narration.mp3 | b2654-ripples.mp4, b2654-dawn-v3.mp4, b2654-threshold.mp4, b2654-ink-v2.mp4 | adults-en-bukhari-2654-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | YES | adults-en-bukhari-2654-reel.mp4 | 46.8s | 14.0 MB | FIRST REEL FROM THE FULL SOURCING PIPELINE — HadeethEnc discovery → Dorar citation+grade → dedup → in-house translation → A/B verify → human gate → library. Four new Kling 2.6 Pro scenes, MODE B, reused across all four languages. |
+| R095 | 2026-09-29 | Sahih al-Bukhari #2654 | Abu Bakra | Sahih | Major Sins / Accountability | #sins #kabair #shirk #parents #speech | RU | Adults | bukhari-2654 | adults-ru-bukhari-2654-story.mp3 | adults-ru-bukhari-2654-moral.mp3 | adults-ru-bukhari-2654-narration.mp3 | b2654-ripples.mp4, b2654-dawn-v3.mp4, b2654-threshold.mp4, b2654-ink-v2.mp4 | adults-ru-bukhari-2654-bg-mixed.mp4 | path-to-jannah-bg.mp3 | YES | adults-ru-bukhari-2654-reel.mp4 | 44.8s | 13.2 MB | Worst Whisper RU pass to date — 11 of 13 cues needed correction, incl. «Обрати»→«обратись» (wrong verb) and «него»→«Него». |
+| R096 | 2026-09-29 | Sahih al-Bukhari #2654 | Abu Bakra | Sahih | Major Sins / Accountability | #sins #kabair #shirk #parents #speech | UZ | Adults | bukhari-2654 | adults-uz-bukhari-2654-story.mp3 | adults-uz-bukhari-2654-moral.mp3 | adults-uz-bukhari-2654-narration.mp3 | b2654-ripples.mp4, b2654-dawn-v3.mp4, b2654-threshold.mp4, b2654-ink-v2.mp4 | adults-uz-bukhari-2654-bg-mixed.mp4 | vocal-nasheed-04.mp3 | NO (P078) | adults-uz-bukhari-2654-reel.mp4 | 69.2s | 21.4 MB | 69s — 20s longer than any other in the set, scenes loop nearly twice. TTS: «оқ бўлиш» read as «ўқ», fixed by narrating «итоатсизлик қилиш»; «ёлғон» read as «ёлдон» until «яна» was removed before it. TG caption exceeded the 1024-char cap and was trimmed. |
+| R097 | 2026-09-29 | Sahih al-Bukhari #2654 | Abu Bakra | Sahih | Major Sins / Accountability | #sins #kabair #shirk #parents #speech | TJ | Adults | bukhari-2654 | adults-tj-bukhari-2654-story.mp3 | adults-tj-bukhari-2654-moral.mp3 | adults-tj-bukhari-2654-narration.mp3 | b2654-ripples.mp4, b2654-dawn-v3.mp4, b2654-threshold.mp4, b2654-ink-v2.mp4 | adults-tj-bukhari-2654-bg-mixed.mp4 | vocal-nasheed-07.mp3 | NO (P078) | adults-tj-bukhari-2654-reel.mp4 | 49.4s | 15.6 MB | Generation returned an EMPTY S block with the story concatenated onto M — split by hand. TG caption trimmed for the 1024-char cap. |
 
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
@@ -150,6 +154,7 @@
 | Sunan Ibn Majah #4248 | EN, RU, UZ, TJ | Adults | R086, R087, R088, R089 |
 | Sahih Muslim #1005 | EN, RU, UZ, TJ | Kids | R090, R091, R092, R093 |
 | Sahih al-Bukhari #6018 (honor his neighbor) | — | — | UNUSED — same number, DIFFERENT hadith. hadith_number is not unique (P147): match the wording, not just the number. |
+| Sahih al-Bukhari #2654 | EN, RU, UZ, TJ | Adults | R094, R095, R096, R097 |
 
 ---
 
@@ -181,6 +186,7 @@
 | Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
 | Speech / Manners | 4 | R082–R085 | EN, RU, UZ, TJ |
 | Kindness / Charity | 4 | R090–R093 | EN, RU, UZ, TJ |
+| Major Sins / Accountability | 4 | R094–R097 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -210,17 +216,17 @@
 |---|---|---|---|
 | vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
-| vocal-nasheed-04.mp3 | 9 | R088 | R031, R047, R054, R062, R067, R074, R083, R084, R088 |
+| vocal-nasheed-04.mp3 | 10 | R096 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096 |
 | vocal-nasheed-01.mp3 | 8 | R087 | R028, R034, R044, R057, R065, R068, R077, R087 |
 | vocal-nasheed-03.mp3 | 8 | R092 | R029, R035, R043, R058, R070, R081, R089, R092 |
 | vocal-nasheed-05.mp3 | 7 | R093 | R032, R036, R045, R059, R069, R082, R093 |
 | vocal-nasheed-06.mp3 | 7 | R075 | R033, R039, R048, R060, R066, R073, R075 |
-| vocal-nasheed-07.mp3 | 7 | R086 | R037, R049, R055, R063, R072, R080, R086 |
-| light-of-my-heart-bg.mp3 | 6 | R091 | R010, R013, R024, R038, R078, R091 |
+| vocal-nasheed-07.mp3 | 8 | R097 | R037, R049, R055, R063, R072, R080, R086, R097 |
+| light-of-my-heart-bg.mp3 | 7 | R091 | R010, R013, R024, R038, R078, R091 |
 | ramadan-bg.mp3 | 4 | R027 | R006, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
-| path-to-jannah-bg.mp3 | 2 | R023 | R004, R023 |
+| path-to-jannah-bg.mp3 | 3 | R095 | R004, R023, R095 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
@@ -237,6 +243,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| b2654-ripples, dawn-v3, threshold, ink-v2 | 1 set | 2026-09-29 (R094–R097) | R094–R097 |
 | ad3641-window, rahle, moon, stars | 1 set | 2026-09-06 (R066–R069) | R066–R069 |
 | b6446-dawn, dunes, lamp, market | 1 set | 2026-08-30 (R050–R053) | R050–R053 |
 | m2999-dawn, harvest, steady, storm | 1 set | 2026-08-28 (R042–R045) | R042–R045 |
@@ -244,11 +251,12 @@ three sets.
 | b1-scene1, scene2, scene4 | 1 set | 2026-08-08 | R010–R013 |
 | kaaba-* (stock footage) | — | 2026-05-16 | R004, R005 |
 
-**Note on clip length.** Every clip is 5s. Step 6 concatenates them and the
-final merge loops the whole sequence, so a four-clip set gives 20s before it
-repeats — on a 40s reel the sequence plays twice. FEWER clips does not mean
-longer holds; it means more repetition. Longer holds need longer SOURCE clips
-(`-Duration 10` in generate-scene.ps1). See the cost note in that script.
+**Note on clip length.** Clips were 5s through R069; every set since R074 is
+Kling 2.6 Pro at 10s. Step 6 concatenates them and the final merge loops the
+whole sequence, so a four-clip set now gives 40s before it repeats. R094–R097
+ran 45–69s, so the sequence plays once and part of a second time — except the
+Uzbek at 69s, which loops nearly twice. FEWER clips does not mean longer holds;
+it means more repetition. Longer reels need MORE clips, not fewer.
 
 
 ### Mascot stills
@@ -308,20 +316,23 @@ longer holds; it means more repetition. Longer holds need longer SOURCE clips
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 93 |
+| Total reels posted | 97 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 37 |
+| Adults reels | 45 |
 | Kids reels | 52 |
-| Avg duration | ~39s |
+| Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 24 |
-| Library rows | 65 (24 used, 41 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×43, Sahih Muslim ×16, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 14 (Abu Hurairah ×34, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×4, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1) |
+| Hadiths used (unique) | 25 |
+| Library rows | 70 (25 used, 45 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×47, Sahih Muslim ×16, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 15 (Abu Hurairah ×34, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×4, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
 
-**93 reels from 24 hadiths.** The library, not the tooling, remains the ceiling
-— Stage 0 cannot fetch a new hadith until Sunnah API issue #3675 is answered.
-Twenty-four of 65 library rows have been used; 41 remain.
+**97 reels from 25 hadiths.** Twenty-five of 70 library rows have been used;
+45 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
+with Dorar supplying the citation and grade (P172–P175). The first five hadiths
+sourced that way entered the library on 2026-09-27, and #2654 is the first of
+them to ship as a reel.
 ---
 
 ## Template — adding new reels
@@ -382,3 +393,4 @@ Then update:
 | 2026-09-10 | R082–R085 — Bukhari #6018 kids, 4 langs, FIRST HOOPOE SET and first at 480p. All four single-clip, no splitting needed. hoopoe-garden-v1 and vocal-hamd-kids-01 both retired. | Farhod / Claude |
 | 2026-09-17 | R086–R089 — Ibn Majah #4248 adults, 4 langs, first set chosen from analytics (stakes-and-consequence shape) rather than by topic label. New scenes b4248-sky/clearing/tide; audio mix changed to narration 1.4 / nasheed 0.12 (P171). | Farhod / Claude |
 | 2026-09-24 | R090–R093 — Muslim #1005 kids, 4 langs, FIRST BEE SET and first girl-voice set since the lambs. The bee lip-syncs correctly, scoping P167 to beaks rather than non-human faces. Selection now follows a four-slot cycle — mercy, deed, accountability, character — so analytics chooses within a slot rather than choosing the slot; #4248 was slot 1 and this is slot 2. Also this session: P168 (pickers read the registry, not filenames), P169 (/api/reels never selected text_uzbek_cyrillic — ten Latin captions blamed on the generator for a query defect), P170 (a leftover step-7 picker that ran after the P162 one and misdirected the gate), P171 (adults mix 1.4/0.12), agent 14 spec, TJ pronunciation watch-list instead of a lint rule the evidence did not support | Farhod / Claude |
+| 2026-09-29 | R094–R097 — Bukhari #2654 EN/RU/UZ/TJ adults. FIRST SET FROM THE FULL SOURCING PIPELINE: HadeethEnc discovery → Dorar citation + grade → dedup → in-house translation → two-model A/B verify → human gate → library. Library 65 → 70 rows. P177 (--apply writes the reviewed text), P178 (HadeethEnc is a discovery source, not a translation source), P179 (isnad in the narrator column). First appearance of Abu Bakra as a narrator. | Farhod / Claude |
