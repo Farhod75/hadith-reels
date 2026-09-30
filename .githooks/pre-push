@@ -86,6 +86,28 @@ npx tsc --noEmit 2>&1
 if [ $? -ne 0 ]; then echo "❌ TypeScript errors"; FAILED=1; fi
 [ $FAILED -eq 0 ] && echo "✅ TypeScript OK"
 
+# Tag vocabulary gate (P182). Deliberately NOT scoped by changed files: an
+# unmapped tag enters through the DATABASE, not through a diff.
+if [ $FAILED -eq 0 ]; then
+  echo "▶ Tag vocabulary audit..."
+  npx tsx scripts/audit-tags.ts --quiet 2>&1
+  TAGS_RC=$?
+  if [ "$TAGS_RC" -eq 1 ]; then
+    echo "❌ Library tags with no entry in lib/tags.ts"
+    FAILED=1
+  elif [ "$TAGS_RC" -ne 0 ]; then
+    # Exit 2 = the check could not RUN (no env, Supabase unreachable), as
+    # distinct from finding gaps. Deferred rather than blocking: this audit
+    # reads current DB state and is idempotent, so the next push re-runs it and
+    # nothing is lost by waiting.
+    # That reasoning does NOT hold inside audit-tags.ts, where exiting 0 on an
+    # empty read would be indistinguishable from a genuine pass (P093).
+    echo "[skip] Tag audit could not run (exit $TAGS_RC) — re-runs on next push."
+  else
+    echo "✅ Tag vocabulary OK"
+  fi
+fi
+
 # Config/next.config → build check
 if [ "$HAS_CONFIG" -gt 0 ] && [ $FAILED -eq 0 ]; then
   echo "▶ Build check (config changed)..."
