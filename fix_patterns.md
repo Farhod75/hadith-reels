@@ -6366,5 +6366,34 @@ lives in a .ts. Until it exists, P150 is only as current as the last hand audit.
 
 **Related:** P150 (the vocabulary), P169 (Latin inside a Cyrillic caption — a
 different layer: the matn, not the tags)
+**Closed 2026-09-30.** scripts/audit-tags.ts reads the library's live `tags`,
+diffs it against TAG_CANONICAL and TAG_FORMS, and exits 1 on a gap: an unmapped
+tag, a raw tag pointing at a concept with no forms, or a concept missing a
+language form. It separates "found gaps" (1) from "could not run" (2) — the
+first draft returned 0 on an empty read, so a wrong env or an RLS change would
+have looked like a pass. That is P093's shape exactly, caught before the script
+reached a hook.
 
-**Status:** HALF FIXED — 24 aliased, 29 concepts OPEN, audit script OPEN
+**Counting by machine changed the answer.** The audit confirmed the 29 and
+attached each tag's row count. 25 of them appeared on ONE row. Eleven were real
+recurring topics and got four forms each — kabair, shirk, zakat, riba, fitna,
+tahara, death, neighbor, prophet, orphan, women. The other fifteen were
+descriptive words lifted from a single matn: «shield» from *fasting is a
+shield*, «rebirth» from *hajj mabrur*, «path» from *seeking knowledge*, «soul»
+from *richness of the soul*. Those were removed from the library rather than
+translated. The removal was previewed row by row first — taking tags away can
+strand a row untagged, which is the state P181 exists to prevent — and every
+affected row kept four or more tags and all of its real topic tags.
+
+**The alias trap, avoided.** Thirteen of the 29 were first proposed as aliases
+onto existing concepts, each inferred from its single row. That would have been
+worse than the gap it closed. An unmapped tag emits English only and the audit
+reports it on every run; a wrong alias emits a confident wrong Cyrillic hashtag
+and reports nothing. `obligation` → ilm is right for Ibn Majah #224 and wrong
+for the next obligation hadith that is not about knowledge.
+
+**Rule:** a vocabulary that has to stay in step with data needs a diff that
+runs, not a person who remembers. When a mapping is uncertain, leave the gap
+the audit can see rather than close it with a guess it cannot.
+
+**Status:** FIXED — gate not yet wired into the pre-push hook

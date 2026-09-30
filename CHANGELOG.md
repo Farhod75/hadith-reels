@@ -1,3 +1,20 @@
+## [2026-09-30]
+
+### Added
+- `scripts/audit-tags.ts` — diffs the library's live `tags` column against
+  TAG_CANONICAL and TAG_FORMS (P182). Exits 1 on a gap, 2 when the check could
+  not run; the first draft returned 0 on an empty read, which would have made a
+  misconfigured env look like a pass.
+- Eleven tag concepts with four forms each: kabair, shirk, zakat, riba, fitna,
+  tahara, death, neighbor, prophet, orphan, women.
+
+### Changed
+- Fifteen tags removed from `hadith_library` rather than translated. Each
+  appeared on exactly one row and each was a descriptive word taken from that
+  row's matn rather than a topic — `shield`, `rebirth`, `path`, `soul`, `time`,
+  `wisdom` and the rest. Every affected row kept four or more tags, verified
+  row by row before the update.
+
 ## [2026-09-29]
 
 ### Added

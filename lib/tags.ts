@@ -97,6 +97,23 @@ export const TAG_CANONICAL: Record<string, string> = {
   tongue: 'speech',
   umrah: 'hajj',
   trial: 'bala',
+  
+  // ── 2026-09-30: concepts, not aliases (P182, second half) ──
+  // These recur. The one-off descriptive tags in the same audit are being
+  // removed from the library instead of translated — growing the vocabulary
+  // to chase single-row tags is what made this drift in the first place.
+  kabair: 'kabair', 'major-sins': 'kabair', majorsins: 'kabair',
+  warning: 'kabair',            // #6857 is the major-sins hadith
+  shirk: 'shirk', polytheism: 'shirk', idolatry: 'shirk',
+  zakat: 'zakat',
+  riba: 'riba', usury: 'riba',
+  fitna: 'fitna',
+  tahara: 'tahara', purity: 'tahara', clean: 'tahara',
+  death: 'death',
+  neighbor: 'neighbor', neighbour: 'neighbor',
+  prophet: 'prophet',
+  orphan: 'orphan', orphans: 'orphan',
+  women: 'women',
 
 }
 
@@ -118,6 +135,17 @@ export const TAG_FORMS: Record<string, TagForms> = {
   iman:         { en: 'iman',        ru: 'вера',         uz: 'иймон',        tj: 'имон' },
   islam:        { en: 'islam',       ru: 'ислам',        uz: 'ислом',        tj: 'ислом' },
   kufr:         { en: 'kufr',        ru: 'неверие',      uz: 'куфр',         tj: 'куфр' },
+  shirk:        { en: 'shirk',       ru: 'ширк',         uz: 'ширк',         tj: 'ширк' },
+  kabair:       { en: 'majorsins',   ru: 'большиегрехи', uz: 'кабирагуноҳлар', tj: 'гуноҳҳоикабира' },
+  zakat:        { en: 'zakat',       ru: 'закят',        uz: 'закот',        tj: 'закот' },
+  riba:         { en: 'riba',        ru: 'ростовщичество', uz: 'рибо',       tj: 'рибо' },
+  fitna:        { en: 'fitna',       ru: 'фитна',        uz: 'фитна',        tj: 'фитна' },
+  tahara:       { en: 'purity',      ru: 'чистота',      uz: 'таҳорат',      tj: 'таҳорат' },
+  death:        { en: 'death',       ru: 'смерть',       uz: 'ўлим',         tj: 'марг' },
+  neighbor:     { en: 'neighbor',    ru: 'сосед',        uz: 'қўшни',        tj: 'ҳамсоя' },
+  prophet:      { en: 'prophet',     ru: 'пророк',       uz: 'пайғамбар',    tj: 'пайғамбар' },
+  orphan:       { en: 'orphan',      ru: 'сирота',       uz: 'етим',         tj: 'ятим' },
+  women:        { en: 'women',       ru: 'женщины',      uz: 'аёллар',       tj: 'занон' },
   taqwa:        { en: 'taqwa',       ru: 'богобоязненность', uz: 'тақво',    tj: 'тақво' },
   deen:         { en: 'deen',        ru: 'религия',      uz: 'дин',          tj: 'дин' },
   dua:          { en: 'dua',         ru: 'дуа',          uz: 'дуо',          tj: 'дуо' },
