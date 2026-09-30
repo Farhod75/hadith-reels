@@ -40,6 +40,12 @@
   library row whose text already opened with « rendered as ««…»». #2654's Uzbek
   was one of them. The wrapper checks first now — the same guard is owed
   anywhere a sigil is concatenated onto a library column.
+  - 53 library tags were reaching captions unmapped (P182), each emitting only
+  its English form and losing the localised pair P150 exists to provide —
+  «#maruf» shipped bare in the RU and TJ captions of Muslim #1005. 24 were
+  synonyms of concepts already carrying four forms and are now aliases; 29 are
+  new concepts needing translation and are deferred. The vocabulary still has
+  no audit, so it will drift again.
 
 ## [2026-09-27]
 

@@ -6325,3 +6325,46 @@ assumed.
 Tagging a row correctly does not reach the caption until that is filled.
 
 **Status:** FIXED
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 182: The tag vocabulary drifted out from under its own translation
+## ═══════════════════════════════════════════════════════════
+**ID:** P182
+**Type:** Mapping table outgrown by the data it maps
+**Files:** lib/tags.ts
+**Found:** 2026-09-29, from a published caption — not from a test
+
+**P150 translated a snapshot.** It deduplicated roughly 100 library tags onto
+56 canonical concepts and gave each four forms. Nothing kept that current. The
+`tags` column now holds ~150 distinct values and 53 of them were reaching
+captions unmapped.
+
+**The fallback is correct, and that is what hid it.** buildTags() keeps an
+unmapped tag rather than dropping it — right, because a new tag should not
+silently vanish from a caption. But a kept tag emits only its English form, so
+the caption loses the localised half that P150 exists to provide, and nothing
+logs the miss. The only evidence is the caption itself: «#maruf» shipped bare
+in the RU and TJ reels of Muslim #1005 while every tag beside it carried its
+pair.
+
+**Half fixed, half deferred.** 24 of the 53 were synonyms of concepts that
+already carry four forms — intention/niyyah, remembrance, praise/thanks,
+religion, spouse/wife, umrah, ramadan, sujud/prostration, scholar/teaching,
+tongue, virtue, muslim, silatur-rahim, sadaqah-jariyah, companionship/
+friendship, pillar(s), trial — and are now aliases. The other 29 are genuinely
+new concepts needing four forms each: zakat, riba, fitna, shirk, kabair, maruf,
+purity/clean/tahara, death, orphan, neighbor, prophet, soul, wisdom, salvation,
+bloodshed, path, strength, shield, time, oath, obligation, warning, influence,
+rebirth, people, women, fire. That is translation review, not a code change.
+
+**The gap that matters is the missing check.** This drifts again the moment the
+library grows, and it will be invisible again. Diffing
+`select distinct unnest(tags) from hadith_library` against TAG_CANONICAL is the
+whole test, and it belongs beside derive-uzbek-latin.ts since the vocabulary
+lives in a .ts. Until it exists, P150 is only as current as the last hand audit.
+
+**Related:** P150 (the vocabulary), P169 (Latin inside a Cyrillic caption — a
+different layer: the matn, not the tags)
+
+**Status:** HALF FIXED — 24 aliased, 29 concepts OPEN, audit script OPEN

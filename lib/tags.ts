@@ -73,7 +73,31 @@ export const TAG_CANONICAL: Record<string, string> = {
   // misc
   allah: 'allah', wealth: 'wealth', health: 'health', heart: 'heart',
   hope: 'hope', light: 'light', animals: 'animals', food: 'food',
-  jihad: 'jihad', legacy: 'legacy', closeness: 'closeness', bala: 'bala',
+    jihad: 'jihad', legacy: 'legacy', closeness: 'closeness', bala: 'bala',
+
+  // ── 2026-09-29 audit ────────────────────────────────────────────────
+  // P150 mapped ~100 distinct library tags; the column is now at ~150 and
+  // nothing kept the vocabulary current. 53 values were reaching captions
+  // unmapped, each emitting only its English form and losing the localised
+  // half that P150 exists to provide — #maruf shipped bare in the RU and TJ
+  // captions of Muslim #1005. These 24 fold onto concepts that already carry
+  // four forms, so they need no new vocabulary.
+  sujud: 'salah', prostration: 'salah',
+  'sadaqah-jariyah': 'sadaqah',
+  teaching: 'ilm', scholar: 'ilm',
+  praise: 'shukr', thanks: 'shukr',
+  ramadan: 'sawm',
+  muslim: 'islam', pillar: 'islam', pillars: 'islam', religion: 'deen',
+  remembrance: 'dhikr',
+  spouse: 'marriage', wife: 'marriage',
+  'silatur-rahim': 'family',
+  companionship: 'brotherhood', friendship: 'brotherhood',
+  virtue: 'akhlaq',
+  intention: 'sincerity', niyyah: 'sincerity',
+  tongue: 'speech',
+  umrah: 'hajj',
+  trial: 'bala',
+
 }
 
 // Canonical key -> the four forms. UZ and TJ are Cyrillic, matching the
