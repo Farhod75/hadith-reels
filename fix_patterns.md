@@ -6210,6 +6210,13 @@ left NULL for whoever produces the text to set. The `translations` parameter
 stays: it is still the fallback that finds hadeeth_ar when the payload was
 fetched in another language.
 
+**Closed at the caller 2026-09-30.** source-candidates.py was still calling
+fetch_langs on every candidate — four API calls each, for text nothing reads.
+It now passes None, and the header comment that called HadeethEnc's
+translations AUTHORITATIVE, which stood for three days after the measurement
+said otherwise, is corrected. A defect fixed in one layer leaves the layer
+above still doing the work; grep the callers, not just the function.
+
 **Status:** FIXED (policy); adapter unchanged, it still fetches translations
 
 ## ═══════════════════════════════════════════════════════════

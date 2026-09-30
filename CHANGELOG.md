@@ -24,6 +24,9 @@
   `EN_HASHTAG_BLOCKLIST` suppresses only the English hashtag. `death` and
   `women` moved to the second — written when every tag was English, the list
   had been dropping #ўлим and #занон to avoid #death.
+- `source-candidates.py` no longer fetches HadeethEnc's four language payloads
+  per candidate (P178). Nothing has read them since the adapter stopped
+  carrying translations; the header comment still called them authoritative.
 
 ## [2026-09-29]
 

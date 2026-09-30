@@ -17,10 +17,14 @@
 # With --provider hadeethenc the refs are HadeethEnc ids instead (e.g. 66511).
 #
 # P172: HadeethEnc is keyless, so this path works without Sunnah API issue
-# #3675, and it carries AUTHORITATIVE translations (uz Cyrillic, tg real Tajik)
-# rather than machine ones. It gives no hadith NUMBER, so Dorar supplies the
-# citation as well as the grade; a candidate whose citation never resolves is
-# dropped rather than promoted uncitable.
+# #3675. It gives no hadith NUMBER, so Dorar supplies the citation as well as
+# the grade; a candidate whose citation never resolves is dropped rather than
+# promoted uncitable.
+# P178: it does NOT supply usable translations, despite what this comment said
+# for three days. Measured over seven candidates, its renderings passed 0 of 5
+# in Russian and 0 of 5 in Uzbek against 8 of 8 in-house, expanding
+# interpretively — «бегуноҳ» (innocent) attached to قتل النفس changes the
+# ruling. Discovery, Arabic matn and deep link only.
 # Stdlib only: os, sys, json, argparse, urllib.
 # ============================================================
 import os
@@ -35,8 +39,11 @@ sys.path.insert(0, _here)
 from source_sunnah import fetch_hadith, parse_sunnah_hadith, API_BASE, MOCK_BASE  # noqa: E402
 from source_dorar import fetch_dorar, parse_dorar, confirm_grade  # noqa: E402
 from dedup import find_duplicates, canonical_collection  # noqa: E402
+# P178: fetch_langs is deliberately not imported. It pulled four language
+# payloads per candidate for translations that are no longer carried; the only
+# thing it still fed was parse_hadeeth's Arabic fallback, and this path fetches
+# in Arabic directly. It stays in source_hadeethenc.py for manual use.
 from source_hadeethenc import (fetch_hadeeth as he_fetch,      # noqa: E402
-                               fetch_langs as he_langs,
                                parse_hadeeth as he_parse)
 
 
@@ -155,7 +162,8 @@ def main():
     ap.add_argument("--no-dorar", action="store_true", help="skip Dorar grade confirmation")
     ap.add_argument("--provider", choices=["sunnah", "hadeethenc"], default="sunnah",
                     help="acquisition source. hadeethenc is keyless and supplies "
-                         "authoritative EN/RU/UZ/TJ translations; refs are HadeethEnc ids.")
+                         "the Arabic matn and a deep link, NOT translations (P178); "
+                         "refs are HadeethEnc ids.")
     args = ap.parse_args()
 
     # P172: HadeethEnc candidates have no citation until Dorar supplies one, so
@@ -196,7 +204,13 @@ def main():
                 # missing language returns 200 with an EMPTY STRING, not a 404,
                 # and fetch_langs drops those rather than storing blanks (P165).
                 obj = he_fetch(ref, "ar")
-                parsed = he_parse(obj, he_langs(ref))
+                # P178: their translations are no longer carried, so fetching
+                # four more languages per candidate is four wasted calls. The
+                # `translations` argument is only the Arabic fallback now, and
+                # this path already fetches in Arabic — if that ever returns
+                # without a matn the row drops loudly with "no Arabic matn"
+                # rather than being silently rescued by a language payload.
+                parsed = he_parse(obj, None)
             else:
                 c, n = parse_ref(ref)
                 obj = fetch_hadith(c, n, api_key=api_key, base_url=base)
