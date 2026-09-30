@@ -414,6 +414,15 @@ therefore about **placement**, not correctness: `-Scenes` reads from
 
 ### Step 14 — Render
 
+> **Why the bed is named and not left to the picker.** `render-reel.ps1` falls
+> back to `($nasheeds | Get-Random)` when `-Nasheed` is omitted — still true,
+> this is not legacy advice. Three consequences: the P117 lane gate REJECTS a
+> cross-lane bed rather than quietly re-picking, and it fires at Step 7, after
+> Whisper has run, so a bad draw costs the whole narration and subtitle pass
+> (R029 and R030 are both re-renders for exactly this); the tracker's nasheed
+> rotation table can only be planned if you chose the bed; and a random draw
+> makes the reel unreproducible. Name it.
+
 ```powershell
 .\render-reel.ps1 -Style adults -Lang <lang> -Slug <slug> -Nasheed <file> -Scenes clip1.mp4,clip2.mp4,clip3.mp4,clip4.mp4
 ```
