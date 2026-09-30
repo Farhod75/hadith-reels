@@ -14,6 +14,11 @@
   row's matn rather than a topic — `shield`, `rebirth`, `path`, `soul`, `time`,
   `wisdom` and the rest. Every affected row kept four or more tags, verified
   row by row before the update.
+- The P106 tag blocklist moved from `app/admin/page.tsx` into `lib/tags.ts` and
+  split in two (P183). `TAG_BLOCKLIST` still drops a tag whole; the new
+  `EN_HASHTAG_BLOCKLIST` suppresses only the English hashtag. `death` and
+  `women` moved to the second — written when every tag was English, the list
+  had been dropping #ўлим and #занон to avoid #death.
 
 ## [2026-09-29]
 

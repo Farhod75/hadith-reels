@@ -4,8 +4,9 @@
 //   npx tsx scripts/audit-tags.ts                 # full report
 //   npx tsx scripts/audit-tags.ts --quiet         # failures only, for a hook
 //
-// Exits 1 on a REAL gap — a tag the caption cannot localise. Exits 0 on the
-// informational sections, which are housekeeping, not defects.
+// Exits 1 on a REAL gap — a tag the caption cannot localise. Exits 2 when the
+// check could not run at all. Exits 0 on the informational sections, which are
+// housekeeping, not defects.
 //
 // P182: P150 mapped ~100 library tags onto 56 canonical concepts and nothing
 // kept that current. The column reached ~150 values and 53 were falling
@@ -20,7 +21,7 @@
 import { createClient } from '@supabase/supabase-js'
 import * as path from 'path'
 import * as dotenv from 'dotenv'
-import { TAG_CANONICAL, TAG_FORMS } from '../lib/tags'
+import { TAG_CANONICAL, TAG_FORMS, TAG_BLOCKLIST } from '../lib/tags'
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
@@ -30,15 +31,11 @@ if (!url || !key) { console.error('missing supabase env'); process.exit(2) }
 
 const quiet = process.argv.includes('--quiet')
 
-// Tags filtered before they reach buildTags(), per the note in lib/tags.ts:
-// #date reaches dating content and #hellfire skews to metal and gaming. They
-// are listed here so they do not read as gaps forever — and listed EXPLICITLY,
-// with a reason, rather than silently filtered, which is the failure P182
-// documents. If the upstream blocklist moves or grows, this must follow it.
-const BLOCKED_UPSTREAM: Record<string, string> = {
-  date: 'P106 — reaches dating content',
-  hellfire: 'P106 — skews to metal and gaming',
-}
+// Imported, never restated. The first version of this was a local constant
+// holding two of the eight entries, guessed from a comment in lib/tags.ts —
+// and that gap is exactly what let `death` and `women` be given four forms
+// each while blocklisted, with this audit reporting OK.
+const BLOCKED = new Set(TAG_BLOCKLIST)
 
 const LANGS = ['en', 'ru', 'uz', 'tj'] as const
 
@@ -97,8 +94,8 @@ async function main() {
   for (const [tag, examples] of [...usage.entries()].sort()) {
     if (TAG_CANONICAL[tag]) continue
     const n = counts.get(tag) ?? 0
-    if (BLOCKED_UPSTREAM[tag]) {
-      blocked.push(`${tag.padEnd(20)} ${String(n).padStart(3)} rows   ${BLOCKED_UPSTREAM[tag]}`)
+    if (BLOCKED.has(tag)) {
+      blocked.push(`${tag.padEnd(20)} ${String(n).padStart(3)} rows   filtered at caption time (P106)`)
     } else {
       unmapped.push(`${tag.padEnd(20)} ${String(n).padStart(3)} rows   e.g. ${examples.join(', ')}`)
     }
@@ -142,6 +139,8 @@ async function main() {
           'that language emits one tag instead of two')
 
   if (!quiet) {
+    section('blocked at caption time — not gaps', blocked,
+            'TAG_BLOCKLIST in lib/tags.ts; no form of these reaches a caption')
     section('unreachable concepts — no raw tag maps here', unreachable,
             'harmless; either dead vocabulary or a missing alias')
     section('mappings with no library row using them', unusedMappings,

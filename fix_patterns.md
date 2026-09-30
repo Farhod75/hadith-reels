@@ -6396,4 +6396,50 @@ for the next obligation hadith that is not about knowledge.
 runs, not a person who remembers. When a mapping is uncertain, leave the gap
 the audit can see rather than close it with a guess it cannot.
 
-**Status:** FIXED — gate not yet wired into the pre-push hook
+**Status:** FIXED — gate live in .githooks/pre-push as of 80e6c58
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 183: A blocklist that predated the thing it was blocking
+## ═══════════════════════════════════════════════════════════
+**ID:** P183
+**Type:** Rule outlived the assumption it was written under
+**Files:** lib/tags.ts, app/admin/page.tsx, scripts/audit-tags.ts
+**Found:** 2026-09-30, while reading page.tsx for an unrelated task
+
+**P106 filtered eight tags at caption time** because those hashtags reach the
+wrong audience — #date lands in dating content, #hellfire skews to metal and
+gaming. Correct then, and written when every hashtag in a caption was English.
+
+**P150 made the assumption false and nothing revisited it.** Once each concept
+carried four forms, dropping a tag stopped meaning dropping one hashtag: to
+avoid #death the filter also dropped #ўлим, #марг and #смерть. Two of the eight
+— `death` and `women` — are ordinary hadith topics whose localised hashtags
+reach nothing problematic, and they were being suppressed on the RU, UZ and TJ
+captions that are this channel's actual audience.
+
+**It lived inline in a component, so nothing could check it.** On the morning
+of 2026-09-30, `death` and `women` were each given four forms as part of
+closing P182 — and scripts/audit-tags.ts, the tool built for exactly this,
+reported OK, because it had no idea the list existed. Its own BLOCKED_UPSTREAM
+constant held two of the eight entries, guessed from a comment in lib/tags.ts
+saying a blocklist "applies upstream." Reading the comment instead of finding
+the list is what produced that guess.
+
+**Fixed by splitting the filter along the line P150 drew.** TAG_BLOCKLIST now
+lives in lib/tags.ts and still drops the tag whole at the caller; six entries,
+none of them in TAG_FORMS, so tag and English form remain the same act for
+them. EN_HASHTAG_BLOCKLIST suppresses only the English form inside buildTags(),
+and `death` and `women` moved there. audit-tags.ts imports TAG_BLOCKLIST rather
+than restating it.
+
+**Rule:** a rule encodes an assumption about the world it was written in. P106
+assumed one tag meant one hashtag. Write the assumption down beside the rule,
+because the change that invalidates it will not announce itself — and keep the
+rule where the thing it constrains can see it, or no gate will ever catch the
+drift.
+
+**Related:** P106 (the blocklist), P150 (four forms per concept), P182 (the
+audit that could not see this)
+
+**Status:** FIXED

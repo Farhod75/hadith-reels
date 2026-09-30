@@ -23,7 +23,9 @@
 // the audience actually uses.
 //
 // UNMAPPED TAGS FALL BACK to their English form. That is deliberate: a new tag
-// appearing in the library should not silently vanish from captions.
+// appearing in the library should not silently vanish from captions. It is also
+// why scripts/audit-tags.ts exists — the fallback is correct and invisible, so
+// nothing reported the 53 tags that were using it (P182).
 
 export type TagForms = { en: string; ru: string; uz: string; tj: string }
 
@@ -73,7 +75,7 @@ export const TAG_CANONICAL: Record<string, string> = {
   // misc
   allah: 'allah', wealth: 'wealth', health: 'health', heart: 'heart',
   hope: 'hope', light: 'light', animals: 'animals', food: 'food',
-    jihad: 'jihad', legacy: 'legacy', closeness: 'closeness', bala: 'bala',
+  jihad: 'jihad', legacy: 'legacy', closeness: 'closeness', bala: 'bala',
 
   // ── 2026-09-29 audit ────────────────────────────────────────────────
   // P150 mapped ~100 distinct library tags; the column is now at ~150 and
@@ -97,11 +99,11 @@ export const TAG_CANONICAL: Record<string, string> = {
   tongue: 'speech',
   umrah: 'hajj',
   trial: 'bala',
-  
+
   // ── 2026-09-30: concepts, not aliases (P182, second half) ──
-  // These recur. The one-off descriptive tags in the same audit are being
-  // removed from the library instead of translated — growing the vocabulary
-  // to chase single-row tags is what made this drift in the first place.
+  // These recur. The one-off descriptive tags in the same audit were removed
+  // from the library instead of translated — growing the vocabulary to chase
+  // single-row tags is what made this drift in the first place.
   kabair: 'kabair', 'major-sins': 'kabair', majorsins: 'kabair',
   warning: 'kabair',            // #6857 is the major-sins hadith
   shirk: 'shirk', polytheism: 'shirk', idolatry: 'shirk',
@@ -114,7 +116,6 @@ export const TAG_CANONICAL: Record<string, string> = {
   prophet: 'prophet',
   orphan: 'orphan', orphans: 'orphan',
   women: 'women',
-
 }
 
 // Canonical key -> the four forms. UZ and TJ are Cyrillic, matching the
@@ -190,15 +191,46 @@ export const TAG_FORMS: Record<string, TagForms> = {
 }
 
 /**
+ * Dropped entirely — no form of these reaches a caption (P106).
+ *
+ * Not a vocabulary problem: these hashtags reach the wrong audience. #date
+ * lands in dating content; #hellfire, #fire and #hell skew to metal and
+ * gaming; #men pulls traffic this channel does not want. None of them are in
+ * TAG_FORMS, so blocking the tag and blocking its English form are the same
+ * act here.
+ *
+ * Applied by the CALLER, before buildTags() is reached. It lived inline in
+ * app/admin/page.tsx, where nothing could check against it — which is how
+ * `death` and `women` were each given four forms on 2026-09-30 while sitting
+ * on it, with scripts/audit-tags.ts reporting OK (P182).
+ */
+export const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'men']
+
+/**
+ * The ENGLISH hashtag is suppressed; the localised one still ships.
+ *
+ * P106 predates P150, when every tag was English and "drop the tag" and "drop
+ * its English form" were the same act. They are not any more. #death and
+ * #women reach true crime and fashion; #ўлим, #марг, #занон and #аёллар reach
+ * neither. Blocking the concept to avoid the English tag costs the localised
+ * audience the whole tag, which is backwards for a channel whose reach is
+ * Uzbek, Russian and Tajik.
+ *
+ * Per-language suppression is the next split if Russian turns out to behave
+ * like English here — #женщины is the one to watch.
+ */
+export const EN_HASHTAG_BLOCKLIST = ['death', 'women']
+
+/**
  * Build the hashtag line for a caption.
  *
  * Emits BOTH the localised and the English form of each topic tag — two
  * discovery paths, and hashtags cost nothing. When lang is 'en' the two
  * collapse and only one is emitted.
  *
- * P106's blocklist still applies upstream: #date reaches dating content and
- * #hellfire skews to metal and gaming, so those are filtered from the library
- * tags before they reach here.
+ * Two filters apply and they are NOT the same filter. TAG_BLOCKLIST is applied
+ * by the caller and drops the tag whole. EN_HASHTAG_BLOCKLIST is applied below
+ * and suppresses only the English form, leaving the localised tag to ship.
  */
 export function buildTags(rawTags: string[], lang: string): string {
   const out: string[] = []
@@ -210,10 +242,12 @@ export function buildTags(rawTags: string[], lang: string): string {
   for (const raw of rawTags) {
     const key = TAG_CANONICAL[raw.toLowerCase()]
     const forms = key ? TAG_FORMS[key] : undefined
-    if (!forms) { push(raw) ; continue }   // unmapped: keep it rather than drop it
+    if (!forms) { push(raw); continue }   // unmapped: keep it rather than drop it
     const local = (forms as any)[lang] as string | undefined
     if (local) push(local)
-    push(forms.en)
+    // The English form is its own discovery path and can be suppressed alone —
+    // the localised tag is unaffected by what #death reaches.
+    if (!EN_HASHTAG_BLOCKLIST.includes(key)) push(forms.en)
   }
   return out.join(' ')
 }

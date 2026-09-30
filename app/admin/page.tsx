@@ -6,7 +6,7 @@
 // Step 4: Render + Publish
 
 import { useState, useEffect, useRef } from 'react'
-import { buildTags } from '@/lib/tags'
+import { buildTags, TAG_BLOCKLIST } from '@/lib/tags'
 import { buildRef, buildTranslationCredit } from '@/lib/refs'
 import { MASCOTS, mascotGender, type MascotKey } from '@/lib/mascots'
 
@@ -310,7 +310,11 @@ export default function AdminPage() {
       // P106: tags that pull the wrong audience on social platforms. #date reaches
       // dating content; #hellfire skews to metal/gaming. Sourced from the hadith
       // library, so filter at caption time rather than editing the library.
-      const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'death', 'women', 'men']
+      // P183: the blocklist moved to lib/tags.ts beside the vocabulary it
+      // filters, so the audit can see it. Not the same list any more — it split
+      // in two. TAG_BLOCKLIST still drops a tag whole; `death` and `women`
+      // moved to EN_HASHTAG_BLOCKLIST, which suppresses only the English
+      // hashtag so the Cyrillic one still ships.
       // P150: emit BOTH the localised and English form of each topic tag —
       // two discovery paths, and hashtags cost nothing. The operator searches
       // in his own language first and so does the audience.
