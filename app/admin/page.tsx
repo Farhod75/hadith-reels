@@ -6,7 +6,7 @@
 // Step 4: Render + Publish
 
 import { useState, useEffect, useRef } from 'react'
-import { buildTags, TAG_BLOCKLIST } from '@/lib/tags'
+import { fitTagLine, TAG_BLOCKLIST, TELEGRAM_CAPTION_LIMIT } from '@/lib/tags'
 import { buildRef, buildTranslationCredit } from '@/lib/refs'
 import { MASCOTS, mascotGender, type MascotKey } from '@/lib/mascots'
 
@@ -232,6 +232,8 @@ export default function AdminPage() {
   // Caption
   const [caption, setCaption]           = useState('')
   const [copiedCaption, setCopiedCaption] = useState(false)
+  // What fitTagLine gave up to stay under Telegram's cap, '' when nothing was.
+  const [captionNote, setCaptionNote] = useState('')
   const reelSlug = selected
     ? `${selected.collection.toLowerCase().replace(/^(sahih |jami )?(al-)?/, '').replace(/[^a-z0-9]+/g, '-')}-${selected.hadith_number || ''}`.replace(/-+$/, '')
     : ''
@@ -318,10 +320,8 @@ export default function AdminPage() {
       // P150: emit BOTH the localised and English form of each topic tag —
       // two discovery paths, and hashtags cost nothing. The operator searches
       // in his own language first and so does the audience.
-      const tags = buildTags(
-        (selected.tags || []).filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase())).slice(0, 6),
-        lang
-      )
+      const topicTags = (selected.tags || [])
+        .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
       // P150: verify line and hashtags were hardcoded English and appended to
       // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
       // they come from the library's `tags` column and travel across languages.
@@ -341,7 +341,12 @@ export default function AdminPage() {
       // P176: HadeethEnc's licence requires crediting them on every row carrying
       // their text. Returns '' for in-house rows, so nothing is emitted.
       const credit = buildTranslationCredit(selected.translation_source, lang)
-      setCaption(
+      // The body never flexes. P116: length pressure on generated text is
+      // fabrication pressure — told to be shorter, the model complied on
+      // narrative and inflated importance instead. The hadith text and the
+      // Arabic matn are the caption's verifiability (P106, P153). Only the tag
+      // line below gives when Telegram's cap is tight.
+      const captionBody =
         `${data.title}\n\n` +
         // P180: these matns begin with « themselves (the first words are the
         // Prophet's speech), so the wrapper produced «« and a lone closing ».
@@ -359,9 +364,21 @@ export default function AdminPage() {
         // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
         // blank line where the credit would have been.
         (credit ? `${credit}\n` : '') +
-        `🔍 ${l10n.verify}: hadithverifier.com\n\n` +
-        `${tags} ${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''} ${l10n.lang}`
-      )
+        `🔍 ${l10n.verify}: hadithverifier.com\n\n`
+
+      // P184: UZ and TJ cleared Telegram's 1024 on nearly every set and were
+      // trimmed by hand, after posting, once Telegram had already truncated
+      // them. fitTagLine drops the English hashtags first, then the language
+      // tag, then topic concepts — and reports what it gave up.
+      const fitted = fitTagLine({
+        rawTags: topicTags,
+        lang,
+        suffix: `${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''}`,
+        langTag: l10n.lang,
+        budget: TELEGRAM_CAPTION_LIMIT - captionBody.length,
+      })
+      setCaption(captionBody + fitted.line)
+      setCaptionNote(fitted.note)
       setStep('preview')
     } catch (e: any) { setGenError(e.message || 'Generation failed') }
     finally { setGenerating(false) }
@@ -703,6 +720,27 @@ export default function AdminPage() {
                 <div className="text-xs text-slate-400 uppercase tracking-wide mb-2">📱 Social media caption</div>
                 <textarea value={caption} onChange={e => setCaption(e.target.value)} rows={9}
                   className="w-full bg-slate-700 text-slate-200 border border-slate-600 rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                {/* Telegram counts a media caption in UTF-16 code units, which is
+                    exactly what String.length returns — a Cyrillic character costs
+                    the same as a Latin one here despite being two bytes. So the UZ
+                    and TJ overage is real wordiness, not an encoding penalty.
+                    Telegram's 1024 is the only binding limit: Instagram and TikTok
+                    allow 2200, a YouTube description 5000. */}
+                <p className={`text-xs mt-1.5 ${caption.length > TELEGRAM_CAPTION_LIMIT ? 'text-red-400' : 'text-slate-500'}`}
+                   data-test="caption-length">
+                  {caption.length} / {TELEGRAM_CAPTION_LIMIT}
+                  {caption.length > TELEGRAM_CAPTION_LIMIT &&
+                    ` — ${caption.length - TELEGRAM_CAPTION_LIMIT} over Telegram's limit`}
+                </p>
+                {/* Never silent. A caption that quietly loses half its tags is
+                    the same failure as a tag that quietly loses half its forms
+                    (P182) — the operator has to be able to see the trade and
+                    undo it in the textarea. */}
+                {captionNote && (
+                  <p className="text-xs mt-0.5 text-amber-400" data-test="caption-note">
+                    ⚠ {captionNote}
+                  </p>
+                )}
                 <button
                   onClick={() => { navigator.clipboard.writeText(caption); setCopiedCaption(true); setTimeout(() => setCopiedCaption(false), 2000) }}
                   className="mt-2 w-full py-2 rounded-lg bg-indigo-700 hover:bg-indigo-600 text-white text-sm transition-colors">
@@ -775,7 +813,7 @@ export default function AdminPage() {
                 : 'Great work. The reel is ready to share.'}
             </p>
             <button onClick={() => {
-              setSelected(null); setGenerated(null); setCaption('')
+              setSelected(null); setGenerated(null); setCaption(''); setCaptionNote('')
               setStoryAudioUrl(''); setMoralAudioUrl('')
               setPostDone(false); setStep('pick')
             }} className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors">

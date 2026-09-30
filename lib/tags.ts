@@ -8,6 +8,7 @@
 // BOTH sets ship, not one. Hashtags are free and each is a separate discovery
 // path: the localised tags reach the actual audience, the English ones stay
 // findable by anyone browsing globally. Dropping either costs reach for nothing.
+// (Over Telegram's caption cap they stop being free — see fitTagLine below.)
 //
 // TWO PROBLEMS SOLVED TOGETHER. The library vocabulary had ~100 tags with heavy
 // duplication — prayer/salah, charity/sadaqah/giving, knowledge/ilm/learning/
@@ -202,7 +203,7 @@ export const TAG_FORMS: Record<string, TagForms> = {
  * Applied by the CALLER, before buildTags() is reached. It lived inline in
  * app/admin/page.tsx, where nothing could check against it — which is how
  * `death` and `women` were each given four forms on 2026-09-30 while sitting
- * on it, with scripts/audit-tags.ts reporting OK (P182).
+ * on it, with scripts/audit-tags.ts reporting OK (P183).
  */
 export const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'men']
 
@@ -221,6 +222,9 @@ export const TAG_BLOCKLIST = ['date', 'dates', 'hellfire', 'fire', 'hell', 'men'
  */
 export const EN_HASHTAG_BLOCKLIST = ['death', 'women']
 
+/** Telegram's media-caption limit, in UTF-16 code units. */
+export const TELEGRAM_CAPTION_LIMIT = 1024
+
 /**
  * Build the hashtag line for a caption.
  *
@@ -231,8 +235,17 @@ export const EN_HASHTAG_BLOCKLIST = ['death', 'women']
  * Two filters apply and they are NOT the same filter. TAG_BLOCKLIST is applied
  * by the caller and drops the tag whole. EN_HASHTAG_BLOCKLIST is applied below
  * and suppresses only the English form, leaving the localised tag to ship.
+ *
+ * `localisedOnly` is the same suppression applied to every concept at once,
+ * used by fitTagLine when a caption is over Telegram's cap. An unmapped tag
+ * still emits its raw English form under that option — there is nothing else
+ * to emit, and dropping it silently is what P182 was about.
  */
-export function buildTags(rawTags: string[], lang: string): string {
+export function buildTags(
+  rawTags: string[],
+  lang: string,
+  opts?: { localisedOnly?: boolean },
+): string {
   const out: string[] = []
   const seen = new Set<string>()
   const push = (t: string) => {
@@ -247,7 +260,79 @@ export function buildTags(rawTags: string[], lang: string): string {
     if (local) push(local)
     // The English form is its own discovery path and can be suppressed alone —
     // the localised tag is unaffected by what #death reaches.
+    if (opts?.localisedOnly && local) continue
     if (!EN_HASHTAG_BLOCKLIST.includes(key)) push(forms.en)
   }
   return out.join(' ')
+}
+
+/**
+ * Fit the hashtag line into whatever the caption body left over.
+ *
+ * Telegram caps a media caption at 1024 UTF-16 code units and is the only
+ * binding limit — Instagram and TikTok allow 2200, a YouTube description 5000.
+ * Uzbek and Tajik clear it on nearly every set, typically by a few dozen
+ * characters.
+ *
+ * WHAT YIELDS, AND WHY IT IS NEVER THE TEXT. P116 established that length
+ * pressure on the generator is fabrication pressure: told to be shorter, the
+ * model complied on narrative and inflated importance instead, which is how
+ * invented superlatives reached Muslim #1005. The hadith text and the Arabic
+ * matn are the caption's verifiability and are explicitly never truncated
+ * (P106, P153). Hashtags are additive reach, so hashtags are what give.
+ *
+ * The ladder, cheapest loss first:
+ *   0. localised + English, up to six concepts   — unchanged behaviour
+ *   1. localised only
+ *   2. ... and the language self-tag goes
+ *   3+ ... and concepts drop from the end, one at a time
+ *
+ * Rung 1 trades against P150, which ships both forms deliberately — but its
+ * argument was that "hashtags are free and each is a separate discovery path,
+ * so dropping the English set would cost the global audience for nothing."
+ * Over the cap they are not free. On a Cyrillic caption the localised tag
+ * reaches the audience this channel actually has, so English yields first. For
+ * lang 'en' both forms are the same string and rung 1 changes nothing, which
+ * is correct rather than a case needing special handling.
+ *
+ * Always returns a `note` describing what was given up. A caption that quietly
+ * loses half its tags is P182 all over again.
+ */
+export function fitTagLine(opts: {
+  rawTags: string[]
+  lang: string
+  /** Fixed hashtags for the language, e.g. '#ҳадис #ислом #суннат' (+ kids). */
+  suffix: string
+  /** The language self-tag, e.g. '#ўзбекча'. First thing dropped after English. */
+  langTag: string
+  /** Characters left for the tag line: TELEGRAM_CAPTION_LIMIT - body.length. */
+  budget: number
+}): { line: string; note: string } {
+  const { rawTags, lang, suffix, langTag, budget } = opts
+  const join = (tags: string, withLang: boolean) =>
+    [tags, suffix, withLang ? langTag : ''].filter(Boolean).join(' ')
+
+  const rungs: { line: string; note: string }[] = [
+    { line: join(buildTags(rawTags.slice(0, 6), lang), true), note: '' },
+    { line: join(buildTags(rawTags.slice(0, 6), lang, { localisedOnly: true }), true),
+      note: 'English hashtags dropped to fit' },
+    { line: join(buildTags(rawTags.slice(0, 6), lang, { localisedOnly: true }), false),
+      note: 'English hashtags and the language tag dropped to fit' },
+  ]
+  for (let n = 5; n >= 1; n--) {
+    rungs.push({
+      line: join(buildTags(rawTags.slice(0, n), lang, { localisedOnly: true }), false),
+      note: `cut to ${n} topic tag${n === 1 ? '' : 's'} to fit`,
+    })
+  }
+
+  for (const r of rungs) if (r.line.length <= budget) return r
+
+  // Nothing fits. Return the shortest rung rather than an empty line and say
+  // so plainly: the caption is over regardless, and that has to be visible
+  // rather than discovered after Telegram truncates it.
+  return {
+    line: rungs[rungs.length - 1].line,
+    note: 'still over the limit even with one tag — trim the text by hand',
+  }
 }

@@ -6443,3 +6443,54 @@ drift.
 audit that could not see this)
 
 **Status:** FIXED
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 184: The caption had no idea how long it was allowed to be
+## ═══════════════════════════════════════════════════════════
+**ID:** P184
+**Type:** Missing constraint — discovered by the platform, not the code
+**Files:** lib/tags.ts, app/admin/page.tsx
+**Found:** 2026-09-30, measuring instead of guessing
+
+**Telegram caps a media caption at 1024 UTF-16 code units**, and Uzbek and
+Tajik cleared it on nearly every set. Nothing in the pipeline knew the number.
+The operator found out after posting, from the post itself — Telegram
+truncates from the END, and the end of every caption is the hashtag line, so
+what vanished was always the tags.
+
+**Measured first, then built.** A plain character counter went in before any
+trimming logic, because neither of us could say what was being cut by hand or
+by how much. The first Uzbek caption read 1073 — 49 over. Small enough that
+trimming the right thing would fix it.
+
+**What yields, and what never does.** P116 established that length pressure on
+the generator is fabrication pressure: told to be shorter, the model complied
+on narrative and inflated importance instead, which is how invented
+superlatives reached Muslim #1005. The hadith text and the Arabic matn are the
+caption's verifiability and are explicitly never truncated (P106, P153). That
+leaves the hashtags, which are additive reach.
+
+**fitTagLine() degrades in order of cheapest loss:** localised + English, then
+localised only, then without the language self-tag, then dropping topic
+concepts from the end. Rung 1 knowingly trades against P150, whose argument for
+shipping both forms was that "hashtags are free" — over the cap they are not,
+and on a Cyrillic caption the localised tag reaches the audience this channel
+actually has. It never trims silently: the admin prints what was given up, and
+the textarea stays editable.
+
+**The measurement that matters is what came next.** On Bukhari #2654's Uzbek
+the ladder went four rungs down, to two topic tags, landing at 1019. That is
+not the ladder failing — it is the body being roughly 960 characters on its
+own, leaving about 60 for tags. #2654 carries an unusually long Arabic matn.
+Trimming hashtags treats the symptom; the structural answer is a two-message
+post, video with a short caption plus the full text as a reply, since Telegram
+allows 4096 in a text message. Not built.
+
+**Rule:** a limit the code does not know is a limit the platform enforces
+silently and arbitrarily — from the end, on whatever happened to be last. Put
+the number in the code, show it before the thing ships, and choose what gives
+rather than letting the byte count choose.
+
+**Status:** FIXED — the caption now fits deliberately. The body length itself
+is untouched and is the real constraint.

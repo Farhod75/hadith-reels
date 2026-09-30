@@ -7,6 +7,11 @@
   misconfigured env look like a pass.
 - Eleven tag concepts with four forms each: kabair, shirk, zakat, riba, fitna,
   tahara, death, neighbor, prophet, orphan, women.
+- Telegram caption length is now known to the code (P184). A live counter in
+  the admin, and `fitTagLine()` in lib/tags.ts, which drops English hashtags,
+  then the language tag, then topic concepts until the caption fits — and says
+  which. Nothing generated is ever trimmed: P116 makes length pressure on the
+  generator a fabrication risk, and the matn is the caption's verifiability.
 
 ### Changed
 - Fifteen tags removed from `hadith_library` rather than translated. Each
