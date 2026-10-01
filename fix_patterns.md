@@ -6605,3 +6605,60 @@ encoding between them was not), P185 (a gate nobody invoked; this one ran and
 pointed the wrong way)
 
 **Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 187: The doc rule had no caller either
+## ═══════════════════════════════════════════════════════════
+**ID:** P187
+**Type:** Rule written where a gate was needed
+**Files:** scripts/audit-docs.py, .githooks/pre-push
+**Found:** 2026-10-01, hours after shipping P186
+
+**A whole session went on correcting docs that had quietly stopped describing
+the repo.** reel-creation-pipeline.md argued the nasheed picker was unsafe
+three patterns after P162/P168/P170 fixed it, and its own cost table was a
+model and a clip length out of date. animated-reel-scene-prompts.md was headed
+"not yet wired to fal.ai Kling" for a lane that had shipped 29 reels. AGENTS.md
+still routed UZ/TJ to browser SpeechSynthesis, retired at P102 in August. The
+tracker copy attached to the Claude project was sixty-four reels behind.
+
+**The first fix was a rule**: a START OF SESSION block in CLAUDE.md and
+QA_STANDARDS 10.10 saying read the repo, not a copy of it.
+
+**Which is the exact shape of P119, P126 and P185** — a check that exists and
+nothing invokes. P185 shipped the day before this, and its own closing line is
+"ask what invokes it before calling the pattern closed." The rule was written
+and the session moved on. Fourth time.
+
+**scripts/audit-docs.py is the caller.** It cannot judge prose, so it does not
+try; it checks only what is COUNTABLE, where wrong is wrong with no opinion
+involved: the tracker's declared totals against its own rows, reel IDs against
+the count, every shipped hadith against the duplicate-check index, every
+nasheed row against actual usage three ways (declared count, listed IDs, reels
+that say they used it), assets named against the registry, and any P-number
+cited above the frontier. Exit 1 on drift, 2 when it cannot read a file, same
+contract as the other two audits. It is in the pre-push hook, unscoped by
+changed files — doc drift arrives when PRACTICE changes, which is usually a
+commit touching no doc at all.
+
+**It found two defects on its first run**, both invisible to every other check:
+`ramadan-bg.mp3` was used by five reels and its row listed four, missing R007
+since June; `light-of-my-heart-bg.mp3` declared seven uses, listed six, and had
+R094 missing from the set shipped the day before. The nasheed rotation is
+planned off that table, so each one was planning a repeat.
+
+**What it deliberately does not check:** whether a paragraph is true. That
+needs a reader, and pretending otherwise would have produced a gate that
+passes while the docs lie — which is the failure this exists to prevent, in a
+new costume.
+
+**Rule:** a rule about what a future session should READ is not a control. If
+the thing you are protecting can be counted, count it in a gate. If it cannot,
+say plainly that it rests on a human, and do not let the rule's existence feel
+like coverage.
+
+**Related:** P185, P126, P119 (gates with no caller — this is the fourth),
+P093 (a gate that passed having run nothing), P186 (the lint gate that ran and
+pointed the wrong way), P182 (the audit this one is modelled on)
+
+**Status:** FIXED

@@ -1,3 +1,23 @@
+## [2026-10-01] — later
+
+### Added
+- `scripts/audit-docs.py`, wired into the pre-push hook (P187). Mechanical
+  consistency checks on the docs: the tracker's declared totals against its own
+  rows, reel IDs against the count, every shipped hadith against the
+  duplicate-check index, every nasheed row against actual usage three ways,
+  assets named against the registry, and any P-number cited above the frontier.
+  Exits 1 on drift, 2 when a file cannot be read.
+- Fourth instance of a gate with no caller, after P119, P126 and P185. The
+  morning's fix for doc drift was a rule telling a future session to read the
+  repo — which is the same shape as the thing P185 had just closed.
+
+### Fixed
+- `ramadan-bg.mp3` was used by five reels and its usage row listed four — R007
+  missing since June. `light-of-my-heart-bg.mp3` declared seven uses, listed
+  six, and was missing R094 from the set shipped the day before. Both found by
+  audit-docs.py on its first run; both were planning a nasheed repeat, since
+  the rotation is read off that table.
+
 ## [2026-10-01]
 
 ### Added

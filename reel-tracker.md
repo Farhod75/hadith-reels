@@ -228,8 +228,8 @@
 | vocal-nasheed-05.mp3 | 8 | R098 | R032, R036, R045, R059, R069, R082, R093, R098 |
 | vocal-nasheed-06.mp3 | 8 | R100 | R033, R039, R048, R060, R066, R073, R075, R100 |
 | vocal-nasheed-07.mp3 | 8 | R097 | R037, R049, R055, R063, R072, R080, R086, R097 |
-| light-of-my-heart-bg.mp3 | 7 | R091 | R010, R013, R024, R038, R078, R091 |
-| ramadan-bg.mp3 | 4 | R027 | R006, R008, R009, R027 |
+| light-of-my-heart-bg.mp3 | 7 | R094 | R010, R013, R024, R038, R078, R091, R094 |
+| ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 3 | R095 | R004, R023, R095 |

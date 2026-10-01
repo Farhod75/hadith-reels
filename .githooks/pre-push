@@ -128,6 +128,32 @@ if [ $FAILED -eq 0 ]; then
     fi
   fi
 fi
+
+# Doc audit (P187). Reads no network and no DB — it compares the docs against
+# each other and against the asset registry, so it is fast and always runnable.
+# NOT scoped by changed files: doc drift arrives when PRACTICE changes, which
+# is usually a commit that touches no doc at all.
+if [ $FAILED -eq 0 ]; then
+  if [ -z "$PY_BIN" ]; then
+    echo "[skip] Doc audit needs python — not on PATH."
+  else
+    echo "▶ Doc audit..."
+    "$PY_BIN" scripts/audit-docs.py --quiet 2>&1
+    DOC_RC=$?
+    if [ "$DOC_RC" -eq 1 ]; then
+      echo "❌ Docs and repo disagree"
+      FAILED=1
+    elif [ "$DOC_RC" -ne 0 ]; then
+      # Exit 2 = a doc could not be read or parsed at all. Unlike the two
+      # audits above this needs nothing external, so a 2 here is a real
+      # problem with the files — block rather than defer.
+      echo "❌ Doc audit could not run (exit $DOC_RC)"
+      FAILED=1
+    else
+      echo "✅ Docs OK"
+    fi
+  fi
+fi
 # Config/next.config → build check
 if [ "$HAS_CONFIG" -gt 0 ] && [ $FAILED -eq 0 ]; then
   echo "▶ Build check (config changed)..."
