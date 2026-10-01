@@ -177,6 +177,38 @@
   },
 
   "scenes": {
+        "b6857-still.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Still water in a worn stone basin before dawn, surface barely breathing. Kling 2.6 Pro 10s. MODE B. Opening beat of a four-clip arc — whole, ruined, first rain, restored. Source still was variant 1, the brighter caustic one; variant 3 was quieter and more natural but the operator judged the motion better on 1."
+    },
+    "b6857-cracked.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Dried riverbed, one deep fissure running to the horizon, bleached under hard overhead light. Kling 2.6 Pro 10s. MODE B. The ruin beat — muubiqat are things that destroy. Chosen over two tighter crops because it reads as a watercourse, which makes it the same place as the other three clips rather than generic cracked ground."
+    },
+    "b6857-firstrain.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Rain falling on dry cracked earth, drops darkening the dust, a soft curtain drifting across the distance. Kling 2.6 Pro 10s. MODE B. The turn back. Chosen over a variant whose drops fell in a straight vertical column, which would have animated synthetically."
+    },
+    "b6857-flow.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Water running again over smooth dark stones, warm early light down the centre. Kling 2.6 Pro 10s. MODE B. Restoration, and it closes the set's tonal arc: cold blue, bleached, grey, warm. None of the seven sins is literalised anywhere in this set — deliberate, after b2654 where a lamp in a niche generated a temple shrine and a fracturing reflection generated the moon splitting."
+    },
     "b2654-ripples.mp4": {
       "classification": "scene",
       "lanes": [

@@ -6551,3 +6551,57 @@ P182 (the tag audit, wired the same way), P093 (a gate that passed having run
 nothing)
 
 **Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 186: The file was fine. The reader could not see its first line.
+## ═══════════════════════════════════════════════════════════
+**ID:** P186
+**Type:** Encoding assumption in a gate; the failure report points away from the cause
+**Files:** scripts/lint-content.py
+**Found:** 2026-10-01, linting R101's Tajik draft
+
+**lint-content.py reported `no S (STORY) block` on a file whose first line was
+`S: Расули Аллоҳ ﷺ фармуданд...`.** M, H and C parsed. Only S was missing.
+
+**The draft had been written by `Set-Content -Encoding utf8`, which in
+PowerShell 5.1 writes a BOM.** So line 1 arrives as `\ufeffS: ...`, and
+`parse_blocks`'s `^\s*([SMHC])\s*:` does not match it — U+FEFF is a format
+character (Cf), not whitespace, so `\s` steps over spaces and tabs and stops
+dead on it. The regex is correct; the file is correct; the two disagree about
+byte one.
+
+**Only the FIRST block can ever disappear this way**, which is the whole
+fingerprint. One missing block and it is always S means the file, not the
+generation. Any other missing block means a dropped label.
+
+**The report sent you the wrong way.** check_missing_block's advice — "that
+block's text is now sitting INSIDE the previous one, check the end of the block
+above it" — is sound for a dropped label and nonsense for S, which has no block
+above it. P124 promoted that note from a quiet `note:` line to a real Finding so
+it could not be read past; this is the next layer, where it is impossible to
+miss and still misleading. A check that fires correctly can still cost you the
+session if its remedy names a cause that cannot apply.
+
+**Fixed with `encoding='utf-8-sig'`** on the one `open()`. It strips a BOM if
+present and is byte-identical to `utf-8` when it is not, so nothing else moves.
+The missing-block advice now names the BOM when the missing block is S.
+Verified both ways: the old script warns missing-block on a BOM file and the new
+one does not, and BOM and no-BOM files now produce identical output.
+
+**Not fixed in the paste ritual.** The alternative was to keep writing drafts
+with `[System.IO.File]::WriteAllText(..., UTF8Encoding $false)` and remember it
+every time. A reader that only accepts files written one particular way is the
+defect — `utf-8-sig` is what every Python tool in this repo should read with,
+since every draft on this machine is written by PowerShell.
+
+**Rule:** when a parser reports the first element of a file missing and the rest
+present, suspect the file's first bytes before the parser's logic. And when a
+gate tells you what to do about a finding, check that its remedy can apply to
+the case that fired.
+
+**Related:** P124 (the missing-block check itself), P100 (PowerShell console
+codec breaking Whisper on Cyrillic — same class: the tool was right, the
+encoding between them was not), P185 (a gate nobody invoked; this one ran and
+pointed the wrong way)
+
+**Status:** FIXED

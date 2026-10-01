@@ -1,3 +1,35 @@
+## [2026-10-01]
+
+### Added
+- R098–R101 — Sahih al-Bukhari #6857 (the seven destructive sins), EN/RU/UZ/TJ,
+  adults. Second set from the full sourcing pipeline after #2654. Four new Kling
+  2.6 Pro scenes, MODE B: whole -> ruined -> first rain -> restored. The moon and
+  the lamp/niche were excluded at prompt time rather than regenerated away — the
+  moon collides with انشقاق القمر, and #2654's lamp prompt had produced a temple
+  shrine.
+
+### Fixed
+- `scripts/lint-content.py` read drafts as `utf-8` and reported `no S (STORY)
+  block` on a valid file (P186). PowerShell 5.1's `Set-Content -Encoding utf8`
+  writes a BOM, so line 1 arrives as `\ufeffS: ...`; U+FEFF is a format
+  character, not whitespace, so `^\s*([SMHC])\s*:` cannot match it and ONLY the
+  first block can ever vanish. Now `utf-8-sig`, which strips a BOM when present
+  and is identical to `utf-8` when it is not. The missing-block advice told you
+  to look inside the block above S, which does not exist; it now names the BOM
+  when the missing block is S.
+- R101's generated H block claimed the hadith sits in the Book of Wills. That is
+  where the OTHER narration of it sits (#2766). Cut rather than replaced, since
+  no other language's H names a chapter at all.
+
+### Notes
+- Uzbek TTS: «ейиш» and «етим» voice as «эйиш»/«этим» and were narrated as
+  «йейиш»/«йетим». «етти» voices correctly as written, so this is NOT a rule
+  about word-initial е. Narration spelling only — the caption keeps correct
+  orthography.
+- Whisper RU came back materially worse than EN for the second adults set
+  running (R095 needed 11 of 13 cues corrected). Two sets is not a pattern yet;
+  logged in the tracker rather than written up.
+
 ## [2026-09-30]
 
 ### Added

@@ -370,7 +370,15 @@ the scene:
 
 Text-to-video when no still is needed — same script, omit `-Image`.
 
-→ `out\backgrounds\new\b6446-market.mp4`. Roughly $0.35–0.50 per 5s clip.
+⚠ **`-Duration` defaults to 5.** Every set since R074 is 10s, and four 5s clips
+against a 50s narration replay the same twenty seconds nearly three times.
+Pass it explicitly — the default is not the current practice:
+
+```powershell
+.\scripts\generate-scene.ps1 -Name "b6857-still" -Image "out\refs\b6857-still-1.jpg" -Duration 10 -Prompt "<motion>"
+```
+
+→ `out\backgrounds\new\b6857-still.mp4`.
 
 **⚠ Kling regularly exceeds 8 minutes and has been measured at 505s and 564s.**
 The poll deadline is 20 minutes (P134 — note the inline comment mislabels this

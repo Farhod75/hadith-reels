@@ -718,7 +718,7 @@ export default function AdminPage() {
               {/* Caption editor */}
               <div className="bg-slate-800 rounded-xl border border-slate-700 p-4">
                 <div className="text-xs text-slate-400 uppercase tracking-wide mb-2">📱 Social media caption</div>
-                <textarea value={caption} onChange={e => setCaption(e.target.value)} rows={9}
+                <textarea value={caption} onChange={e => { setCaption(e.target.value); if (captionNote) setCaptionNote('') }} rows={9}
                   className="w-full bg-slate-700 text-slate-200 border border-slate-600 rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 {/* Telegram counts a media caption in UTF-16 code units, which is
                     exactly what String.length returns — a Cyrillic character costs

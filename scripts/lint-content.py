@@ -369,7 +369,9 @@ def check_missing_block(blocks):
         'WARN', 'missing-block', 'FILE', 0, '',
         f'no {names} block. If the generation dropped a label, that block\'s '
         f'text is now sitting INSIDE the previous one - check the end of the '
-        f'block above it before assuming the content is simply absent.')]
+        f'block above it before assuming the content is simply absent. '
+        f'If the MISSING one is S, suspect the file instead: a leading BOM '
+        f'used to hide it (P186, fixed by utf-8-sig above).')]
 
 
 def check_duplicate_blocks(blocks):
@@ -409,7 +411,14 @@ def main():
     args = ap.parse_args()
 
     try:
-        with open(args.file, encoding='utf-8') as fh:
+        # P186: utf-8-sig, not utf-8. PowerShell 5.1's Set-Content/Out-File
+        # -Encoding utf8 writes a BOM, so line 1 arrives as '\ufeffS: ...'.
+        # U+FEFF is a format character, NOT whitespace, so parse_blocks's
+        # ^\s*([SMHC])\s*: misses it and ONLY the first block ever vanishes --
+        # then check_missing_block tells you to look inside the block above it,
+        # which does not exist. utf-8-sig strips a BOM if present and is
+        # identical to utf-8 when it is not.
+        with open(args.file, encoding='utf-8-sig') as fh:
             text = fh.read()
     except FileNotFoundError:
         print(f'FAILED: no such file: {args.file}')

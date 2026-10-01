@@ -450,7 +450,7 @@ Copy-Item "QA_STANDARDS_AGENT_RULES.md" `
 - All hadiths must be sahih or hasan — never daif in reels
 - Adults style: dark elegant, scholarly tone
 - Kids style: bright, simple language, age 6-14
-- Daily reel limit: 1 Adults + 1 Kids per day (cron job)
+- Target cadence once the pipeline is fully automated: 1 Adults + 1 Kids per day (cron job). Current practice is manual and slower.
 - Shared Supabase: never modify hadith_library schema without updating HV too
 **Content safety, absolute:** never depict the Prophet ﷺ, any prophet, angels,
 Allah, or named Sahaba — in generated imagery, scene prompts, or any visual
