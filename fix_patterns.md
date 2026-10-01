@@ -6501,3 +6501,53 @@ rather than letting the byte count choose.
 
 **Status:** FIXED — the caption now fits deliberately. The body length itself
 is untouched and is the real constraint.
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 185: The check existed. Nothing ran it.
+## ═══════════════════════════════════════════════════════════
+**ID:** P185
+**Type:** Gate present, never invoked
+**Files:** scripts/audit-library.py, .githooks/pre-push
+**Found:** 2026-09-30, fixing a one-row defect and discovering the check for it
+          had been written weeks earlier
+
+**Bukhari #574's Uzbek Latin held an ASCII apostrophe** where the okina U+02BB
+belongs — «o'qigan» for «oʻqigan», P097 residue from the 74-row August
+backfill, which wrote Latin without going through the transliterator.
+
+**check_uz_okina was already in audit-library.py and matches exactly that.**
+Six wrong characters, both Latin columns, written long before #574 was noticed.
+It never fired because nothing runs audit-library.py. The script is excellent
+and had no caller — the same shape as P119 (a hook blind to Python while four
+agents gating every reel had no coverage) and P126 (eleven transliterator tests
+the hook never invoked). Third time in this repo.
+
+**Fixed by derivation, not by hand.** The Cyrillic column is canonical (D4), so
+`derive-uzbek-latin.ts --library --number 574 --commit` regenerated the Latin
+rather than an UPDATE patching the character. That matters here: P097 is about
+okina versus tutuq — ʻ (U+02BB) in oʻ/gʻ against ʼ (U+02BC) for the glottal
+stop — and a blind `'` → `ʻ` replace is wrong wherever the tutuq belongs. The
+transliterator knows which; a SQL statement does not.
+
+**check_ha_formulas added while in there.** Uzbek and Tajik write ҳ (U+04B3)
+where Russian writes х, and a Russian keyboard or a Russian-heavy model
+produces х silently in the honorific formulas — «Аллах» for «Аллоҳ»,
+«розияллоху анху» for «розияллоҳу анҳу». Deliberately a closed list of thirteen
+fixed phrases rather than a rule about the letter: Tajik uses х correctly in
+ordinary words (хуб, хона, хонадон) and flagging the letter would bury real
+findings under noise. text_russian is excluded, where «Аллах» is right. It
+found nothing across 70 rows, so it is a regression guard, not a cleanup.
+
+**Both now run on every non-doc push**, `--strict`, beside the tag audit from
+P182. At 0 HIGH today, so it passes now and fires the day something regresses.
+
+**Rule:** writing the check is the easy half. Ask what invokes it before
+calling the pattern closed — a gate with no caller is documentation that
+believes it is enforcement.
+
+**Related:** P097 (okina vs tutuq), P119 and P126 (gates nobody invoked),
+P182 (the tag audit, wired the same way), P093 (a gate that passed having run
+nothing)
+
+**Status:** FIXED

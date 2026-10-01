@@ -108,6 +108,26 @@ if [ $FAILED -eq 0 ]; then
   fi
 fi
 
+# Library audit (P185). Same reasoning as the tag gate above: library defects
+# arrive through a promote, not a diff, so this is not scoped by changed files.
+if [ $FAILED -eq 0 ]; then
+  if [ -z "$PY_BIN" ]; then
+    echo "[skip] Library audit needs python — not on PATH."
+  else
+    echo "▶ Library audit..."
+    "$PY_BIN" scripts/audit-library.py --strict 2>&1
+    LIB_RC=$?
+    if [ "$LIB_RC" -eq 1 ]; then
+      echo "❌ Library audit found HIGH severity rows"
+      FAILED=1
+    elif [ "$LIB_RC" -ne 0 ]; then
+      # Exit 2 = no credentials or Supabase unreachable, as distinct from
+      # finding defects. Deferred rather than blocking: this reads current DB
+      # state and the next push re-runs it.
+      echo "[skip] Library audit could not run (exit $LIB_RC) — re-runs next push."
+    fi
+  fi
+fi
 # Config/next.config → build check
 if [ "$HAS_CONFIG" -gt 0 ] && [ $FAILED -eq 0 ]; then
   echo "▶ Build check (config changed)..."

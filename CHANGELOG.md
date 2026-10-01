@@ -12,6 +12,12 @@
   then the language tag, then topic concepts until the caption fits — and says
   which. Nothing generated is ever trimmed: P116 makes length pressure on the
   generator a fabrication risk, and the matn is the caption's verifiability.
+- `check_ha_formulas` in audit-library.py (P185) — х where Uzbek and Tajik take
+  ҳ, across thirteen fixed honorific formulas. Found nothing in 70 rows; it is
+  a regression guard.
+- audit-library.py now runs `--strict` on every non-doc push. It already
+  contained the check that would have caught Bukhari #574's okina, and never
+  fired because nothing invoked the script.
 
 ### Changed
 - Fifteen tags removed from `hadith_library` rather than translated. Each
@@ -27,6 +33,13 @@
 - `source-candidates.py` no longer fetches HadeethEnc's four language payloads
   per candidate (P178). Nothing has read them since the adapter stopped
   carrying translations; the header comment still called them authoritative.
+
+### Fixed
+
+- Bukhari #574's `text_uzbek_latin` had an ASCII apostrophe where the okina
+  belongs, regenerated from the canonical Cyrillic with derive-uzbek-latin.ts
+  rather than patched by SQL — P097 distinguishes okina from tutuq and only the
+  transliterator knows which a given position takes.
 
 ## [2026-09-29]
 

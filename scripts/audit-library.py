@@ -64,8 +64,12 @@ TJ_RU_SIMILARITY_HIGH = 0.85
 
 # Below this many characters, absence of Tajik-specific letters is not
 # evidence of anything - short sentences legitimately use only shared
-# Cyrillic. Set from the live library, where every row above 52 chars
-# carries at least one Tajik letter.
+# Cyrillic. Set from the live library as it stood in August, where every row
+# above 52 chars carried at least one Tajik letter. Tirmidhi #1899 is the
+# first exception: 85 characters, no Tajik letter, and correct — every х in
+# it is etymologically х (хушнудӣ, хашм, both from Persian خ), and izofat
+# turns the ӣ of хушнудӣ into и. The threshold stays; this check is INFO
+# precisely because it points at rows to read, not rows that are wrong.
 TJ_DIACRITIC_MIN_LEN = 60
 
 # G4: the okina in oʻ / gʻ is U+02BB MODIFIER LETTER TURNED COMMA.
@@ -78,6 +82,42 @@ OKINA_WRONG = {
     '\u00b4': 'acute accent \u00b4',
     '\u02bc': 'modifier apostrophe \u02bc',
 }
+
+# The honorific and divine-name formulas, in their WRONG spelling and their
+# right one. Uzbek and Tajik both write ҳ (U+04B3) where Russian writes х, and
+# the two are visually close enough that a Russian keyboard, a Russian source
+# text, or a model trained on more Russian than Uzbek produces х silently.
+#
+# This is deliberately a CLOSED LIST, not a rule about ҳ in general: Tajik
+# legitimately uses х in ordinary words (хуб, хона, хонадон) and flagging the
+# letter would bury the real findings. These formulas are fixed phrases, so
+# they can be matched literally and a hit is a hit.
+#
+# text_russian is NOT checked — «Аллах» is correct Russian convention. Only
+# the Uzbek Cyrillic and Tajik columns.
+#
+# Ordered longest-first within each family so the regex alternation matches
+# the longest form at each position and does not double-report (анҳумо would
+# otherwise also match as анҳу).
+HA_FORMULAS = [
+    ('субханаху',   'субҳанаҳу'),
+    ('расулуллох',  'расулуллоҳ'),
+    ('алхамдулиллах', 'алҳамдулиллаҳ'),
+    ('иншааллах',   'иншааллоҳ'),
+    ('алайхиссалом', 'алайҳиссалом'),
+    ('алайхи',      'алайҳи'),
+    ('анхумо',      'анҳумо'),
+    ('анхом',       'анҳом'),
+    ('анхо',        'анҳо'),
+    ('анху',        'анҳу'),
+    ('аллаху',      'аллоҳу'),
+    ('аллах',       'аллоҳ'),
+    ('ллоху',       'ллоҳу'),
+]
+HA_RE = re.compile('|'.join(re.escape(w) for w, _ in HA_FORMULAS), re.IGNORECASE)
+HA_FIX = {w: r for w, r in HA_FORMULAS}
+
+HA_FIELDS = ('text_uzbek_cyrillic', 'text_tajik')
 
 # Latin characters that render identically to a Cyrillic letter.
 HOMOGLYPHS = {
@@ -268,6 +308,38 @@ def check_homoglyphs(row):
     return out
 
 
+def check_ha_formulas(row):
+    """х where ҳ belongs, inside the fixed honorific and divine-name formulas.
+
+    The sibling of check_homoglyphs: both are a wrong character that survives
+    human review because it reads almost right. The difference is that a
+    homoglyph is invisible by construction, while «Аллах» in an Uzbek sentence
+    is merely easy to skim past — and it reaches the viewer either way.
+
+    WARN rather than HIGH on its first outing: this check has never run, and
+    an unproven check at HIGH would block pushes under --strict on findings
+    nobody has reviewed yet. Promote it once the first pass is adjudicated.
+    """
+    out = []
+    for field in HA_FIELDS:
+        val = row.get(field)
+        if not val:
+            continue
+        seen = set()
+        for m in HA_RE.finditer(val):
+            got = m.group(0)
+            low = got.lower()
+            if low in seen:
+                continue
+            seen.add(low)
+            out.append(Finding(
+                'WARN', 'ha-formula', ref_of(row), field,
+                f'«{got}» should be «{HA_FIX[low]}» - Russian х where Uzbek '
+                f'and Tajik take ҳ (U+04B3)',
+                f'...{val[max(0, m.start() - 30):m.end() + 30]}...'))
+    return out
+
+
 def check_missing_translations(row):
     """Which languages this row cannot serve."""
     missing = [f for f in ('text_english', 'text_russian', 'text_tajik')
@@ -316,6 +388,7 @@ CHECKS = [
     ('uz', check_uz_okina),
     ('uz', check_uz_script_mixing),
     (None, check_homoglyphs),
+    (None, check_ha_formulas),
     (None, check_missing_translations),
     (None, check_grade),
     (None, check_source),
