@@ -1,7 +1,7 @@
 # CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
-# Last updated: 2026-08-23
+# Last updated: 2026-10-01
 
 ---
 
@@ -12,6 +12,30 @@
 **Repo:** github.com/Farhod75/hadith-reels
 **Sister project to:** hadithverifier.com
 **Built as:** sadaqah jariyah — daily authentic hadith reels for social media
+---
+## 🔎 START OF SESSION — READ THE REPO, NOT A COPY OF IT
+
+**The docs attached to the Claude project are stale snapshots.** On 2026-10-01
+the attached `reel-tracker.md` was at R037 while this repo was at R097, and the
+attached `render-reel.ps1` still had the random nasheed picker that P162/P168/
+P170 replaced. A stale copy read carefully produces confident wrong answers.
+
+Before the first substantive step of a session, read from THIS REPO:
+
+1. `CLAUDE.md` (this file) — constitution and environment
+2. `fix_patterns.md` — **tail only**, for the current P number. One sequence
+   across HR and HV; HR holds the frontier. Never guess the next number.
+3. `reel-creation-pipeline.md` — the live production flow
+4. `reel-tracker.md` — tail of Active reels, plus the asset-reuse tables
+5. `QA_STANDARDS_AGENT_RULES.md` Section 10 — verification discipline
+
+If the repo is not reachable, say so and mark every repo claim as coming from a
+snapshot of unknown age, in the same sentence as the claim. See QA_STANDARDS
+10.10 and 10.11.
+
+**And when a doc is wrong, fix it in the repo in that session.** Reporting
+staleness is not the deliverable; the corrected doc is.
+
 ---
 ## 📝 DOCUMENTATION DISCIPLINE (STRICT — applies to HV + HR)
 **EVERY fix, update, or enhancement MUST be documented in the same session it ships.**
@@ -30,6 +54,12 @@ The write appears to succeed, Windows `dir` briefly shows the new size, but git
 reads the OLD content (stale blob) and the change never persists/commits.
 Likely cause: antivirus controlled-folder-access or a sync/backup tool intercepting writes.
 - **FIX: edit repo files in VS Code** (its save path is NOT intercepted) — never via PowerShell file APIs.
+- **[2026-10-01] A second path works: Claude's device file-commit.** When a
+  session has this folder granted, Claude writing the file directly is NOT
+  intercepted — verified end to end that day on eight files (`3bc4b6c`), with
+  `git diff --numstat` confirming each change landed. So "paste this into VS
+  Code" is no longer the only option; Claude can write and commit here itself.
+  The PowerShell file-API restriction above still stands for everything else.
 - This also explains earlier BOM/encoding struggles with `Set-Content`.
 - Symptom to recognize: `git hash-object <file>` returns the SAME sha as HEAD even
   after you "wrote" changes; `git status` says clean despite a changed file.

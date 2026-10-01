@@ -59,10 +59,13 @@ extracting a 480p frame and regenerating at 4K in Nano Banana Pro (see P103).
 
 ## Mascot rotation
 
-**Full rotation, in order:** adults → kids → adults → kids → repeat.
-
-Adults and kids alternate set by set; within the kids lane the mascot advances
-one position through the table below. Voice follows the mascot's GENDER (P104),
+**Adults is the default lane; kids runs weekly.** Corrected 2026-10-01 — this
+section used to say "adults → kids → adults → kids → repeat", alternating set
+by set, which contradicted the weekly kids cadence set on 2026-09-09 and had
+already stopped matching practice (R094–R097 and R098–R101 are consecutive
+adults sets). Kids goes out once every 7–10 days, measured on views, shares and
+comments; adults fills the rest. Within the kids lane the mascot advances one
+position through the table below. Voice follows the mascot's GENDER (P104),
 so the mascot choice determines the voice in every language. The non-lamb
 mascots added no new voices — a male mascot uses the male column, a female
 mascot the female column.
@@ -78,7 +81,7 @@ shows the style.
 | 1 | lamb-boy-mosque-night-v3 | male | Uzbek tyubeteika | moonlit courtyard, night |
 | 2 | lamb-girl-garden-day-v2 | female | khan-atlas ikat | garden, day |
 | 3 | camel-dawn-v1 | male | Chust doppa | desert, dawn |
-| 4 | hoopoe-garden-v1 | male | Kyrgyz kalpak | garden, midday |
+| 4 | hoopoe-garden-v2 | male | Kyrgyz kalpak | garden, midday |
 | 5 | bee-orchard-v1 | female | Tajik toqi | orchard, afternoon |
 
 Every mascot is a Qur'anic animal in regional dress, each with its own cap,
@@ -200,7 +203,7 @@ Hand-correct to `📖 Сахих аль-Бухари №8, Ибн Умар` and 
 «Смотри». The account holding the phone is the parent's. Kids cadence is
 weekly, measured on views, shares and comments over a two-week window.
 
-Publish order: Telegram → Instagram → TikTok → YouTube Shorts. YouTube needs
+Publish order: Telegram → Instagram → YouTube Shorts → TikTok. YouTube needs
 title, description, and tags as separate fields, and Tags is under SHOW MORE at
 the bottom of the Details page.
 
@@ -422,14 +425,18 @@ therefore about **placement**, not correctness: `-Scenes` reads from
 
 ### Step 14 — Render
 
-> **Why the bed is named and not left to the picker.** `render-reel.ps1` falls
-> back to `($nasheeds | Get-Random)` when `-Nasheed` is omitted — still true,
-> this is not legacy advice. Three consequences: the P117 lane gate REJECTS a
-> cross-lane bed rather than quietly re-picking, and it fires at Step 7, after
-> Whisper has run, so a bad draw costs the whole narration and subtitle pass
-> (R029 and R030 are both re-renders for exactly this); the tracker's nasheed
-> rotation table can only be planned if you chose the bed; and a random draw
-> makes the reel unreproducible. Name it.
+> **Why the bed is still named, now that the picker is safe.** Rewritten
+> 2026-10-01: the three reasons this note used to give are all closed.
+> `render-reel.ps1` picks at **Step 0**, not Step 7 (P162), from the registry's
+> lane-eligible beds (P168), avoiding the lane's last-used one; the second,
+> ungated picker that used to run after it is gone (P170). The run prints
+> `nasheed: <file> (lane: <style>, N beds, avoided: <last>)`, so an omitted
+> `-Nasheed` no longer risks a cross-lane bed or a wasted Whisper pass.
+>
+> Two reasons remain, both editorial rather than defensive: the tracker's
+> rotation table can only be PLANNED if you chose the bed, and a random draw
+> makes the reel unreproducible. Name it — but if you forget, the render is
+> correct, not ruined.
 
 ```powershell
 .\render-reel.ps1 -Style adults -Lang <lang> -Slug <slug> -Nasheed <file> -Scenes clip1.mp4,clip2.mp4,clip3.mp4,clip4.mp4
@@ -441,7 +448,11 @@ editorial decision, not a formality.
 Omitting `-Scenes` falls back to picking 3 clips at random. That path still
 exists and is not used; every shipped animated reel names its clips.
 
-Nasheed named explicitly, same rule as kids. Add `-Open` to play the result.
+Nasheed named explicitly. This is NO LONGER "the same rule as kids" —
+`make-kids-reel.ps1` got a lane-filtered, no-repeat picker in P159 and
+`render-reel.ps1` got the equivalent in P162/P168, so both lanes now draw
+safely on their own. Naming the bed is a planning choice in both. Add `-Open`
+to play the result.
 
 ### Step 15 — Subtitle review checkpoint
 
@@ -475,8 +486,14 @@ YT "Made for kids" = **No** on this lane.
 | Stage | Cost |
 |---|---|
 | Stills, 3 variants | a few cents |
-| Kling clip, 5s | ~$0.35–0.50 |
-| A 4-scene reel | ~$1.50–2.00 in clips |
+| Kling 2.6 Pro clip, 10s | ~$0.70–0.90 |
+| A 4-scene reel | ~$2.80–3.50 in clips |
+
+Updated 2026-10-01. The old line read $0.35–0.50 per 5s clip and $1.50–2.00 per
+set, which was Kling 2.1 Master. Every set since R074 is 2.6 Pro at 10s: four
+clips came to $3.50 including one redo, against $5.60 for four 5s clips on the
+old model — more scene time for less money, which is why the switch happened.
+`generate-scene.ps1` still defaults to `-Duration 5`; pass `-Duration 10`.
 
 Scenes are per hadith, not per language — the same four clips serve all four
 language versions. Generate once, reuse across the set.

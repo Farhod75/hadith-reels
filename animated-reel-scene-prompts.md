@@ -1,8 +1,13 @@
-# Animated Reel — Scene Prompt Generation (Pillar 2, POC step 1)
+# Animated Reel — Scene Prompt Generation (Pillar 2)
 
-> **Status:** DESIGN / for review — not yet wired to fal.ai Kling
+> **Status:** SHIPPED. Updated 2026-10-01 — this doc described a POC that has
+>   since produced 29 adults reels (R026 onward). It was still headed "not yet
+>   wired to fal.ai Kling" and still asking the open questions below, all of
+>   which were answered in production months ago. The scene-prompt method in
+>   sections 1–5 is sound and unchanged; the status, the numbers and section 7
+>   were not.
 > **Project:** hadith-reels (Pillar 2 — narration-driven animated/cinematic reels)
-> **Purpose:** Turn a hadith into 2-3 *anonymous, religiously-appropriate* cinematic scene
+> **Purpose:** Turn a hadith into 4 *anonymous, religiously-appropriate* cinematic scene
 >   prompts that fal.ai Kling can generate, which then replace the looping-Kaaba background
 >   in render-reel.ps1.
 > **Hard principle:** Depict the THEME, never the FIGURES. The narration tells the story
@@ -115,7 +120,7 @@ ERA & DRESS: infer the historical era from the hadith and make environment + clo
 - Say "7th-century Arabia / early Islamic period", NOT "300-500 years ago".
 
 For each scene give: a vivid natural-language video prompt (cinematic, vertical 9:16,
-specify era/setting/dress, lighting/mood/camera motion), a duration in seconds (4-8), what it
+specify era/setting/dress, lighting/mood/camera motion), a duration in seconds (10), what it
 depicts in plain terms, and a self-audit confirming it shows no forbidden figure.
 
 The scenes together should visually carry the hadith's lesson from opening mood to closing
@@ -130,7 +135,7 @@ Output ONLY valid JSON, no preamble:
   "scenes": [
     {
       "id": 1,
-      "duration_sec": 6,
+      "duration_sec": 10,
       "prompt": "cinematic vertical 9:16 ...",
       "depicts": "plain description",
       "guardrail_self_audit": "PASS — explanation of why no forbidden figure appears"
@@ -171,21 +176,21 @@ Example output (MODE B — no detailed faces):
   "scenes": [
     {
       "id": 1,
-      "duration_sec": 6,
+      "duration_sec": 10,
       "prompt": "Cinematic vertical 9:16. A lone anonymous woman seen fully from behind in a modest flowing white period robe and headscarf, standing at the edge of a vast desert at dawn in 7th-century Arabia, soft golden light breaking over distant dunes, gentle wind moving the fabric, slow push-in camera, reverent and hopeful mood. No face visible, no modern structures.",
       "depicts": "A woman pilgrim (from behind) facing the dawn desert — the start of a spiritual journey",
       "guardrail_self_audit": "PASS — anonymous figure from behind, period-accurate dress, represents no named person; no Prophet, prophet, angel, or companion depicted."
     },
     {
       "id": 2,
-      "duration_sec": 6,
+      "duration_sec": 10,
       "prompt": "Cinematic vertical 9:16. Close shot of anonymous hands raised in dua, prayer beads draped over the fingers, warm light, the blurred Kaaba and circling crowd softly out of focus in the background, slow gentle motion, serene atmosphere.",
       "depicts": "Hands in supplication near the Kaaba — the act of worship at the heart of Hajj",
       "guardrail_self_audit": "PASS — only hands and a distant anonymous crowd; the Kaaba is a place, not a figure; no forbidden depiction."
     },
     {
       "id": 3,
-      "duration_sec": 6,
+      "duration_sec": 10,
       "prompt": "Cinematic vertical 9:16. A winding sunlit path through the desert that leads toward a horizon glowing with soft light, footprints in the sand, calm and uplifting, slow upward tilt revealing the bright sky, symbolic of ascent.",
       "depicts": "A path toward light — the spiritual elevation the hadith promises",
       "guardrail_self_audit": "PASS — pure landscape and symbolism; no people, no figures of any kind."
@@ -204,18 +209,34 @@ looked wrong, you'd edit or reject it before Kling.
 
 1. **This step (Claude):** hadith text -> scene-prompt JSON (above).
 2. **Human review:** approve/edit the JSON (the religious gate).
-3. **Kling (POC step 2, not yet built):** each approved `prompt` -> a short clip.
+3. **Kling (shipped):** each approved `prompt` -> a 10s clip via `generate-scene.ps1`
+   (pass `-Duration 10`; it defaults to 5). Model is Kling 2.6 Pro.
 4. **Assembly:** the clips replace the random-Kaaba pick in `render-reel.ps1`'s Step 6 —
    everything after (narration concat, subtitle review, nasheed mix, final merge) is the
    SAME proven pipeline. So Pillar 2 reuses Pillar 1's back half.
 
 ---
 
-## 7. Open decisions before POC step 2 (Kling)
-- **Face mode:** A or B for the POC? (recommend B)
-- **Scenes per reel:** 2-3? (more scenes = more Kling cost + more review)
-- **Clip length vs narration:** loop/extend short clips to fill narration, or generate
-  longer? (affects cost and Kling params)
-- **Scholarly review loop:** who signs off on generated imagery before first publish?
-- **Agent fleet:** deferred — prove this manual flow first, THEN consider a scene-agent.
+## 7. Decisions — all settled in production
+
+Kept as a record of what was chosen and why, rather than deleted.
+
+- **Face mode:** B. Depict the THEME, never the FIGURES — no faces, no prophets,
+  no named Sahaba, era-appropriate environment only. Held on every reel since.
+- **Scenes per reel:** 4, not 2–3. Four 10s clips give 40s of scene time, which
+  covers most narrations once; fewer clips does not mean longer holds, it means
+  more repetition. See the clip-length note in `reel-tracker.md`.
+- **Clip length vs narration:** generate longer. 10s clips on Kling 2.6 Pro cost
+  less per second than 5s clips on 2.1 Master did, so the loop-short-clips
+  option died on cost as well as on looks.
+- **Scholarly review loop:** the human gate before render. Scene prompts are
+  reviewed as text, and the rendered reel is watched before any platform.
+- **Agent fleet:** partly built — `reel-producing`, `stt-validating`,
+  `tts-validating` under `agents/`, plus `asset-auditing` as scripts. There is
+  no scene-agent and none is planned; scene choice is the editorial decision in
+  this lane, and it is the one worth keeping by hand.
+
+**Known collisions to avoid when prompting**, learned the expensive way: the
+moon collides with انشقاق القمر; a lamp or niche generated a temple shrine on
+#2654; identifiable reflections put a face in a scene that forbids one.
 ```

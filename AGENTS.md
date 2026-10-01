@@ -1,7 +1,14 @@
 # AGENTS.md
 # Hadith Reels — Agent Orchestration Rulebook
 # github.com/Farhod75/hadith-reels
-# Version: 1.0 — May 2026
+# Version: 1.1 — audited 2026-10-01 (was 1.0, May 2026, and unrevised since)
+#
+# ⚠ PARTIALLY STALE. Audited 2026-10-01: the three worst-wrong facts are fixed
+#   inline below and marked [2026-10-01]. The rest of this file still describes
+#   the May 2026 build — "HR API SHAPES (planned)" lists routes that shipped,
+#   and the build order was completed. Treat anything NOT marked [2026-10-01]
+#   as historical. The live sources are, in order: the repo itself,
+#   fix_patterns.md, reel-creation-pipeline.md and reel-tracker.md.
 #
 # Claude Code reads this file before every task.
 # Universal rules: QA_STANDARDS_AGENT_RULES.md (also in this repo)
@@ -13,7 +20,10 @@
 ## ════════════════════════════════════════════════════════
 
 1. Read QA_STANDARDS_AGENT_RULES.md — all universal rules apply here
-2. Check hadith-verifier/fix_patterns.md — all P001–P043 patterns apply here too
+2. Check hadith-verifier/fix_patterns.md — HV patterns apply here too.
+   [2026-10-01] HR and HV share ONE P-number sequence. HR holds the frontier
+   (P186 today); HV tops out around P140. Read HR's fix_patterns.md for the
+   current number before authoring a pattern — never guess the next one.
 3. Never mix HV and HR changes in same commit
 4. Port 3002 only (`npm run dev -- -p 3002`)
 
@@ -52,7 +62,8 @@ Same 5-step sequence as HV AGENTS.md. Additionally for HR:
 
 ### 📝 Doc agent — HR specific rules
 - CLAUDE.md (HR) must track: feature status table, pending agents, ElevenLabs voices
-- fix_patterns.md: HR patterns start at P044 (P001–P043 are HV patterns)
+- fix_patterns.md: [2026-10-01] ONE sequence across both repos, not a split at
+  P044. The frontier is in HR's fix_patterns.md; read its last PATTERN heading.
 - CHANGELOG.md: separate from HV
 - README.md: must not be Next.js boilerplate (already replaced)
 
@@ -67,7 +78,7 @@ Same 5-step sequence as HV AGENTS.md. Additionally for HR:
 - ElevenLabs and Remotion tests → @real-api only
 
 ## ════════════════════════════════════════════════════════
-## HR API SHAPES (planned)
+## HR API SHAPES (planned in May 2026 — most of these shipped; verify in app/api/)
 ## ════════════════════════════════════════════════════════
 
 ### POST /api/generate-reel
@@ -126,8 +137,13 @@ CREATE TABLE hadith_reels (
 | Arabic | Adults | Hijazi | (store in .env.local) |
 | Arabic | Kids | Abu Salem | (store in .env.local) |
 | Russian | Adults/Kids | Abrar Sabbah | (store in .env.local) |
-| Uzbek | Adults/Kids | Multilingual fallback | browser SpeechSynthesis |
-| Tajik | Adults/Kids | Persian/Farsi fallback | browser SpeechSynthesis |
+| Uzbek | Adults/Kids | ElevenLabs eleven_v3 | (store in .env.local) |
+| Tajik | Adults/Kids | ElevenLabs eleven_v3 | (store in .env.local) |
+
+[2026-10-01] UZ and TJ have NOT used browser SpeechSynthesis since P102 (R012,
+2026-08-09). Both are ElevenLabs eleven_v3, and in the kids lane the voice
+follows the MASCOT'S GENDER rather than the language (P104). This table is the
+May 2026 plan; the live voice matrix is in reel-creation-pipeline.md.
 
 ## ════════════════════════════════════════════════════════
 ## HR BUILD ORDER (agents follow this sequence)

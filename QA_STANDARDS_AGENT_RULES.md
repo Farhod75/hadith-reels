@@ -450,7 +450,13 @@ Copy-Item "QA_STANDARDS_AGENT_RULES.md" `
 - All hadiths must be sahih or hasan — never daif in reels
 - Adults style: dark elegant, scholarly tone
 - Kids style: bright, simple language, age 6-14
-- Target cadence once the pipeline is fully automated: 1 Adults + 1 Kids per day (cron job). Current practice is manual and slower.
+- Cadence [2026-10-01]: **adults is the default lane, kids goes out once every
+  7–10 days**, measured on views, shares and comments over a two-week window.
+  This is a decision, not a staging post — kids reels were drawing 4–180 views
+  against 1,500–4,800 for adults. The older line here said "1 Adults + 1 Kids
+  per day once the pipeline is fully automated"; that target is not the plan
+  any more, and the alternating adults/kids rotation it implied is gone too
+  (see `reel-creation-pipeline.md`, Mascot rotation).
 - Shared Supabase: never modify hadith_library schema without updating HV too
 **Content safety, absolute:** never depict the Prophet ﷺ, any prophet, angels,
 Allah, or named Sahaba — in generated imagery, scene prompts, or any visual
@@ -477,8 +483,14 @@ form and diacritics, which belong to `lint-content.py` and
 - Accessibility: WCAG 2.1 AA minimum, AAA preferred
 
 ---
-*Last updated: May 2026 · Farhod Elbekov · ISTQB CT-AI #26-CT-AI-00063-USA*
-*Next review: June 2026*
+*Original document, May 2026 · Farhod Elbekov · ISTQB CT-AI #26-CT-AI-00063-USA*
+
+> **Everything below this line was appended later and is equally binding.**
+> Flagged 2026-10-01: this footer used to read "Last updated: May 2026 / Next
+> review: June 2026" in the MIDDLE of the file, which made Sections 6.6–6.18,
+> 7, 8, 9.4–9.6 and 10 — the majority of the rules, and all of the recent ones
+> — look like they sat outside the document. Section numbers also reopen out of
+> order from here (6 continues, then 7, 8, then 9 again). Read to the end.
 ## ════════════════════════════════════════════════════════
 ## ADDENDUM TO QA_STANDARDS_AGENT_RULES.md
 ## Section 6 additions — CI workflow rules (P044, P045)
@@ -645,7 +657,9 @@ This gives video + DOM + network log of exact failure moment.
 Eliminates all guessing about what the page looked like during failure.
 
 ## ════════════════════════════════════════════════════════
-## SECTION 9 UPDATE: TTS and audio quality rules (NEW)
+## SECTION 9 (continued) — 9.4 TTS and audio quality
+## Renamed 2026-10-01: was "SECTION 9 UPDATE ... (NEW)", which read as a
+## second Section 9 competing with 9.1-9.3 rather than continuing it.
 ## ════════════════════════════════════════════════════════
 
 
@@ -749,7 +763,27 @@ operator has to paste each one. He said so directly: *"you can ask me if you
 don't have access to full file i can attach it and it will be easier."*
 → More than two greps into the same file means ask for the file.
 
-### 10.9 The rule behind all eight
+### 10.10 Read the live repo at session start, not the attached copies
+The docs attached to the Claude project are SNAPSHOTS and they go stale
+silently. On 2026-10-01 the attached `reel-tracker.md` was at R037 while the
+repo was at R097 — sixty-four reels behind — and the attached `render-reel.ps1`
+still had the random nasheed picker that P162/P168/P170 replaced. Reading a
+stale copy carefully makes you MORE confidently wrong, not less.
+→ At session start, read from the repo. Treat an attached copy as a hint about
+  which file to open, never as the file. If the repo is not reachable, say the
+  claim is from a snapshot of unknown age, in the same sentence as the claim.
+
+### 10.11 Do not add a step to an established workflow without checking it
+Three failures in one session, all this shape: proposing to swap the ﷺ glyph
+before TTS on a reel whose predecessor had already narrated it fine; asking for
+a file listing the previous reel had already established; writing S/M/H blocks
+by hand that the admin page generates. Each cost a turn and read as invention
+because it WAS invention — a new step justified by a risk nobody had measured.
+→ When a workflow has run before, the previous run is the specification. Check
+  what it did before proposing anything it did not do. "This might break" is a
+  reason to look at the last run, not a reason to add a step.
+
+### 10.9 The rule behind all of them
 State a repo fact ONLY from something read this session: a file, a query
 result, a command's output. A prior session's summary, a compaction note, and
 this assistant's own earlier message are RECOLLECTION, not sources. When
