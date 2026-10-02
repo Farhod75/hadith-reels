@@ -16,14 +16,14 @@ Not a web app with a video feature. A **content pipeline** with a web admin
 attached. The Next.js app generates and stages text; PowerShell and Python do
 the rendering; the human decides what ships.
 
-**57 reels published** from 15 hadiths, across EN / RU / UZ / TJ.
+**101 reels published** from 26 hadiths, across EN / RU / UZ / TJ.
 
 Two production lanes:
 
 | Lane | Visual | Subtitles | Used for |
 |---|---|---|---|
 | **Adults** | Kling-generated scenes, MODE B (no faces) | EN, RU, AR only | general audience |
-| **Kids** | lip-synced mascot (lamb), fal VEED Fabric | none | children |
+| **Kids** | lip-synced mascot (one of five), fal VEED Fabric | none | children |
 
 ---
 
@@ -132,6 +132,9 @@ scripts/
   stt-validate.py               subtitle validation
   split-narration.py            chunk at silence boundaries
   audit-assets.py               asset registry gate
+  audit-library.py              translation integrity in hadith_library
+  audit-tags.ts                 caption tag vocabulary vs lib/tags.ts
+  audit-docs.py                 docs vs repo, mechanical facts only
   source-*.py / promote-*.py    library sourcing (Stage 0–5)
 agents/
   reel-producing/               text pipeline + eval corpus
@@ -160,24 +163,41 @@ summary and will drift.
 ## Quality gates
 
 **Pre-push hook** (`.githooks/pre-push`, requires `core.hooksPath = .githooks`)
-classifies changed files and runs only the matching checks — TypeScript,
-PowerShell, Python, JSON. Read the `📊 Classification` line it prints; a code
+classifies changed files and runs the matching checks — TypeScript, PowerShell,
+Python, JSON, Playwright. Read the `📊 Classification` line it prints; a code
 change reported as `Doc=1` is a classifier defect.
 
-**`lint-content.py`** runs 8 deterministic checks before narration: missing or
+Four audits run on every non-doc push, none of them scoped by the diff — each
+guards a surface where defects arrive through something other than a code
+change. All share one contract: **exit 1 on a defect, exit 2 when the check
+could not run**, so a gate that cannot see its data never reports a pass.
+
+| Audit | Guards | Arrives via |
+|---|---|---|
+| `audit-tags.ts` | caption tag vocabulary resolves to all four languages | a library promote |
+| `audit-library.py` | translation integrity in `hadith_library` | a library promote |
+| `audit-docs.py` | the docs still describe the repo | practice changing |
+| `audit-assets.py` | no unregistered asset reaches a render | a new asset |
+
+**`lint-content.py`** runs 9 deterministic checks before narration: missing or
 duplicated blocks, divine name and its grammatical case, unnamed authority,
-seerah sourcing, simile against the matn, inversion. A clean run means those
-eight passed — not that the text is right.
+seerah sourcing, simile against the matn, meaning inversion. A clean run means
+those nine passed — not that the text is right.
 
-**Asset registry** (`assets/asset-registry.json` + `scripts/audit-assets.py`)
-blocks both render scripts if an asset is unregistered.
-
-**`fix_patterns.md`** is the accumulated defect catalogue — 139 patterns, one
+**`fix_patterns.md`** is the accumulated defect catalogue — 187 patterns, one
 global sequence shared with hadith-verifier. Every fix ships with its pattern
 block in the same commit.
 
-A rule learned repeatedly here: **a gate must be proven capable of failing.**
-Break it deliberately, confirm it blocks, restore it.
+Two rules learned repeatedly here, both the hard way:
+
+**A gate must be proven capable of failing.** Break it deliberately, confirm it
+blocks, restore it.
+
+**A gate with no caller is documentation that believes it is enforcement.**
+Four separate patterns in the catalogue are the same defect — a correct check
+nothing invoked. `audit-library.py` already contained the check that would have
+caught a bad transliteration weeks before anyone noticed, and had never run.
+Writing the check is the easy half; ask what calls it before calling it done.
 
 ---
 
@@ -187,9 +207,9 @@ Break it deliberately, confirm it blocks, restore it.
 |---|---|
 | [`reel-creation-pipeline.md`](reel-creation-pipeline.md) | E2E checklists, both lanes, recurring defects |
 | [`reel-tracker.md`](reel-tracker.md) | every reel shipped, with what went wrong |
-| [`fix_patterns.md`](fix_patterns.md) | 139 defect patterns |
+| [`fix_patterns.md`](fix_patterns.md) | 187 defect patterns |
 | [`QA_STANDARDS_AGENT_RULES.md`](QA_STANDARDS_AGENT_RULES.md) | agent rules, CI, git, project overrides |
-| [`agent-fleet-roadmap.md`](agent-fleet-roadmap.md) | 13 planned agents, 2 built |
+| [`agent-fleet-roadmap.md`](agent-fleet-roadmap.md) | planned agent fleet; 3 built, and why the rest became scripts |
 | [`animated-reel-scene-prompts.md`](animated-reel-scene-prompts.md) | scene prompt spec, religious guardrails |
 
 ---
