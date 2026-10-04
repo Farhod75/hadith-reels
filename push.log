@@ -1,0 +1,103 @@
+
+🎬 Hadith Reels — Smart pre-push scanner...
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Files changed:
+   CHANGELOG.md
+   CLAUDE.md
+   app/api/tts/route.ts
+   assets/asset-registry.json
+   fix_patterns.md
+   reel-tracker.md
+   render-reel.ps1
+   scripts/lint-content.py
+   scripts/list-library.py
+
+📊 Classification: Doc=4 API=1 UI=0 Remotion=0 Config=0 Py=2 Ps1=1 Json=1 TSScript=0 Test=0
+
+▶ TypeScript check...
+✅ TypeScript OK
+▶ Tag vocabulary audit...
+◇ injected env (12) from .env.local // tip: ⌘ enable debugging { debug: true }
+
+OK — every library tag resolves to four forms.
+✅ Tag vocabulary OK
+▶ Library audit...
+==========================================================================
+ library audit - hadith_library  (70 rows)
+==========================================================================
+  [INFO] tj-no-diacritics  -  Jami at-Tirmidhi #1899  (text_tajik)
+    -> 85 characters with none of ӣӯҳқғҷ - verify this is Tajik and not Russian-with-Tajik-word-order
+       Хушнудии Парвардигор дар хушнудии падар аст ва хашми Парвардигор дар хашми падар аст.
+
+--------------------------------------------------------------------------
+  0 high   0 warn   1 info
+  strict: HIGH findings exit non-zero.
+--------------------------------------------------------------------------
+▶ Doc audit...
+
+OK - every counted fact in the docs matches the repo.
+✅ Docs OK
+▶ Python checks (agent scripts changed)...
+..................................................................       [100%]
+66 passed in 0.70s
+✅ Python OK
+▶ PowerShell checks (scripts changed)...
+✅ PowerShell parses (not executed)
+▶ JSON checks...
+  asset registry changed — running audit (reports only, never blocks):
+
+------------------------------------------------------------------
+  registry and disk agree; every entry is human-verified.
+  audit reports only. --check is the gate that blocks.
+------------------------------------------------------------------
+
+✅ JSON OK
+▶ E2E tests (code or tests changed)...
+
+Running 30 tests using 2 workers
+
+(node:58112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:51784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:51784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [chromium] › tests\hadith-reels.spec.ts:70:7 › UI — Page loads › should show HV cross-link to hadithverifier.com (3.9s)
+  ok  1 [chromium] › tests\hadith-reels.spec.ts:65:7 › UI — Page loads › should show Hadith Reels h1 (3.7s)
+  ok  3 [chromium] › tests\hadith-reels.spec.ts:76:7 › UI — Page loads › should show EN language button (1.8s)
+  ok  4 [chromium] › tests\hadith-reels.spec.ts:84:7 › UI — Page loads › should show UZ language button (1.8s)
+  ok  5 [chromium] › tests\hadith-reels.spec.ts:91:7 › UI — Page loads › should show AR language button (1.7s)
+  ok  6 [chromium] › tests\hadith-reels.spec.ts:98:7 › UI — Page loads › should show RU language button (1.7s)
+  ok  7 [chromium] › tests\hadith-reels.spec.ts:105:7 › UI — Page loads › should show TJ language button (1.9s)
+  ok  8 [chromium] › tests\hadith-reels.spec.ts:118:7 › Browse tab functionality (CT-GenAI) › should display hadith text from mocked API (2.0s)
+  ok  9 [chromium] › tests\hadith-reels.spec.ts:124:7 › Browse tab functionality (CT-GenAI) › should display Arabic text block (2.1s)
+  ok 10 [chromium] › tests\hadith-reels.spec.ts:130:7 › Browse tab functionality (CT-GenAI) › should show sahih grade badge (2.0s)
+  ok 11 [chromium] › tests\hadith-reels.spec.ts:136:7 › Browse tab functionality (CT-GenAI) › should show collection name (2.8s)
+  ok 12 [chromium] › tests\hadith-reels.spec.ts:142:7 › Browse tab functionality (CT-GenAI) › should show narrator name (2.8s)
+  ok 13 [chromium] › tests\hadith-reels.spec.ts:148:7 › Browse tab functionality (CT-GenAI) › should show hashtags (3.5s)
+  ok 14 [chromium] › tests\hadith-reels.spec.ts:154:7 › Browse tab functionality (CT-GenAI) › should show search input (3.9s)
+  ok 15 [chromium] › tests\hadith-reels.spec.ts:160:7 › Browse tab functionality (CT-GenAI) › search filters hadiths correctly (4.7s)
+  ok 16 [chromium] › tests\hadith-reels.spec.ts:168:7 › Browse tab functionality (CT-GenAI) › should show Source link (6.8s)
+  ok 17 [chromium] › tests\hadith-reels.spec.ts:175:7 › Browse tab functionality (CT-GenAI) › should show Verify link per hadith card (2.8s)
+  ok 18 [chromium] › tests\hadith-reels.spec.ts:188:7 › Watch tab › should show Watch reels heading on Watch tab (3.4s)
+  ok 19 [chromium] › tests\hadith-reels.spec.ts:198:7 › Watch tab › should show YouTube link on Watch tab (3.0s)
+  ok 21 [chromium] › tests\hadith-reels.spec.ts:218:7 › Watch tab › Generate reel button NOT on public page (3.1s)
+  ok 20 [chromium] › tests\hadith-reels.spec.ts:208:7 › Watch tab › should show Telegram link on Watch tab (3.4s)
+  ok 22 [chromium] › tests\hadith-reels.spec.ts:229:7 › API — smoke tests › GET /api/reels returns 200 (1.0s)
+  ok 24 [chromium] › tests\hadith-reels.spec.ts:240:7 › API — smoke tests › POST /api/tts without text returns 400 (158ms)
+  ok 23 [chromium] › tests\hadith-reels.spec.ts:234:7 › API — smoke tests › GET /api/reels returns reels array (1.0s)
+  ok 25 [chromium] › tests\hadith-reels.spec.ts:247:7 › API — smoke tests › POST /api/generate-reel without hadith_text returns 400 (201ms)
+  ok 26 [chromium] › tests\hadith-reels.spec.ts:312:7 › API — smoke tests › Admin — auth gate › rejects a wrong password and stays on the login screen (4.9s)
+  ok 27 [chromium] › tests\hadith-reels.spec.ts:321:7 › API — smoke tests › Admin — auth gate › accepts a valid password and loads the picker (5.1s)
+  ok 28 [chromium] › tests\hadith-reels.spec.ts:327:7 › API — smoke tests › Admin — generate to preview › selecting a hadith and generating reaches the preview step (4.8s)
+  ok 29 [chromium] › tests\hadith-reels.spec.ts:357:7 › API — smoke tests › Admin — P125 re-narrate › re-narrate appears only after narration exists (4.8s)
+  ok 30 [chromium] › tests\hadith-reels.spec.ts:364:7 › API — smoke tests › Admin — P125 re-narrate › editing the story after narration raises the stale warning (4.8s)
+
+  30 passed (55.8s)
+✅ E2E tests OK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ All checks passed — pushing...
+To https://github.com/Farhod75/hadith-reels.git
+   04878aa..7b4164e  main -> main

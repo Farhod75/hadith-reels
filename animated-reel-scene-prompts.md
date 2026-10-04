@@ -205,6 +205,38 @@ looked wrong, you'd edit or reject it before Kling.
 
 ---
 
+## 5b. Clip naming — the prefix is the COLLECTION
+
+```
+<collection-letter><hadith-number>-<concept>.mp4      m2963-bowls.mp4
+```
+
+| Letter | Collection |
+|---|---|
+| `b` | Sahih al-Bukhari |
+| `m` | Sahih Muslim |
+| `ad` | Sunan Abu Dawud |
+| `t` | Jami at-Tirmidhi — no set yet; use this when one is made |
+| `ij` | Sunan Ibn Majah |
+| `ah` | Musnad Ahmad — no set yet |
+
+**`b` is Bukhari, not "background".** Written down on 2026-10-04 because it had
+never been written down anywhere, and on that day the assistant inferred it
+backwards from a directory listing, declared `b` meant "background", and was
+corrected by the operator pointing at `m2999-*` — a Muslim set that had used the
+correct convention since August.
+
+**Known defect, not yet fixed:** the Sahih Muslim #2628 set is named `b2628-*`
+(musk, stall, forge, robes), in the asset registry and in four shipped reels.
+**Bukhari #2628 is a real and different hadith**, on gifts — so the filename
+does not merely look untidy, it names the wrong narration. Renaming touches the
+files, `assets/asset-registry.json`, and the R102–R105 tracker rows.
+
+**Nothing checks this.** `audit-assets.py` gates on whether a clip is REGISTERED
+and approved for the lane — not on whether its name matches the hadith it was
+made for. A check against the tracker's hadith column would be a few lines and
+would have caught the set on the day it shipped.
+
 ## 6. How this plugs into the existing pipeline
 
 1. **This step (Claude):** hadith text -> scene-prompt JSON (above).

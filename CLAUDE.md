@@ -20,14 +20,35 @@ the attached `reel-tracker.md` was at R037 while this repo was at R097, and the
 attached `render-reel.ps1` still had the random nasheed picker that P162/P168/
 P170 replaced. A stale copy read carefully produces confident wrong answers.
 
-Before the first substantive step of a session, read from THIS REPO:
+Before the first substantive step of a session, read from THIS REPO, **in this
+order**. The order is the point: each one tells you what to look for in the next,
+and reading them out of order produces confident wrong answers from a correct
+document.
 
-1. `CLAUDE.md` (this file) — constitution and environment
-2. `fix_patterns.md` — **tail only**, for the current P number. One sequence
-   across HR and HV; HR holds the frontier. Never guess the next number.
-3. `reel-creation-pipeline.md` — the live production flow
-4. `reel-tracker.md` — tail of Active reels, plus the asset-reuse tables
-5. `QA_STANDARDS_AGENT_RULES.md` Section 10 — verification discipline
+1. `CLAUDE.md` (this file) — constitution, environment, hard rules.
+2. `self_upskilling.md` — **what is stale.** Read SECOND, before anything that
+   depends on a tool version. ElevenLabs shipped v4 on 2026-09-28 and it was
+   found six days later by accident; Kling and FLUX are still a major version
+   behind. Check the "Next due" date and run the weekly check if it has passed.
+3. `fix_patterns.md` — **tail only**, for the current P number and the last few
+   patterns. One sequence across HR and HV; HR holds the frontier. Never guess
+   the next number.
+4. `reel-creation-pipeline.md` — the live production flow, the per-language E2E
+   checklists, and the pronunciation watch-list. That list is SCOPED TO A MODEL
+   (P193) — if step 2 said the model changed, every entry in it has expired.
+5. `reel-tracker.md` — tail of Active reels for what shipped and what went wrong,
+   plus the asset-reuse tables before picking a nasheed or a scene set.
+6. `QA_STANDARDS_AGENT_RULES.md` Section 10 — verification discipline. 10.10 and
+   10.11 in particular: read the live repo, and do not add a step to an
+   established workflow without checking what the previous run did.
+7. `agent-fleet-roadmap.md` — only when the session will touch agents or asks
+   what is automated. 15 agents scoped, 1 built. It has three times been found
+   missing the agent for whatever had just happened; assume a fourth gap exists.
+8. `assets/asset-registry.json` — only when a reel will be rendered. Nothing may
+   be used in a reel until a human has classified it, and the renderer enforces
+   that, not this document.
+
+**Steps 1–6 are not optional and not a menu.** Steps 7 and 8 are conditional.
 
 If the repo is not reachable, say so and mark every repo claim as coming from a
 snapshot of unknown age, in the same sentence as the claim. See QA_STANDARDS

@@ -53,6 +53,32 @@
   These additions are the model's modal output, and lower temperature samples
   closer to the mode.
 
+### Process
+- `self_upskilling.md` — NEW (P198). Nothing in this project watched the tools it
+  is built on. ElevenLabs shipped v4 on 2026-09-28 and it was found six days
+  later by accident, while auditioning a Russian voice for an unrelated reason. A
+  scan the next day found **Kling 3.0** (available since Feb 2026) and **FLUX 2**
+  (Nov 2025) — neither previously noticed, FLUX being a full generation newer
+  than the model that had just failed the same prompt six times. The roadmap's
+  agent 11 cites this file as its watchlist source; the file had never existed.
+  Weekly cadence, with a dated log and how to check each tool without trusting a
+  release note.
+- `CLAUDE.md` — session-start reading list rewritten as an ORDERED sequence of
+  eight documents with `self_upskilling.md` at position 2, before anything that
+  depends on a tool version. The order is load-bearing: a pronunciation
+  watch-list is scoped to a model (P193), so reading it before knowing whether
+  the model moved produces a confident wrong answer from a correct document.
+- `animated-reel-scene-prompts.md` — section 5b, the clip naming convention
+  (P197). `b` is Bukhari, `m` is Muslim; it had never been written down, which is
+  how it was inferred backwards from one misnamed set and asserted as "b means
+  background". The `b2628` → `m2628` rename remains OPEN, as does an audit check
+  reconciling clip names against the tracker's hadith column.
+- Recorded in the watchlist and not yet acted on: Anthropic's prompting guidance
+  says to tell a model what TO do rather than what NOT to do. `generate-reel`
+  is twenty rules, nearly all NEVER, four of them added today. This project
+  already found the same principle independently as R026 on scene prompts and
+  never carried it across to text.
+
 ### Found, not fixed
 - P196 — `lint-content.py` only ever sees text a human has already corrected,
   because `draft.txt` is written after the block review. Discovered while about

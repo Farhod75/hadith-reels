@@ -7085,3 +7085,86 @@ missing), P189 (stt-validate: seven weeks, three catches, no caller), P119/P126/
 P185/P187 (a correct check that nothing invokes)
 
 **Status:** OPEN — the finding is recorded, the pipeline order is unchanged.
+## ═══════════════════════════════════════════════════════════
+## PATTERN 197: A convention that lives only in filenames is not a convention
+## ═══════════════════════════════════════════════════════════
+**ID:** P197
+**Type:** An unwritten rule, inferred backwards, with nothing enforcing it
+**Files:** animated-reel-scene-prompts.md, assets/asset-registry.json
+**Found:** 2026-10-04, by the operator looking at a folder
+
+**Scene clips are named `<collection-letter><number>-<concept>.mp4`.** b is
+Bukhari, m is Muslim, ad is Abu Dawud. This was never written in any document.
+
+Asked why a new set was named `b2963`, the assistant inspected the registry, saw
+`b2628` on a SAHIH MUSLIM hadith, concluded the prefix meant "background", and
+stated that as the rule — defending a mistake as the convention. The operator
+pointed at `m2999-*`, a Muslim set that had used the correct prefix since August.
+One sample, read confidently, inverted a rule that twelve other sets obey.
+
+**The b2628 set is misnamed, and it is not cosmetic.** Bukhari #2628 is a real
+and different hadith, on gifts. The filename names the wrong narration, in the
+asset registry, permanently, across four shipped reels.
+
+**Nothing checks it.** `audit-assets.py` enforces that a clip is REGISTERED and
+approved for the lane — exactly what P117 built it for. It has no opinion about
+whether the name matches the hadith. The tracker holds the hadith for every reel
+and the clip names beside it; reconciling the two is a few lines.
+
+**Rule:** when a convention is discovered by reading filenames, that is the
+signal it was never written down. Write it in the spec that governs the artefact
+— not in a changelog, which records that something happened and is buried by the
+next entry.
+
+**Related:** P117 (the asset registry gate), P118 (a label and a fallback
+disagreeing), P187 (the doc audit — mechanical reconciliation of countable facts)
+
+**Status:** PARTLY FIXED — convention written into animated-reel-scene-prompts.md
+section 5b. The b2628 rename and the audit check are both OPEN.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 198: Nothing watched the tools, so three of them were a major version behind
+## ═══════════════════════════════════════════════════════════
+**ID:** P198
+**Type:** No process at all, discovered by accident
+**Files:** self_upskilling.md (new)
+**Found:** 2026-10-04, when the operator asked whether anything checks for updates
+
+**ElevenLabs released v4 on 2026-09-28.** It was found on 2026-10-03, by the
+operator, while auditioning a Russian voice for an entirely unrelated reason —
+and only because something else was being changed in the same file.
+
+Scanned on 2026-10-04:
+
+| Tool | In use | Available | Behind by |
+|---|---|---|---|
+| ElevenLabs | eleven_v3 | v4 / v4 Turbo | 6 days — adopted same day (P193) |
+| Kling | v2.6/pro | **Kling 3.0** | **since Feb 2026** |
+| FLUX | flux-pro/v1.1 | **FLUX 2** | **since Nov 2025** |
+
+Neither Kling nor FLUX had been noticed at all. FLUX 2 is a full generation
+newer than the model that, the same afternoon, returned six consecutive upward
+staircases for a prompt specifying a downward camera — and the response to that
+was to abandon the concept, not to ask whether the tool was current.
+
+**The roadmap already had an agent for this.** Agent 11, `upskilling`, whose
+watchlist source is cited as `self_upskilling.md`. That file did not exist. The
+agent is not built. So the citation pointed at nothing, and had for months.
+
+**Fix:** `self_upskilling.md` created with versions in use, how to check each
+without trusting a release note, open evaluations, and a dated log. Weekly
+cadence, recorded in CLAUDE.md as step 2 of the session-start order — before
+anything that depends on a tool version, because a pronunciation watch-list is
+scoped to a model (P193) and expires when the model moves.
+
+**The shape worth keeping:** every other pattern in this file is a defect in
+something that exists. This one is the absence of a process, and it was invisible
+precisely because nothing failed. Pipelines do not error when they are a year
+out of date.
+
+**Related:** P193 (a model upgrade is a re-roll, not a cure — why a new version
+is never adopted without auditioning on our own text), P71 (voice cloning as the
+permanent fix), R026 (negations reinforce what they forbid — rediscovered in
+Anthropic's own prompting guidance and still not applied to the text generator)
+
+**Status:** FIXED for the process; Kling 3.0 and FLUX 2 evaluations are OPEN.
