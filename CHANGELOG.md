@@ -1,3 +1,31 @@
+## [2026-10-04]
+
+### Changed
+- `app/api/tts/route.ts` — ElevenLabs model default moved from `eleven_v3` to
+  `eleven_v4`, at a set boundary, after running the audition the code comment
+  beside it had been asking for since v4 appeared. Changed in the FALLBACK, not
+  in `.env.local`, per P118. Tajik: v4 renders «атри», «Даре» and «Марде»
+  correctly where v3 failed all three on the same voice — the defect was the
+  model, so the planned TJ voice switch to a native Tajik speaker was built on a
+  wrong diagnosis and is cancelled. Uzbek: v4 fixes «етим» and «Оқ», and newly
+  breaks «емоқ».
+
+### Added
+- P193 — a model upgrade is a re-roll, not a cure. Word-initial Cyrillic е→э
+  survived v3→v4 and moved to a word that had been safe across 105 reels, in a
+  language where P078 leaves no automated listener. Every pronunciation
+  watch-list entry is scoped to the model that produced it and expires when the
+  model changes. Also records that `voice_settings.speed` is ignored by both v3
+  and v4 (only `eleven_multilingual_v2` honours it, and m2 fails the Tajik
+  accent), and that two identical requests differ by 4.7% in duration — enough
+  that any judgement about pace from one clip per voice is noise.
+
+### Unchanged
+- Voices, both languages. UZ stays Opa Johann, TJ stays Meisam. Four Tajik
+  voices were auditioned on the same line (Rustam, Firuz, Dilshod, Sherali) and
+  the shared library's Tajik and Persian lists were reviewed in full: there is
+  no aged, grave, native Tajik voice in it, and the model switch removed the
+  reason to keep looking.
 ## [2026-10-03]
 
 ### Added

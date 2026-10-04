@@ -1,6 +1,6 @@
 // app/api/tts/route.ts
 // ElevenLabs TTS proxy — all languages via ElevenLabs, model from
-// ELEVENLABS_MODEL (default eleven_v3)
+// ELEVENLABS_MODEL (default eleven_v4)
 // POST { text, lang, style, mascot, slug, section }
 // Returns audio/mpeg stream; in dev also writes to out/work/{style}/{slug}/{lang}/
 // P070: text cleaning for Prophet name + Islamic symbols
@@ -192,18 +192,26 @@ export async function POST(req: NextRequest) {
           text: cleanText,
           // The model is env-overridable for the same reason the voices are:
           // trying a different one should be a .env.local line and a restart,
-          // not a commit. eleven_v3 stays the default because P102 is the
-          // reason this pipeline is on ElevenLabs at all — it was the first
-          // model that rendered ҳ қ ғ ж correctly for UZ/TJ, and no release
-          // note can tell you whether a successor still does. Only an
-          // audition on our own Cyrillic can.
-          //   eleven_v4 / eleven_v4_turbo exist as of 2026-10; new
-          //   architecture, 90+ languages, and a cross-language claim that a
-          //   voice "adopts the accent of a native speaker" — which is
-          //   exactly the behaviour that needs testing here, not assuming.
+          // not a commit. The default moved to eleven_v4 on 2026-10-04, after
+          // the audition this comment used to ask for was finally run — on our
+          // own Cyrillic, not on release notes (P193).
+          //   TJ / Meisam  v3: атри->отри, Даре->Доре, Марде->Мардэ (3 of 3)
+          //                v4: all three correct. The defect was the MODEL.
+          //                The voice never changed, and the plan to replace
+          //                Meisam with a native Tajik voice was built on a
+          //                wrong diagnosis.
+          //   UZ / Opa Johann  v3: етим->этим, Оқ->ўқ
+          //                    v4: both correct — AND емоқ->эмоқ, new.
+          // That last line is why this is a switch, not a cure. Word-initial
+          // Cyrillic е->э SURVIVED the upgrade and moved to a different word.
+          // A model change re-rolls WHICH words fail; it does not end the
+          // class. емоқ was safe across 105 reels and would have broken on
+          // the first v4 set with nothing watching for it. Re-audition every
+          // pronunciation watch-list entry before shipping a set on a new
+          // model.
           // Switch at a SET boundary, never mid-set: this moves all four
           // languages and both lanes at once.
-          model_id: process.env.ELEVENLABS_MODEL || 'eleven_v3',
+          model_id: process.env.ELEVENLABS_MODEL || 'eleven_v4',
           voice_settings: { stability: 0.5, similarity_boost: 0.75 },
         }),
       }

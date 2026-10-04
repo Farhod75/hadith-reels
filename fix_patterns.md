@@ -6865,3 +6865,77 @@ word and a published reel.
 **Related:** P145/P146 (the library audit), P151 (re-translating a corrected matn), P097 (okina vs tutuq), P120 (A/B verify judges faithfulness, blind to conventions), the #2999 missing clause and the #574 cold/ugly corrections
 
 **Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 193: A model upgrade is a re-roll, not a cure — the mispronunciation class moved words
+## ═══════════════════════════════════════════════════════════
+**ID:** P193
+**Type:** TTS defect class surviving the change that was supposed to end it
+**Files:** app/api/tts/route.ts, reel-creation-pipeline.md (pronunciation watch-list)
+**Found:** 2026-10-04, auditioning eleven_v4 at a set boundary
+
+**The Tajik stem-vowel defect was the MODEL, not the voice.** Three reels had
+logged Meisam mis-voicing «Марде»→«Мардэ» (R081), «Даре»→«Доре» (R089) and
+«атри»→«отри» (R105). The diagnosis on record was that Meisam is a Persian voice
+and Persian alif sits closer to [ɒ] than Tajik а — and a voice-replacement plan
+had already been built on it. Auditioned on one line carrying all three:
+
+| word | Meisam v3 | Rustam v3 | Meisam v4 |
+|---|---|---|---|
+| атри  | FAIL отри  | ok | ok |
+| Марде | FAIL Мардэ | ok | ok |
+| Даре  | FAIL Доре  | FAIL Доре | ok |
+
+Same voice, different model, defect gone. The accent explanation was plausible
+and wrong. Five Tajik voices were auditioned on the strength of it; none was
+needed, and the one that scored best on pronunciation (Rustam) was rejected on
+register anyway.
+
+**The Uzbek audition is why this is not a victory.** Opa Johann, one line, both
+models:
+
+| word | v3 | v4 |
+|---|---|---|
+| етим x3 | FAIL этим | ok |
+| Оқ      | FAIL ўқ   | ok |
+| емоқ    | ok        | FAIL эмоқ |
+
+v4 fixed two and introduced one — and it is the SAME defect. v3 said етим→этим;
+v4 says емоқ→эмоқ. Word-initial Cyrillic е→э survived the upgrade and moved to a
+different word.
+
+**«емоқ» was safe across 105 reels.** It would have broken on the first v4 set,
+inside the matn, silently. Nothing reads narration back against the written word
+except `stt-validate.py`, which runs only when subtitles are on — and P078 turns
+subtitles OFF for UZ and TJ. The two languages that carry this defect are exactly
+the two with no automated listener.
+
+**Rule:** a pronunciation watch-list entry is scoped to the model that produced
+it. Changing models expires the whole list: entries that were fixes become noise,
+and words never on it start failing. Re-audition every entry against the new
+model before a set ships on it, and record the model beside each entry.
+
+**What this costs the existing rule.** The watch-list in
+`reel-creation-pipeline.md` says "add entries as found; look for a real pattern
+at ~5, not before." That assumed entries ACCUMULATE toward a pattern. They do
+not accumulate — they are re-rolled. The permanent fix named in P71 (voice
+cloning, with a phonetic substitution table as backup) is now the only thing
+that survives a model change, and the table must be keyed by language AND model.
+
+**Also established by this audition, and worth more than the result:**
+`voice_settings.speed` is ignored by eleven_v3 AND eleven_v4. Only
+eleven_multilingual_v2 honours it (14.35s → 16.16s at 0.75), and m2 was rejected
+on the same audition for mangling the Tajik accent — P102 restating itself.
+Two IDENTICAL v3 requests, same voice, same text, measured 11.84s and 12.40s:
+a 4.7% duration spread from generation variance alone. Any judgement about pace
+or weight from ONE clip per voice is inside the noise, and three "speed" results
+in this session (11.76 / 11.92 / 12.16s) were noise read as signal. Pronunciation
+judgements are NOT — a word is right or wrong — which is why the tables above
+stand and the duration claims made beside them did not.
+
+**Related:** P102 (why this pipeline is on ElevenLabs at all), P71 (voice cloning
+as the permanent fix, PPD as backup), P078 (no subtitles for UZ/TJ), P118 (a
+label and a fallback disagreeing), P154/P190 (a check satisfied by something that
+is not the thing it measures)
+
+**Status:** FIXED — default moved to eleven_v4. Watch-list re-audit OUTSTANDING.

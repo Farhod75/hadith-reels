@@ -287,15 +287,34 @@ second one) · Change log. Then one commit, `Doc=1`.
 - **TJ** — cleanest lane for three sets. Watch «Худо» for «Аллоҳ», and adjacent
   near-identical words («ғанӣ ғании») which slur in TTS.
 
-  **Pronunciation watch-list** — `eleven_v3` mis-voices these. Rewrite around
-  them rather than fighting them:
-  - «Марде» → voiced «Мардэ» (R081). Replaced with «Як мард».
-  - «Даре» → voiced «Доре» (R089). Replaced with «Он дар».
+  **Pronunciation watch-list — SCOPED TO A MODEL.** Rewrite around these rather
+  than fighting them. Every entry names the model that produced it, because
+  changing models EXPIRES the list (P193): v3 entries below were all rendered
+  correctly by v4, while v4 broke a UZ word that v3 had voiced correctly across
+  105 reels. Re-audition every entry before shipping a set on a new model.
 
-  NOT a suffix rule. «гуноҳе» carries the same indefinite -е and voices
-  correctly in the very same reel as «Даре», and the two failures are not even
-  the same defect: «Марде» changed the SUFFIX vowel, «Даре» changed the STEM
-  vowel. Add entries as found; look for a real pattern at ~5, not before.
+  Current model: **eleven_v4** (default since 2026-10-04).
+
+  | word | model | voiced as | found | workaround |
+  |---|---|---|---|---|
+  | «Марде» | v3 | «Мардэ» | R081 | «Як мард» — NOT NEEDED on v4 |
+  | «Даре»  | v3 | «Доре»  | R089 | «Он дар» — NOT NEEDED on v4 |
+  | «атри»  | v3 | «отри»  | R105 | — NOT NEEDED on v4 |
+  | «етим»  | v3 | «этим»  | R096 | «йетим» — NOT NEEDED on v4 |
+  | «Оқ»    | v3 | «ўқ»    | R096 | «итоатсизлик» — NOT NEEDED on v4 |
+  | «емоқ»  | **v4** | «эмоқ» | audition 2026-10-04 | **«йемоқ» — ACTIVE** |
+
+  The v3 rows are kept, not deleted: a rollback to v3 makes them live again.
+
+  NOT a suffix rule, and not an accent. «гуноҳе» carries the same indefinite -е
+  and voiced correctly in the very same reel as «Даре». The one thing the UZ and
+  TJ failures share is word-initial or stem Cyrillic е/а shifting to э/о — a
+  grapheme-to-phoneme behaviour of the MODEL. Do not look for a pattern in the
+  words. Look for it in the model, and re-run the audition when the model moves.
+
+  ⚠ P078 turns subtitles OFF for UZ and TJ, so stt-validate.py never runs on
+  the two languages this list is about. Nothing automated hears these. The only
+  listener is the human narration check.
 
 ### Known gaps
 
