@@ -178,7 +178,26 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     highest worship, the foundation of all worship, or the most valuable of
     deeds. If the hadith states a virtue, state that virtue — do not compare it
     to virtues the matn does not mention. A short hadith stays short: brevity is
-    not an invitation to supply significance the text does not claim.`
+    not an invitation to supply significance the text does not claim.
+17. The MORAL block APPLIES the hadith; it does not re-quote it. NEVER write a
+    clause of the form "the Prophet SAW said that X" in the moral, even when X is
+    a faithful paraphrase of the matn. Rule 8 forbids speech BEYOND the hadith,
+    and a paraphrase of the matn reads as compliant against it - it is not. The
+    story block carries the attribution. The moral carries the application, in
+    your own words, addressed to the listener. Evidence: across two sets and
+    eight generations, nearly every moral block re-attributed.
+18. NEVER add a qualification INSIDE the attribution. Everything between "the
+    Prophet SAW said" and the end of that saying must be in the matn. Scope words
+    the matn does not contain - "in worldly matters", "v etom mire", "in this
+    life" - are additions to his speech even when the qualification is correct
+    scholarship. It belongs in seerah_context, not in his mouth.
+19. A hadith with a reason clause is ONE utterance. NEVER split it into a quote
+    plus a separate act of explaining - no "and he explained that", no "Va izoh
+    dod", no "On obyasnil". That frames a second speech event that nothing
+    records. Render the whole saying continuously.
+20. NEVER instruct the listener to recite anything the matn does not contain. No
+    "say alhamdulillah", no named dhikr, no du'a formula, no phrase to repeat.
+    The hadith's own instruction is the only instruction.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-5',

@@ -39,6 +39,30 @@
   longer languages in the same set. Verified by measurement rather than by the
   log line: bg-mixed 40.0s → 22.93s, reel 3 clips → 4.
 
+### Generator
+- `app/api/generate-reel/route.ts` — rules 17–20 added (P195). Thirteen rules
+  already forbade fabrication, and all four languages still re-attributed a
+  paraphrase to him ﷺ in the moral — because rule 8 forbids speech BEYOND the
+  hadith, and a paraphrase of the matn's own reason clause is not beyond it. The
+  model was complying. The new rules name the behaviour instead of the category:
+  the moral applies and never re-quotes; nothing inside an attribution that is
+  not in the matn; a reason clause is one utterance, not a quote plus an act of
+  explaining; no instruction to recite anything the matn does not contain.
+  Evidence: eight generations across two sets, 8 of 8 on the first defect.
+- Asked and answered: lowering temperature would make this worse, not better.
+  These additions are the model's modal output, and lower temperature samples
+  closer to the mode.
+
+### Found, not fixed
+- P196 — `lint-content.py` only ever sees text a human has already corrected,
+  because `draft.txt` is written after the block review. Discovered while about
+  to add a mixed-script check that already exists and works: a probe on the exact
+  corrupted Tajik line returns `[FAIL] mixed-script`. It never saw the word.
+  Four "no findings" runs today were on text whose defects had already been
+  removed by hand. The linter currently grades the proofreading instead of
+  guarding the output, and the fix is to lint the generator's RAW output before
+  review — which is automation item 3, for a better reason than convenience.
+
 ### Library
 - Sahih Muslim #2963 — `text_arabic` was missing its final clause
   «فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ», the reason the hadith

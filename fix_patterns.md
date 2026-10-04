@@ -6986,3 +6986,102 @@ choice was being made from asset-level state)
 
 **Status:** FIXED — `-FitScenes` added. Not on by default; pass it when
 narration is shorter than clips x duration.
+## ═══════════════════════════════════════════════════════════
+## PATTERN 195: Rule 8 reads as satisfied by a paraphrase, so every moral re-attributes
+## ═══════════════════════════════════════════════════════════
+**ID:** P195
+**Type:** A prohibition the model can comply with while producing the defect
+**Files:** app/api/generate-reel/route.ts
+**Found:** 2026-10-04, after a second full set showed the same four additions
+
+**P191 recorded that the generator reaches for the same additions in every
+language. It did not say why thirteen rules failed to stop it.** Rule 8 already
+says: NEVER attribute direct or indirect speech to the Prophet SAW beyond what
+the hadith itself records.
+
+The moral blocks said, in all four languages: "for the Prophet SAW said this
+guards against belittling His blessings", and the Tajik equivalent. That is
+indirect speech — and it is NOT beyond the hadith, because the matn's own reason
+clause says exactly that. The model checks its sentence against rule 8, finds the
+content present in the matn, and ships. **It is complying.** The rule forbids
+inventing sayings; it does not forbid re-quoting one the story block already
+attributed.
+
+Evidence across two sets, eight generations:
+
+| addition | #2628 | #2963 |
+|---|---|---|
+| paraphrase re-attributed in the moral | 4 of 4 | 4 of 4 |
+| invented du'a / dhikr instruction | 4 of 4 | TJ |
+| qualification added inside the attribution | - | EN, RU |
+| "and he explained that" splitting one utterance | - | RU, TJ |
+
+Eight for eight on the first row. That is the model's modal output, not its tail.
+
+**Why temperature is the wrong lever, asked directly by the operator.** Lowering
+it pushes sampling TOWARD the mode, and these additions ARE the mode. Temperature
+corrects inconsistency; the problem here is consistency.
+
+**Fixed with four rules that name the behaviour rather than the category:**
+17 — the moral APPLIES, never re-quotes, even a faithful paraphrase; the story
+block holds the attribution. 18 — nothing inside the attribution that is not in
+the matn, including correct scholarship like "in worldly matters". 19 — a hadith
+with a reason clause is ONE utterance, never a quote plus an act of explaining.
+20 — no instruction to recite anything the matn does not contain.
+
+**The shape worth keeping:** a rule that the model can satisfy while producing
+the defect is not a weak rule, it is a rule aimed at the wrong thing. Before
+strengthening a prohibition, check whether the output actually violates it.
+
+**Related:** P191 (the observation), P155 (the moral had no addressee because
+none was asked for), P116 (length pressure is fabrication pressure)
+
+**Status:** FIXED — rules 17-20 added. Unproven until the next set: the test is
+whether a generation comes back without them.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 196: The linter only ever sees text a human already cleaned
+## ═══════════════════════════════════════════════════════════
+**ID:** P196
+**Type:** A gate placed after the check it duplicates
+**Files:** reel-creation-pipeline.md (step order), scripts/lint-content.py (not at fault)
+**Found:** 2026-10-04, while about to add a check that already existed
+
+**The Tajik H block came back containing "afзоиш" — Latin "af" inside a Cyrillic
+word.** It was caught by reading. The conclusion drawn in the moment was that
+lint-content.py had no check for script mixing and needed one.
+
+It has one. `check_script` flags any word containing both alphabets, and a probe
+on the exact corrupted line returns `[FAIL] mixed-script`. The check is correct,
+it has been there, and it never saw the word.
+
+**Because draft.txt is written AFTER the blocks are reviewed.** The human reads
+the generated output, corrects it, and the corrected text is what gets linted.
+The linter is downstream of the review it exists to support.
+
+**Three consequences, all of them active today:**
+1. Every defect caught by eye is invisible to the linter. It reported "no
+   findings" on all four languages of this set, on text that had contained a
+   mixed-script word, an invented dhikr instruction, and four re-attributions.
+2. Its measured value is understated to the point of looking like a formality.
+   Four clean runs in a row is not evidence that generation is clean.
+3. The ONLY defects it can catch are the ones the human misses — exactly
+   inverted. A deterministic check costs nothing and should run FIRST, so human
+   attention is spent on what no check can see: a real word in the wrong place,
+   a wrong diagnosis, a register that does not fit the lane.
+
+**Fix:** draft.txt must be written from the generator's RAW output and linted
+BEFORE human review, with the review reading the linter's findings alongside the
+blocks. This is automation item 3 on the operator's list, and the reason for it
+is not convenience — it is that the linter currently grades the proofreading
+instead of guarding the output.
+
+**Not yet built.** Recorded because the reasoning is the valuable part and it was
+one keystroke from being lost: the session was about to add a duplicate check and
+call it a fix.
+
+**Related:** P186 (the BOM that meant only the first block could ever go
+missing), P189 (stt-validate: seven weeks, three catches, no caller), P119/P126/
+P185/P187 (a correct check that nothing invokes)
+
+**Status:** OPEN — the finding is recorded, the pipeline order is unchanged.
