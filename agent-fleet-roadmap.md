@@ -64,7 +64,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 
 ---
 
-## The 14 agents
+## The 15 agents
 
 ### Tier 1 — Critical (build first)
 
@@ -233,6 +233,73 @@ narration. No text-stage agent catches it. It stays human.
 
 **Depends on:** the per-language E2E checklist in `reel-creation-pipeline.md`
 (written 2026-08-31) — that document IS this agent's specification.
+---
+
+#### 15. comment-triaging
+
+- **Status:** SCOPED 2026-10-04, not built. Added after a viewer posted a
+  detailed correction on R096 that sat unseen for nine hours and was found by
+  chance. The fleet had fourteen agents and not one that reads the AUDIENCE:
+  thirteen inspect our own pipeline, #14 inspects competitors, none inspects the
+  people the reels are for.
+
+  Third time this document has been found missing the agent for whatever had
+  just happened — #13 (2026-08-31: nothing PRODUCES a reel), #14 (2026-09-20:
+  nothing sees the environment), #15 (2026-10-04: nothing hears the audience).
+  Each was discovered by an event, never by reading this document. That is the
+  pattern worth recording, not the three gaps.
+
+- **Role:** Pulls comments on OUR OWN media, classifies them, surfaces only the
+  ones needing a human — with the evidence already gathered.
+
+- **Classes:** devotional (salawat, dua, emoji — roughly 95% of volume; like,
+  no reply) · question · objection/correction · abuse/spam.
+
+- **The objection class is the whole point.** It checks the claim against the
+  library row and HV BEFORE drafting, so a human wakes to a reply carrying the
+  matn, the grade, the narrator and deep-links already assembled. On 2026-10-04
+  that took fifteen minutes by hand: a commenter said Bukhari #2654 reads
+  «yolgʻon guvohlik» (false testimony) where our Uzbek said «ёлғон гапириш»
+  (false speech). Both are prophetic wording — #2654 is Abu Bakra's قول الزور,
+  while شهادة الزور is Anas's at #2653, two numbers away. The caption already
+  named the narrator and it did not prevent the objection.
+
+- **Data access — INSTAGRAM + YOUTUBE ONLY**, the same boundary #14 drew and for
+  the same reason. Instagram Graph API needs a professional account (switched
+  2026-10-03) plus a developer app under a Facebook login. YouTube Data API v3
+  needs only a Google account, and the key is shared with #14. TikTok has no
+  open API. Telegram needs a discussion group attached to the channel — a
+  separate decision, not assumed here.
+
+- **Boundary:** DRAFTS, NEVER POSTS. A public reply on a hadith channel is a
+  human decision, per the hard rules below. The agent may not like, hide or
+  report either.
+
+- **Eval:** the 245 comments on the R096 reel, 30 hand-labelled by Farhod as
+  ground truth. Threshold v1: no objection missed; devotional false-positive
+  rate under 10%. The eval corpus already exists and is already in Instagram —
+  it does not need creating, only labelling.
+
+- **Repo:** HR
+- **Tier:** 1
+
+**Build steps:**
+1. Meta app + token; verify a pull of the 245 comments on R096. 30 min, no code.
+2. `scripts/pull-comments.py` → Supabase `comments` table, dedupe on comment id.
+3. Classifier + the 30-case eval. This is where it works or does not.
+4. Alert path → Telegram, via the existing `TELEGRAM_ALERT_BOT_TOKEN`.
+5. Drafter — objection class gets library row + HV verdict + reply in the
+   comment's own language.
+6. Hourly schedule.
+
+**Status 2026-10-04:** step 1 UNBLOCKED, not done. Instagram switched to a
+professional (Creator) account; a Facebook account was created and accepted into
+the sahihhadithreels business portfolio with full control, because
+developers.facebook.com cannot be reached with an Instagram-only login. The app
+itself is not registered yet. Business Suite does not backfill: comments made
+before 2026-10-04 are not in its inbox, so the 245-comment eval corpus must come
+through the API, not the inbox.
+
 ---
 
 ## Build sequence (post-Hajj)
