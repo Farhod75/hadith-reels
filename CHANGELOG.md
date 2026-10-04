@@ -26,6 +26,43 @@
   the shared library's Tajik and Persian lists were reviewed in full: there is
   no aged, grave, native Tajik voice in it, and the model switch removed the
   reason to keep looking.
+### Fixed
+- `render-reel.ps1` — new `-FitScenes` switch (P194). Four 10s scene clips behind
+  23s of narration played two and a half of them, and the closing beat never
+  appeared in the reel. The background concat is built at full clip length while
+  the final merge cuts to narration length, so any reel SHORTER than its scene
+  set silently drops the tail. Latent for 106 reels: every previous adults reel
+  ran 41–69s against 40s of scenes, so the concat was always the short side and
+  `-stream_loop -1` covered it. R106 is the first reel shorter than its own scene
+  set. `-FitScenes` trims each clip to narration / clip-count before the concat.
+  Not the default and non-destructive — the 10s masters stay intact for the
+  longer languages in the same set. Verified by measurement rather than by the
+  log line: bg-mixed 40.0s → 22.93s, reel 3 clips → 4.
+
+### Library
+- Sahih Muslim #2963 — `text_arabic` was missing its final clause
+  «فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ», the reason the hadith
+  gives for its own instruction, while all four translations carried it. Caught
+  by reading the row before generating (P192's rule), corrected in the DB. Third
+  library defect found this way in three sets — #2999 (missing clause in EN/RU),
+  #2628 (a real word in the wrong place), #2963 (missing clause in AR) — and none
+  of the three was findable by any gate, because every gate measures faithfulness
+  TO the row.
+
+### Assets
+- Four `m2963-*` scene clips registered. The notes record the two failures beside
+  the successes: `windows` is atmosphere only because FLUX smoothed the hadith's
+  two-openings comparison into one pleasant courtyard across every variant, and
+  `room` exists because the intended fourth clip — stone steps shot looking DOWN,
+  the hadith's instruction as camera direction — came back as six consecutive
+  upward shots across two prompts and was abandoned rather than paid for a third
+  time.
+- NAMING DEFECT FOUND, NOT YET FIXED: the scene-set prefix is the collection
+  (`m2999` = Muslim, `b2654` = Bukhari), but Friday's Muslim #2628 set was named
+  `b2628-*`, which points at a real and different hadith. Rename pending. The
+  convention is written nowhere, and `audit-assets.py` gates on whether an asset
+  is registered, not on whether its name matches the hadith it belongs to.
+
 ## [2026-10-03]
 
 ### Added

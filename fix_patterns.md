@@ -6939,3 +6939,50 @@ label and a fallback disagreeing), P154/P190 (a check satisfied by something tha
 is not the thing it measures)
 
 **Status:** FIXED — default moved to eleven_v4. Watch-list re-audit OUTSTANDING.
+## ═══════════════════════════════════════════════════════════
+## PATTERN 194: The background is built at clip length, the reel is cut to narration length — a short reel drops its tail
+## ═══════════════════════════════════════════════════════════
+**ID:** P194
+**Type:** Latent for 106 reels; surfaced by the first reel shorter than its own scene set
+**Files:** render-reel.ps1
+**Found:** 2026-10-04, R106 (Sahih Muslim #2963 EN)
+
+**Four 10s scene clips behind 23s of narration played two and a half of them.**
+The closing beat — the clip chosen to carry what the hadith concludes — never
+appeared in the finished reel at all. The render reported OK.
+
+**Why it was invisible until now.** Step 6 concatenates the ordered clips at
+full length (4 x 10s = 40s), and step 7 merges with `-stream_loop -1` and cuts
+the output to narration duration. When narration is LONGER than the concat the
+background loops and every clip plays; when it is SHORTER the tail is simply
+never reached. Every adults reel before this one ran 41-69s against 40s of
+scenes, so the concat was always the short side and the bug could not express
+itself. R106 is the first reel in 106 that is shorter than its own scene set.
+
+**Not a truncation bug and not a Kling bug.** Nothing failed. ffprobe reports a
+healthy file, the gate passes, the subtitles validate, the duration is correct.
+The reel is simply missing a third of the visual material that was generated,
+reviewed and paid for.
+
+**Fixed with `-FitScenes`:** trims each clip to narration / clip-count before
+the concat (here 22.99s / 4 = 5.748s each) so every clip appears regardless of
+reel length. Verified by measurement, not by the log line: bg-mixed went from
+40.0s to 22.93s and the reel from 3 clips to 4.
+
+**Deliberately NOT the default, and deliberately non-destructive.** The masters
+on disk keep their full 10s because the other three languages of the same set
+need them — UZ is consistently the longest lane and will run 30-35s, where
+trimming to 5.7s would multiply the cut rate for no reason. The flag belongs to
+the RENDER, not to the asset.
+
+**What this says about the rest of the pipeline.** The same shape is worth
+looking for elsewhere: a step that sizes its output from one input while a later
+step sizes the final result from a different one. Nothing reconciles them, and
+the mismatch is silent in whichever direction does not error.
+
+**Related:** P154/P190 (a check satisfied by something that is not the thing it
+measures), P162/P168/P170 (the nasheed picker, the other place where a per-render
+choice was being made from asset-level state)
+
+**Status:** FIXED — `-FitScenes` added. Not on by default; pass it when
+narration is shorter than clips x duration.

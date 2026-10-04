@@ -45,6 +45,7 @@ param(
   [string[]]$Scenes,     # ordered clip names (in normalized\) for an ANIMATED reel; omit = random 3
   [string]$Draft = 'draft.txt',   # source text for the subtitle validator
   [switch]$ForceNoSubs,
+  [switch]$FitScenes,     # trim each scene clip to narration/clips so ALL of them appear
   [switch]$NoReview,
   [switch]$Open,
   [switch]$ValidateOnly
@@ -425,14 +426,30 @@ if ($animated) {
   # Normalize EACH clip to identical 1080x1920 @ 30fps BEFORE concat. This is the
   # robust fix for the framerate/resolution traps: a stray 24fps or off-size clip
   # can no longer flash-by or distort, because every clip is rebuilt uniform first.
+  # P194: four 10s clips behind 23s of narration played the first two and part of
+  # the third; the closing beat never appeared in the reel at all. The concat is
+  # built at full clip length and the final merge truncates to narration, so any
+  # reel shorter than clips x duration silently drops its tail. -FitScenes trims
+  # each clip to an equal share of the narration instead, so every clip appears.
+  # Non-destructive: the masters on disk keep full length for the longer
+  # languages in the same set, which still need all 10s.
+  $fitDur = $null
+  if ($FitScenes) {
+    $nd = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
+    $fitDur = [math]::Round($nd / $picked.Count, 3)
+    Say ("        -FitScenes: {0}s narration / {1} clips -> {2}s per clip" -f [math]::Round($nd,2), $picked.Count, $fitDur)
+  }
   $tmps = @()
   $idx = 0
   foreach ($c in $picked) {
     $idx++
     $tmp = "out\backgrounds\new\_norm-$base-$idx.mp4"
-    $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$c.FullName,
+    $ffArgs = @("-hide_banner","-loglevel","error","-y","-i",$c.FullName,
       "-vf","scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
-      "-c:v","libx264","-pix_fmt","yuv420p","-r","30","-an",$tmp)
+      "-c:v","libx264","-pix_fmt","yuv420p","-r","30","-an")
+    if ($fitDur) { $ffArgs += @("-t","$fitDur") }
+    $ffArgs += $tmp
+    $rc = Run "ffmpeg" $ffArgs
     if (-not (Test-Path $tmp)) { Die "failed to normalize $($c.Name)" }
     $tmps += $tmp
   }
