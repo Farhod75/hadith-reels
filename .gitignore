@@ -55,3 +55,5 @@ __pycache__/
 *.py[cod]
 
 out/backgrounds/.last-used.json
+
+push.log
