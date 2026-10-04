@@ -122,6 +122,10 @@
 | R099 | 2026-10-01 | Sahih al-Bukhari #6857 | Abu Hurairah | Sahih | Major Sins / Al-Mubiqat | #sins #kabair #shirk #riba #orphan | RU | Adults | bukhari-6857 | adults-ru-bukhari-6857-story.mp3 | adults-ru-bukhari-6857-moral.mp3 | adults-ru-bukhari-6857-narration.mp3 | b6857-still.mp4, b6857-cracked.mp4, b6857-firstrain.mp4, b6857-flow.mp4 | adults-ru-bukhari-6857-bg-mixed.mp4 | vocal-nasheed-03.mp3 | YES | adults-ru-bukhari-6857-reel.mp4 | 43.3s | 21.2 MB | Whisper RU came back materially worse than EN for the SECOND adults set running (R095 needed 11 of 13 cues corrected). Two sets is not yet a pattern entry, but RU ASR is now a standing cost on every subtitled adults set, not a one-off. |
 | R100 | 2026-10-01 | Sahih al-Bukhari #6857 | Abu Hurairah | Sahih | Major Sins / Al-Mubiqat | #sins #kabair #shirk #riba #orphan | UZ | Adults | bukhari-6857 | adults-uz-bukhari-6857-story.mp3 | adults-uz-bukhari-6857-moral.mp3 | adults-uz-bukhari-6857-narration.mp3 | b6857-still.mp4, b6857-cracked.mp4, b6857-firstrain.mp4, b6857-flow.mp4 | adults-uz-bukhari-6857-bg-mixed.mp4 | vocal-nasheed-06.mp3 | NO (P078) | adults-uz-bukhari-6857-reel.mp4 | 53.1s | 25.8 MB | Caption 1010/1024. The ﷺ glyph replaced the spelled-out formula, freeing ~27 chars so the English hashtag pairs fit under Telegram’s cap without P184’s ladder having to drop them. TTS: «ейиш» and «етим» voiced as «эйиш»/«этим», narrated as «йейиш»/«йетим» — but «етти» voices CORRECTLY as written, so this is not a rule about word-initial е. Narration spelling only; the caption keeps correct orthography. Also dropped «Имом» as an added title and «ҳам бу дунёда, ҳам охиратда» as beyond the matn. |
 | R101 | 2026-10-01 | Sahih al-Bukhari #6857 | Abu Hurairah | Sahih | Major Sins / Al-Mubiqat | #sins #kabair #shirk #riba #orphan | TJ | Adults | bukhari-6857 | adults-tj-bukhari-6857-story.mp3 | adults-tj-bukhari-6857-moral.mp3 | adults-tj-bukhari-6857-narration.mp3 | b6857-still.mp4, b6857-cracked.mp4, b6857-firstrain.mp4, b6857-flow.mp4 | adults-tj-bukhari-6857-bg-mixed.mp4 | vocal-nasheed-04.mp3 | NO (P078) | adults-tj-bukhari-6857-reel.mp4 | 44.8s | 22.8 MB | H carried a CHAPTER CLAIM the generation invented — «дар бахши марбут ба васиятҳо», the Book of Wills, which is where the OTHER narration of this hadith sits (#2766). Cut rather than replaced with a second guess, since no other language’s H names a chapter. Four more by reading: «онҳо чист» (singular verb, plural subject), «пас аз Аллоҳ» without its comma (reads as "after Allah"), a parenthetical gloss inside the quoted enumeration, and three spellings inconsistent within one reel — муъмин/мӯъмина, гуноҳони/гуноҳҳои, Абӯҳурайра/Абӯ Ҳурайра. lint-content.py reported a MISSING S BLOCK on a valid file: Set-Content -Encoding utf8 writes a BOM and \ufeff is not \s, so only the FIRST block can ever go missing (P186). |
+| R102 | 2026-10-03 | Sahih Muslim #2628 | Abu Musa al-Ashari | Sahih | Character / Companionship | #akhlaq #companionship #friendship #character | EN | Adults | muslim-2628 | adults-en-muslim-2628-story.mp3 | adults-en-muslim-2628-moral.mp3 | adults-en-muslim-2628-narration.mp3 | b2628-musk.mp4, b2628-stall.mp4, b2628-forge.mp4, b2628-robes.mp4 | adults-en-muslim-2628-bg-mixed.mp4 | vocal-nasheed-01.mp3 | YES | adults-en-muslim-2628-reel.mp4 | 40.7s | 13.4 MB | FIRST SET CHOSEN FROM PERFORMANCE DATA rather than the slot cycle. #2654 broke out at 266K on Instagram against 91-330 for its neighbours, and its Uzbek reel ran 223 on TikTok against 34 for #6857 - same lane, same length, two days apart. The read: #2654 names sins an ordinary person committed this week (parents, false testimony) while #6857 lists mostly ones they never will (sihr, fleeing battle). A list you cannot fail is not a list you share. #2628 was picked as relational, everyday and convicting, and as the LONGEST unused row (en 355), after the operator ruled that long hadiths build audience and short ones can wait. FOUR NEW KLING 2.6 PRO SCENES, MODE B: musk vial -> perfumer stall -> forge -> two folded robes, one charred. The simile is IN the matn, so the scenes came from the hadith instead of being invented around it. M invented a SECOND simile on top of it (musk and smoke each leave their trace) and H said "Its established meaning is" - scholars-say with the scholars removed; both cut. Whisper put "traitors" for "traders" and it was burned in before stt-validate ran, forcing a re-render (P189). |
+| R103 | 2026-10-03 | Sahih Muslim #2628 | Abu Musa al-Ashari | Sahih | Character / Companionship | #akhlaq #companionship #friendship #character | RU | Adults | muslim-2628 | adults-ru-muslim-2628-story.mp3 | adults-ru-muslim-2628-moral.mp3 | adults-ru-muslim-2628-narration.mp3 | b2628-musk.mp4, b2628-stall.mp4, b2628-forge.mp4, b2628-robes.mp4 | adults-ru-muslim-2628-bg-mixed.mp4 | path-to-jannah-bg.mp3 | YES | adults-ru-muslim-2628-reel.mp4 | 36.5s | 11.7 MB | FIRST REEL ON A NEW RU ADULTS VOICE - Alex Bell (TUQNWEvVPBLzMBSVDPUA, native Russian), replacing Marat, whose own ElevenLabs label was "Warm, Calm and Friendly": a kids-lane register narrating adults-lane warnings. Auditioned on the live RU text of #2654 and judged on the line he sat up to say. Changed in VOICE_MAP rather than .env.local, because .env.example is explicit that the fallbacks are the source of truth and P118 shipped two reels in an American voice when a label and a fallback disagreed. M ATTRIBUTED A DIFFERENT HADITH TO HIM: the clause rendering al-maru ala dini khalilihi is Abu Dawud and Tirmidhi, not Muslim #2628, and it was presented as his words. Cut whole. H named a chapter and said "the classical understanding". THE REEL WAS TRUNCATED AFTER RENDER: reported OK at 11.7 MB, then found at 2.25 MB with no moov atom; YouTube abandoned processing and TikTok hung. Telegram had taken the good file. Re-rendered clean (P190). |
+| R104 | 2026-10-03 | Sahih Muslim #2628 | Abu Musa al-Ashari | Sahih | Character / Companionship | #akhlaq #companionship #friendship #character | UZ | Adults | muslim-2628 | adults-uz-muslim-2628-story.mp3 | adults-uz-muslim-2628-moral.mp3 | adults-uz-muslim-2628-narration.mp3 | b2628-musk.mp4, b2628-stall.mp4, b2628-forge.mp4, b2628-robes.mp4 | adults-uz-muslim-2628-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | NO (P078) | adults-uz-muslim-2628-reel.mp4 | 46.7s | 14.5 MB | A WRONG WORD IN THE LIBRARY MATN, caught by reading and by nothing else. text_uzbek_cyrillic and text_uzbek_latin both rendered the blower-of-bellows as "kuorik puflagan" - and that word is an INSPECTION, not bellows. The published Uzbek matn read "the one who blows the inspection". Corrected to "dam urgan kimsa" after the operator ruled on it: the Arabic is an agent noun, a PERSON, parallel to the carrier of musk, and "bosqon puflovchi" is redundant because the bosqon is itself the thing that blows. Fixed in the DB, then derive-uzbek-latin.ts --library --number 2628 --commit regenerated the Latin, which got okina vs tutuq right where a hand-edit of both columns would have flattened them (P097). No gate could have caught this: audit-library.py checks the ha/kha confusions and the okina, lint-content.py reads GENERATED text against the matn, and a real word in a well-formed sentence is invisible to both. M carried the same invented dua instruction as RU and TJ; H named a chapter for the third language running. 46.7s is the set outlier. |
+| R105 | 2026-10-03 | Sahih Muslim #2628 | Abu Musa al-Ashari | Sahih | Character / Companionship | #akhlaq #companionship #friendship #character | TJ | Adults | muslim-2628 | adults-tj-muslim-2628-story.mp3 | adults-tj-muslim-2628-moral.mp3 | adults-tj-muslim-2628-narration.mp3 | b2628-musk.mp4, b2628-stall.mp4, b2628-forge.mp4, b2628-robes.mp4 | adults-tj-muslim-2628-bg-mixed.mp4 | vocal-nasheed-07.mp3 | NO (P078) | adults-tj-muslim-2628-reel.mp4 | 41.3s | 13.3 MB | THE TAJIK MATN WAS RIGHT WHERE THE UZBEK WAS WRONG: "damandai kura" - the one who blows the forge - an agent noun parallel to "homili mushk", exactly what the Arabic is. Checked BEFORE generating, because of what the Uzbek row had just turned out to contain. TTS: "atri" voiced as "otri", the same a->o shift as "Dare"->"Dore" on R089. First Tajik defect with an EXPLANATION rather than a watch-list entry - Meisam is a PERSIAN voice, and Persian alif sits closer to the back vowel than Tajik a does, so the shift is systematic and no spelling workaround will outrun it. Worked around by replacing the word inside a gloss (a phrase already voicing correctly in the same reel); the real fix is Rustam, the native Tajik voice, at the next set. Also: the operator caught an UZBEK word for trace in the M block, which the assistant had carried over from the Uzbek M it wrote an hour earlier. M and H carried the same four additions as the other three languages. Completes the set. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -160,6 +164,7 @@
 | Sahih al-Bukhari #6018 (honor his neighbor) | — | — | UNUSED — same number, DIFFERENT hadith. hadith_number is not unique (P147): match the wording, not just the number. |
 | Sahih al-Bukhari #2654 | EN, RU, UZ, TJ | Adults | R094, R095, R096, R097 |
 | Sahih al-Bukhari #6857 | EN, RU, UZ, TJ | Adults | R098, R099, R100, R101 |
+| Sahih Muslim #2628 | EN, RU, UZ, TJ | Adults | R102, R103, R104, R105 |
 
 ---
 
@@ -193,6 +198,7 @@
 | Kindness / Charity | 4 | R090–R093 | EN, RU, UZ, TJ |
 | Major Sins / Accountability | 4 | R094–R097 | EN, RU, UZ, TJ |
 | Major Sins / Al-Mubiqat | 4 | R098–R101 | EN, RU, UZ, TJ |
+| Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -223,16 +229,16 @@
 | vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
 | vocal-nasheed-04.mp3 | 11 | R101 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101 |
-| vocal-nasheed-01.mp3 | 8 | R087 | R028, R034, R044, R057, R065, R068, R077, R087 |
+| vocal-nasheed-01.mp3 | 9 | R102 | R028, R034, R044, R057, R065, R068, R077, R087, R102 |
 | vocal-nasheed-03.mp3 | 9 | R099 | R029, R035, R043, R058, R070, R081, R089, R092, R099 |
 | vocal-nasheed-05.mp3 | 8 | R098 | R032, R036, R045, R059, R069, R082, R093, R098 |
 | vocal-nasheed-06.mp3 | 8 | R100 | R033, R039, R048, R060, R066, R073, R075, R100 |
-| vocal-nasheed-07.mp3 | 8 | R097 | R037, R049, R055, R063, R072, R080, R086, R097 |
-| light-of-my-heart-bg.mp3 | 7 | R094 | R010, R013, R024, R038, R078, R091, R094 |
+| vocal-nasheed-07.mp3 | 9 | R105 | R037, R049, R055, R063, R072, R080, R086, R097, R105 |
+| light-of-my-heart-bg.mp3 | 8 | R104 | R010, R013, R024, R038, R078, R091, R094, R104 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
-| path-to-jannah-bg.mp3 | 3 | R095 | R004, R023, R095 |
+| path-to-jannah-bg.mp3 | 4 | R103 | R004, R023, R095, R103 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
@@ -249,6 +255,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| b2628-musk, stall, forge, robes | 1 set | 2026-10-03 (R102–R105) | R102–R105 |
 | b6857-still, cracked, firstrain, flow | 1 set | 2026-10-01 (R098–R101) | R098–R101 |
 | b2654-ripples, dawn-v3, threshold, ink-v2 | 1 set | 2026-09-29 (R094–R097) | R094–R097 |
 | ad3641-window, rahle, moon, stars | 1 set | 2026-09-06 (R066–R069) | R066–R069 |
@@ -312,6 +319,10 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | b6857-cracked.mp4 | 4 | R098, R099, R100, R101 |
 | b6857-firstrain.mp4 | 4 | R098, R099, R100, R101 |
 | b6857-flow.mp4 | 4 | R098, R099, R100, R101 |
+| b2628-musk.mp4 | 4 | R102, R103, R104, R105 |
+| b2628-stall.mp4 | 4 | R102, R103, R104, R105 |
+| b2628-forge.mp4 | 4 | R102, R103, R104, R105 |
+| b2628-robes.mp4 | 4 | R102, R103, R104, R105 |
 | b4251-path, rain, door, dawn | 1 set | 2026-09-09 (R074–R077) | R074–R077 | First 10s set, Kling 2.6 Pro. 40s total — no looping on a 32–38s reel. |
 
 **Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
@@ -328,19 +339,19 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 101 |
+| Total reels posted | 105 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 49 |
+| Adults reels | 53 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 26 |
-| Library rows | 70 (26 used, 44 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×16, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 15 (Abu Hurairah ×38, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×4, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
+| Hadiths used (unique) | 27 |
+| Library rows | 70 (27 used, 43 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×20, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 15 (Abu Hurairah ×38, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×8, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
 
-**101 reels from 26 hadiths.** Twenty-six of 70 library rows have been used;
-44 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**105 reels from 27 hadiths.** Twenty-seven of 70 library rows have been used;
+43 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the

@@ -1,3 +1,71 @@
+## [2026-10-03]
+
+### Added
+- R102–R105 — Sahih Muslim #2628 (the carrier of musk and the blower of
+  bellows), EN/RU/UZ/TJ, adults. First set chosen from performance data rather
+  than the slot cycle: #2654 broke out at 266K on Instagram and its Uzbek reel
+  ran 223 on TikTok against 34 for #6857, and the difference is that #2654 names
+  sins an ordinary person committed this week. Four new Kling 2.6 Pro scenes.
+- `scripts/list-library.py` — what is in hadith_library and what has not
+  shipped. `--row` dumps one hadith in every language in full (the read every
+  reel should start with), `--sort length --min-en` makes matn length a
+  SELECTION criterion rather than something discovered at render, and both
+  reuse `audit-library.py`'s env and fetch so one place knows how to reach
+  Supabase.
+- `stt-validate.py` now runs inside `render-reel.ps1` at step 2b (P189). It had
+  existed for seven weeks with no caller, documented in four places, catching
+  three defects that human review had already passed. Runs unconditionally when
+  there are subtitles, including under `-NoReview`. New `-Draft` parameter.
+- `ELEVENLABS_MODEL` env override on the TTS route, so trying `eleven_v4` is a
+  `.env.local` line and a restart rather than a commit. Default stays
+  `eleven_v3`: P102 is the reason this pipeline is on ElevenLabs at all, and no
+  release note can say whether a successor still renders ҳ қ ғ ж correctly.
+
+### Changed
+- RU adults voice: Marat → **Alex Bell** (`TUQNWEvVPBLzMBSVDPUA`, native
+  Russian). Marat's own label was "Warm, Calm and Friendly" — a kids-lane
+  register narrating adults-lane warnings. Changed in `VOICE_MAP`, not
+  `.env.local`, because `.env.example` is explicit that the fallbacks are the
+  source of truth and P118 shipped two reels in an American voice when a label
+  and a fallback disagreed.
+- `lint-content.py` simile markers widened (P191): Russian had «подобно» but
+  not «подобен», Uzbek had «мисоли» but not «қиёслаб». Both reported clean on
+  text containing an obvious comparison.
+- `CLAUDE.md`: the 2026-10-01 claim that Claude's device file-commit is not
+  affected by the write-revert problem is **wrong** and is corrected (P188). It
+  returned `written` over an unchanged file three times in one session. Also
+  `lint-content.py` described as five checks; it has nine.
+
+### Fixed
+- **A wrong word in the Uzbek matn of #2628** (P192). Both script columns
+  rendered نَافِخُ الْكِيرِ with a word meaning *inspection*, so the published
+  Uzbek read "the one who blows the inspection". Corrected in the DB; Latin
+  regenerated with `derive-uzbek-latin.ts --library --number 2628 --commit`
+  rather than hand-edited, which preserved okina versus tutuq (P097). No
+  automated check could have caught it — a real, grammatical word in a
+  well-formed sentence is invisible to a character-class check and to a
+  faithfulness check alike.
+- R103's reel was truncated after rendering — reported `OK … 11.7 MB`, found at
+  2.25 MB with no moov atom, rejected by YouTube and TikTok (P190). The render's
+  success check verifies exit code, existence and age; none of those is "is a
+  playable video".
+
+### Notes
+- The generation added the same four things in all four languages (P191): an
+  invented du'a instruction in M, a paraphrase attributed to him ﷺ as a
+  quotation, a chapter claim in H, and a second simile on top of the matn's
+  own — on a hadith whose entire content is a simile. Four languages is a
+  prompt problem, not four slips.
+- Tajik `атри` voiced as `отри`, the same а→о shift as `Даре`→`Доре` on R089.
+  First Tajik defect with an explanation rather than a watch-list entry: Meisam
+  is a Persian voice. The fix is Rustam at the next set, not a spelling
+  workaround.
+- Set durations 40.7 / 36.5 / 46.7 / 41.3s — a 28% spread, outside the ≤20%
+  parity target, with Uzbek the outlier.
+- This set confounds four changes at once: new hadith shape, new RU voice, and
+  the model/voice switch pending for UZ and TJ. If it underperforms, the cause
+  will not be cleanly attributable.
+
 ## [2026-10-01] — later
 
 ### Added

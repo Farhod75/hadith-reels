@@ -1,5 +1,6 @@
 // app/api/tts/route.ts
-// ElevenLabs TTS proxy — all languages via ElevenLabs eleven_v3
+// ElevenLabs TTS proxy — all languages via ElevenLabs, model from
+// ELEVENLABS_MODEL (default eleven_v3)
 // POST { text, lang, style, mascot, slug, section }
 // Returns audio/mpeg stream; in dev also writes to out/work/{style}/{slug}/{lang}/
 // P070: text cleaning for Prophet name + Islamic symbols
@@ -31,7 +32,15 @@ const VOICE_MAP: Record<string, VoiceSet> = {
     },
   },
   ru: {
-    adults: process.env.ELEVENLABS_VOICE_RU_ADULTS || 'vQxSi2EuaRWwBw3nn6dK', // Marat - Warm, Calm and Friendly
+    // 2026-10-03: Marat (vQxSi2EuaRWwBw3nn6dK) retired from the adults lane.
+    // His own ElevenLabs label was "Warm, Calm and Friendly" — a kids-lane
+    // register narrating adults-lane warnings. Replaced with a native Russian
+    // voice auditioned on the live RU text of Bukhari #2654, judged on whether
+    // «Внемлите» — the line the Prophet ﷺ sat up to say — kept its weight.
+    // Changed HERE rather than in .env.local because .env.example is explicit
+    // that the fallbacks are the source of truth: P118 shipped two reels in an
+    // American voice because a label and a fallback disagreed.
+    adults: process.env.ELEVENLABS_VOICE_RU_ADULTS || 'TUQNWEvVPBLzMBSVDPUA', // Alex Bell - Deep and Confident, native RU
     kids: {
       girl: process.env.ELEVENLABS_VOICE_RU_KIDS     || 'ocFEgn1SP9oWO9QrLDgb', // Arabella Calm & Mature
       boy:  process.env.ELEVENLABS_VOICE_RU_KIDS_BOY || 'HcaxAsrhw4ByUo4CBCBN', // Maxim Calm & Neutral
@@ -181,7 +190,20 @@ export async function POST(req: NextRequest) {
         },
         body: JSON.stringify({
           text: cleanText,
-          model_id: 'eleven_v3',
+          // The model is env-overridable for the same reason the voices are:
+          // trying a different one should be a .env.local line and a restart,
+          // not a commit. eleven_v3 stays the default because P102 is the
+          // reason this pipeline is on ElevenLabs at all — it was the first
+          // model that rendered ҳ қ ғ ж correctly for UZ/TJ, and no release
+          // note can tell you whether a successor still does. Only an
+          // audition on our own Cyrillic can.
+          //   eleven_v4 / eleven_v4_turbo exist as of 2026-10; new
+          //   architecture, 90+ languages, and a cross-language claim that a
+          //   voice "adopts the accent of a native speaker" — which is
+          //   exactly the behaviour that needs testing here, not assuming.
+          // Switch at a SET boundary, never mid-set: this moves all four
+          // languages and both lanes at once.
+          model_id: process.env.ELEVENLABS_MODEL || 'eleven_v3',
           voice_settings: { stability: 0.5, similarity_boost: 0.75 },
         }),
       }

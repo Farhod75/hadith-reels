@@ -106,10 +106,15 @@ NEGATION_NEAR_SOURCE = [
 SIMILE_MARKERS = {
     'en': [r'\blike\b', r'\bas if\b', r'\bimagine\b', r'\bit is as\b',
            r'\bsimilar to\b', r'\bjust as\b'],
-    'ru': [r'\bподобно\b', r'\bсловно\b', r'\bкак будто\b', r'\bбудто\b',
+    # P191: was r'\bподобно\b' — the adverb only. Russian renders مثل as the
+    # SHORT ADJECTIVE «подобен/подобна/подобный» far more often, and #2628's
+    # story used it twice while this check reported nothing. Stem match now.
+    'ru': [r'\bподоб\w*', r'\bсловно\b', r'\bкак будто\b', r'\bбудто\b',
            r'\bпредставь', r'\bнапоминает\b'],
+    # P191: «қиёслаб» (comparing) was missing and is the natural verb — #2628's
+    # Uzbek story opened with it and this check saw nothing.
     'uz': [r'\bкаби\b', r'\bкабидир\b', r'\bўхшаш\b', r'\bхудди\b',
-           r'\bтасаввур қил', r'\bмисоли\b'],
+           r'\bтасаввур қил', r'\bмисоли\b', r'\bқиёсла\w*'],
     'tj': [r'\bмонанди\b', r'\bмисли\b', r'\bчун\b', r'\bҳамчун\b',
            r'\bтасаввур кун', r'\bгӯё\b'],
     'ar': [r'كأن', r'مثل'],

@@ -177,6 +177,38 @@
   },
 
   "scenes": {
+    "b2628-musk.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A small stoppered vial of dark musk resin on folded undyed linen in a shuttered perfumer's room at first light, dust drifting in the beam. Kling 2.6 Pro 10s, image-to-video. MODE B. Opening beat of the four-clip arc for Sahih Muslim #2628 — musk, the trade, the forge, the cloth. Variant 2 chosen: variants 1 and 3 carried floating orange specks that read as embers, which is the forge's visual language leaking into the musk scene."
+    },
+    "b2628-stall.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Rows of stoppered brass and blue glass vials on a worn shelf in an unoccupied early-Islamic market stall, backlit so the glass glows rather than mirrors the room. Kling 2.6 Pro 10s, image-to-video. MODE B. Variant 3 chosen: variants 1 and 2 came back as ornate fantasy potion shops, gold filigree and saturated apothecary glass, and only 3 reads as a working trade stall. Backlighting was specified deliberately — polished glass is how a face gets into a scene that forbids one."
+    },
+    "b2628-forge.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A blacksmith's open coal hearth and anvil in an empty workshop, smoke column rising and bending, embers pulsing. Kling 2.6 Pro 10s, image-to-video. MODE B. Variant 2 chosen for unmistakable tongs and period stonework. KNOWN COMPROMISE: no bellows in frame, though the matn's image is نافخ الكير, the blower of bellows — bellows with nobody working them read as furniture, and somebody working them breaks MODE B. The smoke carries the meaning and b2628-robes closes it."
+    },
+    "b2628-robes.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two folded robes on a weathered wooden counter in the same shuttered room as b2628-musk: one clean pale linen, one charred black along the folds with embers still glowing and a thread of smoke lifting. Kling 2.6 Pro 10s, image-to-video. MODE B. Closing beat. Variant 2 chosen because it is the only one where the burn reads as BURNED — in the others the dark cloth could be dyed or merely sooty, which loses the whole contrast. Reached after four rounds: hanging-on-a-line variants were rejected for modern clothespins, and a lying-on-the-ground version for reading as a figure."
+    },
         "b6857-still.mp4": {
       "classification": "scene",
       "lanes": [

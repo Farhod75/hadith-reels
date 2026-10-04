@@ -54,12 +54,17 @@ The write appears to succeed, Windows `dir` briefly shows the new size, but git
 reads the OLD content (stale blob) and the change never persists/commits.
 Likely cause: antivirus controlled-folder-access or a sync/backup tool intercepting writes.
 - **FIX: edit repo files in VS Code** (its save path is NOT intercepted) — never via PowerShell file APIs.
-- **[2026-10-01] A second path works: Claude's device file-commit.** When a
-  session has this folder granted, Claude writing the file directly is NOT
-  intercepted — verified end to end that day on eight files (`3bc4b6c`), with
-  `git diff --numstat` confirming each change landed. So "paste this into VS
-  Code" is no longer the only option; Claude can write and commit here itself.
-  The PowerShell file-API restriction above still stands for everything else.
+- **[2026-10-01, CORRECTED 2026-10-03] Claude's device file-commit mostly
+  works — and silently no-ops often enough that it must be verified.** The
+  2026-10-01 note claimed this path was NOT affected, on the strength of
+  thirteen files that happened to land. On 2026-10-03 it returned `written`
+  three times over an unchanged file (P188); each needed a retry. The pattern
+  is a SECOND write to a path already written this session, and `force` does
+  not prevent it.
+  **So: every write is followed by a read that proves it landed** — grep for
+  the new text, check the byte count, or `git diff --numstat`. One command.
+  Thirteen clean writes was evidence that writes often work, never that they
+  always do. The PowerShell file-API restriction above still stands.
 - This also explains earlier BOM/encoding struggles with `Set-Content`.
 - Symptom to recognize: `git hash-object <file>` returns the SAME sha as HEAD even
   after you "wrote" changes; `git status` says clean despite a changed file.
@@ -360,7 +365,7 @@ npm run test:multilingual
 7. **Re-sync `draft.txt` after ANY edit made in the admin.** Workflow F compares
    the SRT against this file; a stale draft produces false mismatches and, worse,
    means the text that actually shipped was never linted in its final form.
-8. A clean run means these five checks passed. It does NOT mean the text is
+8. A clean run means these NINE checks passed. It does NOT mean the text is
    correct — read it yourself. Human review is still the gate.
 
 ### Workflow F — Validate subtitles at the render gate

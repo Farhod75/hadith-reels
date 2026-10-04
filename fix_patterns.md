@@ -6662,3 +6662,206 @@ P093 (a gate that passed having run nothing), P186 (the lint gate that ran and
 pointed the wrong way), P182 (the audit this one is modelled on)
 
 **Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 188: The write said "written" and wrote nothing
+## ═══════════════════════════════════════════════════════════
+**ID:** P188
+**Type:** Tool reports success on a no-op; the assistant believed it
+**Files:** CLAUDE.md
+**Found:** 2026-10-03, three times in one session
+
+**A file edit was committed to the repo, the tool returned `written`, and the
+file on disk was unchanged.** Three times: `scripts/list-library.py` twice, then
+`app/api/tts/route.ts`. Each time a retry landed it. Each time the first call
+reported success with an empty `rejected` list.
+
+**The shape is a second write to a path already written this session.** First
+writes land. A later write to the same path can silently no-op, and `force:
+true` does not prevent it.
+
+**Worse: the day before, the opposite was written into CLAUDE.md.** Thirteen
+files had been committed that way without incident, and from thirteen successes
+the assistant recorded that this write path is NOT affected by the machine's
+documented PowerShell write-revert problem. That is induction presented as a
+finding, and it is the same error as stating a repo fact from recollection — the
+evidence was real, the conclusion outran it.
+
+**Fixed by verifying, not by avoiding.** Every write is now followed by a read
+that confirms the change is present — a grep for the new text, a byte count, a
+`git diff --numstat`. The cost is one command; the alternative is a commit whose
+diff does not contain what the commit message describes.
+
+**Rule:** a tool's success message is a claim about the call, not about the
+disk. Where a write matters, read it back. And do not promote a run of
+successes into a property of the system — thirteen clean writes is evidence
+that writes often work, not evidence that they always do.
+
+**Related:** P154 (a render that reported OK on a stale file), QA_STANDARDS 10.9 (state a repo fact only from something read this session), P190 (the same session, the same mistake, on video output)
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 189: stt-validate.py: seven weeks, three catches, no caller
+## ═══════════════════════════════════════════════════════════
+**ID:** P189
+**Type:** Gate present, never invoked — fifth instance
+**Files:** render-reel.ps1, scripts/stt-validate.py
+**Found:** 2026-10-03, when the operator asked whether the validator step was real
+
+**`scripts/stt-validate.py` shipped 2026-08-15 and nothing ever called it.** It
+was documented in CLAUDE.md as Workflow F, in FEATURES.md with its ten checks,
+in the README, and in two agent SKILLs. It ran when somebody remembered.
+
+**In that time it caught three defects that human review had already passed:**
+- R039 — «Аллахам», not a word, still burned into RU cue 2 AFTER hand-correction
+- R043 — an SRT whose structure the editing itself broke, 9 cues to 8
+- R051 — the narration said «это второе, а не первое» where the draft stopped at
+  «это второе»; a three-word divergence nobody saw
+
+**And it caught a fourth the day it was wired in.** R102's Whisper pass put
+"traitors" where the source said "traders" — on the line introducing musk. The
+operator had already pressed ENTER at the review gate, so it burned in and the
+reel had to be re-rendered. The validator would have caught it before the gate.
+
+**Now runs inside `render-reel.ps1` at step 2b**, before the human checkpoint,
+unconditionally whenever there are subtitles — INCLUDING under `-NoReview`,
+where there is no human about to look and an automated check matters more, not
+less. Warn-only by design: it is a reader's aid, not a gate, and the human at
+the checkpoint still decides. Added `-Draft` so the source file is explicit.
+
+**Rule:** this is the fifth time in this repo. Writing the check is the easy
+half, and documenting it in four places is not the same as calling it. When a
+check is finished, the next question is which line of which script invokes it;
+if the answer is "the operator, from memory", it is not finished.
+
+**Related:** P185, P187, P126, P119 (the same class), P093 (a gate that passed having run nothing), P124 (the check this one sits beside)
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 190: The render reported OK on a file that was not a video
+## ═══════════════════════════════════════════════════════════
+**ID:** P190
+**Type:** Success check tests the wrong property
+**Files:** render-reel.ps1
+**Found:** 2026-10-03, after YouTube abandoned processing three times
+
+**R103's reel rendered, reported `OK ... 11.7 MB`, and was watched and
+approved.** It then went to Telegram, which played it. YouTube said "Processing
+abandoned". TikTok hung. By the time anyone looked, the file was **2.25 MB with
+no moov atom** — ffprobe could not read it at all.
+
+**P154 had already hardened this check**, and it still missed. Step 8 verifies
+the ffmpeg exit code, that the output exists, and that it is less than five
+minutes old. A truncated MP4 with no moov atom satisfies all three. The script
+then printed the file's size as confirmation, which is how `11.7 MB` was
+reported for a file that later measured 2.25 MB — the size was read at a moment
+the file was still whole.
+
+**Two platforms rejecting one file is a statement about the file.** That is what
+turned the diagnosis around: the instinct was to blame YouTube, and comparing
+against the English reel — which probed clean at 1080x1920, 40.7s, AAC — took
+thirty seconds and settled it.
+
+**What truncated it is still open.** Nothing was writing the file by the time it
+was examined, and the mtime sat fifteen minutes stale; the likeliest account is
+a second render starting, ffmpeg's `-y` truncating the output to begin
+rewriting, and the run not completing. Recorded as unexplained rather than
+guessed at.
+
+**Rule:** a check that the output EXISTS is not a check that the output is
+USABLE. For a media file, probe it: a duration and a stream are cheap to read
+and are the thing the next step actually needs. And verify before uploading —
+two platforms had already rejected this one before anyone looked at the file.
+
+**Related:** P154 (the previous hardening of this same check), P188 (the same session, the same shape: a success message believed over the artefact)
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 191: The generator reaches for the same four additions in every language
+## ═══════════════════════════════════════════════════════════
+**ID:** P191
+**Type:** Prompt-level, not per-language
+**Files:** app/api/generate-reel/route.ts (prompt), scripts/lint-content.py
+**Found:** 2026-10-03, after the fourth language of #2628 produced the same block
+
+**Across EN, RU, UZ and TJ for Sahih Muslim #2628, the generation added the
+same four things, independently, every time:**
+
+1. **An invented instruction in M.** RU: "Ask Allah to place you among the
+   righteous". UZ: "thank Allah for giving a good brother". TJ: "ask Allah to
+   join you with good companions". The hadith instructs nothing of the kind; it
+   compares two companions.
+2. **A paraphrase attributed to him ﷺ as a quotation.** RU went furthest and
+   attributed a DIFFERENT hadith — al-maru ala dini khalilihi, Abu Dawud and
+   Tirmidhi — to Muslim #2628.
+3. **A chapter claim in H.** Four languages, four different chapter names, none
+   verifiable from the repo. R101 did the same thing on #6857.
+4. **A second simile built on top of the matn's own.** EN: "musk and smoke each
+   leave their trace". TJ: "just as the scent of musk or the smoke of the forge
+   spreads". On a hadith whose entire content IS a simile.
+
+**Four languages is not four slips.** P122 and P133 established this shape — the
+generator reaches for the same additions in every language, which makes it a
+prompt problem, not a translation problem. The same is true here, and the
+remedy is the prompt, not four hand-corrections per set.
+
+**A lint gap found while confirming it.** `check_simile`'s marker lists miss the
+most natural word in two languages: Russian has «подобно» but not «подобен»,
+Uzbek has «мисоли» but not «қиёслаб». Both fired clean on text containing an
+obvious comparison. Widened to stem matches.
+
+**Rule:** when a defect appears in every language of a set, stop fixing it per
+language. One generation getting it wrong is a slip; four getting it identically
+wrong is the instruction telling them to.
+
+**Related:** P122, P133 (the same cross-language shape), P111 (divine name, simile and attribution rules), P116 (length pressure as fabrication pressure)
+
+**Status:** FIXED
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 192: A real word in the wrong place: the matn said "the one who blows the inspection"
+## ═══════════════════════════════════════════════════════════
+**ID:** P192
+**Type:** Library defect invisible to every automated check
+**Files:** hadith_library (text_uzbek_cyrillic, text_uzbek_latin)
+**Found:** 2026-10-03, reading the Uzbek blocks before narration
+
+**The Uzbek matn for Sahih Muslim #2628 rendered نَافِخُ الْكِيرِ — the blower
+of the bellows — with a word that means INSPECTION.** Both script columns
+carried it, so the published Uzbek read "the one who blows the inspection", and
+it had been sitting in the library since the row was promoted.
+
+**No gate could have caught it.** `audit-library.py` checks ha/kha confusions,
+okina versus tutuq, and honorific formulas. `lint-content.py` reads GENERATED
+text against the matn — and the generation was faithful to a matn that was
+already wrong, exactly as on #2999 where the EN and RU columns were missing a
+clause. A correctly spelled, grammatical, real word in a well-formed sentence is
+invisible to a character-class check and to a faithfulness check alike.
+
+**It was caught by a native speaker reading the blocks**, and settled by asking
+him rather than by the assistant picking a replacement: the Arabic is an agent
+noun, a PERSON, parallel to the carrier of musk — which rules out the device
+and rules out the redundant "bosqon puflovchi", since the bosqon is itself the
+thing that blows.
+
+**Fixed in the DB, not in the reel.** The Cyrillic is canonical (D4), so the
+Latin was regenerated with `derive-uzbek-latin.ts --library --number 2628
+--commit` rather than hand-edited — and the derivation got okina versus tutuq
+right, which a hand-edit of both columns would have flattened (P097).
+
+**The same check on Tajik, run BEFORE generating because of this, came back
+clean** — "damandai kura", an agent noun parallel to "homili mushk", exactly
+what the Arabic is. The Tajik translator got right what the Uzbek one got wrong.
+
+**Rule:** read the matn in the target language before generating, not after.
+Every downstream check measures faithfulness TO the row; none of them can tell
+you the row is wrong. That remains a human reading, in the language, and it is
+the second time in one session it was the only thing standing between a wrong
+word and a published reel.
+
+**Related:** P145/P146 (the library audit), P151 (re-translating a corrected matn), P097 (okina vs tutuq), P120 (A/B verify judges faithfulness, blind to conventions), the #2999 missing clause and the #574 cold/ugly corrections
+
+**Status:** FIXED

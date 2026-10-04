@@ -26,7 +26,12 @@
  PARAMS:
    -Nasheed     (optional) specific nasheed filename in out\backgrounds\; else random
    -ForceNoSubs (optional) skip subtitles even for en/ru/ar
-   -NoReview    (optional) skip the subtitle proofreading pause (for trusted reels)
+   -Draft       (optional) source text for the subtitle validator (default draft.txt)
+                It MUST hold this language's S:/M: blocks — a mismatch shows
+                as ~0.01 similarity, which is the validator telling you the
+                draft was never re-synced after the last admin edit.
+   -NoReview    (optional) skip the subtitle proofreading PAUSE. It does NOT
+                skip the validator, which still runs and prints (P188).
    -Open        (optional) auto-play the finished reel
    -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
 ================================================================================
@@ -38,6 +43,7 @@ param(
   [Parameter(Mandatory)][string]$Slug,
   [string]$Nasheed,
   [string[]]$Scenes,     # ordered clip names (in normalized\) for an ANIMATED reel; omit = random 3
+  [string]$Draft = 'draft.txt',   # source text for the subtitle validator
   [switch]$ForceNoSubs,
   [switch]$NoReview,
   [switch]$Open,
@@ -311,6 +317,46 @@ if ($useSubs) {
   $splitStats = Split-LongCues $srt 12
   if ($splitStats.After -gt $splitStats.Before) {
     Ok "cues split for readability: $($splitStats.Before) -> $($splitStats.After)"
+  }
+}
+
+# --- SUBTITLE VALIDATION (automatic, before the human sees it) --------------
+# P188: stt-validate.py existed for seven weeks and nothing called it. It was
+# documented in CLAUDE.md as Workflow F, in FEATURES.md, in the README and in
+# two agent SKILLs — and it ran only when somebody remembered. Over that time
+# it caught three defects that human review had already passed:
+#   R039  «Аллахам» still burned into RU cue 2 AFTER hand-correction
+#   R043  an SRT whose structure the editing itself had broken, 9 cues -> 8
+#   R051  narration said «это второе, а не первое», the draft stopped at
+#         «это второе» — a three-word divergence nobody saw
+# Same shape as P119, P126, P185 and P187: a correct check with no caller.
+# It reads no network and costs nothing, so it runs unconditionally whenever
+# there are subtitles — including under -NoReview, where there is no human
+# about to look and the automated check matters MORE, not less.
+if ($useSubs) {
+  if (-not (Test-Path $Draft)) {
+    Write-Host "`n  [skip] subtitle validator: no $Draft to compare against." -ForegroundColor DarkYellow
+    Write-Host "         Pass -Draft <file> holding this language's S:/M: blocks." -ForegroundColor DarkYellow
+  } else {
+    Say "`n[2b/5] Validating subtitles against $Draft..."
+    $prevEAP = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    $prevPyIO = $env:PYTHONIOENCODING
+    $env:PYTHONIOENCODING = 'utf-8'      # P100: Cyrillic through a CP1252 console
+    & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" 2>&1 |
+      ForEach-Object { Write-Host "   $_" }
+    $sttRc = $LASTEXITCODE
+    $env:PYTHONIOENCODING = $prevPyIO
+    $ErrorActionPreference = $prevEAP
+    if ($sttRc -ne 0) {
+      # Warn-only by design: the validator is a reader's aid, not a gate. The
+      # human at the checkpoint decides. Under -NoReview there is no human, so
+      # say loudly that something was found and nobody was asked.
+      if ($NoReview) {
+        Write-Host "`n  WARN  the validator reported findings and -NoReview skipped the gate." -ForegroundColor Yellow
+        Write-Host "        Those subtitles are about to be burned in unreviewed." -ForegroundColor Yellow
+      }
+    }
   }
 }
 
