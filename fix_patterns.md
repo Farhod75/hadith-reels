@@ -7167,4 +7167,7 @@ is never adopted without auditioning on our own text), P71 (voice cloning as the
 permanent fix), R026 (negations reinforce what they forbid — rediscovered in
 Anthropic's own prompting guidance and still not applied to the text generator)
 
-**Status:** FIXED for the process; Kling 3.0 and FLUX 2 evaluations are OPEN.
+**Status:** FIXED for the process. FLUX 2 EVALUATED AND ADOPTED same day - it
+rendered on the first call a shot v1.1 had refused six times, which means the
+concept abandoned that afternoon was a model limit nobody thought to question.
+Kling 3.0 evaluation still OPEN.

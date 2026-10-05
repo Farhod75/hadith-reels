@@ -21,7 +21,7 @@
    -Prompt  the image prompt (apply the scene-prompt spec guardrails: MODE B,
             themes not figures, era-accurate)
    -Count   how many variants to generate (1-5, default 3) -- review, keep best
-   -Model   fal model id (default FLUX.1.1 pro -- good photoreal/value)
+   -Model   fal model id (default fal-ai/flux-2 -- see the note at line 34)
 
  COST: ~$0.03/megapixel. A few 9:16 stills per call is a few cents.
 ================================================================================
@@ -31,7 +31,16 @@ param(
   [Parameter(Mandatory)][string]$Name,
   [Parameter(Mandatory)][string]$Prompt,
   [ValidateRange(1,5)][int]$Count = 3,
-  [string]$Model = 'fal-ai/flux-pro/v1.1'
+  # P198/2026-10-04: default moved from fal-ai/flux-pro/v1.1 to fal-ai/flux-2.
+  # FLUX 2 shipped in Nov 2025 and nothing in this project noticed for eleven
+  # months. The test that settled it: the m2963 steps prompt asked for a camera
+  # at the TOP of a staircase looking DOWN - the hadith's instruction as camera
+  # direction. v1.1 returned six consecutive upward shots across two prompts and
+  # the concept was abandoned as an unbreakable model prior. flux-2 rendered it
+  # correctly on variants 1 AND 2 of a single call, from the same prompt text.
+  # The concept was never the problem. Keep v1.1 reachable via -Model for a
+  # straight comparison when a prompt that used to work starts failing.
+  [string]$Model = 'fal-ai/flux-2'
 )
 
 $ErrorActionPreference = 'Stop'

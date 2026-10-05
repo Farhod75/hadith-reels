@@ -53,6 +53,19 @@
   These additions are the model's modal output, and lower temperature samples
   closer to the mode.
 
+### Tools
+- `scripts/generate-image.ps1` — default model moved from `fal-ai/flux-pro/v1.1`
+  to `fal-ai/flux-2`, the first action taken from the new watchlist (P198).
+  FLUX 2 shipped in Nov 2025 and nothing here noticed for eleven months.
+  The test that settled it: the m2963 steps prompt asked for a camera at the top
+  of a staircase looking DOWN — the hadith's own instruction as camera direction.
+  v1.1 returned six consecutive upward shots across two prompts, and the concept
+  was abandoned that afternoon as an unbreakable model prior. flux-2 rendered it
+  correctly on variants 1 AND 2 of one call, same prompt text, no code change.
+  **The concept was never the problem, and the response to a model refusing a
+  prompt six times should have been to question the model.** v1.1 stays reachable
+  via `-Model` for comparison when a prompt that used to work starts failing.
+
 ### Process
 - `self_upskilling.md` — NEW (P198). Nothing in this project watched the tools it
   is built on. ElevenLabs shipped v4 on 2026-09-28 and it was found six days
