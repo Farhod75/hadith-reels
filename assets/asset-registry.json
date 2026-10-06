@@ -201,6 +201,30 @@
       "verified": true,
       "notes": "A woven reed mat on swept earth, a folded wool blanket, a rough clay water jar, low sun crossing the mat. Kling 2.6 Pro 10s, image-to-video from FLUX still variant 3. MODE B. Closing beat: sufficiency. REPLACED A FAILED CONCEPT — the fourth clip was to be stone steps shot looking DOWN, the hadith's instruction as camera direction. Six FLUX variants across two prompts all photographed the staircase from the bottom looking up, which states the opposite of the matn; the prior would not break and the concept was abandoned rather than paid for a third time. No lamp in frame: an open flame generated a temple shrine on b2654."
     },
+    "m2759-door-night.mp4": {
+      "classification": "scene",
+      "lanes": "adults",
+      "verified": true,
+      "notes": "A single-leaf wooden door standing open onto desert night in a recessed mud-brick alcove, moonlight across two worn stone steps. Kling 2.6 Pro 10s, image-to-video from FLUX 2 still m2759-door-night-r-1. MODE B. Opening beat for Sahih Muslim #2759. REGENERATED: all three original night stills hinged the door on the LEFT while the daylight stills hinged it RIGHT, which would have flipped the door mid-reel on a set whose whole claim is that the door never changes. The re-prompt states the hinge side explicitly. Kling ADDS A MOON over the clip that is not in the still - accepted here as a cropped background detail, but any re-use must re-check it against the splitting-of-the-moon collision."
+    },
+    "m2759-threshold.mp4": {
+      "classification": "scene",
+      "lanes": "adults",
+      "verified": true,
+      "notes": "Close on the worn stone threshold at the darkest hour, a band of moonlight across the stone, dry leaves at the edge. Kling 2.6 Pro 10s, image-to-video from FLUX 2 still variant 3. MODE B. Second beat. The only clip of the four with no door leaf visible, so it reads neutral on hinge direction and can sit anywhere in the sequence. Variant 2 was rejected outright for a bright point light at the top of frame - that is how a lamp gets into a scene that must offer nothing standing in for the divine attribute."
+    },
+    "m2759-firstlight.mp4": {
+      "classification": "scene",
+      "lanes": "adults",
+      "verified": true,
+      "notes": "The same doorway at first light, pale colourless sky beyond, the stone of the steps just becoming visible. Kling 2.6 Pro 10s, image-to-video from FLUX 2 still variant 3. MODE B. Third beat. KNOWN WEAKNESS: by 7s the light has run most of the way to gold, so the clip ends close to where m2759-dawn begins. Acceptable in sequence because it reads as time passing, but do not re-use it expecting a distinct pre-dawn state. The first attempt at this concept lost the alcove entirely - flat wall, wide horizon - because the prompt named the sky and not the architecture."
+    },
+    "m2759-dawn.mp4": {
+      "classification": "scene",
+      "lanes": "adults",
+      "verified": true,
+      "notes": "The same doorway at sunrise, warm light pouring across the stone threshold, long shadows thrown inward. Kling 2.6 Pro 10s, image-to-video from FLUX 2 still variant 3. MODE B. Closing beat. The sun is visible in frame and that is deliberate - it is the hadith own final clause about the sun rising from its place of setting. FLUX returned a DOUBLE door on variant 2 of this prompt and again on the firstlight re-run: a door standing open carries a two-leaf prior, so single-leaf must be stated."
+    },
     "b2628-musk.mp4": {
       "classification": "scene",
       "lanes": [

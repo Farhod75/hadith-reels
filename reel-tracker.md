@@ -130,6 +130,10 @@
 | R107 | 2026-10-04 | Sahih Muslim #2963 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #shukr #blessings #contentment #qanaah | RU | Adults | muslim-2963 | adults-ru-muslim-2963-story.mp3 | adults-ru-muslim-2963-moral.mp3 | adults-ru-muslim-2963-narration.mp3 | m2963-windows.mp4, m2963-bowls.mp4, m2963-sandals.mp4, m2963-room.mp4 | adults-ru-muslim-2963-bg-mixed.mp4 | vocal-nasheed-04.mp3 | YES | adults-ru-muslim-2963-reel.mp4 | 27.2s | 6.5 MB | stt-validate caught a prefix drop: Whisper heard 'blagodarya' (gerund) where the narration says 'poblagodari' (imperative), which destroys the command. Audio confirmed correct, SRT corrected. THIRD consecutive RU set needing Whisper correction (R095 11 of 13 cues, R099, this) - that is now a standing cost, not a run of luck. Prophet symbol narrated as spoken words on v4, contradicting the pipeline doc's rule that RU is the one language where the glyph must be written out. |
 | R108 | 2026-10-04 | Sahih Muslim #2963 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #shukr #blessings #contentment #qanaah | UZ | Adults | muslim-2963 | adults-uz-muslim-2963-story.mp3 | adults-uz-muslim-2963-moral.mp3 | adults-uz-muslim-2963-narration.mp3 | m2963-windows.mp4, m2963-bowls.mp4, m2963-sandals.mp4, m2963-room.mp4 | adults-uz-muslim-2963-bg-mixed.mp4 | vocal-nasheed-01.mp3 | NO (P078) | adults-uz-muslim-2963-reel.mp4 | 29.2s | 6.7 MB | No subtitles (P078), so no automated listener on the lane that carries the v4 e->e defect. Both narrated blocks were checked for word-initial Cyrillic e before narration and contained none, so the emoq->emoq class could not fire. The lane that produced the 266K breakout. |
 | R109 | 2026-10-04 | Sahih Muslim #2963 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #shukr #blessings #contentment #qanaah | TJ | Adults | muslim-2963 | adults-tj-muslim-2963-story.mp3 | adults-tj-muslim-2963-moral.mp3 | adults-tj-muslim-2963-narration.mp3 | m2963-windows.mp4, m2963-bowls.mp4, m2963-sandals.mp4, m2963-room.mp4 | adults-tj-muslim-2963-bg-mixed.mp4 | vocal-nasheed-05.mp3 | NO (P078) | adults-tj-muslim-2963-reel.mp4 | 29.9s | 6.9 MB | FIRST TAJIK PRODUCTION REEL ON v4. H block came back containing 'af' in LATIN script inside a Cyrillic word (afzoish for afzoish) - a mixed-script corruption that lint-content.py has no check for, caught by reading. M block carried an INVENTED DHIKR INSTRUCTION ('say alhamdulillah'), the exact addition P191 names from the #2628 set, recurring on a different hadith. Completes the set. |
+| R110 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | EN | Adults | muslim-2759 | adults-en-muslim-2759-story.mp3 | adults-en-muslim-2759-moral.mp3 | adults-en-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-en-muslim-2759-bg-mixed.mp4 | not recorded (P201) | YES | adults-en-muslim-2759-reel.mp4 | 30.4s | 6.3 MB | FIRST SET ON fal-ai/flux-2 for stills (P198) and first set where -FitScenes was needed on every language. Scene set m2759 is one doorway at four times of night, MODE B: the hadith's meaning is carried by the door never closing while the light changes, with nothing in frame standing in for the divine attribute and no lamp or flame (a lamp generated a temple shrine on b2654). SCENE SET COST AN EXTRA RUN: the three night stills all hinged the door LEFT and the daylight stills hinged it RIGHT, and the mismatch was not caught until all four clips existed, because stills were being identified by their order in chat rather than by file suffix. Library row for this hadith had been corrected before production across all six columns (missing final clause, plus a Tajik non-word). |
+| R111 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | RU | Adults | muslim-2759 | adults-ru-muslim-2759-story.mp3 | adults-ru-muslim-2759-moral.mp3 | adults-ru-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-ru-muslim-2759-bg-mixed.mp4 | not recorded (P201) | YES | adults-ru-muslim-2759-reel.mp4 | 31.7s | 6.5 MB | stt-validate flagged five findings, all of them real: a word-boundary error (doblagoslovit for da blagoslovit) and four lost yo/capitalisation items. FOURTH consecutive RU set needing Whisper correction. The capitalisation class is now understood: Whisper transcribes sound, so divine pronouns (Svoyu, On) come back lowercase on EVERY en/ru reel and always will. That is mechanical and belongs in a post-Whisper pass, not in a human read (P200). |
+| R112 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | UZ | Adults | muslim-2759 | adults-uz-muslim-2759-story.mp3 | adults-uz-muslim-2759-moral.mp3 | adults-uz-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-uz-muslim-2759-bg-mixed.mp4 | not recorded (P201) | NO (P078) | adults-uz-muslim-2759-reel.mp4 | 38.3s | 8.2 MB | No subtitles (P078). GENERATED S BLOCK HAD NO ATTRIBUTION AT ALL - the hadith was stated as bare text with no mention of the Prophet SAW, on a channel whose premise is verifiable authenticity, in a language with no subtitle pass to catch it. Caught by reading. M block also referred back to the hadith as a quotation (zero hadisda aytilganidek), rule 17 again. LIBRARY DEFECT: text_uzbek_cyrillic contained 'tavba qilsin uchun' twice, which is not grammatical Uzbek; corrected in the DB and the Latin column regenerated. Fifth library defect in six sets, none findable by a gate. |
+| R113 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | TJ | Adults | muslim-2759 | adults-tj-muslim-2759-story.mp3 | adults-tj-muslim-2759-moral.mp3 | adults-tj-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-tj-muslim-2759-bg-mixed.mp4 | vocal-nasheed-04.mp3 | NO (P078) | adults-tj-muslim-2759-reel.mp4 | 32.4s | 6.6 MB | No subtitles (P078). WORST DEFECT OF THE SET: the generated S block appended commentary INSIDE the Prophet's SAW quotation - a clause about the door of repentance closing, which is true, is in the H block, and is not in the matn. The reel would have had the Prophet SAW saying words he did not say. Rules 17-20 did not prevent it because they are about the moral block; nothing forbade adding to the quotation itself. M block inverted its own meaning: 'gunohro ta'khir nadeh' says do not delay the SIN. Both caught by reading. First real TJ set on v4; the three audition words came back correct. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -170,6 +174,7 @@
 | Sahih al-Bukhari #6857 | EN, RU, UZ, TJ | Adults | R098, R099, R100, R101 |
 | Sahih Muslim #2628 | EN, RU, UZ, TJ | Adults | R102, R103, R104, R105 |
 | Sahih Muslim #2963 | EN, RU, UZ, TJ | Adults | R106, R107, R108, R109 |
+| Sahih Muslim #2759 | EN, RU, UZ, TJ | Adults | R110, R111, R112, R113 |
 
 ---
 
@@ -197,7 +202,7 @@
 | Prayer / Fajr & Asr | 4 | R062–R065 | EN, RU, UZ, TJ |
 | Prayer / Reckoning | 4 | R066–R069 | EN, RU, UZ, TJ |
 | Parents / Mother | 4 | R070–R073 | EN, RU, UZ, TJ |
-| Repentance / Mercy | 8 | R074–R077, R086–R089 | EN, RU, UZ, TJ |
+| Repentance / Mercy | 12 | R074–R077, R086–R089, R110–R113 | EN, RU, UZ, TJ |
 | Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
 | Speech / Manners | 4 | R082–R085 | EN, RU, UZ, TJ |
 | Kindness / Charity | 4 | R090–R093 | EN, RU, UZ, TJ |
@@ -234,7 +239,7 @@
 |---|---|---|---|
 | vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
-| vocal-nasheed-04.mp3 | 12 | R107 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107 |
+| vocal-nasheed-04.mp3 | 13 | R113 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113 |
 | vocal-nasheed-01.mp3 | 10 | R108 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108 |
 | vocal-nasheed-03.mp3 | 9 | R099 | R029, R035, R043, R058, R070, R081, R089, R092, R099 |
 | vocal-nasheed-05.mp3 | 9 | R109 | R032, R036, R045, R059, R069, R082, R093, R098, R109 |
@@ -261,6 +266,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| m2759-door-night, threshold, firstlight, dawn | 1 set | 2026-10-05 (R110-R113) | R110-R113 |
 | m2963-windows, bowls, sandals, room | 1 set | 2026-10-04 (R106-R109) | R106-R109 |
 | b2628-musk, stall, forge, robes | 1 set | 2026-10-03 (R102–R105) | R102–R105 |
 | b6857-still, cracked, firstrain, flow | 1 set | 2026-10-01 (R098–R101) | R098–R101 |
@@ -331,6 +337,10 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | b2628-forge.mp4 | 4 | R102, R103, R104, R105 |
 | b2628-robes.mp4 | 4 | R102, R103, R104, R105 |
 | b4251-path, rain, door, dawn | 1 set | 2026-09-09 (R074–R077) | R074–R077 | First 10s set, Kling 2.6 Pro. 40s total — no looping on a 32–38s reel. |
+| m2759-door-night.mp4 | 4 | R110, R111, R112, R113 |
+| m2759-threshold.mp4 | 4 | R110, R111, R112, R113 |
+| m2759-firstlight.mp4 | 4 | R110, R111, R112, R113 |
+| m2759-dawn.mp4 | 4 | R110, R111, R112, R113 |
 
 **Note:** R004 and R005 used `Get-Random -Count 3` from the library. Exact clip combinations weren't logged at production time. Future reels: log explicit clip filenames via the random-pick PowerShell output line. 
 
@@ -346,19 +356,19 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 109 |
+| Total reels posted | 113 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 57 |
+| Adults reels | 61 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 28 |
-| Library rows | 70 (28 used, 42 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×24, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 15 (Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×8, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
+| Hadiths used (unique) | 29 |
+| Library rows | 70 (29 used, 41 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 15 (Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
 
-**105 reels from 27 hadiths.** Twenty-seven of 70 library rows have been used;
-43 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**113 reels from 29 hadiths.** Twenty-nine of 70 library rows have been used;
+41 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the
