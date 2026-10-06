@@ -63,6 +63,70 @@
       "verified": true,
       "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed."
     },
+    "aswati-Focused-Determination.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Firm and forward-moving. 88.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Gentle-Reflection.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Quiet and unhurried. Shortest of the eight but still longer than any reel to date. 49.6s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Heartfelt-Gratitude.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Warm, long enough to bed several reels without reaching its own repeat. 206.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Morning-Serenity.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Calm and bright. Shortest bed in the whole library at 46.3s - still clears a 40s reel, but it is the one to watch if reels ever get longer. 46.3s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Peaceful-Contemplation.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Still and reflective; closest in character to the vocal-nasheed-0x beds. 56.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Rising-Hope.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Lifts through its length - check it against a sombre matn before pairing. 93.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Steady-Motivation.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Even and driving. 89.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
+    "aswati-Victory-March.mp3": {
+      "classification": "vocal",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Martial in character and the most assertive of the eight. Longest bed in the library. Most likely of the set to fight a gentle hadith; pair deliberately. 220.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
+    },
     "vocal-hamd-kids-01.mp3": {
       "classification": "vocal",
       "lanes": [],
