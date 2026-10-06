@@ -144,6 +144,15 @@ class Finding:
         self.note = note
 
 
+ATTRIBUTION_MARKERS = (
+    # any clause that IS the attribution is not an addition to it
+    r'prophet|messenger|said|skazal|prorok|aytdilar|payghambar|farmudand|'
+    r'payomabar|\u043f\u0440\u043e\u0440\u043e\u043a|\u0441\u043a\u0430\u0437\u0430\u043b|'
+    r'\u043f\u0430\u0439\u0493\u0430\u043c\u0431\u0430\u0440|\u0430\u0439\u0442\u0434\u0438\u043b\u0430\u0440|'
+    r'\u043f\u0430\u0451\u043c\u0431\u0430\u0440|\u0444\u0430\u0440\u043c\u0443\u0434\u0430\u043d\u0434|\ufdfa'
+)
+
+
 def parse_blocks(text):
     """Split S:/M:/H:/C: labelled text into blocks, keeping line numbers."""
     blocks = {}
@@ -300,6 +309,50 @@ def check_simile(blocks, lang, matn):
     return out
 
 
+
+def check_quote_addition(blocks, lang, matn):
+    """P111 r18/r22: a clause inside the STORY block that is not in the matn.
+
+    Rule 18 has forbidden additions inside the attribution since the #2628 set
+    and it was still broken on Sahih Muslim #2759 - the Tajik story block
+    appended commentary about the door of repentance closing after the matn
+    ended, INSIDE the Prophet's SAW quotation. Rules are written in English and
+    hold best in English; the two languages with no subtitle pass are the two
+    that broke them. So this check does not read rules, it reads vocabulary:
+    every clause of the story block must share words with the hadith it claims
+    to be quoting. An appended clause shares almost none.
+
+    Clause-level, not sentence-level: the #2759 addition rode in after an em
+    dash inside the same sentence, so a sentence split would have scored the
+    whole sentence as mostly-matn and passed it.
+    """
+    if not matn:
+        return [Finding('INFO', 'quote-addition', BLOCK_NAMES['S'], 0, '',
+                        'pass --matn to check the story block against the '
+                        'hadith text')]
+    matn_n = normalise(matn)
+    out = []
+    for line_no, line in blocks.get('S', []):
+        for clause in re.split(r'(?<=[.!?])\s+|\s[\u2014\u2013-]\s|;', line):
+            clause = clause.strip()
+            if not clause:
+                continue
+            if re.search(ATTRIBUTION_MARKERS, clause, re.IGNORECASE):
+                continue
+            words = re.findall(r'\w{5,}', normalise(clause))
+            if len(words) < 3:
+                continue
+            shared = sum(1 for w in words if w in matn_n)
+            if shared / len(words) < 0.34:
+                out.append(Finding(
+                    'WARN', 'quote-addition', BLOCK_NAMES['S'], line_no, clause,
+                    'P111 r18: this clause shares %d of %d words with the matn '
+                    '- commentary appended inside the quotation reads as part '
+                    'of what he SAID. Correct scholarship belongs in H.'
+                    % (shared, len(words))))
+    return out
+
+
 def check_inversion(blocks, lang):
     pats = INVERSION_TERMS.get(lang, [])
     note = ('P111 r15: possible meaning inversion - if the hadith describes '
@@ -412,7 +465,7 @@ def main():
     ap.add_argument('--lang', required=True,
                     choices=['en', 'ru', 'uz', 'tj', 'ar'])
     ap.add_argument('--matn', default='',
-                    help='hadith text from hadith_library (simile check)')
+                    help='hadith text from hadith_library (simile + quote-addition checks)')
     args = ap.parse_args()
 
     try:
@@ -453,6 +506,7 @@ def main():
         ('unnamed-authority', lambda: check_unnamed_authority(blocks, args.lang)),
         ('seerah-source',     lambda: check_seerah_source(blocks)),
         ('simile',            lambda: check_simile(blocks, args.lang, args.matn)),
+        ('quote-addition',    lambda: check_quote_addition(blocks, args.lang, args.matn)),
         ('inversion',         lambda: check_inversion(blocks, args.lang)),
     ]
     findings = []

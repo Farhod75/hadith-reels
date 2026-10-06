@@ -248,6 +248,30 @@ if ($nasheeds.Count -ge 1) {
   }
   Write-Host "  nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $avoided)" -ForegroundColor DarkGray
 
+  # P201: the tracker has a Nasheed column per reel and the asset-reuse audit
+  # depends on it, but .last-used.json keeps ONE value per lane and the next
+  # render overwrites it. On the R110-R113 set three of the four bed names
+  # survived nowhere but a console buffer that was then closed. The picker is
+  # the only thing that knows; it writes it down, beside the output, now.
+  # WriteAllText and not Set-Content -Encoding utf8: on PS 5.1 that writes a
+  # BOM and this file is read back as JSON (P186).
+  try {
+    if (-not (Test-Path $workDir)) { New-Item -ItemType Directory -Force -Path $workDir | Out-Null }
+    $sidecar = [ordered]@{
+      nasheed   = (Split-Path $chosen -Leaf)
+      scenes    = $Scenes
+      fitScenes = [bool]$FitScenes
+      style     = $Style
+      lang      = $Lang
+      slug      = $Slug
+      rendered  = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+    } | ConvertTo-Json
+    [System.IO.File]::WriteAllText("$workDir\$base-render.json", $sidecar,
+      (New-Object System.Text.UTF8Encoding($false)))
+  } catch {
+    Write-Host "  could not write $base-render.json - record the nasheed by hand" -ForegroundColor Yellow
+  }
+
   # P117: asset lane gate. A bed approved for the other lane is a lookup
   # failure, not a judgement call - twice on 2026-08-15 the picker crossed lanes.
   $assetName = Split-Path $chosen -Leaf

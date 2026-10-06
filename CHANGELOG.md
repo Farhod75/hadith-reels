@@ -1,3 +1,51 @@
+## [2026-10-05]
+
+### Added
+- `app/api/generate-reel/route.ts` — rules 21 and 22 (P199). Rule 21 requires
+  the STORY block to name the speaker: the Uzbek generation for Sahih Muslim
+  #2759 came back with NO attribution anywhere in the block, from the same prompt
+  that produced a correct one in the other three languages. Nothing had ever
+  required it — rule 17 mentions the attribution only in passing, while
+  explaining what the moral must not do. Rule 22 states that 15—21 apply with
+  equal force outside English, because on this set English obeyed all of them,
+  Uzbek broke 17, and Tajik broke 17 and 18.
+- `scripts/lint-content.py` — `check_quote_addition`, the tenth check (P199).
+  Splits the story block into clauses and scores each one's vocabulary against
+  `--matn`; a clause sharing almost none of the hadith's words is an addition to
+  it. Clause-level rather than sentence-level, because the #2759 addition rode in
+  after an em dash inside an otherwise-faithful sentence. Verified against the
+  real defective Tajik text — 1 of 5 words shared, flagged — and against the
+  corrected text, clean.
+- `render-reel.ps1` — per-reel `<base>-render.json` sidecar recording the
+  chosen nasheed, scene list and `-FitScenes` (P201). `.last-used.json` keeps one
+  value per lane and the next render overwrites it, so three of the four bed
+  names from this set existed nowhere but a closed console buffer and are not
+  recoverable. Written with `WriteAllText`, not `Set-Content -Encoding utf8`,
+  which adds a BOM on PS 5.1 (P186).
+- P199 — the rules are written in English and they hold best in English. The
+  first instinct was that a rule was missing; rule 18 had forbidden exactly this
+  since the #2628 set. The failure is instruction-following degrading with
+  distance from the prompt's own language — and UZ and TJ, the two that broke
+  the rules, are the same two P078 exempts from subtitles. Weakest generation,
+  thinnest verification, same two lanes.
+- P200 — Whisper transcribes sound, so everything that is only in the text
+  dies. Divine-pronoun capitalisation and Russian yo are properties of the text
+  and were never given to it. Four of five RU findings and two of three EN
+  findings tonight were this class. OPEN, with the design recorded.
+- P201 — the nasheed a render chose exists only in the console.
+- P202 — a still is identified by its file suffix, never by where it sat in a
+  paste. Cost one FLUX call and one Kling clip after "variant 3" in chat turned
+  out not to be `-3.jpg` on disk.
+
+### Changed
+- `assets/asset-registry.json` — four m2759 clips registered and classified.
+  Notes record that Kling adds a moon the still does not contain, that FLUX 2
+  returned a DOUBLE door on two separate runs of the same prompt (so single-leaf
+  must be stated), and that m2759-firstlight arrives close to dawn by 7s and
+  should not be re-used expecting a distinct pre-dawn state.
+- `reel-tracker.md` — R110—R113 (Sahih Muslim #2759, all four languages).
+  113 reels / 29 hadiths / 61 adults.
+
 ## [2026-10-04]
 
 ### Changed

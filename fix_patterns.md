@@ -7171,3 +7171,159 @@ Anthropic's own prompting guidance and still not applied to the text generator)
 rendered on the first call a shot v1.1 had refused six times, which means the
 concept abandoned that afternoon was a model limit nobody thought to question.
 Kling 3.0 evaluation still OPEN.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 199: The rules are written in English and they hold best in English
+## ═══════════════════════════════════════════════════════════
+**ID:** P199
+**Type:** A guardrail that silently weakens in the languages that need it most
+**Files:** app/api/generate-reel/route.ts, scripts/lint-content.py
+**Found:** 2026-10-05, on the Sahih Muslim #2759 set, by reading all four
+
+Rules 17—20 were written after the #2963 set and they worked. On #2759 the
+ENGLISH generation obeyed every one of them. Then:
+
+- **Uzbek** broke rule 17 (the moral referred back to the hadith as a
+  quotation) and shipped a story block with **NO ATTRIBUTION AT ALL** — the
+  matn stated as bare text, no Prophet SAW, no narrator, on a channel whose
+  entire premise is that its content is traceable.
+- **Tajik** broke rule 17 AND rule 18: commentary about the door of repentance
+  closing was appended INSIDE the Prophet's SAW quotation, after the matn ends.
+  The commentary is correct, it is in the H block where it belongs, and putting
+  it in his mouth still means the reel has him saying words he did not say.
+  The same block inverted its own moral: `gunohro ta'khir nadeh` — do not delay
+  the SIN.
+
+**The first instinct was that a rule was missing. It was not.** Rule 18 has
+forbidden exactly this since the #2628 set. Writing a rule 21 that restates 18
+would have changed nothing, because the failure is not that the model lacks the
+instruction — it is that instruction-following degrades as the language gets
+further from the prompt's own. UZ and TJ are also the two languages P078 exempts
+from subtitles, so they are the two with no automated reader downstream. The
+weakest generation and the thinnest verification are the same two lanes.
+
+**What was actually missing** was a requirement that the story block NAME THE
+SPEAKER. Rule 17 mentions the attribution only in passing, while explaining what
+the moral must not do. Nothing ever said the story must carry one. That is now
+rule 21.
+
+**And a rule is the wrong instrument here anyway.** `check_quote_addition` in
+lint-content.py does not read rules: it splits the story block into clauses and
+scores each one's vocabulary against the library matn. A clause that shares
+almost no words with the hadith it claims to quote is an addition, in any
+language, whatever the prompt says. Clause-level, not sentence-level — the
+#2759 addition rode in after an em dash inside an otherwise-faithful sentence,
+which a sentence split would have scored as mostly-matn and passed. Verified
+against the real defective text: 1 of 5 words shared, flagged; corrected text,
+clean.
+
+**Rule:** when a guardrail is prose in a prompt, assume it holds in English and
+degrades from there. If the defect it prevents is one that must never ship, it
+needs a deterministic check as well — and the check should test the artefact,
+not the instruction.
+
+**Related:** P111 (the rule set), P191 (invented dhikr instruction), P078 (UZ/TJ
+have no subtitle pass), P116 (length pressure is fabrication pressure)
+
+**Status:** FIXED — rules 21—22 added to the generator, `quote-addition` check
+added to lint-content.py (10 checks now) and verified to fire on the real defect.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 200: Whisper transcribes sound, so everything that is only in the text dies
+## ═══════════════════════════════════════════════════════════
+**ID:** P200
+**Type:** A known, repeating, mechanical correction done by hand every time
+**Files:** render-reel.ps1 (step 5), scripts/stt-validate.py
+**Found:** 2026-10-05, after correcting the same class by hand on EN and RU
+
+The subtitle review pause has caught, on every en/ru reel: divine pronouns
+lowercased (`His`, `He`; `Svoyu`, `On`), Russian yo flattened to ye, and a
+capitalised `Zapada` where the matn means a direction. None of these are
+transcription errors. Whisper heard the audio correctly. Capitalisation and yo
+are properties of the TEXT, and the text was never given to it.
+
+On this set that was four of the five RU findings, and two of the three EN ones.
+The fifth RU finding — `doblagoslovit` for `da blagoslovit` — is a real word
+boundary error and is exactly the kind of thing the pause exists for.
+
+**So the pause is doing two jobs and only one of them needs a human.** A
+post-Whisper pass with a per-language table (His/He/Him; Svoyu/On/Ego/Emu) and a
+yo restore would have removed four findings from the operator's plate tonight and
+left the one that actually needed judgement.
+
+**Why this is not cosmetic:** `-NoReview` skips the human, and the help text says
+it does NOT skip the validator. True, but the validator only WARNS. A render with
+`-NoReview` therefore ships lowercase divine pronouns with a clean-looking run.
+
+**Rule:** if a correction is the same every time and depends only on the source
+text, it is not review — it is a transform that was never written.
+
+**Related:** P078 (subtitles only for en/ru/ar), P188 (verify every write), P093
+(audit exit-code contract), P199 (deterministic checks over prose rules)
+
+**Status:** OPEN — recorded with the design. The source text is already on disk
+as draft.txt, which is what the validator compares against, so the pass has
+everything it needs.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 201: The nasheed a render chose exists only in the console
+## ═══════════════════════════════════════════════════════════
+**ID:** P201
+**Type:** A fact the tracker requires that nothing persists
+**Files:** render-reel.ps1, reel-tracker.md
+**Found:** 2026-10-05, writing the R110—R113 rows
+
+The tracker has a Nasheed column and the asset-reuse audit depends on it — that
+table is how asset fatigue gets spotted. The picker writes
+`out/backgrounds/.last-used.json`, but that file holds ONE value per lane and the
+next render overwrites it.
+
+Four reels were rendered tonight. By the time the rows were written, three of the
+four bed names existed nowhere but a terminal scrollback that had been closed.
+R110, R111 and R112 are recorded as `not recorded (P201)` and the values are not
+recoverable.
+
+**The state file is not a log.** It was built for one purpose — avoid repeating
+the previous bed — and it does that correctly. Reading it as a record of what
+shipped is reading a cache as an archive.
+
+**Rule:** anything the tracker requires per reel must be written per reel, beside
+the artefact, by the step that decides it.
+
+**Related:** P168 (registry drives the picker), P117 (lane gate), P188 (the write
+path can silently no-op)
+
+**Status:** FIXED — render-reel.ps1 now writes the chosen bed into a per-reel
+sidecar next to the output.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 202: A still is identified by its file suffix, never by where it sat in a paste
+## ═══════════════════════════════════════════════════════════
+**ID:** P202
+**Type:** An identifier invented at the point of review
+**Files:** scripts/generate-image.ps1, animated-reel-scene-prompts.md
+**Found:** 2026-10-05, after four Kling clips had already been paid for
+
+`generate-image.ps1 -Count 3` writes `<name>-1.jpg`, `-2`, `-3`. The operator
+pastes the three into chat; the assistant calls them "variant 1, 2, 3" by the
+order they appear. **Those two numberings are not the same**, and nothing says so.
+
+On the m2759 set the assistant picked "variant 3" for firstlight and dawn on the
+strength of which way the door was hinged, wrote commands naming `-3.jpg`, and
+the operator ran them exactly as written. The clips came back with the door on
+the wrong side. The first conclusion drawn was that the wrong files had been
+used. Reading the actual `-3` files off disk showed the opposite: the commands
+were correct and the PICK was wrong, made against an image that did not have that
+suffix.
+
+Cost: one extra FLUX call and one extra Kling clip, ~$0.74, plus the twenty
+minutes spent diagnosing a run error that never happened.
+
+**Rule:** a still is identified by its filename. Review by opening the file, or
+quote the suffix when discussing it. Position in a message is not an identifier.
+
+**Related:** P197 (a convention that lives only in filenames), P118 (a label and
+a fallback disagreeing)
+
+**Status:** FIXED for the process — naming is stated in
+animated-reel-scene-prompts.md and the pick is now made by reading files off disk.

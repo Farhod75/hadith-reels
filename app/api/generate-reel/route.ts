@@ -9,6 +9,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+import { writeFile } from 'fs/promises'
+import path from 'path'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
@@ -197,7 +199,25 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     records. Render the whole saying continuously.
 20. NEVER instruct the listener to recite anything the matn does not contain. No
     "say alhamdulillah", no named dhikr, no du'a formula, no phrase to repeat.
-    The hadith's own instruction is the only instruction.`
+    The hadith's own instruction is the only instruction.
+21. The STORY block MUST name the speaker. Every story block opens with the
+    Prophet SAW being identified as the one who said this - "The Prophet SAW
+    said", "Prorok SAW skazal", "Payghambar SAW aytdilar", "Payomabar SAW
+    farmudand" - and the saying follows it. A story block that states the matn
+    as bare text with no speaker is NOT a shorter version of a correct one. It
+    is an unattributed claim, and an unattributed claim is the one thing this
+    channel cannot publish. Evidence: the Uzbek generation for Sahih Muslim
+    #2759 came back with no attribution anywhere in the block, from the same
+    prompt that produced a correct attribution in English, Russian and Tajik.
+22. Rules 15-21 apply with EQUAL force in Uzbek, Tajik and Russian as in
+    English. They are written in English and they hold best in English: on
+    Sahih Muslim #2759 the English generation obeyed all of them, Uzbek broke
+    rule 17, and Tajik broke rules 17 AND 18 - appending commentary about the
+    door of repentance closing INSIDE the Prophet's SAW quotation, where the
+    matn ends. Correct scholarship placed in his mouth is still an addition to
+    his speech. Before emitting a non-English generation, check the quoted span
+    clause by clause against the matn you were given and drop anything the matn
+    does not contain.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-5',
@@ -240,6 +260,32 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     result.lang           = lang
     result.style          = style
     result.seerah_source  = seerahSource.name
+
+    // P196: write draft.txt from the RAW generated output, BEFORE any human
+    // has corrected it. Until 2026-10-05 draft.txt was written by hand AFTER
+    // the block review, so lint-content.py only ever saw text a human had
+    // already cleaned. On the #2963 set it reported "no findings" four times
+    // on text whose defects had been removed by eye minutes earlier - one of
+    // them a Latin "af" inside a Cyrillic word, which its own check_script
+    // fails on when shown. The linter was grading the proofreading instead of
+    // guarding the output, and four clean runs looked like evidence that
+    // generation was clean.
+    // Dev only, and never fatal: a generation must not fail because a
+    // convenience file could not be written. Same posture as P106.
+    if (process.env.NODE_ENV !== 'production') {
+      try {
+        const oneLine = (s: any) => String(s || '').replace(/\s*\n\s*/g, ' ').trim()
+        const draft =
+          'S: ' + oneLine(result.story) + '\r\n' +
+          'M: ' + oneLine(result.moral) + '\r\n' +
+          'H: ' + oneLine(result.seerah_context) + '\r\n' +
+          'C: ' + oneLine(result.title) + '\r\n'
+        await writeFile(path.join(process.cwd(), 'draft.txt'), draft, 'utf8')
+        console.log('P196: draft.txt written from raw generation (' + lang + ')')
+      } catch (e: any) {
+        console.error('P196: draft.txt write failed:', e?.message)
+      }
+    }
     
     return NextResponse.json(result)
 
