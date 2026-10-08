@@ -88,6 +88,34 @@ the connection appear. If they do not, the Page-link hypothesis is dead and the
 Graph API is the only route to comment triage — which is what Agent #15 is for,
 and it is blocked behind the Facebook appeal.
 
+## Agent fleet
+
+**15 agents scoped, 1 built.** `asset-auditing` shipped 2026-08-15 (P117) and is
+the gate that blocked the m2759 render until the clips were classified — it
+works. `tts-validating` has a SKILL.md v1 with no scripts behind it. The other
+thirteen are specs.
+
+**The roadmap has been found incomplete three times**, each time missing the
+agent for whatever had just happened: it had no agent that PRODUCES a reel until
+#13 was added on 2026-08-31, having been written with an orchestrator that would
+have had nothing to dispatch; #14 came after a competitor question; #15 after a
+viewer objection arrived in the Instagram comments. CLAUDE.md step 8 says to
+assume a fourth gap exists. That is a standing instruction, not a resolved item.
+
+**The unbuilt agent marked Tier 1** — highest daily return of anything unbuilt
+— is the one that takes a hadith number, language, style and mascot, writes the
+four blocks, checks them against the recurring-defect table, pulls the matn from
+the correct DB column, writes draft.txt, runs lint-content.py, picks a least-used
+nasheed, assembles the render command and then STOPS. Every one of those steps
+was done by hand across four languages on 2026-10-05, and the two defects that
+mattered most that day — a missing attribution and commentary inside a
+quotation — were caught by reading, which is the step this agent explicitly does
+not replace.
+
+**Nothing here is scheduled.** The fleet is a roadmap with dates from the
+original post-Hajj plan, all of them passed. Decide whether to build the Tier 1
+agent or to mark the roadmap as aspirational and stop counting against it.
+
 ---
 
 ## Assets
