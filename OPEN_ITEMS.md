@@ -65,6 +65,17 @@ before the next sourcing run and either fix the index or delete this item.
 
 ## Pipeline / design
 
+**Re-measure the per-language rules that v4 invalidated.** CLAUDE.md carries
+"ﷺ glyph handling is PER-LANGUAGE, **measured 2026-08-16**": EN, UZ and TJ voice
+the raw glyph, RU does not and must have it expanded before TTS. P193 is that
+every pronunciation measurement is SCOPED TO THE MODEL and expires when the
+model changes — and the model changed to eleven_v4 on 2026-10-04. The R107
+tracker note already records v4 narrating the symbol as spoken words in RU,
+which contradicts the rule. Nobody re-ran the measurement. The same expiry
+applies to the whole pronunciation watch-list in reel-creation-pipeline.md.
+Found 2026-10-08 by cross-referencing the rule's own date against P193, not by
+anything failing.
+
 **Generator rules in positive form.** The prompt is now 22 rules and most of
 them are NEVER. R026 is that negations reinforce what they forbid, and
 Anthropic's own prompting guidance says to state what the model should DO. Both
