@@ -1,7 +1,7 @@
-# CLAUDE.md
+﻿# CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
-# Last updated: 2026-10-01
+# Last updated: 2026-10-08
 
 ---
 
@@ -30,25 +30,30 @@ document.
    depends on a tool version. ElevenLabs shipped v4 on 2026-09-28 and it was
    found six days later by accident; Kling and FLUX are still a major version
    behind. Check the "Next due" date and run the weekly check if it has passed.
-3. `fix_patterns.md` — **tail only**, for the current P number and the last few
+3. `OPEN_ITEMS.md` — **what is still outstanding.** fix_patterns records
+   WHY something happened, one Status line at a time across 200+ patterns;
+   it is not a list. Everything not in it lived in chat, and chat ends —
+   items have slipped that way twice. Read before planning the session, and
+   close an item IN THE FILE when it ships, in the same commit.
+4. `fix_patterns.md` — **tail only**, for the current P number and the last few
    patterns. One sequence across HR and HV; HR holds the frontier. Never guess
    the next number.
-4. `reel-creation-pipeline.md` — the live production flow, the per-language E2E
+5. `reel-creation-pipeline.md` — the live production flow, the per-language E2E
    checklists, and the pronunciation watch-list. That list is SCOPED TO A MODEL
    (P193) — if step 2 said the model changed, every entry in it has expired.
-5. `reel-tracker.md` — tail of Active reels for what shipped and what went wrong,
+6. `reel-tracker.md` — tail of Active reels for what shipped and what went wrong,
    plus the asset-reuse tables before picking a nasheed or a scene set.
-6. `QA_STANDARDS_AGENT_RULES.md` Section 10 — verification discipline. 10.10 and
+7. `QA_STANDARDS_AGENT_RULES.md` Section 10 — verification discipline. 10.10 and
    10.11 in particular: read the live repo, and do not add a step to an
    established workflow without checking what the previous run did.
-7. `agent-fleet-roadmap.md` — only when the session will touch agents or asks
+8. `agent-fleet-roadmap.md` — only when the session will touch agents or asks
    what is automated. 15 agents scoped, 1 built. It has three times been found
    missing the agent for whatever had just happened; assume a fourth gap exists.
-8. `assets/asset-registry.json` — only when a reel will be rendered. Nothing may
+9. `assets/asset-registry.json` — only when a reel will be rendered. Nothing may
    be used in a reel until a human has classified it, and the renderer enforces
    that, not this document.
 
-**Steps 1–6 are not optional and not a menu.** Steps 7 and 8 are conditional.
+**Steps 1–7 are not optional and not a menu.** Steps 8 and 9 are conditional.
 
 If the repo is not reachable, say so and mark every repo claim as coming from a
 snapshot of unknown age, in the same sentence as the claim. See QA_STANDARDS
@@ -107,6 +112,13 @@ destroyed a working file during one session.
   `[System.IO.File]::WriteAllText($path, $text)`. Two Python agents were
   installed via `Copy-Item` on 2026-08-23 and persisted and committed normally,
   so the revert above does not affect every write path.
+- **`[System.IO.File]` methods ignore PowerShell's current location.** They
+  resolve a relative path against the PROCESS working directory, not where
+  `cd` / `Set-Location` put you, and they do not error — they read or write
+  a DIFFERENT file and report success. On 2026-10-08 a line-ending check run
+  as `ReadAllBytes('CLAUDE.md')` after cd-ing into the repo returned another
+  file's counts twice in a row, and CLAUDE.md was edited on the strength of
+  them. Always pass an absolute path to these methods.
 - **Verify after writing — never assume:**
   `python -c "d=open('<path>','rb').read(); print(len(d), d.count(b'\x00'), d[:4])"`
   Want: expected byte count, 0 nulls, and a sane first four bytes.

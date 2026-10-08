@@ -7327,3 +7327,47 @@ a fallback disagreeing)
 
 **Status:** FIXED for the process — naming is stated in
 animated-reel-scene-prompts.md and the pick is now made by reading files off disk.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 203: A Status line is not a list
+## ═══════════════════════════════════════════════════════════
+**ID:** P203
+**Type:** Tracking that records causes but never answers "what is left"
+**Files:** OPEN_ITEMS.md (new), CLAUDE.md
+**Found:** 2026-10-08, when the operator said not to let the noted items slip
+again — "again" being the word that matters
+
+This file is good at WHY. Every pattern ends in a Status, and a fair number say
+OPEN or PARTLY FIXED. But those are 200+ lines scattered through the longest
+document in the repo, in the order the defects happened, which is the one order
+that has nothing to do with what should be worked on next. Nothing anywhere
+answered "what is outstanding".
+
+So the items that slipped were the ones with no home at all. `b2628` is
+misnamed and has been since P197 — it names a real and different Bukhari
+hadith across four shipped reels. Bukhari #6871 must never be selected because
+the duplicate index keys on number and it is #2654's twin. The Tirmidhi #1899
+Tajik column has been flagged INFO by `audit-library.py` on every run for a
+week. None of these is forgotten because it is hard; they are forgotten because
+the only place they lived was a conversation, and the next session starts with
+a fresh one.
+
+**The near miss:** every one of these is a content-integrity item on a channel
+whose entire claim is that its content is traceable. A misnamed clip set is
+cosmetic. A hadith that ships because nothing remembered it was the twin of one
+already published is not.
+
+**Rule:** if an item survives the session it was found in, it goes in
+OPEN_ITEMS.md in that session. It leaves only when it is done, or when it is
+dropped and the reason is written down. Status lines stay where they are —
+they explain the pattern, and that is a different job.
+
+Read at session start as step 3, before fix_patterns, so a session plans against
+what is outstanding rather than against what was most recently interesting.
+
+**Related:** P197 (the b2628 rename, still open), P147 (hadith_number is not
+unique), P187 (mechanical reconciliation of countable facts), P198 (nothing
+watched the tools, so a watchlist was written — same shape, different subject)
+
+**Status:** FIXED — OPEN_ITEMS.md created and wired into the session-start
+order as step 3; the eleven items outstanding as of today are in it.

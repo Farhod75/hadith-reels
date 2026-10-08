@@ -1,3 +1,18 @@
+## [2026-10-08]
+
+### Added
+- `OPEN_ITEMS.md` — the list of what is outstanding, and `CLAUDE.md` step 3 in
+  the session-start order, which renumbers the rest (P203). fix_patterns records
+  WHY a defect happened, one Status line per pattern across 200+ patterns in the
+  order they occurred; that is not a list, and nothing else answered "what is
+  left". Items that lived only in chat slipped twice. Three of them are
+  content-integrity items, not cosmetics: `b2628` names a real and different
+  Bukhari hadith across four shipped reels, Bukhari #6871 is #2654's twin and the
+  duplicate index keys on number so nothing stops it being picked, and the
+  Tirmidhi #1899 Tajik column has been flagged by audit-library.py every run for
+  a week. An item leaves the file when it is done or when it is dropped with the
+  reason written down.
+
 ## [2026-10-05]
 
 ### Added
