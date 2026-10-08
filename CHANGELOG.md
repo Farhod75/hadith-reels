@@ -13,6 +13,20 @@
   a week. An item leaves the file when it is done or when it is dropped with the
   reason written down.
 
+### Changed
+- `reel-creation-pipeline.md` — two conventions and three platform rules that
+  were settled in conversation on 2026-10-05 and never written down. Step 2: the
+  MORAL block is application and not quotation, so matn-bound formulas like
+  `عز وجل` live in S and the caption and M names Allah plainly — their absence
+  from M is correct, which had to be explained once already; and the library row
+  is the source of truth for wording, so where S and `text_<lang>` differ on
+  register alone, S changes, not the DB. Step 6: no `#` in a YouTube title (it
+  becomes a hashtag link, so "#2759" turns into a tag), no Arabic in a TikTok
+  caption (inconsistent RTL rendering in mixed-script text) with the first line
+  front-loaded because TikTok collapses after about one line, and set the
+  Instagram cover frame by hand because MODE B sets that open at night produce a
+  near-black thumbnail.
+
 ## [2026-10-05]
 
 ### Added

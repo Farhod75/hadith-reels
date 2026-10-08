@@ -136,6 +136,17 @@ output. No test or gate has ever caught one. Read all three fields.
 - **Grammar** — RU/UZ/TJ generations reliably contain 1-2 errors per set.
   Recent: добрость→доброту, бандани→бандага, Равикунандаи→Ривоятгари,
   столбов/столпов inconsistency
+- **The MORAL block is application, not quotation.** Formulas bound to the matn
+  stay where the matn puts them. `عز وجل` / "Mighty and Majestic" belongs in the
+  STORY block and in the caption's quoted matn, and M names Allah plainly —
+  M is the channel speaking, not the Prophet SAW. Its absence from M is correct
+  and is not an omission. Settled on #2759 after it read as one (2026-10-05).
+- **The library row is the source of truth for wording.** When the generated S
+  block and `text_<lang>` differ on a word that is merely register — ғарб against
+  мағриб on #2759, both correct — change S to match the DB, not the DB to match
+  taste. Edit the library only for an actual defect: a missing clause, a
+  non-word, ungrammatical output. Churning it on preference makes the column
+  untrustworthy as a reference, which is the one job it has.
 - **No seerah attribution in captions** — removed in P105. If one appears, that's
   a regression
 
@@ -206,6 +217,21 @@ weekly, measured on views, shares and comments over a two-week window.
 Publish order: Telegram → Instagram → YouTube Shorts → TikTok. YouTube needs
 title, description, and tags as separate fields, and Tags is under SHOW MORE at
 the bottom of the Details page.
+
+**Per-platform, learned the hard way (2026-10-05):**
+
+- **YouTube** — no `#` anywhere in the TITLE. YouTube turns it into a hashtag
+  link, so "Sahih Muslim #2759" becomes a tag. Write the number bare in the
+  title; the `#` is fine in the description.
+- **TikTok** — leave the Arabic matn out. TikTok's caption renderer handles RTL
+  inconsistently inside mixed-script text. The Arabic is already carried on the
+  other three platforms. Front-load the first line too: TikTok collapses the
+  caption after roughly one line, so the hadith's point goes first and the
+  quoted matn follows.
+- **Instagram** — set the cover frame BY HAND. Reels whose first frame is dark
+  get scrolled past in the grid, and MODE B sets that open at night (m2759) or
+  on an unlit interior open on exactly that. Pull the cover from a bright
+  section near the end.
 
 Then log in `reel-tracker.md` — row, duplicate-check index, theme coverage, asset
 reuse, production stats.
