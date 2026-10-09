@@ -117,6 +117,40 @@ reply to Al-Mutawari committed to sending him that link when it ships.
 
 ---
 
+## Ideas, scoped but not scheduled
+
+**HV: verify a hadith from a video or reel link.** Proposed 2026-10-09. The
+reverse of the text/screenshot verifier: a lot of reels recite the hadith aloud,
+and checking one today means copying it out by hand.
+
+Build it in two phases, and the first one is mostly not speech at all:
+
+  - **Phase 1 — caption path.** Paste a link, pull the post's CAPTION, run the
+    EXISTING text verifier. No transcription, no new verdict logic. Most reels
+    carry the hadith or at least the citation in the caption, so this covers
+    the majority of real cases with the component that already works.
+  - **Phase 2 — ASR, only if phase 1 shows demand.** For genuinely
+    caption-less recitation. ARABIC FIRST: the matn is fixed and the register
+    constrained, so a near-match is actual evidence. Output must read
+    “possible match — confirm” and never a verdict, and the transcript must be
+    shown so the human sees what it heard.
+
+**Why not ASR-first.** Transcription is lossy and the matching that follows is
+built on its output, so errors compound into the one thing HV must never emit:
+a confident wrong verdict on a sound narration. The evidence is in this repo —
+Whisper needed hand correction on FOUR consecutive RU sets of our own clean,
+single-voice, no-background TTS audio, and UZ and TJ are where it is weakest.
+A stranger's phone video with a nasheed bed is a much harder input than
+anything we have fed it. The fuzzy-match step afterwards is the same problem
+that defeated check_twin_wording on clean text (P205), with worse signal.
+
+**Build it with agent #15, not beside it.** Both answer “someone posted a
+hadith, is it sound” — #15 from comments, this from posts. One shared path:
+candidate text -> library match -> human confirms. Two separate ones means two
+places for a verdict to be wrong.
+
+---
+
 ## Tools
 
 **Kling 3.0 evaluation.** OPEN on `self_upskilling.md`. Run at a set boundary,
