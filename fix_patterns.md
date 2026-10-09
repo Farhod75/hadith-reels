@@ -7470,7 +7470,7 @@ three real defects on its first run. The other was deleted an hour later.
 #2616, Bukhari #1469 and Bukhari #6018 each have TWO rows under one number.
 Only #6018 was documented. The other two had been recorded in an earlier
 session as 'each appear twice', carried into OPEN_ITEMS as unverified because
-the tracker's index showed only #6018 {D} and they were real. Each pair turns
+the tracker's index showed only #6018 — and they were real. Each pair turns
 out to be one long narration split into clause-level rows, not two different
 hadiths, which is a different diagnosis with the same exposure: the duplicate
 index keys on the number, so producing one clause makes the other read as
@@ -7482,12 +7482,12 @@ Measured against the real rows before trusting it:
 
   - Jaccard on the matn scores that pair at **0.16**.
   - The highest cross-number Jaccard anywhere in the 70 rows is **0.29**.
-  - Containment (shared words over the shorter text) scores the pair 0.56 {D}
+  - Containment (shared words over the shorter text) scores the pair 0.56 —
     but two unrelated pairs score 0.60 and twelve score 0.50+, because short
     rows inflate containment.
 
 There is no cut that separates the case from the noise. The relationship is
-SEMANTIC {D} both narrations are about al-kaba'ir {D} and a lexical score cannot
+SEMANTIC — both narrations are about al-kaba'ir — and a lexical score cannot
 see that. Shipping it would have produced a check that never fires, sitting in
 CROSS_ROW_CHECKS reading as coverage. That is P119/P126/P185/P187/P189 again,
 and this time it was caught before the commit rather than weeks after.
@@ -7506,6 +7506,22 @@ because it is counted as coverage.
 **Related:** P147 (hadith_number is not unique), P119/P126/P185/P187/P189 (a
 gate with no caller), P093 (audit exit-code contract), P203 (OPEN_ITEMS)
 
-**Status:** FIXED {D} duplicate-number check shipped and already finding real
+**Status:** FIXED — duplicate-number check shipped and already finding real
 collisions; twin-wording removed with the measurements recorded in the code
 where it used to be, so it is not re-attempted from intuition.
+
+**One more thing the first version got wrong.** Shipping it at HIGH blocked the
+pre-push hook immediately: `--strict` exits non-zero on HIGH, and three
+pre-existing collisions now existed. A gate that blocks every future push on a
+condition nobody is about to fix is a gate people learn to bypass, and nothing
+already shipped was wrong — the hazard is in SELECTING the next set, not in the
+reels already out.
+
+So the acknowledgement was made load-bearing. `documented_collisions()` reads
+the tracker's duplicate-check index: a number recorded there reports INFO, a
+number not recorded reports HIGH and blocks. Write the row and the gate
+releases; delete the row and it returns. Verified both directions — with the
+index in place 0 high and `--strict` exits 0; with the tracker unreachable all
+three return HIGH. That makes the index the thing that must be kept true, which
+is where a human already looks (P203), rather than a severity level argued
+about once.
