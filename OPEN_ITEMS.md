@@ -73,10 +73,18 @@ and it is blocked behind the Facebook appeal.
 
 ## Agent fleet
 
-**15 agents scoped, 1 built.** `asset-auditing` shipped 2026-08-15 (P117) and is
-the gate that blocked the m2759 render until the clips were classified — it
-works. `tts-validating` has a SKILL.md v1 with no scripts behind it. The other
-thirteen are specs.
+**15 agents scoped. Three have a loadable SKILL.md as of 2026-10-09** —
+`reel-producing` (with a four-case eval corpus), `stt-validating` and
+`tts-validating`. All three existed for weeks in `agents/`, which is not a path
+anything loads from; moved to `.claude/skills/` (P206). `asset-auditing` is the
+one built as scripts, and it works — it is what blocked the m2759 render until
+the clips were classified.
+
+Still open for `reel-producing`: its Scripts section is unimplemented, and the
+eval corpus has NEVER BEEN RUN. Pass criteria are already written: every
+`required` finding on at least 3 of 4 cases and zero `must_not_flag` hits, with
+a false positive failing the run outright. Running it is the next step and it
+needs no new code.
 
 **The roadmap has been found incomplete three times**, each time missing the
 agent for whatever had just happened: it had no agent that PRODUCES a reel until

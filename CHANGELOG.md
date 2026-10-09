@@ -1,6 +1,15 @@
 ## [2026-10-09]
 
 ### Changed
+- Moved `agents/{reel-producing,stt-validating,tts-validating}` to
+  `.claude/skills/` (P206). Claude Code loads project skills from
+  `.claude/skills/<name>/SKILL.md`; `.claude/` had hooks and settings.json and
+  no skills directory, so 43KB of written skill — including a 15KB
+  reel-producing SKILL.md with nine pipeline steps and a four-case eval corpus
+  — had never been loaded by anything. The roadmap called reel-producing
+  “SCOPED, not built”, which is why it survived: it understated what existed,
+  and nobody audits a roadmap for undercounting. Roadmap corrected, and
+  CLAUDE.md now states that a skill outside `.claude/skills/` does not exist.
 - `hadith_library` #1899 — `text_english` and `text_russian` now render
   الوالد as FATHER, matching the Arabic, Uzbek and Tajik columns, which all
   already said father. They had said “parent” / «родителя», so the EN and RU

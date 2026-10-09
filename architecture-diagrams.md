@@ -211,7 +211,7 @@ graph TB
 
 | Primitive | What we have | What we need |
 |---|---|---|
-| Skills | `agents/tts-validating/SKILL.md` (HR) | Build 10 more skills per agent-fleet-roadmap |
+| Skills | `.claude/skills/tts-validating/SKILL.md` (HR) | Build 10 more skills per agent-fleet-roadmap |
 | MCP | Claude Code MCP on Windows | Expose own agents as MCP tools post-Hajj |
 | Subagents | None executable | Build orchestrator post-Hajj using Claude Code agent view |
 | Hooks | `.githooks/pre-push` (smart pre-push v3) | Commit it; document enable command |

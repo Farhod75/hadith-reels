@@ -7537,3 +7537,50 @@ index in place 0 high and `--strict` exits 0; with the tracker unreachable all
 three return HIGH. That makes the index the thing that must be kept true, which
 is where a human already looks (P203), rather than a severity level argued
 about once.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 206: Forty-three kilobytes of skill in a path nothing loads from
+## ═══════════════════════════════════════════════════════════
+**ID:** P206
+**Type:** A gate with no caller, applied to the agent fleet itself
+**Files:** .claude/skills/ (moved), agent-fleet-roadmap.md, CLAUDE.md
+**Found:** 2026-10-09, on being asked to “complete the agent”
+
+The roadmap said agent #13 reel-producing was “SCOPED 2026-08-31, not built”.
+On disk sat a 15KB SKILL.md with nine pipeline steps, a stated boundary,
+governance, versioning and open questions, plus a four-case eval corpus with
+expected findings in a deliberate split layout so the corpus calibrates the
+human too. `stt-validating` and `tts-validating` sat beside it. Forty-three
+kilobytes in total.
+
+All three were in `agents/`. Claude Code loads project skills from
+`.claude/skills/<name>/SKILL.md`. `.claude/` held hooks and settings.json and
+no skills directory at all, so none of the three had ever been loaded by
+anything. They were documents about agents, not agents.
+
+**The frontmatter proves the intent.** Each file opens with `name:` and a
+`description:` written in the when-to-use form a loader keys on — “use this
+skill whenever a reel set is being produced, or any task mentions draft.txt,
+lint-content.py, a hadith slug…”. They were written to be loaded. The last
+step, putting them where loading happens, was never taken, and nothing failed
+to announce it.
+
+**Why it survived.** The two references to them in the docs pointed at the
+files by path and were therefore correct. The roadmap's own status line was
+the only thing that would have caught it, and it said the opposite of the
+truth in the safe direction: claiming LESS was built than had been. Nobody
+audits a roadmap for undercounting.
+
+**Rule:** a skill exists when a loader can find it. Until then it is a design
+document, and the roadmap should say which of the two it is. Same test as
+P119's gate with no caller — ask what calls it, and if the answer is nothing,
+it is not built regardless of how finished the contents look.
+
+**Related:** P119/P126/P185/P187/P189 (a gate with no caller), P188 (the write
+path can silently no-op), P197 (a convention that lives only in filenames),
+P203 (OPEN_ITEMS — the roadmap is not a list of what is done either)
+
+**Status:** FIXED — all three moved to `.claude/skills/` with git mv, the
+roadmap status corrected, and CLAUDE.md now states where skills live and that
+anything outside that path does not exist. STILL OPEN for reel-producing: the
+Scripts section is unimplemented, and the eval corpus has never been run.

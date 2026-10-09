@@ -76,7 +76,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 - **Repo:** Both (HR + HV)
 
 #### 2. tts-validating
-- **Status:** SKILL.md v1 EXISTS (`agents/tts-validating/SKILL.md`) — scripts pending
+- **Status:** SKILL.md v1 EXISTS (`.claude/skills/tts-validating/SKILL.md`) — scripts pending
 - **Role:** Validates audio output from `/api/tts` against contract + phonetic correctness
 - **Tools:** Playwright (audio capture), Whisper local (AR/EN), OpenAI Whisper API (RU/UZ/TJ), Levenshtein scoring, future: semantic similarity (Speechmatics SWER approach)
 - **Eval:** 5 baseline cases (one per language), ≥80% similarity threshold v1
@@ -153,7 +153,7 @@ Per the Anthropic ecosystem overview (see `hr-architecture-diagrams.md` Diagram 
 
 #### 13. reel-producing
 
-- **Status:** SCOPED 2026-08-31, not built. Added after the fleet was found to
+- **Status:** SKILL.md v1 + EVAL CORPUS EXIST and are now LOADABLE (`.claude/skills/reel-producing/`). Corrected 2026-10-09: this said “SCOPED, not built” while a 15KB SKILL.md and a four-case eval suite with expected findings sat on disk in `agents/`, where nothing loads from. Scripts are still unimplemented and the evals have never been run. Added after the fleet was found to
   contain no agent that produces a reel — all twelve above validate or maintain,
   while the roadmap's finish line was an autonomous daily reel post. The
   orchestrator would have had nothing to dispatch.

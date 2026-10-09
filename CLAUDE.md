@@ -55,6 +55,13 @@ document.
 
 **Steps 1–7 are not optional and not a menu.** Steps 8 and 9 are conditional.
 
+**Agent skills live in `.claude/skills/<name>/SKILL.md`** and are loaded
+automatically. Three exist: `reel-producing` (the text half of a reel set,
+with a four-case eval corpus), `stt-validating` and `tts-validating`. They
+sat in `agents/` until 2026-10-09, which is not a path anything loads from,
+so 43KB of written skill was inert for weeks (P206). If a skill is added,
+it goes here or it does not exist.
+
 If the repo is not reachable, say so and mark every repo claim as coming from a
 snapshot of unknown age, in the same sentence as the claim. See QA_STANDARDS
 10.10 and 10.11.
