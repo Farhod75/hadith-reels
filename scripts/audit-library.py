@@ -389,6 +389,32 @@ def check_source(row):
 # once after the per-row pass rather than from CHECKS.
 
 
+def documented_collisions(path='reel-tracker.md'):
+    """Hadith numbers the duplicate-check index already records as colliding.
+
+    A collision nobody has written down must block a push: it is a live
+    selection hazard and the next set could walk into it. One that IS written
+    down has been decided about, and blocking on it forever would turn the
+    gate into noise that gets bypassed - which is how gates stop being read.
+    So the acknowledgement is load-bearing: write the row, and the HIGH drops
+    to INFO. Remove the row and it comes back.
+    """
+    try:
+        with open(path, encoding='utf-8-sig') as fh:
+            text = fh.read()
+    except OSError:
+        return set()  # no tracker reachable - everything stays HIGH
+    out = set()
+    for line in text.split('\n'):
+        if not line.startswith('|'):
+            continue
+        low = line.lower()
+        if 'two rows under this number' in low or 'same number, different hadith' in low:
+            m = re.search(r'#\s*(\d+)', line)
+            if m:
+                out.add(m.group(1))
+    return out
+
 def matn_of(row):
     """The comparable text of a row: Arabic if present, else English."""
     return norm(row.get('text_arabic') or row.get('text_english') or '')
@@ -409,6 +435,7 @@ def check_duplicate_numbers(rows):
     row under a used number reads as 'already produced' and is skipped, or as
     'this one' and is produced in place of the one that was checked.
     """
+    known = documented_collisions()
     by_num = {}
     for r in rows:
         by_num.setdefault(str(r.get('hadith_number', '')).strip(), []).append(r)
@@ -424,13 +451,20 @@ def check_duplicate_numbers(rows):
                 'WARN', 'duplicate-number', '#' + num, 'hadith_number',
                 '%d rows share this number with the SAME wording (%s) - '
                 'a redundant row, pick one' % (len(group), cols), ''))
+        elif num in known:
+            out.append(Finding(
+                'INFO', 'duplicate-number', '#' + num, 'hadith_number',
+                '%d rows share this number (%s) - already recorded in the '
+                "tracker's duplicate-check index; match the wording, not the "
+                'number, when selecting' % (len(group), cols), ''))
         else:
             out.append(Finding(
                 'HIGH', 'duplicate-number', '#' + num, 'hadith_number',
-                '%d rows share this number with DIFFERENT wording (%s) - the '
-                'duplicate index keys on the number, so one can ship '
-                'believing the other was checked (P147)' % (len(group), cols),
-                ''))
+                '%d rows share this number with DIFFERENT wording (%s) and it '
+                'is NOT in the duplicate-check index - the index keys on the '
+                'number, so one can ship believing the other was checked. '
+                'Add a row to the index, then this drops to INFO (P147)'
+                % (len(group), cols), ''))
     return out
 
 
