@@ -20,12 +20,6 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Blocks content — do not ship past these
 
-**Jami at-Tirmidhi #1899, `text_tajik`**
-The parents hadith. 85 characters with none of ӣүҳқғҷ — it reads as Russian with
-Tajik word order, not Tajik. `audit-library.py` has flagged it as INFO on every
-run since it was noticed, including 2026-10-08. Do NOT produce that set until
-the column is rewritten and the audit comes back clean.
-
 **Sahih al-Bukhari #6871 must never follow #2654 without a deliberate call.**
 Different number, same subject (al-kaba'ir). The duplicate index keys on the
 number so nothing flags the pair, and NO automated check covers it — a
@@ -142,6 +136,11 @@ registered as a developer the same day.
 ---
 
 ## Recently closed
+
+- 2026-10-09 — Tirmidhi #1899 reviewed and cleared. The Tajik was never
+  wrong; the diacritic check is a heuristic and that sentence legitimately has
+  none of ӣүҳқғҷ. The actual defect was EN and RU rendering الوالد as
+  “parent” against FATHER in the Arabic, Uzbek and Tajik — now aligned.
 
 - 2026-10-09 — P197 closed. `audit-assets.py --names` built, and all three
   misnamed sets renamed: b2628->m2628, b4248->ij4248, b4251->ij4251. 17 files,

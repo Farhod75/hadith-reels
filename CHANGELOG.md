@@ -1,6 +1,16 @@
 ## [2026-10-09]
 
 ### Changed
+- `hadith_library` #1899 — `text_english` and `text_russian` now render
+  الوالد as FATHER, matching the Arabic, Uzbek and Tajik columns, which all
+  already said father. They had said “parent” / «родителя», so the EN and RU
+  reels of that hadith would have said something the Arabic beneath them does
+  not — on a channel whose premise is that the translation matches the source.
+  The row had been blocked for a week by a tj-no-diacritics INFO that turned
+  out to be a HEURISTIC FALSE POSITIVE: the Tajik is correct and that sentence
+  simply contains none of ӣүҳқғҷ. A week of being treated as suspect,
+  and the thing actually wrong with the row was in two different columns that
+  nothing flagged. Reviewed and recorded in the tracker so it is not re-opened.
 - Renamed all three misnamed scene sets (P197): `b2628-*` -> `m2628-*` (Sahih
   Muslim), `b4248-*` -> `ij4248-*` and `b4251-*` -> `ij4251-*` (both Sunan Ibn
   Majah). 17 files across `new/` and `normalized/`, including two unregistered
