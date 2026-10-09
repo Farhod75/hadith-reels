@@ -35,14 +35,6 @@ it shipped. P147 class. Check wording, not just the number.
 
 ## Recorded, not built
 
-**P200 — post-Whisper capitalisation and yo pass.** Fires on EVERY en/ru reel.
-Whisper transcribes sound, so divine-pronoun capitalisation and Russian yo are
-destroyed every time and restored by hand at the review pause. Four of five RU
-findings on the #2759 set were this class. `-NoReview` skips the human and the
-validator only warns, so a render can ship lowercase divine pronouns with a
-clean-looking run. The source text is already on disk as draft.txt. Highest
-value of anything in this section.
-
 **P196 — the linter only ever sees text a human already cleaned.**
 
 **P197 — `b2628` is misnamed.** It is a Sahih Muslim hadith carrying a Bukhari
@@ -162,6 +154,8 @@ registered as a developer the same day.
 
 ## Recently closed
 
+- 2026-10-09 — P200 fixed: `scripts/restore-srt-casing.py`, wired into
+  render-reel.ps1 ahead of the validator.
 - 2026-10-05 — R110—R113 shipped, Sahih Muslim #2759, four languages, four
   platforms each.
 - 2026-10-05 — P199 generator rules 21—22 and the `quote-addition` lint check.

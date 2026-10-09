@@ -1,5 +1,21 @@
 ## [2026-10-09]
 
+### Added
+- `scripts/restore-srt-casing.py`, called from `render-reel.ps1` after the cue
+  split and before `stt-validate.py` (P200). Whisper transcribes sound, so
+  capitalisation and Russian yo — properties of the text, never given to it —
+  are destroyed on every en/ru reel: four of five RU findings and two of three
+  EN ones on the #2759 set were this class, all corrected by hand.
+  It uses no word list. A list cannot tell which «он» means Allah and would need
+  maintaining; the correct text is already on disk as draft.txt. The script
+  aligns the SRT to it and replaces a token only where the two are identical
+  after normalising case and yo, so it cannot introduce a word Whisper did not
+  hear, cannot change one word into another, and never touches timings. A form
+  the source spells two ways is left alone and reported; the first word of a cue
+  is never lowercased. Round-tripped against the real R111 defects: 11
+  restorations, 0 ambiguous, cue-start «Ведь» correctly preserved. Punctuation
+  and word-boundary errors still go to the human, which is what the pause is for.
+
 ### Fixed
 - `CLAUDE.md` — the ﷺ glyph entry (P204). It had read "glyph handling is
   PER-LANGUAGE, measured 2026-08-16: EN, UZ and TJ voice the raw glyph

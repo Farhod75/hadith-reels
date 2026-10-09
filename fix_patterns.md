@@ -7261,9 +7261,22 @@ text, it is not review — it is a transform that was never written.
 **Related:** P078 (subtitles only for en/ru/ar), P188 (verify every write), P093
 (audit exit-code contract), P199 (deterministic checks over prose rules)
 
-**Status:** OPEN — recorded with the design. The source text is already on disk
-as draft.txt, which is what the validator compares against, so the pass has
-everything it needs.
+**Status:** FIXED 2026-10-09 — `scripts/restore-srt-casing.py`, called from
+render-reel.ps1 after the cue split and BEFORE stt-validate, so the validator
+reports only what needs judgement. It uses no word list: a list cannot tell
+which «он» means Allah, and would need maintaining. It aligns the SRT to
+$Draft and takes the source's spelling, replacing a token only when the two
+are identical after normalising case and yo — so it cannot introduce a word
+Whisper did not hear, cannot turn one word into another, and never touches
+timings. Two guards: a normalised form the source spells two ways is left
+alone and reported as ambiguous, and the first word of a cue is never
+lowercased. Verified by round-trip against the real R111 defects: 11
+restorations (днем -> днём x3, свою -> Свою x3, он -> Он, всемогущий -> Всемогущий,
+великий -> Великий, взойдет -> взойдёт, Запада -> запада), 0 ambiguous, and
+«Ведь» correctly left capitalised at a cue start where the source has it
+mid-sentence. Punctuation and word-boundary errors stay with the human: on
+that same set, «доблагословит» and «сказал,» for «сказал:» needed
+judgement, which is the point — the pause is for the findings that do.
 
 ## ═══════════════════════════════════════════════════════════
 ## PATTERN 201: The nasheed a render chose exists only in the console

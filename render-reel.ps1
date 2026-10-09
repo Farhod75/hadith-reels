@@ -345,6 +345,25 @@ if ($useSubs) {
   }
 }
 
+# --- RESTORE WHAT WHISPER COULD NOT HEAR (P200) -----------------------------
+# Whisper transcribes SOUND. Capitalisation and Russian yo are properties of
+# the TEXT and were never given to it, so divine pronouns come back lowercased
+# and yo flattened on EVERY en/ru reel. On the #2759 set that was four of five
+# RU findings and two of three EN ones - all of them mechanical, all corrected
+# by hand at the pause below. This runs BEFORE the validator so the validator
+# reports only what actually needs a human: word-boundary errors, mishearings,
+# punctuation. It takes its spelling from $Draft, never from a word list.
+if ($useSubs) {
+  $prevPyIO = $env:PYTHONIOENCODING
+  $env:PYTHONIOENCODING = 'utf-8'
+  & python "scripts\restore-srt-casing.py" --srt "$srt" --source "$Draft" --lang $Lang
+  $restoreRc = $LASTEXITCODE
+  $env:PYTHONIOENCODING = $prevPyIO
+  if ($restoreRc -eq 2) {
+    Write-Host "  casing restore could not run - correct the SRT by hand at the pause" -ForegroundColor Yellow
+  }
+}
+
 # --- SUBTITLE VALIDATION (automatic, before the human sees it) --------------
 # P188: stt-validate.py existed for seven weeks and nothing called it. It was
 # documented in CLAUDE.md as Workflow F, in FEATURES.md, in the README and in
