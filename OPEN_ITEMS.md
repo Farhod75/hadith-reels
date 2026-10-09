@@ -89,9 +89,9 @@ Re-run 001 cold to settle it.
 
 Still open for `reel-producing`:
 
-  - Scripts section unimplemented (block parser, tracker parser). The tracker
-    parser written for `audit-assets --names` on 2026-10-09 solves the harder
-    half and can be lifted.
+  - Scripts: step 7 DONE (`scripts/pick-nasheed.py`, 2026-10-09). The step 4
+    S:/M:/H:/C: block parser is the remaining one, reusable from
+    `lint-content.py`.
   - Step 2b pass B has NEVER been exercised — it needs a different model, and
     the run was pass A only. The A/B split the skill specifies is untested.
   - Case 004 may be missing a required `attribution_boundary_open`: it has the

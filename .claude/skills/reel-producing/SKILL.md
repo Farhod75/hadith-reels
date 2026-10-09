@@ -307,12 +307,32 @@ shape as the P112 hum that `tts-validating` cannot hear. Listening stays human.
 
 ## Scripts
 
-Not yet implemented. When built, reuse:
-- the S:/M:/H:/C: block parser from `scripts/lint-content.py`
-- the tracker table parser needed for step 7 — note the tracker's Notes column
-  contains prose and naive `awk -F'|'` field splitting misreads rows; a
-  reconstruction built on that error nearly overwrote R052's history on
-  2026-08-31
+**`scripts/pick-nasheed.py`** — step 7, built 2026-10-09.
+
+```
+python scripts/pick-nasheed.py --lane adults --lang en [--exclude a.mp3 b.mp3]
+```
+
+Recommends and explains; it does not choose and it does not render. Lane
+eligibility comes from the registry through `audit-assets.py --list`, never
+from the filename (P168). Usage comes from the tracker's Active reels rows,
+parsed BY HEADER INDEX — the Notes column holds prose and naive `|` splitting
+misreads rows, which nearly overwrote R052's history on 2026-08-31. Rows whose
+Nasheed cell is not a filename (“not recorded (P201)”) are skipped rather than
+counted as a bed.
+
+`--exclude` takes the beds already assigned to other languages in the same
+set, which is the half of step 7 a usage table cannot know by itself.
+
+**One judgement the step 7 wording leaves open.** Ranking is total uses first,
+then longest-unused in this language, then longest-unused overall. So a bed
+with 8 uses last heard in UZ 13 reels ago outranks one with 9 uses last heard
+77 reels ago. That follows “least-used” literally; it is a choice, not a
+deduction, and it is the line to change if rotation feel matters more than
+count.
+
+Still to build:
+- the S:/M:/H:/C: block parser for step 4, reusable from `scripts/lint-content.py`
 
 ## Governance
 

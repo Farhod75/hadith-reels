@@ -1,6 +1,18 @@
 ## [2026-10-09]
 
 ### Added
+- `scripts/pick-nasheed.py` — step 7 of the reel-producing skill, whose
+  Scripts section had read “not yet implemented” since August. Recommends a bed
+  and states the reason; it does not choose and does not render, because the
+  renderer's own picker has drawn an ocean-ambience track onto R044 and an
+  adults bed onto kids R029 and R030. Lane eligibility comes from the registry
+  via `audit-assets --list`, never from the filename (P168); usage comes from
+  the tracker parsed BY HEADER INDEX, since the Notes column holds prose and
+  naive `|` splitting nearly overwrote R052's history once. Rows reading
+  “not recorded (P201)” are skipped rather than counted as a bed.
+  Verified on both lanes: kids/UZ recommends path-to-jannah-bg (4 uses, never
+  in UZ) over beds with 8 and 9 uses, and `--exclude` correctly drops beds
+  already assigned to other legs of the same set.
 - `.claude/skills/reel-producing/evals/RUN-2026-10-09.md` — first run of the
   eval corpus since it was written on 2026-08-31. Passes v1 (3 of 4 cases with
   every required finding, zero must_not_flag hits) but the pass is provisional:
