@@ -18,6 +18,28 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ---
 
+## Production queue
+
+Set after set, agreed 2026-10-09. Each fills a theme gap the tracker records
+as uncovered.
+
+1. **Sahih Muslim #1631** — the three ongoing deeds. IN PROGRESS. Fills
+   Death / Afterlife (zero coverage) and is the hadith this channel exists
+   under: ongoing charity and beneficial knowledge. Library row verified clean
+   across all six columns before generation.
+2. **Jami at-Tirmidhi #3895** — best to his family. Fills the family /
+   marriage gap. Works in the kids lane if that lane is due.
+3. **Sahih al-Bukhari #5027** — learn the Quran and teach it. Fills
+   Quran / Tilawah (zero coverage). Watch the scene set: a mushaf on a rahle
+   is the obvious image and `ad3641-rahle` already exists, so it risks reading
+   as a repeat.
+
+Not this round: #1469 and #2616 each have the two-row collision, so picking
+either means first deciding which clause. #1903 sits close to #2654's subject
+(false speech) — not a twin, but look at it deliberately rather than by
+surprise.
+
+---
 ## Blocks content — do not ship past these
 
 **Sahih al-Bukhari #6871 must never follow #2654 without a deliberate call.**
