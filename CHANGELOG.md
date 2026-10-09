@@ -1,5 +1,23 @@
 ## [2026-10-09]
 
+### Added
+- `.claude/skills/reel-producing/evals/RUN-2026-10-09.md` — first run of the
+  eval corpus since it was written on 2026-08-31. Passes v1 (3 of 4 cases with
+  every required finding, zero must_not_flag hits) but the pass is provisional:
+  the README's coverage table names each case's defects and was read before
+  case 001, so that case was answered with the answers in hand. Discounted,
+  the score is 2 of 3 — below the bar.
+  The valuable result is the case 002 miss. `isnad_verb_in_story_block` was
+  not overlooked; the run examined the line, decided «передал» is correct for a
+  companion, and recorded it as deliberately not flagged. The verb is correct;
+  the defect is that the isnad line sits inside the narrated span where it
+  reads as the Prophet's ﷺ words. A known rule applied to the wrong axis,
+  producing a confident exclusion rather than a silent miss.
+  Two corpus defects found by running it: the README spoils the cases in the
+  same file that argues for the split layout (now behind a spoiler warning),
+  and `attribution_boundary_open` is required on 001 but absent from 004,
+  which has the identical construction.
+
 ### Changed
 - Moved `agents/{reel-producing,stt-validating,tts-validating}` to
   `.claude/skills/` (P206). Claude Code loads project skills from

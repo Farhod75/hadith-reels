@@ -56,6 +56,13 @@ touching the textareas. Then fixtures are artifacts, not transcriptions.
 
 ## What these four cases cover
 
+> **SPOILERS — do not read this before working a case.** This table names each
+> case's defects. It contradicts the split layout argued for above, and on the
+> first run of the corpus (2026-10-09) it was read before case 001, which made
+> that case worthless as evidence — the run answered it with the answers in
+> hand. Work the cases first. This table is for someone surveying coverage,
+> not for someone about to be measured by it.
+
 | Case | Lang | Carries |
 |---|---|---|
 | 001 | EN | attribution boundary left open; a claim contradicting the moral; Allah absent |

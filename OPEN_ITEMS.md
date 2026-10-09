@@ -80,11 +80,24 @@ anything loads from; moved to `.claude/skills/` (P206). `asset-auditing` is the
 one built as scripts, and it works — it is what blocked the m2759 render until
 the clips were classified.
 
-Still open for `reel-producing`: its Scripts section is unimplemented, and the
-eval corpus has NEVER BEEN RUN. Pass criteria are already written: every
-`required` finding on at least 3 of 4 cases and zero `must_not_flag` hits, with
-a false positive failing the run outright. Running it is the next step and it
-needs no new code.
+**`reel-producing` evals RUN for the first time on 2026-10-09** (record:
+`.claude/skills/reel-producing/evals/RUN-2026-10-09.md`). Passes v1 on paper —
+3 of 4 cases with every required finding, zero `must_not_flag` hits — but the
+pass is PROVISIONAL: case 001 was answered after its defects had been read in
+the README's coverage table, so discounting it gives 2 of 3, below the bar.
+Re-run 001 cold to settle it.
+
+Still open for `reel-producing`:
+
+  - Scripts section unimplemented (block parser, tracker parser). The tracker
+    parser written for `audit-assets --names` on 2026-10-09 solves the harder
+    half and can be lifted.
+  - Step 2b pass B has NEVER been exercised — it needs a different model, and
+    the run was pass A only. The A/B split the skill specifies is untested.
+  - Case 004 may be missing a required `attribution_boundary_open`: it has the
+    same construction as 001, which requires it.
+  - The adults lane still has no E2E checklist, which the skill names as a
+    precondition for driving that lane.
 
 **The roadmap has been found incomplete three times**, each time missing the
 agent for whatever had just happened: it had no agent that PRODUCES a reel until
