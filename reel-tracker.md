@@ -170,6 +170,9 @@
 | Sunan Ibn Majah #4248 | EN, RU, UZ, TJ | Adults | R086, R087, R088, R089 |
 | Sahih Muslim #1005 | EN, RU, UZ, TJ | Kids | R090, R091, R092, R093 |
 | Sahih al-Bukhari #6018 (honor his neighbor) | — | — | UNUSED — same number, DIFFERENT hadith. hadith_number is not unique (P147): match the wording, not just the number. |
+| Jami at-Tirmidhi #2616 | — | — | TWO ROWS under this number, each holding a DIFFERENT CLAUSE of Mu'adh's long narration — one is «charity extinguishes sin as water extinguishes fire», the other «the head of the matter is Islam, its pillar is the prayer». Found 2026-10-09 by the new duplicate-number check, not by reading. Producing one makes the other read as already done. Decide which clause the set is about BEFORE selecting. |
+| Sahih al-Bukhari #1469 | — | — | TWO ROWS under this number, each a different clause of the patience narration — «no one has been given a gift better and more comprehensive than patience» and «whoever tries to be patient, Allah will grant him patience». Same exposure as #2616. Found 2026-10-09. |
+| Sahih al-Bukhari #6871 | — | — | DO NOT PRODUCE after #2654 without deciding deliberately. Different NUMBER, same subject (al-kaba'ir, the major sins): #2654 is the long «shall I not inform you of the greatest of the major sins» narration, #6871 the short list. The duplicate index keys on the number, so nothing flags the pair. NO AUTOMATED CHECK COVERS THIS — a similarity check was written on 2026-10-09 and removed: the two score 0.16 on matn overlap, and the highest score anywhere in the library is 0.29, so no threshold separates them (P205). This row is the mechanism. |
 | Sahih al-Bukhari #2654 | EN, RU, UZ, TJ | Adults | R094, R095, R096, R097 |
 | Sahih al-Bukhari #6857 | EN, RU, UZ, TJ | Adults | R098, R099, R100, R101 |
 | Sahih Muslim #2628 | EN, RU, UZ, TJ | Adults | R102, R103, R104, R105 |

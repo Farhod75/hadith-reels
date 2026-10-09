@@ -7434,3 +7434,58 @@ any language and records what the entry used to say and why it was wrong. The
 glyph item is closed in OPEN_ITEMS; the rest of the pronunciation watch-list is
 still unverified against v4 and stays open. The expansion itself is KEPT: every
 verified reel to date was narrated with it.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 205: The check was written, measured, and deleted the same day
+## ═══════════════════════════════════════════════════════════
+**ID:** P205
+**Type:** A gate that would never have fired, caught before it shipped
+**Files:** scripts/audit-library.py, reel-tracker.md
+**Found:** 2026-10-09, by testing a new check against the case it was for
+
+Two cross-row checks were added to the library audit. One works and found
+three real defects on its first run. The other was deleted an hour later.
+
+**check_duplicate_numbers WORKS.** Three HIGH findings immediately: Tirmidhi
+#2616, Bukhari #1469 and Bukhari #6018 each have TWO rows under one number.
+Only #6018 was documented. The other two had been recorded in an earlier
+session as 'each appear twice', carried into OPEN_ITEMS as unverified because
+the tracker's index showed only #6018 {D} and they were real. Each pair turns
+out to be one long narration split into clause-level rows, not two different
+hadiths, which is a different diagnosis with the same exposure: the duplicate
+index keys on the number, so producing one clause makes the other read as
+already done.
+
+**check_twin_wording DOES NOT, and was removed.** It existed for Bukhari
+#2654 and #6871: different numbers, same subject, nothing flagging the pair.
+Measured against the real rows before trusting it:
+
+  - Jaccard on the matn scores that pair at **0.16**.
+  - The highest cross-number Jaccard anywhere in the 70 rows is **0.29**.
+  - Containment (shared words over the shorter text) scores the pair 0.56 {D}
+    but two unrelated pairs score 0.60 and twelve score 0.50+, because short
+    rows inflate containment.
+
+There is no cut that separates the case from the noise. The relationship is
+SEMANTIC {D} both narrations are about al-kaba'ir {D} and a lexical score cannot
+see that. Shipping it would have produced a check that never fires, sitting in
+CROSS_ROW_CHECKS reading as coverage. That is P119/P126/P185/P187/P189 again,
+and this time it was caught before the commit rather than weeks after.
+
+**What replaced it:** a row in the tracker's duplicate-check index, beside the
+#6018 entry, saying plainly that #6871 must not follow #2654 without a
+deliberate decision and that no automated check covers it. A human-readable
+fact in the place a human already looks, instead of an algorithm that cannot
+do the job.
+
+**Rule:** before adding a check, run it against the case that motivated it and
+look at the score distribution. A threshold chosen from intuition rather than
+from the data is a guess, and a check that cannot fire is worse than no check,
+because it is counted as coverage.
+
+**Related:** P147 (hadith_number is not unique), P119/P126/P185/P187/P189 (a
+gate with no caller), P093 (audit exit-code contract), P203 (OPEN_ITEMS)
+
+**Status:** FIXED {D} duplicate-number check shipped and already finding real
+collisions; twin-wording removed with the measurements recorded in the code
+where it used to be, so it is not re-attempted from intuition.

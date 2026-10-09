@@ -382,6 +382,78 @@ def check_source(row):
     return []
 
 
+
+# ---------------------------------------------------------- cross-row checks
+# Every check above looks at ONE row. These two compare rows against each
+# other, which is where the duplicate-selection risk actually lives, and run
+# once after the per-row pass rather than from CHECKS.
+
+
+def matn_of(row):
+    """The comparable text of a row: Arabic if present, else English."""
+    return norm(row.get('text_arabic') or row.get('text_english') or '')
+
+
+def _overlap(a, b):
+    """Jaccard over word sets. Crude on purpose - this flags for a human."""
+    sa, sb = set(a.split()), set(b.split())
+    if not sa or not sb:
+        return 0.0
+    return len(sa & sb) / len(sa | sb)
+
+
+def check_duplicate_numbers(rows):
+    """P147: hadith_number is NOT unique, and the duplicate index keys on it.
+
+    The tracker's duplicate-check index is keyed on the number, so a second
+    row under a used number reads as 'already produced' and is skipped, or as
+    'this one' and is produced in place of the one that was checked.
+    """
+    by_num = {}
+    for r in rows:
+        by_num.setdefault(str(r.get('hadith_number', '')).strip(), []).append(r)
+    out = []
+    for num, group in sorted(by_num.items()):
+        if len(group) < 2 or not num:
+            continue
+        texts = [matn_of(r) for r in group]
+        same = all(_overlap(texts[0], t) > 0.9 for t in texts[1:])
+        cols = ' / '.join(sorted({str(r.get('collection', '?')) for r in group}))
+        if same:
+            out.append(Finding(
+                'WARN', 'duplicate-number', '#' + num, 'hadith_number',
+                '%d rows share this number with the SAME wording (%s) - '
+                'a redundant row, pick one' % (len(group), cols), ''))
+        else:
+            out.append(Finding(
+                'HIGH', 'duplicate-number', '#' + num, 'hadith_number',
+                '%d rows share this number with DIFFERENT wording (%s) - the '
+                'duplicate index keys on the number, so one can ship '
+                'believing the other was checked (P147)' % (len(group), cols),
+                ''))
+    return out
+
+
+# check_twin_wording was written here on 2026-10-09 and REMOVED the same day.
+# The case it existed for is Bukhari #2654 and #6871 - the duplicate index
+# keys on the number, so #6871 can be produced after #2654 with nothing
+# noticing. Measured against the real rows: Jaccard on the matn scores that
+# pair at 0.16, and the highest cross-number Jaccard anywhere in the 70 rows
+# is 0.29, so any threshold that fires is a threshold that fires on
+# everything. Containment (shared words over the shorter text) scores the
+# pair at 0.56 - but two unrelated pairs score 0.60 and twelve score 0.50 or
+# better, because short rows inflate containment. There is no cut that
+# separates them.
+#
+# The relationship is SEMANTIC - both narrations are about al-kaba'ir - and
+# not lexical. A similarity score cannot see that, and a check that never
+# fires is worse than no check: it reads as coverage. Recorded instead as an
+# explicit row in the tracker's duplicate-check index, which is where the
+# #6018 collision already lives (P205).
+
+CROSS_ROW_CHECKS = [check_duplicate_numbers]
+
+
 CHECKS = [
     ('tj', check_tj_russian_fallback),
     ('tj', check_tj_diacritics),
@@ -476,6 +548,12 @@ def main():
             if args.lang and lang and lang != args.lang:
                 continue
             findings.extend(fn(row))
+
+    # Cross-row checks need the whole table, so they are skipped when --row
+    # narrowed the fetch to one hadith - a single row cannot collide.
+    if not args.row:
+        for xfn in CROSS_ROW_CHECKS:
+            findings.extend(xfn(rows))
 
     return report(findings, len(rows), args.table, args.strict)
 

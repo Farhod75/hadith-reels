@@ -26,10 +26,13 @@ Tajik word order, not Tajik. `audit-library.py` has flagged it as INFO on every
 run since it was noticed, including 2026-10-08. Do NOT produce that set until
 the column is rewritten and the audit comes back clean.
 
-**Sahih al-Bukhari #6871 must never be selected**
-It is #2654's twin wording. The duplicate-check index keys on `hadith_number`,
-so nothing stops it being picked and nothing would flag the near-duplicate after
-it shipped. P147 class. Check wording, not just the number.
+**Sahih al-Bukhari #6871 must never follow #2654 without a deliberate call.**
+Different number, same subject (al-kaba'ir). The duplicate index keys on the
+number so nothing flags the pair, and NO automated check covers it — a
+similarity check was written and removed on 2026-10-09 because the pair scores
+0.16 against a library-wide maximum of 0.29 (P205). The mechanism is now a row
+in the tracker's duplicate-check index. This item stays open only as a pointer
+to that row.
 
 ---
 
@@ -44,14 +47,6 @@ half: `audit-assets.py` has no opinion on whether a clip name matches its
 hadith, and the tracker holds both columns, so the reconciliation is a few lines.
 
 **P126 — classifier blind spots.** Partly covered.
-
-**Verify: further P147 duplicate-number collisions.**
-An earlier session recorded that Jami at-Tirmidhi #2616 and Sahih al-Bukhari
-#1469 each appear TWICE in `hadith_library` under one number. The tracker's
-duplicate-check index documents only the #6018 collision, so this is unconfirmed
-— it may have been noted in conversation and never written down, or it may
-have been resolved. Sweep `hadith_library` for repeated `hadith_number` values
-before the next sourcing run and either fix the index or delete this item.
 
 ---
 
@@ -153,6 +148,11 @@ registered as a developer the same day.
 ---
 
 ## Recently closed
+
+- 2026-10-09 — duplicate-number check added to audit-library.py; it found
+  Tirmidhi #2616 and Bukhari #1469 doubled on first run, confirming what an
+  earlier session had recorded and OPEN_ITEMS carried as unverified. Both are
+  now rows in the tracker's duplicate-check index.
 
 - 2026-10-09 — P200 fixed: `scripts/restore-srt-casing.py`, wired into
   render-reel.ps1 ahead of the validator.

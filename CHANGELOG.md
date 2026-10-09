@@ -1,6 +1,30 @@
 ## [2026-10-09]
 
 ### Added
+- `scripts/audit-library.py` — `check_duplicate_numbers`, the first cross-row
+  check in that script (P205). Three HIGH findings on its first run: Jami
+  at-Tirmidhi #2616, Sahih al-Bukhari #1469 and Sahih al-Bukhari #6018 each
+  have TWO rows under one number, and only #6018 was documented. The other two
+  had been recorded in an earlier session and carried in OPEN_ITEMS as
+  unverified because the tracker's index showed only #6018 — they were real.
+  Each pair is one long narration split into clause-level rows rather than two
+  different hadiths, which is a different diagnosis with the same exposure: the
+  duplicate index keys on the number, so producing one clause makes the other
+  read as already done. All three are now rows in that index.
+
+### Removed
+- `check_twin_wording`, written and deleted the same day (P205). It existed for
+  Bukhari #2654 and #6871 — different numbers, same subject, nothing flagging
+  the pair. Measured before trusting it: Jaccard scores that pair 0.16 against
+  a library-wide maximum of 0.29, and containment scores it 0.56 while two
+  unrelated pairs score 0.60. No threshold separates the case from the noise,
+  because the relationship is semantic and the score is lexical. Shipping it
+  would have added a gate that never fires and reads as coverage — the
+  P119/P126/P185/P187/P189 shape, caught this time before the commit. The
+  measurements are recorded in the code where the function used to be so it is
+  not re-attempted from intuition, and #6871 is handled by an explicit row in
+  the tracker's duplicate-check index instead.
+
 - `scripts/restore-srt-casing.py`, called from `render-reel.ps1` after the cue
   split and before `stt-validate.py` (P200). Whisper transcribes sound, so
   capitalisation and Russian yo — properties of the text, never given to it —
