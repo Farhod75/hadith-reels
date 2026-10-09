@@ -210,10 +210,20 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - **P118:** RU adults shipped twice narrated by Adam (American English) under an
   `Abrar` label. Verify the voice ID, never the label.
 - NEVER fall back to "tr-TR" Turkish for UZ — pronunciation diverges enough to confuse listeners.
-- **ﷺ glyph handling is PER-LANGUAGE, measured 2026-08-16:** EN, UZ and TJ all
-  voice the raw glyph correctly. **RU does not** — expand it to
-  «да благословит его Аллах и приветствует» before TTS, and expand «(р.а.)» to
-  «да будет доволен им Аллах». No `cleanForTTS` change is needed for the other three.
+- **The ﷺ glyph NEVER reaches TTS, in any language.** `cleanForTTS` in
+  `app/api/tts/route.ts` expands it before the request for all five — ar, uz,
+  tj, ru and the en default — along with (pbuh), (saw) and p.b.u.h. The
+  per-language values are the EXPANSIONS, not a per-language decision about
+  whether to expand.
+- **Corrected 2026-10-09.** This entry previously read "glyph handling is
+  PER-LANGUAGE, measured 2026-08-16: EN, UZ and TJ voice the raw glyph
+  correctly, RU does not". The measurement was real but it described model
+  behaviour the code makes unreachable, and the doc read as though RU were a
+  special case in the pipeline. It is not. Re-checked on eleven_v4 on
+  2026-10-09: all languages handle the glyph correctly — which means the
+  expansion is now insurance rather than a fix, and is kept because every
+  verified reel to date was narrated with it (P118: do not change what
+  produced the shipped output without a reason).
 
 ### 3. Video Generation
 - Use FFmpeg server-side, NEVER client-side WebCodecs (too inconsistent across iOS/Android).

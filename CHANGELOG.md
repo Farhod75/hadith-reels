@@ -1,3 +1,16 @@
+## [2026-10-09]
+
+### Fixed
+- `CLAUDE.md` — the ﷺ glyph entry (P204). It had read "glyph handling is
+  PER-LANGUAGE, measured 2026-08-16: EN, UZ and TJ voice the raw glyph
+  correctly, RU does not". The measurement was real; the conclusion was not.
+  `cleanForTTS` expands the glyph for every language and always has, so the raw
+  glyph has never reached a TTS provider and RU is not a special case in the
+  pipeline. The entry now says what the code does, and records what it used to
+  say. The expansion is kept — every verified reel was narrated with it.
+  Closes the open item filed a day earlier on the theory that v4 had invalidated
+  the rule: it had been moot since before v4, and the code was never read.
+
 ## [2026-10-08]
 
 ### Added

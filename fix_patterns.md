@@ -7371,3 +7371,53 @@ watched the tools, so a watchlist was written — same shape, different subject)
 
 **Status:** FIXED — OPEN_ITEMS.md created and wired into the session-start
 order as step 3; the eleven items outstanding as of today are in it.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 204: A measurement written down as a rule, in a pipeline that never runs it
+## ═══════════════════════════════════════════════════════════
+**ID:** P204
+**Type:** Doc and code disagreeing, with the code winning silently
+**Files:** CLAUDE.md, app/api/tts/route.ts
+**Found:** 2026-10-09, after the operator re-checked the glyph on v4
+
+CLAUDE.md carried, for seven weeks: "ﷺ glyph handling is PER-LANGUAGE, measured
+2026-08-16: EN, UZ and TJ all voice the raw glyph correctly. RU does not —
+expand it before TTS."
+
+The measurement was real. The conclusion drawn from it was not, because
+`cleanForTTS` expands the glyph for EVERY language — ar, uz, tj, ru and the en
+default — and has done since it was written. The raw glyph has never been sent
+to any TTS provider. A reader of that entry would believe RU is a special case
+in the pipeline. It is not; the per-language values are the EXPANSIONS, and the
+decision to expand is unconditional.
+
+**This produced a false alarm, and then a second wrong diagnosis.** The R107
+tracker note recorded the symbol "narrated as spoken words on v4, contradicting
+the pipeline doc's rule" — but that was `cleanForTTS` behaving normally, not v4
+contradicting anything. On 2026-10-08 the assistant then cross-referenced the
+entry's 2026-08-16 date against P193 (measurements expire when the model
+changes), concluded v4 had invalidated the rule, and filed it as an open item.
+Plausible, tidy, and wrong: the rule had been moot since before v4 existed. The
+code was never read. A dated, specific, confidently-worded doc entry is exactly
+the kind that gets reasoned FROM instead of checked.
+
+**Why the shape matters.** P118 is a label and a fallback disagreeing, and it
+shipped two reels in the wrong voice. This is the same shape with the opposite
+outcome: the code was right and the doc was wrong, so nothing broke, and that
+is precisely why it survived seven weeks. A doc-code disagreement that causes
+no failure has no clock on it.
+
+**Rule:** a measurement of MODEL behaviour and a statement of PIPELINE behaviour
+are different claims. Write the measurement with its date and model, and write
+separately what the code does about it — and before acting on a doc entry that
+describes code, read the code.
+
+**Related:** P118 (a label and a fallback disagreeing — THE FALLBACKS ARE the
+source of truth), P193 (measurements are scoped to the model that produced
+them), P187 (mechanical reconciliation of countable facts), P203 (OPEN_ITEMS)
+
+**Status:** FIXED — CLAUDE.md now states that the glyph never reaches TTS in
+any language and records what the entry used to say and why it was wrong. The
+glyph item is closed in OPEN_ITEMS; the rest of the pronunciation watch-list is
+still unverified against v4 and stays open. The expansion itself is KEPT: every
+verified reel to date was narrated with it.
