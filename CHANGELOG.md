@@ -1,6 +1,21 @@
 ## [2026-10-09]
 
 ### Added
+- `scripts/audit-assets.py --names` — reconciles every scene clip name in the
+  tracker against the hadith it was used for (P197). `--audit` enforces that a
+  clip is registered and lane-approved, which is what P117 built it for; it has
+  no opinion about whether the NAME points at the right narration.
+  ELEVEN misnamed clips across THREE sets on the first run, where only one was
+  known: `b2628-*` (Sahih Muslim #2628 under a Bukhari prefix, R102—R105),
+  `b4248-*` (Sunan Ibn Majah #4248, R086—R089) and `b4251-*` (Sunan Ibn Majah
+  #4251, R074—R077). The two Ibn Majah sets have been wrong since R074 and
+  nothing noticed.
+  The discriminator is the number. Reusing a scene set on a later hadith is
+  intended and looks identical to a misnaming unless you compare it: same
+  number with the wrong collection letter means the set was built for this
+  hadith and labelled with another collection, a different number means reuse.
+  That turns 16 raw mismatches into 11 defects and 5 expected reuses, and the
+  reuses are listed rather than silently dropped.
 - `scripts/audit-library.py` — `check_duplicate_numbers`, the first cross-row
   check in that script (P205). Three HIGH findings on its first run: Jami
   at-Tirmidhi #2616, Sahih al-Bukhari #1469 and Sahih al-Bukhari #6018 each

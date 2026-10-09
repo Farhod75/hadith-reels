@@ -7119,8 +7119,28 @@ next entry.
 **Related:** P117 (the asset registry gate), P118 (a label and a fallback
 disagreeing), P187 (the doc audit — mechanical reconciliation of countable facts)
 
-**Status:** PARTLY FIXED — convention written into animated-reel-scene-prompts.md
-section 5b. The b2628 rename and the audit check are both OPEN.
+**Status:** CHECK BUILT 2026-10-09, RENAME STILL OPEN — convention written into
+animated-reel-scene-prompts.md section 5b; `audit-assets.py --names` now
+reconciles every clip name in the tracker against the hadith it was used for.
+
+It found ELEVEN misnamed clips across THREE sets on its first run, not one:
+
+  b2628-musk / stall / forge / robes   Sahih Muslim #2628, Bukhari prefix
+  b4248-clearing / sky / tide          Sunan Ibn Majah #4248, Bukhari prefix
+  b4251-dawn / door / path / rain      Sunan Ibn Majah #4251, Bukhari prefix
+
+b2628 was the only one known. The two Ibn Majah sets have been misnamed since
+R074 and R086 and nothing noticed, which is the point of the check.
+
+The discriminator matters: reuse of a scene set on a later hadith is intended
+and looks identical to a misnaming unless you compare the NUMBER. Same number
+with the wrong collection letter means the set was built for this hadith and
+labelled with another collection; a different number means reuse. That split
+turns 16 raw mismatches into 11 defects and 5 expected reuses (b527 on R058-61,
+b1520-path on R010-13), with the reuses listed rather than hidden.
+
+The renames remain open: files, registry entries and the tracker rows for
+R074-R077, R086-R089 and R102-R105.
 
 ## ═══════════════════════════════════════════════════════════
 ## PATTERN 198: Nothing watched the tools, so three of them were a major version behind

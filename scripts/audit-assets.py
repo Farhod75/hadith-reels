@@ -32,6 +32,8 @@ USAGE
 """
 
 import argparse
+import re
+import io
 import json
 import os
 import sys
@@ -229,6 +231,125 @@ def cmd_list(reg, lane, classification=None):
 
     return 0
 
+# Collection -> the letter a scene clip's name must start with. The
+# convention was never written down until P197, and it was inferred BACKWARDS
+# from a misnamed set before that: b2628 carries a Bukhari prefix on a Sahih
+# Muslim hadith, and Bukhari #2628 is a real and different hadith about gifts.
+# Four shipped reels reference it.
+COLLECTION_LETTER = {
+    'sahih al-bukhari': 'b',
+    'sahih muslim': 'm',
+    'sunan abu dawud': 'ad',
+    'jami at-tirmidhi': 't',
+    'sunan ibn majah': 'ij',
+    'musnad ahmad': 'ah',
+}
+
+CLIP_NAME = re.compile(r'^([a-z]+)(\d+)-')
+
+
+def cmd_names(tracker):
+    """Reconcile every scene clip name against the hadith it was used for.
+
+    audit-assets --audit enforces that a clip is REGISTERED and approved for
+    the lane, which is what P117 built it for. It has no opinion about whether
+    the NAME matches the narration. The tracker holds the hadith and the clip
+    names side by side on every row, so the reconciliation is mechanical - and
+    it is the check that would have caught b2628 at the time instead of six
+    sets later.
+    """
+    try:
+        text = io.open(tracker, encoding='utf-8-sig').read()
+    except OSError as e:
+        print('FAILED: cannot read %s (%s)' % (tracker, e))
+        return 2
+
+    rows = [l for l in text.split('\n') if l.startswith('|')]
+    header = None
+    for l in rows:
+        cells = [c.strip() for c in l.split('|')]
+        if 'Reel ID' in cells and 'Bg Clips Used' in cells:
+            header = cells
+            break
+    if not header:
+        print('FAILED: no Active reels header in %s' % tracker)
+        return 2
+    i_id = header.index('Reel ID')
+    i_hadith = header.index('Hadith')
+    i_clips = header.index('Bg Clips Used')
+
+    findings = {}
+    reuse = {}
+    checked = 0
+    for l in rows:
+        cells = [c.strip() for c in l.split('|')]
+        if len(cells) <= max(i_id, i_hadith, i_clips):
+            continue
+        rid = cells[i_id]
+        if not re.match(r'^R\d+$', rid):
+            continue
+        m = re.match(r'^(.*?)\s*#\s*(\d+)', cells[i_hadith])
+        if not m:
+            continue
+        want_letter = COLLECTION_LETTER.get(m.group(1).strip().lower())
+        want_num = m.group(2)
+        if not want_letter:
+            continue
+        for clip in [c.strip() for c in cells[i_clips].split(',') if c.strip()]:
+            cm = CLIP_NAME.match(clip)
+            if not cm:
+                continue  # kaaba.mp4, makka-tower.mp4 and friends are generic
+            checked += 1
+            got_letter, got_num = cm.group(1), cm.group(2)
+            if got_letter == want_letter and got_num == want_num:
+                continue
+            key = (clip, '%s #%s' % (m.group(1).strip(), want_num))
+            # Reuse is intended: a scene set may carry a later reel for a
+            # different hadith, and the tracker's own rule is only 'not
+            # within three sets'. The discriminator is the NUMBER. Same
+            # number with the wrong collection letter is a misnaming - the
+            # set was built for this hadith and labelled with another
+            # collection. A different number is the set being reused.
+            if got_num == want_num:
+                findings.setdefault(key, []).append(rid)
+            else:
+                reuse.setdefault(key, []).append(rid)
+
+    width = 66
+    print()
+    print('=' * width)
+    print(' clip-name audit - %d clip references across the tracker' % checked)
+    print('=' * width)
+    if not findings:
+        print('  no misnamed clips: every clip built for a hadith carries that')
+        print('  hadith\'s collection letter.')
+    for (clip, hadith), reels in sorted(findings.items()):
+        cm = CLIP_NAME.match(clip)
+        implied = [k for k, v in COLLECTION_LETTER.items() if v == cm.group(1)]
+        print()
+        print('  [MISMATCH] %s' % clip)
+        print('    used for : %s' % hadith)
+        print('    name says: %s #%s' % (
+              implied[0].title() if implied else 'unknown prefix %r' % cm.group(1),
+              cm.group(2)))
+        print('    reels    : %s' % ', '.join(sorted(set(reels))))
+    if reuse:
+        print()
+        print('  %d clip(s) reused on a different hadith - expected, not a' % len(reuse))
+        print('  defect; the set rule is only not-within-three-sets:')
+        for (clip, hadith), reels in sorted(reuse.items()):
+            print('    %-26s on %-24s (%s)'
+                  % (clip, hadith, ', '.join(sorted(set(reels)))))
+    print()
+    print('-' * width)
+    print('  %d misnamed clip(s), %d reused' % (len(findings), len(reuse)))
+    print('  Reports only. A name that points at a different narration is')
+    print('  wrong in the registry permanently, across every reel using it.')
+    print('-' * width)
+    print()
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(
         description='Enforce the asset registry.')
@@ -243,10 +364,17 @@ def main():
                     help='print filenames approved for --lane, one per line')
     ap.add_argument('--section', choices=['audio', 'mascots', 'scenes'],
                     help='restrict --list to one section')
+    ap.add_argument('--names', action='store_true',
+                    help='reconcile scene clip names against the tracker')
+    ap.add_argument('--tracker', default='reel-tracker.md',
+                    help='tracker to read for --names')
     args = ap.parse_args()
 
+    if args.names:
+        return cmd_names(args.tracker)
+
     if not args.check and not args.audit and not args.list:
-        ap.error('give --audit, --list --lane LANE, or --check FILE --lane LANE')
+        ap.error('give --audit, --names, --list --lane LANE, or --check FILE --lane LANE')
     if args.check and not args.lane:
         ap.error('--check requires --lane')
     if args.list and not args.lane:

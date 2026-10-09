@@ -40,11 +40,17 @@ to that row.
 
 **P196 — the linter only ever sees text a human already cleaned.**
 
-**P197 — `b2628` is misnamed.** It is a Sahih Muslim hadith carrying a Bukhari
-prefix, and Bukhari #2628 is a real and different hadith on gifts. Needs the
-files, the registry and the R102—R105 tracker rows renamed to `m2628`. Second
-half: `audit-assets.py` has no opinion on whether a clip name matches its
-hadith, and the tracker holds both columns, so the reconciliation is a few lines.
+**P197 — THREE scene sets are misnamed, 11 clips.** `audit-assets.py --names`
+now finds them (built 2026-10-09); the renames are the open part:
+
+  - `b2628-*` (4) — Sahih Muslim #2628 under a Bukhari prefix, and Bukhari
+    #2628 is a real and different hadith about gifts. R102—R105.
+  - `b4248-*` (3) — Sunan Ibn Majah #4248 under a Bukhari prefix. R086—R089.
+  - `b4251-*` (4) — Sunan Ibn Majah #4251 under a Bukhari prefix. R074—R077.
+
+Only b2628 was known. Each rename touches the files, the registry entries and
+the tracker rows for four shipped reels, so it rewrites published records —
+worth doing in one deliberate pass rather than piecemeal.
 
 **P126 — classifier blind spots.** Partly covered.
 
