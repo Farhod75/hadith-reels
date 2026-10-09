@@ -1,5 +1,18 @@
 ## [2026-10-09]
 
+### Changed
+- Renamed all three misnamed scene sets (P197): `b2628-*` -> `m2628-*` (Sahih
+  Muslim), `b4248-*` -> `ij4248-*` and `b4251-*` -> `ij4251-*` (both Sunan Ibn
+  Majah). 17 files across `new/` and `normalized/`, including two unregistered
+  b4248 clips that would otherwise have kept the wrong prefix; 11 registry keys
+  with the reason appended to each entry's notes; 18 tracker lines.
+  Three tracker lines were deliberately left alone: they are prose and dated
+  change-log entries that describe the defect BY its old name. A rename is not
+  a find-and-replace — the filename is data, the sentence about the filename
+  is history.
+  Verified after: 0 misnamed, registry and disk agree, the new name passes
+  `--check` and the old name is rejected.
+
 ### Added
 - `scripts/audit-assets.py --names` — reconciles every scene clip name in the
   tracker against the hadith it was used for (P197). `--audit` enforces that a

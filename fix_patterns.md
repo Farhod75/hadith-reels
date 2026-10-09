@@ -7119,7 +7119,7 @@ next entry.
 **Related:** P117 (the asset registry gate), P118 (a label and a fallback
 disagreeing), P187 (the doc audit — mechanical reconciliation of countable facts)
 
-**Status:** CHECK BUILT 2026-10-09, RENAME STILL OPEN — convention written into
+**Status:** FIXED 2026-10-09 — convention written into
 animated-reel-scene-prompts.md section 5b; `audit-assets.py --names` now
 reconciles every clip name in the tracker against the hadith it was used for.
 
@@ -7139,8 +7139,20 @@ labelled with another collection; a different number means reuse. That split
 turns 16 raw mismatches into 11 defects and 5 expected reuses (b527 on R058-61,
 b1520-path on R010-13), with the reuses listed rather than hidden.
 
-The renames remain open: files, registry entries and the tracker rows for
-R074-R077, R086-R089 and R102-R105.
+All three sets were renamed on 2026-10-09: 17 files across new/ and
+normalized/ (including two unregistered b4248 clips that would otherwise have
+kept the wrong prefix), 11 registry keys with the reason appended to each
+entry's notes, and 18 tracker lines.
+
+THREE tracker lines were deliberately NOT renamed. Lines 129, 437 and 440 are
+prose and dated change-log entries that describe the defect by its old name —
+“scene set named m2963 after discovering b2628 breaks the collection-letter
+convention” and “b2628 should be m2628”. Rewriting those would have destroyed
+the record of the thing being fixed. A rename is not a find-and-replace: the
+filename is data, the sentence about the filename is history.
+
+Verified after: 0 misnamed, registry and disk agree, `--check m2628-musk.mp4`
+passes and `--check b2628-musk.mp4` is rejected.
 
 ## ═══════════════════════════════════════════════════════════
 ## PATTERN 198: Nothing watched the tools, so three of them were a major version behind

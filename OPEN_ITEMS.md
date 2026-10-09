@@ -40,18 +40,6 @@ to that row.
 
 **P196 — the linter only ever sees text a human already cleaned.**
 
-**P197 — THREE scene sets are misnamed, 11 clips.** `audit-assets.py --names`
-now finds them (built 2026-10-09); the renames are the open part:
-
-  - `b2628-*` (4) — Sahih Muslim #2628 under a Bukhari prefix, and Bukhari
-    #2628 is a real and different hadith about gifts. R102—R105.
-  - `b4248-*` (3) — Sunan Ibn Majah #4248 under a Bukhari prefix. R086—R089.
-  - `b4251-*` (4) — Sunan Ibn Majah #4251 under a Bukhari prefix. R074—R077.
-
-Only b2628 was known. Each rename touches the files, the registry entries and
-the tracker rows for four shipped reels, so it rewrites published records —
-worth doing in one deliberate pass rather than piecemeal.
-
 **P126 — classifier blind spots.** Partly covered.
 
 ---
@@ -154,6 +142,10 @@ registered as a developer the same day.
 ---
 
 ## Recently closed
+
+- 2026-10-09 — P197 closed. `audit-assets.py --names` built, and all three
+  misnamed sets renamed: b2628->m2628, b4248->ij4248, b4251->ij4251. 17 files,
+  11 registry keys, 18 tracker lines; three prose lines left alone on purpose.
 
 - 2026-10-09 — duplicate-number check added to audit-library.py; it found
   Tirmidhi #2616 and Bukhari #1469 doubled on first run, confirming what an
