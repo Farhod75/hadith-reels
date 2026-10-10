@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-04",
+  "updated": "2026-10-09",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -241,6 +241,30 @@
   },
 
   "scenes": {
+    "m1631-well.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Stone well-head in a date grove, rope worn over the notched rim, bucket resting. Sadaqah jariyah. MODE B, no figures. FLUX 2 still m1631-well-2.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
+    },
+    "m1631-channel.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Built stone irrigation channel carrying water to planted ground, young sprouts on both banks. Benefit still arriving. MODE B, no figures. FLUX 2 still m1631-channel-2.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
+    },
+    "m1631-circle.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Ring of cushions and reed mats on a swept stone floor, light from a pointed arch. Beneficial knowledge, deliberately without a manuscript so ad3641-rahle stays clear for #5027. MODE B, no figures. FLUX 2 still m1631-circle-3.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
+    },
+    "m1631-grove.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Mature date palms in planted rows heavy with fruit, long shadows. What outlasts the planter. MODE B, no figures. FLUX 2 still m1631-grove-3.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
+    },
     "m2963-windows.mp4": {
       "classification": "scene",
       "lanes": "adults",
