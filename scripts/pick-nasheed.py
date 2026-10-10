@@ -26,6 +26,7 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
+import hashlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -92,6 +93,9 @@ def main():
                     help="beds already assigned to other languages in THIS set")
     ap.add_argument("--tracker", default=os.path.join(REPO, "reel-tracker.md"))
     ap.add_argument("--top", type=int, default=5)
+    ap.add_argument("--slug", default="",
+                    help="hadith slug, e.g. muslim-1631. Only used to "
+                         "rotate the default when the ranking ties")
     args = ap.parse_args()
 
     beds = eligible_beds(args.lane)
@@ -127,6 +131,26 @@ def main():
     # longest unused overall. Matches step 7 word for word.
     rows.sort(key=lambda r: (r["total"], r["last_lang"], r["last_any"]))
 
+    # A tie the ranking cannot break. On the #1631 set five beds sat at 0
+    # uses, so the key (0, 0, 0) was identical for every one of them and the
+    # stable sort handed back registry order - alphabetical. The same name
+    # came back "RECOMMENDED" on all four legs and was overridden all four
+    # times, because the recommendation carried no information: only the
+    # exclusion list differed between runs. A ranking that cannot separate
+    # its candidates should say so rather than emit a confident first place.
+    key0 = (rows[0]["total"], rows[0]["last_lang"], rows[0]["last_any"])
+    tied = [r for r in rows
+            if (r["total"], r["last_lang"], r["last_any"]) == key0]
+    if len(tied) > 1:
+        # Deterministic so a rerun of the same leg is reproducible, varied
+        # so the four legs of one set do not all land on the same bed.
+        seed = int(hashlib.sha1(
+            ("%s|%s|%s" % (args.slug, args.lane, args.lang)).encode("utf-8")
+        ).hexdigest()[:8], 16)
+        chosen = tied[seed % len(tied)]
+        rows.remove(chosen)
+        rows.insert(0, chosen)
+
     width = 74
     print()
     print("=" * width)
@@ -134,6 +158,11 @@ def main():
     print("=" * width)
     print("  %d bed(s) approved for %s; %d excluded as already in this set."
           % (len(beds), args.lane, len(excluded & set(beds))))
+    if len(tied) > 1:
+        print("  TIE: %d beds share the top score (%d use(s)). Usage cannot"
+              % (len(tied), key0[0]))
+        print("  separate them. The pick below is stable for this")
+        print("  slug+lane+lang but otherwise arbitrary - BREAK IT ON TONE.")
     print()
     for rank, r in enumerate(rows[:args.top], 1):
         mark = "  <= RECOMMENDED" if rank == 1 else ""

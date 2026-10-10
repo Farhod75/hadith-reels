@@ -1,5 +1,21 @@
 ## [2026-10-10]
 
+### Changed
+- `scripts/pick-nasheed.py` — a tie at the top of the ranking is now named
+  rather than silently resolved. On the #1631 set five beds sat at 0 uses, so
+  the sort key `(0, 0, 0)` was identical for all of them and the stable sort
+  handed back registry order; the same bed came back RECOMMENDED on all four
+  legs and was overridden all four times. The recommendation carried no
+  information — only the exclusion list changed between runs. Now prints a
+  TIE banner stating how many beds share the top score and that usage cannot
+  separate them, and rotates the default off a `--slug`+lane+lang hash so the
+  legs of one set start from different places while each leg stays
+  reproducible. Verified on tirmidhi-3895: the banner fires, EN repeats
+  identically across runs, and chaining `--exclude` returns four distinct
+  beds for the four languages.
+  No P-number: this is a gap in a tool shipped two days ago and closed on its
+  first real use, not a trap that recurs across the project.
+
 ### Added
 - **R114-R117 - Sahih Muslim #1631**, the three ongoing deeds, EN/UZ/RU/TJ,
   adults. Produced 2026-10-09; the last of the sixteen posts landed after

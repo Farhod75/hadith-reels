@@ -310,7 +310,7 @@ shape as the P112 hum that `tts-validating` cannot hear. Listening stays human.
 **`scripts/pick-nasheed.py`** — step 7, built 2026-10-09.
 
 ```
-python scripts/pick-nasheed.py --lane adults --lang en [--exclude a.mp3 b.mp3]
+python scripts/pick-nasheed.py --lane adults --lang en --slug muslim-1631 [--exclude a.mp3 b.mp3]
 ```
 
 Recommends and explains; it does not choose and it does not render. Lane
@@ -322,7 +322,22 @@ Nasheed cell is not a filename (“not recorded (P201)”) are skipped rather th
 counted as a bed.
 
 `--exclude` takes the beds already assigned to other languages in the same
-set, which is the half of step 7 a usage table cannot know by itself.
+set, which is the half of step 7 a usage table cannot know by itself. Chain it
+leg by leg and the four languages of a set come back on four different beds.
+
+`--slug` only matters when the ranking ties. It seeds a deterministic rotation
+so the same leg reruns identically while the four legs of one set start from
+different places.
+
+**When the ranking cannot choose, it now says so.** On the #1631 set five beds
+sat at 0 uses, making the sort key `(0, 0, 0)` identical for all of them. The
+stable sort returned registry order, the same name came back RECOMMENDED on all
+four legs, and it was overridden all four times — the recommendation carried no
+information, since only the exclusion list differed between runs. The script
+now prints a TIE banner naming how many beds share the top score and saying
+plainly that usage cannot separate them, so the human breaks the tie on tone.
+A ranking that cannot separate its candidates should not emit a confident
+first place.
 
 **One judgement the step 7 wording leaves open.** Ranking is total uses first,
 then longest-unused in this language, then longest-unused overall. So a bed
