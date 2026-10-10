@@ -226,7 +226,17 @@ def tokens(s):
 
 
 def similarity(a, b):
-    return difflib.SequenceMatcher(None, norm(a), norm(b)).ratio()
+    # autojunk=False is load-bearing. difflib's autojunk heuristic treats any
+    # element occurring in more than 1% of a sequence longer than 200 as junk
+    # and drops it. These are CHARACTER sequences of 300-900, so 1% is three
+    # or four occurrences and every common letter is discarded - the ratio
+    # stops measuring the text and starts measuring rare-character overlap.
+    # Measured on the at-tirmidhi-3895 EN reel, whose SRT differed from the
+    # draft only in punctuation and one honorific: 0.67 with autojunk, 0.99
+    # without. The gate had been returning noise on every reel, sometimes
+    # above the 0.75 threshold and sometimes below (P210).
+    return difflib.SequenceMatcher(None, norm(a), norm(b),
+                                   autojunk=False).ratio()
 
 
 def duration_of(path):

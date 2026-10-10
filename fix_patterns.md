@@ -7709,3 +7709,57 @@ is on disk, not by what you remember about it)
 
 **Status:** DOCUMENTED - the practice is detect-and-preserve per write. The
 earlier per-file table is superseded and should not be consulted.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 210: The similarity gate that measured nothing
+## ═══════════════════════════════════════════════════════════
+**ID:** P210
+**Type:** A gate that fires at random
+**Files:** scripts/stt-validate.py
+**Found:** 2026-10-10, on the at-tirmidhi-3895 EN reel
+
+`transcript_diverged` reported HIGH at similarity 0.67 against a 0.75
+threshold, on an SRT whose text differed from `draft.txt` only in two
+punctuation marks and one honorific. Measured directly: the two strings are
+343 and 334 characters and visually identical.
+
+    similarity(a, b) = difflib.SequenceMatcher(None, norm(a), norm(b)).ratio()
+
+`difflib`'s **autojunk** heuristic treats any element occurring in more than
+1% of a sequence longer than 200 elements as junk and drops it. These are
+CHARACTER sequences of 300-900, so the 1% cutoff is three or four occurrences
+and every common letter qualifies. The ratio stops measuring the text and
+starts measuring whatever rare characters happen to survive.
+
+    autojunk ON  (as shipped)      0.6706
+    autojunk OFF (fixed)           0.9867
+    autojunk OFF, unrelated text   0.2634
+
+**It has never worked.** Not dead - random. The ratio is noise, so each reel
+landed above or below 0.75 by accident. #1631 passed; this one failed; neither
+result meant anything. A gate that is wrong in both directions is worse than
+one that never fires, because the passes are read as evidence.
+
+**It also suppressed the check that mattered.** The caller is
+
+    if sim < SIM_DIVERGED:  findings.append(diverged)
+    else:                   findings += check_alignment(cues, source)
+
+so a false divergence SKIPS alignment entirely. On this reel alignment had
+three real HIGH findings waiting - the draft's "(RA)" had been voiced as
+"Ravya Allah" - and none of them were reachable while the broken gate was
+firing. The noisy check was standing in front of the working one.
+
+**Rule:** `difflib` comparisons over character sequences need
+`autojunk=False`, always. More generally: a similarity threshold is a
+measurement, and a measurement nobody has checked against a known-identical
+and a known-different input is a number, not a gate. Both anchors are cheap
+to compute and both are now recorded above.
+
+**Related:** P093 (exit-code contract), P119/P126/P185/P187/P189/P206 (a gate
+with no caller - here the caller exists and the gate is noise), P207 (a check
+blindest on the input it was written for)
+
+**Status:** FIXED - `autojunk=False`, with the three measured anchors in a
+comment above the call. Re-run on the same reel: similarity 0.987, divergence
+clear, and the three alignment findings now surface.

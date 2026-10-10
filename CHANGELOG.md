@@ -1,5 +1,19 @@
 ## [2026-10-10]
 
+### Fixed
+- **P210** — `stt-validate.py`'s `similarity()` used `difflib.SequenceMatcher`
+  without `autojunk=False`. On character sequences over 200, difflib discards
+  every element occurring in more than 1% of the sequence — which for a
+  300-900 character narration is every common letter. The ratio measured
+  rare-character overlap, not text. Measured on the at-tirmidhi-3895 EN reel:
+  0.6706 with autojunk, 0.9867 without, 0.2634 without against unrelated text.
+  The gate was not dead but random — #1631 passed and this reel failed, and
+  neither outcome carried information.
+  Worse, a false divergence short-circuits `check_alignment`, so the broken
+  gate was hiding the working one: three real HIGH findings on this reel
+  (the draft's "(RA)" voiced as "Ravya Allah") were unreachable until the
+  fix. All three surfaced immediately afterwards.
+
 ### Changed
 - `scripts/pick-nasheed.py` — a tie at the top of the ranking is now named
   rather than silently resolved. On the #1631 set five beds sat at 0 uses, so
