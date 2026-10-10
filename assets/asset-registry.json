@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -241,6 +241,30 @@
   },
 
   "scenes": {
+    "t3895-hearth.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Clay pot over embers in a mud-brick room, steam rising toward a high window. The work behind a shared meal, before anyone sees it. MODE B, no figures. FLUX 2 still t3895-hearth-1.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
+    },
+    "t3895-dastarkhan.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Reed mat spread on an earth floor laid for six - flatbread and a clay bowl at each place, jug and dates at the head, centre deliberately clear so the platter scene can fill it. MODE B, no figures. FLUX 2 still t3895-dastarkhan-1.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
+    },
+    "t3895-platter.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Close on a communal platter of tharid - bread soaked in broth with stewed meat - bread arranged around the rim, steam rising. Era choice recorded: the operator proposed a Tajik dastarkhan with plov, which is Central Asian and roughly a millennium after the Hijaz. Composition kept, contents made 7th-century. Reads the same to the target audience without the anachronism. MODE B, no figures. FLUX 2 still t3895-platter-2.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
+    },
+    "t3895-house.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Mud-brick house at dusk seen from its own courtyard, warm light from one open shutter falling across the yard and the near wall. No lamp is named anywhere in the prompt and the source stays out of frame - a named lamp generated a temple shrine on b2654 and a shrine niche on b6446. Nearest neighbour in the library is b2654-threshold (lamplight from a doorway at dusk); this is the whole dwelling from the yard, not a doorway. MODE B, no figures. FLUX 2 still t3895-house-3.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
+    },
     "m1631-well.mp4": {
       "classification": "scene",
       "lanes": ["adults"],
