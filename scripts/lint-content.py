@@ -310,6 +310,15 @@ def check_simile(blocks, lang, matn):
 
 
 
+# P207: the sentence boundary must survive a closing quote mark. The original
+# split was (?<=[.!?])\s+ , which needs the period immediately before the
+# space. A correctly punctuated story block writes  him.' Sadaqah  - period,
+# apostrophe, space - so the lookbehind failed, no split happened, the whole
+# line stayed one clause, and that clause contained an attribution marker and
+# was skipped. The check was blindest on exactly the input it was written for.
+CLAUSE_SPLIT = r'(?<=[.!?])[\'\"\u00bb\u201d\u2019]?\s+|\s[\u2014\u2013-]\s|;'
+
+
 def check_quote_addition(blocks, lang, matn):
     """P111 r18/r22: a clause inside the STORY block that is not in the matn.
 
@@ -333,7 +342,7 @@ def check_quote_addition(blocks, lang, matn):
     matn_n = normalise(matn)
     out = []
     for line_no, line in blocks.get('S', []):
-        for clause in re.split(r'(?<=[.!?])\s+|\s[\u2014\u2013-]\s|;', line):
+        for clause in re.split(CLAUSE_SPLIT, line):
             clause = clause.strip()
             if not clause:
                 continue

@@ -5,8 +5,8 @@
  Replaces the manual FFmpeg/Whisper drudgery in reel-creation-pipeline.md.
 
  NAMING CONVENTION (required):
-   out\{style}-{lang}-{slug}-story.mp3      <- from admin Step 2 (you save this)
-   out\{style}-{lang}-{slug}-moral.mp3      <- from admin Step 2 (you save this)
+   out\work\{style}\{slug}\{lang}\{style}-{lang}-{slug}-story.mp3   <- from admin (you save this)
+   out\work\{style}\{slug}\{lang}\{style}-{lang}-{slug}-moral.mp3   <- from admin (you save this)
    ---------- this script produces: ----------
    out\{style}-{lang}-{slug}-narration.mp3  <- Step 4 (story+moral concat)
    out\{style}-{lang}-{slug}-narration.srt  <- Step 5 (en/ru/ar only, per P078)

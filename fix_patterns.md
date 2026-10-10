@@ -7584,3 +7584,128 @@ P203 (OPEN_ITEMS — the roadmap is not a list of what is done either)
 roadmap status corrected, and CLAUDE.md now states where skills live and that
 anything outside that path does not exist. STILL OPEN for reel-producing: the
 Scripts section is unimplemented, and the eval corpus has never been run.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 207: The clause splitter the quotation mark defeats
+## ═══════════════════════════════════════════════════════════
+**ID:** P207
+**Type:** A check blindest on the input it was written for
+**Files:** scripts/lint-content.py
+**Found:** 2026-10-09, producing Sahih Muslim #1631 (R114-R117)
+
+`check_quote_addition` exists because the #2759 Tajik story block appended
+commentary INSIDE the Prophet's ص quotation. It splits the story line into
+clauses, skips any clause holding an attribution marker, and warns when a
+remaining clause shares almost no vocabulary with the matn.
+
+The splitter was `(?<=[.!?])\s+`. That lookbehind needs the period
+IMMEDIATELY before the whitespace. A correctly punctuated English story block
+writes:
+
+    The Prophet ص said: 'When a person dies ... prays for him.' Sadaqah
+    jariyah, the charity named first, refers to ...
+
+Period, apostrophe, space. The lookbehind fails. No split happens. The whole
+line stays ONE clause, that clause contains "The Prophet ص said", the
+attribution-marker skip fires, and the gloss is never examined.
+
+**How it surfaced.** Removing the quote marks to fix an attribution boundary
+made the warn count go from 1 to 2 on semantically identical content. The
+second warn was not new text; it was the same gloss becoming visible once the
+period could end a sentence. The punctuation that made the block CORRECT was
+the punctuation that hid it.
+
+**Found by reading the check, not by running it.** Two runs had already been
+explained with guesses about how the check worked - first that it keyed on
+quotation marks, then that removing them had made the text worse. Both wrong.
+The source settled it in one read.
+
+**Scale.** On this one hadith the same gloss was inserted in EN, UZ and TJ.
+Russian alone did not do it. A per-hadith insertion that recurs across
+languages is not a language-quality problem - it is the concept pulling the
+generator the same way each time, and a check that any one language's
+punctuation can defeat will miss it in that language every time.
+
+**Rule:** when a check skips input on a structural signal, test it against the
+correctly formatted version of the defect, not just the malformed one. A gate
+that only fires on sloppy input is a gate against sloppiness, not against the
+defect.
+
+**Related:** P111 (the rules this check enforces), P118 (two copies drift),
+P119/P126/P185/P187/P189/P206 (a gate with no caller - this is the variant
+where the caller exists and the gate silently declines)
+
+**Status:** FIXED - splitter lifted to `CLAUSE_SPLIT` and extended to allow one
+optional closing quote character after the terminator: `' " » ” ’`.
+Verified both directions: the EN v1 block that slipped through now warns, and
+the four shipped #1631 drafts still return 0 fail 0 warn 0 info.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 208: The header comment that sent two sessions to the wrong path
+## ═══════════════════════════════════════════════════════════
+**ID:** P208
+**Type:** Stale comment contradicting live code
+**Files:** render-reel.ps1
+**Found:** 2026-10-09, producing R114
+
+`render-reel.ps1`'s header block documented the narration inputs as:
+
+    out\{style}-{lang}-{slug}-story.mp3      <- from admin Step 2 (you save this)
+
+Line 162 of the same file builds `$workDir = "out\work\$Style\$Slug\$Lang"`
+and reads the narration from there. The flat path has not been correct since
+the restructure that P113 closed.
+
+The comment was trusted twice in one session: once to report the narration
+missing when it was present, and once again after being told the path was
+wrong. The operator had to supply a screenshot of the real directory.
+
+**Why a comment is worse than no comment here.** With no documented path the
+next step is to read the code, which takes one grep and is always right. With
+a wrong one, the reading never happens.
+
+**Rule:** a path in a comment is an assertion about the filesystem and goes
+stale exactly like a hardcoded one. When the code computes a path, the comment
+quotes the computation, not a literal.
+
+**Related:** P118 (a label and a fallback disagreeing - the fallback is the
+truth), P113 (the restructure this comment predates)
+
+**Status:** FIXED - header now shows the `out\work\{style}\{slug}\{lang}\` form.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 209: The line-ending map describes the index, not the working tree
+## ═══════════════════════════════════════════════════════════
+**ID:** P209
+**Type:** Environment assumption recorded as a fact
+**Files:** (working practice; no single file)
+**Found:** 2026-10-09, registering the m1631 scene clips
+
+Notes carried for weeks said which repo files are CRLF and which are LF, and
+writes were matched to that table. The table is about the INDEX. This repo has
+`core.autocrlf=true` and no `.gitattributes`, so:
+
+    git ls-files --eol -- assets/asset-registry.json
+    i/lf    w/crlf
+
+A file read as LF, reverted with `git checkout --`, and read again comes back
+CRLF - git converts on checkout. A write that consults the remembered table
+instead of the bytes then rewrites every line of the file.
+
+Two failures in five minutes from this. A `json.dumps` round-trip reformatted
+every inline `lanes` array and turned a 25-line change into 204 insertions and
+67 deletions; reverting it with `git checkout --` flipped the file to CRLF, and
+the next write asserted LF and aborted.
+
+`fix_patterns.md` is a third case: `w/mixed`, 7583 CRLF and 3 bare LF. Any
+whole-file normalise rewrites 7586 lines. It can only be appended to.
+
+**Rule:** detect the ending from the bytes at read time, in the same operation
+that writes them back. Never from a remembered table, and never from the
+index. For a large or mixed file, append rather than rewrite.
+
+**Related:** P188 (the write path can silently no-op), P202 (identify by what
+is on disk, not by what you remember about it)
+
+**Status:** DOCUMENTED - the practice is detect-and-preserve per write. The
+earlier per-file table is superseded and should not be consulted.

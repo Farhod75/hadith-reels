@@ -134,6 +134,10 @@
 | R111 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | RU | Adults | muslim-2759 | adults-ru-muslim-2759-story.mp3 | adults-ru-muslim-2759-moral.mp3 | adults-ru-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-ru-muslim-2759-bg-mixed.mp4 | not recorded (P201) | YES | adults-ru-muslim-2759-reel.mp4 | 31.7s | 6.5 MB | stt-validate flagged five findings, all of them real: a word-boundary error (doblagoslovit for da blagoslovit) and four lost yo/capitalisation items. FOURTH consecutive RU set needing Whisper correction. The capitalisation class is now understood: Whisper transcribes sound, so divine pronouns (Svoyu, On) come back lowercase on EVERY en/ru reel and always will. That is mechanical and belongs in a post-Whisper pass, not in a human read (P200). |
 | R112 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | UZ | Adults | muslim-2759 | adults-uz-muslim-2759-story.mp3 | adults-uz-muslim-2759-moral.mp3 | adults-uz-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-uz-muslim-2759-bg-mixed.mp4 | not recorded (P201) | NO (P078) | adults-uz-muslim-2759-reel.mp4 | 38.3s | 8.2 MB | No subtitles (P078). GENERATED S BLOCK HAD NO ATTRIBUTION AT ALL - the hadith was stated as bare text with no mention of the Prophet SAW, on a channel whose premise is verifiable authenticity, in a language with no subtitle pass to catch it. Caught by reading. M block also referred back to the hadith as a quotation (zero hadisda aytilganidek), rule 17 again. LIBRARY DEFECT: text_uzbek_cyrillic contained 'tavba qilsin uchun' twice, which is not grammatical Uzbek; corrected in the DB and the Latin column regenerated. Fifth library defect in six sets, none findable by a gate. |
 | R113 | 2026-10-05 | Sahih Muslim #2759 | Abu Musa al-Ashari | Sahih | Repentance / Mercy | #forgiveness #tawbah #mercy #repentance | TJ | Adults | muslim-2759 | adults-tj-muslim-2759-story.mp3 | adults-tj-muslim-2759-moral.mp3 | adults-tj-muslim-2759-narration.mp3 | m2759-door-night.mp4, m2759-threshold.mp4, m2759-firstlight.mp4, m2759-dawn.mp4 | adults-tj-muslim-2759-bg-mixed.mp4 | vocal-nasheed-04.mp3 | NO (P078) | adults-tj-muslim-2759-reel.mp4 | 32.4s | 6.6 MB | No subtitles (P078). WORST DEFECT OF THE SET: the generated S block appended commentary INSIDE the Prophet's SAW quotation - a clause about the door of repentance closing, which is true, is in the H block, and is not in the matn. The reel would have had the Prophet SAW saying words he did not say. Rules 17-20 did not prevent it because they are about the moral block; nothing forbade adding to the quotation itself. M block inverted its own meaning: 'gunohro ta'khir nadeh' says do not delay the SIN. Both caught by reading. First real TJ set on v4; the three audition words came back correct. |
+| R114 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | EN | Adults | muslim-1631 | adults-en-muslim-1631-story.mp3 | adults-en-muslim-1631-moral.mp3 | adults-en-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-en-muslim-1631-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES | adults-en-muslim-1631-reel.mp4 | 33.0s | 13.3 MB | FIRST SET WHERE ONE DEFECT APPEARED IN THREE LANGUAGES: a sadaqah jariyah gloss inserted inside the attribution - EN after a closing quote, UZ after an em dash with yani, TJ after the closing guillemet. RU was the only language that did not do it. Moved to H in all three. THE LINTER NEARLY MISSED IT: check_quote_addition splits clauses on (?<=[.!?])\s+, and EN v1 wrote "him.' Sadaqah" - period, apostrophe, space - so the lookbehind failed, no split happened, the whole line stayed ONE clause, and that clause contained an attribution marker and was skipped entirely. Removing the quote marks exposed the gloss and the warn count went 1 -> 2 on identical content. A correctly punctuated quoted story block can hide appended commentary from the check written to catch exactly that (P207). PASS B EARNED ITS KEEP: it caught a defect I introduced while fixing rule 3 - my corrected M dropped yad'u lahu entirely, leaving 'raise your children upon righteousness' with no supplication at all. Different model, no defect table, as P120 requires. Library row was clean across all six columns before generation - first time in several sets. Nasheed: five beds tied at 0 uses so the count could not choose; tone broke the tie. published TG/IG/YT/TikTok |
+| R115 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | UZ | Adults | muslim-1631 | adults-uz-muslim-1631-story.mp3 | adults-uz-muslim-1631-moral.mp3 | adults-uz-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-uz-muslim-1631-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-uz-muslim-1631-reel.mp4 | 38.1s | 15.7 MB | No subtitles (P078). Gloss inside the attribution again, after an em dash with «яъни» - the exact shape of the #2759 TJ defect that check_quote_addition exists for, reproduced in another language on another hadith. Moved to H. RULE 17 AGAIN: «зеро бу ҳадисда айтилганидек» re-attributed the hadith inside the moral. The rule's own evidence line counts eight prior; this is the ninth. Child was plural (фарзандларингизни) against a singular matn - ALL FOUR languages drifted plural on this hadith, including my own English draft. Rule 21 satisfied unprompted, which is the #2759 UZ failure (story block with no attribution at all) not recurring. Caption quote verbatim from text_uzbek_cyrillic. published TG/IG/YT/TikTok |
+| R116 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | RU | Adults | muslim-1631 | adults-ru-muslim-1631-story.mp3 | adults-ru-muslim-1631-moral.mp3 | adults-ru-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-ru-muslim-1631-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | YES | adults-ru-muslim-1631-reel.mp4 | 36.9s | 14.9 MB | WORST CONTENT DEFECT OF THE SET: the generated moral opened «Выбери один из трёх путей» - choose one of the three paths. The hadith says deeds cease EXCEPT FROM three; all three continue, and the أو is enumerative inside the exception, not a menu. Acted on, it tells a listener that doing one of the three suffices. Rule 15 (meaning inversion) and rule 20 (instruction absent from the matn) at once. The fix was «и» for «или». RU was also the ONLY language of four that did not insert the gloss, and its S block needed no change at all: isnad outside the quotation, передал for the companion and сказал for the Prophet SAW, child singular. WHISPER MANGLED THE OPENING: «Абуху Райра» for Абу Хурайра, «добудет доволенным Аллах» for да будет доволен им Аллах, and «пророг» - not a word - for Пророк. restore-srt-casing.py correctly left all three alone: it matches tokens after normalising case and ё, and these differ by LETTERS, not case. It fixes casing, not spelling, and that boundary is now demonstrated rather than assumed. Audio was clean; Whisper misheard. Corrected at the pause, along with restoring the guillemets Whisper dropped - without them the subtitle read as though attribution ended at «сказал.» and an unattributed statement began. Also fixed: Китаб аль-Васыйя rendered «о заветах» (covenants) instead of «о завещаниях» (bequests). published TG/IG/YT/TikTok |
+| R117 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | TJ | Adults | muslim-1631 | adults-tj-muslim-1631-story.mp3 | adults-tj-muslim-1631-moral.mp3 | adults-tj-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-tj-muslim-1631-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | NO (P078) | adults-tj-muslim-1631-reel.mp4 | 32.2s | 12.9 MB | No subtitles (P078). Gloss inside the attribution for the third language, placed outside the closing guillemet - structurally the EN v1, which is still an open boundary when narrated because speech has no quote marks. Moved to H. RULE 17 for the SECOND time in one set: «зеро тибқи ин ҳадис», the Tajik form of the Uzbek clause. The moral also dropped the dua entirely - «фарзандони солеҳ тарбия диҳед» with nothing about the child supplicating - and used the plural. LETTER ERROR IN H: «тахти рақами» for «таҳти рақами». Тахт is a throne; таҳт is under. One missing ҳ - the diacritic class audit-library.py owns and pass B is measurably blind to (probe-passb.py, both runs). Caption quote verbatim from text_tajik with ӯ, ғ, ҷ, ҳ, қ intact. Four distinct nasheed beds across the set, none previously used anywhere in the library. published TG/IG/YT/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -179,6 +183,7 @@
 | Sahih Muslim #2628 | EN, RU, UZ, TJ | Adults | R102, R103, R104, R105 |
 | Sahih Muslim #2963 | EN, RU, UZ, TJ | Adults | R106, R107, R108, R109 |
 | Sahih Muslim #2759 | EN, RU, UZ, TJ | Adults | R110, R111, R112, R113 |
+| Sahih Muslim #1631 | EN, RU, UZ, TJ | Adults | R114, R115, R116, R117 |
 
 ---
 
@@ -214,6 +219,7 @@
 | Major Sins / Al-Mubiqat | 4 | R098–R101 | EN, RU, UZ, TJ |
 | Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 | Gratitude / Contentment | 4 | R106-R109 | EN, RU, UZ, TJ |
+| Death / Afterlife | 4 | R114–R117 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -224,7 +230,7 @@
 - ⚠️ Akhlaq / Anger management — no reels yet (Patience covered by R042–R049)
 - ⚠️ Family / Marriage / Parents — 8 reels (R034–R041, birr al-walidayn); marriage and family ties still uncovered
 - ❌ Quran recitation / Tilawah — no reels yet
-- ❌ Death / Afterlife / Barzakh — no reels yet
+- ✅ Death / Afterlife / Barzakh — 4 reels (R114–R117, Muslim #1631, the three ongoing deeds)
 
 **Language coverage gaps:**
 
@@ -255,6 +261,10 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 4 | R103 | R004, R023, R095, R103 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
+| aswati-Peaceful-Contemplation.mp3 | 1 | R114 | R114 |
+| aswati-Gentle-Reflection.mp3 | 1 | R115 | R115 |
+| aswati-Morning-Serenity.mp3 | 1 | R116 | R116 |
+| aswati-Heartfelt-Gratitude.mp3 | 1 | R117 | R117 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
 ### Background scene usage
@@ -270,6 +280,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| m1631-well, channel, circle, grove | 1 set | 2026-10-09 (R114-R117) | R114-R117 |
 | m2759-door-night, threshold, firstlight, dawn | 1 set | 2026-10-05 (R110-R113) | R110-R113 |
 | m2963-windows, bowls, sandals, room | 1 set | 2026-10-04 (R106-R109) | R106-R109 |
 | m2628-musk, stall, forge, robes | 1 set | 2026-10-03 (R102–R105) | R102–R105 |
@@ -360,14 +371,14 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 113 |
+| Total reels posted | 117 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 61 |
+| Adults reels | 65 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 29 |
-| Library rows | 70 (29 used, 41 unused) |
+| Hadiths used (unique) | 30 |
+| Library rows | 70 (30 used, 40 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
 | Companions cited | 15 (Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
 

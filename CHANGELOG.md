@@ -1,3 +1,63 @@
+## [2026-10-10]
+
+### Added
+- **R114-R117 - Sahih Muslim #1631**, the three ongoing deeds, EN/UZ/RU/TJ,
+  adults. Produced 2026-10-09; the last of the sixteen posts landed after
+  midnight. Fills Death / Afterlife, which the tracker had carried at zero
+  coverage, and is the hadith this channel operates under.
+  Scene set `m1631`: one planted estate - well, built irrigation channel,
+  teaching circle, grove - made by someone now gone and still producing. Four
+  FLUX 2 stills to four Kling 2.6 Pro clips, MODE B, no figures. Every obvious
+  image for this hadith was already in the library (fruit tree x2, worn path
+  x2, prayer mat x2, manuscript on a rahle, seven doorways, five dawn dunes),
+  so the set was built around the one thing 56 registered scenes had never
+  shown: a well. The circle carries no manuscript deliberately, keeping
+  `ad3641-rahle` unrepeated for Bukhari #5027 later in the queue.
+  Four distinct nasheed beds, none previously used anywhere.
+
+### Fixed
+- **P207** - `check_quote_addition`'s clause splitter was `(?<=[.!?])\s+`,
+  which a closing quote mark defeats: `him.' Sadaqah` never splits, so the
+  whole story line stayed one clause, matched the attribution-marker skip, and
+  was never examined. The check was blindest on correctly punctuated input -
+  precisely the #2759 defect class it was written for. Splitter lifted to
+  `CLAUSE_SPLIT` and extended to allow one optional `' " » ” ’` after the
+  terminator. Verified both ways: the block that slipped through now warns,
+  and all four shipped #1631 drafts still return 0 fail 0 warn 0 info.
+- **P208** - `render-reel.ps1`'s header documented narration inputs at
+  `out\{style}-{lang}-{slug}-story.mp3`, a path that has not been correct
+  since the P113 restructure; line 162 computes
+  `out\work\{style}\{slug}\{lang}\`. The stale comment was trusted twice in
+  one session and cost a screenshot to correct. Header now quotes the
+  computed form.
+
+### Documented
+- **P209** - `core.autocrlf=true` with no `.gitattributes` means the per-file
+  line-ending notes describe the INDEX, not the working tree, and
+  `git checkout --` converts on the way out. Cost two failed writes and one
+  reverted 204-line reformat. Detect from the bytes at read time, in the same
+  operation that writes them back. `fix_patterns.md` is `w/mixed` (7583 CRLF,
+  3 bare LF) and can only be appended to.
+
+### Notes
+- The same sadaqah jariyah gloss was inserted inside the attribution in EN, UZ
+  and TJ - three of four languages, one hadith. RU alone did not, and RU's
+  story block needed no correction at all. A per-hadith insertion recurring
+  across languages is the concept pulling the generator, not a per-language
+  quality gap.
+- RU's moral opened "choose one of the three paths". The hadith says deeds
+  cease EXCEPT FROM three; all three continue. Rules 15 and 20 at once, fixed
+  by one conjunction. Worst content defect of the set.
+- Rule 17 re-attribution appeared in UZ and TJ in the same set.
+- All four languages rendered the singular child as plural, including the
+  English draft written by hand.
+- Pass B (different model, per P120) caught a regression introduced while
+  fixing rule 3: the corrected English moral had dropped the supplication
+  clause entirely.
+- Whisper on Russian returned «пророг» - not a word - for «Пророк», plus a
+  mangled narrator name and honorific. `restore-srt-casing.py` correctly left
+  all three alone; it matches on case and ё, so it fixes casing, not spelling.
+  Audio was clean. The subtitle pause is the only gate for this class.
 ## [2026-10-09]
 
 ### Added
