@@ -1,3 +1,39 @@
+## [2026-10-11]
+
+### Fixed
+- **`scripts/generate-scene.ps1` — the audio-off guard was scoped to the model
+  it was written for (P214).** `if ($Model -match 'v2\.6') { $payload['generate_audio'] = $false }`
+  — correct while 2.6 Pro was the only model ever passed, and silently absent
+  for any other. Found while preparing the Kling 3.0 evaluation, which is the
+  first `-Model` this script has ever been given that is not 2.6: the v3 half
+  would have billed $1.68 instead of $1.12 and come back with a generated audio
+  track, which is not comparable to a silent clip. Audio-off is unconditional
+  now and the one model that rejects the field (2.1 Master) is named instead,
+  so a match that FAILS leaves the safe state in place. Verified against seven
+  model ids, including a hypothetical v4.
+
+### Changed
+- **`-Duration` accepts '15'** (`generate-scene.ps1`). Kling 3.0 takes 3–15s
+  where 2.6 Pro caps at 10 — and that cap is why `-FitScenes` can only ever
+  trim. 2.6 rejects 15 at the API, at no charge.
+- **The cost table in the script header** gains Kling 3.0 Pro: $0.112/s audio
+  off, $0.168/s audio on, against 2.6 Pro's $0.07/s. 3.0 is 1.6× the
+  per-second rate, which is an adoption cost and not a saving: seconds of clip
+  per reel are fixed by the narration, so longer clips mean fewer cuts, not
+  fewer seconds.
+
+### Verified
+- **Kling 3.0 is live on fal as `fal-ai/kling-video/v3/pro/image-to-video`**,
+  with `v3/standard` and `v3/4k` variants alongside it. Confirmed from the fal
+  model page before any spend, per the rule against inventing commands. Schema
+  differences that matter to the evaluation: `duration` is 3–15 (2.6: 5 or
+  10); `multi_prompt` takes per-shot prompts each with its own duration;
+  `elements` carries 1–3 reference images per character for consistency;
+  `shot_type: intelligent` lets the model structure the shots itself; and there
+  is no `aspect_ratio` field, which the payload still sends — harmless in
+  image-to-video, where the start frame sets the aspect, but it is an unknown
+  key and worth watching for a 422.
+
 ## [2026-10-10]
 
 ### Added

@@ -28,6 +28,7 @@
      Kling 2.1 Master   $1.40 for 5s, +$0.28 per additional second
      Kling 2.1 Pro      $0.49 for 5s, +$0.098 per additional second
      Kling 2.6 Pro      $0.07 per second, audio off  ($0.35 for 5s)
+     Kling 3.0 Pro      $0.112/s audio off, $0.168/s audio on  ($1.12 for 10s)
 
 P156 switched the default to Kling 2.6 Pro and it has been in use since. Four
 10s clips cost $2.80 against $11.20 on 2.1 Master, with twice the hold and no
@@ -40,7 +41,7 @@ param(
   [Parameter(Mandatory)][string]$Name,
   [string]$Prompt,           # text-to-video: scene desc | image-to-video: MOTION desc
   [string]$Image,                                  # optional: local image path -> image-to-video mode
-  [ValidateSet('5','10')][string]$Duration = '5',
+  [ValidateSet('5','10','15')][string]$Duration = '5',   # 15 = Kling 3.0 only (2.6 caps at 10)
   [string]$Model,                           # auto-set by mode if not given
   [string]$Resume         # request_id from a timed-out run: poll it, do not re-submit
 )
@@ -85,11 +86,18 @@ $payload = @{
   aspect_ratio    = "9:16"
   negative_prompt = "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
 }
-# P156: Kling 2.6 Pro defaults generate_audio to TRUE. That doubles the rate
-# from $0.07/s to $0.14/s AND mixes generated sound into a clip meant to be a
-# silent background - the nasheed and narration are added at render time. 2.1
-# Master does not accept the parameter, so only send it to 2.6.
-if ($Model -match 'v2\.6') { $payload['generate_audio'] = $false }
+# P156/P214: Kling has defaulted generate_audio to TRUE on every version so far.
+# It raises the rate (2.6 Pro $0.07 -> $0.14/s; v3 Pro $0.112 -> $0.168/s) AND mixes
+# generated sound into a clip meant to be a SILENT background - the nasheed and the
+# narration are added at render time.
+#
+# P214: this guard was  if ($Model -match 'v2\.6') { ... = $false },  so passing any
+# other model id dropped the field and let the PROVIDER default win. A guard whose
+# non-match produces the UNSAFE outcome stops protecting the moment the model
+# changes - and the model changing is the one time nobody is watching this line.
+# Audio-off is unconditional now; the exception is named instead.
+$payload['generate_audio'] = $false
+if ($Model -match 'v2\.1/master') { $payload.Remove('generate_audio') }  # rejects the field
 
 if ($imageMode) {
   if (-not (Test-Path $Image)) { Die "image not found: $Image" }

@@ -7913,3 +7913,75 @@ narrated blocks only. Verified four ways: the real R118 defect flags, the
 spelled-out form does not, an abbreviation confined to H and C does not, and
 the Russian «(р.а.)» flags. The summary line moved 10 -> 11 checks by itself,
 which is P139 working.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 214: The safety guard scoped to the model it was written for
+## ═══════════════════════════════════════════════════════════
+**ID:** P214
+**Type:** A guard whose non-match produces the unsafe outcome
+**File:** scripts/generate-scene.ps1
+**Found:** 2026-10-11, preparing the Kling 3.0 evaluation - BEFORE spending
+
+P156 established three things: Kling defaults `generate_audio` to TRUE, that
+default both raises the per-second rate and mixes generated sound into a clip
+meant to be a SILENT background, and 2.1 Master does not accept the field at
+all. The fix it left behind was:
+
+    if ($Model -match 'v2\.6') { $payload['generate_audio'] = $false }
+
+Correct on the day it was written. The default model was 2.6 Pro, so the match
+always succeeded and audio was always off.
+
+**Symptom:** none, for seven months. The guard was never seen failing because
+the condition it tested was never false.
+
+**Root cause:** the protection was keyed to a MODEL VERSION STRING rather than
+to the thing being protected against. `-match 'v2\.6'` asks "is this the model
+I was written for?" when the question is "should this clip be silent?" - and
+the answer to the second is always yes, for every model, forever. The first
+time anyone passes a different `-Model` the match fails, the field is never
+added, and the PROVIDER default wins. The guard does not error, warn or log.
+It simply is not there any more.
+
+**What it would have cost.** The Kling 3.0 evaluation is a `-Model
+fal-ai/kling-video/v3/pro/image-to-video` run - the first non-2.6 model id this
+script has ever been given. v3 Pro is $0.112/s audio off, $0.168/s audio on. A
+10s eval clip would have billed $1.68 instead of $1.12 and come back with a
+generated audio track, against which a silent 2.6 Pro clip is not a comparison.
+The evaluation would have measured the guard rather than the model, and nothing
+in the output would have said so: audio on a clip sitting in
+out\backgrounds\new is inaudible until it reaches a render, and by then the
+clip is a background under a nasheed bed.
+
+**Fix:** audio-off is unconditional; the exception is NAMED.
+
+    $payload['generate_audio'] = $false
+    if ($Model -match 'v2\.1/master') { $payload.Remove('generate_audio') }
+
+Both lines still match on a string, but the polarity is reversed: a match that
+FAILS now leaves the safe state in place. The only model that loses the field
+is the one documented to reject it, and if that match ever breaks the result is
+a rejected request - loud, free and fixable - not a silent charge.
+
+**Rule:** write a guard so the unmatched case is the safe one. A condition that
+can only be observed while it is true has an untested false branch in
+production. Ask what the guard protects against, not which version it was
+written against.
+
+**Related:** P156 (the audio default this guard was built for), P168 (do not
+infer from a name what the registry should state - the same error with a
+filename instead of a version string), P119 / P126 / P185 / P187 / P189 / P206
+(a gate with no caller), P207 (the caller exists, the gate silently declines),
+P210 (the gate that fired at random). This one is their inverse: the gate fires
+correctly, on a condition that stopped describing the risk.
+
+**Status:** FIXED. Verified by replaying both guard lines against seven model
+ids - 2.6 image and text, v3 pro image and text, v3 standard, a hypothetical
+v4, and 2.1 Master. All six non-Master ids now send `generate_audio: false`;
+Master alone omits it. The old guard passed only the two 2.6 cases.
+
+**Also in this commit:** `-Duration` ValidateSet gains '15'. Kling 3.0 accepts
+3-15s where 2.6 Pro caps at 10, and 15s clips are half the reason to evaluate
+it at all - `-FitScenes` can only trim, never extend. Passing 15 to 2.6 is
+rejected by the API at no charge. The cost table in the script header gains the
+3.0 Pro rates.

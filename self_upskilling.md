@@ -21,7 +21,7 @@
 | Tool | In use | Where it is set | Latest known | Status |
 |---|---|---|---|---|
 | ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT as of 2026-10-04 (P193) |
-| Kling video | `fal-ai/kling-video/v2.6/pro` | `scripts/generate-scene.ps1` | **Kling 3.0** (Feb 2026) | **BEHIND — not evaluated** |
+| Kling video | `fal-ai/kling-video/v2.6/pro` | `scripts/generate-scene.ps1` | **Kling 3.0** = `v3/pro` | **BEHIND — eval started 2026-10-11** |
 | FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | FLUX 2 | CURRENT as of 2026-10-04 |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
 | Whisper | local `openai-whisper` | PATH | — | RU ASR is a standing cost (R095, R099, R107) |
@@ -46,6 +46,15 @@
   is simply a major version behind. Evaluate at a SET boundary, same prompt on
   both models, because a model change re-rolls every scene prompt we have tuned
   — and because P193 showed that what one model gets right is not inherited.
+  **Checked 2026-10-11:** live on fal as `fal-ai/kling-video/v3/pro/image-to-video`,
+  with `v3/standard` and `v3/4k` beside it. `duration` 3–15s. `multi_prompt`
+  gives per-shot prompts, `elements` 1–3 reference images per character,
+  `shot_type: intelligent` lets the model structure the shots. **$0.112/s audio
+  off against 2.6 Pro's $0.07/s — 1.6×, and seconds of clip per reel are
+  fixed by the narration, so 15s clips buy fewer cuts, not fewer seconds.** The
+  eval was blocked by P214 first: the audio-off guard was scoped to `v2\.6`, so
+  the v3 half would have generated audio and cost $1.68 for a clip that cannot
+  be compared against a silent one.
 - ~~**FLUX 2**~~ — **EVALUATED AND ADOPTED 2026-10-04.** The m2963 steps prompt
   asked for a camera at the TOP of a staircase looking DOWN — the hadith's
   instruction as camera direction. v1.1 returned six consecutive upward shots
