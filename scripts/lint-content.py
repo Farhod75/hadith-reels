@@ -362,6 +362,46 @@ def check_quote_addition(blocks, lang, matn):
     return out
 
 
+# P213: an abbreviated companion honorific reaches TTS unexpanded.
+# cleanForTTS handles every written form of the PROPHET's honorific - the
+# glyph, (pbuh), (saw), (s.a.w.), p.b.u.h - and no companion honorific at all.
+# On at-tirmidhi-3895 EN the draft's "(RA)" went to ElevenLabs raw and was
+# voiced as "radiyallah": truncated, since the feminine form needs *anha*.
+# Non-deterministic, so a re-run can produce something different again.
+#
+# This is a CHECK and not an expansion, deliberately. (RA) is gender-neutral
+# in writing and gendered in speech - anha for Aisha, anhu for Abu Hurairah -
+# and cleanForTTS cannot know which companion is meant. The draft can.
+# Only S and M are narrated; H and C are read, where the abbreviation is fine.
+COMPANION_ABBREV = re.compile(
+    r'\(\s*(?:r\.?\s*a\.?|r\.?\s*anh[ua]|raa|\u0440\.?\s*\u0430\.?)\s*\)',
+    re.IGNORECASE)
+
+SPELLED = {
+    'en': '"may Allah be pleased with him" / "...with her"',
+    'ru': '\u00ab\u0434\u0430 \u0431\u0443\u0434\u0435\u0442 \u0434\u043e\u0432\u043e\u043b\u0435\u043d \u0438\u043c \u0410\u043b\u043b\u0430\u0445\u00bb / \u00ab...\u0435\u044e \u0410\u043b\u043b\u0430\u0445\u00bb',
+    'uz': '\u00ab\u0440\u043e\u0437\u0438\u044f\u043b\u043b\u043e\u04b3\u0443 \u0430\u043d\u04b3\u0443\u00bb / \u00ab...\u0430\u043d\u04b3\u043e\u00bb',
+    'tj': '\u00ab\u0440\u0430\u0437\u0438\u044f\u043b\u043b\u043e\u04b3\u0443 \u0430\u043d\u04b3\u0443\u00bb / \u00ab...\u0430\u043d\u04b3\u043e\u00bb',
+}
+
+
+def check_companion_honorific(blocks, lang):
+    """P213: companion honorific left abbreviated in a NARRATED block."""
+    out = []
+    for key in ('S', 'M'):
+        for line_no, line in blocks.get(key, []):
+            for m in COMPANION_ABBREV.finditer(line):
+                out.append(Finding(
+                    'WARN', 'companion-honorific', BLOCK_NAMES[key], line_no,
+                    line,
+                    "P213: %s is narrated. cleanForTTS expands the Prophet's "
+                    "honorific and NO companion honorific, so this reaches the "
+                    "voice as-is and it guesses - on #3895 it produced the "
+                    "truncated \"radiyallah\". Spell it out: %s"
+                    % (m.group(0), SPELLED.get(lang, 'the full form'))))
+    return out
+
+
 def check_inversion(blocks, lang):
     pats = INVERSION_TERMS.get(lang, [])
     note = ('P111 r15: possible meaning inversion - if the hadith describes '
@@ -516,6 +556,7 @@ def main():
         ('seerah-source',     lambda: check_seerah_source(blocks)),
         ('simile',            lambda: check_simile(blocks, args.lang, args.matn)),
         ('quote-addition',    lambda: check_quote_addition(blocks, args.lang, args.matn)),
+        ('companion-honorific', lambda: check_companion_honorific(blocks, args.lang)),
         ('inversion',         lambda: check_inversion(blocks, args.lang)),
     ]
     findings = []

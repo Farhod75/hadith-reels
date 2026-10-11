@@ -7861,3 +7861,55 @@ the action is addressed to Him, gives "for the sake of Allah" and "Allah sees
 this" as compliant, and states that a claim about what Allah commanded,
 entrusted or categorised needs the matn to say so. Unverified against a fresh
 generation; the next set is the test.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 213: The abbreviation the voice had to guess at
+## ═══════════════════════════════════════════════════════════
+**ID:** P213
+**Type:** Written convention reaching a reader that cannot read it
+**Files:** scripts/lint-content.py, app/api/tts/route.ts (diagnosis only)
+**Found:** 2026-10-10, on the at-tirmidhi-3895 EN reel
+
+`cleanForTTS` expands every written form of the Prophet's honorific - the
+glyph, (ص), (pbuh), (saw), (s.a.w.), p.b.u.h - and no companion honorific at
+all. The draft's "(RA)" went to ElevenLabs raw and came back voiced as
+"radiyallah": truncated, because the feminine form needs *anha*. The output
+is model improvisation, so a re-run can differ.
+
+**It cannot be fixed by extending that list.** (RA) is gender-neutral in
+writing and gendered in speech - *anhu* for Abu Hurairah, *anha* for Aisha -
+and the function sees one string with no idea which companion is meant. The
+draft knows. So the fix is a CHECK that sends the decision back to where the
+information is, not an expansion that guesses on the model's behalf.
+
+Scope is S and M only. H and C are read, not narrated, and the abbreviation
+is correct there - the caption has carried it on every reel.
+
+**Found only because two other gates were fixed first.** The stale-SRT bug
+(P211) was serving a transcript from older audio, and the similarity gate
+(P210) was returning noise that suppressed the alignment check. With both
+fixed, alignment reported `ravya` three ways in one run.
+
+**A note on the verification, which was itself wrong first.** Four fixtures
+were written to test this check and two of them silently failed to write - an
+emoji in one fixture is a surrogate pair that cannot encode to UTF-8, which
+truncated that file to 0 bytes and aborted the loop before the fourth. The
+linter reported "no such file" and the test harness counted the absent
+finding as a pass. Two of four results were meaningless and were read as
+green. Same shape as the gates this very pattern sits among: an absent
+measurement reported as a passing one. Check that a fixture exists before
+trusting what a test says about it.
+
+**Rule:** an abbreviation is a convention between writers. Anything that
+SPEAKS the text is a reader that does not share it. Expand where the meaning
+is unambiguous, and where it is not, flag it back to the author.
+
+**Related:** P204 (the ص glyph entry described a per-language distinction the
+code does not make), P210 and P211 (the gates that had to work first), P168
+(do not infer from a name what the registry should state)
+
+**Status:** FIXED - `check_companion_honorific` in lint-content.py, WARN,
+narrated blocks only. Verified four ways: the real R118 defect flags, the
+spelled-out form does not, an abbreviation confined to H and C does not, and
+the Russian «(р.а.)» flags. The summary line moved 10 -> 11 checks by itself,
+which is P139 working.

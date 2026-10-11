@@ -114,8 +114,12 @@ Still open for `reel-producing`:
   - Scripts: step 7 DONE (`scripts/pick-nasheed.py`, 2026-10-09). The step 4
     S:/M:/H:/C: block parser is the remaining one, reusable from
     `lint-content.py`.
-  - Step 2b pass B has NEVER been exercised — it needs a different model, and
-    the run was pass A only. The A/B split the skill specifies is untested.
+  - Step 2b pass B EXERCISED FOR THE FIRST TIME on 2026-10-09, R114 (Muslim
+    #1631 EN): a different model, given the matn and the blocks and nothing
+    else, as P120 requires. It earned the gate immediately — it caught a
+    defect pass A had INTRODUCED, a corrected moral that dropped
+    يدعو له entirely while fixing rule 3. Still ad-hoc, not scripted,
+    and run once; the skill's A/B split is demonstrated, not routine.
   - Case 004 may be missing a required `attribution_boundary_open`: it has the
     same construction as 001, which requires it.
   - The adults lane still has no E2E checklist, which the skill names as a
@@ -155,8 +159,17 @@ their licence calls these the proof; only the terms snapshot is saved so far.
 Note `out/` is gitignored, so that folder is not backed up by the repo — a
 copy exists on D:\licenses.
 
-**No reel has used an Aswati bed yet.** The next set will be the first. The
-reply to Al-Mutawari committed to sending him that link when it ships.
+**Aswati beds are live.** Eight distinct beds across R114—R121 (2026-10-09
+and 10-10), the first use of any of them. ACTION OUTSTANDING: the reply to
+Al-Mutawari committed to sending him the link once a reel shipped with one.
+It has. Send it.
+
+**The contemplative beds are spent.** Of 17 adults-eligible, the four calm
+ones went to #1631 and the remaining unused are Focused-Determination,
+Victory-March and Steady-Motivation — all driving. Four tone overrides were
+needed across these two sets and every one was a guess from the FILENAME,
+which is what P168 exists to warn against for lane eligibility. Either
+source calm beds or listen to the three and record what they actually are.
 
 ---
 
@@ -194,27 +207,6 @@ places for a verdict to be wrong.
 
 ---
 
-## Companion honorifics are unhandled in TTS
-
-`cleanForTTS` expands every written form of the Prophet's honorific — the
-glyph, (pbuh), (saw), (s.a.w.), p.b.u.h — and handles no companion
-honorific at all. On at-tirmidhi-3895 EN the draft's "(RA)" reached
-ElevenLabs raw and was voiced as "radiyallah": truncated, since the female
-form needs *anha*. Non-deterministic, so a re-run can differ.
-
-It cannot be fixed by adding (RA) to that list: the abbreviation is
-gender-neutral in writing and gendered in speech, and the function cannot
-know which companion is meant.
-
-**Proposed fix:** a `lint-content.py` check that FLAGS an unexpanded
-companion honorific in the narrated blocks (S and M) and tells the author to
-spell it out in the target language. Deterministic, and it puts the decision
-where the gender is known. Not an expansion.
-
-Low urgency: RU, UZ and TJ drafts already spell these out in full. EN is the
-only lane that abbreviates, and this is the first set where S carried one.
-
----
 ## Tools
 
 **Kling 3.0 evaluation.** OPEN on `self_upskilling.md`. Run at a set boundary,
@@ -234,6 +226,16 @@ registered as a developer the same day.
 ---
 
 ## Recently closed
+
+- 2026-10-10 — P213 closed. `lint-content.py` now flags an abbreviated
+  companion honorific in a NARRATED block (S or M). A check, not an
+  expansion: (RA) is gender-neutral written and gendered spoken, so
+  cleanForTTS cannot resolve it and the draft must. Verified on the real
+  R118 defect, on the spelled-out form, on an abbreviation confined to H
+  and C, and on the Russian «(р.а.)».
+
+- 2026-10-10 — P210 and P211 fixed; R118—R121 shipped, Tirmidhi #3895,
+  four languages, four platforms each.
 
 - 2026-10-09 — Tirmidhi #1899 reviewed and cleared. The Tajik was never
   wrong; the diacritic check is a heuristic and that sentence legitimately has

@@ -1,6 +1,20 @@
 ## [2026-10-10]
 
 ### Added
+- **P213 — `check_companion_honorific` in `lint-content.py`.** Flags an
+  abbreviated companion honorific left in a NARRATED block. `cleanForTTS`
+  expands every written form of the Prophet's honorific and no companion
+  honorific at all, so the draft's "(RA)" reached ElevenLabs raw on R118 and
+  was voiced as the truncated "radiyallah". Deliberately a check rather than
+  an expansion: (RA) is gender-neutral in writing and gendered in speech, so
+  only the draft knows whether it is *anhu* or *anha*. S and M only — H and C
+  are read, where the abbreviation is correct.
+  Verified four ways: the real R118 defect flags, the spelled-out form does
+  not, an abbreviation confined to H and C does not, and the Russian
+  «(р.а.)» flags. Two of the first four fixtures had silently failed to write
+  (an emoji surrogate pair aborted the loop) and their file-not-found results
+  were read as passes — recorded in P213, since it is the same shape as the
+  gates it sits among.
 - **R118-R121 — Jami at-Tirmidhi #3895**, the best of you is best to his
   family, EN/UZ/RU/TJ, adults. Fills Family / Marriage, which the tracker had
   as partially covered with marriage itself uncovered.
