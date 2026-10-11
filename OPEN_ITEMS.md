@@ -30,9 +30,25 @@ as uncovered.
 2. **Jami at-Tirmidhi #3895** — best to his family. Fills the family /
    marriage gap. Works in the kids lane if that lane is due.
 3. **Sahih al-Bukhari #5027** — learn the Quran and teach it. Fills
-   Quran / Tilawah (zero coverage). Watch the scene set: a mushaf on a rahle
-   is the obvious image and `ad3641-rahle` already exists, so it risks reading
-   as a repeat.
+   Quran / Tilawah (zero coverage). STARTED 2026-10-11; library row read and
+   clean in all six fields.
+   **Scene-set question resolved 2026-10-11.** This entry and the registry
+   disagreed: here, `ad3641-rahle` "risks reading as a repeat"; on
+   `m1631-circle`, the manuscript was left out "so ad3641-rahle stays clear
+   for #5027". R026's note settles it — that clip was pushed through three
+   FLUX rounds deliberately AWAY from a mushaf layout, into a student's
+   working-notes register (irregular lines, marginal annotations, ink blots).
+   So the mushaf image is genuinely unused and belongs to this hadith, but
+   reusing `ad3641-rahle` inside this set would put two manuscript-on-a-stand
+   compositions in one reel. **Decision: #5027 gets ONE new mushaf scene and
+   does not reuse ad3641-rahle.** The other new scenes should carry what this
+   matn uniquely has and the library does not — transmission, learn AND teach,
+   one becoming many — not a second study image. Era note: before Uthman's
+   codex the Quran was written on palm stalks, thin flat stones and parchment,
+   which is attested for the Hijaz and visually unused here; Uthman narrates
+   this hadith, so the codex itself is also era-apt. Avoid a named lamp in any
+   prompt (b2654 generated a temple shrine, b6446 a shrine niche) and describe
+   positively rather than by negation (R026, R026-class negation failure).
 
 Not this round: #1469 and #2616 each have the two-row collision, so picking
 either means first deciding which clause. #1903 sits close to #2654's subject
