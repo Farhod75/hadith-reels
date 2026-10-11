@@ -1,6 +1,38 @@
 ## [2026-10-10]
 
 ### Added
+- **`evals/RUN-2026-10-10.md`** — all four reel-producing cases re-run COLD
+  on a different model, one subagent each, given the blocks, the matn and the
+  three shapes the skill names, and nothing else. Required findings: 001 3/3,
+  002 3/3, 004 4/4, 003 1/3 — 3 of 4, which is the v1 bar, with zero genuine
+  false positives.
+  **Recorded as NOT a pass.** The harness was not constant: the TJ prompt
+  mentioned the plural-verb convention and the UZ prompt did not, which is
+  exactly one of the two findings 003 missed. It also supplied three defect
+  shapes where the real agent reads the full table in
+  `reel-creation-pipeline.md`. The run measures something narrower than the
+  question, so the agent's v1 status is still unestablished.
+  003's other miss was a confident exclusion, not an oversight: it examined
+  the H drift and declined it as "standard scholarly gloss, framed as
+  explanation". The framing is right and the conclusion wrong — H states the
+  narrowed reading AS the hadith's meaning. Same shape as the 10-09 run's 002
+  miss.
+
+### Changed
+- **eval corpus** — `attribution_boundary_open` was required on case 001 only,
+  although 001, 002 and 004 all leave the boundary open. That taught the
+  boundary matters in English and not elsewhere, the reverse of the truth for
+  UZ and TJ, which have no subtitle pass. Now required on all three, and added
+  to 003's `must_not_flag` — 003 is the only case that CLOSES its quotation, so
+  the corpus tests the distinction rather than the presence of a long story
+  block. Both cold runs behaved correctly on it.
+- **two `must_not_flag` entries narrowed.** Both scoped themselves to the
+  qanaah-drift axis in their notes but covered whole sentences in their loci,
+  so a cold run flagging non-matn wording inside an attributed frame
+  («Асл» inserted, «балки» dropped) would have been scored a false positive —
+  which fails a run outright. The finding is real and now credited as
+  `optional/non_verbatim_inside_attribution`; it shipped for real on R121,
+  where the Tajik S block re-translated the hadith while C quoted the row.
 - **P213 — `check_companion_honorific` in `lint-content.py`.** Flags an
   abbreviated companion honorific left in a NARRATED block. `cleanForTTS`
   expands every written form of the Prophet's honorific and no companion

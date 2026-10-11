@@ -27,6 +27,13 @@
   "optional": [
     {
       "block": "S",
+      "defect": "non_verbatim_inside_attribution",
+      "severity": "medium",
+      "locus": "\u00ab\u0411\u043e\u0439\u043b\u0438\u043a \u2014 \u043a\u045e\u043f \u043d\u0430\u0440\u0441\u0430\u0433\u0430 \u044d\u0433\u0430 \u0431\u045e\u043b\u0438\u0448\u0434\u0430 \u044d\u043c\u0430\u0441. \u0410\u0441\u043b \u0431\u043e\u0439\u043b\u0438\u043a \u2014 \u043d\u0430\u0444\u0441\u043d\u0438\u043d\u0433 \u0431\u043e\u0439\u043b\u0438\u0433\u0438\u0434\u0438\u0440.\u00bb",
+      "note": "Guillemets present this as his verbatim words, but it is not text_uzbek_cyrillic: \u00ab\u043c\u043e\u043b-\u043c\u0443\u043b\u043a\u043d\u0438\u043d\u0433 \u043a\u045e\u043f\u043b\u0438\u0433\u0438\u0434\u0430\u00bb became \u00ab\u043a\u045e\u043f \u043d\u0430\u0440\u0441\u0430\u0433\u0430 \u044d\u0433\u0430 \u0431\u045e\u043b\u0438\u0448\u0434\u0430\u00bb, \u00ab\u0431\u0430\u043b\u043a\u0438\u00bb was dropped and \u00ab\u0410\u0441\u043b\u00bb inserted. Credited, not required - the corpus did not list it until 2026-10-10. The same defect shipped for real on R121 (Tirmidhi #3895 TJ), where S re-translated the hadith while C quoted the row correctly."
+    },
+    {
+      "block": "S",
       "defect": "epithet_form",
       "severity": "info",
       "locus": "Пайғамбаримиз",
@@ -50,8 +57,13 @@
   "must_not_flag": [
     {
       "block": "S",
+      "locus": "\u00ab\u0411\u043e\u0439\u043b\u0438\u043a \u2014 \u043a\u045e\u043f \u043d\u0430\u0440\u0441\u0430\u0433\u0430 \u044d\u0433\u0430 \u0431\u045e\u043b\u0438\u0448\u0434\u0430 \u044d\u043c\u0430\u0441. \u0410\u0441\u043b \u0431\u043e\u0439\u043b\u0438\u043a \u2014 \u043d\u0430\u0444\u0441\u043d\u0438\u043d\u0433 \u0431\u043e\u0439\u043b\u0438\u0433\u0438\u0434\u0438\u0440.\u00bb",
+      "note": "attribution_boundary_open MUST NOT be flagged here. 003 is the only case of the four that CLOSES its quotation: the guillemets bound the quoted span and everything after sits visibly outside it. 001, 002 and 004 all leave it open and require the finding. This entry is what makes the corpus test the distinction rather than the presence of a long story block. Added 2026-10-10 alongside those three."
+    },
+    {
+      "block": "S",
       "locus": "Асл бойлик — нафснинг бойлигидир.",
-      "note": "Correct. Holds the matn's own wording, no drift to қаноат. Flagging this is a false positive — and the contrast with H is the point of the case."
+      "note": "Must not be flagged AS DRIFT. It holds «нафснинг бойлигидир» with no slide to қаноат, and the contrast with H is the point of the case. SCOPE NARROWED 2026-10-10: a cold run flagged this sentence on a DIFFERENT axis - «Асл» is inserted and «балки» dropped, so the line is not verbatim yet sits inside guillemets attributed to him. That is legitimate and is now credited under optional/non_verbatim_inside_attribution. The entry previously covered the whole sentence and would have scored a correct finding as a false positive."
     },
     {
       "block": "H",
