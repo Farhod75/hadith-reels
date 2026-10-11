@@ -165,6 +165,15 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     or "рассказал"; the equivalent distinction applies in every language.
 13. The divine name is FIXED per language and MUST NOT vary:
     EN "Allah" · RU "Аллах" · UZ "Аллоҳ" · TJ "Аллоҳ" · AR "الله".
+   DIRECTED TO Allah means the ACTION is addressed to Him - "for the sake of
+   Allah", "Allah sees this". It does NOT license a claim about what Allah
+   commanded, entrusted, or categorised. On Tirmidhi #3895 all FOUR languages
+   satisfied this rule by inventing a warrant the matn does not contain:
+   "Allah has entrusted their care to you", "бу Аллоҳнинг амри",
+   "Который возложил на человека ответственность", "аз роҳҳои ба даст
+   овардани ризои Аллоҳ". Sound teaching, absent from the hadith, and rule 16
+   violations produced BY rule 3 (P212). If the matn states the warrant, say
+   it; otherwise address the action to Allah and stop.
     NEVER "God", "Бог", "Худо" or any other substitute. Exception: where the
     hadith text itself says Rabb (Lord), translate it as Lord / Господь /
     Парвардигор / Раббим — that is a different word in the source and is kept.

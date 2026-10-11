@@ -138,6 +138,10 @@
 | R115 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | UZ | Adults | muslim-1631 | adults-uz-muslim-1631-story.mp3 | adults-uz-muslim-1631-moral.mp3 | adults-uz-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-uz-muslim-1631-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-uz-muslim-1631-reel.mp4 | 38.1s | 15.7 MB | No subtitles (P078). Gloss inside the attribution again, after an em dash with «яъни» - the exact shape of the #2759 TJ defect that check_quote_addition exists for, reproduced in another language on another hadith. Moved to H. RULE 17 AGAIN: «зеро бу ҳадисда айтилганидек» re-attributed the hadith inside the moral. The rule's own evidence line counts eight prior; this is the ninth. Child was plural (фарзандларингизни) against a singular matn - ALL FOUR languages drifted plural on this hadith, including my own English draft. Rule 21 satisfied unprompted, which is the #2759 UZ failure (story block with no attribution at all) not recurring. Caption quote verbatim from text_uzbek_cyrillic. published TG/IG/YT/TikTok |
 | R116 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | RU | Adults | muslim-1631 | adults-ru-muslim-1631-story.mp3 | adults-ru-muslim-1631-moral.mp3 | adults-ru-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-ru-muslim-1631-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | YES | adults-ru-muslim-1631-reel.mp4 | 36.9s | 14.9 MB | WORST CONTENT DEFECT OF THE SET: the generated moral opened «Выбери один из трёх путей» - choose one of the three paths. The hadith says deeds cease EXCEPT FROM three; all three continue, and the أو is enumerative inside the exception, not a menu. Acted on, it tells a listener that doing one of the three suffices. Rule 15 (meaning inversion) and rule 20 (instruction absent from the matn) at once. The fix was «и» for «или». RU was also the ONLY language of four that did not insert the gloss, and its S block needed no change at all: isnad outside the quotation, передал for the companion and сказал for the Prophet SAW, child singular. WHISPER MANGLED THE OPENING: «Абуху Райра» for Абу Хурайра, «добудет доволенным Аллах» for да будет доволен им Аллах, and «пророг» - not a word - for Пророк. restore-srt-casing.py correctly left all three alone: it matches tokens after normalising case and ё, and these differ by LETTERS, not case. It fixes casing, not spelling, and that boundary is now demonstrated rather than assumed. Audio was clean; Whisper misheard. Corrected at the pause, along with restoring the guillemets Whisper dropped - without them the subtitle read as though attribution ended at «сказал.» and an unattributed statement began. Also fixed: Китаб аль-Васыйя rendered «о заветах» (covenants) instead of «о завещаниях» (bequests). published TG/IG/YT/TikTok |
 | R117 | 2026-10-09 | Sahih Muslim #1631 | Abu Hurairah | Sahih | Death / Afterlife | #death #sadaqah #knowledge #children #hadith | TJ | Adults | muslim-1631 | adults-tj-muslim-1631-story.mp3 | adults-tj-muslim-1631-moral.mp3 | adults-tj-muslim-1631-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-circle.mp4, m1631-grove.mp4 | adults-tj-muslim-1631-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | NO (P078) | adults-tj-muslim-1631-reel.mp4 | 32.2s | 12.9 MB | No subtitles (P078). Gloss inside the attribution for the third language, placed outside the closing guillemet - structurally the EN v1, which is still an open boundary when narrated because speech has no quote marks. Moved to H. RULE 17 for the SECOND time in one set: «зеро тибқи ин ҳадис», the Tajik form of the Uzbek clause. The moral also dropped the dua entirely - «фарзандони солеҳ тарбия диҳед» with nothing about the child supplicating - and used the plural. LETTER ERROR IN H: «тахти рақами» for «таҳти рақами». Тахт is a throne; таҳт is under. One missing ҳ - the diacritic class audit-library.py owns and pass B is measurably blind to (probe-passb.py, both runs). Caption quote verbatim from text_tajik with ӯ, ғ, ҷ, ҳ, қ intact. Four distinct nasheed beds across the set, none previously used anywhere in the library. published TG/IG/YT/TikTok |
+| R118 | 2026-10-10 | Jami at-Tirmidhi #3895 | Aisha | Sahih | Family / Marriage | #marriage #family #kindness #hadith | EN | Adults | at-tirmidhi-3895 | adults-en-at-tirmidhi-3895-story.mp3 | adults-en-at-tirmidhi-3895-moral.mp3 | adults-en-at-tirmidhi-3895-narration.mp3 | t3895-hearth.mp4, t3895-dastarkhan.mp4, t3895-platter.mp4, t3895-house.mp4 | adults-en-at-tirmidhi-3895-bg-mixed.mp4 | aswati-Rising-Hope.mp3 | YES | adults-en-at-tirmidhi-3895-reel.mp4 | 26.3s | 7.7 MB | SLUG IS at-tirmidhi-3895 WHILE THE CLIP PREFIX IS t3895 - the clips follow the registry's collection-letter convention and the slug follows the admin folder. Both are correct; the audit handles both. Recorded so a later set does not read the difference as a misnaming (P197). TWO TOOL BUGS FOUND ON THIS LEG, both invisible to review. P210: stt-validate's similarity() ran difflib without autojunk=False, and on character sequences over 200 difflib discards every element appearing in more than 1% - every common letter. The gate returned 0.67 on an SRT differing from the draft by two punctuation marks and one honorific; 0.99 with the fix, 0.26 against unrelated text. Not dead, RANDOM: #1631 passed and this reel failed and neither meant anything. A false divergence also short-circuits check_alignment, so the broken gate was hiding the working one. P211: render-reel skipped Whisper whenever an SRT existed, a bare Test-Path. After a re-narration (P125) the PREVIOUS transcript was kept and the new audio never transcribed. The stale SRT said 'Ravya Allah' while the audio correctly said 'may Allah be pleased with her' - that would have been burned in, contradicting its own soundtrack. mtime cannot express this because restore-srt-casing rewrites the SRT afterwards, so the stale file was NEWER than the audio it failed to describe; fixed with a fingerprint of the source mp3s, which also preserves hand-edits across a re-run. CONTENT: the draft's "(RA)" reached ElevenLabs raw - cleanForTTS expands every form of the Prophet's honorific and no companion honorific at all - and was voiced as the truncated "radiyallah". It cannot be added to that list: (RA) is gender-neutral written and gendered spoken. Spelled out as "may Allah be pleased with her" and S re-narrated. published TG/IG/YT/TikTok |
+| R119 | 2026-10-10 | Jami at-Tirmidhi #3895 | Aisha | Sahih | Family / Marriage | #marriage #family #kindness #hadith | UZ | Adults | at-tirmidhi-3895 | adults-uz-at-tirmidhi-3895-story.mp3 | adults-uz-at-tirmidhi-3895-moral.mp3 | adults-uz-at-tirmidhi-3895-narration.mp3 | t3895-hearth.mp4, t3895-dastarkhan.mp4, t3895-platter.mp4, t3895-house.mp4 | adults-uz-at-tirmidhi-3895-bg-mixed.mp4 | aswati-Steady-Motivation.mp3 | NO (P078) | adults-uz-at-tirmidhi-3895-reel.mp4 | 30.9s | 8.8 MB | No subtitles (P078). LIBRARY DEFECT CORRECTED BEFORE PRODUCTION: both Uzbek columns read «энг яхшиларингиз» - plural - against the singular خيركم, and then collided with their own singular «оиласига»; the second clause «энг яхшиларингизман» was a plural noun with a first-person singular copula. audit-library returned 0 findings on the row both before and after, which is the tool saying what it says: a clean run is not a correct library. Corrected to «энг яхшингиз» in both scripts, okina intact in boʻlganidir. THE CORRECTION HELD: the generated caption quoted the fixed row verbatim. That is the #6446 drift NOT recurring, where a corrected column was re-derived from the concept in two languages. Rule 16 class instead: the moral claimed «бу Аллоҳнинг амри» - this is Allah's command - which the matn does not say. See R120 for the pattern. published TG/IG/YT/TikTok |
+| R120 | 2026-10-10 | Jami at-Tirmidhi #3895 | Aisha | Sahih | Family / Marriage | #marriage #family #kindness #hadith | RU | Adults | at-tirmidhi-3895 | adults-ru-at-tirmidhi-3895-story.mp3 | adults-ru-at-tirmidhi-3895-moral.mp3 | adults-ru-at-tirmidhi-3895-narration.mp3 | t3895-hearth.mp4, t3895-dastarkhan.mp4, t3895-platter.mp4, t3895-house.mp4 | adults-ru-at-tirmidhi-3895-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES | adults-ru-at-tirmidhi-3895-reel.mp4 | 26.0s | 7.7 MB | FIRST RUSSIAN REEL EVER MEASURED BY A WORKING DIVERGENCE GATE (P210 fixed hours earlier). Similarity 0.996, zero findings - AND THE READ STILL CAUGHT A DEFECT the gate passed: Whisper heard the liaison in «Аллах и приветствует» as «Аллаха» and dropped the conjunction, leaving an accusative governed by nothing. check_alignment catches an invented proper noun (it caught 'Ravya' on R118) but a wrong case ending plus a dropped conjunction reads as near-identical tokens. The newly-working gates narrowed what reaches the human; they did not replace the read. Also fixed in the SRT: em dash restored in «Лучший из вас — тот», and the cue split moved to the comma so «своей» and «семье» stopped straddling a cut. Audio was correct throughout; all three were subtitle-layer fixes. published TG/IG/YT/TikTok |
+| R121 | 2026-10-10 | Jami at-Tirmidhi #3895 | Aisha | Sahih | Family / Marriage | #marriage #family #kindness #hadith | TJ | Adults | at-tirmidhi-3895 | adults-tj-at-tirmidhi-3895-story.mp3 | adults-tj-at-tirmidhi-3895-moral.mp3 | adults-tj-at-tirmidhi-3895-narration.mp3 | t3895-hearth.mp4, t3895-dastarkhan.mp4, t3895-platter.mp4, t3895-house.mp4 | adults-tj-at-tirmidhi-3895-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-tj-at-tirmidhi-3895-reel.mp4 | 25.5s | 7.2 MB | No subtitles (P078). THE GLOSS IN A NEW FORM: «нисбат ба аҳли (оилаи) худ» - a parenthetical explaining аҳл, INSIDE the Prophet's SAW quotation. Rule 18 again after the em dash in UZ and the trailing sentence in TJ on #2759. AND THE S BLOCK RE-TRANSLATED THE HADITH: it wrote its own Tajik instead of using text_tajik, while C quoted the row correctly - one reel, two different renderings of one hadith. Replaced with the library text verbatim. H named no book, only the number; rule 6 wants collection AND book, so «боби Фазоил» was added - and таҳти spelled with the ҳ this time, which is the letter #1631's TJ H got wrong. published TG/IG/YT/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -184,6 +188,7 @@
 | Sahih Muslim #2963 | EN, RU, UZ, TJ | Adults | R106, R107, R108, R109 |
 | Sahih Muslim #2759 | EN, RU, UZ, TJ | Adults | R110, R111, R112, R113 |
 | Sahih Muslim #1631 | EN, RU, UZ, TJ | Adults | R114, R115, R116, R117 |
+| Jami at-Tirmidhi #3895 | EN, UZ, RU, TJ | Adults | R118, R119, R120, R121 |
 
 ---
 
@@ -220,6 +225,7 @@
 | Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 | Gratitude / Contentment | 4 | R106-R109 | EN, RU, UZ, TJ |
 | Death / Afterlife | 4 | R114–R117 | EN, RU, UZ, TJ |
+| Family / Marriage | 4 | R118–R121 | EN, UZ, RU, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -228,7 +234,7 @@
 - ⚠️ Tawheed / Aqeedah basics — 4 reels (R010–R013, full EN/RU/UZ/TJ set)
 - ⚠️ Charity / Sadaqah — 5 reels (R003 smile-as-charity; R014–R017 full set)
 - ⚠️ Akhlaq / Anger management — no reels yet (Patience covered by R042–R049)
-- ⚠️ Family / Marriage / Parents — 8 reels (R034–R041, birr al-walidayn); marriage and family ties still uncovered
+- ✅ Family / Marriage / Parents — 12 reels (R034–R041 birr al-walidayn; R118–R121 Tirmidhi #3895, conduct toward wife and household)
 - ❌ Quran recitation / Tilawah — no reels yet
 - ✅ Death / Afterlife / Barzakh — 4 reels (R114–R117, Muslim #1631, the three ongoing deeds)
 
@@ -261,10 +267,12 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 4 | R103 | R004, R023, R095, R103 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
-| aswati-Peaceful-Contemplation.mp3 | 1 | R114 | R114 |
-| aswati-Gentle-Reflection.mp3 | 1 | R115 | R115 |
+| aswati-Peaceful-Contemplation.mp3 | 2 | R120 | R114, R120 |
+| aswati-Gentle-Reflection.mp3 | 2 | R121 | R115, R121 |
 | aswati-Morning-Serenity.mp3 | 1 | R116 | R116 |
 | aswati-Heartfelt-Gratitude.mp3 | 1 | R117 | R117 |
+| aswati-Rising-Hope.mp3 | 1 | R118 | R118 |
+| aswati-Steady-Motivation.mp3 | 1 | R119 | R119 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
 ### Background scene usage
@@ -280,6 +288,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
+| t3895-hearth, dastarkhan, platter, house | 1 set | 2026-10-10 (R118-R121) | R118-R121 |
 | m1631-well, channel, circle, grove | 1 set | 2026-10-09 (R114-R117) | R114-R117 |
 | m2759-door-night, threshold, firstlight, dawn | 1 set | 2026-10-05 (R110-R113) | R110-R113 |
 | m2963-windows, bowls, sandals, room | 1 set | 2026-10-04 (R106-R109) | R106-R109 |
@@ -371,14 +380,14 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 117 |
+| Total reels posted | 121 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 65 |
+| Adults reels | 69 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 30 |
-| Library rows | 70 (30 used, 40 unused) |
+| Hadiths used (unique) | 31 |
+| Library rows | 70 (31 used, 39 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×51, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
 | Companions cited | 15 (Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
 

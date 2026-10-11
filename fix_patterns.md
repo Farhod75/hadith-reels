@@ -7763,3 +7763,101 @@ blindest on the input it was written for)
 **Status:** FIXED - `autojunk=False`, with the three measured anchors in a
 comment above the call. Re-run on the same reel: similarity 0.987, divergence
 clear, and the three alignment findings now surface.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 211: The transcript cache that outlived its audio
+## ═══════════════════════════════════════════════════════════
+**ID:** P211
+**Type:** A cache with no invalidation
+**Files:** render-reel.ps1
+**Found:** 2026-10-10, on the at-tirmidhi-3895 EN reel
+
+Step 5 was:
+
+    if (Test-Path $srt) { Ok "subtitles already present - skipping Whisper" }
+
+A bare existence check. The cache is there for a good reason - the operator
+corrects the SRT at the review pause, and re-running the render must not throw
+that away - but it had no way to tell a hand-edited transcript from one
+describing audio that has since been replaced.
+
+The story mp3 was re-narrated to replace a mangled honorific. The new audio
+was correct. The render kept the PREVIOUS run's SRT, which still read "Ravya
+Allah", and would have burned it over a soundtrack saying "may Allah be
+pleased with her" - subtitles contradicting their own audio, on the exact
+phrase being corrected.
+
+**Three wrong diagnoses before the right one, each killed by a measurement:**
+
+1. "The admin block still has (RA)." Both admin and draft.txt were correct.
+2. "The SRT is stale." True, but its mtime was 17:32:40 and the story mp3's
+   was 17:28:47 - the stale file was NEWER than the audio it failed to
+   describe, because restore-srt-casing.py rewrites it after Whisper.
+3. An mtime comparison against $narr - which step 4 rebuilds on every run, so
+   it is always newer and the cache would never hold at all.
+
+What settled it was running Whisper by hand against the current narration and
+reading what came back. Three sentences of reasoning lost to one measurement.
+
+**Rule:** a cache keyed on existence is not a cache, it is a stale read with
+a happy name. Key it on the inputs, and pick an input the pipeline does not
+rewrite as a side effect. mtime is an input only if nothing downstream
+touches the file.
+
+**Related:** P210 (the gate that had to work before this was visible),
+P125 (per-block re-narrate - the workflow this breaks), P188 (the write path
+can silently no-op), P118 (two things disagreeing; the stale one looked newer)
+
+**Status:** FIXED - the SRT is kept only when a sidecar fingerprint of the
+SOURCE mp3s (size + mtime of story and moral) still matches. Hand-edits
+survive a re-run; a re-narration discards the transcript. Verified on the
+same reel: the stale SRT was discarded, Whisper re-ran, and the new transcript
+matched the audio.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 212: The rule that manufactured the defect it forbade
+## ═══════════════════════════════════════════════════════════
+**ID:** P212
+**Type:** A constraint satisfied by fabrication
+**Files:** app/api/generate-reel/route.ts (rule 3)
+**Found:** 2026-10-10, across all four languages of Tirmidhi #3895
+
+Rule 3 says the moral must be "practical AND directed to Allah". It was
+written after twenty consecutive generations produced a moral with no mention
+of Allah at all (P155). It works: Allah now appears in every moral.
+
+HOW he appears is the problem. On one hadith, in four languages, four for
+four, the generator satisfied rule 3 by inventing a divine warrant:
+
+    EN  "for Allah has entrusted their care to you"
+    UZ  "чунки бу Аллоҳнинг амри"            (this is Allah's command)
+    RU  "Который возложил на человека..."   (Who placed the duty on man)
+    TJ  "аз роҳҳои ба даст овардани ризои Аллоҳ"  (a way of attaining His pleasure)
+
+Every one is sound teaching. None is in this matn, which says who is best and
+nothing about commands, entrustment or categories of obedience. These are
+rule 16 violations, and rule 3 is what produced them.
+
+**Why.** Rule 3 states a requirement and gives no example of satisfying it.
+"Directed to Allah" is ambiguous between addressing the action to Him and
+asserting something about Him, and the second is easier to write. A model
+asked for theology in a sentence will supply theology.
+
+**This is not a per-language quality gap.** Four of four, one hadith. When a
+defect appears in every language of a set it is the instruction pulling, not
+the translation drifting - the same signature as the sadaqah jariyah gloss on
+#1631, which hit three of four (P207).
+
+**Rule:** when a rule keeps being satisfied in a way that violates another
+rule, the wording is the defect, not the output. Fix it where the ambiguity
+is and show the compliant form; adding review catches instances, not causes.
+
+**Related:** P155 (the twenty morals with no Allah, which rule 3 fixed),
+P116 (length pressure IS fabrication pressure - same shape: a requirement
+met by inventing), P207 (a defect appearing in most languages of one set)
+
+**Status:** FIXED in the rule text - rule 3 now says DIRECTED TO Allah means
+the action is addressed to Him, gives "for the sake of Allah" and "Allah sees
+this" as compliant, and states that a claim about what Allah commanded,
+entrusted or categorised needs the matn to say so. Unverified against a fresh
+generation; the next set is the test.

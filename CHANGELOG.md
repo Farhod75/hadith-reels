@@ -1,5 +1,64 @@
 ## [2026-10-10]
 
+### Added
+- **R118-R121 — Jami at-Tirmidhi #3895**, the best of you is best to his
+  family, EN/UZ/RU/TJ, adults. Fills Family / Marriage, which the tracker had
+  as partially covered with marriage itself uncovered.
+  Scene set `t3895`: one evening in one house — the hearth where the meal was
+  made, the mat laid for six, the shared platter, the lit window seen from the
+  yard. MODE B with no figures, on a hadith whose whole meaning is a
+  relationship between people who cannot be shown.
+  Era decision: a Tajik dastarkhan with plov was proposed and declined as
+  Central Asian and roughly a millennium after the Hijaz. Composition kept,
+  contents made 7th-century tharid — the same read for the target audience
+  without the anachronism.
+  No lamp is named anywhere in the house prompt and its source stays out of
+  frame, against the b2654 and b6446 prior where a named lamp produced shrines.
+
+### Fixed
+- **P211** — `render-reel.ps1` skipped Whisper whenever an SRT existed, a bare
+  `Test-Path`. After a per-block re-narration (P125) the previous run's
+  transcript was kept and the new audio never transcribed. On this set the
+  stale SRT read "Ravya Allah" while the re-narrated audio correctly said
+  "may Allah be pleased with her" — that would have been burned in,
+  contradicting its own soundtrack, on the exact phrase being corrected.
+  mtime cannot express the staleness: `restore-srt-casing.py` rewrites the SRT
+  after Whisper, so the stale file was NEWER than the audio it failed to
+  describe. Replaced with a sidecar fingerprint of the source mp3s, which also
+  preserves the operator's hand-edits across a re-run — the reason the cache
+  exists at all.
+- **P212** — rule 3 ("the moral must be practical AND directed to Allah")
+  was being satisfied by inventing a divine warrant. Four languages, one
+  hadith, four for four: "Allah has entrusted their care to you",
+  "бу Аллоҳнинг амри", "Который возложил на человека…", "аз роҳҳои
+  ба даст овардани ризои Аллоҳ". All sound teaching; none in the matn.
+  Rule 3 was producing rule 16 violations. The rule now states that DIRECTED
+  TO Allah means the action is addressed to Him, gives the compliant forms,
+  and requires the matn to carry any claim about what Allah commanded,
+  entrusted or categorised. Unverified against a fresh generation — the next
+  set is the test.
+
+### Notes
+- The Uzbek library row was corrected before production: both scripts read
+  «энг яхшиларингиз», plural, against a singular خيركم, colliding with
+  their own singular «оиласига». `audit-library` returned 0 findings before
+  and after, which is exactly what it says of itself. The correction then
+  HELD through generation — the #6446 drift, where a fixed column was
+  re-derived from the concept, did not recur.
+- The Tajik S block re-translated the hadith instead of using `text_tajik`,
+  while its own C block quoted the row correctly: one reel, two renderings.
+  It also carried the gloss in a new form — a parenthetical «аҳли (оилаи) худ»
+  inside the quotation.
+- The Russian leg was the first ever measured by a working divergence gate,
+  and the read still caught what the gate passed: Whisper heard the liaison in
+  «Аллах и приветствует» as «Аллаха» and dropped the conjunction. 0.996
+  similarity, zero findings, and still wrong. The gates narrowed what reaches
+  the human; they did not replace the read.
+- `cleanForTTS` expands every written form of the Prophet's honorific and no
+  companion honorific at all, so "(RA)" reached ElevenLabs raw and was voiced
+  as the truncated "radiyallah". It cannot simply be added to that list: the
+  abbreviation is gender-neutral written and gendered spoken. Logged in
+  OPEN_ITEMS as a proposed linter check, not an expansion.
 ### Fixed
 - **P210** — `stt-validate.py`'s `similarity()` used `difflib.SequenceMatcher`
   without `autojunk=False`. On character sequences over 200, difflib discards

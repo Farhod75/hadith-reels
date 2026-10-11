@@ -306,8 +306,32 @@ Ok "$narr ($([math]::Round((Get-Item $narr).Length/1KB)) KB)"
 # --- STEP 5: subtitles (conditional by language) -----------------------------
 if ($useSubs) {
   Say "`n[2/5] Step 5 - generating subtitles via Whisper ($Lang)..."
-  if (Test-Path $srt) {
-    Ok "subtitles already present ($srt) - skipping Whisper"
+  # P211: this cache must invalidate when the NARRATION changes, and it must
+  # survive a hand-edit, which is why it exists: the operator corrects the SRT
+  # at the review pause, and re-running the render must not throw that away.
+  #
+  # It was a bare Test-Path, so a re-render after a per-block re-narration
+  # (P125) kept the PREVIOUS run's SRT and never transcribed the new audio.
+  # Caught on at-tirmidhi-3895 EN: the story mp3 was re-narrated to replace a
+  # mangled honorific, the new audio was correct, and the stale SRT still
+  # carried the mangled form - which would have been burned into the reel,
+  # contradicting its own soundtrack.
+  #
+  # mtime cannot express this: restore-srt-casing.py rewrites the SRT after
+  # Whisper, so the stale file was NEWER than the audio it failed to describe.
+  # Fingerprint the SOURCE mp3s instead - they change only on re-narration.
+  # ($narr is rebuilt by step 4 every run, so it can never anchor a cache.)
+  $srtStamp = "$srt.src"
+  $fp = "{0}:{1}|{2}:{3}" -f (Get-Item $story).Length, (Get-Item $story).LastWriteTimeUtc.Ticks,
+                             (Get-Item $moral).Length, (Get-Item $moral).LastWriteTimeUtc.Ticks
+  $srtFresh = (Test-Path $srt) -and (Test-Path $srtStamp) -and
+              ((Get-Content $srtStamp -Raw -ErrorAction SilentlyContinue).Trim() -eq $fp)
+  if ((Test-Path $srt) -and -not $srtFresh) {
+    Say "   narration changed since this SRT was made - discarding it (P211)"
+    Remove-Item $srt -Force
+  }
+  if ($srtFresh) {
+    Ok "subtitles already present and still match the narration - skipping Whisper"
   } else {
     # Build args as an array of literal strings; pass the path quoted to avoid
     # PowerShell mangling the backslash path into whisper.exe (which prints usage).
@@ -326,6 +350,9 @@ if ($useSubs) {
     $env:PYTHONIOENCODING = $prevPyIO
     $ErrorActionPreference = $prevEAP
     if (-not (Test-Path $srt)) { Die "Whisper did not produce $srt (run it manually to see the error)" }
+    # P211: stamp the sources this transcript was made from, so a later run can
+    # tell a hand-edited SRT (keep) from one describing replaced audio (discard).
+    [System.IO.File]::WriteAllText((Join-Path $PWD $srtStamp), $fp, (New-Object System.Text.UTF8Encoding($false)))
     Ok "$srt"
   }
 

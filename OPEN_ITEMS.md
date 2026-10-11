@@ -194,6 +194,27 @@ places for a verdict to be wrong.
 
 ---
 
+## Companion honorifics are unhandled in TTS
+
+`cleanForTTS` expands every written form of the Prophet's honorific — the
+glyph, (pbuh), (saw), (s.a.w.), p.b.u.h — and handles no companion
+honorific at all. On at-tirmidhi-3895 EN the draft's "(RA)" reached
+ElevenLabs raw and was voiced as "radiyallah": truncated, since the female
+form needs *anha*. Non-deterministic, so a re-run can differ.
+
+It cannot be fixed by adding (RA) to that list: the abbreviation is
+gender-neutral in writing and gendered in speech, and the function cannot
+know which companion is meant.
+
+**Proposed fix:** a `lint-content.py` check that FLAGS an unexpanded
+companion honorific in the narrated blocks (S and M) and tells the author to
+spell it out in the target language. Deterministic, and it puts the decision
+where the gender is known. Not an expansion.
+
+Low urgency: RU, UZ and TJ drafts already spell these out in full. EN is the
+only lane that abbreviates, and this is the first set where S carried one.
+
+---
 ## Tools
 
 **Kling 3.0 evaluation.** OPEN on `self_upskilling.md`. Run at a set boundary,
