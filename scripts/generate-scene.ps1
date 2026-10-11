@@ -64,6 +64,46 @@ function Say($m){ Write-Host $m -ForegroundColor Cyan }
 function Ok ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
 
+# --- P215: the prompt is part of the asset -----------------------------------
+# Every clip in out\backgrounds\new\ made before 2026-10-11 is unreproducible:
+# the motion prompt that produced it existed only in a chat window. The Kling
+# 3.0 evaluation requires 'the same prompt through both models' and could not be
+# run against ANY of the 64 registered scenes for exactly that reason. A clip
+# without its prompt cannot be regenerated, re-evaluated when a model ships, or
+# diffed when a model's behaviour changes under it.
+#
+# Written at SUBMIT, before the clip exists, so a 20-minute timeout (P137) still
+# leaves the prompt on disk for -Resume to carry forward. A -Resume run has no
+# -Prompt of its own, so a recorded prompt is never overwritten with nothing.
+#
+# ConvertFrom-Json coerces an ISO-8601 string to [DateTime] with Kind=Utc, so on a
+# rewrite a timestamp's TEXT may shorten (...00.0000000Z -> ...00Z) while the
+# instant is preserved exactly. That is not a defect; do not add quoting to
+# 'fix' it.
+function Write-Sidecar {
+  param([hashtable]$Extra = @{})
+  $side = Join-Path $promptDir "$Name.json"
+  $rec  = @{}
+  if (Test-Path $side) {
+    try {
+      (Get-Content $side -Raw -ErrorAction Stop | ConvertFrom-Json).PSObject.Properties |
+        ForEach-Object { $rec[$_.Name] = $_.Value }
+    } catch { }
+  }
+  if (-not [string]::IsNullOrWhiteSpace($Prompt)) { $rec['prompt'] = $Prompt }
+  if (-not [string]::IsNullOrWhiteSpace($Image))  { $rec['image']  = $Image }
+  $rec['name']            = $Name
+  $rec['model']           = $Model
+  $rec['mode']            = if ($imageMode) { 'image-to-video' } else { 'text-to-video' }
+  $rec['duration_sec']    = [int]$Duration
+  $rec['generate_audio']  = $payload['generate_audio']   # $null = not sent (2.1 Master)
+  $rec['negative_prompt'] = $payload['negative_prompt']
+  if ($reqId) { $rec['request_id'] = $reqId }
+  foreach ($k in $Extra.Keys) { $rec[$k] = $Extra[$k] }
+  $rec['schema'] = 1
+  $rec | ConvertTo-Json -Depth 5 | Set-Content -Path $side -Encoding UTF8
+}
+
 # --- read FAL_KEY from .env.local (never typed on the command line) ----------
 $resuming = -not [string]::IsNullOrWhiteSpace($Resume)
 if (-not $resuming -and [string]::IsNullOrWhiteSpace($Prompt)) {
@@ -78,6 +118,14 @@ if ([string]::IsNullOrWhiteSpace($FAL_KEY)) { Die "FAL_KEY in .env.local is empt
 $outDir = "out\backgrounds\new"
 if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir | Out-Null }
 $outFile = Join-Path $outDir "$Name.mp4"
+
+# P215: the clip is build output and stays under the gitignored /out/. The PROMPT
+# that produced it is SOURCE - the only thing that makes a clip reproducible or a
+# model comparison possible - so it is recorded beside the registry that indexes
+# each scene, where it is version-controlled. A negation under /out/ cannot work:
+# git does not descend into an ignored directory to re-include a file.
+$promptDir = "assets\scene-prompts"
+if (-not (Test-Path $promptDir)) { New-Item -ItemType Directory -Path $promptDir | Out-Null }
 
 $headers = @{ "Authorization" = "Key $FAL_KEY"; "Content-Type" = "application/json" }
 $payload = @{
@@ -126,6 +174,7 @@ if ($resuming) {
   $statusUrl = "https://queue.fal.run/fal-ai/kling-video/requests/$reqId/status"
   $resultUrl = "https://queue.fal.run/fal-ai/kling-video/requests/$reqId"
   Ok "resuming: $reqId"
+  Write-Sidecar @{ resumed_utc = (Get-Date).ToUniversalTime().ToString('o') }
 } else {
   Say "`n[1/3] Submitting to fal.ai queue..."
   try {
@@ -139,6 +188,8 @@ if ($resuming) {
   $resultUrl = $submit.response_url
   if (-not $reqId) { Die "no request_id returned (response: $($submit | ConvertTo-Json -Compress))" }
   Ok "queued: $reqId"
+  Write-Sidecar @{ submitted_utc = (Get-Date).ToUniversalTime().ToString('o') }
+  Ok "prompt recorded: $promptDir\$Name.json (P215)"
 }
 
 
@@ -191,9 +242,19 @@ $mb = [math]::Round((Get-Item $outFile).Length/1MB,2)
 Ok "$outFile ($mb MB)"
 
 # verify it's vertical 1080x1920-ish (Kling outputs vertical for 9:16)
+$dim = $null
 if (Get-Command ffprobe -ErrorAction SilentlyContinue) {
   $dim = (& ffprobe -hide_banner -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x $outFile 2>$null).Trim()
   Write-Host "        resolution: $dim" -ForegroundColor DarkGray
+}
+
+# P215: close the record with what the run actually produced.
+Write-Sidecar @{
+  completed_utc = (Get-Date).ToUniversalTime().ToString('o')
+  file          = $outFile
+  size_bytes    = (Get-Item $outFile).Length
+  resolution    = $dim
+  video_url     = $videoUrl
 }
 
 Write-Host "`nNEXT: watch $outFile -- is it reel-worthy AND religiously appropriate (MODE B)?" -ForegroundColor Cyan

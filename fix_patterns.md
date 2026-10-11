@@ -7985,3 +7985,78 @@ Master alone omits it. The old guard passed only the two 2.6 cases.
 it at all - `-FitScenes` can only trim, never extend. Passing 15 to 2.6 is
 rejected by the API at no charge. The cost table in the script header gains the
 3.0 Pro rates.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 215: The clip kept, the prompt thrown away
+## ═══════════════════════════════════════════════════════════
+**ID:** P215
+**Type:** Build output retained, its source discarded
+**File:** scripts/generate-scene.ps1
+**Found:** 2026-10-11, when the Kling 3.0 evaluation had nothing to run
+
+The watchlist item reads "same prompt through both models, as FLUX 2 was
+evaluated." Four t3895 clips sit in out\backgrounds\new with their stills beside
+them in out\refs, all four registered and verified. **Not one of them could be
+used,** because no motion prompt was ever written down. They were typed into a
+chat window, sent to fal, and lost when that window was compacted.
+
+**Symptom:** none that anyone would notice. The clips play. The reels shipped.
+Nothing is missing until someone asks the one question that needs the prompt.
+
+**Root cause:** the script treated the mp4 as the artifact. The mp4 is the BUILD
+OUTPUT. The prompt is the source, and it was never persisted anywhere - not in
+the registry, which records a prose description of each scene but not the text
+that generated it, and not on disk, where only the video landed. 64 registered
+scenes, 64 unreproducible.
+
+What that costs, concretely: a clip cannot be regenerated at a different length,
+cannot be re-rolled when it is nearly right, cannot be compared against a new
+model, and cannot be diffed when a model's behaviour shifts under a prompt that
+used to work. The FLUX 2 evaluation (P198) was decisive precisely because the
+m2963 prompt still existed to re-run - that eval would have been impossible
+under this same gap, and the project would have stayed a year behind.
+
+**Fix:** `Write-Sidecar` records name, model, mode, duration, the verbatim
+prompt, the input still, negative_prompt, generate_audio as actually sent,
+request_id, and the completion facts.
+
+Three details that are load-bearing:
+
+1. **Written at SUBMIT, not at download.** The money is spent at submit, and a
+   20-minute timeout (P137) ends the run before any file exists. Recording the
+   prompt first means a timed-out job still has it on disk for -Resume.
+2. **A -Resume run carries no -Prompt.** Writing unconditionally would blank the
+   recorded prompt on the very path that exists to recover a paid job. The
+   writer merges, and never overwrites a recorded value with an empty one.
+3. **The record lives in assets/scene-prompts/, not beside the clip.** `/out/`
+   is gitignored wholesale, and git does not descend into an ignored directory
+   to re-include a file, so `!out/backgrounds/new/*.json` cannot work - a
+   sidecar there would be unversioned, which is the same loss on a slower clock.
+   It sits beside asset-registry.json, which already indexes every scene.
+
+**Not recoverable:** the 64 clips made before today stay unreproducible. Their
+prompts are gone. Recorded here so no future evaluation assumes otherwise and
+plans around stills that have no prompt behind them.
+
+**Rule:** persist the input that produced an artifact, not just the artifact. If
+a thing was generated from text, the text is the asset and the output is a
+cache. Ask what you would need to make it again.
+
+**Related:** P198 (the FLUX 2 eval, which only worked because its prompt
+survived), P137 (-Resume, the path that would have been broken by an
+unconditional write), P214 (the other thing blocking this same evaluation),
+P168 (the registry is the source of truth - this adds the field it was missing).
+
+**Status:** FIXED. Verified by extracting `Write-Sidecar` from the script with
+the PowerShell AST - the real source, not a retyped copy - and driving all three
+call shapes against mock state: 17 checks, including that a resume-shaped call
+with an empty -Prompt preserves the recorded prompt and the earlier timestamp,
+and that a model which omits generate_audio records null rather than false.
+
+**A note on the verification, which was wrong twice before it was right.** Two
+checks failed on the first run and two on the second. Both times the stored data
+was correct and the ASSERTION was wrong: ConvertFrom-Json coerces an ISO-8601
+string to [DateTime] with Kind=Utc, and `[datetime]'...Z'` in the test parsed to
+Kind=Local, so a correct 22:05Z was compared against 18:05 local and declared
+unequal. Printing the actual values settled in one run what two rounds of
+guessing had not. Same discipline as P211: measure before diagnosing.

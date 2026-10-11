@@ -12,6 +12,27 @@
   so a match that FAILS leaves the safe state in place. Verified against seven
   model ids, including a hypothetical v4.
 
+### Added
+- **`scripts/generate-scene.ps1` now records every scene prompt (P215).** The
+  Kling 3.0 evaluation asks for “the same prompt through both models” and could
+  not be run against ANY of the 64 registered scenes: no clip's motion prompt
+  was ever stored. They were typed into a chat window and lost. `Write-Sidecar`
+  writes name, model, mode, duration, the verbatim prompt, the input still,
+  negative_prompt, generate_audio as actually sent, request_id and the
+  completion facts to `assets/scene-prompts/<name>.json`.
+  Written at SUBMIT, because the charge happens there and a 20-minute timeout
+  (P137) ends the run before a file exists — a timed-out job still has its
+  prompt for `-Resume`. The writer MERGES: a `-Resume` run carries no `-Prompt`,
+  and an unconditional write would blank the record on the one path that exists
+  to recover a paid job. Records go in `assets/scene-prompts/` rather than
+  beside the clip because `/out/` is gitignored wholesale and git will not
+  descend into an ignored directory to re-include a file — a sidecar there
+  would be unversioned, the same loss on a slower clock.
+  Verified by pulling the function out of the script with the PowerShell AST
+  and driving all three call shapes: 17 checks.
+  **The 64 clips made before today stay unreproducible** — their prompts are
+  gone, recorded in P215 so no future eval plans around them.
+
 ### Changed
 - **`-Duration` accepts '15'** (`generate-scene.ps1`). Kling 3.0 takes 3–15s
   where 2.6 Pro caps at 10 — and that cap is why `-FitScenes` can only ever
