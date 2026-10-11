@@ -112,8 +112,17 @@ Re-run 001 cold to settle it.
 Still open for `reel-producing`:
 
   - Scripts: step 7 DONE (`scripts/pick-nasheed.py`, 2026-10-09). The step 4
-    S:/M:/H:/C: block parser is the remaining one, reusable from
-    `lint-content.py`.
+    block parser was DECLINED on 2026-10-10, deliberately. Merging
+    lint-content's parser (keeps line numbers, for reporting) with
+    stt-validate's (returns narrated S+M, for comparison) refactors two
+    working scripts to serve a programmatic v2 agent that does not exist.
+    Built `scripts/check-parser-agreement.py` instead, which answers the
+    question the merge was really for: do the two read a draft the same
+    way? They do — verified on the shipped draft and on five adversarial
+    inputs (duplicate label, a label-shaped line inside C, tight and loose
+    label spacing, a preamble before any label, blank-line separation).
+    Both already open with utf-8-sig, so the BOM trap is covered in both.
+    Revisit the merge only if v2 is actually being built.
   - Step 2b pass B EXERCISED FOR THE FIRST TIME on 2026-10-09, R114 (Muslim
     #1631 EN): a different model, given the matn and the blocks and nothing
     else, as P120 requires. It earned the gate immediately — it caught a

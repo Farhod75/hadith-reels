@@ -1,6 +1,18 @@
 ## [2026-10-10]
 
 ### Added
+- **`scripts/check-parser-agreement.py`** — asserts that `lint-content.py`
+  and `stt-validate.py` read a draft the same way. Written INSTEAD of the
+  step-4 shared block parser that was on record: merging the two refactors
+  working scripts to serve a v2 agent nobody is building, while this answers
+  the question the merge was for. They agree on the shipped draft and on five
+  adversarial inputs; both already open with utf-8-sig, so the BOM trap is
+  covered in both.
+  Carries `--self-test`, because after those six runs the DISAGREE branch had
+  never executed — the same weakness as P210, where a threshold never checked
+  against a known-different input was a number and not a gate. The self-test
+  fires the failure path on three kinds of difference and confirms silence on
+  identical input.
 - **`evals/RUN-2026-10-10.md`** — all four reel-producing cases re-run COLD
   on a different model, one subagent each, given the blocks, the matn and the
   three shapes the skill names, and nothing else. Required findings: 001 3/3,
