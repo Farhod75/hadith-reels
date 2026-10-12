@@ -184,10 +184,18 @@ their licence calls these the proof; only the terms snapshot is saved so far.
 Note `out/` is gitignored, so that folder is not backed up by the repo — a
 copy exists on D:\licenses.
 
-**Aswati beds are live.** Eight distinct beds across R114—R121 (2026-10-09
-and 10-10), the first use of any of them. ACTION OUTSTANDING: the reply to
-Al-Mutawari committed to sending him the link once a reel shipped with one.
-It has. Send it.
+**Aswati beds are live — and the showcase reply is CLOSED (2026-10-12).**
+Twelve reels across R114—R125 (2026-10-09 to 10-11) on seven of the eight
+beds. Only Victory-March is still unplaced: it is the sole 0-use bed, so the
+picker recommended it on all four legs of #5027 and it was overruled on tone
+every time — a quiet hadith will never take a triumphal march, so it will keep
+surfacing until something places it or the registry records its tone.
+The link went to Al-Mutawari for the aswati.co/showcase wall:
+youtube.com/@SahihHadithReels, credited as SahihHadithReels. That closes the
+commitment made in the 2026-10-10 reply. YouTube is the only platform carrying
+the “Nasheed: Aswati Studio” credit line — Telegram, Instagram and TikTok
+captions have none, which is fine: their licence section 4 requires no
+attribution at all.
 
 **The contemplative beds are spent.** Of 17 adults-eligible, the four calm
 ones went to #1631 and the remaining unused are Focused-Determination,
