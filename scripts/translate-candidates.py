@@ -32,6 +32,8 @@ USAGE
   python scripts/translate-candidates.py --lang tj          # one language
   python scripts/translate-candidates.py --limit 10         # D5 batch size
   python scripts/translate-candidates.py --commit           # write to DB
+  python scripts/translate-candidates.py --sign             # P219: sign the review
+  python scripts/translate-candidates.py --apply --commit   # ship the signed file
 
   Review out/candidate-translations.json before ever passing --commit.
 
@@ -41,6 +43,7 @@ Requires in .env.local:
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 import sys
@@ -55,6 +58,7 @@ ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages'
 ANTHROPIC_VERSION = '2023-06-01'
 
 OUT_PATH = os.path.join('out', 'candidate-translations.json')
+REVIEW_PATH = os.path.join('out', 'candidate-translations.reviewed.json')
 
 URL_KEYS = ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL')
 SERVICE_KEYS = ('SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SERVICE_KEY',
@@ -207,6 +211,47 @@ def translate(api_key, arabic, lang):
 # ---------------------------------------------------------------- main
 
 
+def _review_digest(results):
+    """P219: hash exactly what ships - candidate_id + proposed text, nothing else.
+
+    Order-independent, so re-sorting the file is not a change. Any edit to any
+    translated character is.
+    """
+    h = hashlib.sha256()
+    for r in sorted(results, key=lambda x: str(x.get('candidate_id'))):
+        h.update(str(r.get('candidate_id')).encode('utf-8'))
+        proposed = r.get('proposed') or {}
+        for f in sorted(proposed):
+            h.update(f.encode('utf-8'))
+            h.update((proposed[f] or '').encode('utf-8'))
+    return h.hexdigest()
+
+
+def sign_review(path=OUT_PATH):
+    """P219: record the digest of the text the operator just read."""
+    try:
+        with open(path, encoding='utf-8') as fh:
+            results = json.load(fh)
+    except FileNotFoundError:
+        print(f'  not found: {path} - run a dry run first')
+        return 1
+    if not results:
+        print(f'  {path} is empty - nothing to sign')
+        return 1
+    digest = _review_digest(results)
+    rec = {'reviewed_sha256': digest, 'signed_at': now_iso(),
+           'rows': len(results), 'source': path,
+           'refs': [r.get('ref') for r in results]}
+    with open(REVIEW_PATH, 'w', encoding='utf-8') as fh:
+        json.dump(rec, fh, ensure_ascii=False, indent=2)
+    refs = ', '.join(str(r.get('ref')) for r in results)
+    print(f'  signed {len(results)} row(s): {refs}')
+    print(f'  sha256 {digest}')
+    print(f'  -> {REVIEW_PATH}')
+    print('  --apply will refuse if the file changes after this point.')
+    return 0
+
+
 def apply_from_json(base, key, path=OUT_PATH):
     """
     P177: write the REVIEWED translations to the DB. No model calls.
@@ -232,6 +277,30 @@ def apply_from_json(base, key, path=OUT_PATH):
     if not results:
         print(f'  {path} is empty - nothing to apply')
         return 0
+
+    # P219: the reviewed file is only the shipped text if nothing rewrote it
+    # between the review and the apply. P177 stopped the SAME process from
+    # generating twice; it never stopped a DIFFERENT one from rewriting this
+    # path. A second dry run, left running in another terminal, finished
+    # mid-review and rewrote it - and --apply shipped rows nobody had read,
+    # including a row still carrying its [UNCERTAIN] marker. A fixed path is
+    # not an identity. Require the digest the operator signed.
+    digest = _review_digest(results)
+    try:
+        with open(REVIEW_PATH, encoding='utf-8') as fh:
+            signed = json.load(fh)
+    except FileNotFoundError:
+        print(f'  REFUSING: {path} carries no sign-off.')
+        print('  Read the JSON, then:  --sign   and then:  --apply --commit')
+        return 3
+    if signed.get('reviewed_sha256') != digest:
+        print('  REFUSING: this file changed after it was signed off.')
+        print(f'    signed : {signed.get("reviewed_sha256")} at '
+              f'{signed.get("signed_at")}')
+        print(f'    on disk: {digest}')
+        print('  Something rewrote it after the review (P219). Re-read it and')
+        print('  --sign again. Never apply text you have not read.')
+        return 3
 
     width = 74
     print('=' * width)
@@ -265,6 +334,12 @@ def apply_from_json(base, key, path=OUT_PATH):
     print(f'  written: {written}   failed: {failed}')
     print('  status=translated. Re-derive Uzbek Latin if the Cyrillic changed.')
     print('  Stage 3 verifies; Stage 4 is the human gate.')
+    # P219: a sign-off is good for exactly one apply.
+    if not failed:
+        try:
+            os.remove(REVIEW_PATH)
+        except OSError:
+            pass
     print('-' * width)
     return 1 if failed else 0
 
@@ -273,6 +348,9 @@ def main():
     ap = argparse.ArgumentParser(
         description='Stage 2 - translate candidate matn into EN/RU/UZ/TJ.')
     ap.add_argument('--row', help='one hadith_number only')
+    ap.add_argument('--sign', action='store_true',
+                    help='P219: record the sha256 of the reviewed JSON. '
+                         '--apply refuses unless the file still matches it')
     ap.add_argument('--apply', action='store_true',
                     help='P177: write out/candidate-translations.json to the DB '
                          'as-is, with NO model calls - the reviewed text is the '
@@ -292,6 +370,10 @@ def main():
 
     langs = args.lang or list(TARGETS)
 
+    # P219: signing only reads the reviewed file - no keys needed.
+    if args.sign:
+        return sign_review()
+
     env = load_env()
     base = pick(env, URL_KEYS)
     key = pick(env, SERVICE_KEYS)
@@ -299,18 +381,26 @@ def main():
     if not base or not key:
         print('FAILED: need Supabase URL + service-role key in .env.local')
         return 2
-    if not api_key:
-        print('FAILED: need ANTHROPIC_API_KEY in .env.local')
-        return 2
-
-        # P151: a corrected matn needs re-translating, but the row is already in
+    # P151: a corrected matn needs re-translating, but the row is already in
     # hadith_library and will never appear in hadith_candidates again. Six matn
     # corrections on 2026-09-04 left three library rows with null translations
     # and no supported way to refill them.
     # P177: --apply writes the reviewed JSON and returns. No model calls, no
     # row query - the text under review is the text that ships.
     if args.apply:
+        # P219: the --commit help text says nothing is written without it.
+        # That was false on this path - --apply wrote regardless.
+        if not args.commit:
+            print('  --apply writes to the DB. Add --commit.')
+            return 2
         return apply_from_json(base, key)
+
+    # P219: --apply and --sign make no model calls, so the model key is
+    # only needed past this point. Demanding it earlier would block
+    # applying reviewed text on a machine with no ANTHROPIC_API_KEY.
+    if not api_key:
+        print('FAILED: need ANTHROPIC_API_KEY in .env.local')
+        return 2
 
     table = 'hadith_library' if args.library else 'hadith_candidates'
     if args.library:

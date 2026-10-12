@@ -466,8 +466,16 @@ npm run test:multilingual
    a ranking, a comparison. The matn is the only thing the translation may say
 5. Any `[UNCERTAIN: ...]` marker is the model abstaining — that field needs a
    human, not a retry
-6. `--commit` writes and sets `status='translated'`
-7. 7. Derive the Uzbek Latin from the canonical Cyrillic — never translate it,
+6. Correct the JSON itself - a fix belongs in the reviewed text, never in an
+   SQL patch after the write (P177). Then sign it and ship it:
+   `python scripts\translate-candidates.py --sign`            # hashes what you read
+   `python scripts\translate-candidates.py --apply --commit`  # writes it, no model calls
+   `--apply` generates nothing: the signed text is the text that ships, and it
+   REFUSES if the file changed after you signed (P219). Never leave a second dry
+   run going while a review is open - that is the race P219 records.
+   Plain `--commit` WITHOUT `--apply` generates fresh text and writes that,
+   which is not the text you just read
+7. Derive the Uzbek Latin from the canonical Cyrillic — never translate it,
    never transliterate by hand (D4):
    `npx tsx scripts/derive-uzbek-latin.ts`          # dry run, read the Latin
    `npx tsx scripts/derive-uzbek-latin.ts --commit`

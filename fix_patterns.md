@@ -8221,3 +8221,104 @@ came from a commentary footnote citing #425 for a phrase inside the long story.
 
 **Status:** FIXED - Workflow L added. Verified by running the documented path:
 3 queries -> 6 rows ready, 39 daif/empty dropped, 0 duplicates, no key.
+## ═══════════════════════════════════════════════════════════
+## PATTERN 219: A review gate with a second writer behind it
+## ═══════════════════════════════════════════════════════════
+**ID:** P219
+**Type:** A race on the artifact a human gate reads
+**Files:** scripts/translate-candidates.py (the fix), CLAUDE.md Workflow I
+**Found:** 2026-10-12, translating three Tawheed candidates
+
+P177 closed "the dry run and the commit each generate their own text" by adding
+`--apply`, which writes `out/candidate-translations.json` to the DB with no
+model calls. The reviewed file became the shipped text - provided nothing
+rewrites that file between the review and the apply.
+
+This session left a redundant dry run running detached, forgot it, reviewed the
+JSON, and applied. The second process finished mid-review and rewrote that
+exact path with freshly generated text. `--apply` then shipped rows that had
+never been read: Muslim #28 went in still carrying its `[UNCERTAIN]` marker,
+and Bukhari #6423 arrived with a THIRD Tajik wording of the «face of Allah»
+clause - the two earlier ones having been read and corrected in a file that no
+longer existed.
+
+P177 defends against one process generating twice. It does not defend against
+a DIFFERENT process writing the file the gate is reading. A fixed path with no
+owner, no lock and no identity cannot tell the reviewer which run produced the
+bytes in front of them: a stale file and a freshly regenerated one present the
+same question mark.
+
+**Fix:** the operator signs what they read. `--sign` writes the sha256 of every
+`candidate_id` + proposed text to `out/candidate-translations.reviewed.json`.
+`--apply` recomputes that digest and REFUSES on a mismatch or a missing
+sign-off, printing both digests and the time of signing. The signature is
+deleted after a successful apply, so one sign-off can never cover a later file.
+The digest is order-independent, so re-sorting the file is not a change and one
+character is.
+
+Two smaller lies fixed in the same pass:
+  - `--apply` wrote to the DB without `--commit`, while `--commit`'s own help
+    text reads "Without this, nothing is written." It now requires it.
+  - `--apply` demanded ANTHROPIC_API_KEY to run a path that makes no model
+    calls. That check moved below the apply branch.
+
+**Status:** FIXED. Verified five ways against the real file: `--apply` without
+`--commit` refuses (exit 2); unsigned refuses (exit 3); `--sign` records the
+digest; one phrase altered by a simulated second writer refuses with both
+digests printed (exit 3); the restored signed file applies 3/3 and consumes its
+signature. Workflow I step 6 rewritten - it had still documented plain
+`--commit`, the pre-P177 path, so the documented procedure was the one P177 was
+written to stop. P218's shape again, three days later.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 220: In-house translation changed a ruling
+## ═══════════════════════════════════════════════════════════
+**ID:** P220
+**Type:** A fidelity failure in the lane with no automated reader
+**Files:** hadith_candidates - bukhari #3435, #6423, #6570 (text only)
+**Found:** 2026-10-12, Workflow I step 4 on three Tawheed candidates
+
+P178 rejected HadeethEnc's published translations after they scored EN 3/5,
+RU 0/5, UZ 0/5, TJ 1/5 against 8/8 for the in-house path, and recorded one case
+where «бегуноҳ» was added to the matn, changing a ruling. The conclusion carried
+forward was that the in-house path is the safe one.
+
+The in-house path has now produced the same class of error. Bukhari #3435's
+على ما كان من العمل - "whatever his deeds may have been" - came back in Uzbek as
+«қилган амалига қараб», "ACCORDING TO his deeds". The point of the hadith is
+that the testimony admits him regardless of his deeds; the translation made
+admission conditional on them. Three more in the same batch of three hadiths:
+  - #3435 TJ carried the same ambiguity: «бар ҳар амале, ки будааст»
+  - #6423 UZ reversed حرم عليه النار into "Allah forbids HIM to the Fire" for
+    "forbids the Fire to him", and put it in the imperative: «қилмасин»
+  - #6570 UZ and TJ both rendered حرص as «ҳирс», which reads as greed or lust
+    in both languages, where the Arabic means keenness - applied to a Companion
+    being praised
+Plus ألقاها as "cast" and «афканд» (threw) where the established rendering is
+"bestowed", in EN and TJ.
+
+8/8 on five sampled rows was never a property of the translator. It was a
+measurement of five rows.
+
+What makes this worse than P178 is where it landed. The ruling error is in
+Uzbek Cyrillic, which P078 excludes from subtitles, so no automated downstream
+reader would ever have seen it. Every gate that exists - lint-content.py, the
+stt lint, P111 r18 - reads GENERATED REEL TEXT. This is DB text, and CLAUDE.md
+Workflow H step 9 states outright that lint-content.py cannot see it, because
+the generator paraphrases and the DB sentence never appears verbatim in
+draft.txt. The only thing standing between this and four published reels was a
+human reading all four languages against the Arabic.
+
+Workflow I step 4 is exactly that: "Check against the Arabic." On this run the
+operator said, in as many words, "Anyway i don't understand Arabic fully." The
+step asks the operator to do the one thing they have said they cannot do. A
+gate whose only caller cannot perform it is not a gate; it is a signature
+block.
+
+**Status:** TEXT FIXED, MECHANISM NOT. All four corrections went into the
+reviewed JSON and shipped from there (P177: a correction belongs in the
+reviewed text, never an SQL patch after the write), verified field-by-field
+against the DB afterwards. Nothing in the pipeline would have caught any of
+them and nothing added here would. Stage 3 A/B verify (Workflow K) is where
+this belongs and is unbuilt - recorded in OPEN_ITEMS under "Blocks content".
+

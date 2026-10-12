@@ -1,3 +1,42 @@
+## [2026-10-12]
+
+### Fixed
+- **`scripts/translate-candidates.py` — `--apply` shipped text nobody had
+  read (P219).** P177 made the reviewed JSON the shipped text by removing the
+  second generation, but the artifact is a fixed path with no owner. A
+  redundant dry run left running detached finished mid-review, rewrote that
+  path, and `--apply` wrote rows never read — Muslim #28 with its
+  `[UNCERTAIN]` marker still in it, and a third Tajik wording of the «face of
+  Allah» clause on Bukhari #6423. `--apply` now recomputes the signed digest
+  and refuses on any mismatch. Also: `--apply` wrote without `--commit`
+  although `--commit`'s help text promises otherwise, and demanded
+  ANTHROPIC_API_KEY for a path that makes no model calls. Both corrected.
+- **Workflow I step 6 documented the pre-P177 path.** It said “`--commit`
+  writes and sets `status='translated'`” and never mentioned `--apply`, so the
+  written procedure was the very one P177 was added to stop — P218's shape,
+  three days on. Rewritten to review → `--sign` → `--apply --commit`, with the
+  duplicated “7. 7.” numbering fixed.
+- **Four translation-fidelity defects in the Tawheed batch (P220).** Bukhari
+  #3435 Uzbek made admission to Paradise conditional on deeds where the matn
+  says it is granted whatever they were; #3435 Tajik carried the same
+  ambiguity; #6423 Uzbek reversed the direction of “the Fire was forbidden to
+  him” and used the imperative; #6570 Uzbek and Tajik rendered حرص with a word
+  that reads as greed in both, of a Companion being praised. Corrected in the
+  reviewed JSON and shipped from there, then verified field-by-field in the DB.
+  No automated check would have caught any of them.
+
+### Added
+- **`--sign` on `scripts/translate-candidates.py` (P219).** Records the
+  sha256 of every `candidate_id` + proposed text to
+  `out/candidate-translations.reviewed.json`. `--apply` refuses without it and
+  refuses on a mismatch, printing both digests and the signing time; the
+  signature is consumed on a successful apply so it can never cover a later
+  file. Order-independent, so re-sorting is not a change and one character is.
+- **Three Tawheed hadiths translated into EN/RU/UZ/TJ and Uzbek Latin
+  derived** — Bukhari #3435, #6423, #6570, all at `status='translated'`.
+  Muslim #28 held back on its `[UNCERTAIN]` marker; #99 and #6938 held as
+  variants.
+
 ## [2026-10-11]
 
 ### Fixed

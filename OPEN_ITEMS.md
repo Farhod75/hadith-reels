@@ -58,6 +58,18 @@ surprise.
 ---
 ## Blocks content — do not ship past these
 
+**Translation fidelity has no automated reader (P220, 2026-10-12).** The
+in-house translator put «қилган амалига қараб» — “according to his deeds” —
+on Bukhari #3435, whose matn says the opposite: “whatever his deeds may have
+been.” Three further fidelity defects in the same batch of three hadiths. All
+four were caught by reading and by nothing else: the ruling error sat in Uzbek
+Cyrillic, which P078 excludes from subtitles, and every existing gate reads
+generated reel text rather than DB text — Workflow H step 9 says so outright.
+Workflow I step 4 asks the operator to check against the Arabic; the operator
+has said they do not read Arabic fully. Stage 3 A/B verify (Workflow K) is
+where this belongs and is unbuilt. Until it exists, a second reader per batch
+is the only control.
+
 **The Tawheed run carries four viewer-confusion traps, all rowed in the
 tracker’s duplicate-check index (2026-10-12).** Same handling as #6871/#2654
 below — the index keys on the hadith NUMBER, so none of these flag
