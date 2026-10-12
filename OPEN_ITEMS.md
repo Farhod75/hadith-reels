@@ -173,6 +173,55 @@ agent or to mark the roadmap as aspirational and stop counting against it.
 
 ---
 
+## Queue — Tawheed run (verified 2026-10-12)
+
+Four hadiths from a ZAD Academy Aqidah semester-2 chapter, checked against
+Dorar and sunnah.com before anything was written to the library. The theme
+sits at ⚠️ with only R010–R013, so these would take it to ✅.
+
+**SPACING, per the operator: 2–3 weeks between them, NOT back to back.**
+Four shahada hadiths in a row read as one long repeat; the channel's strength
+is variety across themes. Interleave other themes between them.
+
+**CLEARED — three of the four:**
+
+1. **Sahih al-Bukhari #3435 / Sahih Muslim #28** — Ubadah ibn as-Samit.
+   Whoever testifies to tawhid, to Muhammad ﷺ as His slave and messenger, to
+   Isa as His slave and His word cast to Maryam, and to Paradise and the Fire
+   as true — Allah admits him to Paradise according to his deeds. Grade
+   SAHIH in both. Dorar carries both wordings with mutual takhrij.
+2. **Sahih al-Bukhari #425** — Itban ibn Malik, Kitab as-Salah, Bab
+   al-Masajid fi'l-Buyut. Allah has forbidden the Fire to whoever says
+   “La ilaha illallah” seeking thereby the Face of Allah. Number confirmed;
+   the Muslim number was NOT confirmed, so cite Bukhari alone until it is.
+3. **Sahih al-Bukhari #6570 AND #99** — Abu Hurairah. The most fortunate of
+   people with the Prophet's ﷺ intercession is the one who said
+   “La ilaha illallah” sincerely from his heart. It appears TWICE in Bukhari:
+   #6570 in Kitab ar-Riqaq and #99 in Kitab al-Ilm. Either cites correctly;
+   #6570 is the usual reference for intercession. Flag for the duplicate-number
+   index, which already tracks three collisions.
+
+**REJECTED — do not publish:**
+
+4. **Jami at-Tirmidhi #3585** — “the best supplication is that of the Day of
+   Arafah, and the best thing I and the prophets before me said is
+   La ilaha illallah wahdahu la sharika lah…”, narrated from the grandfather
+   of Amr ibn Shu'ayb (Abdullah ibn Amr). The ZAD slide grades it hasan after
+   al-Albani. The chain is CONTESTED and the weight is against it:
+   at-Tirmidhi himself called it gharib from this route and named Hammad ibn
+   Abi Hamid as not strong; Ibn Hajar, adh-Dhahabi, Ibn al-Mulaqqin and
+   al-Manawi weakened it. Al-Albani gave hasan li-ghayrihi and al-Mundhiri
+   sahih al-isnad, which is why it circulates widely.
+   **This channel exists to flag weak hadith spreading on social media.**
+   Publishing one that Ibn Hajar and adh-Dhahabi weakened, on the strength of
+   a single hasan li-ghayrihi, would undercut the premise it is built on. The
+   fact that it is popular is the reason to leave it alone, not to run it.
+
+Not yet in the library — all four numbers were checked against it and none
+exist as rows. Library rows still to be written for the three cleared.
+
+---
+
 ## Assets
 
 **Kids-lane nasheed beds.** The eight Aswati tracks registered 2026-10-05 are
