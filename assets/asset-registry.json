@@ -241,6 +241,12 @@
   },
 
   "scenes": {
+    "b5027-copy.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "The finished manuscript beside a loose sheet carrying the first line of the matn freshly written, reed pen and clay inkwell at hand, afternoon light raking across both. Transmission with no figures - learn AND teach, the text moving from one page to the next. MODE B. FLUX 2 b5027-copy-3.jpg -> first line composited (Amiri + HarfBuzz) as b5027-copy-matn-1.jpg -> Kling 3.0 Pro i2v 10s with -KeepText (P216). FLUX wrote gibberish on the codex despite a positively-phrased blank instruction; at this scale it reads as texture and the only legible script is the real matn, same call as ad3641-rahle. Camera phrased as almost static after 3.0 over-travelled on b5027-matn. Sahih al-Bukhari #5027, R122-."
+    },
     "b5027-matn-v3.mp4": {
       "classification": "scene",
       "lanes": ["adults"],

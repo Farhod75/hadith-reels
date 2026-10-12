@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae04c1/0uymWe2Y2yteCQiyMQJHH_output.mp4",
+    "name":  "b5027-copy",
+    "image":  "out\\refs\\b5027-copy-matn-1.jpg",
+    "file":  "out\\backgrounds\\new\\b5027-copy.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-12T00:51:34.8812324Z",
+    "size_bytes":  7475294,
+    "negative_prompt":  "blur, distort, low quality, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "afternoon light creeping slowly across the written sheet, the faintest drift of dust in the beam, the reed pen the inkwell and both pages completely still, the camera almost static",
+    "request_id":  "01a12d97-f1ca-7722-a834-74b717077186",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-12T00:54:32.6153238Z",
+    "mode":  "image-to-video"
+}
