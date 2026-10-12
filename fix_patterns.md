@@ -8162,3 +8162,62 @@ procedure.
 check, so an unregistered clip sitting in that folder can be drawn into a reel.
 `-Scenes` has had that gate since P121 and random mode never got it. Recorded
 in OPEN_ITEMS rather than widened into this change.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 218: Built, documented, and still not found
+## ═══════════════════════════════════════════════════════════
+**ID:** P218
+**Type:** A capability with no route to it from the operating doc
+**Files:** CLAUDE.md (the fix), scripts/upload-candidates.py (the capability)
+**Found:** 2026-10-12, sourcing three Tawheed hadiths
+
+Asked to add three named hadiths to the library, this session:
+  - wrote a refs file for source-candidates.py and hit
+    "--source live needs SUNNAH_API_KEY in .env.local";
+  - researched how to obtain a Sunnah key, and found there is no self-serve
+    signup - a maintainer issues it by hand off a GitHub issue;
+  - browsed two HadeethEnc categories by hand looking for the hadiths, found
+    one of three, and misidentified another;
+  - was told by the operator that this had been noted before.
+
+It had. `upload-candidates.py` begins: "queries -> search_dorar -> dedup vs
+LIVE library -> hadith_candidates. Dorar is public + authoritative, so this
+produces REAL graded candidates with no API key."
+`sourcing-pipeline-design.md:148` lists Dorar as supplying "Grading + Arabic
+matn", and :155 says the matn "comes from Sunnah.com if present, else Dorar."
+
+Run against the three, it returned six rows - Bukhari and Muslim variants of
+each, every one sahih, with verbatim matn and narrator - in one command.
+
+**Root cause: CLAUDE.md had Workflows A through K and none of them was "source
+a specific hadith".** Workflow H audits the library before a batch; Workflow I
+translates candidates that already exist. The step that creates them was
+missing, so the operating doc routed a session to the discovery path and to a
+key it does not need. The capability was in a script header and a design doc -
+both correct, neither read at the moment of need.
+
+**This is the third instance of one shape, and the shape has moved:**
+  - P165: adapters built, unreachable.
+  - P172: adapter built, reachable, never called by the runner.
+  - P218: adapter built, called, documented - and not FINDABLE.
+
+Each fix made the thing more real and none of them made it easier to locate.
+Documentation that records a capability is not the same as documentation that
+routes you to it, and only the second kind survives a fresh session.
+
+**Fix:** Workflow L in CLAUDE.md. It names the command, says Dorar alone is
+sufficient, and says plainly what NOT to reach for - the Sunnah key and
+HadeethEnc category browsing - because those are the two wrong turns this
+session actually took.
+
+**Rule:** when a capability is added, add the route to it in the file sessions
+read first. A new script earns a workflow entry, not just a header comment.
+
+**Also corrected here:** Bukhari #425 was recorded in OPEN_ITEMS as the Itban
+"Fire forbidden" hadith. Dorar shows #425 is narrated by Mahmud ibn ar-Rabi'
+al-Ansari and is the long narrative about Itban's eyesight. The short saying on
+the operator's slide is **Bukhari #6423**, narrated by Itban himself. The error
+came from a commentary footnote citing #425 for a phrase inside the long story.
+
+**Status:** FIXED - Workflow L added. Verified by running the documented path:
+3 queries -> 6 rows ready, 39 daif/empty dropped, 0 duplicates, no key.

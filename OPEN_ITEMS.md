@@ -190,10 +190,14 @@ is variety across themes. Interleave other themes between them.
    Isa as His slave and His word cast to Maryam, and to Paradise and the Fire
    as true — Allah admits him to Paradise according to his deeds. Grade
    SAHIH in both. Dorar carries both wordings with mutual takhrij.
-2. **Sahih al-Bukhari #425** — Itban ibn Malik, Kitab as-Salah, Bab
-   al-Masajid fi'l-Buyut. Allah has forbidden the Fire to whoever says
-   “La ilaha illallah” seeking thereby the Face of Allah. Number confirmed;
-   the Muslim number was NOT confirmed, so cite Bukhari alone until it is.
+2. **Sahih al-Bukhari #6423** — Itban ibn Malik. “No servant will come on the
+   Day of Resurrection saying La ilaha illallah, seeking thereby the Face of
+   Allah, but Allah will have forbidden the Fire to him.” 177 chars, the short
+   direct form. CORRECTED 2026-10-12 from #425, which this file previously
+   carried: Dorar shows #425 is narrated by Mahmud ibn ar-Rabi' al-Ansari and
+   is the LONG narrative about Itban's eyesight and the Prophet ﷺ praying in
+   his house. The error came from a commentary footnote citing #425 for a
+   phrase inside that story. #6938 is a third, longer Itban variant.
 3. **Sahih al-Bukhari #6570 AND #99** — Abu Hurairah. The most fortunate of
    people with the Prophet's ﷺ intercession is the one who said
    “La ilaha illallah” sincerely from his heart. It appears TWICE in Bukhari:
@@ -217,8 +221,13 @@ is variety across themes. Interleave other themes between them.
    a single hasan li-ghayrihi, would undercut the premise it is built on. The
    fact that it is popular is the reason to leave it alone, not to run it.
 
-Not yet in the library — all four numbers were checked against it and none
-exist as rows. Library rows still to be written for the three cleared.
+Not yet in the library — all numbers were checked against it and none exist as
+rows. **Sourced 2026-10-12 via Workflow L** (`upload-candidates.py --queries`,
+Dorar only, no API key): 3 queries → 6 rows in `out/candidates-dorar.json`,
+39 daif/empty dropped, 0 duplicates. Keep **bukhari #3435, #6423, #6570**;
+the other three rows are Muslim/longer variants of the same three hadiths.
+Still to do: `--commit` to hadith_candidates, then Workflow I for the four
+translations, which are ours and not the source's (P178).
 
 ---
 

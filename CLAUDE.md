@@ -524,6 +524,34 @@ npm run test:multilingual
 
 ---
 
+### Workflow L — Source a SPECIFIC hadith into the library (NO API key)
+
+Use when you have a hadith in hand — from a course, a slide, a request — and
+want it in the library. This is NOT the discovery path (that is he-refs.py by
+category).
+
+**Dorar alone is sufficient. It returns matn + rawi + collection + number +
+grade.** No SUNNAH_API_KEY, no HadeethEnc id. `upload-candidates.py` says so in
+its own header and `sourcing-pipeline-design.md:148,155` says so in the table.
+
+1. Write one Dorar query per line — a distinctive phrase of the Arabic matn:
+   `out/source-queries.txt`
+2. DRY RUN (default, no writes):
+   `python scripts\upload-candidates.py --queries out\source-queries.txt`
+3. Review `out/candidates-dorar.json`. Expect SEVERAL rows per query — Bukhari
+   and Muslim variants, long and short forms. Pick by matn length and by which
+   wording the source you are working from actually used.
+4. `--commit` inserts into **hadith_candidates** (staging), never hadith_library.
+5. Then Workflow I for translations — ours, not the source's (P178).
+
+**Do not reach for SUNNAH_API_KEY.** There is no self-serve signup: a key is
+issued by hand after you open an issue on sunnah-com/api. It is not needed for
+this and it is not a blocker for it.
+
+**Do not browse HadeethEnc categories to find a named hadith.** It has no text
+search, and a hadith you can name may simply not be in the categories you
+browse. That path is for discovery by theme.
+
 ## 🐛 BUG LOG (auto-updated by Claude Code)
 
 <!-- Claude Code: prepend new bug entries below this line -->
