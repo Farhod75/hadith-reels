@@ -58,6 +58,18 @@ surprise.
 ---
 ## Blocks content — do not ship past these
 
+**The Tawheed run carries four viewer-confusion traps, all rowed in the
+tracker’s duplicate-check index (2026-10-12).** Same handling as #6871/#2654
+below — the index keys on the hadith NUMBER, so none of these flag
+automatically:
+- **#99 and #6570 are the same hadith**, twice in Bukhari. Pick one number and
+  keep it; the other exists and a viewer will find it.
+- **#3435 (Bukhari) and #28 (Muslim) are the same hadith.** Muttafaq alayh; the
+  source slide says “Bukhari and Muslim” while our caption cites one.
+- **#425 / #5401 / #6938** are three further entries around the Itban event we
+  cite as #6423; #425 and #5401 are not even narrated by Itban.
+- **The three hadiths sound like one** to a viewer. Hence 2–3 weeks apart.
+
 **Sahih al-Bukhari #6871 must never follow #2654 without a deliberate call.**
 Different number, same subject (al-kaba'ir). The duplicate index keys on the
 number so nothing flags the pair, and NO automated check covers it — a

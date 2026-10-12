@@ -194,6 +194,10 @@
 | Sahih Muslim #1631 | EN, RU, UZ, TJ | Adults | R114, R115, R116, R117 |
 | Jami at-Tirmidhi #3895 | EN, UZ, RU, TJ | Adults | R118, R119, R120, R121 |
 | Sahih al-Bukhari #5027 | EN, RU, UZ, TJ | Adults | R122, R123, R124, R125 |
+| Sahih al-Bukhari #6570 | — | — | SAME HADITH AS #99, not merely similar. Abu Hurairah on intercession appears TWICE in Bukhari: Riqaq #6570 and Ilm #99, and Dorar returns both as separate cards. Ship ONE number and keep it everywhere — a viewer who finds the other number reads our citation as wrong. Sourced 2026-10-12, not yet produced. |
+| Sahih Muslim #28 | — | — | SAME HADITH AS Sahih al-Bukhari #3435 (Ubadah ibn as-Samit; the testimony that names Isa, His word cast to Maryam, and a spirit from Him). Muttafaq alayh. The ZAD slide this came from cites «Бухорий ва Муслим», but our caption format carries ONE collection + number — decide which before producing, and expect viewers who learned it as “Bukhari and Muslim”. |
+| Sahih al-Bukhari #425 / #5401 / #6938 | — | — | THREE MORE ENTRIES around the same Itban ibn Malik event. We ship #6423, the short saying. #425 and #5401 are narrated by MAHMUD IBN AR-RABI‘ AL-ANSARI, not Itban, and are the long narrative about Itban’s failing eyesight; #6938 is a longer Itban variant with Malik ibn ad-Dukhshun. A viewer searching “Itban” lands on #425 first. #425 was itself wrongly recorded as our source until 2026-10-12 (P218). |
+| TAWHEED CLUSTER — Bukhari #3435, #6423, #6570 | — | — | THREE DIFFERENT HADITHS THAT SOUND LIKE ONE to a viewer: testify → admitted to Paradise according to his deeds; say it seeking His Face → the Fire forbidden him; say it sincerely from the heart → the intercession. Shipped close together they read as one hadith reworded. Operator’s rule: 2–3 WEEKS APART with other themes interleaved. Same class as #6871/#2654 — the index keys on the number, so nothing automated flags the group. |
 
 ---
 
