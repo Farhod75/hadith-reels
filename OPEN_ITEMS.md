@@ -76,12 +76,17 @@ top-up away from being the control this needs; until then a human second reader
 per batch is the only one.
 
 **Pass A flagged Bukhari #6570 RU and UZ (2026-10-12).** نفسه is “his own
-self”, not “heart”. The RU «от своего сердца» was this session's consistency
-edit over text that was already faithful and probably reverts to «от самого
-себя»; the UZ «ўз қалбининг самимиятидан» is the translator's own, and the
-established EN rendering of this hadith is “from his heart”, so A may be
-stricter than the convention. G1: a model pass is eligibility for human
-review — operator's call, not a silent revert.
+self”, not “heart”.
+- RU: RESOLVED. «от своего сердца» was this session's consistency edit over
+  already-faithful text; reverted to the translator's «искренне, от самого
+  себя» on the operator's call, through sign → apply (not an SQL patch), and
+  verified in the DB. Provenance on that field is back to `machine`.
+- UZ: OPEN. «ўз қалбининг самимиятидан» is the translator's own, and the
+  established EN rendering of this hadith is “sincerely from his heart”, so A
+  may be stricter here than the convention. No second opinion exists while
+  pass B has no credits. TJ «холис аз таҳти дили худ» and EN “from his own
+  heart” carry the same question. Decide the convention once, for all four
+  languages, rather than per row.
 
 **The Tawheed run carries four viewer-confusion traps, all rowed in the
 tracker’s duplicate-check index (2026-10-12).** Same handling as #6871/#2654
