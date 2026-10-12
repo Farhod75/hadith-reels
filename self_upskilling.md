@@ -21,7 +21,7 @@
 | Tool | In use | Where it is set | Latest known | Status |
 |---|---|---|---|---|
 | ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT as of 2026-10-04 (P193) |
-| Kling video | `fal-ai/kling-video/v2.6/pro` | `scripts/generate-scene.ps1` | **Kling 3.0** = `v3/pro` | **BEHIND — eval started 2026-10-11** |
+| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | Kling 3.0 | CURRENT as of 2026-10-11 (adopted) |
 | FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | FLUX 2 | CURRENT as of 2026-10-04 |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
 | Whisper | local `openai-whisper` | PATH | — | RU ASR is a standing cost (R095, R099, R107) |
@@ -41,7 +41,7 @@
 
 ## Open evaluations
 
-- **Kling 3.0** — multi-shot generation and 15s clips (2.6 Pro is capped at 10s,
+- ~~**Kling 3.0**~~ — **EVALUATED AND ADOPTED 2026-10-11.** Multi-shot generation and 15s clips (2.6 Pro is capped at 10s,
   which is why `-FitScenes` exists). No known defect in 2.6 Pro drives this; it
   is simply a major version behind. Evaluate at a SET boundary, same prompt on
   both models, because a model change re-rolls every scene prompt we have tuned
@@ -55,6 +55,21 @@
   eval was blocked by P214 first: the audio-off guard was scoped to `v2\.6`, so
   the v3 half would have generated audio and cost $1.68 for a clip that cannot
   be compared against a silent one.
+  **VERDICT — ADOPTED.** One still (`b5027-matn-1.jpg`), one prompt, both
+  models, 10s each, at the #5027 set boundary. Both returned 1080x1920, 24fps,
+  10.04s, zero audio streams. **3.0 wins on light:** it cast defined
+  window-pane shadow bars across the left page, physically coherent with the
+  window in frame, where 2.6 gave an undifferentiated warm patch; parchment
+  fibre and cloth weave are crisper too. **One regression:** 3.0 reads motion
+  instructions more aggressively — “a very slow gentle push” travelled far
+  further than on 2.6 — so phrase camera moves conservatively. Default switched
+  in generate-scene.ps1; 2.6 Pro still reachable with -Model.
+  **The larger finding was not the one under test:** BOTH models preserved real
+  Arabic composited onto the still, letterforms and tashkeel intact through all
+  10s at 24fps. Rendered text survives i2v animation — the project had assumed
+  it would not. Method recorded under Practice below.
+  Caveat on the verdict: three sampled frames per clip were compared, not
+  motion. Mid-clip flicker or shimmer would not have shown.
 - ~~**FLUX 2**~~ — **EVALUATED AND ADOPTED 2026-10-04.** The m2963 steps prompt
   asked for a camera at the TOP of a staircase looking DOWN — the hadith's
   instruction as camera direction. v1.1 returned six consecutive upward shots
@@ -64,6 +79,23 @@
   **The concept was never the problem.** Default switched in generate-image.ps1.
 
 ## Practice, not tools
+
+- **2026-10-11 — real Arabic can be composited onto a still and survives Kling.**
+  FLUX cannot write Arabic: three `b5027-page` variants came back as convincing
+  gibberish, and that matters most exactly where the text is the subject. A
+  near-correct ayah would be worse than an obviously decorative one, so scripture
+  is never rendered by the model. The method, free per use once set up: FLUX a
+  BLANK page — describe the emptiness as a STATE (“bare unmarked parchment, faint
+  dry ruling lines the only marks crossing them”), per R026 — then render the real
+  text with Pillow using the RAQM layout engine (HarfBuzz shaping gives correct
+  joining and tashkeel; pass direction=“rtl”), perspective-warp it onto the page
+  quad, and MULTIPLY it into the parchment so it absorbs instead of sitting on top.
+  Amiri is the right face and comes from npm (`@fontsource/amiri`, woff2 -> ttf via
+  fontTools): GitHub release downloads are not reachable from the session container
+  and Windows ships no manuscript Naskh.
+  **Keep the categories straight.** A page carrying a HADITH matn is a hadith
+  manuscript, not a mushaf. Putting the matn on something that reads as a Quran
+  conflates the two, which is the one confusion this channel cannot afford.
 
 - **2026-10-04 — Anthropic's prompting guidance: tell the model what TO do, not
   what NOT to do.** `generate-reel/route.ts` is twenty rules, nearly all NEVER.

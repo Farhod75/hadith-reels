@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae0439/bppz8jHQjq2AizsqslBKY_output.mp4",
+    "name":  "b5027-matn",
+    "image":  "out\\refs\\b5027-matn-1.jpg",
+    "file":  "out\\backgrounds\\new\\b5027-matn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-12T00:28:19.4913459Z",
+    "size_bytes":  17135408,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the shaft of morning light shifting almost imperceptibly across the open page, fine dust drifting through the light, the book and the written page completely still, a very slow gentle push toward the page",
+    "request_id":  "01a12d82-a701-7c83-843d-a3e2fcc3815c",
+    "model":  "fal-ai/kling-video/v2.6/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-12T00:32:12.1111853Z",
+    "mode":  "image-to-video"
+}

@@ -43,6 +43,54 @@
   per reel are fixed by the narration, so longer clips mean fewer cuts, not
   fewer seconds.
 
+### Fixed
+- **`generate-scene.ps1` told Kling to suppress text while handing it a still
+  made of text (P216).** The negative prompt is a constant containing `text,
+  watermark` — correct for every MODE B background, and directly against the
+  intent for `b5027-matn`, whose whole subject was the composited matn. The
+  Arabic survived both models anyway, which is evidence about that run and not
+  about the instruction; a longer duration or a heavier camera move could erase
+  it, and the failure would have looked like a model problem rather than a
+  prompt we wrote. New `-KeepText` switch drops `text, watermark` when the input
+  carries text on purpose. Found by reading the P215 sidecar of a clip that had
+  already succeeded — the record paying for itself the day it shipped.
+
+### Changed
+- **Kling 3.0 Pro is the default in `generate-scene.ps1`.** Evaluated against
+  2.6 Pro the way FLUX 2 was (P198): one still, one prompt, both models, 10s
+  each, at the #5027 set boundary. Both returned 1080×1920 / 24fps / 10.04s with
+  zero audio streams. 3.0 casts defined window-pane shadow bars physically
+  coherent with the window in frame where 2.6 gives an undifferentiated warm
+  patch, and resolves parchment fibre and cloth weave more crisply. Regression
+  worth knowing: 3.0 reads motion instructions more aggressively — “a very slow
+  gentle push” travelled much further than on 2.6 — so phrase camera moves
+  conservatively. 2.6 Pro stays reachable via `-Model`. The watchlist item, open
+  since February, is CLOSED.
+  Verdict caveat recorded in `self_upskilling.md`: three sampled frames per clip
+  were compared, not motion.
+
+### Added
+- **Real Arabic can be composited onto a still and survives Kling animation** —
+  the finding the evaluation was not looking for. Both models held the matn,
+  letterforms and tashkeel intact, through all 10s. FLUX cannot write Arabic
+  (three `b5027-page` variants returned convincing gibberish, which matters most
+  where the text IS the subject), so the method renders it instead: FLUX a blank
+  page, render real text with Pillow + RAQM (HarfBuzz shaping, `direction=”rtl”`),
+  perspective-warp onto the page quad, multiply into the parchment. Amiri comes
+  from npm (`@fontsource/amiri`, woff2 → ttf via fontTools) because GitHub release
+  downloads are unreachable from the session container and Windows ships no
+  manuscript Naskh. Recorded under Practice in `self_upskilling.md`.
+  **A page carrying a hadith matn is a hadith manuscript, not a mushaf** — the
+  distinction the method depends on.
+- **`assets/scene-prompts/` has its first two records** (P215), written at submit
+  by the real pipeline: `b5027-matn.json` and `b5027-matn-v3.json`. Both show
+  `generate_audio: false`, including the v3 call — **P214 verified in production**
+  on exactly the clip that would otherwise have carried a generated soundtrack.
+  `resolution` is null in both: ffprobe was not on PATH in the detached process,
+  and the sidecar correctly recorded the absence rather than inventing a value.
+- **`b5027-matn-v3.mp4` registered** as scene 1 of Sahih al-Bukhari #5027 — first
+  clip on Kling 3.0 and first with real Arabic text.
+
 ### Verified
 - **Kling 3.0 is live on fal as `fal-ai/kling-video/v3/pro/image-to-video`**,
   with `v3/standard` and `v3/4k` variants alongside it. Confirmed from the fal

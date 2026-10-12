@@ -241,6 +241,12 @@
   },
 
   "scenes": {
+    "b5027-matn-v3.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Open manuscript codex on a cloth-draped chest, the hadith matn written on the right page, morning light casting window-pane shadow bars across the left page. MODE B, no figures. FLUX 2 BLANK page b5027-blank-3.jpg -> real matn composited with Amiri + HarfBuzz, perspective warp, multiply blend (b5027-matn-1.jpg) -> Kling 3.0 Pro i2v 10s. FIRST CLIP ON KLING 3.0, and the first with real Arabic that survived animation. A hadith manuscript, NOT a mushaf - ad3641-rahle deliberately not reused and no mushaf image attempted, see OPEN_ITEMS. Sahih al-Bukhari #5027, R122-."
+    },
     "t3895-hearth.mp4": {
       "classification": "scene",
       "lanes": ["adults"],

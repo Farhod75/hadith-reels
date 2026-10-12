@@ -18,7 +18,7 @@
    -Name     output filename (no extension) -> out\backgrounds\new\<Name>.mp4
    -Prompt   the approved scene prompt (from the scene-prompt JSON)
    -Duration 5 or 10 seconds (default 5; use 10 — see cost note)
-   -Model    fal model id (default: Kling 2.6 Pro, text- or image-to-video
+   -Model    fal model id (default: Kling 3.0 Pro, text- or image-to-video
              chosen by mode. Was 2.1 Master until P156.)
 
  COST, CHECKED 2026-09-06. The note here used to read "~5s standard-tier clip is
@@ -29,6 +29,12 @@
      Kling 2.1 Pro      $0.49 for 5s, +$0.098 per additional second
      Kling 2.6 Pro      $0.07 per second, audio off  ($0.35 for 5s)
      Kling 3.0 Pro      $0.112/s audio off, $0.168/s audio on  ($1.12 for 10s)
+
+DEFAULT since 2026-10-11: Kling 3.0 Pro. Evaluated against 2.6 Pro on one
+still and one prompt at the #5027 set boundary - 3.0 casts physically
+coherent directional light where 2.6 gives a flat warm patch. It also reads
+motion instructions MORE aggressively, so phrase camera moves conservatively.
+2.6 Pro is still reachable with -Model for a scene that wants less movement.
 
 P156 switched the default to Kling 2.6 Pro and it has been in use since. Four
 10s clips cost $2.80 against $11.20 on 2.1 Master, with twice the hold and no
@@ -43,7 +49,8 @@ param(
   [string]$Image,                                  # optional: local image path -> image-to-video mode
   [ValidateSet('5','10','15')][string]$Duration = '5',   # 15 = Kling 3.0 only (2.6 caps at 10)
   [string]$Model,                           # auto-set by mode if not given
-  [string]$Resume         # request_id from a timed-out run: poll it, do not re-submit
+  [string]$Resume,        # request_id from a timed-out run: poll it, do not re-submit
+  [switch]$KeepText       # the input still carries DELIBERATE text - see P216
 )
   
 
@@ -51,8 +58,8 @@ param(
 # Mode = image-to-video if -Image supplied, else text-to-video. Pick matching default model.
 $imageMode = -not [string]::IsNullOrWhiteSpace($Image)
 if (-not $Model) {
-  $Model = if ($imageMode) { 'fal-ai/kling-video/v2.6/pro/image-to-video' }
-         else            { 'fal-ai/kling-video/v2.6/pro/text-to-video' }
+  $Model = if ($imageMode) { 'fal-ai/kling-video/v3/pro/image-to-video' }
+         else            { 'fal-ai/kling-video/v3/pro/text-to-video' }
 }
 
 $ErrorActionPreference = 'Stop'
@@ -133,6 +140,15 @@ $payload = @{
   duration        = $Duration
   aspect_ratio    = "9:16"
   negative_prompt = "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
+}
+# P216: the default negative prompt suppresses 'text, watermark' - right for a
+# scene that should carry none, and directly against the intent when the still
+# carries text we PUT there. b5027-matn was animated with 'text' still in the
+# negative prompt and the Arabic survived anyway; that was luck, not design, and
+# it is not a thing to rely on twice.
+if ($KeepText) {
+  $payload['negative_prompt'] = "blur, distort, low quality, deformed hands, extra fingers, extra limbs, fused fingers"
+  Write-Host "  -KeepText: text/watermark dropped from the negative prompt (P216)" -ForegroundColor DarkGray
 }
 # P156/P214: Kling has defaulted generate_audio to TRUE on every version so far.
 # It raises the rate (2.6 Pro $0.07 -> $0.14/s; v3 Pro $0.112 -> $0.168/s) AND mixes

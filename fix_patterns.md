@@ -8060,3 +8060,57 @@ string to [DateTime] with Kind=Utc, and `[datetime]'...Z'` in the test parsed to
 Kind=Local, so a correct 22:05Z was compared against 18:05 local and declared
 unequal. Printing the actual values settled in one run what two rounds of
 guessing had not. Same discipline as P211: measure before diagnosing.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 216: The negative prompt that fought the picture it was given
+## ═══════════════════════════════════════════════════════════
+**ID:** P216
+**Type:** A fixed default contradicting the deliberate content of its input
+**File:** scripts/generate-scene.ps1
+**Found:** 2026-10-11, by reading the P215 sidecar of a clip that had succeeded
+
+generate-scene.ps1 sends the same negative prompt on every call:
+
+    blur, distort, low quality, text, watermark, deformed hands, ...
+
+`text, watermark` is right for almost every scene this channel makes - MODE B
+backgrounds should carry no lettering, and Kling will happily invent a watermark.
+
+Then b5027-matn was animated from a still with the hadith matn deliberately
+composited onto the page, and the request told the model to suppress text while
+handing it an image whose entire subject was text.
+
+**Symptom:** none. The Arabic survived all 10s on both 2.6 Pro and 3.0 Pro,
+intact to the tashkeel. The clip was accepted and registered.
+
+**Root cause:** the negative prompt is a constant, and whether text is wanted is
+a property of the INPUT, not of the script. Nothing reconciled the two. The
+contradiction was invisible because it was only ever written in one place and
+read in none - it took a P215 sidecar, which records negative_prompt as actually
+sent, to put it next to the image it was sent with.
+
+**Why a success is still a defect.** The text surviving is evidence about this
+run, not about the instruction. The model was pushed toward erasing the one
+element the shot existed for and happened not to. Run it again, at another
+duration, with more camera movement, or on a model that weights negatives
+harder, and the same request destroys the matn - and the failure would look like
+a model problem rather than a prompt we wrote ourselves.
+
+**Fix:** `-KeepText`. When the input still carries text on purpose, the switch
+drops `text, watermark` from the negative prompt and says so on stdout. The
+default is unchanged, because suppressing text is right for every other scene.
+
+**Rule:** a constant that describes what the output should not contain has to
+agree with what the input does contain. When a parameter encodes an assumption
+about the input, it stops being a constant the first time the input changes.
+
+**Related:** P215 (the record that made this visible at all - the sidecar is
+already paying for itself), P214 (the other hardcoded assumption in this same
+payload, found the same day), P198 (an eval that only worked because a prompt
+survived), R026 (negations reinforce what they forbid - the same family, here
+reaching the video model instead of the still model).
+
+**Status:** FIXED - `-KeepText` switch, verified by AST (declared as a
+SwitchParameter) and by replaying the branch: default suppresses text, the
+switch does not. b5027-matn-v3.mp4 was generated BEFORE this fix and keeps its
+text by luck; any future text scene passes -KeepText.

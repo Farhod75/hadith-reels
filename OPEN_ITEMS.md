@@ -234,28 +234,14 @@ places for a verdict to be wrong.
 
 ## Tools
 
-**Kling 3.0 evaluation.** OPEN on `self_upskilling.md`. Run at a set boundary,
-same prompt through both models, as FLUX 2 was evaluated.
-
-**2026-10-11 — endpoint confirmed, two blockers cleared, one decision left.**
-`fal-ai/kling-video/v3/pro/image-to-video` is live; `duration` 3–15s against
-2.6 Pro's 5 or 10; $0.112/s audio off against $0.07/s, so 3.0 is 1.6× the rate
-and seconds per reel are fixed by the narration — 15s clips buy fewer cuts, not
-fewer seconds. Cleared first: **P214**, the audio-off guard was scoped to
-`v2\.6`, so the v3 half would have generated audio and billed $1.68 for a clip
-not comparable against a silent one; **P215**, no clip's motion prompt was
-stored anywhere, so “same prompt through both models” could not be satisfied by
-any of the 64 registered scenes.
-
-**Blocked on one decision: which prompt to compare.** The t3895 motion prompts
-went with the pre-compaction transcript and are not recoverable.
-- (a) Write one motion prompt for an existing approved still, run it on both
-  models. $1.82. Clean comparison, but both clips are throwaway.
-- (b) Run it on the FIRST #5027 scene — same prompt, both models, at the set
-  boundary the item asks for. $1.82, and the winning clip is one #5027 needs,
-  so nothing is wasted. Starts #5027, which is the next queue item anyway.
-Either way the prompt is now recorded by P215, so this is the last time this
-item needs a decision rather than a command.
+**Kling 3.0 evaluation.** CLOSED 2026-10-11 — evaluated and ADOPTED. One still,
+one prompt, both models, 10s each, at the #5027 set boundary. 3.0 casts
+physically coherent directional light where 2.6 gives a flat warm patch; it also
+reads motion instructions more aggressively, so camera moves want conservative
+phrasing. Default switched in `generate-scene.ps1`. Both models preserved real
+Arabic composited onto the still through 10s — see the Practice note in
+`self_upskilling.md`. Blockers cleared on the way: P214 (audio-off guard scoped
+to `v2\.6`) and P215 (no clip's prompt was ever stored).
 
 ---
 
