@@ -66,9 +66,22 @@ four were caught by reading and by nothing else: the ruling error sat in Uzbek
 Cyrillic, which P078 excludes from subtitles, and every existing gate reads
 generated reel text rather than DB text — Workflow H step 9 says so outright.
 Workflow I step 4 asks the operator to check against the Arabic; the operator
-has said they do not read Arabic fully. Stage 3 A/B verify (Workflow K) is
-where this belongs and is unbuilt. Until it exists, a second reader per batch
-is the only control.
+has said they do not read Arabic fully. Stage 3 A/B verify (Workflow K) EXISTS
+and is documented — the claim that it was unbuilt was wrong (P221). It crashed
+on its own `incomplete` value until today (P222). With that fixed it ran all 5
+translated rows, and **pass B returned HTTP 429 on all 20 calls: “You have no
+credits remaining” on the OpenAI account.** Every row came back `incomplete`,
+which the stage correctly refuses to pass to Stage 4. Stage 3 is one billing
+top-up away from being the control this needs; until then a human second reader
+per batch is the only one.
+
+**Pass A flagged Bukhari #6570 RU and UZ (2026-10-12).** نفسه is “his own
+self”, not “heart”. The RU «от своего сердца» was this session's consistency
+edit over text that was already faithful and probably reverts to «от самого
+себя»; the UZ «ўз қалбининг самимиятидан» is the translator's own, and the
+established EN rendering of this hadith is “from his heart”, so A may be
+stricter than the convention. G1: a model pass is eligibility for human
+review — operator's call, not a silent revert.
 
 **The Tawheed run carries four viewer-confusion traps, all rowed in the
 tracker’s duplicate-check index (2026-10-12).** Same handling as #6871/#2654

@@ -1,6 +1,25 @@
 ## [2026-10-12]
 
 ### Fixed
+- **CORRECTION — Stage 3 A/B verify was called unbuilt and is not (P221).**
+  `scripts/verify-candidates.py` has been on disk since 2026-09-05,
+  `probe-passb.py` beside it, and CLAUDE.md:516 documents Workflow K in eight
+  steps. The claim reached P220's status line, OPEN_ITEMS and a commit message,
+  and came with a recommendation to BUILD it — which would have paid to rebuild
+  an owned stage, the cost P218 exists to prevent. An absence claim needs the
+  same evidence as a presence claim; CLAUDE.md's workflow list is where to look.
+- **`scripts/verify-candidates.py:345` — a display string ended a paid run
+  (P222).** `agreement()` has returned four values since P152; the per-language
+  renderer knew three and raised `KeyError: 'incomplete'` on the first row of
+  the first run, after both paid passes had completed. Only reachable when a
+  provider call fails, which is why five weeks of clean runs never hit it.
+  Fourth value named and the lookup made non-fatal.
+- **Stage 3 then ran: pass B has no OpenAI credits.** HTTP 429 on all 20 calls,
+  `probe-passb.py` quoting “You have no credits remaining”. All 5 rows came back
+  `incomplete` and the footer refused to send them to Stage 4 — P152's design
+  behaving exactly as written. Pass A completed all 20 and flagged Bukhari
+  #6570 RU/UZ on نفسه (“his own self”, not “heart”), catching this session's own
+  consistency edit to the Russian on the first completed run.
 - **`scripts/translate-candidates.py` — `--apply` shipped text nobody had
   read (P219).** P177 made the reviewed JSON the shipped text by removing the
   second generation, but the artifact is a fixed path with no owner. A

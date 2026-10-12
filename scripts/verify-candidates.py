@@ -342,7 +342,15 @@ def main():
             agr = agreement(a, b)
             per_lang[lang] = {'a': a, 'b': b, 'agreement': agr}
 
-            mark = {'pass': 'OK ', 'fail': 'FAIL', 'disagree': '>>>'}[agr]
+            # P222: agreement() has returned FOUR values since P152 taught it
+            # 'incomplete' - its own docstring says so. This renderer knew
+            # three and raised KeyError on the first row of the first real
+            # run, AFTER both paid passes had completed, so that spend was
+            # thrown away. P152 updated the roll-up and the status map and
+            # missed the one dict that prints the value. .get() keeps a
+            # display string from ever ending a paid run again.
+            mark = {'pass': 'OK ', 'fail': 'FAIL', 'disagree': '>>>',
+                    'incomplete': 'n/a'}.get(agr, f'?{agr[:2]}')
             print(f'    {mark} {lang}: A={a.get("verdict")}/{a.get("confidence")}'
                   f'  B={b.get("verdict")}/{b.get("confidence")}')
             for who, res in (('A', a), ('B', b)):

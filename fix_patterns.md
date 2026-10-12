@@ -8320,5 +8320,90 @@ reviewed JSON and shipped from there (P177: a correction belongs in the
 reviewed text, never an SQL patch after the write), verified field-by-field
 against the DB afterwards. Nothing in the pipeline would have caught any of
 them and nothing added here would. Stage 3 A/B verify (Workflow K) is where
-this belongs and is unbuilt - recorded in OPEN_ITEMS under "Blocks content".
+this belongs. **CORRECTION, same day: it is BUILT - see P221.** It was
+crashing (P222), and pass B has no API credits left; both are recorded in
+OPEN_ITEMS under "Blocks content".
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 221: Declared a documented stage unbuilt
+## ═══════════════════════════════════════════════════════════
+**ID:** P221
+**Type:** An absence claim asserted without the check a presence claim gets
+**Files:** fix_patterns.md (P220 status), OPEN_ITEMS.md, CHANGELOG.md - all 3 wrong
+**Found:** 2026-10-12, minutes after writing P220
+
+P220 closed with "Stage 3 A/B verify (Workflow K) is where this belongs and is
+unbuilt." Every part of that was checkable and none of it was checked:
+
+  - `CLAUDE.md:516` documents **Workflow K - Stage 3: A/B verify translations**
+    in eight steps, naming the models, the disagreement rate, and G1
+  - `scripts/verify-candidates.py` has been on disk since 2026-09-05
+  - `scripts/probe-passb.py` exists too, and Workflow K step 8 says when to run it
+  - both keys are in `.env.local` - ANTHROPIC_API_KEY for A, OPENAI_API_KEY for B
+
+The claim then propagated into OPEN_ITEMS and a commit message, and the session
+recommended BUILDING it. Had the operator agreed, they would have paid to
+rebuild a stage they already owned - the exact cost P218 exists to prevent,
+incurred four patterns later while writing about it.
+
+The asymmetry is the lesson. "X exists" gets verified here as reflex, because
+inventing a command or a path is a known failure (P208, "Never invent commands
+- check the script first"). "X does not exist" was treated as free. It is not:
+it is the more expensive claim, because it is the one that authorises new work.
+A missing capability was inferred from its absence in fix_patterns and
+OPEN_ITEMS - the two files about problems - without ever opening the file that
+lists what exists. CLAUDE.md's workflow list IS that file.
+
+**Rule:** before reporting a stage, script, or capability missing, grep
+CLAUDE.md's workflow list and `scripts/` for it. An absence claim needs the
+same evidence as a presence claim, and the operating doc outranks a memory of
+it.
+
+**Status:** CORRECTED. P220's status line amended in place, OPEN_ITEMS rewritten,
+CHANGELOG corrected in the same dated section. Stage 3 then RAN - see P222 for
+what it found, including a defect this session had introduced an hour earlier.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 222: A display string ended a paid run
+## ═══════════════════════════════════════════════════════════
+**ID:** P222
+**Type:** A value the logic knew and the renderer did not
+**Files:** scripts/verify-candidates.py:345
+**Found:** 2026-10-12, first real Stage 3 run
+
+`agreement()` returns four values - its own docstring opens
+`pass | fail | disagree | incomplete`. The line that prints the per-language
+result knew three:
+
+    mark = {'pass': 'OK ', 'fail': 'FAIL', 'disagree': '>>>'}[agr]
+
+P152 added `incomplete` for the honest reason that an API error is not a
+verdict, and taught it to `agreement()`, to `roll_up()`, and to the status map
+that keeps an unchecked row away from the human gate. It did not teach it to
+the one dict that renders it. So the stage worked correctly and then died
+printing the fact - `KeyError: 'incomplete'` on the first row of the first run,
+AFTER both paid passes had completed, discarding the spend and the report.
+
+Two things made it invisible for five weeks. `incomplete` is only reachable
+when a provider call fails, so every clean run passes. And the crash looks like
+the API failure that caused it, not like a bug in the printing.
+
+**Fix:** the fourth value named, and `.get(agr, f'?{agr[:2]}')` so a display
+string can never end a run again. A renderer is the last place that should hold
+a veto over work already paid for.
+
+**Status:** FIXED. All four values render, verified by driving `agreement()`
+with each verdict pair, plus an unknown value degrading to `?wa` instead of
+raising. The re-run then completed all 5 rows and printed its report.
+
+**What the completed run found:** pass B returned HTTP 429 on all 20 calls -
+`probe-passb.py` gives the reason verbatim, "You have no credits remaining" -
+so all 5 rows came back `incomplete` and the footer correctly refused to send
+any of them to Stage 4. P152's design held exactly as written. Pass A completed
+all 20 and flagged Bukhari #6570 RU and UZ: نفسه is "his own self", not
+"heart". The UZ «ўз қалбининг самимиятидан» is the translator's own, but the RU
+«от своего сердца» was THIS session's edit, made an hour earlier to line RU up
+with the other three languages. A consistency edit to text that was already
+faithful. The second opinion this session had just called unbuilt caught it on
+its first completed run.
 
