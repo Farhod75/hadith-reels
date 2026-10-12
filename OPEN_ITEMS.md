@@ -234,6 +234,14 @@ places for a verdict to be wrong.
 
 ## Tools
 
+**Random scene selection has no registry gate.** `render-reel.ps1` without
+`-Scenes` globs `out\backgrounds\new\normalized\*.mp4` and draws three at
+random, with no call to audit-assets. `-Scenes` has had that gate since P121,
+and the nasheed picker got one in P168; this path never did, so an
+unregistered or retired clip in that folder can reach a reel. Found while
+fixing P217, deliberately not widened into it. Low urgency - every recent set
+renders with explicit `-Scenes` - but it is the same class as P121 and P168.
+
 **Kling 3.0 evaluation.** CLOSED 2026-10-11 — evaluated and ADOPTED. One still,
 one prompt, both models, 10s each, at the #5027 set boundary. 3.0 casts
 physically coherent directional light where 2.6 gives a flat warm patch; it also

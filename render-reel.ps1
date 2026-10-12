@@ -458,8 +458,25 @@ $animated = ($Scenes -and $Scenes.Count -gt 0)
 if ($animated) {
   Say "`n[3/5] Step 6 - stitching $($Scenes.Count) ordered scene clips (animated reel)..."
     $picked = foreach ($name in $Scenes) {
+    # P217: generate-scene.ps1 writes to new\, this read normalized\ only, and
+    # the gap between them has blocked three separate sets (June #1520, 8/11 #1,
+    # 8/16 #527) on a Move-Item nobody remembers. ANIMATED mode normalizes every
+    # clip below - see the resolution-guard note - so it never needed
+    # pre-normalized input: the folder was a LOCATION, not a state. Look in both.
+    # The registry gate immediately below is the real check, not the directory.
+    # RANDOM mode still reads normalized\ only, because it stitches with -c copy
+    # and genuinely requires clips that are already 1080x1920.
     $clip = Join-Path $normDir $name
-    if (-not (Test-Path $clip)) { Die "scene clip not found: $clip" }
+    if (-not (Test-Path $clip)) {
+      $alt = Join-Path "out\backgrounds\new" $name
+      if (Test-Path $alt) {
+        $clip = $alt
+        Write-Host "        (resolved from new\ rather than normalized\ - P217)" -ForegroundColor DarkGray
+      }
+    }
+    if (-not (Test-Path $clip)) {
+      Die "scene clip not found in out\backgrounds\new\normalized\ or out\backgrounds\new\: $name"
+    }
     # P121: the same lane gate the nasheed gets. Before this, -Scenes clips
     # reached the render unchecked -- eight reels shipped over clips the audit
     # itself reported as unregistered. A gate protects the inputs it is NAMED.

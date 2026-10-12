@@ -488,10 +488,14 @@ npm run test:multilingual
    `.\scripts\generate-image.ps1 -Name "<slug>-<scene>" -Count 3 -Prompt "..."`
    review the stills, then
    `.\scripts\generate-scene.ps1 -Name "<slug>-<scene>" -Image "out\refs\<pick>.jpg" -Duration 10 -Prompt "<MOTION only>"`
-5. **Move the clips:** `generate-scene.ps1` writes to `out\backgrounds\new\`, but
-   `render-reel.ps1 -Scenes` reads from `out\backgrounds\new\normalized\`. This
-   undocumented manual step has blocked three separate sets (June #1520,
-   8/11 #1, 8/16 #527). `Move-Item out\backgrounds\new\<slug>-*.mp4 out\backgrounds\new\normalized\`
+5. **Moving the clips is no longer required (P217).** `generate-scene.ps1`
+   writes to `out\backgrounds\new\`; `render-reel.ps1 -Scenes` now resolves a
+   clip from `normalized\` and falls back to `new\`, and says which it used.
+   The old Move-Item blocked four sets (June #1520, 8/11 #1, 8/16 #527, 10/11
+   #5027) while enforcing a property animated mode does not use - it normalizes
+   every clip itself. Promotion into `normalized\` is still worth doing for a
+   clip you want in the RANDOM pool, which does need pre-normalized input:
+   `Move-Item out\backgrounds\new\<slug>-*.mp4 out\backgrounds\new\normalized\`
 6. **Kling can exceed the hook's 8-minute poll deadline** (one #527 scene took
    505s against a 480s limit). The job usually COMPLETES server-side — recover it
    rather than paying twice:

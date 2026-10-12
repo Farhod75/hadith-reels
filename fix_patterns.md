@@ -8114,3 +8114,51 @@ reaching the video model instead of the still model).
 SwitchParameter) and by replaying the branch: default suppresses text, the
 switch does not. b5027-matn-v3.mp4 was generated BEFORE this fix and keeps its
 text by luck; any future text scene passes -KeepText.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 217: The folder that was a location pretending to be a state
+## ═══════════════════════════════════════════════════════════
+**ID:** P217
+**Type:** A manual step standing in for a check the code already does
+**File:** render-reel.ps1
+**Found:** 2026-10-11, rendering #5027 - the fourth set it has blocked
+
+`generate-scene.ps1` downloads to `out\backgrounds\new\`. `render-reel.ps1
+-Scenes` read only from `out\backgrounds\new\normalized\`. Between them sat a
+Move-Item that nobody remembers, and CLAUDE.md records it blocking three
+separate sets before this one: June #1520, 8/11 #1, 8/16 #527.
+
+**Symptom:** `scene clip not found: out\backgrounds\new\normalized\<clip>.mp4`
+on a clip that was generated minutes earlier and is plainly on disk.
+
+**Root cause:** the directory name claims the clips in it are normalized, and
+for RANDOM mode that is load-bearing - it stitches with `-c copy` and needs
+1080x1920 input. For ANIMATED mode it never was. The script's own comment at
+the resolution guard says so: "Animated mode normalizes each clip below, so it
+tolerates any source res/fps." So `-Scenes` was requiring a property it does
+not use, enforced by a directory nobody syncs.
+
+The directory also looked like a review gate and is not one. Promotion into it
+is a `Move-Item` with no check attached, and the real gate for `-Scenes` is the
+registry audit (P121) three lines further down, which rejects an unregistered
+clip wherever it sits.
+
+**Fix:** `-Scenes` resolves a clip from `normalized\` and falls back to `new\`,
+saying which it used. The registry gate is unchanged and still decides. RANDOM
+mode still reads `normalized\` only, because there the normalization is real.
+
+**Rule:** a manual step that moves a file without inspecting it is not a gate,
+it is a gap. Before preserving one, find what the code actually requires - here
+it required nothing, and a directory had been standing in for a check that
+already existed somewhere better.
+
+**Status:** FIXED. Verified three ways against real files: a clip in
+`normalized\` resolves there, a clip only in `new\` (b5027-matn.mp4, the Kling
+2.6 eval artifact) resolves via the fallback, and a missing name still dies.
+CLAUDE.md step 5 updated - it had been documenting the workaround as the
+procedure.
+
+**Open, not fixed here:** RANDOM mode globs `$normDir\*.mp4` with no registry
+check, so an unregistered clip sitting in that folder can be drawn into a reel.
+`-Scenes` has had that gate since P121 and random mode never got it. Recorded
+in OPEN_ITEMS rather than widened into this change.
