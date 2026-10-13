@@ -37,6 +37,7 @@ what had been sitting here marked IN PROGRESS.**
 | Sahih Muslim #1631 | R114–R117 | 2026-10-09 | Death / Afterlife |
 | Jami at-Tirmidhi #3895 | R118–R121 | 2026-10-10 | Family / Marriage |
 | Sahih al-Bukhari #5027 | R122–R125 | 2026-10-12 | Quran / Tilawah |
+| Sahih al-Bukhari #6423 | R126–R129 | 2026-10-13 | Tawheed / Sincerity |
 
 **Next pick is undecided.** What the tracker's gap list actually leaves
 (2026-10-13):
@@ -48,7 +49,7 @@ what had been sitting here marked IN PROGRESS.**
   sadaqah, so zakat as an obligation is still uncovered.
 - **Arabic lane — ZERO reels.** A language gap, not a theme gap: no new hadith
   needed, only an AR leg on a set already made.
-- **Tawheed — 4 reels (R010–R013).** The four candidates verified 2026-10-12
+- **Tawheed — 8 reels (R010–R013 intentions; R126–R129 Bukhari #6423, shipped 2026-10-13).** FIRST of the arc is done; #6570 is next, 2–3 weeks out, with the GREEN kalima frame, then #3435. The four candidates verified 2026-10-12
   land here: Bukhari #6423, #6570, #6446 and Muslim #2999. They are
   `status='verified'` in hadith_candidates, which is ELIGIBLE, not promoted —
   Stage 4 and promotion to hadith_library come before any of them can be
@@ -306,7 +307,7 @@ is variety across themes. Interleave other themes between them.
    Isa as His slave and His word cast to Maryam, and to Paradise and the Fire
    as true — Allah admits him to Paradise according to his deeds. Grade
    SAHIH in both. Dorar carries both wordings with mutual takhrij.
-2. **Sahih al-Bukhari #6423** — Itban ibn Malik. “No servant will come on the
+2. **Sahih al-Bukhari #6423 — SHIPPED 2026-10-13 as R126–R129.** — Itban ibn Malik. “No servant will come on the
    Day of Resurrection saying La ilaha illallah, seeking thereby the Face of
    Allah, but Allah will have forbidden the Fire to him.” 177 chars, the short
    direct form. CORRECTED 2026-10-12 from #425, which this file previously

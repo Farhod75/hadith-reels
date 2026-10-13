@@ -146,6 +146,10 @@
 | R123 | 2026-10-11 | Sahih al-Bukhari #5027 | Uthman ibn Affan | Sahih | Quran / Tilawah | #knowledge #quran #learning #teaching #education | RU | Adults | bukhari-5027 | adults-ru-bukhari-5027-story.mp3 | adults-ru-bukhari-5027-moral.mp3 | adults-ru-bukhari-5027-narration.mp3 | b5027-matn-v3.mp4, b5027-copy.mp4 | adults-ru-bukhari-5027-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | YES | adults-ru-bukhari-5027-reel.mp4 | 17.3s | 3.8 MB | Scene clips reused from R122 — no FLUX or Kling spend; the composited matn is Arabic, so it carries across all four languages. THE MORAL REPEATED THE ENGLISH DEFECT IN RUSSIAN: «ведь в этих словах Пророка ﷺ соединены оба дела» is a comment about the text, which the generator rule forbids in writing (“say the thing, not a comment about the text”). It also added «не ради знания самого по себе, а ради Аллаха» — an intention condition the matn does not carry, which on a hadith about the merit of learning reads AGAINST the matn. Both removed. P212 HELD on its second live test: the moral directed the act to Allah without claiming Allah commanded or categorised anything. SRT clean on the first pass, similarity 1.000, ﷺ rendered as spoken words. published TG/IG/YT/TikTok |
 | R124 | 2026-10-11 | Sahih al-Bukhari #5027 | Uthman ibn Affan | Sahih | Quran / Tilawah | #knowledge #quran #learning #teaching #education | UZ | Adults | bukhari-5027 | adults-uz-bukhari-5027-story.mp3 | adults-uz-bukhari-5027-moral.mp3 | adults-uz-bukhari-5027-narration.mp3 | b5027-matn-v3.mp4, b5027-copy.mp4 | adults-uz-bukhari-5027-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | NO (P078) | adults-uz-bukhari-5027-reel.mp4 | 21.2s | 4.6 MB | Scene clips reused from R122. THE STORY BLOCK APPENDED THE NARRATOR INSIDE ITS OWN SENTENCE: «Бу ҳадисни Усмон ибн Аффон розияллоҳу анҳу ривоят қилган» — caught by lint P111 r18, “shares 0 of 6 words with the matn; commentary appended inside the quotation reads as part of what he SAID.” Removed: H already carried it, and neither EN nor RU had it, so it was breaking consistency across the set as well. The moral carried the same added-intention clause as EN and RU — third language of four. No subtitles (P078), so nothing automated read this leg. Longest reel of the set at 21.2s. published TG/IG/YT/TikTok |
 | R125 | 2026-10-11 | Sahih al-Bukhari #5027 | Uthman ibn Affan | Sahih | Quran / Tilawah | #knowledge #quran #learning #teaching #education | TJ | Adults | bukhari-5027 | adults-tj-bukhari-5027-story.mp3 | adults-tj-bukhari-5027-moral.mp3 | adults-tj-bukhari-5027-narration.mp3 | b5027-matn-v3.mp4, b5027-copy.mp4 | adults-tj-bukhari-5027-bg-mixed.mp4 | aswati-Rising-Hope.mp3 | NO (P078) | adults-tj-bukhari-5027-reel.mp4 | 18.6s | 4.1 MB | Scene clips reused from R122. BEST TAJIK GENERATION TO DATE — «Аллоҳ» throughout with no «Худо» drift, S quoted text_tajik VERBATIM rather than re-translating it (the #3895 defect), no invented simile, no unsourced «Олимон...», no letter errors. One defect: «зеро ҳамин ду амали пайваста аст» imported the joined-acts reading — the comment-about-the-text shape, now three languages of four on one hadith, which points at the generator prompt rather than the generation. Replaced with the matn's own frame. «каломи Аллоҳ» also dropped, recorded as a CONSISTENCY call and NOT a defect: it asserts nothing the matn denies, but the other three shipped with no such addition. No subtitles (P078). Completes the set. published TG/IG/YT/TikTok |
+| R126 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | EN | Adults | bukhari-6423 | adults-en-bukhari-6423-story.mp3 | adults-en-bukhari-6423-moral.mp3 | adults-en-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-en-bukhari-6423-bg-mixed.mp4 | vocal-nasheed-04.mp3 | YES | adults-en-bukhari-6423-reel.mp4 | 27.8s | 6.2 MB | FIRST of the Tawheed arc; #6570 follows in 2-3 weeks with a GREEN kalima frame, then #3435. Four new MODE B scenes. The ash clip is a re-roll: v1 kindled a fire in a hearth meant to be dead (51 -> 1346 px above brightness 230, peaking pure white) because the prompt said "cool light creeping across the settled ash" and Kling read that as licence to put light IN it - R026 one layer down. v2 measured 54 -> 146, peak 243. The kalima survives Kling to 9.5s of 10s with correct joining, composited by the new scripts/composite-matn.py rather than written by FLUX. Subtitle style reduced on this reel: FontSize 18->14, MarginV 80->55, so the burned line stops competing with the kalima. First reel whose P201 sidecar was actually written (P228). published TG/IG/YT/TikTok |
+| R127 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | RU | Adults | bukhari-6423 | adults-ru-bukhari-6423-story.mp3 | adults-ru-bukhari-6423-moral.mp3 | adults-ru-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-ru-bukhari-6423-bg-mixed.mp4 | aswati-Steady-Motivation.mp3 | YES | adults-ru-bukhari-6423-reel.mp4 | 27.2s | 6.0 MB | THE REEL THAT EXPOSED P232. The generation failed three times with "Failed to parse AI response" - the Russian matn carries straight double quotes (говорящий: "Нет божества, кроме Аллаха"), and a verbatim copy of them closed the JSON string early. The model obeyed rule 2 and P153 exactly; the envelope could not carry what the rules required. Route moved to an emit_reel tool schema. EN had passed only because its matn uses guillemets. Content defects, both corrected before shipping: the moral supplied "а не ради людей или мирской выгоды", a contrast the matn does not draw, and the seerah context said "защищает от ВЕЧНОГО пребывания в Огне" - the classical reconciliation smuggled in as if it were the matn, which says only حرم الله عليه النار. Rendered twice: the first run omitted -FitScenes, so three clips filled the audio at native length and the reel never reached the ash scene (P229's sibling - the flag, not the arithmetic). published TG/IG/YT/TikTok |
+| R128 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | UZ | Adults | bukhari-6423 | adults-uz-bukhari-6423-story.mp3 | adults-uz-bukhari-6423-moral.mp3 | adults-uz-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-uz-bukhari-6423-bg-mixed.mp4 | path-to-jannah-bg.mp3 | NO (P078) | adults-uz-bukhari-6423-reel.mp4 | 34.0s | 7.2 MB | TTS defect found at narration, not in review: the kalima was written 'ла илаҳа иллаллоҳ' with straight apostrophes carried over from the Russian quote nesting, and ElevenLabs read the apostrophe as tutuq belgisi - it is a LETTER in Uzbek, not a quotation mark - giving "а'ла илаҳа иллаллоҳ". Quotes dropped from the kalima entirely; P097's family. Content defects corrected before narrating: the story said эрталаб ҳузурИга келиб, third person, when the matn is first person (غدا عليَّ, Itban narrating his own house) - the caption text had it right and only the story block drifted; the moral added ваъда қилган, a promise the matn does not make, against the moral field's own rule. published TG/IG/YT/TikTok |
+| R129 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | TJ | Adults | bukhari-6423 | adults-tj-bukhari-6423-story.mp3 | adults-tj-bukhari-6423-moral.mp3 | adults-tj-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-tj-bukhari-6423-bg-mixed.mp4 | vocal-nasheed-01.mp3 | NO (P078) | adults-tj-bukhari-6423-reel.mp4 | 30.4s | 6.2 MB | CLOSED THE SET AND CONFIRMED A PROMPT FINDING. The supplied negation appeared in ALL FOUR languages - RU "а не как пустые слова на устах", UZ "фақат тил билан айтишга эмас, балки", TJ carrying it TWICE (M and H: "на танҳо бо забон, балки"). The added promise (ваъда) made three of four, and the comment-about-the-text frame three of four. Rules 23 and 24 went in on 2026-10-12 to stop exactly this family and did not hold: a rule can be in the list and still lose to the shape the model reaches for. TJ also drifted ваҷҳ -> ризо and twice said "from the heart" (аз самими дил / аз таҳи дил) where the matn says يبتغي به وجه الله - the same نفسه->heart drift Stage 3 caught in a hand edit the same day. Held clean: Аллоҳ throughout with no Худо drift, and the story quoted text_tajik verbatim with назди ман in the first person. published TG/IG/YT/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -194,6 +198,7 @@
 | Sahih Muslim #1631 | EN, RU, UZ, TJ | Adults | R114, R115, R116, R117 |
 | Jami at-Tirmidhi #3895 | EN, UZ, RU, TJ | Adults | R118, R119, R120, R121 |
 | Sahih al-Bukhari #5027 | EN, RU, UZ, TJ | Adults | R122, R123, R124, R125 |
+| Sahih al-Bukhari #6423 | EN, RU, UZ, TJ | Adults | R126, R127, R128, R129 |
 | Sahih al-Bukhari #6570 | — | — | SAME HADITH AS #99, not merely similar. Abu Hurairah on intercession appears TWICE in Bukhari: Riqaq #6570 and Ilm #99, and Dorar returns both as separate cards. Ship ONE number and keep it everywhere — a viewer who finds the other number reads our citation as wrong. Sourced 2026-10-12, not yet produced. |
 | Sahih Muslim #28 | — | — | SAME HADITH AS Sahih al-Bukhari #3435 (Ubadah ibn as-Samit; the testimony that names Isa, His word cast to Maryam, and a spirit from Him). Muttafaq alayh. The ZAD slide this came from cites «Бухорий ва Муслим», but our caption format carries ONE collection + number — decide which before producing, and expect viewers who learned it as “Bukhari and Muslim”. |
 | Sahih al-Bukhari #425 / #5401 / #6938 | — | — | THREE MORE ENTRIES around the same Itban ibn Malik event. We ship #6423, the short saying. #425 and #5401 are narrated by MAHMUD IBN AR-RABI‘ AL-ANSARI, not Itban, and are the long narrative about Itban’s failing eyesight; #6938 is a longer Itban variant with Malik ibn ad-Dukhshun. A viewer searching “Itban” lands on #425 first. #425 was itself wrongly recorded as our source until 2026-10-12 (P218). |
@@ -213,6 +218,7 @@
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
+| Tawheed / Sincerity | 4 | R126-R129 | EN, RU, UZ, TJ |
 | Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
 | Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
 | Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
@@ -246,6 +252,7 @@
 - ⚠️ Akhlaq / Anger management — no reels yet (Patience covered by R042–R049)
 - ✅ Family / Marriage / Parents — 12 reels (R034–R041 birr al-walidayn; R118–R121 Tirmidhi #3895, conduct toward wife and household)
 - ✅ Quran recitation / Tilawah — 4 reels (R122–R125, Bukhari #5027, learning the Quran and teaching it)
+- ✅ Tawheed / Sincerity — 4 reels (R126–R129, Bukhari #6423, the Fire forbidden to the one who says the kalima seeking His Face). FIRST of a three-hadith arc — #6570 then #3435, 2–3 weeks apart, per the operator.
 - ✅ Death / Afterlife / Barzakh — 4 reels (R114–R117, Muslim #1631, the three ongoing deeds)
 
 **Language coverage gaps:**
@@ -265,8 +272,8 @@
 |---|---|---|---|
 | vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
-| vocal-nasheed-04.mp3 | 13 | R113 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113 |
-| vocal-nasheed-01.mp3 | 10 | R108 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108 |
+| vocal-nasheed-04.mp3 | 14 | R126 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113, R126 |
+| vocal-nasheed-01.mp3 | 11 | R129 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129 |
 | vocal-nasheed-03.mp3 | 9 | R099 | R029, R035, R043, R058, R070, R081, R089, R092, R099 |
 | vocal-nasheed-05.mp3 | 9 | R109 | R032, R036, R045, R059, R069, R082, R093, R098, R109 |
 | vocal-nasheed-06.mp3 | 8 | R100 | R033, R039, R048, R060, R066, R073, R075, R100 |
@@ -275,14 +282,14 @@
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
-| path-to-jannah-bg.mp3 | 4 | R103 | R004, R023, R095, R103 |
+| path-to-jannah-bg.mp3 | 5 | R128 | R004, R023, R095, R103, R128 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
 | aswati-Peaceful-Contemplation.mp3 | 2 | R120 | R114, R120 |
 | aswati-Gentle-Reflection.mp3 | 2 | R121 | R115, R121 |
 | aswati-Morning-Serenity.mp3 | 2 | R124 | R116, R124 |
 | aswati-Heartfelt-Gratitude.mp3 | 2 | R123 | R117, R123 |
 | aswati-Rising-Hope.mp3 | 2 | R125 | R118, R125 |
-| aswati-Steady-Motivation.mp3 | 1 | R119 | R119 |
+| aswati-Steady-Motivation.mp3 | 2 | R127 | R119, R127 |
 | aswati-Focused-Determination.mp3 | 1 | R122 | R122 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
@@ -300,6 +307,7 @@ three sets.
 |---|---|---|---|
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
 | b5027-matn-v3, copy | 1 set | 2026-10-11 (R122-R125) | R122-R125 |
+| b6423-gate, kalima, plain, ash-v2 | 1 set | 2026-10-13 (R126–R129) | R126–R129 |
 | t3895-hearth, dastarkhan, platter, house | 1 set | 2026-10-10 (R118-R121) | R118-R121 |
 | m1631-well, channel, circle, grove | 1 set | 2026-10-09 (R114-R117) | R114-R117 |
 | m2759-door-night, threshold, firstlight, dawn | 1 set | 2026-10-05 (R110-R113) | R110-R113 |
@@ -344,6 +352,10 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 |---|---|---|
 | b5027-matn-v3.mp4 | 4 | R122-R125 |
 | b5027-copy.mp4 | 4 | R122-R125 |
+| b6423-gate.mp4 | 4 | R126-R129 |
+| b6423-kalima.mp4 | 4 | R126-R129 |
+| b6423-plain.mp4 | 4 | R126-R129 |
+| b6423-ash-v2.mp4 | 4 | R126-R129 |
 | kaaba.mp4 | TBD | TBD (R004 or R005 random pick) |
 | kaaba-roof.mp4 | TBD | TBD |
 | kaaba-balcony.mp4 | TBD | TBD |
@@ -394,19 +406,19 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 125 |
+| Total reels posted | 129 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 73 |
+| Adults reels | 77 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 32 |
-| Library rows | 70 (32 used, 38 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×55, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 16 (Uthman ibn Affan ×4, Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4) |
+| Hadiths used (unique) | 33 |
+| Library rows | 70 (33 used, 37 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×59, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 17 (Uthman ibn Affan ×4, Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4) |
 
-**125 reels from 32 hadiths.** Thirty-two of 70 library rows have been used;
-38 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**129 reels from 33 hadiths.** Thirty-three of 70 library rows have been used;
+37 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the
