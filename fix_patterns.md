@@ -8407,3 +8407,47 @@ with the other three languages. A consistency edit to text that was already
 faithful. The second opinion this session had just called unbuilt caught it on
 its first completed run.
 
+## ═══════════════════════════════════════════════════════════
+## PATTERN 223: One transient failure discarded eight paid calls
+## ═══════════════════════════════════════════════════════════
+**ID:** P223
+**Type:** No retry under a roll-up that treats any gap as a total loss
+**Files:** scripts/verify-candidates.py (_post, _transient)
+**Found:** 2026-10-12, first funded Stage 3 run
+
+Stage 3 makes eight provider calls per row - four languages, two passes. P152
+correctly made an unchecked language `incomplete` rather than a disagreement,
+and `roll_up()` correctly lets one `incomplete` decide the row when nothing
+worse happened. Both are right. Together, with no retry anywhere, they mean a
+single momentary 429 on one language throws away the row's other seven calls,
+all of them already paid for, and returns the row unchecked.
+
+That is not hypothetical. The first run on a funded account took 5 scattered
+transient 429s and lost 3 of 5 rows. Every lost row had already produced good
+verdicts in its other languages.
+
+`pass_a` and `pass_b` each called `urlopen` directly with no attempt loop, so
+the pipeline had no notion of a retryable failure. Both now go through `_post`,
+which retries 4 attempts with 2s/5s/12s backoff, honours `Retry-After` up to
+30s, and distinguishes what can succeed later from what cannot:
+
+  retried      429 rate_limit_exceeded, 500/502/503/504/529, URLError,
+               timeouts, connection resets, IncompleteRead, BadStatusLine
+  not retried  429 insufficient_quota / credit_balance_exhausted, 401, 400
+
+The empty-balance case is the important exclusion. It is the same status code
+as a burst and the opposite problem: no amount of backoff adds credit, and it
+is the one 429 that needs a human rather than a wait.
+
+**Also fixed:** the raised error now carries the response BODY, not just the
+status line. `urllib` renders every 429 as "HTTP Error 429: Too Many Requests",
+which is why a session spent several exchanges unable to tell an exhausted
+balance from a rate limit, and had to re-issue the request by hand to read the
+reason. The provider had said "You have no credits remaining" the whole time;
+the transport threw it away.
+
+**Status:** FIXED. Classification verified against eight constructed cases -
+rate-limit 429 retries, credit-exhausted 429 does not, 5xx and transport errors
+retry, 401/400 do not. Both passes routed through one transport, so the retry
+cannot exist on one side only.
+

@@ -49,6 +49,7 @@ Requires ANTHROPIC_API_KEY and OPENAI_API_KEY in .env.local.
 
 import argparse
 import datetime as dt
+import http.client
 import json
 import os
 import sys
@@ -165,6 +166,65 @@ def user_msg(arabic, lang_name, translation):
             f'{lang_name} translation to verify:\n{translation}')
 
 
+# P223: a momentary provider failure used to discard a whole row. `incomplete`
+# is per-language and rolls up, so ONE transient 429 on one language threw away
+# that row's other seven calls - both passes, already paid for - and the row
+# came back unchecked. 5 scattered 429s cost 3 of 5 rows on the first funded
+# run. Retry what can succeed on another attempt; never retry what cannot.
+RETRY_ATTEMPTS = 4
+RETRY_WAITS = (2, 5, 12)
+
+# The balance being empty is not a burst. Retrying spends wall-clock and
+# changes nothing, and it is the one 429 that needs a human, not a backoff.
+PERMANENT_429 = ('insufficient_quota', 'credit_balance_exhausted')
+
+
+def _transient(exc):
+    """True when another attempt could plausibly succeed."""
+    if isinstance(exc, urllib.error.HTTPError):
+        if exc.code == 429:
+            body = getattr(exc, 'body_text', '') or ''
+            return not any(p in body for p in PERMANENT_429)
+        return exc.code in (500, 502, 503, 504, 529)
+    return isinstance(exc, (urllib.error.URLError, TimeoutError, ConnectionError,
+                            http.client.IncompleteRead, http.client.BadStatusLine))
+
+
+def _post(req, timeout, label=''):
+    """POST with bounded retry. Raises with the response BODY, not just the
+    status line - 'HTTP Error 429: Too Many Requests' cost a session the
+    distinction between an empty balance and a burst, which are the same code
+    and opposite problems."""
+    for attempt in range(RETRY_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read().decode('utf-8'))
+        except Exception as exc:  # noqa: BLE001
+            if isinstance(exc, urllib.error.HTTPError):
+                try:
+                    exc.body_text = exc.read().decode('utf-8', 'replace')
+                except Exception:  # noqa: BLE001
+                    exc.body_text = ''
+            last = attempt == RETRY_ATTEMPTS - 1
+            if last or not _transient(exc):
+                if isinstance(exc, urllib.error.HTTPError):
+                    detail = (getattr(exc, 'body_text', '') or '')[:220]
+                    raise RuntimeError(
+                        f'HTTP {exc.code}: {" ".join(detail.split())}') from exc
+                raise
+            wait = RETRY_WAITS[min(attempt, len(RETRY_WAITS) - 1)]
+            if isinstance(exc, urllib.error.HTTPError) and exc.headers:
+                ra = exc.headers.get('retry-after')
+                if ra:
+                    try:
+                        wait = max(wait, min(int(float(ra)), 30))
+                    except ValueError:
+                        pass
+            print(f'         {label}transient ({type(exc).__name__}), '
+                  f'retry {attempt + 1}/{RETRY_ATTEMPTS - 1} in {wait}s')
+            time.sleep(wait)
+
+
 def pass_a(key, arabic, lang_name, translation):
     body = json.dumps({
         # P152: 1000 predates thinking models and predates matn lengths like
@@ -178,8 +238,7 @@ def pass_a(key, arabic, lang_name, translation):
     req = urllib.request.Request(ANTHROPIC_URL, data=body, headers={
         'x-api-key': key, 'anthropic-version': ANTHROPIC_VERSION,
         'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        data = json.loads(r.read().decode('utf-8'))
+    data = _post(req, 120)
     txt = '\n'.join(b.get('text', '') for b in data.get('content', [])
                     if b.get('type') == 'text')
     return _parse(txt)
@@ -194,8 +253,7 @@ def pass_b(key, arabic, lang_name, translation):
     }, ensure_ascii=False).encode('utf-8')
     req = urllib.request.Request(OPENAI_URL, data=body, headers={
         'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        data = json.loads(r.read().decode('utf-8'))
+    data = _post(req, 120)
     return _parse(data['choices'][0]['message']['content'].strip())
 
 

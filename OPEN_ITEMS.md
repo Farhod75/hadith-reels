@@ -58,6 +58,25 @@ surprise.
 ---
 ## Blocks content — do not ship past these
 
+**P220's central claim is contested by Stage 3 (2026-10-12) — needs a source,
+not a model.** P220 recorded «қилган амалига қараб» (“according to his deeds”)
+on Bukhari #3435 as a ruling inversion, and this session corrected it to
+«қандай бўлишидан қатъи назар» (“regardless of his deeds”). Pass B now says the
+opposite in two languages: على ما كان من العمل means “according to / with
+regard to what he had of deeds”, NOT “irrespective of”. Pass A does not flag it.
+The Arabic على carries both readings and the classical commentary splits: one
+line reads “whatever his deeds, even if deficient”, the other “he enters at the
+rank his deeds earned”. So P220 asserted one reading as settled fact when it is
+not, and graded the translator for it. RESOLVE FROM A SOURCE — Fath al-Bari on
+#3435, Dorar, and the published Bukhari translations — then amend P220 to match
+what the sources say. Do not resolve it by preferring a model (G1). The row
+stays `needs_human` until then.
+
+**Stage 3 first full run, 2026-10-12: 3 pass / 2 disagree, 0 incomplete.**
+Eligible for Stage 4 (eligibility, never insert — G1): Muslim #2999,
+Bukhari #6446, Bukhari #6423. Needs human: #6570, #3435. Disagreement rate 40%
+of 5 — a usable figure, neither correlated nor drowning.
+
 **Translation fidelity has no automated reader (P220, 2026-10-12).** The
 in-house translator put «қилган амалига қараб» — “according to his deeds” —
 on Bukhari #3435, whose matn says the opposite: “whatever his deeds may have

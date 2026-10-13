@@ -1,6 +1,18 @@
 ## [2026-10-12]
 
 ### Fixed
+- **`scripts/verify-candidates.py` — one transient failure discarded eight
+  paid calls (P223).** Stage 3 makes 8 provider calls per row; `incomplete`
+  is per-language and rolls up, and neither pass had any retry. So a single
+  momentary 429 on one language threw away that row's other seven calls and
+  returned it unchecked — 5 scattered 429s cost 3 of 5 rows on the first
+  funded run. Both passes now share one transport with 4 attempts and
+  2s/5s/12s backoff, honouring `Retry-After`. Crucially it does NOT retry
+  `insufficient_quota` / `credit_balance_exhausted`: same status code as a
+  burst, opposite problem, and the one 429 that needs a human not a wait.
+  Errors now carry the response body too — `urllib` renders every 429 as
+  “Too Many Requests”, which is exactly why an exhausted balance was
+  indistinguishable from a rate limit until the request was re-issued by hand.
 - **CORRECTION — Stage 3 A/B verify was called unbuilt and is not (P221).**
   `scripts/verify-candidates.py` has been on disk since 2026-09-05,
   `probe-passb.py` beside it, and CLAUDE.md:516 documents Workflow K in eight
