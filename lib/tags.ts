@@ -49,6 +49,8 @@ export const TAG_CANONICAL: Record<string, string> = {
   fasting: 'sawm', sawm: 'sawm',
   // faith
   faith: 'iman', iman: 'iman', islam: 'islam', kufr: 'kufr',
+  tawheed: 'tawheed', tawhid: 'tawheed', monotheism: 'tawheed',
+  shahada: 'tawheed', kalima: 'tawheed',
   taqwa: 'taqwa', certainty: 'iman', believer: 'iman', deen: 'deen',
   // supplication
   dua: 'dua', supplication: 'dua', asking: 'dua', dhikr: 'dhikr',
@@ -135,6 +137,7 @@ export const TAG_FORMS: Record<string, TagForms> = {
   qanaah:       { en: 'contentment', ru: 'довольство',   uz: 'қаноат',       tj: 'қаноат' },
   sawm:         { en: 'fasting',     ru: 'пост',         uz: 'рўза',         tj: 'рӯза' },
   iman:         { en: 'iman',        ru: 'вера',         uz: 'иймон',        tj: 'имон' },
+  tawheed:      { en: 'tawheed',     ru: 'таухид',       uz: 'тавҳид',       tj: 'тавҳид' },
   islam:        { en: 'islam',       ru: 'ислам',        uz: 'ислом',        tj: 'ислом' },
   kufr:         { en: 'kufr',        ru: 'неверие',      uz: 'куфр',         tj: 'куфр' },
   shirk:        { en: 'shirk',       ru: 'ширк',         uz: 'ширк',         tj: 'ширк' },

@@ -92,7 +92,17 @@ def rest_patch(url: str, key: str, table: str, query: str, patch: dict) -> None:
 
 # ── source_urls (jsonb) -> one canonical deep-link ───────────────────────────
 def pick_deeplink(source_urls) -> str:
-    """Prefer Dorar, then Sunnah, then any first URL."""
+    """Prefer Sunnah, then Dorar, then any first URL.
+
+    This is the CITATION link that reaches a caption, and every library row
+    ever written uses the sunnah.com form (https://sunnah.com/bukhari:13).
+    Dorar was preferred first, but Workflow L sources by SEARCH, so its URL
+    is a query carrying the whole matn - hundreds of percent-encoded
+    characters, correct but unusable as a citation. Dorar's real role here is
+    the GRADE, and that is already recorded in `authority`.
+    Dorar still wins when no sunnah.com link exists, which is the Dorar-only
+    sourcing path (Workflow L) working as intended.
+    """
     if not source_urls:
         return ""
     if isinstance(source_urls, str):
@@ -101,7 +111,7 @@ def pick_deeplink(source_urls) -> str:
         except Exception:
             return source_urls
     if isinstance(source_urls, dict):
-        for pref in ("dorar", "sunnah", "hadeethenc"):
+        for pref in ("sunnah", "dorar", "hadeethenc"):
             if source_urls.get(pref):
                 return source_urls[pref]
         # else first value
