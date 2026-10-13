@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae3cc6/enWrmQityR6oLYJC5No8N_output.mp4",
+    "name":  "b6423-ash-v2",
+    "image":  "out\\refs\\b6423-ash-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6423-ash-v2.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-13T16:41:50.3616644Z",
+    "size_bytes":  7814775,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the room holding its even cold light without change, the ash an unchanging flat grey throughout, the hearth stones and the walls motionless, only the faintest drift of dust in the air above the hearth, the camera almost static",
+    "request_id":  "01a13624-4a52-7a01-bcf1-88f1f7328f10",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-13T16:44:21.5813177Z",
+    "mode":  "image-to-video"
+}

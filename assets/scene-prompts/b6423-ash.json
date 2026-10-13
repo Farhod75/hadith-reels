@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae3c94/umfT-39s0uuKooW2L3ksp_output.mp4",
+    "name":  "b6423-ash",
+    "image":  "out\\refs\\b6423-ash-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6423-ash.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-13T16:33:32.0905893Z",
+    "size_bytes":  8216514,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the cool light creeping slowly across the settled ash, the ash completely still, the hearth stones and the walls motionless, the camera almost static",
+    "request_id":  "01a1361c-b012-7502-b831-b8cc5c9c6d21",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-13T16:35:52.5433919Z",
+    "mode":  "image-to-video"
+}

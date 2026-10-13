@@ -70,6 +70,15 @@ _ENTRY = re.compile(
 )
 _NUM_PREFIX = re.compile(r"^\s*\d+\s*-\s*")  # Dorar prefixes "N - " on each matn
 
+# P230: Dorar closes each matn with an orphan separator - the card renders as
+# "... النَّارَ . ." or "... نَفسِه. .". Harmless in the card, NOT harmless in a
+# caption: P153 puts the FULL Arabic matn in every published caption as the one
+# external check a reader with Arabic can make, so the stray periods ship with
+# it. All six Dorar-sourced rows carry it; all 70 rows from other sources are
+# clean. Collapse a TRAILING RUN of periods to one - a matn legitimately ending
+# in a single period or in "».") is left exactly as it is.
+_TRAIL_DOTS = re.compile(r"(?:\s*[.\u06d4])+\s*$")
+
 
 def _strip_html(s: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(_TAG.sub(" ", s))).strip()
@@ -87,6 +96,7 @@ def parse_dorar(raw) -> list:
     cards = []
     for m in _ENTRY.finditer(blob):
         matn = _NUM_PREFIX.sub("", _strip_html(m.group("matn"))).strip()
+        matn = _TRAIL_DOTS.sub(".", matn)
         info = m.group("info")
         cards.append({
             "matn": matn,

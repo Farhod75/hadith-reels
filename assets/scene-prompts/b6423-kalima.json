@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae3ca3/XZRbai2xGGCFmxlKpnlF6_output.mp4",
+    "name":  "b6423-kalima",
+    "image":  "out\\refs\\b6423-kalima-text-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6423-kalima.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-13T16:35:53.3415059Z",
+    "size_bytes":  5394894,
+    "negative_prompt":  "blur, distort, low quality, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the raking light moving very slowly down the sheet, fine dust drifting through the beam, the parchment and the writing on it completely still, the camera almost static",
+    "request_id":  "01a1361e-d7cd-7ee2-a6fd-3f13ad19fc0d",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-13T16:38:10.7084146Z",
+    "mode":  "image-to-video"
+}

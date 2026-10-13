@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae3c70/MLSo4Vy7f7vwnMiII-HSC_output.mp4",
+    "name":  "b6423-gate",
+    "image":  "out\\refs\\b6423-gate-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6423-gate.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-13T16:27:49.9742371Z",
+    "size_bytes":  6779710,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the shadows shifting almost imperceptibly across the swept earth, a faint drift of dust in the low morning light, the gate and the wall completely still, the camera almost static",
+    "request_id":  "01a13617-779c-7311-95ae-38cd4540e285",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-13T16:29:56.3617678Z",
+    "mode":  "image-to-video"
+}

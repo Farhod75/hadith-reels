@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae3c80/RW68biiIb_jMPr9B9rqLG_output.mp4",
+    "name":  "b6423-plain",
+    "image":  "out\\refs\\b6423-plain-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6423-plain.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-13T16:29:57.5129705Z",
+    "size_bytes":  23921482,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the light strengthening very slowly across the flat cracked ground, the faintest heat shimmer along the far horizon, everything else completely still, an extremely slow push forward",
+    "request_id":  "01a13619-69d2-7842-9de0-f98fe6cd92c5",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-13T16:33:31.1410902Z",
+    "mode":  "image-to-video"
+}

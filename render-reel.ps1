@@ -168,6 +168,14 @@ $narr    = "$workDir\$base-narration.mp3"
 $srt     = "$workDir\$base-narration.srt"
 $bgMixed = "$workDir\$base-bg-mixed.mp4"
 $reel    = "$workDir\$base-reel.mp4"
+
+# P229: the reel runs ONE SECOND longer than the narration (P143 pads the
+# narration so the music does not cut dead on the last syllable). -FitScenes
+# sized the background off the UNPADDED narration, so the last second had no
+# background left and the video looped back to scene 1 - #6423 ended on a
+# 1s flash of its opening gate instead of the closing hearth. Two correct
+# fixes, each hard-coding its own 1.0. One constant now, used by all three.
+$tailPad = 1.0
 $normDir = "out\backgrounds\new\normalized"
 
 # subtitles routing per P078: Latin transliteration breaks UZ/TJ -> skip
@@ -266,10 +274,17 @@ if ($nasheeds.Count -ge 1) {
       slug      = $Slug
       rendered  = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
     } | ConvertTo-Json
-    [System.IO.File]::WriteAllText("$workDir\$base-render.json", $sidecar,
+    # P228: WriteAllText is a .NET call, and .NET resolves a RELATIVE path
+    # against [Environment]::CurrentDirectory - which PowerShell does NOT
+    # update on Set-Location. PS cwd was the repo root while .NET cwd was
+    # the user profile, so every write went to C:\Users\<me>\out\work\...
+    # and threw. No reel has EVER had a render.json. Absolute path, always.
+    $sidecarPath = Join-Path (Resolve-Path $workDir).Path "$base-render.json"
+    [System.IO.File]::WriteAllText($sidecarPath, $sidecar,
       (New-Object System.Text.UTF8Encoding($false)))
+    Write-Host "  nasheed recorded: $base-render.json" -ForegroundColor DarkGray
   } catch {
-    Write-Host "  could not write $base-render.json - record the nasheed by hand" -ForegroundColor Yellow
+    Write-Host "  could not write $base-render.json: $($_.Exception.Message)" -ForegroundColor Yellow
   }
 
   # P117: asset lane gate. A bed approved for the other lane is a lookup
@@ -523,7 +538,7 @@ if ($animated) {
   $fitDur = $null
   if ($FitScenes) {
     $nd = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
-    $fitDur = [math]::Round($nd / $picked.Count, 3)
+    $fitDur = [math]::Round(($nd + $tailPad) / $picked.Count, 3)
     Say ("        -FitScenes: {0}s narration / {1} clips -> {2}s per clip" -f [math]::Round($nd,2), $picked.Count, $fitDur)
   }
   $tmps = @()
@@ -568,7 +583,7 @@ Say "`n[4/5] Step 7 - final merge (bg + narration + nasheed$(if($useSubs){' + su
 $title = "drawtext=text='Hadith Reels':fontsize=28:fontcolor=white:shadowcolor=black@0.9:shadowx=2:shadowy=2:box=1:boxcolor=black@0.4:boxborderw=8:x=(w-text_w)/2:y=30:font=Arial"
 
 if ($useSubs) {
-  $subStyle = "force_style='FontName=Arial,FontSize=18,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,Alignment=2,MarginV=80'"
+  $subStyle = "force_style='FontName=Arial,FontSize=14,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,Outline=2,Shadow=1,Alignment=2,MarginV=55'"
   # P154: the relative path failed with "Unable to open" - a filtergraph does
   # not resolve paths the way an input argument does. Absolute, forward slashes,
   # and the drive colon escaped as C\: because ':' separates filter arguments.
@@ -597,13 +612,13 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   # exactly as long as its first input, and -shortest then cuts the video
   # there — so -t alone could not add a tail. Padding the narration makes the
   # shortest stream genuinely 1s longer and all three agree.
-  "-filter_complex","[1:a]volume=1.4,apad=pad_dur=1.0[narration];[2:a]volume=0.12[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+  "-filter_complex","[1:a]volume=1.4,apad=pad_dur=$tailPad[narration];[2:a]volume=0.12[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
   "-vf",$vf,
   "-map","0:v","-map","[aout]",
   # P143: was -t $narrDur exactly, so the video ended on the last syllable and
   # the loop restarted before the final word and the outro card had any time on
   # screen. On Instagram that reads as the end being cut off. 1s tail.
-  "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur + 1.0,2),"-movflags","+faststart",
+  "-c:v","libx264","-c:a","aac","-shortest","-t",[string][math]::Round($narrDur + $tailPad,2),"-movflags","+faststart",
   $reel)
 
 # P154: this tested only whether $reel EXISTS. ffmpeg can fail before writing

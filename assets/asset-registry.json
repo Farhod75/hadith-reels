@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-10",
+  "updated": "2026-10-13",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -241,6 +241,30 @@
   },
 
   "scenes": {
+    "b6423-gate.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "Mud-brick courtyard gate standing open at first light, both leaves wide, a shaft of morning light falling through onto swept earth. The dawn visit the matn opens with. MODE B, no figures. FLUX 2 still b6423-gate-3.jpg -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6423, R126-."
+    },
+    "b6423-plain.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "An unbroken level plain of pale cracked earth to the horizon under a colourless sky, no hill, tree or structure anywhere, flat shadowless light. The standing on the Day of Resurrection, with nobody depicted. MODE B. FLUX 2 still b6423-plain-1.jpg -> Kling 3.0 Pro i2v 10s. Deliberately NOT the dunes (b6446-dunes, b2654-dawn-v3): shaped sand reads as landscape, this reads as extent. Sahih al-Bukhari #6423, R126-."
+    },
+    "b6423-ash-v2.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A stone hearth banked with cold grey ash, undisturbed, in even cold light. The Fire forbidden, written as a STATE rather than a negation, per R026. MODE B. FLUX 2 still b6423-ash-2.jpg -> Kling 3.0 Pro i2v 10s. V2 BECAUSE V1 LIT THE FIRE: the first prompt asked for 'cool light creeping across the settled ash' and Kling read light-moving-across-ash as licence to put light IN it - a white-hot core grew from 51 to 1346 pixels above 230 brightness over the 10s, peaking at pure white. On THIS hadith that is the picture contradicting the words. Re-rolled holding the light off the ash; v2 measures 54 -> 146, peak 243. b6423-ash.mp4 (v1) left unregistered as the evidence. Sahih al-Bukhari #6423, R126-."
+    },
+    "b6423-kalima.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A single sheet of undyed parchment on dark stone under raking dawn light, carrying the testimony in real Arabic. MODE B. FLUX 2 produced the BLANK sheet (b6423-kalima-1.jpg); the text is composited by scripts/composite-matn.py - Amiri via npm, RAQM/HarfBuzz shaping with direction=rtl, perspective warp, multiply blend - because FLUX cannot write Arabic and a near-correct kalima would be worse than none. Rendered WITHOUT tashkeel: a 7th-century sheet carries no vowel marks, and every diacritic is one more thing that can go subtly wrong on the one phrase this channel cannot afford to get wrong. -KeepText per P216. Verified surviving to the last frame, 9.5s of 10s, with correct joining. Sahih al-Bukhari #6423, R126-."
+    },
     "b5027-copy.mp4": {
       "classification": "scene",
       "lanes": ["adults"],

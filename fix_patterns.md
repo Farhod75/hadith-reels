@@ -8655,3 +8655,155 @@ and the commit went out claiming a change this paragraph still denied. Caught
 by reading the file back instead of trusting the script's exit. A match string
 typed from memory is a guess; a match string read from the file is a fact.
 
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 228: A relative path in .NET resolves against a directory PowerShell does not update
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** P201 added a per-reel sidecar — `{base}-render.json`, recording
+the nasheed and scene list so the tracker's Nasheed column and the asset-reuse
+audit could be filled from a file instead of from memory. It had never once been
+written. Every reel since P201 rendered, reported success, and left no sidecar.
+
+**Cause:** the write used `[System.IO.File]::WriteAllText` with a path relative to
+`$workDir`. .NET resolves a relative path against `[Environment]::CurrentDirectory`,
+and PowerShell does NOT update that when `Set-Location` runs. So the process-wide
+current directory was still wherever the shell started — the write either landed
+somewhere nobody looks or threw into a catch that printed a bare "could not record"
+with no reason attached.
+
+This is the same class as P154's libass path problem and nothing to do with
+PowerShell being odd: it is two different notions of "where I am" in one process.
+`Resolve-Path` reconciles them.
+
+**Rule:** any `[System.IO.*]` call takes an ABSOLUTE path, produced by
+`(Resolve-Path $dir).Path` — never a path relative to the shell's location. And a
+catch that swallows the exception message turns a loud failure into a silent one:
+print `$($_.Exception.Message)`, always.
+
+**Status:** FIXED. `$sidecarPath` is now built with `Resolve-Path`, the success
+path prints `nasheed recorded: ...`, and the catch prints the real exception.
+Verified on bukhari-6423 EN and RU — both sidecars present and correct, and the
+RU one is what caught P229 below.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 229: -FitScenes measured the narration before the pad that follows it
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** `-FitScenes` divides the narration length by the clip count to
+size each scene. It measured the RAW narration, while P143 pads the audio by 1s at
+the tail. The background therefore ended a second before the audio did, and the
+last scene was clipped short of its own ending — on a reel whose final frame is the
+whole point of the scene order.
+
+**Cause:** two places knew about the tail pad and one of them didn't. P143's pad
+lives in the merge step; the fit arithmetic lives three steps earlier and was
+written against the unpadded number. Neither is wrong on its own; they disagree.
+
+**Rule:** a duration used in two steps is a named constant defined once, not a
+literal repeated in each. `$tailPad = 1.0` is now declared beside `$reel` and used
+by the fit arithmetic, the `apad=pad_dur=` argument and the final `-t`.
+
+**Status:** FIXED and verified — bukhari-6423 RU renders 27.18s for 26.18s of
+narration across 4 clips at 6.795s each, ending on the frame it was ordered to end
+on.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 230: The source appends punctuation that is not in the matn
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** Dorar returns every matn with an orphan ` . .` appended. It rode
+through `parse_dorar` into the library, and from the library into the caption via
+P153 — which puts the FULL Arabic matn in every post precisely so that a reader who
+knows Arabic can check the translation against the source. The one element of this
+project that exists to be verified was shipping with punctuation the source does
+not contain.
+
+**Cause:** the matn is extracted from HTML and stripped of its numeric prefix, and
+nothing looked at the tail. A trailing artefact is invisible in a UI that renders
+RTL text and nearly invisible in a diff.
+
+**Rule:** normalise BOTH ends of extracted text. A scraper's cosmetic output is not
+the source, and anything placed in the caption as evidence has to match the source
+character for character.
+
+**Status:** FIXED. `_TRAIL_DOTS` collapses a run of trailing ASCII and Arabic full
+stops to a single `.` in `scripts/lib/source_dorar.py`. Rows already in the library
+carry the artefact until re-pulled; bukhari-6423 was corrected by hand before its
+captions went out.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 231: A diagnostic that lives only in a console is lost exactly when it is needed
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** `/api/generate-reel` failed on the Russian generation for
+bukhari-6423 with `Failed to parse AI response`. That string is the whole of what
+the operator sees. The route did log the raw model text — to `console.error`, into
+the dev-server's terminal. The dev server had been started from a terminal that was
+since closed; the process was orphaned and its output went nowhere recoverable.
+
+Finding this cost a hunt across three windows and two monitors, and then a second
+paid generation purely to produce the evidence again.
+
+**Cause:** the error message named a symptom and no cause, and the cause was written
+to the most volatile sink available. A Next.js dev server outlives its console;
+stdout is not storage.
+
+**Rule:** an error the operator is expected to act on carries what distinguishes its
+causes. For a parse failure that is `stop_reason` — `max_tokens` means the output
+was truncated (P144's failure one stage later, where the budget died before any text
+at all), anything else means the model emitted something that is not JSON. And the
+full text goes to a FILE, `out/last-parse-failure.txt`, not to a console.
+
+**Status:** FIXED. The error now carries `stop_reason` and the character count, and
+the raw text is persisted. `stop_reason: end_turn, 929 chars` ruled out truncation
+in one glance, and the persisted file gave the real cause in the next — see P232.
+
+**Note on method:** the first hypothesis was truncation, and it was wrong. The
+reasoning for it was sound (Cyrillic costs 2-3x the output tokens of English; P144's
+own comment predicts budget exhaustion on harder generations) and it would have been
+acted on, and would have changed nothing. Making the error speak cost one edit;
+guessing from a plausible story would have cost a `max_tokens` bump and a second
+failure to explain it.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 232: A model cannot hand-serialize text it does not control
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** the Russian generation emitted this, and it is correct in every
+way that matters:
+
+    "story": "... и сказал: «Не явится раб в День воскресения, говорящий: "Нет
+    божества, кроме Аллаха", стремясь этим к лику Аллаха ...»"
+
+The matn contains straight double quotes. Copied verbatim into a JSON string value
+they close the string early, and the object does not parse. The model did exactly
+what rule 2 and P153 require — quote the matn as it stands — and the format it was
+asked to write could not carry what the rules required it to put inside.
+
+**Cause:** the route asked the model to hand-write JSON whose string values must
+carry source text the model does not control and may not alter. Those two
+requirements are in direct conflict, and nothing in the prompt could resolve it. An
+instruction to escape inner quotes would have held until the next backslash,
+newline or control character.
+
+English passed only because its matn happens to use guillemets. Uzbek and Tajik
+share Russian quotation typography — this was two generations away from presenting
+as a language-specific bug rather than an encoding one, which is how it would have
+been diagnosed.
+
+**Rule:** never ask a model to hand-serialize text it does not control. Use a tool
+schema and let the API construct the JSON, where escaping is not the model's job.
+When output must be machine-read AND must carry arbitrary source text verbatim, the
+envelope is the API's responsibility, not the prompt's.
+
+**Status:** FIXED. `generate-reel/route.ts` declares an `emit_reel` tool with a
+six-field schema and `tool_choice` forcing it; the handler reads `tool_use.input`
+and `JSON.parse` is gone from the route entirely. The prompt's "Respond ONLY with
+valid JSON" line was changed in the same edit — with the tool forced, that
+instruction was stale and actively misleading. P140's rule survives one block type
+over: find the `tool_use` block, never index content by position.
+
+**Related:** P231 is what made this visible, and the two should be read together.
+The defect was four hours old in production terms and would have recurred on every
+non-English language of every reel.

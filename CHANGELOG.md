@@ -1,3 +1,74 @@
+## [2026-10-13]
+
+### Fixed
+- **`app/api/generate-reel/route.ts` — the model was asked to hand-serialize text
+  it does not control (P232).** The Russian generation for Bukhari #6423 returned
+  content that was correct in every way and would not parse: the matn carries
+  straight double quotes (`говорящий: "Нет божества, кроме Аллаха"`), and copying
+  them verbatim into a JSON string value closes the string early. The model obeyed
+  rule 2 and P153 exactly — quote the matn as it stands — and the format it was
+  told to write could not carry what the rules required it to put inside. English
+  passed only because its matn happens to use guillemets; UZ and TJ share Russian
+  typography, so this was two generations from presenting as a language bug rather
+  than an encoding one. Replaced with an `emit_reel` tool schema and forced
+  `tool_choice`; the handler reads `tool_use.input` and `JSON.parse` is gone from
+  the route. The prompt's "Respond ONLY with valid JSON" line went in the same edit
+  — stale and misleading once the tool is forced. P140's rule holds one block type
+  over: find the block, never index by position.
+- **`app/api/generate-reel/route.ts` — the parse error named a symptom and no cause
+  (P231).** `Failed to parse AI response` was the entire operator-facing message;
+  the raw text went to `console.error`, into a dev-server terminal that had since
+  been closed, leaving an orphaned process whose output was unrecoverable. Finding
+  the cause cost a hunt across three windows and a second paid generation purely to
+  reproduce evidence that had already been produced twice. The error now carries
+  `stop_reason` and the character count — `max_tokens` means truncation (P144 one
+  stage later), anything else means non-JSON — and the full text is persisted to
+  `out/last-parse-failure.txt` instead of a console. `end_turn, 929 chars` ruled
+  out the leading hypothesis in one glance; the persisted file gave P232 in the
+  next.
+- **`render-reel.ps1` — the P201 sidecar had never once been written (P228).**
+  `[System.IO.File]::WriteAllText` with a relative path resolves against
+  `[Environment]::CurrentDirectory`, which PowerShell does not update on
+  `Set-Location`. Every reel since P201 rendered, reported success and left no
+  `{base}-render.json`, so the tracker's Nasheed column and the asset-reuse audit
+  had been filled from memory. Path now built with `Resolve-Path`; the success
+  line is printed and the catch prints the real exception instead of a bare
+  "could not record". Verified on #6423 EN and RU.
+- **`render-reel.ps1` — `-FitScenes` measured the narration before its own pad
+  (P229).** The fit arithmetic divided the RAW narration across the clips while
+  P143 pads the audio 1s at the tail, so the background ended a second early and
+  the final scene was clipped — on a reel whose last frame is the reason the scenes
+  are ordered as they are. `$tailPad = 1.0` is now one named constant used by the
+  fit arithmetic, `apad=pad_dur=` and the final `-t`. #6423 RU: 27.18s for 26.18s
+  of narration, 4 clips at 6.795s.
+- **`scripts/lib/source_dorar.py` — the source appends punctuation the matn does
+  not contain (P230).** Dorar returns every matn with an orphan ` . .` appended,
+  which rode into the library and from there into the caption via P153 — the one
+  element of this project that exists to be externally verified was shipping with
+  characters the source does not have. `_TRAIL_DOTS` now collapses trailing ASCII
+  and Arabic full stops. Rows already in the library carry the artefact until
+  re-pulled; #6423 was corrected by hand before its captions went out.
+
+### Added
+- **`scripts/composite-matn.py`** — puts real Arabic onto a blank FLUX page.
+  FLUX cannot write Arabic: three `b5027-page` variants came back as convincing
+  gibberish, which matters most exactly where the text IS the subject. The method
+  (blank page described as a STATE per R026, Pillow + RAQM/HarfBuzz with
+  `direction="rtl"` and `language="ar"`, perspective warp, multiply blend so the
+  ink absorbs into the fibre) was worked out for #5027 and left unscripted in
+  prose, so the next reel needing it would have rebuilt it from a paragraph. Now a
+  script with `--probe` for checking the quad before committing to a render.
+- **Four Kling scenes registered for Bukhari #6423** — `b6423-gate`,
+  `b6423-kalima`, `b6423-plain`, `b6423-ash-v2`. The ash scene is a re-roll: v1
+  kindled a fire in a hearth meant to be dead (51 -> 1346 pixels above brightness
+  230, peaking at pure white) because the prompt said "cool light creeping across
+  the settled ash" and Kling read that as licence to put light *in* it. R026 again,
+  one layer down: describing what should be absent invites it.
+
+### Changed
+- **Subtitle style** — `FontSize` 18 -> 14, `MarginV` 80 -> 55, so the burned-in
+  line stops competing with the kalima in frame.
+
 ## [2026-10-12]
 
 ### Fixed

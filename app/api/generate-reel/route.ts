@@ -244,6 +244,39 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     the invented warrant was Allah's, here it is the listener's. Same set, also
     three of four languages.`
 
+        // P232: the model was asked to hand-write JSON whose string values must
+    // carry the matn VERBATIM. The Russian matn contains straight double
+    // quotes - говорящий: "Нет божества, кроме Аллаха" - and copying them
+    // verbatim closes the JSON string early. The model did nothing wrong: it
+    // quoted exactly as rule 2 and P153 demand, and the envelope could not
+    // carry what the rules required it to put inside.
+    //
+    // EN passed only because its matn happens to use guillemets. UZ and TJ
+    // share Russian typography, so this was two failures from looking like a
+    // language bug instead of an encoding one.
+    //
+    // Instructing the model to escape its quotes would hold until the next
+    // unusual character. A tool schema moves JSON construction into the API,
+    // where escaping is not the model's job at all. Never ask a model to
+    // hand-serialize text it does not control.
+    const REEL_TOOL = {
+      name: 'emit_reel',
+      description: 'Return the generated reel content.',
+      input_schema: {
+        type: 'object' as const,
+        properties: {
+          title:              { type: 'string' as const },
+          story:              { type: 'string' as const },
+          moral:              { type: 'string' as const },
+          seerah_context:     { type: 'string' as const },
+          source_attribution: { type: 'string' as const },
+          caption_intro:      { type: 'string' as const },
+        },
+        required: ['title', 'story', 'moral', 'seerah_context',
+                   'source_attribution', 'caption_intro'],
+      },
+    }
+
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-5',
       // P144: 1200 was sized for a non-thinking model, where the whole budget
@@ -252,34 +285,42 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
       // the budget before emitting any text and returns a thinking block
       // alone. That is the "no text block (got: thinking)" failure, three
       // times in a row on UZ #82 while EN and RU succeeded on the same route.
-      max_tokens: 4000,
-      messages:   [{ role: 'user', content: prompt }],
+      max_tokens:  4000,
+      tools:       [REEL_TOOL],
+      tool_choice: { type: 'tool', name: 'emit_reel' },
+      messages:    [{ role: 'user', content: prompt }],
     })
 
-    // P140: never index content blocks by position. sonnet-5 returns a thinking
-    // block first; content[0].type !== 'text' silently fell through to '{}',
-    // which parses fine and yields an empty result behind a 200.
-    const textBlock = response.content.find((b: any) => b.type === 'text')
-    if (!textBlock) {
-      console.error('P140: no text block. Got:', response.content.map((b: any) => b.type).join(','))
+    // P140 still holds, one block type over: sonnet-5 emits a thinking block
+    // first, so never index content by position.
+    const toolBlock: any = response.content.find((b: any) => b.type === 'tool_use')
+    if (!toolBlock) {
+      // P231: a diagnostic that lives only in a console is one you lose
+      // exactly when you need it — the dev server outlives the terminal that
+      // started it, and the first failure's text was already gone.
+      const dump = path.join(process.cwd(), 'out', 'last-parse-failure.txt')
+      const texts = response.content
+        .filter((b: any) => b.type === 'text').map((b: any) => b.text).join('\n')
+      try {
+        await writeFile(dump,
+          `stop_reason: ${response.stop_reason}\n` +
+          `blocks: ${response.content.map((b: any) => b.type).join(', ')}\n` +
+          `lang: ${lang}  style: ${style}\n` +
+          `at: ${new Date().toISOString()}\n${'='.repeat(60)}\n${texts}`,
+          'utf8')
+      } catch (e: any) {
+        console.error('P231: dump write failed:', e?.message)
+      }
       return NextResponse.json(
-        { error: 'Model returned no text block (got: ' +
-                 response.content.map((b: any) => b.type).join(', ') + ')' },
+        { error: 'Model returned no tool_use block (got: ' +
+                 response.content.map((b: any) => b.type).join(', ') +
+                 ', stop_reason: ' + response.stop_reason +
+                 ') - see out/last-parse-failure.txt' },
         { status: 500 }
       )
     }
-    const raw = (textBlock as any).text
 
-    let result: any
-    try {
-      const clean = raw.replace(/```json|```/g, '').trim()
-      const start = clean.indexOf('{')
-      const end   = clean.lastIndexOf('}')
-      result = JSON.parse(clean.slice(start, end + 1))
-    } catch {
-      console.error('Parse error:', raw.slice(0, 300))
-      return NextResponse.json({ error: 'Failed to parse AI response' }, { status: 500 })
-    }
+    const result: any = { ...toolBlock.input }
 
     // Add metadata
     result.lang           = lang

@@ -20,6 +20,15 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Production queue
 
+**Operator decision 2026-10-13 — the Tawheed series gets a colour arc.**
+#6423's kalima scene is warm parchment under raking dawn light. For **#6570,
+the second reel, the kalima frame is GREEN** — operator's call, made while
+reviewing #6423's scenes. Green carries the garden association, which suits
+#6570 (intercession) better than it would #6423 (the Fire forbidden). The
+composite itself is now scripted: `scripts/composite-matn.py`, so only the
+FLUX page prompt changes — ask for a green-toned ground rather than recolouring
+the ink.
+
 **EMPTY as of 2026-10-13. All three items shipped; the entries below replaced
 what had been sitting here marked IN PROGRESS.**
 
