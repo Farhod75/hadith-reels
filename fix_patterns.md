@@ -8494,11 +8494,24 @@ a clause with theological weight was read straight into it. A defect class is a
 lens, and a lens finds what it is shaped to find. The check that was skipped is
 the cheap one: open the published translation before calling a rendering wrong.
 
-**Status:** P220 AMENDED, text NOT yet changed. All four languages still carry a
-resolved reading - EN and RU inherited “whatever his deeds may have been” from
-the same session. The fix is one neutral rendering per language, applied through
-sign/apply and re-verified, and it is the operator's call (G1), not a third
-unilateral rewrite of the same clause.
+**Status:** P220 AMENDED, text CHANGED AND VERIFIED 2026-10-12, clause RESTING
+at `needs_human` by decision 2026-10-13. All four languages were rewritten to
+resolve nothing - EN “with the deeds he had done”, RU «с теми деяниями, что у
+него были», UZ «қилган амали билан», TJ «бо он амале ки дошт» - applied through
+sign/apply and verified field-by-field against the DB.
+
+Re-verification is the part worth keeping. The EN now passes BOTH models and is
+almost verbatim the published USC-MSA rendering. The other three draw
+objections for MUTUALLY EXCLUSIVE reasons - A reads “regardless of”, B reads
+“according to” - and the two swapped sides between languages and between runs
+(P225). So the clause cannot pass this gate by construction, and that is
+evidence the ambiguity is in the Arabic rather than in our Russian. #3435 rests
+at `needs_human` permanently: a correct resting state, not an unfinished task.
+Everything else in the same two rows cleared - #6570 passes both models in all
+four languages, and so does #6423.
+
+Do NOT rewrite this clause again. Three sessions have now done so, twice in
+opposite directions. If it is reopened, it is reopened from a source.
 
 **Also standing from the same run:** both passes flag «ҳақ илоҳ» on #3435 UZ as
 a word not in لا إله إلا الله. Classical grammar supplies بحق as the elided
@@ -8629,8 +8642,16 @@ and reel rows BEFORE believing it. Theme coverage in the tracker outranks
 "(zero coverage)" in the queue, because coverage is derived from shipped rows
 and the queue is derived from an intention.
 
-**Status:** QUEUE CORRECTED. All three entries replaced with a shipped table
-plus what the gap list actually leaves. The ritual itself is NOT yet changed —
-CLAUDE.md's set-completion steps still do not mention OPEN_ITEMS, so the next
-set can strand its entry the same way.
+**Status:** FIXED. All three entries replaced with a shipped table plus what
+the gap list actually leaves, AND the ritual changed: Workflow J gains step 10,
+clearing the set's queue entry in the same pass that updates the tracker. The
+two files now move together, which is the only thing that keeps a plan from
+outliving the work.
+
+**Footnote, and it is the same lesson one layer down:** the edit that wrote
+this very status line failed silently on its first attempt. Its match string
+used a hyphen where this file had an em dash, so the replace matched nothing,
+and the commit went out claiming a change this paragraph still denied. Caught
+by reading the file back instead of trusting the script's exit. A match string
+typed from memory is a guess; a match string read from the file is a fact.
 
