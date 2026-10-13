@@ -58,8 +58,29 @@ surprise.
 ---
 ## Blocks content — do not ship past these
 
-**P220's central claim is contested by Stage 3 (2026-10-12) — needs a source,
-not a model.** P220 recorded «қилган амалига қараб» (“according to his deeds”)
+**P220's central claim is contested by Stage 3 — SOURCED 2026-10-12, see
+P224. P220 was wrong and is amended.** Neither wording is the matn: the
+published English (Sunnah.com / USC-MSA) reads “with the deeds which he had
+done even if those deeds were few”, and al-Sabt's sharh glosses the clause by
+restating it almost verbatim, adding only that he may be punished first and
+enter Paradise after — which rules out “regardless” as unconditional. على is
+economical and the commentators keep it so. «амалига қараб» resolves it one
+way and «қатъи назар» the other; a faithful rendering resolves it neither way.
+DECISION NEEDED: one neutral wording per language (“upon / with whatever deeds
+he had”), applied via sign → apply and re-verified. EN and RU carry the same
+resolved reading and change with it.
+
+**«ҳақ илоҳ» on #3435 UZ — house precedent says drop it (2026-10-12).** Both
+Stage 3 passes flagged “true god” as a word not in لا إله إلا الله. The
+project's own published Uzbek source settles the convention: `2002-hadis.pdf`
+#39 renders the kalima «Ла илоҳа иллаллоҳ» (Аллоҳдан бошқа илоҳ йўқ) — no
+«ҳақ». Classical grammar does supply بحق as the elided predicate, so the gloss
+is orthodox rather than invented, but it is an interpolation and the house
+reference omits it. Same book, #1052, renders sincere testimony as
+«сидқидилдан» — the idiomatic one-word “sincerely”, which is also the cleanest
+answer to the نفسه / “heart” question on #6570 UZ.
+
+**ORIGINAL ITEM, superseded above:** P220 recorded «қилган амалига қараб» (“according to his deeds”)
 on Bukhari #3435 as a ruling inversion, and this session corrected it to
 «қандай бўлишидан қатъи назар» (“regardless of his deeds”). Pass B now says the
 opposite in two languages: على ما كان من العمل means “according to / with

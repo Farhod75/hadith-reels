@@ -8289,6 +8289,8 @@ The in-house path has now produced the same class of error. Bukhari #3435's
 that the testimony admits him regardless of his deeds; the translation made
 admission conditional on them. Three more in the same batch of three hadiths:
   - #3435 TJ carried the same ambiguity: «бар ҳар амале, ки будааст»
+    [P224: this whole claim did not survive sourcing - the clause is
+     contested, and "regardless" resolves it as wrongly as "according to"]
   - #6423 UZ reversed حرم عليه النار into "Allah forbids HIM to the Fire" for
     "forbids the Fire to him", and put it in the imperative: «қилмасин»
   - #6570 UZ and TJ both rendered حرص as «ҳирс», which reads as greed or lust
@@ -8450,4 +8452,57 @@ the transport threw it away.
 rate-limit 429 retries, credit-exhausted 429 does not, 5xx and transport errors
 retry, 401/400 do not. Both passes routed through one transport, so the retry
 cannot exist on one side only.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 224: Graded a translator against a reading, not a source
+## ═══════════════════════════════════════════════════════════
+**ID:** P224
+**Type:** An interpretive choice recorded as a factual error
+**Files:** fix_patterns.md (P220), hadith_candidates #3435 - text pending
+**Found:** 2026-10-12, sourcing the clause Stage 3 contested
+
+P220 recorded Bukhari #3435's على ما كان من العمل as a RULING INVERSION: the
+Uzbek «қилган амалига қараб» (“according to his deeds”) was called the same
+class of defect as P178's «бегуноҳ», and corrected to «қандай бўлишидан қатъи
+назар» (“regardless of his deeds”). Stage 3's pass B then said the opposite,
+in two languages. Sourcing says neither wording is the matn.
+
+  Sunnah.com (USC-MSA), the published English of this hadith:
+    “with the deeds which he had done even if those deeds were few”
+  Khaled al-Sabt's sharh glosses the phrase by RESTATING it almost verbatim -
+    «فإنه يدخل الجنة على ما كان من عمل» - and qualifies only that he may be
+    punished in the Fire first and enter Paradise after («فقد يعذب الإنسان
+    بالنار ثم يدخل الجنة»), which rules out “regardless” as unconditional.
+  Sharh Riyad as-Salihin does not gloss the phrase at all, offering only
+    «وفي هذا الحديث فضل الله عز وجل وسعة رحمته».
+
+على here is economical and the commentators keep it that way. They preserve the
+ambiguity instead of resolving it, which is the tell: «амалига қараб» resolves it
+one way, «қатъи назар» resolves it the other, and the matn does neither. The
+session replaced one interpretive reading with the opposite interpretive
+reading and logged the swap as a correctness fix.
+
+The rule already existed and pointed the other way. Workflow I step 4: “did
+anything get ADDED? A clause, an attribution, a ranking, a comparison. The matn
+is the only thing the translation may say.” A resolved ambiguity is an added
+clause. Both wordings fail that test; only a literal “upon / with whatever
+deeds he had” passes it.
+
+What made the error confident rather than tentative was the frame. P178 had
+established “a translation that changes a ruling” as a known defect class, and
+a clause with theological weight was read straight into it. A defect class is a
+lens, and a lens finds what it is shaped to find. The check that was skipped is
+the cheap one: open the published translation before calling a rendering wrong.
+
+**Status:** P220 AMENDED, text NOT yet changed. All four languages still carry a
+resolved reading - EN and RU inherited “whatever his deeds may have been” from
+the same session. The fix is one neutral rendering per language, applied through
+sign/apply and re-verified, and it is the operator's call (G1), not a third
+unilateral rewrite of the same clause.
+
+**Also standing from the same run:** both passes flag «ҳақ илоҳ» on #3435 UZ as
+a word not in لا إله إلا الله. Classical grammar supplies بحق as the elided
+predicate, so “true god” is the orthodox gloss rather than an invention, and the
+Tajik does the same with «ба ҳақ». House-style call, not a defect - but it is an
+interpolation and should be decided once for all four languages.
 
