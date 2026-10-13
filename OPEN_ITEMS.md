@@ -20,40 +20,34 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Production queue
 
-Set after set, agreed 2026-10-09. Each fills a theme gap the tracker records
-as uncovered.
+**EMPTY as of 2026-10-13. All three items shipped; the entries below replaced
+what had been sitting here marked IN PROGRESS.**
 
-1. **Sahih Muslim #1631** — the three ongoing deeds. IN PROGRESS. Fills
-   Death / Afterlife (zero coverage) and is the hadith this channel exists
-   under: ongoing charity and beneficial knowledge. Library row verified clean
-   across all six columns before generation.
-2. **Jami at-Tirmidhi #3895** — best to his family. Fills the family /
-   marriage gap. Works in the kids lane if that lane is due.
-3. **Sahih al-Bukhari #5027** — learn the Quran and teach it. Fills
-   Quran / Tilawah (zero coverage). STARTED 2026-10-11; library row read and
-   clean in all six fields.
-   **Scene-set question resolved 2026-10-11.** This entry and the registry
-   disagreed: here, `ad3641-rahle` "risks reading as a repeat"; on
-   `m1631-circle`, the manuscript was left out "so ad3641-rahle stays clear
-   for #5027". R026's note settles it — that clip was pushed through three
-   FLUX rounds deliberately AWAY from a mushaf layout, into a student's
-   working-notes register (irregular lines, marginal annotations, ink blots).
-   So the mushaf image is genuinely unused and belongs to this hadith, but
-   reusing `ad3641-rahle` inside this set would put two manuscript-on-a-stand
-   compositions in one reel. **Decision: #5027 gets ONE new mushaf scene and
-   does not reuse ad3641-rahle.** The other new scenes should carry what this
-   matn uniquely has and the library does not — transmission, learn AND teach,
-   one becoming many — not a second study image. Era note: before Uthman's
-   codex the Quran was written on palm stalks, thin flat stones and parchment,
-   which is attested for the Hijaz and visually unused here; Uthman narrates
-   this hadith, so the codex itself is also era-apt. Avoid a named lamp in any
-   prompt (b2654 generated a temple shrine, b6446 a shrine niche) and describe
-   positively rather than by negation (R026, R026-class negation failure).
+| Hadith | Reels | Shipped | Theme filled |
+|---|---|---|---|
+| Sahih Muslim #1631 | R114–R117 | 2026-10-09 | Death / Afterlife |
+| Jami at-Tirmidhi #3895 | R118–R121 | 2026-10-10 | Family / Marriage |
+| Sahih al-Bukhari #5027 | R122–R125 | 2026-10-12 | Quran / Tilawah |
 
-Not this round: #1469 and #2616 each have the two-row collision, so picking
-either means first deciding which clause. #1903 sits close to #2654's subject
-(false speech) — not a twin, but look at it deliberately rather than by
-surprise.
+**Next pick is undecided.** What the tracker's gap list actually leaves
+(2026-10-13):
+
+- **Akhlaq / anger — ZERO reels.** The only remaining theme at zero. The
+  obvious matn is «لا تغضب» (Bukhari #6116); it is not in the library yet, so it
+  needs Workflow L first.
+- **Zakat proper — partial.** #1417 is from Kitab az-Zakat but framed as
+  sadaqah, so zakat as an obligation is still uncovered.
+- **Arabic lane — ZERO reels.** A language gap, not a theme gap: no new hadith
+  needed, only an AR leg on a set already made.
+- **Tawheed — 4 reels (R010–R013).** The four candidates verified 2026-10-12
+  land here: Bukhari #6423, #6570, #6446 and Muslim #2999. They are
+  `status='verified'` in hadith_candidates, which is ELIGIBLE, not promoted —
+  Stage 4 and promotion to hadith_library come before any of them can be
+  produced, and the operator asked for 2–3 weeks between them.
+
+Still deferred, unchanged: #1469 and #2616 each carry the two-row collision, so
+picking either means first deciding which clause. #1903 sits close to #2654's
+subject (false speech) — look at it deliberately rather than by surprise.
 
 ---
 ## Blocks content — do not ship past these

@@ -512,6 +512,10 @@ npm run test:multilingual
 7. `.\render-reel.ps1 -Style adults -Lang <lang> -Slug <slug> -Scenes a.mp4,b.mp4,c.mp4,d.mp4 -Open`
 8. Reuse the same four scenes for all four languages — never regenerate per language
 9. Update `reel-tracker.md` after the COMPLETE set ships, not per reel
+10. CLEAR the set's entry from the Production queue in `OPEN_ITEMS.md` in the
+    same pass (P227). The tracker records completion and OPEN_ITEMS plans
+    work; only the tracker was in this ritual, so #1631 read as IN PROGRESS
+    for four days after it shipped and a later session nearly regenerated it.
 
 ### Workflow K — Stage 3: A/B verify translations
 1. Candidates must be at `status='translated'` with all language fields filled

@@ -8592,3 +8592,45 @@ four languages and check whether either clause recurs. If it does, the next
 hypothesis is rule 22's territory - the list holds best in English - and not a
 third rewording of the same sentence.
 
+## ═══════════════════════════════════════════════════════════
+## PATTERN 227: The queue is not part of the shipping ritual
+## ═══════════════════════════════════════════════════════════
+**ID:** P227
+**Type:** Two docs, one updated by the ritual and one not
+**Files:** OPEN_ITEMS.md (Production queue), reel-tracker.md
+**Found:** 2026-10-13, about to generate a hadith that shipped four days earlier
+
+OPEN_ITEMS listed Sahih Muslim #1631 as **IN PROGRESS**, filling Death /
+Afterlife "(zero coverage)". It had shipped on 2026-10-09 as R114–R117, four
+languages, four platforms. Jami at-Tirmidhi #3895 and Bukhari #5027, the other
+two queue items, had shipped too. The whole queue was done and still read as
+pending.
+
+A session acting on that doc recommended #1631 as the next thing to produce,
+and was one "go" away from regenerating a published set. What stopped it was
+checking the tracker for what "IN PROGRESS" had left behind — and finding four
+registered clips, four mp3 sets per language, and four published rows.
+
+The cause is procedural, not editorial. The standing rule is "tracker updates
+after the full set, not per reel", so shipping a set has a ritual and that
+ritual writes to `reel-tracker.md`: reel rows, theme coverage, clip library,
+nasheed usage, production stats. OPEN_ITEMS is not in it. The tracker correctly
+said `✅ Death / Afterlife — 4 reels (R114–R117)` on the same day the queue
+said zero coverage. Both files were accurate about their own last write.
+
+This is P208's family (a doc describing a state that moved) with a specific
+mechanism: the file that RECORDS completion and the file that PLANS work are
+different files, and only one of them is touched when work completes. A plan
+that is never closed out reads as a plan forever.
+
+**Rule:** closing a set includes clearing its queue entry. If the queue entry
+is gone, the set shipped; if it says IN PROGRESS, check the tracker for clips
+and reel rows BEFORE believing it. Theme coverage in the tracker outranks
+"(zero coverage)" in the queue, because coverage is derived from shipped rows
+and the queue is derived from an intention.
+
+**Status:** QUEUE CORRECTED. All three entries replaced with a shipped table
+plus what the gap list actually leaves. The ritual itself is NOT yet changed —
+CLAUDE.md's set-completion steps still do not mention OPEN_ITEMS, so the next
+set can strand its entry the same way.
+
