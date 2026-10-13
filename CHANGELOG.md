@@ -66,6 +66,29 @@
   one layer down: describing what should be absent invites it.
 
 ### Changed
+- **`app/api/generate-reel/route.ts` — rule 25, stated as a test rather than a
+  blocklist (P233).** Bukhari #6423 supplied a contrast the matn does not draw in
+  ALL FOUR languages (`а не как пустые слова на устах`, `фақат тил билан айтишга
+  эмас, балки`, `на танҳо бо забон, балки` twice) — one day after rules 23 and 24
+  were added for exactly that family. Neither rule was broken as written: rule 24
+  forbids a *forward* purpose clause and what arrived was a *backward* exclusion;
+  rule 23 forbids "this hadith shows" and what arrived was `Маънои муқарраршудаи
+  он`. Same move, different wording. It is the third instance — P212 supplied a
+  WARRANT, rule 24's failure supplied a PURPOSE, this supplied an EXCLUSION — and
+  each time the response was a new rule naming the new wording, which held until
+  the next wording. An enumerated prohibition is a blocklist over natural language
+  and has no edge. Rule 25 generalises rule 22's approach, which has held: take
+  each clause of the moral and seerah_context, point at the words in the matn it
+  comes from, delete it if you cannot. A test does not care which costume the
+  addition arrives in. Also notes the second-order cost — naming the exclusion
+  plants it, so a reel about sincerity ends up teaching the shape of insincerity
+  (R026 at content level). NOT YET VERIFIED; the test is #6570, 2–3 weeks out.
+- **Rule 16 amended — tense and mood (P233).** Three of four languages rendered
+  `حَرَّمَ اللهُ عليه النَّارَ` (Allah *forbade* him the Fire) as a promise — `ваъда`,
+  `ваъда қилган`, `ваъдаи`. A completed statement turned into a pledge moves the
+  thing from done to pending. No numbered rule covered it; the moral field
+  description has said "do not add a promise the matn does not make" the whole
+  time, in prose. P226 unfixed for this one constraint.
 - **Subtitle style** — `FontSize` 18 -> 14, `MarginV` 80 -> 55, so the burned-in
   line stops competing with the kalima in frame.
 

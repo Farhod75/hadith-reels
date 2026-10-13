@@ -8807,3 +8807,80 @@ over: find the `tool_use` block, never index content by position.
 **Related:** P231 is what made this visible, and the two should be read together.
 The defect was four hours old in production terms and would have recurred on every
 non-English language of every reel.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 233: A rule that names forms is walked around by the next form
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** Bukhari #6423 shipped in four languages. In every one of them
+the generation supplied a contrast the matn does not draw:
+
+    EN  (caught before shipping, same shape)
+    RU  "а не ради людей или мирской выгоды" / "а не как пустые слова на устах"
+    UZ  "фақат тил билан айтишга эмас, балки"
+    TJ  "на танҳо бо забон, балки" - TWICE, in the moral AND the context
+
+Four of four. The added promise (`ваъда`, "has promised", where the matn says
+Allah FORBADE) made three of four. The comment-about-the-text frame made three of
+four. Twelve blocks were corrected by hand across one set.
+
+Rules 23 and 24 had been added the previous day (P226) for precisely this family.
+
+**Cause, and it is not that the rules were ignored.** Rule 24 forbids a *forward*
+clause - "so that", "in order to", "with the intention of". What arrived was a
+*backward* exclusion: not why the actor acts, but what does not count. Rule 23
+forbids "this hadith shows", "teaches us", "reminds us". What arrived in the
+context block was "Маънои муқарраршудаи он" and "Унда таъкидланишича". Neither
+rule was broken as written. Both were about specific WORDINGS, and the generation
+produced a different wording of the same move.
+
+The move itself is older than either rule. Three instances now:
+
+    P212 / rule 13   supplied a WARRANT    "Allah has entrusted this to you"
+    P226 / rule 24   supplied a PURPOSE    "so that Allah will ..."
+    P233 / here      supplied an EXCLUSION "not merely with the tongue, but ..."
+
+Every time: the matn states a CONDITION, and the generation completes the frame
+around it - the reason behind it, the aim in front of it, or the failure it rules
+out. Every time the content is sound teaching. Every time it is absent from the
+text. And every time the response was a new numbered rule naming the new wording,
+which held until the next wording.
+
+That is the real finding, and it is about rule DESIGN, not about this hadith. An
+enumerated prohibition is a blocklist, and a blocklist over natural language has
+no edge. P226's lesson was *where* a constraint lives (field prose vs the rule
+list). P233's is *how it is stated*: a rule that lists forms cannot close a family,
+because the family is a move and the forms are infinite.
+
+**Rule:** state the constraint as a TEST the generation can run against itself,
+not as a list of banned phrasings. Rule 22 already worked this way for quoted
+spans - "check the quoted span clause by clause against the matn you were given
+and drop anything the matn does not contain" - and rule 22 has held. Rule 25
+generalises exactly that to the moral and the context: take each clause, point at
+the words in the matn it comes from, delete it if you cannot. A test does not care
+which costume the addition arrives in.
+
+Second-order, and the reason this one matters beyond accuracy: naming the
+exclusion plants it. A reel about sincerity that explains insincerity has taught
+the audience the shape of the thing it warns against - R026 at the level of
+content rather than image prompts.
+
+**Status:** CHANGED, NOT YET VERIFIED. Rule 25 added, stating the grounding test
+and naming all three instances so the family is visible rather than three
+unrelated rules. Rule 16 amended for the tense/mood shift (FORBADE -> promised),
+which no rule covered - the moral field description has said "do not add a promise
+the matn does not make" the whole time, in prose, never in the list, which is
+P226 unfixed for this one constraint.
+
+A prompt change is only proven by generating. The next test is Bukhari #6570, the
+second reel of the Tawheed arc, 2-3 weeks out. If the exclusion shape returns
+there in any language, rule 25 failed as a test and the problem is deeper than
+wording - which is itself worth knowing, and is why this entry says NOT YET
+VERIFIED rather than FIXED.
+
+**Footnote on what caught it.** No gate caught this. `lint-content.py` passed every
+one of the four, Stage 3 does not see generated reel text at all, and the STT
+validator compares the subtitle to the draft - not the draft to the matn. It was
+caught by reading four generations of the same hadith side by side, which only
+happens because the set ships in four languages. A single-language channel would
+have shipped all three instances without ever seeing the pattern.

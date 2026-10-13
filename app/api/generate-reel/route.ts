@@ -190,6 +190,13 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     deeds. If the hadith states a virtue, state that virtue — do not compare it
     to virtues the matn does not mention. A short hadith stays short: brevity is
     not an invitation to supply significance the text does not claim.
+    Nor shift its TENSE or MOOD. If the matn says Allah FORBADE the Fire to him,
+    do not write that He PROMISED to - a completed statement rendered as a pledge
+    moves the thing from done to pending, and the listener is owed the matn's own
+    certainty. Three of four languages did this on Bukhari #6423 (RU, UZ, TJ:
+    ваъда / ваъда қилган / ваъдаи), while the moral field description above has
+    said "do not add a promise the matn does not make" the whole time - prose,
+    not a numbered rule. P226 again.
 17. The MORAL block APPLIES the hadith; it does not re-quote it. NEVER write a
     clause of the form "the Prophet SAW said that X" in the moral, even when X is
     a faithful paraphrase of the matn. Rule 8 forbids speech BEYOND the hadith,
@@ -242,7 +249,26 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     behalf, and a supplied intention is an addition even when it is sound
     teaching. This is rule 13's P212 failure wearing a different grammar: there
     the invented warrant was Allah's, here it is the listener's. Same set, also
-    three of four languages.`
+    three of four languages.
+25. GROUND EVERY CLAUSE. Before emitting the moral or seerah_context, take each
+    clause and point at the words in the matn it comes from. If you cannot point
+    at them, delete the clause. This test SUPERSEDES the enumerated wordings in
+    rules 23 and 24: those name specific forms, and a rule that names forms is
+    walked around by the next form. Three failures, one move:
+      - rule 13 / P212 supplied a WARRANT    - "Allah has entrusted this to you"
+      - rule 24 supplied a PURPOSE           - "so that Allah will ..."
+      - Bukhari #6423 supplied an EXCLUSION  - "not merely with the tongue, but
+        from the heart", in ALL FOUR languages at once (RU "а не как пустые
+        слова на устах", UZ "фақат тил билан айтишга эмас, балки", TJ twice,
+        in the moral AND the context).
+    Each time, the matn stated a CONDITION and the generation completed the frame
+    around it - the reason behind it, the aim in front of it, or the failure it
+    rules out. A condition in the matn is complete as given. State the condition;
+    never state what it excludes. Naming the exclusion also plants the very thing
+    it forbids (R026): a reel about sincerity should not teach the audience the
+    shape of insincerity.
+    The matn said "seeking thereby the Face of Allah". That IS the whole
+    condition. "Not with the tongue only" is not in it, however true it is.`
 
         // P232: the model was asked to hand-write JSON whose string values must
     // carry the matn VERBATIM. The Russian matn contains straight double
