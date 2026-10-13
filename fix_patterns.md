@@ -8506,3 +8506,45 @@ predicate, so “true god” is the orthodox gloss rather than an invention, and
 Tajik does the same with «ба ҳақ». House-style call, not a defect - but it is an
 interpolation and should be decided once for all four languages.
 
+## ═══════════════════════════════════════════════════════════
+## PATTERN 225: Two passes failed for opposite reasons and it scored as agreement
+## ═══════════════════════════════════════════════════════════
+**ID:** P225
+**Type:** A gate that compares verdicts and ignores reasons
+**Files:** scripts/verify-candidates.py (agreement)
+**Found:** 2026-10-12, re-verifying the sourced wording of #3435
+
+`agreement()` compares `a['verdict']` to `b['verdict']`. Equal fails score
+`fail`; that is the whole test. On Bukhari #3435 RU both passes returned fail
+and the run recorded agreement - while the two reasons were mutually exclusive:
+
+  A: على ما كان من العمل means “regardless of / whatever his deeds were”,
+     and the Russian wrongly suggests the deeds accompany him
+  B: it means “according to / depending on whatever deeds he had”, NOT that he
+     is admitted “with” those deeds
+
+Each model holds one of the two readings P224 documented, and each rejects the
+other's. That is the strongest possible disagreement, and the gate logged it as
+the two passes concurring.
+
+Consequences, in order of how much they matter:
+  - The D5 disagreement-rate statistic UNDERSTATES real disagreement. It is the
+    number Workflow K step 5 reads to decide whether pass B is buying anything,
+    so the one figure used to calibrate the gate is computed by a rule that
+    cannot see the case it most needs to count.
+  - The operator reading `fail` sees a settled verdict rather than a contested
+    one, and `fail` carries more authority than `disagree` precisely because it
+    looks unanimous.
+  - Routing is NOT affected: status is `verified` only on pass, so a `fail`
+    still goes to `needs_human`. Nothing unsafe shipped, which is why this sat
+    unnoticed - the label was wrong and the destination was right.
+
+Not fixed here. Detecting contradictory REASONS means comparing free text,
+which is a model call inside a function that is currently pure and
+deterministic - a real design decision, not a patch. Recorded so the
+disagreement rate is read with this known floor under it.
+
+**Status:** RECORDED, NOT FIXED. Routing is safe; the statistic is not.
+Until fixed, read any `fail` on a clause known to be contested as a probable
+`disagree`, and check both reasons rather than the verdict pair.
+
