@@ -8548,3 +8548,47 @@ disagreement rate is read with this known floor under it.
 Until fixed, read any `fail` on a clause known to be contested as a probable
 `disagree`, and check both reasons rather than the verdict pair.
 
+## ═══════════════════════════════════════════════════════════
+## PATTERN 226: The rule was in the field description, not in the rule list
+## ═══════════════════════════════════════════════════════════
+**ID:** P226
+**Type:** A constraint placed where it is read instead of where it is obeyed
+**Files:** app/api/generate-reel/route.ts (rules 23, 24)
+**Found:** 2026-10-12, auditing why #5027 needed four manual catches
+
+Two defects ran through Bukhari #5027 - a comment-about-the-text clause in
+THREE of four languages, and an added purpose clause in three of four. Both
+were already forbidden. The session that shipped it recorded them as the
+generator ignoring its rules.
+
+It did not. Both prohibitions lived ONLY inside the prose description of the
+`moral` field in the JSON skeleton - "do not explain what the hadith 'ties' or
+'shows' or 'teaches'... Say the thing, not a comment about the text" and "Do
+not add a promise the matn does not make". Neither appeared in the numbered
+ABSOLUTE CONTENT RULES below it.
+
+Every rule in that numbered list held on the same set, in the same call, from
+the same model. The sorting is not about how emphatic the wording is: the field
+prose says "Say the thing, not a comment about the text", which is as clear as
+anything in the list. It is about position. A field description is read as
+guidance on shaping that field; the rule list is read as the constraint set,
+and the model checks its output against the list.
+
+So the finding is not "the model ignores rules". It is that a prompt has two
+registers, and a prohibition filed in the weaker one is not a prohibition. The
+fix is relocation, not rewording.
+
+**Fix:** both promoted to numbered rules 23 and 24, written in the house style -
+what to DO first ("The moral SAYS THE THING"; "State the deed and the ground
+the matn states, and STOP at that ground"), the failing form named second, the
+evidence last. Rule 24 also names its kinship with rule 13: P212 was an invented
+warrant attributed to Allah, and a supplied purpose clause is the same addition
+attributed to the listener.
+
+**Status:** CHANGED, NOT YET VERIFIED. A prompt change is only proven by
+generating, and this one has not been. The test costs nothing extra: Sahih
+Muslim #1631 is the next reel in the production queue, so generate it in all
+four languages and check whether either clause recurs. If it does, the next
+hypothesis is rule 22's territory - the list holds best in English - and not a
+third rewording of the same sentence.
+

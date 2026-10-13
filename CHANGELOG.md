@@ -1,6 +1,14 @@
 ## [2026-10-12]
 
 ### Fixed
+- **Generator rules 23 and 24 — the constraint was in the wrong register
+  (P226).** The two defects that ran through #5027 in three of four languages
+  each were already forbidden, but only inside the prose description of the
+  `moral` field — never in the numbered ABSOLUTE CONTENT RULES. Every rule in
+  that list held on the same set, same call, same model. A field description
+  shapes a field; the rule list is the constraint set. Both promoted to
+  numbered rules. NOT YET VERIFIED — a prompt change is only proven by
+  generating, and the free test is Sahih Muslim #1631, next in the queue.
 - **`scripts/verify-candidates.py` — one transient failure discarded eight
   paid calls (P223).** Stage 3 makes 8 provider calls per row; `incomplete`
   is per-language and rolls up, and neither pass had any retry. So a single

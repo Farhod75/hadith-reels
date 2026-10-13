@@ -226,7 +226,23 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     matn ends. Correct scholarship placed in his mouth is still an addition to
     his speech. Before emitting a non-English generation, check the quoted span
     clause by clause against the matn you were given and drop anything the matn
-    does not contain.`
+    does not contain.
+23. The moral SAYS THE THING. Write the action and the reason the hadith itself
+    gives, addressed to the listener. A clause of the form "this hadith shows",
+    "teaches us", "reminds us", "ties X to Y" describes what the sentence does
+    instead of saying what it says, and the listener is here to act, not to be
+    told what a sentence accomplishes. Evidence: on Bukhari #5027 this appeared
+    in THREE of four languages in one set - while the constraint existed only
+    inside the moral field description above and not in this list. Every rule
+    in THIS list held on that set. A constraint in the field prose gets read;
+    a constraint in this list gets obeyed.
+24. State the deed and the ground the matn states, and STOP at that ground. A
+    purpose clause the matn does not contain - "so that", "in order to", "with
+    the intention of", "so Allah will" - supplies an intention on the actor's
+    behalf, and a supplied intention is an addition even when it is sound
+    teaching. This is rule 13's P212 failure wearing a different grammar: there
+    the invented warrant was Allah's, here it is the listener's. Same set, also
+    three of four languages.`
 
     const response = await anthropic.messages.create({
       model:      'claude-sonnet-5',
