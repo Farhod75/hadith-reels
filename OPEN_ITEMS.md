@@ -58,7 +58,25 @@ surprise.
 ---
 ## Blocks content — do not ship past these
 
-**P220's central claim is contested by Stage 3 — SOURCED 2026-10-12, see
+**#3435 على ما كان من العمل — DECIDED 2026-10-12. Wording stands; the row
+stays `needs_human` on this clause, permanently, and that is the correct
+resting state, not an unfinished task.** All four languages now render it
+without resolving it (EN “with the deeds he had done”, RU «с теми деяниями,
+что у него были», UZ «қилган амали билан», TJ «бо он амале ки дошт»). Three
+reasons to leave it there:
+  1. The EN is almost verbatim the published USC-MSA rendering on Sunnah.com,
+     and pass A fails it. A model rejecting the published translation of
+     Bukhari is a limit of the model, not a defect in the text.
+  2. The two passes reject the wording for MUTUALLY EXCLUSIVE reasons (A:
+     “regardless of”; B: “according to”) — see P225. No wording satisfies
+     both, because the ambiguity is in the Arabic, not in our Russian.
+  3. P224: the commentators preserve على rather than resolve it. Matching them
+     is the faithful choice even though it cannot score a clean pass.
+Do NOT 'fix' this clause again. Three sessions have now rewritten it — twice
+in opposite directions — and each rewrite was an interpretive choice wearing
+a correctness costume. If it is reopened, it is reopened from a source.
+
+**P220's central claim was contested by Stage 3 — SOURCED 2026-10-12, see
 P224. P220 was wrong and is amended.** Neither wording is the matn: the
 published English (Sunnah.com / USC-MSA) reads “with the deeds which he had
 done even if those deeds were few”, and al-Sabt's sharh glosses the clause by
@@ -93,10 +111,23 @@ not, and graded the translator for it. RESOLVE FROM A SOURCE — Fath al-Bari on
 what the sources say. Do not resolve it by preferring a model (G1). The row
 stays `needs_human` until then.
 
-**Stage 3 first full run, 2026-10-12: 3 pass / 2 disagree, 0 incomplete.**
-Eligible for Stage 4 (eligibility, never insert — G1): Muslim #2999,
-Bukhari #6446, Bukhari #6423. Needs human: #6570, #3435. Disagreement rate 40%
-of 5 — a usable figure, neither correlated nor drowning.
+**Stage 3 COMMITTED 2026-10-12: 4 verified / 1 needs_human, 0 incomplete,
+disagreement rate 20% of 5.** Bukhari #6423, #6570, #6446 and Muslim #2999
+are at `status='verified'` — ELIGIBLE for Stage 4, never inserted by it (G1).
+Bukhari #3435 is at `needs_human` on the deeds clause, by decision, above.
+Still at `deduped`, deliberately: Muslim #28 (UNCERTAIN marker), Bukhari #99
+and #6938 (variants of #6570 and the Itban group).
+
+**Stage 3 has no `--apply` — the P177 split is still live there.**
+`verify-candidates.py --commit` RE-RUNS both models and writes that fresh
+roll; the verdicts a human just read in the dry run are never the verdicts
+stored. Stage 2 got `--apply` for exactly this (P177, then P219's sign-off).
+It matters less here — machine output stored as machine output, and the
+statuses happened to reproduce across both runs tonight — but these models
+are demonstrably non-deterministic: across four runs on the same text, A and
+B swapped sides on #3435 RU, UZ and TJ. So `verify_a`/`verify_b` in the DB
+are one roll, not the reviewed one. Fix is the same shape as P177: write the
+verdicts file, then apply it.
 
 **Translation fidelity has no automated reader (P220, 2026-10-12).** The
 in-house translator put «қилган амалига қараб» — “according to his deeds” —
