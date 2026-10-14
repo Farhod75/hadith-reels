@@ -9085,3 +9085,49 @@ matching the other. Both now `«Ло илоҳа иллаллоҳ»`. The #6423 r
 and were NOT re-rendered for one letter — the audio is out — but the library row
 is corrected so nothing built from it repeats the spelling. Uzbek was consistent
 across both; only Tajik drifted.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 237: The third input to the same render had no gate, because it is the one nobody uses
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** `render-reel.ps1` takes three kinds of asset. Two are gated
+against the registry and one was not:
+
+    -Scenes clips    gated by P121 (eight reels had shipped over unregistered clips)
+    the nasheed      gated by P168
+    RANDOM clips     never gated
+
+Without `-Scenes`, the script globs `out\backgrounds\new\normalized\*.mp4` and
+draws three. Nothing asks the registry. A clip that is unregistered — or RETIRED,
+the state `vocal-hamd-kids-01` occupies on the audio side after three strikes —
+could reach a published reel by sitting in a folder.
+
+**Cause:** the gate was added each time to the path that had just failed. P121
+came from `-Scenes` shipping bad clips; P168 came from the nasheed picker. Both
+fixes were correct and neither asked which OTHER inputs lacked the same check.
+The random path kept working, because working is what an ungated path does until
+the day the folder contains something it should not.
+
+And the reason it stayed unnoticed is the reason it is low-risk: every recent set
+renders with explicit `-Scenes`. A path nobody exercises produces no incidents,
+which reads as safety and is actually just absence of evidence. P121's own note
+says it: *"a gate protects the inputs it is NAMED."*
+
+**Rule:** when a check is added to one input, enumerate the others that reach the
+same output and gate them in the same change. A fix scoped to the failing path
+leaves siblings open, and the sibling nobody uses is the one that will be open
+longest.
+
+**Also:** filter the candidate set BEFORE the draw, not after. Checking a clip
+once it has been picked invites re-rolling around a rejection, which turns a gate
+into a retry loop. `Get-Random` now draws from the approved list, and clips that
+are present but not approved are named on screen so the operator can see the
+folder and the registry disagreeing.
+
+**Status:** FIXED, and honestly a no-op today. At the time of the change
+`out\backgrounds\new\normalized` held 70 clips and the registry approved all 70
+for the adults lane, so the gate rejects nothing right now. That is the point: it
+is a guard against drift, not a repair of a live break, and it was worth doing
+only because it is three lines and the two sibling paths already cost patterns.
+If it ever fires, the folder and the registry have diverged and that is worth
+knowing before a reel ships rather than after.

@@ -20,6 +20,57 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Production queue
 
+**ZAD Semester-2 Hadith — cross-checked against the library 2026-10-14.**
+Source: `ZAD_Semester2_Hadith_UZ_Cyrillic_Corrected.pdf` (project docs). Text
+extracts cleanly; the four scanned CourseBook PDFs do not, which is what parked
+this before. 21 hadiths. The book cites COLLECTION ONLY — «Бухорий ривояти»,
+«Бухорий ва Муслим ривояти» — never a number, and carries no Arabic. It is a
+POINTER, not a source: anything produced from it goes through Workflow L so
+Dorar supplies the number and the matn.
+
+ALREADY OURS (4 of 21):
+
+| ZAD | Opening | Narrator | Library row | Status |
+|---|---|---|---|---|
+| 13 | Аллоҳ гаплашади / ярим хурмо | Adiy ibn Hatim | Bukhari #1417 | shipped (kids, R014–R017) |
+| 15 | Покланиш иймоннинг ярмидир | Abu Malik al-Ash'ari | Muslim #223 | in library, UNUSED |
+| 19 | Мўминдан машаққатни кетказса | Abu Hurairah | Muslim #2699 | in library, UNUSED |
+| 21 | Инсон вафот этганда | Abu Hurairah | Muslim #1631 | shipped (R114–R117) |
+
+THREE CAVEATS, and they matter more than the counts:
+
+1. **#13 and #19 are PARTIAL matches.** Our Bukhari #1417 carries only “protect
+   yourself from the Fire, even with half a date”; ZAD has the fuller hadith
+   opening with Allah speaking to each person without an interpreter. Our Muslim
+   #2699 carries only the seeking-knowledge clause; ZAD has the whole hadith —
+   relieving distress, easing a debtor, concealing a fault. If either is
+   produced, RE-PULL the matn at full extent first.
+2. **ZAD #18 is NOT Bukhari #5984**, though both concern kinship ties. Ours is
+   Jubayr ibn Mut'im, “one who severs ties will not enter Paradise”; ZAD’s is
+   Anas, “whoever wants his provision expanded, let him join them.” Different
+   narrator, inverse framing. The false match P235’s side-by-side read exists
+   to catch.
+3. **Every number above came from matching narrator + wording against our own
+   library**, not from the book. None of them is a citation the book made.
+
+NOT IN THE LIBRARY — 17 sourcing candidates, in book order:
+
+1 wilayah qudsi (Abu Hurairah, Bukhari) · 2 moderation in worship (Anas, B+M) ·
+3 the moths and the fire (Jabir, Muslim) · 4 holding embers (Anas, Tirmidhi) ·
+5 “I will do no more than this” (Jabir, Muslim) · 6 five prayers expiate (Abu
+Hurairah, Muslim) · 7 «Эй ёшлар жамоаси» (Ibn Mas'ud, B+M) · 8 “this world is
+sweet and green” (Abu Sa'id, Muslim) · 9 «ғариб ёки йўловчидек» (Ibn Umar,
+Bukhari) · 10 Paradise ringed with hardship (Anas, B+M) · 11 “he has succeeded
+who became Muslim” (Abdullah ibn Amr, Muslim) · 12 “whom Allah wishes good”
+(Mu'awiya, B+M) · 14 every tasbih is charity (Abu Dharr, Muslim) · 16 the 360
+joints (Abu Hurairah, B+M) · 17 “leave what makes you doubt” (Hasan ibn Ali,
+Tirmidhi) · 18 kinship and provision (Anas, B+M) · 20 “be indifferent to the
+world” (Sahl ibn Sa'd, Ahmad + Ibn Majah)
+
+Themes worth noting against the tracker’s gap list: #17 (doubt/wara‘) and #20
+(zuhd) are both uncovered, and #2 and #10 bear on the Akhlaq gap. None is a
+duplicate of anything shipped.
+
 **#6570 DROPPED BACK TO `translated` — re-run Stage 3 before producing it.**
 The Tajik kalima spacing fix on 2026-10-14 went through sign → apply, and
 `--apply` sets `status='translated'` for any row not at a terminal status.

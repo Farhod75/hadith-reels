@@ -1,6 +1,18 @@
 ## [2026-10-14]
 
 ### Fixed
+- **`render-reel.ps1` — the third asset input had no registry gate (P237).**
+  `-Scenes` clips were gated by P121 and the nasheed by P168; the RANDOM path —
+  glob `normalized\*.mp4`, draw three — never was. An unregistered or RETIRED
+  clip could reach a reel by sitting in the folder. Each earlier gate was added
+  to the path that had just failed, and neither asked which other inputs reached
+  the same output. It stayed unnoticed for the same reason it is low-risk: every
+  recent set passes explicit `-Scenes`, so the ungated path is never exercised —
+  which reads as safety and is absence of evidence. The draw now comes FROM the
+  approved list rather than being checked after the fact (checking after a pick
+  invites re-rolling around a rejection), and present-but-unapproved clips are
+  named on screen. A no-op today: 70 clips on disk, all 70 approved. It is a
+  guard against drift, not a repair.
 - **`app/admin/page.tsx` — the caption wrapper nested identical guillemets
   (P236).** P180 taught the builder to skip the `«…»` wrapper when a matn BEGINS
   with `«`. A matn carrying `«` INSIDE it is the other half of the same problem

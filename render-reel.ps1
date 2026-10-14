@@ -504,7 +504,28 @@ if ($animated) {
   }
 } else {
   Say "`n[3/5] Step 6 - building background (3 random clips)..."
-  $picked = $clips | Get-Random -Count 3
+  # P237: the gate -Scenes got in P121 and the nasheed got in P168, which this
+  # path never had. It globs normalized\*.mp4 and draws three, so a clip that is
+  # unregistered - or RETIRED, like vocal-hamd-kids-01 was on the audio side -
+  # could reach a reel simply by sitting in the folder. Low traffic is not a
+  # gate: every recent set passes explicit -Scenes, which is exactly why nobody
+  # would notice this one failing.
+  # Draw from the APPROVED set rather than checking after the draw, so a
+  # retired clip cannot be picked and then re-rolled around.
+  $clipApproved = @(& python "scripts\audit-assets.py" --list --lane $Style --section clips)
+  if ($LASTEXITCODE -ne 0 -or $clipApproved.Count -lt 1) {
+    Die "could not read the approved clip list from the registry (lane: $Style). " +
+        "Pass -Scenes explicitly, or fix the registry."
+  }
+  $eligible = @($clips | Where-Object { $clipApproved -contains $_.Name })
+  $skipped  = @($clips | Where-Object { $clipApproved -notcontains $_.Name })
+  if ($skipped.Count -gt 0) {
+    Write-Host "        skipped (not approved for lane '$Style'): $($skipped.Name -join ', ')" -ForegroundColor DarkGray
+  }
+  if ($eligible.Count -lt 3) {
+    Die "only $($eligible.Count) registry-approved clip(s) in $normDir for lane '$Style' - need 3."
+  }
+  $picked = $eligible | Get-Random -Count 3
 }
 $picked | ForEach-Object { Write-Host "        + $($_.Name)" -ForegroundColor DarkGray }
 
