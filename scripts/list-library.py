@@ -71,6 +71,15 @@ def main():
                     help='only rows whose English matn is at least this long')
     ap.add_argument('--sort', choices=['collection', 'length'],
                     default='collection', help='ordering (default collection)')
+    # P235: the same read, one stage earlier. P233 (an addition in all four
+    # languages) and P234 (an interpolation sitting in the one language nobody
+    # had checked) were both found by reading four languages of one row side by
+    # side, and by nothing else - no gate produced either. This read already
+    # existed for hadith_library, which is AFTER promotion, which is after the
+    # point where a defect is still cheap to fix.
+    ap.add_argument('--candidates', action='store_true',
+                    help='read hadith_candidates instead of hadith_library '
+                         '(pre-promotion). Requires --row.')
     args = ap.parse_args()
 
     env = _al.load_env()
@@ -80,9 +89,13 @@ def main():
         print('FAILED: need a Supabase URL and service-role key in .env.local')
         return 2
 
-    rows = _al.fetch_rows(base, key, 'hadith_library')
+    if args.candidates and not args.row:
+        print('--candidates is for the single-row read: pass --row NUMBER too.')
+        return 2
+    table = 'hadith_candidates' if args.candidates else 'hadith_library'
+    rows = _al.fetch_rows(base, key, table)
     if not rows:
-        print('FAILED: hadith_library returned no rows')
+        print('FAILED: %s returned no rows' % table)
         return 2
 
     # --row: the full read. Printed in full and never truncated, because the
@@ -117,7 +130,8 @@ def main():
                 v = (r.get(col) or '').strip()
                 print('\n--- %s ---' % col)
                 print(v if v else '(EMPTY)')
-            for col in ('source_url', 'grade_source', 'matn_verified_at'):
+            for col in ('source_url', 'grade_source', 'matn_verified_at',
+                        'status', 'verify_agreement', 'review_reason'):
                 if r.get(col):
                     print('\n%s: %s' % (col, r[col]))
             print()

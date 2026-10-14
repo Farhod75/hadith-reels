@@ -66,6 +66,24 @@
   one layer down: describing what should be absent invites it.
 
 ### Changed
+- **`scripts/list-library.py` — the four-language side-by-side read, one stage
+  earlier, and now required (P235).** P233 and P234 were both found on the same
+  day by printing the Arabic and all four translations of one row together and
+  reading down the column — and by nothing else. No gate produces either:
+  `lint-content.py` checks one text at a time and passed all four, Stage 3 scores
+  each language separately against the Arabic, `stt-validate.py` compares the
+  subtitle to the draft rather than the draft to the matn, and per-language human
+  review is exactly the view in which a four-language addition looks like four
+  correct translations. The read already existed as `--row`, but only against
+  `hadith_library` — after promotion, which is after the point where a defect is
+  cheap. `--candidates` runs it against `hadith_candidates` and also prints
+  `status`, `verify_agreement` and `review_reason`. Workflow I gains step 3a
+  requiring it before the sign-off, naming both signatures: a clause in SOME
+  languages and not others, and — the counter-intuitive one — a clause in ALL of
+  them that is not in the Arabic. Unanimity is not corroboration; four
+  generations agreeing on something absent from the source is the signature of a
+  move the model makes in every language, which is how P233 survived rules
+  written the day before.
 - **`scripts/translate-candidates.py` — `--apply` erased a decision and a
   provenance record (P234).** A reviewed file carrying ONE corrected Tajik field
   on Bukhari #3435 also wrote `translation_meta = {}` and `status = 'translated'`,

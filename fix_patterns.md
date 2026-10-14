@@ -8955,3 +8955,68 @@ a row side by side found it in about a minute — the same method that found P23
 the same day. A note naming the wrong language is worse than no note: it sends the
 next reader to a field that is already correct and lets them conclude the item is
 done.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 235: The check that found two defects in one day was not in any workflow
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** on 2026-10-13 two defects were found within two hours of each
+other, both by the same method and by nothing else:
+
+  - **P233** — an addition the matn does not contain appeared in ALL FOUR
+    languages of Bukhari #6423. Each generation, read alone, looked correct.
+  - **P234** — the بحق interpolation «ба ҳақ» sat in the Tajik of #3435 while
+    OPEN_ITEMS sent every reader to the Uzbek, which had been clean for days.
+
+The method: print the Arabic and all four translations of one row together and
+read down the column.
+
+**Why no gate found them.** Each gate is correct and each is blind to this:
+
+  - `lint-content.py` checks one text against rules. All four passed.
+  - Stage 3 (`verify-candidates.py`) scores each language SEPARATELY against the
+    Arabic, and `agreement()` compares verdicts across the two providers — not
+    across languages.
+  - `stt-validate.py` compares the SUBTITLE to the draft. Never the draft to the
+    matn.
+  - Per-language human review sees one language at a time, which is exactly the
+    view in which a four-language addition looks like four correct translations.
+
+A defect that exists only in the RELATIONSHIP between the languages is invisible
+to every check that looks at one language at a time. Nothing was looking at the
+relationship.
+
+**And the read already existed** — `list-library.py --row` is documented in its
+own help as "dump ONE hadith number in every language, in full - the read every
+reel starts with". It reads `hadith_library` only: after promotion. Candidates are
+where translations are reviewed, corrected and signed, and candidates could not be
+read this way at all. The check existed one stage too late and was in no workflow.
+
+**The two signatures, and the second is the counter-intuitive one:**
+
+  1. A clause in SOME languages and not others. One of them is wrong; the read
+     tells you which to look at, not which is right.
+  2. A clause in ALL of them that is not in the Arabic. Unanimity feels like
+     corroboration and is the opposite: four independent generations agreeing on
+     something absent from the source is the signature of a move the model
+     reaches for in every language. P233 is exactly this, and it is why it
+     survived rules written the day before.
+
+**Rule:** before signing a translation batch, read the row's four languages side
+by side against the Arabic. Agreement across languages is not evidence; it is a
+thing to check.
+
+**Status:** FIXED. `list-library.py` gains `--candidates`, which runs the same
+full read against `hadith_candidates` and also prints `status`,
+`verify_agreement` and `review_reason`. Workflow I gains step 3a requiring it
+before the sign-off, with both signatures named so the reader knows what they are
+looking for.
+
+**What this does not do.** It is a human read, not a gate — nothing fails a build.
+Automating signature 1 is plausible (a clause-count or length divergence across
+languages is mechanical). Signature 2 is not: detecting a clause that is in every
+translation but not in the Arabic is the grounding problem rule 25 states, and if
+it could be checked mechanically it would not have needed a prompt rule. The
+honest position is that this project's strongest check on fabrication is a person
+reading four columns, and the only improvement available was to make that read
+cheap and required rather than occasional and lucky.

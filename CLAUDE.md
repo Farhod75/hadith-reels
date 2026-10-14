@@ -462,6 +462,20 @@ npm run test:multilingual
 1. Candidates must be at `status='deduped'` with `text_arabic` present
 2. Dry run first: `python scripts\translate-candidates.py --limit 10`
 3. Read `out\candidate-translations.json` — the full text, not the previews
+3a. **Read all four languages of the row SIDE BY SIDE**, against the Arabic:
+    `python scripts\list-library.py --candidates --row <number>`
+    This is the cheapest check the project has and the only one that has ever
+    caught a cross-language defect. Two in one day: P233, where an addition the
+    matn does not contain appeared in ALL FOUR languages and so read as correct
+    in each one alone; and P234, where an interpolation sat in the Tajik while a
+    note sent every reader to the Uzbek, which was already clean. No automated
+    gate produced either - `lint-content.py` passes them, Stage 3 scores each
+    language separately, and a per-language review cannot see a pattern that
+    only exists across languages.
+    What you are looking for: a clause present in some languages and not others
+    (one of them is wrong - find out which), and a clause present in ALL of them
+    that is not in the Arabic (unanimity is not evidence; it is the signature of
+    a move the model reaches for in every language).
 4. Check against the Arabic: did anything get ADDED? A clause, an attribution,
    a ranking, a comparison. The matn is the only thing the translation may say
 5. Any `[UNCERTAIN: ...]` marker is the model abstaining — that field needs a
