@@ -60,6 +60,12 @@ ANTHROPIC_VERSION = '2023-06-01'
 OUT_PATH = os.path.join('out', 'candidate-translations.json')
 REVIEW_PATH = os.path.join('out', 'candidate-translations.reviewed.json')
 
+# P234: statuses that record a HUMAN RULING rather than a position in the
+# pipeline. --apply never overwrites one. Bukhari #3435 sits at needs_human
+# permanently by decision (the على ما كان من العمل clause, see OPEN_ITEMS), and
+# a one-field Tajik correction silently promoted it to 'translated'.
+TERMINAL_STATUS = ('needs_human', 'rejected', 'promoted')
+
 URL_KEYS = ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL')
 SERVICE_KEYS = ('SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SERVICE_KEY',
                 'SERVICE_ROLE_KEY')
@@ -317,9 +323,36 @@ def apply_from_json(base, key, path=OUT_PATH):
             print(f'  SKIP {ref}: no candidate_id or no proposed text')
             failed += 1
             continue
+        # P234: a reviewed file that carries ONE corrected field used to
+        # replace translation_meta with {} and force status='translated'.
+        # Correcting a single Tajik clause on Bukhari #3435 therefore erased
+        # that row's entire per-field provenance - which fields a human had
+        # touched and why, including the P224 sourcing notes, recoverable from
+        # nothing but a backup - and flipped a status that was a DECISION, not
+        # a pipeline position. #3435 rests at needs_human permanently and by
+        # ruling; 'translated' made it look eligible for Stage 3 and promotion.
+        # Read the row first and write only what was actually reviewed.
+        try:
+            cur = sb_get(base, key, 'hadith_candidates',
+                         {'candidate_id': f'eq.{cid}',
+                          'select': 'status,translation_meta'})
+            cur = cur[0] if cur else {}
+        except Exception as e:  # noqa: BLE001
+            print(f'  {ref}: could not read current row ({e}) - REFUSING to write')
+            failed += 1
+            continue
+
         payload = dict(proposed)
-        payload['translation_meta'] = r.get('translation_meta') or {}
-        payload['status'] = 'translated'
+        # MERGE provenance; a field absent from the reviewed file keeps its own.
+        meta = dict(cur.get('translation_meta') or {})
+        meta.update(r.get('translation_meta') or {})
+        payload['translation_meta'] = meta
+        # A terminal status is a human ruling. Writing a field does not revoke it.
+        if cur.get('status') in TERMINAL_STATUS:
+            print(f"  {ref}: status '{cur['status']}' left as is "
+                  f'(a decision, not a pipeline position)')
+        else:
+            payload['status'] = 'translated'
         payload['updated_at'] = now_iso()
         try:
             sb_patch(base, key, 'hadith_candidates',
@@ -332,7 +365,8 @@ def apply_from_json(base, key, path=OUT_PATH):
 
     print('-' * width)
     print(f'  written: {written}   failed: {failed}')
-    print('  status=translated. Re-derive Uzbek Latin if the Cyrillic changed.')
+    print('  status=translated for pipeline rows; a terminal status is kept.')
+    print('  Re-derive Uzbek Latin if the Cyrillic changed.')
     print('  Stage 3 verifies; Stage 4 is the human gate.')
     # P219: a sign-off is good for exactly one apply.
     if not failed:

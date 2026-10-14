@@ -92,7 +92,13 @@ DECISION NEEDED: one neutral wording per language (“upon / with whatever deeds
 he had”), applied via sign → apply and re-verified. EN and RU carry the same
 resolved reading and change with it.
 
-**«ҳақ илоҳ» on #3435 UZ — house precedent says drop it (2026-10-12).** Both
+**«ҳақ» on #3435 — RESOLVED 2026-10-13, AND IT WAS THE TAJIK, NOT THE UZBEK.**
+The Uzbek was already clean («Аллоҳдан бошқа илоҳ йўқлигига», matching
+`2002-hadis.pdf` #39). The interpolation was sitting in the TAJIK — «ҳеҷ
+маъбуде ба ҳақ нест ҷуз Аллоҳ» — the language nobody had checked, and it
+would have shipped. Dropped via sign → apply; see P234 for what else that
+apply did. Original note, kept for the reasoning:
+ Both
 Stage 3 passes flagged “true god” as a word not in لا إله إلا الله. The
 project's own published Uzbek source settles the convention: `2002-hadis.pdf`
 #39 renders the kalima «Ла илоҳа иллаллоҳ» (Аллоҳдан бошқа илоҳ йўқ) — no
@@ -101,6 +107,14 @@ is orthodox rather than invented, but it is an interpolation and the house
 reference omits it. Same book, #1052, renders sincere testimony as
 «сидқидилдан» — the idiomatic one-word “sincerely”, which is also the cleanest
 answer to the نفسه / “heart” question on #6570 UZ.
+
+**The نفسه / "heart" worry on #6570 does not apply — checked 2026-10-13.** All
+four stored renderings already say SELF, not heart: EN "sincerely from his own
+self", RU «искренне, от самого себя», UZ «ихлос билан, ўз ичидан», TJ «холис аз
+ҷониби худи ӯ» — which is what pass A asked for. «сидқидилдан» would move the
+Uzbek TOWARD a heart word (сидқи + дил). Leave all four. What drifted to "heart"
+on 2026-10-13 was the GENERATED Tajik moral for #6423, not a stored matn — a
+generation problem, addressed by rule 25 (P233).
 
 **ORIGINAL ITEM, superseded above:** P220 recorded «қилган амалига қараб» (“according to his deeds”)
 on Bukhari #3435 as a ruling inversion, and this session corrected it to

@@ -66,6 +66,25 @@
   one layer down: describing what should be absent invites it.
 
 ### Changed
+- **`scripts/translate-candidates.py` — `--apply` erased a decision and a
+  provenance record (P234).** A reviewed file carrying ONE corrected Tajik field
+  on Bukhari #3435 also wrote `translation_meta = {}` and `status = 'translated'`,
+  because both lines assumed the reviewed JSON describes the whole row. It
+  describes the fields a human corrected. The status loss is the serious one:
+  #3435 rests at `needs_human` by ruling, not because work is outstanding — the
+  على ما كان من العمل clause is genuinely ambiguous (P224/P225) — and
+  `translated` left it reading as eligible for Stage 3 and promotion, the one
+  outcome three sessions of work on that clause exist to prevent. Same family as
+  P151 from the other side: a column recording a HUMAN JUDGEMENT treated as one
+  recording PIPELINE POSITION. `--apply` now reads the row first, merges
+  `translation_meta` instead of replacing it, keeps a `TERMINAL_STATUS`
+  (`needs_human`/`rejected`/`promoted`) and says so, and refuses to write if the
+  read fails. #3435 restored by hand.
+- **Bukhari #3435 Tajik — dropped the بحق interpolation.** «ҳеҷ маъбуде ба
+  ҳақ нест ҷуз Аллоҳ» → «ҳеҷ маъбуде нест ҷуз Аллоҳ». Orthodox as grammar,
+  still an interpolation, and the other three languages omit it. OPEN_ITEMS had
+  attributed this to the UZBEK, which was already clean — the Tajik is where it
+  actually sat, and it would have shipped. Note corrected.
 - **`app/api/generate-reel/route.ts` — rule 25, stated as a test rather than a
   blocklist (P233).** Bukhari #6423 supplied a contrast the matn does not draw in
   ALL FOUR languages (`а не как пустые слова на устах`, `фақат тил билан айтишга

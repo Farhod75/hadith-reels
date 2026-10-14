@@ -8884,3 +8884,74 @@ validator compares the subtitle to the draft - not the draft to the matn. It was
 caught by reading four generations of the same hadith side by side, which only
 happens because the set ships in four languages. A single-language channel would
 have shipped all three instances without ever seeing the pattern.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 234: A write that advances the pipeline erased a decision and a provenance record
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** Bukhari #3435's Tajik carried «ба ҳақ» — the بحق interpolation
+the Arabic does not contain and the other three languages already omit. The fix is
+one span, seven characters, and it went through the P177/P219 gate correctly:
+reviewed JSON, `--sign`, `--apply --commit`. The text landed exactly right.
+
+Two other things landed with it, neither reviewed, neither intended:
+
+    status           needs_human  ->  translated
+    translation_meta {4 fields}   ->  {}
+
+**Cause:** `apply_from_json` wrote a payload of its own on top of the reviewed
+fields:
+
+    payload['translation_meta'] = r.get('translation_meta') or {}
+    payload['status'] = 'translated'
+
+Both lines assume the reviewed file describes the WHOLE row. It describes the
+fields a human corrected. A file carrying one Tajik field therefore asserted "this
+row has no provenance" and "this row is at stage translated", neither of which the
+reviewer wrote or saw.
+
+The status loss is the serious one. #3435 does not sit at `needs_human` because
+work is outstanding — it sits there by ruling, recorded in OPEN_ITEMS on
+2026-10-12: *"the row stays needs_human on this clause, permanently, and that is
+the correct resting state, not an unfinished task."* The على ما كان من العمل clause
+is genuinely ambiguous, the two verify passes reject every wording for mutually
+exclusive reasons (P225), and the commentators preserve the ambiguity (P224). The
+status field was carrying that decision. Writing an unrelated field revoked it, and
+left the row reading as eligible for Stage 3 and promotion — the one outcome three
+sessions of work on that clause exist to prevent.
+
+The provenance loss is quieter and nearly unrecoverable. `translation_meta` is
+per-field: which fields a human touched, when, and why ("sourced against published
+translation + sharh, 2026-10-12 (P224)"). Nothing else in the system records it. It
+survived only because `--apply` happens to back up the shared JSON path first, and
+that backup was fifteen minutes old.
+
+**The shape.** This is P151's family seen from the other side. P151 says a model
+must not SET `matn_verified_at`, because that column means a human read the row
+against a source. P234 says a tool must not CLEAR a status that means a human
+decided something. Both are the same confusion: a column that records a HUMAN
+JUDGEMENT being treated as a column that records PIPELINE POSITION. Every automated
+write wants to advance the pipeline; a judgement is not on the pipeline.
+
+**Rule:** a write applies what was reviewed and nothing else.
+  - MERGE structured state, never replace it. A field absent from the reviewed
+    file keeps what it had.
+  - A TERMINAL status — one that encodes a human ruling — is never overwritten by
+    an automated write. Read the row first; if it is terminal, say so and leave it.
+  - If a tool cannot read the current row, it does not write. A blind write is how
+    both of these happened in one call.
+
+**Status:** FIXED. `TERMINAL_STATUS = ('needs_human', 'rejected', 'promoted')`;
+`apply_from_json` now GETs the row, merges `translation_meta` over what is there,
+keeps a terminal status and prints that it did, and refuses to write at all if the
+read fails. #3435 was restored by hand: status back to `needs_human`, provenance
+restored from the backup with the Tajik edit appended to the record, text keeping
+the «ба ҳақ» fix.
+
+**Footnote.** OPEN_ITEMS attributed «ҳақ» to #3435 **UZ**. The Uzbek was already
+clean and had been for some time; the interpolation was in the **Tajik**, in the
+language nobody had checked, and would have shipped. Reading all four languages of
+a row side by side found it in about a minute — the same method that found P233
+the same day. A note naming the wrong language is worse than no note: it sends the
+next reader to a field that is already correct and lets them conclude the item is
+done.
