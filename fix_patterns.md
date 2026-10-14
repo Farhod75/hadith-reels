@@ -9020,3 +9020,68 @@ it could be checked mechanically it would not have needed a prompt rule. The
 honest position is that this project's strongest check on fabrication is a person
 reading four columns, and the only improvement available was to make that read
 cheap and required rather than occasional and lucky.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 236: Half a problem was fixed, and the other half was hand-corrected four times
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** the caption builder wraps the matn in `«…»`. P180 taught it to
+skip the wrapper when a matn BEGINS with `«`, because those produced `««` and a
+lone closing `»`.
+
+A matn that carries `«` INSIDE it is the other half of exactly that problem, and
+P180 does not see it. Wrapping gives:
+
+    «Пришёл ко мне утром Посланник Аллаха ﷺ и сказал: «Не явится раб …».»
+
+Identical guillemets nested — which Russian, Uzbek and Tajik typography all read
+as broken.
+
+**How it was handled, which is the actual finding.** Bukhari #6423 hit it in
+Russian. It was corrected by hand. An hour later it hit in Uzbek. Corrected by
+hand. Both corrections went out in captions and neither became a code change,
+because each looked like a one-off formatting slip in a reel rather than a
+property of the builder. #6570 would have been the third and fourth — RU and TJ
+both quote the kalima with `«…»`.
+
+Four hand-corrections of one defect, and the only reason it got named is that the
+third and fourth were predicted out loud while reading the row.
+
+**The shape:** a fix that names its triggering case (`startsWith('«')`) closes the
+instance, not the class. P180 is correct and incomplete, and "incomplete" was
+invisible because the remaining half presents as a cosmetic problem in output
+rather than an error anywhere. Nothing throws. Nothing fails a lint. The caption
+is simply slightly wrong, every time, in three of four languages.
+
+This is P233's lesson in a different register — there a prompt rule named forms
+and was walked around by the next form; here a code fix named a position and was
+walked around by the other position. Both close an instance and leave the class
+open. The difference is that P233's class is unbounded (natural language) while
+this one has exactly two members, and the second was sitting right there.
+
+**Rule:** when a fix names where something appears, ask what the other positions
+are and close them in the same change. And a defect corrected by hand twice is a
+defect that belongs in code — the second hand-correction is the signal, not the
+third.
+
+**Why the fix belongs in the builder and not in the rows:** the matn is quoted as
+the SOURCE quotes it, and that quoting is correct at its own level. It is the
+wrapper that creates a second level, so the wrapper demotes the inner pair —
+`«…»` becomes `„…“`, the second-level convention in all three Cyrillic languages
+this channel publishes. Editing the rows instead would mean carrying
+caption-layout concerns in the matn, where P153 says only the source's own text
+belongs.
+
+**Status:** FIXED in `app/admin/page.tsx`. Verified against #6570's Russian and
+Tajik: `«Самый счастливый — тот, кто сказал: „Нет божества, кроме Аллаха“,
+искренне.»` and `«касест, ки „Ло илоҳа иллаллоҳ“ гуфта бошад, холис.»`
+
+**Related, found in the same read (P235's step 3a, working as intended):** the
+Tajik kalima was spelled two different ways across one three-reel arc built on
+that kalima — #6423 shipped `«ло илоҳа илаллоҳ»` (correctly spaced, missing the
+gemination that `إلّا`'s shadda requires) and #6570 carried `«Лоилоҳа иллаллоҳ»`
+(geminated, first two words run together). Each wrong in a different way, neither
+matching the other. Both now `«Ло илоҳа иллаллоҳ»`. The #6423 reels are published
+and were NOT re-rendered for one letter — the audio is out — but the library row
+is corrected so nothing built from it repeats the spelling. Uzbek was consistent
+across both; only Tajik drifted.

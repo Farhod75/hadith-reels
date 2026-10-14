@@ -351,9 +351,21 @@ export default function AdminPage() {
         // P180: these matns begin with « themselves (the first words are the
         // Prophet's speech), so the wrapper produced «« and a lone closing ».
         // Only wrap text that isn't already quoted.
+        //
+        // P236: that handled a matn that BEGINS with «. A matn carrying «
+        // INSIDE it is the other half of the same problem, and P180 does not
+        // see it: wrapping gives «… «kalima» …», identical guillemets nested,
+        // which Russian, Uzbek and Tajik typography all read as broken. It hit
+        // Bukhari #6423 in RU and UZ and was corrected BY HAND both times, in
+        // the same hour, before anyone noticed it was one defect rather than
+        // two. #6570 would have been the third and fourth.
+        // The fix belongs here and not in the rows: the matn is quoted as the
+        // source quotes it, and it is the WRAPPER that creates the second
+        // level. Demote the inner pair to „…“, which is the second-level
+        // convention in all three Cyrillic languages this channel publishes.
         (hadithText.trim().startsWith('«')
           ? `${hadithText}\n\n`
-          : `«${hadithText}»\n\n`) +
+          : `«${hadithText.replace(/«/g, '„').replace(/»/g, '“')}»\n\n`) +
         // P153: the Arabic was in the DB and in the admin card but never
         // reached a viewer, so nobody with Arabic could check the translation
         // against the source — which is the one external check this project

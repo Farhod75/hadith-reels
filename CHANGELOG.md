@@ -1,3 +1,28 @@
+## [2026-10-14]
+
+### Fixed
+- **`app/admin/page.tsx` — the caption wrapper nested identical guillemets
+  (P236).** P180 taught the builder to skip the `«…»` wrapper when a matn BEGINS
+  with `«`. A matn carrying `«` INSIDE it is the other half of the same problem
+  and P180 does not see it: wrapping gives `«… «kalima» …»`, which Russian,
+  Uzbek and Tajik typography all read as broken. It hit #6423 in Russian, was
+  hand-corrected, hit in Uzbek an hour later, was hand-corrected again, and
+  #6570 would have been the third and fourth — four hand-corrections of one
+  defect, because each looked like a formatting slip in a reel rather than a
+  property of the builder. The wrapper now demotes the inner pair to `„…“`, the
+  second-level convention in all three Cyrillic languages here. The fix belongs
+  in the builder, not the rows: the matn is quoted as the source quotes it, and
+  it is the wrapper that creates the second level.
+- **Tajik kalima spelled two ways across one arc.** #6423 shipped
+  `«ло илоҳа илаллоҳ»` (spaced, but missing the gemination `إلّا`'s shadda
+  requires); #6570 carried `«Лоилоҳа иллаллоҳ»` (geminated, first two words run
+  together). Each wrong differently, neither matching the other, in a
+  three-reel arc built on that kalima. Both now `«Ло илоҳа иллаллоҳ»`.
+  Uzbek was consistent across both; only Tajik drifted. The #6423 reels are
+  published and were NOT re-rendered for one letter — the library row is
+  corrected so nothing built from it repeats the spelling. Found by P235's
+  step 3a on its first use.
+
 ## [2026-10-13]
 
 ### Fixed

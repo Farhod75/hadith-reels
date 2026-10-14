@@ -20,6 +20,16 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Production queue
 
+**#6570 DROPPED BACK TO `translated` — re-run Stage 3 before producing it.**
+The Tajik kalima spacing fix on 2026-10-14 went through sign → apply, and
+`--apply` sets `status='translated'` for any row not at a terminal status.
+That is correct behaviour, not a bug: the text changed, so the Stage 3
+verdict no longer describes the text it passed. The change was orthographic
+(«Лоилоҳа» → «Ло илоҳа», same words) and no verifier would score it
+differently — but the system cannot know that, and #6570 is 2–3 weeks out, so
+there is time to re-verify rather than reason around it. `verify_agreement`
+still reads `pass` from the previous run; that verdict is now STALE.
+
 **Operator decision 2026-10-13 — the Tawheed series gets a colour arc.**
 #6423's kalima scene is warm parchment under raking dawn light. For **#6570,
 the second reel, the kalima frame is GREEN** — operator's call, made while
