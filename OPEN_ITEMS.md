@@ -278,6 +278,20 @@ The REST of the watch-list in `reel-creation-pipeline.md` is still scoped to
 whichever model measured it, and P193 says those entries expire when the
 model changes. They have not been re-run since 2026-10-04.
 
+**Generator rules in positive form — DRAFTED 2026-10-14, HELD ON PURPOSE.**
+Full proposed text for rules 7-21: `docs/proposed-rules-positive-form.md`. It is
+NOT applied and must not be until **#6570 has been generated and read**. Rule 25
+went in on 2026-10-13 marked NOT YET VERIFIED and #6570 is its test; applying a
+fifteen-rule rewrite first collapses the two changes into one generation and
+leaves no signal either way. Rules 23 and 24 looked equally sound on 2026-10-12
+and lost within a day, which is exactly why what KIND of fix holds is the thing
+worth measuring. P101 is the second reason for care: a generator-prompt edit that
+instructed fabrication, caught only after two Russian generations had put
+invented speech in the Prophet's ﷺ mouth.
+
+The draft keeps every prohibition - each survives as the second clause of its
+rule, in the DO-first house style rules 23/24/25 already use. Original note and
+its reasoning below:
 **Generator rules in positive form.** The prompt is now 22 rules and most of
 them are NEVER. R026 is that negations reinforce what they forbid, and
 Anthropic's own prompting guidance says to state what the model should DO. Both
