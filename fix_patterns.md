@@ -9131,3 +9131,56 @@ is a guard against drift, not a repair of a live break, and it was worth doing
 only because it is three lines and the two sibling paths already cost patterns.
 If it ever fires, the folder and the registry have diverged and that is worth
 knowing before a reel ships rather than after.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 238: The caption was derived once from data that keeps changing
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** the admin's story, moral and seerah blocks are editable
+textareas bound to `generated` through `updateField`, so an operator correction
+lands in state the moment it is typed. The caption was built ONCE, inside
+`generate()`, and never again.
+
+So the screen showed a corrected moral with, directly underneath it, a caption
+still carrying the wording that had just been rejected. Nothing was stale in the
+usual sense — both values were current — but one had been derived from the other
+at a point in time and never re-derived.
+
+**Twice, on consecutive reels.** Bukhari #6423: the Russian moral was corrected
+in the blocks, the caption kept the uncorrected text, and it was caught by eye at
+the last step before posting. The note written that day said it was "worth a
+pattern on its own" and it did not become one. Bukhari #6570, the next reel: same
+thing, same confusion — the operator fixed the blocks and asked why the character
+count had not moved.
+
+**The operator's own diagnosis was the right one:** *"that's why we decided to fix
+that edited blocks to be wired so the caption block to be reflecting the changed
+count."* Identified, agreed, not built — and so paid for a second time.
+
+**Cause:** a value computed from state at one instant, stored in separate state,
+and presented beside the state it came from. There is no event that invalidates
+it. The generate() handler is the only writer, so every later edit to the inputs
+leaves the output untouched and plausible.
+
+**Rule:** when a derived value is shown next to the thing it derives from, give it
+a way to re-derive. Compute-once is correct only where the inputs cannot change
+afterwards, and an editable textarea is exactly the case where they can.
+
+**Why a button and not a `useEffect`:** the caption box is itself hand-tuned. The
+quote nesting gets unpicked (P236), a line gets trimmed to clear Telegram's 1024
+— #6570's English needed exactly that, at 1060 before the moral was shortened. A
+reactive rebuild would silently discard that work on the next keystroke in any
+block. The operator knows when the blocks have become the newer truth; the tool
+should not guess. The button says what it will do, and is disabled until there is
+something to rebuild from.
+
+**Status:** FIXED. The builder is lifted out of `generate()` into
+`buildCaption(data)`, called from generate as before and from a "↻ Rebuild from
+blocks" control beside the caption box. TypeScript clean.
+
+**Footnote on cost.** Both occurrences were caught — the first by eye, the second
+because the operator noticed a number that should have moved. Neither shipped. But
+the second catch cost a round trip and a hand-written replacement caption, and the
+fix is twenty lines that were agreed to a day earlier. A known defect that is
+cheap to fix and keeps being worked around by hand is more expensive than it
+looks, because the workaround succeeds every time until it doesn't.

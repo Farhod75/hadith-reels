@@ -282,6 +282,109 @@ export default function AdminPage() {
 
   
 
+  // ── Caption ───────────────────────────────────────────────────────────────
+  // P238: this used to live inside generate() and ran exactly once. The story,
+  // moral and seerah textareas are bound to `generated` through updateField, so
+  // an operator correction lands in state the moment it is typed - but the
+  // caption underneath kept the text that had just been rejected. On Bukhari
+  // #6423 that shipped: the moral was corrected in the blocks, the caption still
+  // carried the uncorrected wording, and it was caught by eye at the last step.
+  // On #6570 it happened again, which is what made it a pattern rather than a
+  // slip. Deriving once from data that keeps changing is the bug.
+  //
+  // It stays a BUTTON rather than a useEffect: the caption box is itself
+  // editable and hand-tuned (quote nesting, a trimmed line to clear Telegram's
+  // 1024), and a reactive rebuild would silently discard that work. The
+  // operator decides when the blocks are the newer truth.
+  function buildCaption(data: Generated) {
+    if (!selected) return
+    // Auto-generate caption
+    // P106: deterministic caption. Hadith text included so the caption is
+    // verifiable standalone — captions get screenshotted and forwarded, which
+    // is the fabrication vector this project exists to fight.
+    // P106: tags that pull the wrong audience on social platforms. #date reaches
+    // dating content; #hellfire skews to metal/gaming. Sourced from the hadith
+    // library, so filter at caption time rather than editing the library.
+    // P183: the blocklist moved to lib/tags.ts beside the vocabulary it
+    // filters, so the audit can see it. Not the same list any more — it split
+    // in two. TAG_BLOCKLIST still drops a tag whole; `death` and `women`
+    // moved to EN_HASHTAG_BLOCKLIST, which suppresses only the English
+    // hashtag so the Cyrillic one still ships.
+    // P150: emit BOTH the localised and English form of each topic tag —
+    // two discovery paths, and hashtags cost nothing. The operator searches
+    // in his own language first and so does the audience.
+    const topicTags = (selected.tags || [])
+      .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
+    // P150: verify line and hashtags were hardcoded English and appended to
+    // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
+    // they come from the library's `tags` column and travel across languages.
+    const CAPTION_L10N: Record<string, { verify: string; tags: string; kids: string; lang: string }> = {
+      en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english' },
+      ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский' },
+      uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча' },
+      tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ' },
+      ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية' },
+    }
+    const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
+    const hadithText = selected.text_display || selected.text_english
+    // P150: localised collection with the Latin name kept in parentheses —
+    // the citation has to stay verifiable, and some readers read only their
+    // own language.
+    const ref = buildRef(selected.collection, selected.hadith_number, selected.narrator, lang)
+    // P176: HadeethEnc's licence requires crediting them on every row carrying
+    // their text. Returns '' for in-house rows, so nothing is emitted.
+    const credit = buildTranslationCredit(selected.translation_source, lang)
+    // The body never flexes. P116: length pressure on generated text is
+    // fabrication pressure — told to be shorter, the model complied on
+    // narrative and inflated importance instead. The hadith text and the
+    // Arabic matn are the caption's verifiability (P106, P153). Only the tag
+    // line below gives when Telegram's cap is tight.
+    const captionBody =
+      `${data.title}\n\n` +
+      // P180: these matns begin with « themselves (the first words are the
+      // Prophet's speech), so the wrapper produced «« and a lone closing ».
+      // Only wrap text that isn't already quoted.
+      //
+      // P236: that handled a matn that BEGINS with «. A matn carrying «
+      // INSIDE it is the other half of the same problem, and P180 does not
+      // see it: wrapping gives «… «kalima» …», identical guillemets nested,
+      // which Russian, Uzbek and Tajik typography all read as broken. It hit
+      // Bukhari #6423 in RU and UZ and was corrected BY HAND both times, in
+      // the same hour, before anyone noticed it was one defect rather than
+      // two. #6570 would have been the third and fourth.
+      // The fix belongs here and not in the rows: the matn is quoted as the
+      // source quotes it, and it is the WRAPPER that creates the second
+      // level. Demote the inner pair to „…“, which is the second-level
+      // convention in all three Cyrillic languages this channel publishes.
+      (hadithText.trim().startsWith('«')
+        ? `${hadithText}\n\n`
+        : `«${hadithText.replace(/«/g, '„').replace(/»/g, '“')}»\n\n`) +
+      // P153: the Arabic was in the DB and in the admin card but never
+      // reached a viewer, so nobody with Arabic could check the translation
+      // against the source — which is the one external check this project
+      // has. Full matn, never truncated.
+      (selected.text_arabic ? `${selected.text_arabic}\n\n` : '') +
+      `${data.moral}\n\n` +
+      `📖 ${ref}\n` +
+      // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
+      // blank line where the credit would have been.
+      (credit ? `${credit}\n` : '') +
+      `🔍 ${l10n.verify}: hadithverifier.com\n\n`
+
+    // P184: UZ and TJ cleared Telegram's 1024 on nearly every set and were
+    // trimmed by hand, after posting, once Telegram had already truncated
+    // them. fitTagLine drops the English hashtags first, then the language
+    // tag, then topic concepts — and reports what it gave up.
+    const fitted = fitTagLine({
+      rawTags: topicTags,
+      lang,
+      suffix: `${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''}`,
+      langTag: l10n.lang,
+      budget: TELEGRAM_CAPTION_LIMIT - captionBody.length,
+    })
+    setCaption(captionBody + fitted.line)
+    setCaptionNote(fitted.note)
+  }
   // ── Generate content ───────────────────────────────────────────────────────
   async function generate() {
     if (!selected) return
@@ -305,92 +408,7 @@ export default function AdminPage() {
       if (data.error) throw new Error(data.error)
       setGenerated(data)
 
-      // Auto-generate caption
-      // P106: deterministic caption. Hadith text included so the caption is
-      // verifiable standalone — captions get screenshotted and forwarded, which
-      // is the fabrication vector this project exists to fight.
-      // P106: tags that pull the wrong audience on social platforms. #date reaches
-      // dating content; #hellfire skews to metal/gaming. Sourced from the hadith
-      // library, so filter at caption time rather than editing the library.
-      // P183: the blocklist moved to lib/tags.ts beside the vocabulary it
-      // filters, so the audit can see it. Not the same list any more — it split
-      // in two. TAG_BLOCKLIST still drops a tag whole; `death` and `women`
-      // moved to EN_HASHTAG_BLOCKLIST, which suppresses only the English
-      // hashtag so the Cyrillic one still ships.
-      // P150: emit BOTH the localised and English form of each topic tag —
-      // two discovery paths, and hashtags cost nothing. The operator searches
-      // in his own language first and so does the audience.
-      const topicTags = (selected.tags || [])
-        .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
-      // P150: verify line and hashtags were hardcoded English and appended to
-      // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
-      // they come from the library's `tags` column and travel across languages.
-      const CAPTION_L10N: Record<string, { verify: string; tags: string; kids: string; lang: string }> = {
-        en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english' },
-        ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский' },
-        uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча' },
-        tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ' },
-        ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية' },
-      }
-      const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
-      const hadithText = selected.text_display || selected.text_english
-      // P150: localised collection with the Latin name kept in parentheses —
-      // the citation has to stay verifiable, and some readers read only their
-      // own language.
-      const ref = buildRef(selected.collection, selected.hadith_number, selected.narrator, lang)
-      // P176: HadeethEnc's licence requires crediting them on every row carrying
-      // their text. Returns '' for in-house rows, so nothing is emitted.
-      const credit = buildTranslationCredit(selected.translation_source, lang)
-      // The body never flexes. P116: length pressure on generated text is
-      // fabrication pressure — told to be shorter, the model complied on
-      // narrative and inflated importance instead. The hadith text and the
-      // Arabic matn are the caption's verifiability (P106, P153). Only the tag
-      // line below gives when Telegram's cap is tight.
-      const captionBody =
-        `${data.title}\n\n` +
-        // P180: these matns begin with « themselves (the first words are the
-        // Prophet's speech), so the wrapper produced «« and a lone closing ».
-        // Only wrap text that isn't already quoted.
-        //
-        // P236: that handled a matn that BEGINS with «. A matn carrying «
-        // INSIDE it is the other half of the same problem, and P180 does not
-        // see it: wrapping gives «… «kalima» …», identical guillemets nested,
-        // which Russian, Uzbek and Tajik typography all read as broken. It hit
-        // Bukhari #6423 in RU and UZ and was corrected BY HAND both times, in
-        // the same hour, before anyone noticed it was one defect rather than
-        // two. #6570 would have been the third and fourth.
-        // The fix belongs here and not in the rows: the matn is quoted as the
-        // source quotes it, and it is the WRAPPER that creates the second
-        // level. Demote the inner pair to „…“, which is the second-level
-        // convention in all three Cyrillic languages this channel publishes.
-        (hadithText.trim().startsWith('«')
-          ? `${hadithText}\n\n`
-          : `«${hadithText.replace(/«/g, '„').replace(/»/g, '“')}»\n\n`) +
-        // P153: the Arabic was in the DB and in the admin card but never
-        // reached a viewer, so nobody with Arabic could check the translation
-        // against the source — which is the one external check this project
-        // has. Full matn, never truncated.
-        (selected.text_arabic ? `${selected.text_arabic}\n\n` : '') +
-        `${data.moral}\n\n` +
-        `📖 ${ref}\n` +
-        // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
-        // blank line where the credit would have been.
-        (credit ? `${credit}\n` : '') +
-        `🔍 ${l10n.verify}: hadithverifier.com\n\n`
-
-      // P184: UZ and TJ cleared Telegram's 1024 on nearly every set and were
-      // trimmed by hand, after posting, once Telegram had already truncated
-      // them. fitTagLine drops the English hashtags first, then the language
-      // tag, then topic concepts — and reports what it gave up.
-      const fitted = fitTagLine({
-        rawTags: topicTags,
-        lang,
-        suffix: `${l10n.tags}${style === 'kids' ? ' ' + l10n.kids : ''}`,
-        langTag: l10n.lang,
-        budget: TELEGRAM_CAPTION_LIMIT - captionBody.length,
-      })
-      setCaption(captionBody + fitted.line)
-      setCaptionNote(fitted.note)
+      buildCaption(data)
       setStep('preview')
     } catch (e: any) { setGenError(e.message || 'Generation failed') }
     finally { setGenerating(false) }
@@ -729,7 +747,18 @@ export default function AdminPage() {
 
               {/* Caption editor */}
               <div className="bg-slate-800 rounded-xl border border-slate-700 p-4">
-                <div className="text-xs text-slate-400 uppercase tracking-wide mb-2">📱 Social media caption</div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs text-slate-400 uppercase tracking-wide">📱 Social media caption</div>
+                  {/* P238: re-derive from the CURRENT blocks. Overwrites hand
+                      edits to the caption, which is why it is explicit. */}
+                  <button type="button" onClick={() => generated && buildCaption(generated)}
+                    disabled={!generated}
+                    title="Rebuild the caption from the current story/moral/title blocks. Discards hand edits made here."
+                    className="text-xs px-2 py-1 rounded-md bg-slate-700 hover:bg-slate-600 text-slate-300 disabled:opacity-40"
+                    data-test="caption-rebuild">
+                    ↻ Rebuild from blocks
+                  </button>
+                </div>
                 <textarea value={caption} onChange={e => { setCaption(e.target.value); if (captionNote) setCaptionNote('') }} rows={9}
                   className="w-full bg-slate-700 text-slate-200 border border-slate-600 rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 {/* Telegram counts a media caption in UTF-16 code units, which is

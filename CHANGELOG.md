@@ -1,6 +1,18 @@
 ## [2026-10-14]
 
 ### Fixed
+- **`app/admin/page.tsx` — the caption never re-derived from edited blocks
+  (P238).** The story/moral/seerah textareas are bound to `generated`, so an
+  operator correction lands in state immediately; the caption was built once
+  inside `generate()` and never again. The screen showed a corrected moral with a
+  caption underneath still carrying the rejected wording. Twice on consecutive
+  reels — #6423 caught by eye before posting, #6570 caught because the character
+  count did not move after an edit. It was identified the first time and not
+  built, so it was paid for twice. The builder is now `buildCaption(data)`,
+  called from generate and from a "↻ Rebuild from blocks" control. Deliberately a
+  button, not a `useEffect`: the caption box is hand-tuned (quote nesting per
+  P236, a trimmed line to clear Telegram's 1024) and a reactive rebuild would
+  discard that silently.
 - **`render-reel.ps1` — the third asset input had no registry gate (P237).**
   `-Scenes` clips were gated by P121 and the nasheed by P168; the RANDOM path —
   glob `normalized\*.mp4`, draw three — never was. An unregistered or RETIRED
