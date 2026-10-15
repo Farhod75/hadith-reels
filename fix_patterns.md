@@ -9319,3 +9319,219 @@ there. A derived file is not where a fix belongs. Neither is a message.
 **Status:** both fixed and read back - the library row re-queried after the
 UPDATE (`Success. No rows returned` says nothing about rows touched), and the
 gate argument verified on disk rather than in the diff I had in mind.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 242: The rebuild control reverts the one input that has no editor
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** P238 lifted `buildCaption` out of `generate()` and added a
+↻ Rebuild from blocks control, so that a correction typed into the story,
+moral or seerah textarea re-derives the caption instead of leaving it stale.
+
+The caption also derives from `title`. Title is rendered as a read-only `<p>`:
+
+    <p className="text-white font-semibold">{generated.title}</p>
+
+`story`, `moral` and `seerah_context` are each a textarea wired to
+`updateField`. `title` never was. So Rebuild cannot pick up a corrected title -
+and it actively REVERTS one the operator fixed by hand in the caption box,
+because it re-derives from a `generated.title` that nothing can change.
+
+**Before P238 this field was fine.** A hand-edited caption stayed edited. The
+rebuild control made exactly one field strictly worse, and only that field,
+which is why it survived the TypeScript check, the review and a day of use.
+
+**Found on Bukhari #13.** The generated title was `None Truly Believes Until He
+Loves This` - a dangling "This" that withholds the answer to earn a click, on a
+channel whose whole premise is verifiable authenticity. A corrected C block was
+pasted, Rebuild was pressed, and the clickbait title came back. The control was
+working correctly; there was nowhere for the new title to go.
+
+**Cause:** P238 asked which VALUE was derived once and never re-derived. It did
+not ask which INPUTS that value derives from, or whether each of them can be
+edited. Three of four could. A rebuild is only as good as its least editable
+input, and the one that cannot be edited is invisible precisely because it
+never changes.
+
+**Rule:** when a derived value gets a re-derive control, enumerate its inputs
+and confirm every one of them is editable. An input that is display-only turns
+the control into a silent revert for that field - worse than no control at all,
+because the operator now has no way to make the correction stick.
+
+This is P237's shape one layer up: there, a gate was added to the input that
+had just failed and the sibling inputs were left ungated. Here, a rebuild was
+added for the inputs that had just gone stale and the sibling input was left
+uneditable. Both times the fix was scoped to the symptom rather than the set.
+
+**Status:** FIXED. `title` is now a textarea bound to `updateField('title')`,
+matching the other three. `updateField` is typed `keyof Generated`, so it took
+the new field with no signature change.
+
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 243: The casing restorer read blocks that are never spoken, and corrupted one that is
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** Bukhari #13 RU. Whisper transcribed the ﷺ expansion exactly
+right — «Пророк, да благословит его Аллах и приветствует», lowercase его, the
+Prophet ﷺ being blessed by Allah. `restore-srt-casing.py` then printed:
+
+    его                          -> Его                          x1
+
+and rewrote it. «да благословит Его Аллах» reads as ALLAH being blessed. The
+script exists to fix casing and it introduced a casing error, into the one word
+where case carries theology.
+
+**Cause, in two parts.**
+
+The script's source is the whole of `draft.txt`. That file holds S, M, H and C
+blocks; only S and M are narrated. The H block for this reel opened a sentence
+with «Его понимают как указание…» — and that capital Его is the ONLY standalone
+его/Его in the file. Everything else the word-matcher finds is the его inside
+чего. So the script concluded: normalised form его appears in the source exactly
+once, spelled Его, unambiguous — and restored the subtitle to match.
+
+Its ambiguity guard (“if one normalised form appears under two spellings, leave
+it alone”) never fired, because there was one spelling to find and it was wrong.
+Its first-word guard did not apply, because Его sits mid-cue.
+
+Second part: the script does not expand ﷺ. `stt-validate.py` does — it has
+`expand_prophet()` and `PROPHET_SPOKEN['ru'] = 'да благословит его Аллах и
+приветствует'`, lowercase. The casing restorer has no equivalent, so every word
+of that expansion is in the AUDIO but not in its SOURCE, and inherits whatever
+casing happens to exist elsewhere in the file.
+
+**The linter could not catch it either.** `capitalised_non_source` fires on words
+ABSENT from the source. его is present (after expansion) — just in the other
+case. The run reported `no findings`, `similarity 1.000`.
+
+**Rule:** a tool that corrects the narrated text must read only what is narrated.
+Non-narrated blocks are not a weaker source, they are a different document, and
+a sentence-initial capital in one of them is not evidence about a mid-sentence
+word in another.
+
+**Worth noting how it was introduced.** The poisoning token was written an hour
+earlier, in this same session, rewording the H block from «Он устанавливает» to
+«Его понимают как» — a correction made for a different and good reason (the
+block asserted where EN hedged). The previous wording had no standalone его. A
+defensible edit to a non-narrated block silently changed the subtitles.
+
+**Status:** NOT FIXED. Caught at the review pause and reverted by hand. Either
+change closes it: restrict the source to S and M, or expand ﷺ the way the linter
+does — with the expansion present, его would appear in both cases, the ambiguity
+guard would fire, and Whisper's correct output would stand. Do both: the first
+because non-narrated blocks should never influence subtitles, the second because
+those words genuinely are in the audio and deserve a source spelling. It will
+recur on any ﷺ reel whose H block starts a sentence with a word the narration
+also uses.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 244: The fabrication was what made the truncation invisible
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** picking a hadith for the day's reel, two “ready” library rows
+turned out to be unusable, and the second was unusable in a way that had been
+engineered to look fine.
+
+`Sahih Muslim #223` stores الطهور شطر الإيمان — “Purity is half of faith.” The
+hadith continues for six more clauses: praise fills the scale, prayer is light,
+charity is proof, patience is brightness, the Qur'an is evidence for or against
+you. A fragment, but a fragment that LOOKS like one — a complete sentence,
+obviously short.
+
+`Musnad Ahmad #7936` was the opposite. Stored Arabic:
+
+    مَن أُعْطِيَ فَشَكَرَ وَابْتُلِيَ فَصَبَرَ وَظَلَمَ فَاسْتَغْفَرَ وَظُلِمَ فَعَفَا
+
+That is a مَن conditional with NO apodosis. It opens “whoever is given and is
+grateful…” and stops. Dorar gives the rest: ثم سكت — then he fell silent — they
+ask, and he answers أولئك لهم الأمن وهم مهتدون.
+
+**All four translations supply the missing clause.** “Blessed is he who is given
+and is grateful…” / «Блажен тот…» / «Бахтлидир…» / «Хушбахт аст…». There is no
+طوبى anywhere in the stored Arabic. Someone — or something — rendered an
+incomplete sentence as a complete one by inventing the half that was missing.
+
+**And that is why it passed inspection.** The row was recommended for production
+twice, on the strength of how the English read: four balanced clauses, a natural
+close. A literal rendering would have ended mid-sentence and been obviously
+truncated. The fabrication concealed the defect it was covering.
+
+Two more defects in the same row: narrator stored as Abu Hurairah where both
+Dorar entries say سخبرة الأزدي, and grade stored as **hasan** where al-Mundhiri
+says لا يتطرق إليه احتمال التحسين — it cannot be raised to hasan. On a channel
+whose entire premise is verifiable authenticity, a row graded hasan that the
+authorities decline to grade hasan sat one step from production.
+
+**Also found in the same sweep:** `Jami at-Tirmidhi #2616` and `Sahih al-Bukhari
+#1469` each exist as TWO rows under ONE number, each carrying a different clause
+of the same hadith — and #2616's two rows carry DIFFERENT GRADES. The duplicate-
+check index keys on hadith number, so it cannot see either pair.
+
+**Rule:** check extent against the source before producing, and treat a
+translation that reads smoothly as evidence of nothing. Grammatical completeness
+in the target language says nothing about completeness in the matn, because the
+translator's job is to produce a sentence that reads — which means a truncated
+matn arrives looking whole. Read the ARABIC for a dangling conditional, an
+unanswered مَن, an enumeration that stops.
+
+**And:** two sources agreeing is not evidence of extent when both inherit the
+same abbreviation. Yesterday's ZAD cross-check flagged #13 and #19 as partial and
+passed #223, because ZAD's own entry was equally short. Agreement between a
+library row and a course book means they share an ancestor, not that they are
+complete.
+
+**Status:** #7936 quarantined, DO NOT PRODUCE. #223 and #2699 queued for a
+Workflow L re-pull. The two duplicate-number pairs recorded. A full
+extent-and-attribution audit of the 36 unused rows is not yet scheduled;
+`verify-matn-source.py` covers the attribution half and needs a `--mirror`.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 245: The moral re-attributes in seven generations out of eight
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** rule 17 says the MORAL applies the hadith in the listener's
+direction and the STORY carries the attribution. Across Bukhari #6570 and #13 —
+eight generations, four languages each — the moral re-attributed in seven:
+
+    #6570 RU   «таково условие, которое назвал Пророк ﷺ»
+    #6570 TJ   «зеро Паёмбар ﷺ хабар дод»
+    #6570 UZ   (H block) Allah-warrant, see below
+    #13   EN   “the Prophet ﷺ made this the measure of true belief”
+    #13   RU   «ведь этим самым мерилом Пророк ﷺ назвал истинность веры»
+    #13   UZ   «Аллоҳ таоло мана шу сифатни … қилиб қўйган»
+    #13   TJ   «ин шарте аст, ки Пайғамбар ﷺ … баён кардаанд»
+
+**Two of those are the same word in different languages.** #6570 RU's «условие»
+and #13 TJ's «шарт» both mean “condition” — one reel and one language apart,
+reached for independently.
+
+**And the two Uzbek instances escalated.** On #13, rule 17 was named explicitly
+in the pre-generation watch list. The generation did not re-attribute to the
+Prophet ﷺ; it re-attributed to ALLAH — “Allah the Exalted MADE this quality a
+sign of true faith” — a claim about Allah's action that the matn, which is the
+Prophet's ﷺ speech, never makes. That is P212's supplied warrant arrived at
+through P111/P115/P116's adjacent exit: close the named door and the next one
+opens. Naming the defect in advance moved it rather than stopping it.
+
+**What this is not.** It is not a wording problem. Seven instances, four
+languages, two reels, and no two phrasings alike. The constant is the MOVE: asked
+to apply a saying, the generation reaches for a sentence that says whose saying
+it is. That is a natural thing to write and it is exactly what the story block
+already did.
+
+**Bearing on the held rewrite.** `docs/proposed-rules-positive-form.md` has been
+on hold since P239, which found rule 25 losing 3-of-4 despite being both positive
+and a test. Rule 17 is also positive and also a test, and it loses 7-of-8. Two
+rules, two properties, two failures — the evidence now says the register of the
+rule is not the variable at all.
+
+**Rule:** where a rule names a thing not to do, the model finds the nearest thing
+that is not that. Rule 17 forbids re-quoting the Prophet ﷺ in the moral and the
+model re-quoted Allah. A rule that will hold has to describe what the moral IS —
+a sentence addressed to the listener about what they should do, containing no
+speaker — rather than which speakers are off limits.
+
+**Status:** NOT FIXED and deliberately unpatched. Every instance was caught at
+review and corrected before narration; none shipped. The next prompt change is
+one rule, tested alone on one set, as rule 25 was — not fifteen at once.

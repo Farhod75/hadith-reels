@@ -699,7 +699,11 @@ export default function AdminPage() {
               {/* Title */}
               <div className="bg-slate-800 rounded-xl border border-slate-700 p-4">
                 <div className="text-xs text-slate-400 uppercase tracking-wide mb-2">🎬 Title</div>
-                <p className="text-white font-semibold" dir="auto">{generated.title}</p>
+                {/* P242: was a read-only <p>. The caption derives from title,
+                    and P238 gave the caption a Rebuild control - so a title the
+                    operator fixed by hand in the caption box was silently reverted
+                    on the next rebuild, with no field to correct it at source. */}
+                <textarea value={generated.title} onChange={e => updateField('title', e.target.value)} className="w-full bg-slate-900/40 text-white font-semibold text-sm leading-relaxed border border-slate-600 rounded-lg p-2 resize-y min-h-[48px] focus:outline-none focus:border-slate-400" dir="auto" data-test="title-edit" />
               </div>
 
               {/* Story + Audio */}

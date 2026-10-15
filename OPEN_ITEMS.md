@@ -20,6 +20,61 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ## Production queue
 
+**LIBRARY ROWS THAT CANNOT BE PRODUCED AS THEY STAND — found 2026-10-15** while
+picking a hadith for the day's reel. Five rows in one morning, out of 38 unused.
+
+**`Musnad Ahmad #7936` — DO NOT PRODUCE.** Wrong on four counts, verified against
+two independent Dorar entries:
+
+| field | library | Dorar |
+|---|---|---|
+| narrator | Abu Hurairah | سخبرة الأزدي (Sakhbarah al-Azdi) |
+| grade | **hasan** | al-Mundhiri: لا يتطرق إليه احتمال التحسين — cannot be raised to hasan |
+| matn | ends at وظلم فعفا | continues: ثم سكت → they ask → أولئك لهم الأمن وهم مهتدون |
+| wording | فعفا | فغفر |
+
+The grade is the serious one. All four translations also invent a main clause —
+“Blessed is he” / «Блажен тот» / «Бахтлидир» / «Хушбахт аст» — because the stored
+Arabic is a مَن conditional with its apodosis cut off. There is no طوبى in it. See
+P244: the fabrication is what made the truncation invisible.
+
+**PARTIAL EXTENT — need a Workflow L re-pull before production:**
+
+- `Sahih Muslim #223` — carries only الطهور شطر الإيمان. The hadith continues
+  through praise filling the scale, prayer as light, charity as proof, patience
+  as brightness, the Qur'an as evidence for or against you. Yesterday's ZAD
+  cross-check flagged #13 and #19 for partial extent and MISSED this one,
+  because ZAD's own entry was equally abbreviated.
+- `Sahih Muslim #2699` — only the seeking-knowledge clause.
+
+**ONE HADITH STORED AS TWO ROWS UNDER ONE NUMBER:**
+
+- `Jami at-Tirmidhi #2616` — one row “head of the matter is Islam… pillar is
+  prayer… summit is jihad” graded *hasan*, another “charity extinguishes sin as
+  water extinguishes fire” graded *sahih*. Both are clauses of the same hadith,
+  with DIFFERENT grades. `verify-matn-source.py`'s own docstring cites this
+  reference.
+- `Sahih al-Bukhari #1469` — “no gift better than patience” (ar 61) and
+  “whoever tries to be patient” (ar 36), both Abu Said al-Khudri, both sahih.
+
+Duplicate numbers break the tracker's duplicate-check index, which keys on
+hadith number. The library deserves an extent-and-attribution audit rather than
+catching these one at a time; `verify-matn-source.py` already covers the
+attribution half but needs a `--mirror`.
+
+**Library rows corrected 2026-10-15** (all read back after the UPDATE —
+“Success. No rows returned” says nothing about rows touched):
+
+- `#6570.text_english` — “O Abu Hurayrah” → “O Abu Hurairah”, matching its own
+  narrator field and the 49 uses across the repo. NOTE: the EN reel was rendered
+  BEFORE this, so its caption still reads Hurayrah while its narration and burned
+  subtitles read Hurairah. Rebuild the EN caption before #6570 publishes.
+- `#13.text_russian` — added «истинно» so all four languages carry the
+  completeness qualifier (EN “truly”, UZ ғақиқий, TJ ҳақиқӣ already had it).
+- `#13.text_uzbek_cyrillic` and `text_uzbek_latin` — «ўз учун» → «ўзи учун»,
+  operator-caught at review.
+
+
 **ZAD Semester-2 Hadith — cross-checked against the library 2026-10-14.**
 Source: `ZAD_Semester2_Hadith_UZ_Cyrillic_Corrected.pdf` (project docs). Text
 extracts cleanly; the four scanned CourseBook PDFs do not, which is what parked
@@ -76,16 +131,16 @@ Publishing waits on the 2-3 week Tawheed-arc spacing from #6423 (posted
 2026-10-13). Nothing outstanding on the reels themselves; every frame checked.
 
 The tracker is deliberately NOT updated yet. Its own rule is "After posting a
-reel - append a new row", so R130-R133, the clip-library rows and the
-production stats (→ 133 reels, 34 hadiths) all go in on publish day. Everything
+reel - append a new row", so R134-R137, the clip-library rows and the
+production stats (→ 137 reels, 35 hadiths) all go in on publish day. Everything
 needed to write them:
 
 | Row | Lang | Duration | Size | Nasheed | Scenes |
 |---|---|---|---|---|---|
-| R130 | EN | 44.8s | 10.1 MB | vocal-nasheed-06 | lamp, ink, plain, kalima, garden |
-| R131 | RU | 47.1s | 10.5 MB | aswati-Steady-Motivation | lamp, ink, plain, kalima, garden |
-| R132 | UZ | 53.2s | 13.5 MB | aswati-Focused-Determination | lamp, ink, plain, **b6423-plain**, kalima, garden |
-| R133 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
+| R134 | EN | 44.8s | 10.1 MB | vocal-nasheed-06 | lamp, ink, plain, kalima, garden |
+| R135 | RU | 47.1s | 10.5 MB | aswati-Steady-Motivation | lamp, ink, plain, kalima, garden |
+| R136 | UZ | 53.2s | 13.5 MB | aswati-Focused-Determination | lamp, ink, plain, **b6423-plain**, kalima, garden |
+| R137 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
 
 Subtitles EN/RU only (P078). Scene order is NOT the order the clips were
 generated in: the kalima was moved from third to fourth after the first EN
@@ -100,11 +155,19 @@ neighbour note and the EN frame check. UZ carries a sixth clip for P240.
 2. **`matn_verified_at`** is still null on both #6423 and #6570. P151 - that
    field means a human read the row against the source, so it is yours to set,
    not mine.
-3. **Nasheed spacing** - RU uses `aswati-Steady-Motivation`, the same bed as
-   #6423 RU (R127). The rule is no repeat on 2 consecutive reels in the same
-   language, and these two ARE consecutive in RU. Either re-render RU with a
-   different bed or make the exception knowingly.
+3. **Nasheed spacing — rechecked 2026-10-15 after #13 shipped.** Posted order
+   per language now runs #6423 → #13 → #6570, which changes all three verdicts:
 
+   - **RU: CLOSED.** #6570 RU's `aswati-Steady-Motivation` clashed with #6423 RU
+     (R127). #13 RU (R131) now sits between them on `vocal-nasheed-05`, so they
+     are no longer consecutive. No action.
+   - **EN: NEW.** #13 EN (R130) used `vocal-nasheed-06` and #6570 EN is rendered
+     with the same bed. Consecutive EN reels.
+   - **UZ: NEW.** #13 UZ (R132) used `aswati-Focused-Determination`; so does
+     #6570 UZ. Consecutive UZ reels.
+
+   Both new clashes need a different bed before #6570 posts, or a knowing
+   exception. A re-render is cheap - no new Kling, no re-narration.
 **Rule 25's verdict is in — see P239.** It lost 3-of-4. The fifteen-rule
 rewrite in `docs/proposed-rules-positive-form.md` stays on hold; what goes in
 next is one rule naming the MOVE (affirmation rendered as contrast), tested

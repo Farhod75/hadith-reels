@@ -1,3 +1,48 @@
+## [2026-10-15]
+
+### Fixed
+- **`hadith_library` — three rows corrected at source.** `#6570.text_english`
+  disagreed with its own narrator field (“Abu Hurayrah” against “Abu Hurairah”,
+  49 uses across the repo and no variant); `#13.text_russian` lacked the
+  completeness qualifier the other three languages carry; `#13.text_uzbek_*`
+  read «ўз учун» where Uzbek needs «ўзи учун». All read back after the UPDATE.
+
+### Documented
+- **Bukhari #13 shipped in four languages (R130-R133)** — “None of you truly
+  believes until he loves for his brother what he loves for himself.” Shortest
+  adults reels to date (18.9-25.6s), and the first built on REUSED scene clips
+  rather than bespoke ones. #6570's reserved row IDs shift to R134-R137: the
+  tracker's rule is rows go in after posting, and #6570 publishes ~2026-10-27.
+- **`restore-srt-casing.py` introduced a casing error (P243).** It reads all of
+  `draft.txt`, including the non-narrated H and C blocks, and does not expand
+  ﷺ. A sentence-initial «Его» in H became the “source spelling” for the
+  mid-sentence «его» in the ﷺ expansion, so a correct subtitle was rewritten to
+  read as Allah being blessed rather than the Prophet ﷺ. The linter could not
+  see it: its check fires on words absent from the source, and this one was
+  present in the other case. NOT FIXED — reverted by hand at the review pause.
+- **Five library rows found unusable in one morning (P244).** `Musnad Ahmad
+  #7936` is wrong on narrator, grade, extent and wording, and all four of its
+  translations invent the apodosis its truncated مَن conditional is missing —
+  which is why it read as complete and was recommended for production twice.
+  `Muslim #223` and `#2699` are partial extent. `Tirmidhi #2616` and `Bukhari
+  #1469` each exist as two rows under one number, #2616's with different grades.
+- **Rule 17 loses seven of eight (P245).** Across #6570 and #13 the moral
+  re-attributed in seven generations; #6570 RU's «условие» and #13 TJ's «шарт»
+  are the same word reached for independently. Both Uzbek instances escalated to
+  attributing the claim to Allah — including once when rule 17 had been named in
+  the watch list beforehand. With P239's finding on rule 25, the register of a
+  rule is no longer a plausible variable; `proposed-rules-positive-form.md`
+  stays on hold.
+
+- **`app/admin/page.tsx` — the title had no editor, so Rebuild reverted it
+  (P242).** P238 gave the caption a ↻ Rebuild from blocks control. The caption
+  derives from title as well as story/moral/seerah, but title was a read-only
+  `<p>` while the other three were textareas wired to `updateField`. Rebuild
+  therefore could not pick up a corrected title and silently restored the
+  generated one - a field that worked fine before P238. Found on Bukhari #13,
+  where the generated title was clickbait and the correction would not stick.
+  Title is now a textarea bound to `updateField('title')`.
+
 ## [2026-10-14]
 
 ### Fixed

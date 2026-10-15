@@ -150,6 +150,10 @@
 | R127 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | RU | Adults | bukhari-6423 | adults-ru-bukhari-6423-story.mp3 | adults-ru-bukhari-6423-moral.mp3 | adults-ru-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-ru-bukhari-6423-bg-mixed.mp4 | aswati-Steady-Motivation.mp3 | YES | adults-ru-bukhari-6423-reel.mp4 | 27.2s | 6.0 MB | THE REEL THAT EXPOSED P232. The generation failed three times with "Failed to parse AI response" - the Russian matn carries straight double quotes (говорящий: "Нет божества, кроме Аллаха"), and a verbatim copy of them closed the JSON string early. The model obeyed rule 2 and P153 exactly; the envelope could not carry what the rules required. Route moved to an emit_reel tool schema. EN had passed only because its matn uses guillemets. Content defects, both corrected before shipping: the moral supplied "а не ради людей или мирской выгоды", a contrast the matn does not draw, and the seerah context said "защищает от ВЕЧНОГО пребывания в Огне" - the classical reconciliation smuggled in as if it were the matn, which says only حرم الله عليه النار. Rendered twice: the first run omitted -FitScenes, so three clips filled the audio at native length and the reel never reached the ash scene (P229's sibling - the flag, not the arithmetic). published TG/IG/YT/TikTok |
 | R128 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | UZ | Adults | bukhari-6423 | adults-uz-bukhari-6423-story.mp3 | adults-uz-bukhari-6423-moral.mp3 | adults-uz-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-uz-bukhari-6423-bg-mixed.mp4 | path-to-jannah-bg.mp3 | NO (P078) | adults-uz-bukhari-6423-reel.mp4 | 34.0s | 7.2 MB | TTS defect found at narration, not in review: the kalima was written 'ла илаҳа иллаллоҳ' with straight apostrophes carried over from the Russian quote nesting, and ElevenLabs read the apostrophe as tutuq belgisi - it is a LETTER in Uzbek, not a quotation mark - giving "а'ла илаҳа иллаллоҳ". Quotes dropped from the kalima entirely; P097's family. Content defects corrected before narrating: the story said эрталаб ҳузурИга келиб, third person, when the matn is first person (غدا عليَّ, Itban narrating his own house) - the caption text had it right and only the story block drifted; the moral added ваъда қилган, a promise the matn does not make, against the moral field's own rule. published TG/IG/YT/TikTok |
 | R129 | 2026-10-13 | Sahih al-Bukhari #6423 | Itban ibn Malik | Sahih | Tawheed / Sincerity | #tawheed #iman #sincerity #qiyamah #allah | TJ | Adults | bukhari-6423 | adults-tj-bukhari-6423-story.mp3 | adults-tj-bukhari-6423-moral.mp3 | adults-tj-bukhari-6423-narration.mp3 | b6423-gate.mp4, b6423-kalima.mp4, b6423-plain.mp4, b6423-ash-v2.mp4 | adults-tj-bukhari-6423-bg-mixed.mp4 | vocal-nasheed-01.mp3 | NO (P078) | adults-tj-bukhari-6423-reel.mp4 | 30.4s | 6.2 MB | CLOSED THE SET AND CONFIRMED A PROMPT FINDING. The supplied negation appeared in ALL FOUR languages - RU "а не как пустые слова на устах", UZ "фақат тил билан айтишга эмас, балки", TJ carrying it TWICE (M and H: "на танҳо бо забон, балки"). The added promise (ваъда) made three of four, and the comment-about-the-text frame three of four. Rules 23 and 24 went in on 2026-10-12 to stop exactly this family and did not hold: a rule can be in the list and still lose to the shape the model reaches for. TJ also drifted ваҷҳ -> ризо and twice said "from the heart" (аз самими дил / аз таҳи дил) where the matn says يبتغي به وجه الله - the same نفسه->heart drift Stage 3 caught in a hand edit the same day. Held clean: Аллоҳ throughout with no Худо drift, and the story quoted text_tajik verbatim with назди ман in the first person. published TG/IG/YT/TikTok POST-PUBLISH CORRECTION 2026-10-14: the library row's Tajik kalima read «ло илоҳа илаллоҳ», missing the gemination إلّا's shadda requires, while #6570 carried a differently-wrong «Лоилоҳа иллаллоҳ» - two spellings of the same kalima in one three-reel arc built on it. Row corrected to «ло илоҳа иллаллоҳ»; the reel was NOT re-rendered, the audio is published. Found by P235's step 3a on its first use. |
+| R130 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | EN | Adults | bukhari-13 | adults-en-bukhari-13-story.mp3 | adults-en-bukhari-13-moral.mp3 | adults-en-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-en-bukhari-13-bg-mixed.mp4 | vocal-nasheed-06.mp3 | YES | adults-en-bukhari-13-reel.mp4 | 18.9s | 8.6 MB | FIRST adults reel built on REUSED scene clips. Workflow J step 4 says four NEW Kling scenes per hadith; this took three from m1631 (R114-R117). Deliberate: an 18s reel from a one-clause matn, and three Kling clips for 18s is poor value, while m1631's shared well / water reaching both banks / grove carries the hadith honestly. SHORTEST adults reel to date. The operator asked whether to generate stills first and was talked out of it on a reasoning that cited the rotate-3-5-clips-per-10-reels line, which governs the RANDOM pool, not this - the documented rule was right and the argument against it was wrong. Generated title was clickbait (“None Truly Believes Until He Loves This”) and the corrected one would not stick: the Title field was a read-only <p>, so ↻ Rebuild reverted it (P242, found and fixed mid-reel). Story block asserted the matn's word is “akhi”; the matn has أخيه - akhi means MY brother. published TG/IG/YT/TikTok |
+| R131 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | RU | Adults | bukhari-13 | adults-ru-bukhari-13-story.mp3 | adults-ru-bukhari-13-moral.mp3 | adults-ru-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-ru-bukhari-13-bg-mixed.mp4 | vocal-nasheed-05.mp3 | YES | adults-ru-bukhari-13-reel.mp4 | 19.9s | 9.0 MB | restore-srt-casing.py INTRODUCED a defect (P243). Whisper transcribed «да благословит его Аллах» correctly; the script rewrote его -> Его, which reads as Allah being blessed rather than the Prophet ﷺ. Its source is the whole of draft.txt including the NON-NARRATED H block, where «Его понимают как» opens a sentence - the only standalone его/Его in the file. The ambiguity guard never fired because there was exactly one spelling to find, and it was the wrong one. Caught at the review pause and reverted by hand. Four cue breaks also split a verb from its object and were re-cued. published TG/IG/YT/TikTok |
+| R132 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | UZ | Adults | bukhari-13 | adults-uz-bukhari-13-story.mp3 | adults-uz-bukhari-13-moral.mp3 | adults-uz-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-uz-bukhari-13-bg-mixed.mp4 | aswati-Focused-Determination.mp3 | NO (P078) | adults-uz-bukhari-13-reel.mp4 | 25.6s | 11.9 MB | The moral attributed the claim to ALLAH - «Аллоҳ таоло мана шу сифатни ҳақиқий иймоннинг белгиси қилиб қўйган» - where the matn is the Prophet's ﷺ speech. P212's supplied warrant, and a clean instance of the adjacent exit (P111/P115/P116): rule 17 was flagged BEFORE generating, so instead of re-attributing to the Prophet ﷺ it re-attributed to Allah. H called the quality a рукн (pillar) where EN says sign and RU признак. Library matn corrected at SOURCE after the operator caught it at review: «ўз учун» -> «ўзи учун» in both Cyrillic and Latin. published TG/IG/YT/TikTok |
+| R133 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | TJ | Adults | bukhari-13 | adults-tj-bukhari-13-story.mp3 | adults-tj-bukhari-13-moral.mp3 | adults-tj-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-tj-bukhari-13-bg-mixed.mp4 | aswati-Steady-Motivation.mp3 | NO (P078) | adults-tj-bukhari-13-reel.mp4 | 19.8s | 8.9 MB | Rule 17 again, and the word matched RU #6570's exactly - «ин шарте аст» against «таково условие», one language and one reel apart. Across #6570 and #13 the moral re-attributed in SEVEN OF EIGHT generations (P245). H ran «Маънои муқарраршудаи он» - verbatim the phrase removed from TJ #6570 the day before. TTS defect found at narration, not review: «бародарат» narrated as «бародорат»; switched to the analytic «бародари худ», which sidesteps the suffix. published TG/IG/YT/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -199,6 +203,7 @@
 | Jami at-Tirmidhi #3895 | EN, UZ, RU, TJ | Adults | R118, R119, R120, R121 |
 | Sahih al-Bukhari #5027 | EN, RU, UZ, TJ | Adults | R122, R123, R124, R125 |
 | Sahih al-Bukhari #6423 | EN, RU, UZ, TJ | Adults | R126, R127, R128, R129 |
+| Sahih al-Bukhari #13 | EN, RU, UZ, TJ | Adults | R130, R131, R132, R133 |
 | Sahih al-Bukhari #6570 | — | — | SAME HADITH AS #99, not merely similar. Abu Hurairah on intercession appears TWICE in Bukhari: Riqaq #6570 and Ilm #99, and Dorar returns both as separate cards. Ship ONE number and keep it everywhere — a viewer who finds the other number reads our citation as wrong. Sourced 2026-10-12, not yet produced. |
 | Sahih Muslim #28 | — | — | SAME HADITH AS Sahih al-Bukhari #3435 (Ubadah ibn as-Samit; the testimony that names Isa, His word cast to Maryam, and a spirit from Him). Muttafaq alayh. The ZAD slide this came from cites «Бухорий ва Муслим», but our caption format carries ONE collection + number — decide which before producing, and expect viewers who learned it as “Bukhari and Muslim”. |
 | Sahih al-Bukhari #425 / #5401 / #6938 | — | — | THREE MORE ENTRIES around the same Itban ibn Malik event. We ship #6423, the short saying. #425 and #5401 are narrated by MAHMUD IBN AR-RABI‘ AL-ANSARI, not Itban, and are the long narrative about Itban’s failing eyesight; #6938 is a longer Itban variant with Malik ibn ad-Dukhshun. A viewer searching “Itban” lands on #425 first. #425 was itself wrongly recorded as our source until 2026-10-12 (P218). |
@@ -219,6 +224,7 @@
 | Dua / Supplication | 1 | R001 | RU |
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
 | Tawheed / Sincerity | 4 | R126-R129 | EN, RU, UZ, TJ |
+| Iman / Brotherhood | 4 | R130-R133 | EN, RU, UZ, TJ |
 | Charity / Sadaqah | 4 | R014, R015, R016, R017 | EN, RU, UZ, TJ |
 | Pillars of Islam | 4 | R018, R019, R020, R021 | EN, RU, UZ, TJ |
 | Sujud / Dua | 4 | R022, R023, R024, R025 | EN, RU, UZ, TJ |
@@ -275,8 +281,8 @@
 | vocal-nasheed-04.mp3 | 14 | R126 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113, R126 |
 | vocal-nasheed-01.mp3 | 11 | R129 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129 |
 | vocal-nasheed-03.mp3 | 9 | R099 | R029, R035, R043, R058, R070, R081, R089, R092, R099 |
-| vocal-nasheed-05.mp3 | 9 | R109 | R032, R036, R045, R059, R069, R082, R093, R098, R109 |
-| vocal-nasheed-06.mp3 | 8 | R100 | R033, R039, R048, R060, R066, R073, R075, R100 |
+| vocal-nasheed-05.mp3 | 10 | R131 | R032, R036, R045, R059, R069, R082, R093, R098, R109, R131 |
+| vocal-nasheed-06.mp3 | 9 | R130 | R033, R039, R048, R060, R066, R073, R075, R100, R130 |
 | vocal-nasheed-07.mp3 | 9 | R105 | R037, R049, R055, R063, R072, R080, R086, R097, R105 |
 | light-of-my-heart-bg.mp3 | 9 | R106 | R010, R013, R024, R038, R078, R091, R094, R104, R106 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
@@ -289,8 +295,8 @@
 | aswati-Morning-Serenity.mp3 | 2 | R124 | R116, R124 |
 | aswati-Heartfelt-Gratitude.mp3 | 2 | R123 | R117, R123 |
 | aswati-Rising-Hope.mp3 | 2 | R125 | R118, R125 |
-| aswati-Steady-Motivation.mp3 | 2 | R127 | R119, R127 |
-| aswati-Focused-Determination.mp3 | 1 | R122 | R122 |
+| aswati-Steady-Motivation.mp3 | 3 | R133 | R119, R127, R133 |
+| aswati-Focused-Determination.mp3 | 2 | R132 | R122, R132 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
 ### Background scene usage
@@ -309,7 +315,7 @@ three sets.
 | b5027-matn-v3, copy | 1 set | 2026-10-11 (R122-R125) | R122-R125 |
 | b6423-gate, kalima, plain, ash-v2 | 1 set | 2026-10-13 (R126–R129) | R126–R129 |
 | t3895-hearth, dastarkhan, platter, house | 1 set | 2026-10-10 (R118-R121) | R118-R121 |
-| m1631-well, channel, circle, grove | 1 set | 2026-10-09 (R114-R117) | R114-R117 |
+| m1631-well, channel, circle, grove | 2 sets | 2026-10-15 (R130-R133) | R114-R117, R130-R133 (well/channel/grove only) |
 | m2759-door-night, threshold, firstlight, dawn | 1 set | 2026-10-05 (R110-R113) | R110-R113 |
 | m2963-windows, bowls, sandals, room | 1 set | 2026-10-04 (R106-R109) | R106-R109 |
 | m2628-musk, stall, forge, robes | 1 set | 2026-10-03 (R102–R105) | R102–R105 |
@@ -356,6 +362,10 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | b6423-kalima.mp4 | 4 | R126-R129 |
 | b6423-plain.mp4 | 4 | R126-R129 |
 | b6423-ash-v2.mp4 | 4 | R126-R129 |
+| m1631-well.mp4 | 8 | R114-R117, R130-R133 |
+| m1631-channel.mp4 | 8 | R114-R117, R130-R133 |
+| m1631-grove.mp4 | 8 | R114-R117, R130-R133 |
+| m1631-circle.mp4 | 4 | R114-R117 |
 | kaaba.mp4 | TBD | TBD (R004 or R005 random pick) |
 | kaaba-roof.mp4 | TBD | TBD |
 | kaaba-balcony.mp4 | TBD | TBD |
@@ -406,18 +416,18 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 129 |
+| Total reels posted | 133 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 77 |
+| Adults reels | 81 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 33 |
-| Library rows | 70 (33 used, 37 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×59, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 17 (Uthman ibn Affan ×4, Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×4, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4) |
+| Hadiths used (unique) | 34 |
+| Library rows | 70 (34 used, 36 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×63, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 17 (Uthman ibn Affan ×4, Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4) |
 
-**129 reels from 33 hadiths.** Thirty-three of 70 library rows have been used;
+**133 reels from 34 hadiths.** Thirty-four of 70 library rows have been used;
 37 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
