@@ -63,6 +63,43 @@ Recommendation: start in **MODE B** for the POC (lowest risk, and silhouette/bac
 scenes are often *more* cinematic anyway), then relax to A if you and a reviewer are
 comfortable. Either is supported; the system prompt switches on it.
 
+**SETTLED IN PRACTICE, 2026-10-15.** It never relaxed to A — every shipped
+animated reel is MODE B. Two things that were true for months and written down
+nowhere:
+
+- **The default is NO FIGURES AT ALL**, stricter than MODE B as defined above.
+  That is what `CLAUDE.md` Workflow J step 4 means by “MODE B (no figures)”.
+  Most reels want this: it is the lowest-risk option and the cheapest to
+  generate.
+
+- **Figures are PERMITTED where the matn's subject is anonymous** — *whoever*,
+  *none of you*, *the Muslim is*. Distant, from behind, in silhouette, or
+  implied by hands and shadows, exactly as MODE B defines. Where the hadith
+  describes a human act this is often CLOSER to the matn than a landscape
+  standing in for it. On Bukhari #13 (“none of you truly believes until he
+  loves for his brother what he loves for himself”) the reel shipped on a well,
+  a water channel and a grove — a metaphor the matn does not make. Hands
+  dividing bread would have been the hadith itself. The caravan reel is the
+  case done right: distant travellers carry “people left their homes and their
+  trade” in a way no empty landscape could.
+
+- **Never where the matn NAMES the actor**, or depicts a specific incident. A
+  silhouette in a scene the matn attributes to the Prophet ﷺ or to a named
+  companion IS that person to a viewer, however anonymous the rendering, and
+  §2's hard block applies. Bukhari #6570 (Abu Hurairah asking the Prophet ﷺ a
+  question) is the clear negative case: any figure there is one of two named
+  men.
+
+- **Figure clips get the frame-by-frame check** that composited Arabic gets. A
+  warped landscape is ugly; a warped figure is grotesque and can resolve a
+  face. The negative prompt already carries `deformed hands` for this reason,
+  and a re-roll is a paid call (~$0.70–0.90).
+
+This is a PERMISSION, not a classification step. If the hadith does not
+obviously call for figures, the default stands and nothing needs deciding. If
+the scholarly question feels open on a given hadith, that uncertainty is itself
+the answer for that one — as the MODE B line above already says.
+
 ### ERA & SETTING (inferred per hadith — environment + clothing must match the period)
 
 A hadith may describe different historical eras, and the visuals should match whichever one

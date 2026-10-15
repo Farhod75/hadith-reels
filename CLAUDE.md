@@ -505,7 +505,9 @@ npm run test:multilingual
 1. Verify the DB row first: grade, all four language texts, diacritics
 2. Generate text in the admin → `draft.txt` → Workflow E
 3. TTS per language — the route writes into the work tree (P106); nothing to download
-4. Four NEW Kling scenes per hadith, MODE B (no figures), drawn from settings the
+4. Four NEW Kling scenes per hadith, MODE B (no figures BY DEFAULT - see THE FACE
+   DIAL in animated-reel-scene-prompts.md for when anonymous figures are
+   permitted, and when they are not), drawn from settings the
    matn implies — never from imagery it does not contain (P111 rule 14):
    `.\scripts\generate-image.ps1 -Name "<slug>-<scene>" -Count 3 -Prompt "..."`
    review the stills, then
