@@ -35,6 +35,30 @@ WORD = re.compile(r"[^\W\d_]+", re.UNICODE)
 TIMECODE = re.compile(r"^\s*\d{2}:\d{2}:\d{2},\d{3}\s*-->")
 INDEX = re.compile(r"^\s*\d+\s*$")
 BLOCK_LABEL = re.compile(r"^\s*[SMHC]\s*:\s*", re.IGNORECASE)
+BLOCK_TAG = re.compile(r"^\s*([SMHC])\s*:\s*", re.IGNORECASE)
+
+# P243: only S and M are narrated. H and C sit in the same draft.txt and are
+# never spoken. On Bukhari #13 RU the H block opened a sentence with "Его
+# понимают как" - the only standalone его/Его in the file - and this script
+# took that capital as the source spelling for the mid-sentence его inside the
+# prophet-symbol expansion, rewriting a correct subtitle into one that reads as
+# ALLAH being blessed rather than the Prophet. The ambiguity guard never fired,
+# because there was exactly one spelling to find and it was the wrong one.
+NARRATED_BLOCKS = ("S", "M")
+
+# P243: cleanForTTS replaces the symbol with spoken words BEFORE the audio is
+# made, so Whisper hears words and the source still holds the symbol. Without
+# expanding it here, every word of the phrase is in the AUDIO but absent from
+# the SOURCE - which is how its casing came to be decided by an unrelated
+# block. Values mirror stt-validate.py; keep them in step.
+PROPHET_SPOKEN = {
+    "ru": "да благословит его Аллах и приветствует",
+    "en": "peace be upon him",
+    "ar": "صلى الله عليه وسلم",
+    "uz": "Саллаллоҳу алайҳи васаллам",
+    "tj": "Салаллоҳу алайҳи васаллам",
+}
+PROPHET_SYMBOLS = ["\ufdfa", "ﷺ", "صلى الله عليه وسلم"]
 
 
 def norm(w):
@@ -51,11 +75,35 @@ def dominant_newline(raw):
     return "\r\n" if raw.count("\r\n") >= raw.count("\n") - raw.count("\r\n") else "\n"
 
 
-def source_forms(text):
-    """normalised form -> the set of spellings the source uses for it."""
+def expand_prophet(text, lang):
+    """P243: mirror cleanForTTS so the spoken words have a source spelling."""
+    spoken = PROPHET_SPOKEN.get(lang, "")
+    if not spoken:
+        return text
+    for sym in PROPHET_SYMBOLS:
+        text = text.replace(sym, " %s " % spoken)
+    return text
+
+
+def source_forms(text, lang=None):
+    """normalised form -> the set of spellings the source uses for it.
+
+    P243: NARRATED blocks only. H and C are in draft.txt and are never spoken,
+    so a sentence-initial capital in one of them is not evidence about a
+    mid-sentence word in another. Lines without a label continue the block
+    above them, so the current block is tracked rather than assumed.
+    """
     forms = defaultdict(set)
+    block = None
     for line in text.splitlines():
-        line = BLOCK_LABEL.sub("", line)
+        m = BLOCK_TAG.match(line)
+        if m:
+            block = m.group(1).upper()
+            line = BLOCK_TAG.sub("", line)
+        if block not in NARRATED_BLOCKS:
+            continue
+        if lang:
+            line = expand_prophet(line, lang)
         for w in WORD.findall(line):
             forms[norm(w)].add(w)
     return forms
@@ -79,7 +127,7 @@ def main():
 
     raw = read_text(args.srt)
     nl = dominant_newline(raw)
-    forms = source_forms(read_text(args.source))
+    forms = source_forms(read_text(args.source), args.lang)
     if not forms:
         print("FAILED: no words found in %s" % args.source)
         return 2

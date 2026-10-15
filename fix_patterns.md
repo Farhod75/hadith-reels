@@ -9416,7 +9416,21 @@ earlier, in this same session, rewording the H block from «Он устанав�
 block asserted where EN hedged). The previous wording had no standalone его. A
 defensible edit to a non-narrated block silently changed the subtitles.
 
-**Status:** NOT FIXED. Caught at the review pause and reverted by hand. Either
+**Status: P243 FIXED 2026-10-15.** Both changes went in, not one:
+
+  - `source_forms()` now tracks the current block and collects words only from
+    S and M. Unlabelled lines continue the block above them, so the block is
+    tracked rather than assumed from the line's own prefix.
+  - `expand_prophet()` added, mirroring `stt-validate.py`'s `PROPHET_SPOKEN`,
+    and `--lang` is now threaded to `source_forms()`. The spoken words have a
+    real source spelling instead of inheriting one.
+
+Either alone closes this instance; with the expansion present, его would appear
+in both cases and the ambiguity guard would fire, leaving Whisper's correct
+output in place. Both went in because a non-narrated block should never
+influence subtitles at all, independent of this bug.
+
+ORIGINALLY recorded as: caught at the review pause and reverted by hand. Either
 change closes it: restrict the source to S and M, or expand ﷺ the way the linter
 does — with the expansion present, его would appear in both cases, the ambiguity
 guard would fire, and Whisper's correct output would stand. Do both: the first
