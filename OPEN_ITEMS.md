@@ -137,9 +137,9 @@ needed to write them:
 
 | Row | Lang | Duration | Size | Nasheed | Scenes |
 |---|---|---|---|---|---|
-| R134 | EN | 44.8s | 10.1 MB | vocal-nasheed-06 | lamp, ink, plain, kalima, garden |
+| R134 | EN | 44.8s | 10.1 MB | aswati-Peaceful-Contemplation | lamp, ink, plain, kalima, garden |
 | R135 | RU | 47.1s | 10.5 MB | aswati-Steady-Motivation | lamp, ink, plain, kalima, garden |
-| R136 | UZ | 53.2s | 13.5 MB | aswati-Focused-Determination | lamp, ink, plain, **b6423-plain**, kalima, garden |
+| R136 | UZ | 53.2s | 13.5 MB | aswati-Heartfelt-Gratitude | lamp, ink, plain, **b6423-plain**, kalima, garden |
 | R137 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
 
 Subtitles EN/RU only (P078). Scene order is NOT the order the clips were
@@ -155,19 +155,42 @@ neighbour note and the EN frame check. UZ carries a sixth clip for P240.
 2. **`matn_verified_at`** is still null on both #6423 and #6570. P151 - that
    field means a human read the row against the source, so it is yours to set,
    not mine.
-3. **Nasheed spacing — rechecked 2026-10-15 after #13 shipped.** Posted order
-   per language now runs #6423 → #13 → #6570, which changes all three verdicts:
+3. **Nasheed spacing — RESOLVED 2026-10-15.** Posted order per language runs
+   #6423 → #13 → #6570. All four now pass the tracker's rule (not the same
+   nasheed on 2 consecutive reels in the same language):
 
-   - **RU: CLOSED.** #6570 RU's `aswati-Steady-Motivation` clashed with #6423 RU
-     (R127). #13 RU (R131) now sits between them on `vocal-nasheed-05`, so they
-     are no longer consecutive. No action.
-   - **EN: NEW.** #13 EN (R130) used `vocal-nasheed-06` and #6570 EN is rendered
-     with the same bed. Consecutive EN reels.
-   - **UZ: NEW.** #13 UZ (R132) used `aswati-Focused-Determination`; so does
-     #6570 UZ. Consecutive UZ reels.
+   - **RU: no action.** #6570 RU's `aswati-Steady-Motivation` clashed with
+     #6423 RU (R127), but #13 RU (R131) sits between them on
+     `vocal-nasheed-05`. Not consecutive. NOT re-rendered.
+   - **EN: re-rendered** 2026-10-15 17:54 with
+     `-Nasheed aswati-Peaceful-Contemplation.mp3`. Was `vocal-nasheed-06`, the
+     same bed as #13 EN (R130). 44.8s / 10.1 MB unchanged; only the bed differs.
+   - **UZ: re-rendered** 2026-10-15 18:23 with
+     `-Nasheed aswati-Heartfelt-Gratitude.mp3`. Was
+     `aswati-Focused-Determination`, the same bed as #13 UZ (R132).
+     53.2s / 13.5 MB unchanged.
+   - **TJ: no action.** `vocal-nasheed-05`; TJ's previous bed was
+     `aswati-Steady-Motivation` (R133).
 
-   Both new clashes need a different bed before #6570 posts, or a knowing
-   exception. A re-render is cheap - no new Kling, no re-narration.
+   Beds read back from the four P201 `*-render.json` sidecars, not from the
+   session log — the chat had RU and TJ transposed for several turns, and the
+   sidecars are what caught it. `-Nasheed` was passed explicitly so the picker
+   could not re-roll.
+4. **The narrated TEXT for these four reels is not on disk (P246).**
+   `draft.txt` was overwritten by #13's generation the next day. EN and RU can
+   be reconstructed from their `*-narration.srt`; UZ and TJ ship without
+   subtitles (P078) and have NO text record — the reviewed wording survives
+   only as audio. Not in the repo, the session transcript, or chat history.
+
+   On publish day, for UZ and TJ, either:
+   - **transcribe** the caption's story line from the reel audio — keeps the
+     wording that was actually reviewed and corrected, ~15 min; or
+   - **regenerate** in admin and re-review all four blocks — fresh text means
+     fresh defects, and P245 re-attributed the moral in 7 of 8 generations.
+
+   Transcribing is cheaper and safer. Reels rendered from 2026-10-15 onward
+   archive their own text (`{style}-{lang}-{slug}-{section}.txt`, written by the
+   TTS route beside each mp3), so this applies to #6570 alone.
 **Rule 25's verdict is in — see P239.** It lost 3-of-4. The fifteen-rule
 rewrite in `docs/proposed-rules-positive-form.md` stays on hold; what goes in
 next is one rule naming the MOVE (affirmation rendered as contrast), tested

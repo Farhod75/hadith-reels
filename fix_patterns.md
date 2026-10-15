@@ -9549,3 +9549,70 @@ speaker — rather than which speakers are off limits.
 **Status:** NOT FIXED and deliberately unpatched. Every instance was caught at
 review and corrected before narration; none shipped. The next prompt change is
 one rule, tested alone on one set, as rule 25 was — not fifteen at once.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 246: A verifier reported agreement with a source it could not read
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** #6570 was produced 2026-10-14 and held for Tawheed-arc
+spacing. On 2026-10-15 its EN reel was re-rendered to change the nasheed. By
+then `draft.txt` held #13's CYRILLIC blocks — #13 was generated the next day,
+and every generation overwrites that file.
+
+`restore-srt-casing.py` ran with `--lang en` against that Cyrillic source and
+printed:
+
+    nothing to restore - the SRT already matches the source.
+
+It had compared nothing. A Latin SRT and a Cyrillic source share no words, so
+no word could be restored, and the script read its own empty result as
+agreement. `stt-validate.py`, running immediately after on the SAME pair, got
+it right: one HIGH `transcript_diverged` at similarity 0.126 plus sixteen
+`script_mismatch` lines. One check refused and the other agreed, on identical
+inputs.
+
+**Why it mattered more than it looked:** the reel was fine. The burned
+subtitles were Whisper's own output and had been read at the review pause. The
+damage was to the RECORD. P243 was fixed that same afternoon and this run was
+described as its first live exercise; the "nothing to restore" line was taken
+as evidence the fix held. It was evidence of nothing — the new code never
+executed.
+
+**One fact, two symptoms.** `draft.txt` is treated as the record of what was
+narrated while actually being a scratch file the next generation overwrites.
+
+  - Symptom 1 is the false pass above.
+  - Symptom 2: no reel has an archive of its narrated text. #6570 UZ and TJ
+    carry no burned subtitles (P078), so when `draft.txt` was overwritten their
+    reviewed wording — including the hand corrections «ўз учун» → «ўзи учун»
+    and «бародарат» → «бародари худ» — survived only as audio. Not
+    recoverable from the repo, the session transcript, or chat history. A reel
+    held across one generation loses its text.
+
+**Rule:** a check that cannot see its input must FAIL, not pass. "Nothing to
+do" and "nothing comparable" are different outcomes and must read differently.
+And a file overwritten on a schedule you do not control is not a record — keep
+the authoritative copy at the moment it is authoritative.
+
+This is P241's family from the other side. There, two corrections were made
+where they could not persist. Here, a verification was trusted where nothing
+persisted to verify against.
+
+**Status: half FIXED 2026-10-15.**
+
+  - `scripts/restore-srt-casing.py` — language guard added.
+    `dominant_script()` compares the SRT's writing system with the source's,
+    and coverage measures what fraction of SRT words the source accounts for
+    (`MIN_COVERAGE = 0.40`). Either failing exits 2 with NOTHING WAS VERIFIED
+    and the reason. `render-reel.ps1` already handled rc=2 at that call site,
+    so no PowerShell change was needed. Proven both directions: a Cyrillic
+    source against an EN SRT is refused, a matching EN source still returns 0.
+  - `app/api/tts/route.ts` — the narrated text is archived as
+    `{style}-{lang}-{slug}-{section}.txt` beside the mp3 the same request
+    produced, inside P106's dev-only disk write. Chosen over a render-time copy
+    of `draft.txt` because the route knows the language and holds the text it
+    just spoke, whereas a render-time copy would have archived #13's Cyrillic
+    on this very re-render — the same trap one layer up.
+  - NOT fixed: the four #6570 reels already rendered have no archive. EN and RU
+    can be reconstructed from their SRTs. UZ and TJ cannot.
+

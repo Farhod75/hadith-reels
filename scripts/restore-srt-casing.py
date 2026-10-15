@@ -61,6 +61,42 @@ PROPHET_SPOKEN = {
 PROPHET_SYMBOLS = ["\ufdfa", "ﷺ", "صلى الله عليه وسلم"]
 
 
+# P246: a verifier must never report agreement with a source it cannot read.
+# draft.txt is a SCRATCH file that every generation overwrites, so a reel held
+# across a later generation is re-rendered against another language's blocks.
+# On 2026-10-15 an EN re-render of #6570 ran against a Cyrillic draft.txt left
+# by #13: zero words could match, so zero were changed, and this script printed
+#   "nothing to restore - the SRT already matches the source."
+# That sentence was false. Nothing had been compared at all. A check that
+# passes on an unusable input is worse than one that errors, because the
+# operator reads the pass and stops looking.
+CYRILLIC = re.compile(r"[\u0400-\u04FF]")
+ARABIC = re.compile(r"[\u0600-\u06FF\u0750-\u077F\ufb50-\ufdff\ufe70-\ufeff]")
+LATIN = re.compile(r"[A-Za-z]")
+MIN_COVERAGE = 0.40
+
+
+def dominant_script(text):
+    """Which writing system this text is mostly in."""
+    counts = {
+        "cyrillic": len(CYRILLIC.findall(text)),
+        "arabic": len(ARABIC.findall(text)),
+        "latin": len(LATIN.findall(text)),
+    }
+    top = max(counts, key=counts.get)
+    return top if counts[top] else "none"
+
+
+def cue_text(raw):
+    """The spoken lines of an SRT - no indices, no timecodes, no blanks."""
+    keep = []
+    for line in raw.splitlines():
+        if not line.strip() or INDEX.match(line) or TIMECODE.match(line):
+            continue
+        keep.append(line)
+    return " ".join(keep)
+
+
 def norm(w):
     """Casefold, and collapse Russian yo onto ye. The only two axes we allow."""
     return w.casefold().replace("\u0451", "\u0435")
@@ -127,9 +163,29 @@ def main():
 
     raw = read_text(args.srt)
     nl = dominant_newline(raw)
-    forms = source_forms(read_text(args.source), args.lang)
+    src_text = read_text(args.source)
+    forms = source_forms(src_text, args.lang)
     if not forms:
         print("FAILED: no words found in %s" % args.source)
+        return 2
+
+    # P246: refuse rather than agree. See the note above dominant_script().
+    srt_text = cue_text(raw)
+    toks = [norm(w) for w in WORD.findall(srt_text)]
+    covered = sum(1 for t in toks if t in forms)
+    coverage = (covered / float(len(toks))) if toks else 0.0
+    src_script = dominant_script(src_text)
+    srt_script = dominant_script(srt_text)
+    if src_script != srt_script or coverage < MIN_COVERAGE:
+        print()
+        print("FAILED: --source does not match this SRT. NOTHING WAS VERIFIED.")
+        print("  SRT script: %-11s source script: %s" % (srt_script, src_script))
+        print("  the source accounts for %d of %d SRT words (%.0f%%, need %.0f%%)"
+              % (covered, len(toks), coverage * 100, MIN_COVERAGE * 100))
+        print("  %s is overwritten by every generation (P246), so a reel held" % args.source)
+        print("  across a later generation sees the WRONG language's blocks.")
+        print("  Re-sync it from the admin for lang=%s, then re-run." % args.lang)
+        print("  Until then the subtitles are UNCHECKED - read every cue.")
         return 2
 
     changes = []

@@ -1,6 +1,18 @@
 ## [2026-10-15]
 
 ### Fixed
+- **A verifier agreed with a source it could not read (P246).**
+  `restore-srt-casing.py` printed "nothing to restore - the SRT already matches
+  the source" while comparing an English SRT against a Cyrillic `draft.txt` left
+  by the next day's generation. Zero words could match, so zero changed, and the
+  empty result was reported as agreement; `stt-validate.py` correctly flagged the
+  same pair at similarity 0.126. A language guard now compares writing systems
+  and word coverage (`MIN_COVERAGE = 0.40`) and exits 2 rather than agreeing.
+  Separately, `app/api/tts/route.ts` now archives the narrated text as
+  `{style}-{lang}-{slug}-{section}.txt` beside each mp3, because `draft.txt` is
+  overwritten by every generation and #6570 UZ/TJ — which ship without
+  subtitles (P078) — lost their reviewed wording to it, leaving only audio.
+
 - **`hadith_library` — three rows corrected at source.** `#6570.text_english`
   disagreed with its own narrator field (“Abu Hurayrah” against “Abu Hurairah”,
   49 uses across the repo and no variant); `#13.text_russian` lacked the

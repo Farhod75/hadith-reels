@@ -235,6 +235,20 @@ export async function POST(req: NextRequest) {
         await writeFile(path.join(dir, filename), Buffer.from(audioBuffer))
         savedPath = path.join('out', 'work', style, slug, langKey, filename)
         console.log(`[tts] saved ${savedPath}`)
+
+        // P246: archive the exact text that was spoken, beside the audio it
+        // produced. draft.txt is a scratch file every generation overwrites, so
+        // a reel held across a later generation loses the wording a human
+        // reviewed and corrected - #6570 UZ and TJ lost theirs on 2026-10-15 and
+        // only the audio survived. Here the text is authoritative: it is what
+        // this request just narrated, in a language the route already knows, so
+        // no script-sniffing and no dependence on draft.txt being in sync.
+        // Raw `text`, not `cleanText`: the raw block is what was reviewed and
+        // what a caption needs. Shares the try above, so a failed write never
+        // fails the request - same policy as the mp3.
+        const textFile = `${style}-${langKey}-${slug}-${section}.txt`
+        await writeFile(path.join(dir, textFile), text, 'utf8')
+        console.log(`[tts] saved ${path.join('out', 'work', style, slug, langKey, textFile)}`)
       } catch (e: any) {
         // Never fail the request over a disk write — the audio still streams back.
         console.error('[tts] disk write failed:', e?.message)
