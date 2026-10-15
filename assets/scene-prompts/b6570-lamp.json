@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae65f6/4HfQfVdiPWXcA0hebz4b__output.mp4",
+    "name":  "b6570-lamp",
+    "image":  "out\\refs\\b6570-lamp-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6570-lamp.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-14T21:59:24.4746120Z",
+    "size_bytes":  7633973,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The flame holds upright and steady, with the smallest lean and recovery. Shadows on the plaster shift very slightly with it. The camera holds still.",
+    "request_id":  "01a13c6d-664b-7a93-8336-4758af0b7fdd",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-14T22:01:35.0930748Z",
+    "mode":  "image-to-video"
+}

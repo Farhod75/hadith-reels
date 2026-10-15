@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae660d/XV9oIvsWvuqJZDvIPKer9_output.mp4",
+    "name":  "b6570-ink",
+    "image":  "out\\refs\\b6570-ink-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6570-ink.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-14T22:01:36.1446980Z",
+    "size_bytes":  5211709,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Daylight moves almost imperceptibly across the sheets as the sun shifts. Everything on the board stays exactly where it rests. The camera holds still.",
+    "request_id":  "01a13c6f-68cb-7693-80a3-9ca52b1900aa",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-14T22:05:10.7114975Z",
+    "mode":  "image-to-video"
+}

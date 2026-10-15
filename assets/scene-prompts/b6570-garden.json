@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae663a/pEeNkSmIqaSwLCO1m8ROb_output.mp4",
+    "name":  "b6570-garden",
+    "image":  "out\\refs\\b6570-garden-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6570-garden.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-14T22:10:04.1353311Z",
+    "size_bytes":  22856281,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Leaves move gently in a light breeze. The water surface carries the smallest ripple and settles again. The camera holds still.",
+    "request_id":  "01a13c77-291f-70a1-b524-4956feb06853",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-14T22:14:15.2976397Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae6627/tIBBnqfLywIjFck5WS-ah_output.mp4",
+    "name":  "b6570-plain",
+    "image":  "out\\refs\\b6570-plain-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6570-plain.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-14T22:07:41.0637686Z",
+    "size_bytes":  9560118,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Light grows very slowly along the horizon. The air is completely still and the ground unmoving. The camera holds still.",
+    "request_id":  "01a13c74-fa3a-7271-b131-569015c06912",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-14T22:09:42.7167969Z",
+    "mode":  "image-to-video"
+}

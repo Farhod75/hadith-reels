@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aae661b/6dn0B0_PXyhrCwS4ZIpLn_output.mp4",
+    "name":  "b6570-kalima",
+    "image":  "out\\refs\\b6570-kalima-text-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6570-kalima.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-14T22:05:11.4081884Z",
+    "size_bytes":  11364453,
+    "negative_prompt":  "blur, distort, low quality, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The sheet lies flat and still, a slow faint shift of light passing across the paper fibre. The writing stays exactly as it is. The camera holds still.",
+    "request_id":  "01a13c72-b1b7-7410-a907-9489b9e16251",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-14T22:07:39.8435172Z",
+    "mode":  "image-to-video"
+}
