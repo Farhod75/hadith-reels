@@ -512,7 +512,7 @@ if ($animated) {
   # would notice this one failing.
   # Draw from the APPROVED set rather than checking after the draw, so a
   # retired clip cannot be picked and then re-rolled around.
-  $clipApproved = @(& python "scripts\audit-assets.py" --list --lane $Style --section clips)
+  $clipApproved = @(& python "scripts\audit-assets.py" --list --lane $Style --section scenes)
   if ($LASTEXITCODE -ne 0 -or $clipApproved.Count -lt 1) {
     Die "could not read the approved clip list from the registry (lane: $Style). " +
         "Pass -Scenes explicitly, or fix the registry."
@@ -561,6 +561,27 @@ if ($animated) {
     $nd = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
     $fitDur = [math]::Round(($nd + $tailPad) / $picked.Count, 3)
     Say ("        -FitScenes: {0}s narration / {1} clips -> {2}s per clip" -f [math]::Round($nd,2), $picked.Count, $fitDur)
+    # P240: -t TRIMS a clip, it cannot stretch one. If the equal share is
+    # longer than the shortest source clip, every clip comes back at its own
+    # length, the background is SHORT of the narration, and -stream_loop -1
+    # on the merge wraps it back to clip 1 instead of failing - so the reel
+    # ends on its opening image with no error anywhere. #6570 UZ: 52.22s of
+    # narration over five 10.04s clips asked for 10.644s each, got 50.16s of
+    # background against 53.22s of audio, and replayed the lamp for the last
+    # 3.0s. EN, RU and TJ in the same set were all under the ceiling and
+    # passed, so only the longest language was exposed - and UZ is also the
+    # one with no subtitles (P078), i.e. one less reason to watch it closely.
+    $shortest = ($picked | ForEach-Object {
+      [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $_.FullName)
+    } | Measure-Object -Minimum).Minimum
+    if ($fitDur -gt $shortest) {
+      $needed = [math]::Ceiling(($nd + $tailPad) / $shortest)
+      $short  = [math]::Round($shortest, 3)
+      $have   = [math]::Round($shortest * $picked.Count, 2)
+      $want   = [math]::Round($nd + $tailPad, 2)
+      Die "-FitScenes needs ${fitDur}s per clip but the shortest clip is only ${short}s. $($picked.Count) clips cover ${have}s of the ${want}s of audio. Pass $needed scene clips (or fewer, shorter) - otherwise the background wraps to clip 1 and the reel ends on its opening image."
+    }
+
   }
   $tmps = @()
   $idx = 0

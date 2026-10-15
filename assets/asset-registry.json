@@ -6,7 +6,7 @@
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -264,6 +264,36 @@
       "lanes": ["adults"],
       "verified": true,
       "notes": "A single sheet of undyed parchment on dark stone under raking dawn light, carrying the testimony in real Arabic. MODE B. FLUX 2 produced the BLANK sheet (b6423-kalima-1.jpg); the text is composited by scripts/composite-matn.py - Amiri via npm, RAQM/HarfBuzz shaping with direction=rtl, perspective warp, multiply blend - because FLUX cannot write Arabic and a near-correct kalima would be worse than none. Rendered WITHOUT tashkeel: a 7th-century sheet carries no vowel marks, and every diacritic is one more thing that can go subtly wrong on the one phrase this channel cannot afford to get wrong. -KeepText per P216. Verified surviving to the last frame, 9.5s of 10s, with correct joining. Sahih al-Bukhari #6423, R126-."
+    },
+    "b6570-lamp.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A single clay oil lamp burning on a stone ledge against a mud-plastered wall, flame upright and steady, warm light raking the rough plaster. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. Flame verified ALIVE and steady at 9.5s: the b6423-ash check run in reverse. There the risk was Kling lighting a fire in a hearth meant to stay dead; here the flame is MEANT to be alive, so the failure would have been guttering or flaring, and it did neither. Distinct from b6446-lamp, which is a lamp in a stone niche with mat and jar (sufficiency); this is the lamp alone. Sahih al-Bukhari #6570, R130-."
+    },
+    "b6570-ink.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A low wooden writing board on a plain floor carrying two sheets of undyed handmade paper, a reed pen resting across the mouth of a small glazed inkwell, raking side light. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. The sheets are deliberately BLANK: this is the moment before writing, not a page of text, which is what keeps it distinct from b5027-copy (a finished manuscript beside a sheet carrying the composited first line of the matn). No text in frame means nothing for Kling to warp, so no -KeepText and no frame-by-frame check needed. Sahih al-Bukhari #6570, R130-."
+    },
+    "b6570-kalima.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A sheet of BRIGHT GREEN handmade paper on a pale ground, deckle-edged, carrying the testimony in real Arabic in near-black ink. MODE B. The green sheet is the deliberate variation on b6423-kalima's undyed parchment - the operator asked for it so the three-reel Tawheed arc reads as one set with distinct frames rather than a repeat. FLUX 2 produced the BLANK sheet; the text is composited by scripts/composite-matn.py (Amiri via npm, RAQM/HarfBuzz shaping, direction=rtl, perspective warp) because FLUX cannot write Arabic and a near-correct kalima would be worse than none. Rendered WITHOUT tashkeel, as b6423-kalima was and for the same reason. -KeepText per P216. Verified at BOTH 5.0s and 9.5s: joining, the hamza on إله and the shadda on الله all intact, letters undeformed. Sahih al-Bukhari #6570, R130-."
+    },
+    "b6570-plain.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A flat gravel plain of grey stones running to a level horizon under a colourless dawn sky, no hill, tree or structure anywhere. The standing, with nobody depicted. MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s. NEAR-DUPLICATE OF b6423-plain BY FUNCTION: both are the same beat of the same arc, and they differ only in ground (pale cracked earth there, grey gravel here) and sky. Never put both in one reel, and choose between them deliberately rather than by whichever the name search returns first. Like b6423-plain it is deliberately NOT the dunes (b6446-dunes, b2654-dawn-v3): shaped sand reads as landscape, this reads as extent. Sahih al-Bukhari #6570, R130-."
+    },
+    "b6570-garden.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": true,
+      "notes": "A walled garden with a straight stone water channel running away from camera to a dark doorway in a pale stone wall, clipped hedges and fruit trees close on both sides, dappled light on the water. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. The garden implied rather than named - a built, tended, enclosed place with somewhere to walk toward. Distinct from m1631-channel, which is a rough irrigation channel with young sprouts on open ground (benefit still arriving); this one is formal, walled and finished. Sahih al-Bukhari #6570, R130-."
     },
     "b5027-copy.mp4": {
       "classification": "scene",

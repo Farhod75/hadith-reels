@@ -9184,3 +9184,138 @@ the second catch cost a round trip and a hand-written replacement caption, and t
 fix is twenty lines that were agreed to a day earlier. A known defect that is
 cheap to fix and keeps being worked around by hand is more expensive than it
 looks, because the workaround succeeds every time until it doesn't.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 239: A rule written for one failure family lost to it in three languages out of four
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** rule 25 went into the generator prompt on 2026-10-12 after
+P233, deliberately written as a TEST - ground every clause, point at the words
+in the matn, delete what you cannot - rather than as a list of forbidden
+wordings, because rules 23 and 24 had enumerated wordings and been walked
+around by the next wording inside a day. Bukhari #6570 was its first clean
+test, read across all four languages.
+
+EN held. RU, UZ and TJ all supplied a contrast the matn does not draw:
+
+    RU   «а не по привычке или подражанию другим»
+    UZ   «фақат тилда эмас, балки ихлос билан»
+    TJ   «на бо забон танҳо, балки»
+
+Two of those are near-verbatim repeats of the same language's #6423 defect -
+UZ had «фақат тил билан айтишга эмас, балки» and TJ had «на танҳо бо забон,
+балки». The rule did not merely fail to stop a new instance. It failed to stop
+the same sentence.
+
+**Cause, and this is the useful part:** the supplied contrast is not ungrounded
+invention. It is an EXPLICATION of a word that is present. خالصًا means sincerely,
+and "not merely with the tongue" is a fair gloss of what sincerely excludes. So
+the clause passes rule 25's test honestly: asked to point at the words in the
+matn, the generation points at خالصًا and the contrast follows.
+
+A test catches what it measures. Rule 25 measures whether a clause can be traced
+to the matn. This family traces. The missing constraint is not grounding at all:
+it is that خالصًا says what the deed IS and does not say what it is NOT. Turning an
+affirmation into a contrast adds the half the matn left unsaid, however sound
+the theology.
+
+**Rule:** render an affirmation as an affirmation. Where the matn states a
+quality, state that quality; do not state its opposite and deny it. "X, not Y"
+is two claims where the matn made one, and the second is yours. This names the
+MOVE rather than the wording (which rules 23/24 tried) or the grounding (which
+rule 25 tries), because the move is what survived both.
+
+**Consequence for the held rewrite.** `docs/proposed-rules-positive-form.md` was
+held precisely so rule 25 could be tested alone. It got a clean test and lost
+3-of-4. That doc named its own uncertainty - "it is equally possible that what
+makes a rule hold is being a TEST rather than being POSITIVE" - and the result
+cuts against both halves: rule 25 IS a test, it IS positive, and it still lost.
+Neither property is sufficient.
+
+**Status:** NOT FIXED, and deliberately so. Rule 25 stays - EN held and the rule
+is not harmful. The fifteen-rule rewrite stays on hold, because applying it now
+would stack another plausible fix on an unexplained failure, which is the exact
+error P233 was written about. What goes in next is one rule naming the move,
+tested alone on the next set, the same way rule 25 was.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 240: -FitScenes cannot stretch a clip, and the loop makes the shortfall look deliberate
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** Bukhari #6570 UZ. Narration 52.22s, five scene clips of
+10.0417s each. `-FitScenes` computed (52.22 + 1.0) / 5 = 10.644s per clip and
+printed it. `ffmpeg -t 10.644` on a 10.0417s clip returns 10.0417s - `-t` trims,
+it cannot extend - so the background came out 50.16s against 53.22s of audio.
+
+The final merge passes `-stream_loop -1` on the background. Instead of ending
+short, the video wrapped and replayed clip 1. The last 3.0s of the reel showed
+the opening lamp while the moral finished, and the reel ended on its first image
+rather than the garden. Confirmed by extracting the frame at 52.8s.
+
+Nothing warned. The script printed its per-clip figure, reported success, and
+named a file of the right size.
+
+**Cause:** `-FitScenes` computes an equal share and assumes the source can
+supply it. That assumption holds whenever narration < clips x clip_length and
+fails silently above it. `-stream_loop -1` was added for an unrelated reason
+(P143: give the tail 1s so the outro is not cut) and it converts this failure
+from a visible truncation into an invisible wrap - the one outcome that looks
+like an editing choice.
+
+Worth noting which language was exposed. EN (8.97s), RU (9.41s) and TJ (8.74s)
+were all under the ceiling in the same set and passed. Only UZ, the longest,
+hit it - and UZ is also the language that ships with no subtitles (P078), so
+there is one less reason to watch it closely. The failure selected for the reel
+least likely to be re-checked.
+
+**Rule:** when a computed share can exceed what the source can supply, compare
+the two and fail loudly. A fit that silently under-delivers is worse than one
+that refuses, because downstream has a loop that will hide it.
+
+**Status:** FIXED. A guard after the fitDur computation measures the shortest
+picked clip and Dies if the share exceeds it, naming how many clips would be
+needed. UZ re-rendered with six: `b6423-plain.mp4` borrowed as the fourth -
+already registered and adults-approved, the same beat as `b6570-plain` in
+different footage (pale cracked earth against grey gravel), so the cut reads as
+two shots of one place rather than a restart. fitDur 8.862s, background 53.17s
+against 53.17s of audio, exact. The kalima clip now spans 35.5-44.4s and covers
+BOTH spoken kalimas - UZ says it once closing the story and once opening the
+moral - which the five-clip cut caught only the first of.
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 241: The correction was made somewhere that does not persist
+## ═══════════════════════════════════════════════════════════
+
+**Two instances in one day, both mine.**
+
+**One - the narrator spelling.** The EN source carried two spellings in one
+reel: `Abu Hurairah` opening the story, `Abu Hurayrah` inside the Prophet's
+quoted speech. I corrected `draft.txt` at 19:30 and wrote that the durable
+protection was "catching the variant at review in each language". `draft.txt`
+is the single working file every generation overwrites - it was overwritten
+four times that evening, once per language. The source was
+`hadith_library.text_english`, which still carried `Hurayrah` and which feeds
+the EN caption. Found at 22:40 by the four-language side-by-side read, not by
+the fix that was supposed to have handled it.
+
+**Two - the gate argument.** Writing P237's gate I used `--section clips`,
+noticed that `audit-assets.py` offers only `{audio,mascots,scenes}`, and showed
+the corrected spelling in conversation. The WRONG spelling is what reached the
+file. argparse exits 2, the gate reads a non-zero exit and Dies, so every
+random-mode render was broken from the moment the fix landed - undetected,
+because every recent set passes explicit `-Scenes`. P237's own lesson, applied
+to P237's own fix.
+
+**Cause:** in both, a correct correction existed somewhere that does not
+survive - a file that is regenerated, and a sentence in a conversation. The
+artifact that outlives the task was never touched. Both felt finished at the
+time, because the correction itself was right; what was skipped was asking
+WHICH artifact has to carry it.
+
+**Rule:** fix the thing that regenerates the others, and read it back. Before
+calling a correction done, name the artifact it must live in and confirm it is
+there. A derived file is not where a fix belongs. Neither is a message.
+
+**Status:** both fixed and read back - the library row re-queried after the
+UPDATE (`Success. No rows returned` says nothing about rows touched), and the
+gate argument verified on disk rather than in the diff I had in mind.

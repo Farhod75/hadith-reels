@@ -71,6 +71,46 @@ Themes worth noting against the tracker’s gap list: #17 (doubt/wara‘) and #2
 (zuhd) are both uncovered, and #2 and #10 bear on the Akhlaq gap. None is a
 duplicate of anything shipped.
 
+**#6570 PRODUCED 2026-10-14, all four languages — HELD until ~2026-10-27.**
+Publishing waits on the 2-3 week Tawheed-arc spacing from #6423 (posted
+2026-10-13). Nothing outstanding on the reels themselves; every frame checked.
+
+The tracker is deliberately NOT updated yet. Its own rule is "After posting a
+reel - append a new row", so R130-R133, the clip-library rows and the
+production stats (→ 133 reels, 34 hadiths) all go in on publish day. Everything
+needed to write them:
+
+| Row | Lang | Duration | Size | Nasheed | Scenes |
+|---|---|---|---|---|---|
+| R130 | EN | 44.8s | 10.1 MB | vocal-nasheed-06 | lamp, ink, plain, kalima, garden |
+| R131 | RU | 47.1s | 10.5 MB | aswati-Steady-Motivation | lamp, ink, plain, kalima, garden |
+| R132 | UZ | 53.2s | 13.5 MB | aswati-Focused-Determination | lamp, ink, plain, **b6423-plain**, kalima, garden |
+| R133 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
+
+Subtitles EN/RU only (P078). Scene order is NOT the order the clips were
+generated in: the kalima was moved from third to fourth after the first EN
+render put the green sheet on screen one beat BEFORE the words - see P238's
+neighbour note and the EN frame check. UZ carries a sixth clip for P240.
+
+**Before publishing, three things:**
+
+1. **Rebuild the EN caption** from the blocks. `text_english` was normalized
+   after the EN reel was rendered (P241), so the caption as built still reads
+   `Hurayrah` while the narration and burned subtitles read `Hurairah`.
+2. **`matn_verified_at`** is still null on both #6423 and #6570. P151 - that
+   field means a human read the row against the source, so it is yours to set,
+   not mine.
+3. **Nasheed spacing** - RU uses `aswati-Steady-Motivation`, the same bed as
+   #6423 RU (R127). The rule is no repeat on 2 consecutive reels in the same
+   language, and these two ARE consecutive in RU. Either re-render RU with a
+   different bed or make the exception knowingly.
+
+**Rule 25's verdict is in — see P239.** It lost 3-of-4. The fifteen-rule
+rewrite in `docs/proposed-rules-positive-form.md` stays on hold; what goes in
+next is one rule naming the MOVE (affirmation rendered as contrast), tested
+alone on the next set.
+
+
 **#6570 re-verified 2026-10-14 — back to `verified`, no action outstanding.**
 The Tajik kalima spacing fix dropped the row to `translated` (correct: the text
 changed, so the Stage 3 verdict no longer described it). Re-run on the corrected

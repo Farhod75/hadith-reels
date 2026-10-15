@@ -1,6 +1,45 @@
 ## [2026-10-14]
 
 ### Fixed
+- **`render-reel.ps1` — `-FitScenes` had no ceiling guard (P240).** It computes
+  an equal share of the narration per clip and assumes the source can supply it.
+  `-t` trims, it cannot stretch, so when the share exceeds the clip length every
+  clip comes back at its own length and the background is SHORT of the audio -
+  and `-stream_loop -1` on the merge wraps to clip 1 rather than failing. #6570
+  UZ asked 10.644s of 10.042s clips, got 50.16s of background against 53.22s of
+  audio, and replayed the opening lamp for its last 3.0s with no error anywhere.
+  EN, RU and TJ were all under the ceiling and passed. Guard now measures the
+  shortest picked clip and Dies, naming how many clips are needed.
+- **`render-reel.ps1` — P237's own gate called a `--section` that does not exist
+  (P241).** It passed `--section clips`; `audit-assets.py` offers only
+  `{audio,mascots,scenes}`. argparse exits 2, the gate Dies - every random-mode
+  render broken from the moment the fix landed, invisible because every recent
+  set passes explicit `-Scenes`. Corrected in conversation when written and
+  never corrected on disk.
+- **`hadith_library.text_english` #6570 — two spellings of the narrator in one
+  row (P241).** `Abu Hurairah` opening, `Abu Hurayrah` inside the quoted speech,
+  against a narrator field reading `Abu Hurairah` and 49 uses across the repo
+  with no variant. Normalized, not corrected - هُرَيرة is genuinely an *ay*
+  diphthong and RU/UZ/TJ all use that form - but EN's text and EN's own narrator
+  field have to agree, and `text_english` is the EN caption's first paragraph.
+
+### Added
+- **`assets/asset-registry.json` — five Bukhari #6570 scenes registered**
+  (`b6570-lamp`, `-ink`, `-kalima`, `-plain`, `-garden`), all adults, all
+  verified by frame inspection. Notes record the near-duplication of
+  `b6570-plain` with `b6423-plain` (same beat, different ground) so the choice
+  between them stays deliberate, and that the kalima survives Kling to 9.5s.
+
+### Documented
+- **Rule 25 lost 3-of-4 on its first clean test (P239).** Written as a TEST
+  rather than a wording blocklist precisely because rules 23/24 were walked
+  around within a day. EN held; RU, UZ and TJ all supplied a contrast the matn
+  does not draw, two of them near-verbatim repeats of the same language's #6423
+  defect. The clause passes the grounding test honestly - "not merely with the
+  tongue" is a fair gloss of خالصًا - so what is missing is not grounding but
+  that خالصًا says what the deed IS and not what it is NOT. The fifteen-rule
+  positive-form rewrite stays on hold: rule 25 is both positive and a test, and
+  neither property saved it.
 - **`app/admin/page.tsx` — the caption never re-derived from edited blocks
   (P238).** The story/moral/seerah textareas are bound to `generated`, so an
   operator correction lands in state immediately; the caption was built once
