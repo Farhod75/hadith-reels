@@ -20,6 +20,24 @@
   read «ўз учун» where Uzbek needs «ўзи учун». All read back after the UPDATE.
 
 ### Documented
+- **Pronunciation watch-list updated (P193), stale since 2026-10-04.** New
+  ACTIVE row: TJ «бародарат» voiced «бародорат» on **v4** (R133, #13 TJ),
+  worked around with the analytic «бародари худ», which sidesteps the suffix.
+  It fits the documented class rather than extending it — stem Cyrillic a → o,
+  the same grapheme-to-phoneme behaviour as «Марде»→«Мардэ» and
+  «атри»→«отри». The v4 ACTIVE list now holds two entries.
+  The UZ apostrophe case from R128 was deliberately NOT added to that table:
+  `'` is the LETTER tutuq belgisi, so the model voiced correctly what it was
+  handed and no model change fixes it. Recorded in the UZ text-prep notes
+  instead, citing P097.
+- **`reel-creation-pipeline.md` contradicted itself on the TTS model for 11
+  days.** Two lines claimed "All ElevenLabs `eleven_v3`" while the watch-list in
+  the SAME file named `eleven_v4` current since 2026-10-04, and the route's
+  default is `eleven_v4` with `ELEVENLABS_MODEL` unset in every env file. Both
+  corrected to name the route's default. The drift mattered because the
+  watch-list is scoped to a model (P193): a reader trusting those two lines
+  would have read every v4 row as inapplicable and every "NOT NEEDED on v4"
+  row as live — exactly inverting the list.
 - **Bukhari #13 shipped in four languages (R130-R133)** — “None of you truly
   believes until he loves for his brother what he loves for himself.” Shortest
   adults reels to date (18.9-25.6s), and the first built on REUSED scene clips

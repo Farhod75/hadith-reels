@@ -104,7 +104,9 @@ Still to generate: horse (Tatar kalfak, female), ant (Chechen papakha, male).
 | UZ | Mini | George |
 | TJ | Katherine Polished | Liam Viral |
 
-All ElevenLabs `eleven_v3`. OpenAI is fully retired from the TTS route.
+All ElevenLabs. The model comes from `ELEVENLABS_MODEL`, default **`eleven_v4`**
+since 2026-10-04 and unset in every env file, so the default is what runs.
+OpenAI is fully retired from the TTS route.
 
 New mascots must be registered in `assets/asset-registry.json` before any
 render — `audit-assets.py --check <file> --lane kids` is the gate and exits 1
@@ -310,6 +312,14 @@ second one) · Change log. Then one commit, `Doc=1`.
 - **UZ** — consistently the longest. If the story alone exceeds 28s the chunker
   refuses to cut mid-story; the way out is `split-narration.py` on the existing
   narration (R048), not a regenerate.
+
+  A straight apostrophe in UZ text is a TEXT defect, not a pronunciation one,
+  and no model change fixes it: `'` is the LETTER tutuq belgisi in Uzbek, not
+  punctuation. On R128 the kalima «ла илаҳа иллаллоҳ» was nested inside Russian
+  quotes, reached TTS carrying straight apostrophes, and was voiced
+  «а'ла илаҳа иллаллоҳ». Drop the quotes from the kalima rather than
+  converting them. P097's family — deliberately NOT in the watch-list below,
+  which is scoped to a model; this one outlives every model.
 - **TJ** — cleanest lane for three sets. Watch «Худо» for «Аллоҳ», and adjacent
   near-identical words («ғанӣ ғании») which slur in TTS.
 
@@ -329,6 +339,7 @@ second one) · Change log. Then one commit, `Doc=1`.
   | «етим»  | v3 | «этим»  | R096 | «йетим» — NOT NEEDED on v4 |
   | «Оқ»    | v3 | «ўқ»    | R096 | «итоатсизлик» — NOT NEEDED on v4 |
   | «емоқ»  | **v4** | «эмоқ» | audition 2026-10-04 | **«йемоқ» — ACTIVE** |
+  | «бародарат» | **v4** | «бародорат» | R133 | **«бародари худ» — ACTIVE** |
 
   The v3 rows are kept, not deleted: a rollback to v3 makes them live again.
 
@@ -366,7 +377,7 @@ defects. **Read the kids checklist above; it is not repeated here.**
 Two differences only:
 
 - **Voices** are the adults slots: EN James · RU Marat · UZ Opa Johann ·
-  TJ Meisam. All `eleven_v3`.
+  TJ Meisam. All on the route's current model (**`eleven_v4`**).
 - **No mascot.** `-Mascot` does not exist on `render-reel.ps1`.
 
 Everything below is what the adults lane adds.
