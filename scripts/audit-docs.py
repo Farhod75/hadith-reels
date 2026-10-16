@@ -40,6 +40,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACKER  = os.path.join(ROOT, 'reel-tracker.md')
 PATTERNS = os.path.join(ROOT, 'fix_patterns.md')
 REGISTRY = os.path.join(ROOT, 'assets', 'asset-registry.json')
+HV_ROOT  = os.path.join(os.path.dirname(ROOT), 'hadith-verifier')
 
 fails, warns = [], []
 def fail(where, msg): fails.append((where, msg))
@@ -246,6 +247,51 @@ def check_pattern_refs():
     return frontier
 
 
+def check_sibling_frontier(frontier):
+    """P246's shape, found 2026-10-15: HV's CLAUDE.md cached the shared
+    P-frontier as "P186 as of 2026-10-01" and still said so when HR had reached
+    P246 - sixty patterns, two weeks.
+
+    The daily doc-drift task was meant to catch exactly this, but that step
+    lived in the TASK'S PROMPT as something for the agent to read and compare,
+    not here as a check with a return value. Nothing that exits non-zero was
+    looking, and the agent's prose went to a session with no notification
+    configured, so two weeks of daily reports reached nobody.
+
+    The signature of a stale cache is specific: a P-number ABOVE HV's own top
+    pattern but BELOW HR's frontier. HV legitimately cites its own numbers and
+    its frozen duplicate's, and those all sit at or under its top. A number in
+    the gap can only be a frontier somebody wrote down, and a written-down
+    frontier rots by construction. Above HR's frontier is the invented-pattern
+    case that check_pattern_refs() already catches for THIS repo's docs but
+    never covered the sibling.
+    """
+    hv_claude = os.path.join(HV_ROOT, 'CLAUDE.md')
+    hv_pat = os.path.join(HV_ROOT, 'fix_patterns.md')
+    if not (os.path.exists(hv_claude) and os.path.exists(hv_pat)):
+        warn('sibling', 'hadith-verifier is not beside this repo - frontier '
+                        'cross-check skipped')
+        return
+    hv_have = set(int(n) for n in
+                  re.findall(r'^##\s*PATTERN\s+(\d+)', read(hv_pat), re.M))
+    if not hv_have:
+        warn('sibling', 'no "## PATTERN n" headings in hadith-verifier/'
+                        'fix_patterns.md - frontier cross-check skipped')
+        return
+    hv_top = max(hv_have)
+    where = 'hadith-verifier/CLAUDE.md'
+    for n in sorted(set(int(x) for x in
+                        re.findall(r'\bP(\d{3})\b', read(hv_claude)))):
+        if n > frontier:
+            fail(where, 'cites P%03d, above HR\'s frontier P%03d - that pattern '
+                        'does not exist' % (n, frontier))
+        elif hv_top < n < frontier:
+            fail(where, 'cites P%03d, above HV\'s own top pattern P%03d and below '
+                        "HR's frontier P%03d. That is a CACHED FRONTIER and it is "
+                        'already stale. Point at HR\'s fix_patterns.md tail instead '
+                        'of writing a number down.' % (n, hv_top, frontier))
+
+
 # --------------------------------------------------------------------- main
 
 def main():
@@ -264,6 +310,7 @@ def main():
     check_nasheed_table(tracker, rows)
     check_registry(rows)
     frontier = check_pattern_refs()
+    check_sibling_frontier(frontier)
 
     if not args.quiet:
         print('doc audit: %d reels, pattern frontier P%03d' % (len(rows), frontier))

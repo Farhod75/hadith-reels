@@ -9616,3 +9616,74 @@ persisted to verify against.
   - NOT fixed: the four #6570 reels already rendered have no archive. EN and RU
     can be reconstructed from their SRTs. UZ and TJ cannot.
 
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 247: A check ran daily for two weeks and reported to nobody
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** HV's `CLAUDE.md` claimed the shared P-frontier was "P186 as
+of 2026-10-01". On 2026-10-15 HR was at P246 — sixty patterns, two weeks.
+
+A daily scheduled task, "Doc drift check", exists to catch this. Step 3 of its
+prompt says so in as many words: confirm HV's CLAUDE.md still states the frontier
+correctly. It ran every day. It reported SUCCEEDED every day. The line stayed
+wrong for two weeks.
+
+**Two reasons, and the second is the one that generalises.**
+
+1. The check was AGENT JUDGEMENT, not a script. `audit-docs.py` already computes
+   the frontier — it prints `pattern frontier P246` on every run — but it only
+   walks THIS repo's .md files. The sibling comparison lived in the task's prompt,
+   to be done by reading and remembering, and it produced prose rather than an
+   exit code. `fail()` was never reachable for it.
+
+2. The task had NO NOTIFICATION DESTINATION. The sibling "Daily job digest"
+   carries `notifications: {email: true}` and emails its output. Doc drift check
+   carries no notifications field at all, and its prompt never emails anything, so
+   its report landed in a fresh session nobody opens. Every run was a SUCCEEDED
+   run that reached no reader.
+
+**The 5.3-second red herring.** The run duration looked diagnostic — 5.3s against
+the job digest's 80s — and the first theory was that it bailed early on an
+unreachable repo. It did not. `audit-docs.py` runs in 0.23s and exits 0, and the
+task's prompt says a clean result gets one line and stops. 5.3s is what success
+looks like here. The timing was innocent; the delivery was the defect.
+
+**Rule:** a scheduled check needs BOTH an exit code and an addressee. A finding
+that exists only as prose in a session nobody opens has not been reported, and a
+task reporting SUCCEEDED for work nobody read is indistinguishable from one that
+works. Put the comparison in a script so it can fail, and give the task a channel
+so the failure arrives.
+
+**This is P188's family one step later.** There, `stt-validate.py` was a correct
+check with no caller for seven weeks. Here the check had a caller, ran on
+schedule, and still changed nothing, because its output had no return value and
+no reader. "It runs" is not "it reports".
+
+**Status: half FIXED 2026-10-15.**
+
+  - `scripts/audit-docs.py` — `check_sibling_frontier()` added. It fails on any
+    P-number in `hadith-verifier/CLAUDE.md` above HV's own top pattern and below
+    HR's frontier, the precise signature of a cached frontier, and on any number
+    above HR's frontier — which `check_pattern_refs()` already caught for this
+    repo's docs but never for the sibling. Warns and skips when the sibling is not
+    beside this repo. Proven both ways: clean on the corrected file, exit 1 with
+    the finding when a cached number is injected, and the file restored
+    byte-identical (sha256) after the test.
+  - `hadith-verifier/CLAUDE.md` — the cached number is gone, replaced by a pointer
+    to HR's `fix_patterns.md` tail. It deliberately carries no 3-digit P-number
+    above P140: the explanatory sentence would otherwise trip the very check it
+    describes, which it did in draft.
+  - The "Doc drift check" scheduled task now EMAILS its report on every run, with
+    the verdict in the SUBJECT line: CLEAN / DRIFT (n) / COULD NOT RUN /
+    UNREACHABLE. Mailing even a clean run is deliberate — if only findings were
+    mailed, silence would again mean both "all is well" and "it never fired",
+    which is the defect this pattern is about. Delivery had to go in the task's
+    PROMPT rather than its settings: `update_trigger` cannot set the
+    notifications field, and the task is bound to the device, so the new prompt
+    was re-signed by the desktop app when it changed.
+  - Residual risk, stated rather than ignored: a clean email every morning is
+    exactly the thing people filter into a folder and stop reading. If that
+    happens the next move is a weekly heartbeat plus mail-on-finding — not
+    silence on clean runs, which is where this started.
+

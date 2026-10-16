@@ -1,6 +1,21 @@
 ## [2026-10-15]
 
 ### Fixed
+- **A daily check ran for two weeks and reported to nobody (P247).** HV's
+  `CLAUDE.md` cached the shared P-frontier at "P186 as of 2026-10-01" and was
+  sixty patterns stale by 2026-10-15. The daily Doc drift task names that exact
+  comparison as step 3 of its prompt and reported SUCCEEDED throughout, because
+  the comparison was agent judgement producing prose rather than a script
+  producing an exit code, and the task has no notification destination while its
+  sibling job digest emails itself. `scripts/audit-docs.py` now carries
+  `check_sibling_frontier()`, which FAILS on a P-number in the sibling's
+  CLAUDE.md above HV's own top and below HR's frontier — the signature of a
+  cached frontier. The run duration (5.3s) looked like an early bail and was not:
+  `audit-docs.py` takes 0.23s and a clean run is one line by design.
+  The task's prompt now also emails its report every run with the verdict in the
+  subject line, because `update_trigger` cannot set a notifications field and a
+  finding with no addressee is not a finding.
+
 - **A verifier agreed with a source it could not read (P246).**
   `restore-srt-casing.py` printed "nothing to restore - the SRT already matches
   the source" while comparing an English SRT against a Cyrillic `draft.txt` left
