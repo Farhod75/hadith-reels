@@ -29,6 +29,7 @@ numbers are what went wrong every time.
 """
 
 import argparse
+import datetime
 import io
 import json
 import os
@@ -292,6 +293,39 @@ def check_sibling_frontier(frontier):
                         'of writing a number down.' % (n, hv_top, frontier))
 
 
+def cadence_line(rows):
+    """P248: the newest reel row, computed from the table this script already parses.
+
+    The daily doc-drift task worked this out by READING A SLICE of
+    reel-tracker.md, under a prompt instruction to tail the file because it is
+    large. The Active reels table is near the TOP; a tail lands in the Change
+    log. On 2026-10-16 the task reported the newest row as 2026-10-11
+    (R122-R125) when R133 was dated 2026-10-15 - while the same email said
+    '133 reels', a number only this table can produce. Two contradictory facts
+    in one report, and the wrong one was the cadence signal.
+
+    P247 moved the sibling check - HV's cached P-frontier - out of that prompt
+    and into this script for exactly this reason, and left this one behind. The
+    fix was scoped to the symptom rather than the set, which is P237's and
+    P242's shape a third time.
+    """
+    dated = [r for r in rows if re.match(r'^\d{4}-\d{2}-\d{2}$', r[C_DATE])]
+    if not dated:
+        warn('tracker', 'no parseable dates in the Active reels table - '
+                        'cadence not reported')
+        return ''
+    newest = max(d[C_DATE] for d in dated)
+    ids = [d[C_ID] for d in dated if d[C_DATE] == newest]
+    span = ids[0] if len(ids) == 1 else '%s-%s' % (ids[0], ids[-1])
+    try:
+        y, m, d = (int(x) for x in newest.split('-'))
+        age = (datetime.date.today() - datetime.date(y, m, d)).days
+    except ValueError:
+        return ', newest reel row %s (%s)' % (newest, span)
+    return ', newest reel row %s (%s), %d day%s old' % (
+        newest, span, age, '' if age == 1 else 's')
+
+
 # --------------------------------------------------------------------- main
 
 def main():
@@ -313,7 +347,8 @@ def main():
     check_sibling_frontier(frontier)
 
     if not args.quiet:
-        print('doc audit: %d reels, pattern frontier P%03d' % (len(rows), frontier))
+        print('doc audit: %d reels, pattern frontier P%03d%s'
+              % (len(rows), frontier, cadence_line(rows)))
 
     if warns and not args.quiet:
         print('\nWARN  (%d)' % len(warns))

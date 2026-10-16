@@ -9687,3 +9687,53 @@ no reader. "It runs" is not "it reports".
     happens the next move is a weekly heartbeat plus mail-on-finding — not
     silence on clean runs, which is where this started.
 
+
+## ═══════════════════════════════════════════════════════════
+## PATTERN 248: The fix went into one check and not its neighbour, again
+## ═══════════════════════════════════════════════════════════
+
+**What happened:** the 2026-10-16 doc-drift email reported, in one message:
+
+    133 reels ... newest reel row 2026-10-11 (R122-R125), 5 days old
+
+R133 was dated 2026-10-15. One day old, not five. And the same email's "133
+reels" could only have come from the Active reels table — the very table that
+would have given the right date. Two contradictory facts in one report.
+
+**Cause:** the cadence check lived in the TASK'S PROMPT, which instructs the
+agent not to read the whole tracker because it is large, and to tail it. The
+Active reels table is near the TOP of reel-tracker.md; a tail lands in the
+Change log. So the instruction that was meant to protect context guaranteed the
+check read the wrong rows — every day, invisibly, because a wrong date looks
+exactly like a right one.
+
+**Why this is its own pattern.** P247 found the sibling check (HV's cached
+P-frontier) failing in the same task for a related reason, moved it into
+`audit-docs.py` where it gets an exit code, and LEFT THIS ONE IN THE PROMPT. The
+remedy was known, written down, and applied to one of two checks in the same
+file on the same day.
+
+That is P237's shape (a gate added to the input that had just failed, siblings
+left ungated) and P242's (a rebuild added for the values that had gone stale,
+the sibling input left uneditable). Third occurrence. The question that would
+have caught all three is the same one: having fixed this, what else in the same
+place has the same shape?
+
+**Rule:** when a scheduled task asks an agent to work a fact out by reading part
+of a file, that is not a check — it is a guess with a confident format. Put it in
+a script that parses the structure, and have the task QUOTE the script rather
+than recompute anything. And when a fix lands, enumerate that task's other
+steps before closing it.
+
+**Status: FIXED 2026-10-15/16.**
+
+  - `scripts/audit-docs.py` — `cadence_line()` added. It takes the newest date
+    from the rows `active_rows()` already parses, names the reel IDs sharing it,
+    and prints the age on the summary line:
+    `doc audit: 133 reels, pattern frontier P247, newest reel row 2026-10-15
+    (R130-R133), 1 day old`. It uses `max()` on the date rather than the last
+    row, so it does not assume the table is in order.
+  - The task prompt no longer computes it. Step 1 says to quote the script's
+    first line and recompute nothing; a new step 3 forbids reading the tracker
+    or fix_patterns to work anything out, and says why.
+

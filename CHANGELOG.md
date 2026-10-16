@@ -1,3 +1,17 @@
+## [2026-10-16]
+
+### Fixed
+- **The cadence check read the wrong part of the tracker (P248).** The daily
+  email reported the newest reel row as 2026-10-11 (R122-R125), 5 days old,
+  while R133 is dated 2026-10-15 — and the same email quoted "133 reels", which
+  only the Active reels table can produce. The check lived in the task's prompt
+  under an instruction to tail the file; the table is near the top and a tail
+  lands in the Change log. `audit-docs.py` now computes it in `cadence_line()`
+  from the rows it already parses, and the task quotes the script instead of
+  recomputing. P247 had moved the sibling check into this script the day before
+  and left this one behind — the same scoped-to-the-symptom shape as P237 and
+  P242.
+
 ## [2026-10-15]
 
 ### Fixed
