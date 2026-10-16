@@ -11,8 +11,8 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-10-04
-**Next due:** 2026-10-11
+**Last checked:** 2026-10-15
+**Next due:** 2026-10-22
 
 ---
 
@@ -20,11 +20,11 @@
 
 | Tool | In use | Where it is set | Latest known | Status |
 |---|---|---|---|---|
-| ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT as of 2026-10-04 (P193) |
-| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | Kling 3.0 | CURRENT as of 2026-10-11 (adopted) |
-| FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | FLUX 2 | CURRENT as of 2026-10-04 |
+| ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT, re-confirmed 2026-10-15 — no v5 exists (P193) |
+| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | Kling 3.0 | CURRENT, re-confirmed 2026-10-15 (adopted 2026-10-11) |
+| FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | **FLUX 3 Image, 2026-10-01** | **BEHIND one major version** — see open evals |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
-| Whisper | local `openai-whisper` | PATH | — | RU ASR is a standing cost (R095, R099, R107) |
+| Whisper (ASR) | local `openai-whisper` | PATH | ElevenLabs **Scribe v2**, never tested here | RU ASR is a standing cost (R095, R099, R107); Scribe may close P078 — see open evals |
 
 ## How to check each, without trusting a release note
 
@@ -112,9 +112,45 @@
   Rule 2 tells it to explain the teaching instead of constructing an incident,
   which is close — but nothing in the prompt lets a field come back empty.
 
+- **FLUX 3 Image — NOT EVALUATED, and we are a major version behind again.**
+  `blackforestlabs/flux-3/text-to-image` is live on fal; stills still go through
+  `fal-ai/flux-2`. The DATES are the finding: **FLUX 3 Image launched 2026-10-01,
+  three days BEFORE the 2026-10-04 check that adopted FLUX 2 and recorded it as
+  CURRENT.** FLUX 3 had been reachable on fal since early access on 2026-07-23,
+  with the Video API on 2026-08-04. The weekly check this file exists to institute
+  missed a major version that was already shipping — the same failure the header
+  describes, occurring inside the process meant to prevent it. Evaluate at a SET
+  boundary: one still, same prompt, both models, per the rule above.
+  Sources: https://bfl.ai/models/flux-3-video · https://fal.ai/explore/black-forest-labs
+
+- **FLUX 3 Video as a Kling alternative — NOT EVALUATED.** Clips to 20s (Kling
+  3.0 caps at 15s, 2.6 Pro at 10s), up to 4K, with OPTIONAL NATIVE AUDIO. Before
+  any probe, widen P214's guard: it is scoped to `v2\.6`, so it already failed to
+  cover `v3` once and would not cover a `flux-3` path either. An unguarded
+  audio-on generation is a paid clip that cannot be compared against a silent one.
+  Same set-boundary rule, and longer clips buy fewer CUTS, not fewer seconds,
+  because seconds per reel are fixed by the narration.
+
+- **ElevenLabs Scribe v2 for UZ/TJ subtitles — NOT TESTED. Highest-value lead
+  from the 2026-10-15 check.** P078 turns subtitles OFF for UZ and TJ because local
+  Whisper returns Latin transliteration rather than Cyrillic, and nothing in this
+  project has ever tested an alternative ASR. ElevenLabs publishes Uzbek and Tajik
+  speech-to-text and benchmarks Whisper Large v3 at 96.7% WER on Uzbek FLEURS
+  against Scribe v1's 15.9% — 96.7% is what P078 looks like from the outside.
+  NOBODY documents the OUTPUT SCRIPT, and that is the only thing which decides
+  this, so no release note can answer it. Probe instead, per this file's own
+  method: one Scribe call on a UZ narration mp3 already on disk. If it returns
+  Cyrillic it closes P078, gives UZ and TJ burned subtitles, lets
+  `stt-validate.py` run on the two languages it has never covered ("nothing
+  automated hears these"), and supplies the narrated-text record P246 was written
+  about. Paid call on our key, so it stays human-gated.
+  Source: https://elevenlabs.io/speech-to-text/uzbek
+
 ## Log
 
 | Date | Checked | Found |
 |---|---|---|
 | 2026-10-04 | ElevenLabs, Kling, FLUX, Anthropic guidance | v4 already adopted same day (P193). Kling 3.0 and FLUX 2 both behind, neither previously noticed. Anthropic positive-instruction guidance vs 20 NEVER rules. |
 | 2026-10-04 | FLUX 2 evaluated | ADOPTED. Rendered on the first call a shot v1.1 refused six times. Kling 3.0 still open. |
+| 2026-10-11 | Kling 3.0 | ADOPTED as `v3/pro`. Logged retroactively on 2026-10-15 — the eval happened but neither this Log nor the header date was updated, against this file's own rule that the date CHECKED is the value. |
+| 2026-10-15 | ElevenLabs, Kling, FLUX, ASR alternatives | Ran 4 days overdue. ElevenLabs v4 still newest, no v5, so the v4 pronunciation watch-list rows stay validly scoped. Kling 3.0 current. **FLUX 3 Image found — shipped 2026-10-01, three days before the check that called FLUX 2 current.** New lead: Scribe v2 may close P078 for UZ/TJ; output script undocumented, needs a probe. |
