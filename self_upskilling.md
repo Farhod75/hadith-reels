@@ -131,20 +131,46 @@
   Same set-boundary rule, and longer clips buy fewer CUTS, not fewer seconds,
   because seconds per reel are fixed by the narration.
 
-- **ElevenLabs Scribe v2 for UZ/TJ subtitles — NOT TESTED. Highest-value lead
-  from the 2026-10-15 check.** P078 turns subtitles OFF for UZ and TJ because local
-  Whisper returns Latin transliteration rather than Cyrillic, and nothing in this
-  project has ever tested an alternative ASR. ElevenLabs publishes Uzbek and Tajik
-  speech-to-text and benchmarks Whisper Large v3 at 96.7% WER on Uzbek FLEURS
-  against Scribe v1's 15.9% — 96.7% is what P078 looks like from the outside.
-  NOBODY documents the OUTPUT SCRIPT, and that is the only thing which decides
-  this, so no release note can answer it. Probe instead, per this file's own
-  method: one Scribe call on a UZ narration mp3 already on disk. If it returns
-  Cyrillic it closes P078, gives UZ and TJ burned subtitles, lets
-  `stt-validate.py` run on the two languages it has never covered ("nothing
-  automated hears these"), and supplies the narrated-text record P246 was written
-  about. Paid call on our key, so it stays human-gated.
-  Source: https://elevenlabs.io/speech-to-text/uzbek
+- ~~**ElevenLabs Scribe v2 for UZ/TJ subtitles**~~ — **PROBED 2026-10-15.
+  VERDICT: does NOT close P078, and for TJ it is WORSE than Whisper.** Six calls
+  against `scribe_v2` on the ~20s #6570 moral mp3s, each language with and
+  without `language_code`, since the hint could itself steer the script:
+
+  | audio | language_code | detected | OUTPUT SCRIPT |
+  |---|---|---|---|
+  | UZ | `<auto>` | `eng` @ 0.29 | LATIN |
+  | UZ | `uzb` | `uzb` @ 1.00 | LATIN |
+  | TJ | `<auto>` | `fas` @ 0.97 | PERSO-ARABIC |
+  | TJ | `tgk` | `tgk` @ 1.00 | PERSO-ARABIC |
+
+  UZ returns Latin exactly as Whisper does, so P078's premise is unchanged. TJ is
+  worse: at `language_code=tgk` and probability 1.0 it still returns PERSO-ARABIC,
+  not Cyrillic — Scribe treats `tgk` as Persian orthography. That is not a
+  transliteration gap but a different script, and further from the channel's
+  Cyrillic than Whisper's Latin was.
+
+  **The transcripts are ACCURATE, which leaves one opening for UZ only.** Scribe
+  returned `Ixlos bilan o'z ichingdan "La ilaha illallah" deb ayt. Payg'ambar
+  sallallahu alayhi vasallam shafaatidan eng baxtli bo'ladigan kishi...` — correct
+  wording, and it placed the apostrophe as tutuq belgisi in `o'z` and
+  `Payg'ambar`, the exact character class that broke #6423 UZ's kalima. The
+  library already holds `text_uzbek_latin`. So `stt-validate.py` could compare
+  Scribe's Latin output against THAT column and give UZ an automated listener for
+  the first time, retiring "nothing automated hears these" for one of the two
+  languages. Subtitles stay off regardless (P078 is about burn-in); this would be
+  validation only. OPEN TASK, not done.
+
+  TJ has no equivalent path: there is no `text_tajik_arabic` column, and
+  transliterating Cyrillic Tajik into Perso-Arabic to compare is a research
+  project, not a check. TJ stays with the human narration check as its only
+  listener.
+
+  Also measured: `<auto>` misread Uzbek as English at 0.29 confidence. If Scribe
+  is ever wired in, `language_code` is mandatory, not an optimisation.
+
+  Endpoint `POST https://api.elevenlabs.io/v1/speech-to-text`, header `xi-api-key`,
+  multipart `file` + `model_id=scribe_v2` + optional `language_code` (ISO-639-1/3).
+  Source: https://elevenlabs.io/docs/api-reference/speech-to-text/convert
 
 ## Log
 

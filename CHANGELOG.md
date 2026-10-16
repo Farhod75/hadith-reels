@@ -1,6 +1,17 @@
 ## [2026-10-15]
 
 ### Fixed
+- **Scribe v2 probed for UZ/TJ — does NOT close P078.** Six `scribe_v2` calls on
+  the #6570 moral mp3s: UZ returns LATIN with or without `language_code` (same as
+  Whisper), and TJ returns PERSO-ARABIC even at `language_code=tgk` with
+  probability 1.0 — a different script, not a transliteration gap, and further
+  from the channel's Cyrillic than Whisper was. No release note documents output
+  script, which is the only thing that decides it, so it had to be probed. The
+  transcripts are accurate, so one opening remains for UZ alone: compare Scribe's
+  Latin against the existing `text_uzbek_latin` column in `stt-validate.py` and
+  give UZ its first automated listener. Recorded as an open task in
+  `self_upskilling.md`; subtitles stay off either way.
+
 - **A daily check ran for two weeks and reported to nobody (P247).** HV's
   `CLAUDE.md` cached the shared P-frontier at "P186 as of 2026-10-01" and was
   sixty patterns stale by 2026-10-15. The daily Doc drift task names that exact
