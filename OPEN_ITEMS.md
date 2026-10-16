@@ -152,9 +152,13 @@ neighbour note and the EN frame check. UZ carries a sixth clip for P240.
 1. **Rebuild the EN caption** from the blocks. `text_english` was normalized
    after the EN reel was rendered (P241), so the caption as built still reads
    `Hurayrah` while the narration and burned subtitles read `Hurairah`.
-2. **`matn_verified_at`** is still null on both #6423 and #6570. P151 - that
-   field means a human read the row against the source, so it is yours to set,
-   not mine.
+2. ~~**`matn_verified_at`** is null on both #6423 and #6570.~~ **SET by the
+   operator 2026-10-15** (2026-10-16 00:54 UTC) on both rows, read back after
+   the UPDATE rather than trusting "Success. No rows returned". The UPDATE
+   carried `AND matn_verified_at IS NULL` so it could not overwrite an existing
+   date. P151 holds: the field means a HUMAN read the row against the source, so
+   setting it is an assertion only the operator can make — #6570 was re-verified
+   2026-10-14 and #6423 was in the batch of four verified 2026-10-12.
 3. **Nasheed spacing — RESOLVED 2026-10-15.** Posted order per language runs
    #6423 → #13 → #6570. All four now pass the tracker's rule (not the same
    nasheed on 2 consecutive reels in the same language):
