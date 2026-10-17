@@ -10102,3 +10102,42 @@ something must fail when it is missing.
 Under the current rules (b) is strictly cheaper and (a) buys nothing the lookup
 does not already give. Either way it gets WRITTEN DOWN this time, which is the
 whole point of the pattern.
+
+---
+
+**AMENDED SAME DAY, 2026-10-17, AND THE ORIGINAL DIAGNOSIS ABOVE IS PARTLY
+WRONG.** The operator said the field looked like it started around P123 and had
+gaps. Measured:
+
+  - It spans **P46 to P156**, not P123 — much earlier than either of us thought.
+  - **69 of 186 patterns carry it: 37%.**
+  - **18 gaps INSIDE its own range**: P64, 65, 68, 69, 71, 78, 79, 90, 91, 92,
+    93, 94, 95, 106, 120, 121, 122, 124. It was never a complete trail even while
+    it was in use.
+
+**And the self-reference argument above does not hold for the field as
+specified.** QA_STANDARDS 4.1 defines it as `**Commit:** {conventional commit
+message}` — the MESSAGE, not a sha. A message is known before the commit
+exists, so atomic commits never made it unfillable. P156 holds `deb3db5`, a sha,
+which is not what the template asked for. The field was being filled with the
+wrong thing, inconsistently, by 37% of entries, and then it stopped.
+
+That makes the real finding simpler and worse than the one above: **a template
+field that nothing reads was followed by about a third of entries, filled with
+the wrong content type, and abandoned without a word.** The silence is still the
+pattern — it just started long before P157.
+
+**DECIDED 2026-10-17, operator's call: option (b). The field is RETIRED.** No
+backfill. The audit trail is:
+
+    git log -S "## PATTERN <n>:" -- fix_patterns.md
+
+exact, derivable from the text, and free. Retiring it is LESS work than keeping
+it, which is why it was the right call.
+
+**Still open and deliberately not actioned:** QA_STANDARDS 4.1's whole template
+(`Symptom / Root cause / Fix / Rule going forward` as labelled fields) does not
+describe what this file has contained for a long time — the entries are
+narrative. That is P253's shape again, a doc describing a superseded practice.
+Left for the operator to decide whether 4.1 is rewritten to match practice or
+practice returns to 4.1. It is NOT left silent, which was the whole failure.

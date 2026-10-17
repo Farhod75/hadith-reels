@@ -23,6 +23,10 @@
   a comma-decimal locale would have emitted `volume=0,2640`.
 
 ### Changed
+- `**Commit:**` retired from the fix-pattern template (P256, operator's call).
+  69 of 186 patterns carried it, P46-P156 with 18 internal gaps, filled with a
+  sha rather than the commit message the template specified. The commit is
+  derivable with `git log -S`. No backfill.
 - `CLAUDE.md`: recorded the scripted-Python write path as verified working,
   with its four-part verification requirement attached — assert anchors are
   unique, write nothing on a miss, prove byte counts and line endings, read

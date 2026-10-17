@@ -181,13 +181,26 @@ const text = await page.evaluate(() => {
 **ID:** P{N}
 **Type:** {Bug fix | Test fix | Architecture fix | UX fix}
 **File:** {file path}
-**Commit:** {conventional commit message}
+**Commit:** RETIRED 2026-10-17 — see note below
 **Symptom:** {exact error message or behavior}
 **Root cause:** {why it happened}
 **Fix:** {code snippet showing wrong vs right}
 **Rule going forward:** {what to check next time}
 **Status:** FIXED
 ```
+
+**`**Commit:**` RETIRED 2026-10-17 (P256).** It was carried by 69 of 186
+patterns — 37% — spanning P46-P156 with 18 gaps inside that range, filled
+with a sha rather than the commit message this template asked for, and then
+dropped entirely after P156 without a word. Nothing read it, so nothing failed.
+
+The commit for any pattern is derivable exactly, because the atomic-commit rule
+puts the pattern text in the same commit as its fix:
+
+    git log -S "## PATTERN <n>:" -- fix_patterns.md
+
+Do not backfill and do not reinstate the field. A field no check reads is
+decoration; if it is worth keeping, something must fail when it is missing.
 
 ### 4.2 CLAUDE.md must always contain
 - Current test counts (Playwright + pytest)
