@@ -1,3 +1,30 @@
+## [2026-10-17g] - #6009 partially fixed, verify-before-write gap, caption rule
+
+### Changed
+- #6009: matn was already correct and complete (mirror 5781, offset 228). The
+  two defects the sweep named are fixed in all four languages - يأكل الثرى is
+  now 'eating the moist earth' rather than 'licking mud', and فشكر الله له is
+  'Allah thanked him' rather than 'accepted' or 'was pleased'. Softening a
+  divine act was the serious one.
+- CAPTION RULE, set by the operator: a published caption whose text is
+  INCOMPLETE is left as it stands - a partial quotation of a sahih hadith,
+  correctly attributed, is not a fabrication, and editing live posts across
+  four platforms carries its own risk. A caption whose text is INCORRECT is
+  corrected. Under that rule #8, #5185, #1894 and #1773 stay as published, and
+  #1520's four posts are corrected: they carried لَكُنَّ, a wrong word, with
+  '(for women)' built on top of it.
+
+### Known issues
+- #6009 OPEN. The re-translation introduced new defects while fixing the old
+  ones: ﷺ inserted in the English, three additions in the Russian (climbing
+  out, 'teeth' for بفيه, 'tongue out' for يلهث), 'moist liver' dropped from the
+  Uzbek, «бархоста» added in the Tajik. Needs one more pass with the operator
+  on RU/UZ/TJ. matn_verified_at is null so the row cannot pass Stage 4.
+- P264: there is no way to Stage-3 a library re-translation before writing it.
+  verify-candidates.py --library reads the DATABASE, so a shipped row must pass
+  through an unverified state to be checked. Fix would be a --from-json mode
+  that scores the proposed text without touching the row. Not yet built.
+
 ## [2026-10-17f] - Bukhari #1773 translations corrected, P263
 
 ### Fixed

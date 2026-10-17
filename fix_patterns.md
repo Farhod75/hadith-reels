@@ -10601,3 +10601,65 @@ zero findings, as did the homoglyph check.
 the human gate. OPEN: مبرور is now rendered four ways - EN 'the accepted Hajj',
 RU «мабрур» transliterated, UZ «мақбул», TJ «мақбул». Russian is the odd one
 out and the operator chose мақбул for both his languages.
+## PATTERN 264: There is no way to verify a library re-translation before writing it
+
+**Date:** 2026-10-17
+**Files:** scripts/verify-candidates.py (gap, not yet fixed); hadith_library (#6009)
+
+**THE GAP.** `verify-candidates.py --library` reads the rows from the DATABASE.
+So the only way to put a library re-translation through Stage 3 is to write it
+to the library first. For a row that has already shipped, that means the live
+row holds unverified text between the apply and the verdict - and if the verdict
+is bad, the row is now worse than it was and there is no stored previous value
+to go back to. `--apply` is the P177 integrity path and `--sign` guards the text
+against change between review and write, but nothing guards the row against a
+re-translation that turns out to be a regression.
+
+The candidate pipeline does not have this problem: a candidate is verified
+before promotion, by construction. The library path inherited the verifier
+without inheriting the ordering.
+
+**HOW IT SHOWED UP.** #6009's matn is correct and complete (it matches mirror
+5781 exactly, offset 228). The defects were translational, and the sweep had
+named two:
+
+  - `يَأْكُلُ الثَّرَى` - the dog EATING the moist earth - rendered as 'licking
+    mud' in English and Uzbek, 'licking' in all four.
+  - `فَشَكَرَ اللَّهُ لَهُ` - 'so Allah THANKED him' - flattened to 'accepted' or
+    'was pleased' in Russian, Uzbek and Tajik. English alone had it right.
+
+Both were fixed by the re-translation. The second one matters: softening a
+divine act removes exactly what makes the hadith striking.
+
+**AND THE RE-TRANSLATION BROUGHT A NEW CROP.** Stage 3, run AFTER the write:
+
+| lang | verdict | new defect |
+|---|---|---|
+| en | A pass, B fail | ﷺ inserted into 'O Messenger of Allah' - not in the Arabic |
+| ru | BOTH FAIL | 'climbing out' added; «зубами» (teeth) for بفيه (mouth); «высунув язык» for يلهث (panting) |
+| uz | BOTH FAIL | dropped كبد رطبة - 'moist liver' became 'living creature' |
+| tj | A unparseable, B fail | «бархоста» (having risen) not in the Arabic |
+
+Before the fix the row failed all four on two defects. After it, it fails on a
+different four. The headline theological defect is gone and the detail is worse.
+That is the P108/P263 shape again, and this time it was written to a live row.
+
+**The assistant applied before verifying.** On #8, #1520, #5185 and #1894 the
+same order was harmless because Stage 3 came back clean; the order was never
+examined because it never cost anything. It cost something here.
+
+**Rule:** when a pipeline forces write-then-verify, say so BEFORE writing, not
+after - the operator should get to decide whether a shipped row goes through an
+unverified state. And an order of operations that has only ever been tried on
+passing cases has not been tested.
+
+**Fix, not yet built:** `verify-candidates.py` needs to accept the candidate
+text directly - a `--from-json out/candidate-translations.json` mode that scores
+the proposed translations against the matn without touching the row. Then the
+library path becomes translate -> verify -> apply, like the candidate path.
+
+**Status:** #6009 OPEN. The matn is correct and untouched. The translations are
+better on `شكر` and `يأكل الثرى` and worse on detail. `matn_verified_at` is null,
+so the row cannot pass Stage 4. The pre-fix translations are recoverable from
+the session transcript if wanted. Needs one more pass, with the operator on the
+Russian, Uzbek and Tajik.

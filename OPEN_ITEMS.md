@@ -70,6 +70,27 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**#6009 PARTIALLY FIXED 2026-10-17 - STILL OPEN, TOP OF QUEUE.** Matn correct
+and untouched. The two sweep defects are fixed in all four: يأكل الثرى now
+'eating the moist earth', and فشكر الله له now 'Allah thanked him' instead of
+'accepted'/'was pleased' (the divine-act flattening, the serious one). But the
+re-translation added new defects: ﷺ in the English, three additions in the
+Russian, 'moist liver' dropped from the Uzbek, «бархоста» in the Tajik. Needs
+one more pass WITH the operator on RU/UZ/TJ. matn_verified_at null. P264.
+
+**P264 - NO VERIFY-BEFORE-WRITE FOR LIBRARY ROWS.** verify-candidates.py
+--library reads the DATABASE, so a shipped row must be overwritten before it
+can be Stage-3'd. Fix: a --from-json mode scoring out/candidate-translations.
+json against the matn without touching the row. NOT BUILT. Until it exists,
+say so before applying a re-translation to a shipped row.
+
+**PUBLISHED CAPTIONS - RULE SET 2026-10-17.** Incomplete stays, incorrect gets
+fixed. A partial quotation of a sahih hadith, correctly attributed, is not a
+fabrication, and editing live posts across four platforms has its own risk. So
+#8, #5185, #1894 and #1773 stay as published. #1520's FOUR POSTS ARE TO BE
+CORRECTED - they carried لَكُنَّ, a wrong word, with '(for women)' built on it.
+Not yet done.
+
 **#1773 DONE 2026-10-17 - matn was CLEAN, translations were not.** Second false
 positive from the gloss detector (after #1521): the parentheticals clarified a
 complete matn. The translations inserted 'sins' and 'next umrah', and the
