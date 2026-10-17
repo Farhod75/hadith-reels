@@ -1,3 +1,30 @@
+## [2026-10-17f] - Bukhari #1773 translations corrected, P263
+
+### Fixed
+- #1773's matn was already correct and complete - no SQL. The translations
+  inserted 'sins' where لما بينهما says only 'for what is between them', and
+  'next/subsequent' umrah where the Arabic says العمرة إلى العمرة. The stored
+  English had also dropped إلى العمرة entirely, reading 'Umra is an expiation'
+  with no 'to Umra'. Re-translated; Uzbek and Tajik supplied by the operator
+  verbatim. Stage 3 8/8 pass - #1773 comes off the DISAGREE list. P263.
+
+### Notes
+- A Stage 3 'disagree' is not always a disagreement. Here A and B objected to
+  the SAME insertion ('sins') in DIFFERENT columns, which aggregates to a split
+  verdict while nothing is actually in dispute. Read what the models said
+  before invoking P177. The remaining disagreements from the sweep should be
+  re-read this way.
+- Per-language attention is uneven: «следующей» in Russian is the same addition
+  as «навбатӣ» in Tajik, and both models passed the Russian. A clean verdict on
+  one column is not evidence the same defect is absent from a sibling.
+- Re-translation improved English and Russian and REGRESSED Uzbek and Tajik
+  (a larger gloss, an unbracketed 'sins', and كفارة with one ф). The P108
+  shape: regenerating is a re-roll with its own defects, not a fix.
+- check_out_of_alphabet (P262) ran on the operator's text as its first real
+  input: zero findings.
+- OPEN: مبرور now reads four ways - EN 'the accepted Hajj', RU «мабрур»
+  transliterated, UZ «мақбул», TJ «мақбул». Russian is the odd one out.
+
 ## [2026-10-17e] - Bukhari #1894 restored, out-of-alphabet check added, P262
 
 ### Added

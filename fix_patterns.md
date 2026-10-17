@@ -10541,3 +10541,63 @@ assert wrongly.
 **Status:** FIXED. #1894 at 370 chars, Tajik and Uzbek corrected, Latin
 re-derived, Stage 3 8/8 pass, `audit-library.py` clean (0 high, 0 warn), 66
 tests pass. `matn_verified_at` left null - Stage 4 is the human gate.
+## PATTERN 263: A Stage 3 'disagree' that was two models agreeing
+
+**Date:** 2026-10-17
+**Files:** hadith_library (#1773)
+
+**The row was clean.** #1773's 121-character matn matches the mirror's entry
+1708 exactly and completely - narrator Abu Hurairah, offset 65, consistent with
+the curve. No SQL was needed. That makes it the SECOND false positive from
+P259's gloss detector after #1521: the parentheticals were clarifying a complete
+matn, not covering for a missing one. The detector's failure mode is now known -
+it flags complete rows whose English is glossed, which is most of them, because
+our English comes from a glossed source.
+
+**THE VERDICT READ 'DISAGREE' AND THE MODELS DID NOT DISAGREE.** Stage 3
+returned:
+
+| lang | A | B | objection |
+|---|---|---|---|
+| en | pass | FAIL | لما بينهما says 'for what is between them', not 'sins' |
+| uz | FAIL | pass | the same 'sins' point, on our bracketed «(гуноҳлар)» |
+| tj | pass | pass | A noted «навбатӣ» (next) is not in العمرة إلى العمرة |
+| ru | pass | pass | - though it said «следующей», the same addition |
+
+Per-language the two models split, so the row aggregates to `disagree`. But
+both models objected to the SAME thing - the inserted word 'sins' - they simply
+happened to scrutinise different columns. Nothing was in dispute. Treating this
+as an unresolvable split under P177 would have been reading the scoreboard
+instead of the findings, and the row would have sat in needs_human forever
+over a defect both models had already identified.
+
+**Rule:** before invoking P177, read what the models actually SAID. A split
+verdict across LANGUAGES is not a disagreement about a CLAIM. P177 protects a
+genuine conflict of judgement on the same text; it does not apply when two
+models independently find the same defect in different columns. The remaining
+disagreements from the 2026-10-17 sweep should all be re-read this way before
+anyone adjudicates them.
+
+**A second thing the table shows:** «следующей» in Russian is the same addition
+as «навбатӣ» in Tajik, and both models passed the Russian. Per-language
+attention is uneven, so a clean verdict on one column is not evidence that the
+same defect is absent from another. Check the sibling columns by hand whenever
+one is flagged for an addition.
+
+**Re-translation improved two columns and regressed two** - the P108 shape. The
+fresh English fixed a real gap (the stored one had dropped إلى العمرة entirely,
+reading 'Umra is an expiation' with no 'to Umra') and the fresh Russian dropped
+«следующей». But the Uzbek came back with a LARGER gloss than before -
+«(вақт ичидаги гуноҳлар)», the sins within the time - and the Tajik added
+«дигар» (another), unbracketed «гуноҳҳо», and spelled كفارة with a single ф.
+Regenerating is not a fix; it is a re-roll with its own defects.
+
+The operator supplied the Uzbek and Tajik himself and they were taken verbatim.
+`check_out_of_alphabet` (P262) ran on them as its first real input and returned
+zero findings, as did the homoglyph check.
+
+**Status:** FIXED, no matn change. Stage 3 re-run: 8/8 pass, zero disagreement.
+#1773 comes OFF the DISAGREE list. `matn_verified_at` left null - Stage 4 is
+the human gate. OPEN: مبرور is now rendered four ways - EN 'the accepted Hajj',
+RU «мабрур» transliterated, UZ «мақбул», TJ «мақбул». Russian is the odd one
+out and the operator chose мақбул for both his languages.

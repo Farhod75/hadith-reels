@@ -70,6 +70,22 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**#1773 DONE 2026-10-17 - matn was CLEAN, translations were not.** Second false
+positive from the gloss detector (after #1521): the parentheticals clarified a
+complete matn. The translations inserted 'sins' and 'next umrah', and the
+English had dropped إلى العمرة entirely. Re-translated; Uzbek and Tajik given
+by the operator verbatim. Stage 3 8/8 - COMES OFF THE DISAGREE LIST. P263.
+
+**RE-READ THE REMAINING DISAGREEMENTS BEFORE ADJUDICATING.** #1773 aggregated
+to `disagree` while both models objected to the SAME insertion in DIFFERENT
+columns - nothing was in dispute. A split across LANGUAGES is not a conflict
+of judgement on a CLAIM, and P177 does not apply to it. Also: «следующей» in
+Russian was the same addition as «навбатӣ» in Tajik and both models passed the
+Russian, so check sibling columns by hand whenever one is flagged.
+
+**OPEN - مبرور is rendered four ways:** EN 'the accepted Hajj', RU «мабрур»
+transliterated, UZ «мақбул», TJ «мақбул». Russian is the odd one out.
+
 **#1894 DONE 2026-10-17.** Stored 18 chars where the matn runs 370 - the
 largest restoration so far. Tajik «бехудагӣ» for يرفث failed by both models
 unanimously and was corrected; Uzbek «оғиз ҳидини» carried a case error no
