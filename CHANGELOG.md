@@ -23,6 +23,13 @@
   a comma-decimal locale would have emitted `volume=0,2640`.
 
 ### Changed
+- `CLAUDE.md`: recorded the scripted-Python write path as verified working,
+  with its four-part verification requirement attached — assert anchors are
+  unique, write nothing on a miss, prove byte counts and line endings, read
+  back. VS Code remains the rule for hand edits.
+- `fix_patterns.md` — P256: the `**Commit:**` field stopped at P156 because
+  atomic commits made it unfillable, and no check reads it, so 99 patterns
+  omitted it silently. The sha is derivable with `git log -S`.
 - `CLAUDE.md`: two operator rules that existed only in chat are now in the
   repo — push when a set closes without asking, and search previous chats
   before reconstructing a convention. Both were broken on 2026-10-16; the first

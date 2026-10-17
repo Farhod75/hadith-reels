@@ -10055,3 +10055,50 @@ somebody reads why.
 other change); `generate-scene.ps1` now uses `WriteAllText` with
 `UTF8Encoding($false)`, matching `render-reel.ps1`. The gate was NOT relaxed to
 `utf-8-sig` — it caught a real defect and should keep catching it.
+## PATTERN 256: A convention that became impossible to follow, and stopped silently
+
+Pattern entries used to carry a header block — **ID**, **Type**, **Files**,
+**Commit**. **P156 is the last one with a `**Commit:**` sha.** P157 onward: 99
+consecutive patterns without it. Not a drift, a clean stop, and the operator
+found it by scrolling — nothing reported it in 99 chances.
+
+**Why it stopped.** P156's own commit, `47d2a0e`, touched ONE file:
+`fix_patterns.md`, 53 insertions. The pattern was written in a SEPARATE commit
+from the fix, so `**Commit:** deb3db5` pointed at the earlier fix commit, which
+already existed and already had a sha.
+
+Then commits went atomic — the fix, its fix_patterns entry and its CHANGELOG
+entry in one commit, which is what CLAUDE.md now requires. P250's commit
+`9a4f2f0` carries the reels, the code and six patterns together. **A commit
+cannot contain its own sha.** The field became unfillable at the moment it was
+written, and amending to add it changes the very sha you just recorded.
+
+So the convention did not lapse through carelessness. A newer rule made it
+impossible, and because NO CHECK READS THAT FIELD, the collision produced no
+error, no warning and no missing-field report — just 99 quiet omissions.
+
+**The information was never actually lost.**
+`git log -S "## PATTERN <n>:" -- fix_patterns.md` resolves every one, precisely
+BECAUSE the atomic rule puts the pattern text in the same commit as its fix.
+Verified on P157, P200, P248 and P255 — one command, exact hit each time.
+
+**Rule:** when a new rule makes an older convention impossible, the older one
+does not get to stop quietly. Retire it in writing, or re-mechanise it. A
+convention nobody can follow, whose absence nothing checks, disappears without a
+single error and is noticed years later by a human reading an old entry.
+
+Corollary: a field that no check reads is decoration. If it is worth keeping,
+something must fail when it is missing.
+
+**Status:** DOCUMENTED — decision owed, and it is the operator's:
+
+  (a) **Backfill** all 117 missing shas from `git log -S`, mechanically, then
+      fill each new one in a follow-up pass after the push. Restores a uniform
+      audit trail; costs a second commit per pattern forever.
+  (b) **Retire the field in writing** and record the lookup command as the audit
+      trail. Costs nothing, cannot drift, and under atomic commits yields exactly
+      the same answer — because the sha is derivable from the text.
+
+Under the current rules (b) is strictly cheaper and (a) buys nothing the lookup
+does not already give. Either way it gets WRITTEN DOWN this time, which is the
+whole point of the pattern.

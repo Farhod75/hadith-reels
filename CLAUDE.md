@@ -188,6 +188,39 @@ Likely cause: antivirus controlled-folder-access or a sync/backup tool intercept
   the new text, check the byte count, or `git diff --numstat`. One command.
   Thirteen clean writes was evidence that writes often work, never that they
   always do. The PowerShell file-API restriction above still stands.
+- **[2026-10-17] A THIRD PATH, VERIFIED WORKING — scripted Python, with the
+  verification attached.** PowerShell writes a Python script to `%TEMP%` and runs
+  it; the script edits repo files with
+  `io.open(path, "w", encoding="utf-8", newline="")`. Used on ~15 repo files in
+  one session — CLAUDE.md, fix_patterns.md, reel-tracker.md, OPEN_ITEMS.md,
+  CHANGELOG.md, reel-creation-pipeline.md, asset-registry.json, render-reel.ps1,
+  generate-scene.ps1, a SKILL.md and 17 scene-prompt sidecars — with no
+  reversion, no BOM, and no line-ending damage across an LF-only file, several
+  CRLF files, and one carrying exactly three deliberate bare LFs. All of it is in
+  git.
+
+  **Why it survives where `Set-Content` does not:** it never touches the
+  PowerShell file APIs the restriction names, and `newline=""` passes existing
+  line endings through byte for byte instead of normalising them.
+
+  **THE VERIFICATION IS PART OF THE PATH, NOT AN EXTRA.** Permitted only with all
+  four:
+    1. assert every anchor occurs EXACTLY ONCE before writing;
+    2. write nothing at all if any anchor misses — exit before the first write,
+       so a partial edit is impossible;
+    3. print byte count before and after, and re-count bare LFs to prove the line
+       endings did not move;
+    4. read back afterwards — grep the new text, or `git diff --numstat`.
+  Same requirement as the bullet above: every write is followed by a read that
+  proves it landed. This path does not relax that. It is allowed BECAUSE it
+  automates it — and it earns the allowance only while it keeps doing so. The
+  guard is real: on 2026-10-17 this very entry failed its own anchor check and
+  wrote nothing, because the anchor string was wrong.
+
+  **VS Code is still the rule for hand edits.** This path is for scripted,
+  multi-anchor edits across several files, where hand-editing is the more
+  error-prone option. A one-line change is a VS Code change.
+
 - This also explains earlier BOM/encoding struggles with `Set-Content`.
 - Symptom to recognize: `git hash-object <file>` returns the SAME sha as HEAD even
   after you "wrote" changes; `git status` says clean despite a changed file.
