@@ -19,6 +19,37 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 ---
 
 ## Production queue
+**A/B SWEEP OF THE SHIPPED LIBRARY, 2026-10-17 — 16 ROWS NEED ADJUDICATION.**
+First Stage 3 run over `hadith_library`: 34 rows, 35 verdicts, **19 pass / 4
+fail / 12 disagree, 46% not clean.** Conventions audited clean first. Dry runs
+only, nothing written. Full reasons: `out/ab-library-sweep-2026-10-17.txt`.
+Background and the three classes of finding: P257.
+
+**FAIL — both models agree, these are real and they have shipped:**
+
+| row | reels | finding |
+|---|---|---|
+| Bukhari #527 | R034-R041 (8) | TJ: أحب "most beloved" rendered «беҳтарин» (best); قُلْتُ dropped |
+| Bukhari #6009 | R006-R009 (4) | all four langs: يأكل الثرى (eating earth) as licking mud; فشكر الله له (Allah thanked him) as accepted/pleased |
+| Bukhari #8 | R018-R021 (4) | **NOT a translation defect — `text_arabic` is truncated** to بني الإسلام على خمس with the five never enumerated. The captions shipped a one-line Arabic beside a full translation. |
+| Bukhari #6857 | R098-R101 (4) | أكل الربا loses its verb; قذف المحصنات loosened; singular قال rendered plural |
+
+**DISAGREE — A and B split, human decides, never a third pass (P177):**
+#1, #1417, #82, #574, #4248, #2628, #2963, #2759, #5027, #13, #1773, #1520.
+
+**Do #8 first.** It is the cheapest to fix (restore the full matn to
+`text_arabic`) and the only one a viewer can see directly, because the caption
+prints the Arabic.
+
+**Then re-check extent on the rest.** #8 was found by accident — the models
+flagged "added content" and the truth was a short Arabic. Muslim #223, #2699 and
+#2963 are the same shape and already recorded. Nothing in the pipeline checks
+that a stored matn is the WHOLE hadith.
+
+**Do NOT re-run disagreements hoping for a cleaner roll.** The models are
+non-deterministic (#1903 RU moved pass/pass -> A=pass/B=fail on unchanged text).
+Disagreement is the output.
+
 
 **LIBRARY ROWS THAT CANNOT BE PRODUCED AS THEY STAND — found 2026-10-15** while
 picking a hadith for the day's reel. Five rows in one morning, out of 38 unused.

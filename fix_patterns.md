@@ -10141,3 +10141,65 @@ describe what this file has contained for a long time — the entries are
 narrative. That is P253's shape again, a doc describing a superseded practice.
 Left for the operator to decide whether 4.1 is rewritten to match practice or
 practice returns to 4.1. It is NOT left silent, which was the whole failure.
+## PATTERN 257: The library behind 137 shipped reels had never been verified, and 46% of it is not clean
+
+First run of Stage 3 A/B over `hadith_library` " " 34 rows, every hadith used in a
+reel, 35 verdicts because #6018 is stored as two rows. Conventions audited clean
+first (P120): 0 high, 0 warn.
+
+    pass 19 (54%)   fail 4   disagree 12   disagreement rate 34%
+
+**FAIL, both models agreeing:** #527, #6009, #8, #6857.
+**DISAGREE, needs human:** #1, #1417, #82, #574, #4248, #2628, #2963, #2759,
+#5027, #13, #1773, #1520.
+
+**Why it had never run.** Stage 3 gates `hadith_candidates` before promotion. The
+library predates the sourcing pipeline, so rows promoted before it existed were
+never verified by anything. `--library` has existed on the script and had never
+been used.
+
+**THE FINDINGS ARE THREE DIFFERENT THINGS AND ONLY ONE IS A TRANSLATION
+DEFECT.** Reading the output without separating them makes the back catalogue
+look far worse than it is " " and makes the real defects easy to lose:
+
+  1. **Real fidelity defects.** #527 TJ renders أحب (most beloved) as «беҳтарин»
+     (best) and drops قُلْتُ, the narrator's first-person question. #6009 renders
+     يأكل الثرى (eating the earth) as licking mud, and فشكر الله له (Allah
+     thanked him) as accepted / was pleased " " a divine act flattened. #6857
+     drops the verb in أكل الربا and loosens قذف المحصنات.
+  2. **A TRUNCATED STORED MATN, where the translation is right and the Arabic is
+     short.** #8's `text_arabic` is only بني الإسلام على خمس with the five never
+     enumerated, so all four translations read as "added content" at high
+     confidence from both models. **The caption prints `text_arabic`, so
+     R018-R021 shipped a one-line Arabic beside a full translation.** Same shape
+     as Muslim #223 and #2699 in OPEN_ITEMS and #2963's missing final clause.
+     Nothing else in the pipeline looks for this.
+  3. **Structural noise.** "The Arabic does not state that the Messenger said
+     it" appears on many rows because the stored matn is the body without the
+     isnad. Not a defect. It must be filtered or it swamps the signal.
+
+**WHAT THE GATE CANNOT SEE, PROVEN TODAY.** #6018 is one hadith stored as two
+rows, already recorded in the tracker's duplicate index, already shipped as
+R082-R085. Stage 3 returned **two candidates and passed both** " " because each
+half IS a faithful translation of its half of the Arabic. The gate compares a
+row's translations against that row's own Arabic and never asks whether the row
+is a whole hadith. A split matn is invisible to it by construction.
+
+**`matn_verified_at` DOES NOT MEAN THE TRANSLATIONS ARE FAITHFUL.** It means a
+human read the row against the source (P151), and that is a different claim.
+#1903 was stamped by the operator hours before it failed UZ and TJ on both
+models; #527 is an old verified row and its Tajik fails. Worse, the batch
+selector at `verify-candidates.py` L342 filters `matn_verified_at is.null` " " so
+a default `--library` run SKIPS precisely the rows that have shipped. The sweep
+only hit them because every row was named explicitly with `--row`.
+
+**Rule:** a gate that has never been pointed at the existing corpus has not been
+tested, it has only been written. When a verification stage is built for new
+material, run it once over everything already shipped " " the first run is a
+measurement of the back catalogue, not a formality. And read a batch selector
+before trusting a batch: its default filter encodes an assumption about which
+rows matter, and that assumption can be exactly backwards.
+
+**Status:** DOCUMENTED, nothing written to the DB " " every run was a dry run and
+`--commit` was never passed. The 16 non-clean rows are a work queue in
+OPEN_ITEMS. Raw log: `out/ab-library-sweep-2026-10-17.txt` (gitignored, on disk).

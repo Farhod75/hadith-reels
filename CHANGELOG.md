@@ -23,6 +23,12 @@
   a comma-decimal locale would have emitted `volume=0,2640`.
 
 ### Changed
+- First Stage 3 A/B run over the shipped library (P257). 34 rows, 35 verdicts,
+  19 pass / 4 fail / 12 disagree — 46% not clean, behind 137 published reels.
+  Findings separate into real fidelity defects, a TRUNCATED stored matn (#8,
+  visible to viewers because the caption prints text_arabic), and structural
+  isnad noise. Split-matn rows (#6018) pass by construction and the gate cannot
+  see them. Dry runs only; 16 rows queued in OPEN_ITEMS.
 - `**Commit:**` retired from the fix-pattern template (P256, operator's call).
   69 of 186 patterns carried it, P46-P156 with 18 internal gaps, filled with a
   sha rather than the commit message the template specified. The commit is
