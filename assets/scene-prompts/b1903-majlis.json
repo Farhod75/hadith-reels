@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aaea87a/v7-FDDNPBnT-gzO_aG0Zd_output.mp4",
+    "name":  "b1903-majlis",
+    "image":  "out\\refs\\b1903-majlis-1.jpg",
+    "file":  "out\\backgrounds\\new\\b1903-majlis.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-16T21:16:05.3900909Z",
+    "size_bytes":  9007095,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "very subtle motion, robes and head cloths stirring slightly in a faint breeze, fine dust drifting across the wall behind them, the men remain seated and completely still, nobody turns, nobody looks around, no head movement",
+    "request_id":  "01a14692-740b-7401-ad41-f3c3d5cc7eb4",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-16T21:19:41.5528424Z",
+    "mode":  "image-to-video"
+}

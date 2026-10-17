@@ -1,3 +1,54 @@
+## [2026-10-16] — Per-bed nasheed gain, publishing procedure, P249-P251
+
+### Fixed
+- Cyrillic from piped child processes arrived as mojibake, so the RU/UZ/TJ
+  Whisper cues and stt-lint findings were unreadable in the console. P100 set
+  `PYTHONIOENCODING` on the child; PowerShell decodes piped bytes with
+  `[Console]::OutputEncoding` (CP437 on PS 5.1), which nothing set. Now saved,
+  set to UTF-8 and restored around both piped calls in `render-reel.ps1`. P252.
+- The eight `aswati-*` beds sat under-audible in the mix. The adults mix is one
+  level for every bed (narration 1.4 / nasheed 0.12, P171) and the masters are
+  not one loudness: measured -13.35 to -20.22 LUFS against `light-of-my-heart-bg`
+  at -13.38, the bed 0.12 was tuned on. Added an optional `gain` to the
+  registry's audio entries; `render-reel.ps1` multiplies 0.12 by it and records
+  `nasheedVol` in the sidecar. Absent means 1.0, so no other bed changes. Derived
+  per track rather than applied as one bump - Gentle-Reflection needed 2.20,
+  Rising-Hope 1.00. P251.
+- Mix volume is formatted with InvariantCulture before reaching the filter graph;
+  a comma-decimal locale would have emitted `volume=0,2640`.
+
+### Changed
+- Corrected the stale OPEN_ITEMS claim that Stage 3 pass B has no OpenAI
+  credits. It ran twice tonight. Recorded that `verify-candidates.py --library`
+  exists and had never been used, that most library rows predate the sourcing
+  pipeline and have never been A/B verified, and that #1903's first ever run
+  failed UZ and TJ on both models.
+- `fix_patterns.md` — P254: ↻ Rebuild from blocks re-derives the caption from
+  the blocks but takes the matn from `selected`, a snapshot captured at row
+  selection, so a mid-session DB correction is invisible to it.
+- `reel-creation-pipeline.md` Step 9 — minimum four clips per reel, because the
+  clips are posted individually on Instagram.
+- Three stale instructions in `reel-creation-pipeline.md` corrected, each a
+  workaround that outlived its defect: Instagram "phone only, WhatsApp it to
+  yourself" (laptop upload has worked for months), "collection and narrator stay
+  Latin, hand-correct to Cyrillic" (superseded by P150, and it made the assistant
+  tell the operator to delete a correct citation), and "`-Scenes` reads from
+  `normalized` and nothing else" (superseded by P217). A registration warning was
+  also added to Step 13, closing the gap that blocked #1903 EN. P253.
+
+### Added
+- `reel-creation-pipeline.md` — `Publishing — all four platforms`: the order,
+  the fields each platform needs, the YT and TikTok metadata shape, and the
+  per-platform traps MOVED out of the kids Step 6 so both lanes read one copy.
+  Records that none of it is automated and why: the Telegram route is
+  `sendMessage`, no tokens sit in either `.env.local`, IG is behind the Facebook
+  appeal.
+- `fix_patterns.md` — P249 (the nasheed picker keeps one slot per lane and
+  writes it before the render succeeds), P250 (the FLUX still prompt is recorded
+  nowhere and #1903's four are lost), P251.
+- `reel-tracker.md` — R134, Bukhari #1903 EN, with the duplicate-check,
+  theme, asset-reuse and stats updates.
+
 ## [2026-10-16]
 
 ### Fixed

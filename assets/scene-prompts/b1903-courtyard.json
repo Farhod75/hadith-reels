@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aaea88e/9jy1IucyiM3Wb9zVpmdlF_output.mp4",
+    "name":  "b1903-courtyard",
+    "image":  "out\\refs\\b1903-courtyard-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1903-courtyard.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-16T21:19:42.8799180Z",
+    "size_bytes":  7046605,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "a low steady wind lifting fine dust across the empty courtyard, the fringes of the woven mats stirring gently, the light fading almost imperceptibly, slow static shot",
+    "request_id":  "01a14695-c5b6-7443-a28b-4c70ad248680",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-16T21:23:07.0943920Z",
+    "mode":  "image-to-video"
+}

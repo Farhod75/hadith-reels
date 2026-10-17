@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aaea860/Qd8sDeDe7rOOmUYWsWGPS_output.mp4",
+    "name":  "b1903-dates",
+    "image":  "out\\refs\\b1903-dates-3.jpg",
+    "file":  "out\\backgrounds\\new\\b1903-dates.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-16T21:11:17.6344316Z",
+    "size_bytes":  19612521,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "very slow gentle push-in, fine dust drifting and turning slowly through the shaft of light, the light beam shifting almost imperceptibly across the floor, everything else completely still",
+    "request_id":  "01a1468e-1002-7a12-98b9-e235f6514336",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-16T21:16:01.4419205Z",
+    "mode":  "image-to-video"
+}

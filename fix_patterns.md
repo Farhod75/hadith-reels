@@ -9736,4 +9736,288 @@ steps before closing it.
   - The task prompt no longer computes it. Step 1 says to quote the script's
     first line and recompute nothing; a new step 3 forbids reading the tracker
     or fix_patterns to work anything out, and says why.
+## PATTERN 249: The picker remembers one bed per lane, and writes it down before the render succeeds
 
+Bukhari #1903 EN rendered three times on 2026-10-16 - aborted at the SRT pause,
+blocked by the asset-registry gate, then clean - and drew a DIFFERENT nasheed on
+each run: `vocal-nasheed-05`, then `aswati-Heartfelt-Gratitude`, then
+`light-of-my-heart-bg`. The published reel carries the third. Nobody asked for a
+change and the operator noticed it only because the console prints the pick.
+
+`render-reel.ps1` L236-255. The state file is `out\backgrounds\.last-used.json`
+and it holds ONE value per LANE: `$state[$Style] = $pick.Name`. The write happens
+at PICK time, inside the step-0 validation block, before any ffmpeg work and
+before the render can fail. So:
+
+  1. A run that never finishes still burns the slot. The retry of the SAME
+     language then dutifully avoids its own previous pick, which is the opposite
+     of what a retry should do.
+  2. Re-rendering an ALREADY-PUBLISHED reel silently changes its bed - and the
+     P201 `*-render.json` sidecar and the tracker's Nasheed column are both
+     rewritten to match the new one, so nothing anywhere records that the live
+     video no longer matches what we wrote down.
+
+And the deeper one: there is no per-reel or per-language rule in the picker at
+all. One slot, one lane, one deep. Across a four-language set rendered in order,
+language 3 can repeat language 1's bed - 1-in-17 per step on the adults lane.
+That is exactly the #6570-versus-#13 clash of 2026-10-15, which was closed by
+passing `-Nasheed` on two legs and re-rendering. The instances were fixed; the
+picker was never touched, so the mechanism was still live eleven days later and
+produced three different beds for one reel in one evening.
+
+**Why it survived.** The state is keyed by the thing that MAKES the pick (the
+lane) rather than the thing the rule is ABOUT (the reel). A lane-keyed one-deep
+memory faithfully answers "not the same bed twice in a row on this machine",
+which is a question nobody asked. The documented rule - not the same bed on two
+consecutive reels in the same language - needs slug and lang, and the picker has
+both in scope and uses neither.
+
+**Rule:** state that describes a piece of work is written AFTER that work
+succeeds, not when the decision is taken. And key it by the subject of the rule,
+not by whichever variable the code happens to be holding. If the two differ, the
+check is measuring something else and will look correct while being wrong.
+
+**Status:** DOCUMENTED - fix pending.
+
+  - Workaround until then: pass `-Nasheed <file>` explicitly for every language
+    of a set, which prints `avoided: n/a (override)` and cannot re-roll.
+  - Fix has three parts: move the state write to after the render returns 0; key
+    it by `slug`+`lang` rather than by lane; and have the picker read the set's
+    existing `*-render.json` sidecars so it knows what the other languages of
+    THIS reel already used instead of guessing from a single global slot.
+
+---
+
+## PATTERN 250: The prompt that decides what is in the frame is the one nothing records
+
+P215 made `generate-scene.ps1` write every motion prompt to
+`assets\scene-prompts\<name>.json`, because no clip's prompt had ever been
+stored. `generate-image.ps1` writes nothing, and still does not.
+
+These are image-to-video clips. The STILL decides what is in the frame; the
+motion prompt only decides what moves within it. So the half that was fixed is
+the less consequential half, and it reads as covered because a sidecar exists.
+
+Found while writing the asset-registry notes for the b1903 set. The four motion
+prompts were on disk. The four FLUX still prompts were nowhere: not in the
+sidecars, not in `animated-reel-scene-prompts.md` - which is a methodology doc,
+and `6423`, `5027`, `3895` and `1631` appear ZERO times in it - and not
+recoverable from the session transcript, which had compacted. The registry notes
+for all four b1903 clips therefore describe motion only, and say so.
+
+**Why no earlier set exposed it.** The registry note was always written in the
+same session that generated the stills, so the prompt was still in the
+conversation when the note was composed. The record WAS the conversation. That
+worked for every set from b1520 to b6570 and gave no signal, because a
+conversation that has not ended yet looks exactly like storage. Same shape as
+P201 (three of four bed names survived only in a console buffer that was then
+closed) and as P215 itself - and this is the third time the thing that knows has
+been the only thing that could write it down and did not.
+
+**Rule:** when a step makes a choice the output cannot be reverse-engineered
+from, that step writes the choice down, beside the artefact, at the moment it is
+made. Not the session, and not a note composed afterwards from memory - a note
+written later records what the writer recalls, which is a different thing from
+what was sent.
+
+**Status:** DOCUMENTED - fix pending. `generate-image.ps1` should write
+`<name>-still.json` next to the scene sidecar, carrying the prompt, the negative
+prompt, the model, the variants returned and which one was chosen. The chosen
+variant matters as much as the prompt: `b1903-majlis` went through three circle
+stills that all showed faces before the composition was changed to a row facing
+away, and only the final choice is visible in the output.
+## PATTERN 251: One mix level, for beds that are not one loudness
+
+The operator said the Aswati beds sit too quiet. By ear, mid-session, with no
+gate having said anything in the twenty-four reels those beds have carried.
+
+The adults mix is fixed at narration 1.4 / nasheed 0.12 (P171) - ONE level for
+every bed. Measured on 2026-10-16, the eight Aswati masters run from -13.35 to
+-20.22 LUFS, against `light-of-my-heart-bg` at -13.38, which is the bed the 0.12
+was tuned on. So the complaint was right.
+
+But "the Aswati beds are quiet" is true on average and wrong per track.
+`aswati-Gentle-Reflection` is 6.8 dB down; `aswati-Rising-Hope` is AT reference.
+A single blanket bump - the obvious reading of the request, and what I would have
+shipped without measuring - fixes the worst one and overdrives the two that were
+already right.
+
+**Why nothing caught it.** Every gate in the audio path checks WHAT a bed is, not
+how loud it is. The registry records classification, lanes and verified; P168
+made the pickers read the registry instead of the filename; `audit-assets.py`
+enforces lane eligibility. None of them measures anything. And the beds were
+auditioned ALONE at registration, where 6 dB reads as a quieter track rather
+than as a defect - the defect only exists in the mix, under narration at 1.4. So
+the one instrument that could detect it was a person listening to finished reels,
+which is the slowest and most expensive detector in the project.
+
+**Rule:** a constant tuned against one input is a constant tuned against one
+input. When that number is then applied across a library, record per item the
+property it was tuned against - here integrated loudness - and DERIVE the number
+from it. The alternative is what happened: a human ear doing arithmetic that a
+one-line measurement does exactly.
+
+**Status:** FIXED 2026-10-16.
+
+  - `assets/asset-registry.json` - optional `gain` on audio entries, documented
+    in `_schema`, set on all eight Aswati beds as 10^((-13.38 - LUFS)/20):
+    Gentle-Reflection 2.20, Heartfelt-Gratitude 1.58, Focused-Determination 1.41,
+    Morning-Serenity 1.23, Steady-Motivation 1.19, Peaceful-Contemplation 1.14,
+    Victory-March 1.06, Rising-Hope 1.00. Absent means 1.0, so the other
+    seventeen audio entries are untouched.
+  - `render-reel.ps1` - reads `gain` for the chosen bed, multiplies 0.12, prints
+    it on the nasheed line, and records `nasheedVol` in the P201 sidecar so a
+    reel's actual mix level is recoverable afterwards. Out-of-range or
+    unreadable falls back to 0.12 with a warning rather than failing the render.
+  - The value is formatted with InvariantCulture before it reaches
+    `-filter_complex`. A comma-decimal locale would have emitted
+    `volume=0,2640` and the filter graph would not have parsed - a failure that
+    would have looked like an ffmpeg bug on someone else's machine.
+  - NOT applied to #1903: its EN leg shipped on `light-of-my-heart-bg` before
+    this landed, and the remaining three languages are being kept off Aswati
+    beds so one reel is not mixed two ways.
+## PATTERN 252: The encoding fix went to the child process and not to the parent
+
+P100 set `PYTHONIOENCODING=utf-8` on the Whisper call, because a CP1252 console
+made `transcribe.py` raise UnicodeEncodeError on Cyrillic and abandon the
+transcription. That was correct and it worked. It also looked complete.
+
+It was not. `PYTHONIOENCODING` tells the CHILD how to ENCODE its output.
+PowerShell then DECODES that output using `[Console]::OutputEncoding`, which is
+CP437 on PS 5.1 - and only when the output is PIPED, because a child writing
+straight to the console hands its bytes to the terminal untouched.
+
+So in `render-reel.ps1`:
+
+  - `restore-srt-casing.py` (L430) runs unpiped. Its Cyrillic prints correctly.
+  - `whisper` (L392) and `stt-validate.py` (L461) both pipe through
+    `ForEach-Object`. Their Cyrillic arrives as mojibake.
+
+Found on the RU leg of #1903 on 2026-10-16. The operator pasted the subtitle
+review and `  пророк -> Пророк` was legible while every Whisper cue and every
+stt-lint finding in the same output was not. **For RU, UZ and TJ - three of four
+languages - the operator could not read the findings the gate produces.** The
+review happened only because the SRT had been pasted separately from the file.
+A defect visible ONLY in the lint output would have been invisible.
+
+**Why it survived.** P100's symptom was a CRASH, and the fix stopped the crash,
+so the evidence that anything remained wrong was mojibake in a console nobody
+treats as data. Two subsequent patterns touched this exact block - P188 wired
+`stt-validate.py` in at all, P211 added the stamp - and both read the
+`PYTHONIOENCODING` line as handled. The comment on L460 even says "P100:
+Cyrillic through a CP1252 console", which reads as a solved problem.
+
+This is the FOURTH occurrence of the shape P237 named: a remedy applied to the
+instance that failed, with its siblings left alone. P242 and P248 were the second
+and third. The question that catches all four is the same every time: having
+fixed this, what else in the same file has the same shape?
+
+**Rule:** a text pipeline has an encoder AND a decoder, and fixing one does not
+fix the other. When output crosses a process boundary, name both ends. And when
+a fix stops a crash, check whether the data is now CORRECT or merely no longer
+fatal - a silent corruption downstream of a fixed crash is the normal outcome,
+not the unusual one.
+
+**Status:** FIXED 2026-10-16. `[Console]::OutputEncoding` is saved, set to UTF-8
+and restored around both piped calls, symmetrical with the existing
+`PYTHONIOENCODING` save/restore so nothing leaks into the operator's session.
+The pipes stay: they are what filters Whisper's FP16 noise and indents the lint
+block, and the pipe was never the defect.
+## PATTERN 253: A workaround written down as a rule, outliving the defect it worked around
+
+Three instructions in `reel-creation-pipeline.md` were found stale in ONE evening,
+2026-10-16, while publishing #1903. Each had been true when written. Each
+described a WORKAROUND. Each outlived the thing it worked around by weeks or
+months, in the same confident voice as the rules beside it.
+
+  1. **"Instagram — phone only. WhatsApp the file to yourself, save to
+     gallery, upload in the IG app."** True for the first reels, when laptop
+     upload did not work. The operator has been uploading from the laptop for
+     months. The assistant read it out as current instruction mid-publish.
+  2. **"Known gap: collection and narrator stay Latin inside Cyrillic captions.
+     Hand-correct to Cyrillic."** Superseded by P150, which localised the
+     reference line in `lib/refs.ts` — deliberately keeping the Latin
+     collection name in parentheses, because the collection plus number is the
+     citation a viewer types to check the hadith. The note caused the assistant
+     to tell the operator to "fix" a CORRECT caption by deleting the citation.
+     The operator asked "don't we keep it intentionally?" and was right.
+  3. **"`-Scenes` reads from `normalized\` and nothing else."** Superseded by
+     P217, which added the `new\` fallback. Harmless, but every #1903 render
+     printed the contradiction on screen and the line stood anyway.
+
+**The shape.** A rule stays true. A workaround is true only while its defect
+exists, and the doc writes both in the same voice, with nothing recording what a
+workaround is working AROUND. So when the defect is fixed the instruction does
+not become obviously wrong — it stays plausible, and a reader with no memory of
+the original problem follows it. Worse than a gap, because a gap is silent and
+this actively directs.
+
+Note what caught all three: a HUMAN who remembered. Not a gate, not the doc
+audit, which happily reports PASS on text describing a fixed defect, and not the
+assistant, which read all three as current and acted on two. `audit-docs.py`
+checks that pattern numbers exist and that the tracker and registry agree; it
+has no way to know that prose has gone out of date.
+
+P193 reached the same conclusion for the pronunciation watch-list — entries
+expire when the model that produced them changes — and that reasoning was never
+carried to procedural notes.
+
+**Rule:** when you write down a workaround, write down the DEFECT it works
+around and the date. One clause is enough: "until X is fixed". Then a reader can
+check whether X is still true, which is a question with an answer, instead of
+guessing whether an instruction is current. And when a fix lands, the pattern's
+Status section names the doc lines that described the old behaviour — shipping
+the code without retiring the workaround is half a fix.
+
+**Status:** the three instances are FIXED 2026-10-16 — each corrected in place,
+each carrying a line saying what it used to say and why it changed, so the next
+reader is not left wondering whether the doc or the code is right. The CONVENTION
+is not yet applied to the rest of the file: other workaround-shaped notes in
+`reel-creation-pipeline.md` and `CLAUDE.md` have not been audited for the same
+problem, and there is no mechanism that would catch the next one. Assume more
+exist — that is the standing instruction, not a resolved item.
+## PATTERN 254: The rebuild re-derived from a snapshot taken before the fix
+
+On the TJ leg of #1903, `text_tajik` was corrected in the database mid-leg: it
+carried «амали бад», "a bad deed", where والعمل به says "and acting upon it" — an
+added word, flagged by both Stage 3 models independently. The blocks were
+rewritten, the story was re-narrated, and the narration verified as carrying the
+corrected wording.
+
+Then the operator pressed **↻ Rebuild from blocks** and the caption came back
+with the OLD matn.
+
+`buildCaption` takes the quote from `selected.text_<lang>`. `selected` is the row
+object captured when the hadith is chosen in the admin — a snapshot. Rebuild
+re-derives from the BLOCKS, exactly as named, and the matn is not one of the
+blocks. So it faithfully reproduced a pre-UPDATE string while the audio said
+something else. Published, that reel's caption and its narration would have
+quoted the same hadith differently — which is the divergence the database fix
+had just been made to remove, arriving from the other side.
+
+**Why it survived.** P238 gave Rebuild its job: re-derive the caption from the
+current blocks, because hand edits were drifting from them. It does that
+correctly. Nobody asked where the parts that are NOT blocks come from. The
+control is honestly named and the gap is in what the name does not cover.
+
+**And it is a mechanism, not an incident.** OPEN_ITEMS already records the same
+thing on #6570: `text_english` was normalised after the EN reel was rendered, so
+the caption kept reading "Hurayrah" while the subtitles read "Hurairah". That was
+written up as a one-off to remember before publishing. It is this.
+
+**The escape route costs something.** Re-selecting the row refetches it, but it
+discards the four reviewed blocks — so the correct move was to hand-edit the one
+line and then NOT press Rebuild again, since P238's own comment says Rebuild
+overwrites hand edits. The operator worked that out; the UI gives no sign of it.
+
+**Rule:** a control that rebuilds derived output must re-read its SOURCES, not
+reuse the snapshot it was handed. Where re-reading is expensive or destructive,
+the UI says what is being reused and when it was captured — a silent stale read
+is worse than a slow fresh one, because it is indistinguishable from a correct
+result.
+
+**Status:** DOCUMENTED — fix pending. Cheapest honest fix is the P125 shape
+already in this codebase: compare `selected.text_<lang>` against the live row and
+show the same amber "row changed since it was loaded — reselect" warning that the
+narration staleness check shows. Refetching inside `buildCaption` would also work
+and would not cost the blocks.

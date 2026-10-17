@@ -209,31 +209,24 @@ Caption is generated deterministically (P106): title, hadith text in the target
 language, moral, reference, verify link, filtered tags. `TAG_BLOCKLIST` removes
 tags that pull the wrong audience (`date` → dating content, `hellfire` → metal).
 
-**Known gap:** collection and narrator stay Latin inside Cyrillic captions.
-Hand-correct to `📖 Сахих аль-Бухари №8, Ибн Умар` and the TJ/UZ equivalents.
+**NO LONGER A GAP — P150 fixed it in code.** `lib/refs.ts` localises the
+reference line. `buildRef()` emits the localised collection WITH the Latin name
+in parentheses, the narrator localised only, and `№` rather than `#`:
+`📖 Сахих аль-Бухари (Sahih al-Bukhari) №1903, Абу Хурайра`. The Latin form is
+DELIBERATE: collection plus number is the citation, what a viewer types to check
+the hadith independently, so it has to survive. The narrator is not part of that
+lookup, so it is localised only. Nothing is hand-corrected. This note previously
+said to hand-correct to Cyrillic-only, which led the assistant to "fix" a
+correct caption on 2026-10-16 — the operator caught it.
 
 **Kids captions address the PARENT, not the child** — «Покажите детям», not
 «Смотри». The account holding the phone is the parent's. Kids cadence is
 weekly, measured on views, shares and comments over a two-week window.
 
-Publish order: Telegram → Instagram → YouTube Shorts → TikTok. YouTube needs
-title, description, and tags as separate fields, and Tags is under SHOW MORE at
-the bottom of the Details page.
-
-**Per-platform, learned the hard way (2026-10-05):**
-
-- **YouTube** — no `#` anywhere in the TITLE. YouTube turns it into a hashtag
-  link, so "Sahih Muslim #2759" becomes a tag. Write the number bare in the
-  title; the `#` is fine in the description.
-- **TikTok** — leave the Arabic matn out. TikTok's caption renderer handles RTL
-  inconsistently inside mixed-script text. The Arabic is already carried on the
-  other three platforms. Front-load the first line too: TikTok collapses the
-  caption after roughly one line, so the hadith's point goes first and the
-  quoted matn follows.
-- **Instagram** — set the cover frame BY HAND. Reels whose first frame is dark
-  get scrolled past in the grid, and MODE B sets that open at night (m2759) or
-  on an unlit interior open on exactly that. Pull the cover from a bright
-  section near the end.
+Publish order and the per-platform fields and traps have moved to their own
+section: see **Publishing — all four platforms** near the end of this file.
+It covers both lanes. Kids differences: YT "Made for kids" = **Yes**, and the
+caption addresses the parent as described above.
 
 Then log in `reel-tracker.md` — row, duplicate-check index, theme coverage, asset
 reuse, production stats.
@@ -386,6 +379,13 @@ Everything below is what the adults lane adds.
 
 ### Step 9 — Scene prompts
 
+**MINIMUM FOUR CLIPS PER REEL. Operator rule, 2026-10-16.** Not an aesthetic
+target — the individual clips are posted separately on Instagram, so a set of
+three leaves the operator a post short. Plan four even when the narration is
+brief: `-FitScenes` trims each clip to narration/clips, so a short reel gets four
+shorter clips rather than fewer clips. R130 shipped on three reused clips for an
+18.9s reel; under this rule it would have had four.
+
 Per `animated-reel-scene-prompts.md`: hadith text → scene-prompt JSON, 3–4
 beats forming an arc (journey → worship → destination → path is the proven
 shape from #1520).
@@ -476,8 +476,19 @@ ffmpeg -y -i "out\backgrounds\new\<name>.mp4" -vf "scale=1080:1920:force_origina
 `render-reel.ps1`'s animated mode rebuilds every clip to 1080×1920 @ 30fps
 before concat, so mismatched sources no longer break the stitch — the framerate
 trap that made a 24fps clip flash past in one frame is fixed. Staging here is
-therefore about **placement**, not correctness: `-Scenes` reads from
-`normalized\` and nothing else.
+therefore about **placement**, not correctness. `-Scenes` USED TO read from
+`normalized` and nothing else; **P217 added a fallback to `new`**, which is what
+every recent render prints. Staging is now optional rather than required, and
+the line that said otherwise stood for weeks after P217 shipped.
+
+⚠ **REGISTER THE CLIPS BEFORE RENDERING.** Asset-registry registration is in NONE
+of the sixteen numbered steps, although the gate has blocked renders since
+P121/P237 — it blocked #1903 EN on 2026-10-16 after Whisper had already run and
+the narration had already been built. Add each new clip to
+`assets\asset-registry.json` with a classification, the lanes it is approved
+for, and why. `verified: false` is the honest state for a clip nobody has
+watched end to end and still passes, with an `OK (unverified)` notice; set it
+true once it has actually been watched.
 
 ### Step 14 — Render
 
@@ -532,8 +543,8 @@ FP16 warning goes to stderr and would otherwise terminate the script).
 
 ### Step 16 — Watch, then publish
 
-Same as kids: **TG → IG → YT Shorts → TikTok**, one platform at a time.
-YT "Made for kids" = **No** on this lane.
+Order, fields and traps for all four platforms: see **Publishing — all four
+platforms** below. YT "Made for kids" = **No** on this lane.
 
 ---
 
@@ -610,6 +621,121 @@ PS 5.1 (turns text files binary; git shows `Bin` and shell scripts stop running)
 
 ---
 
+## Publishing — all four platforms
+
+Added 2026-10-16. The procedure had never been written down in one place: the
+per-platform traps sat in the kids Step 6, Step 16 said "same as kids", and the
+field-by-field metadata lived only in chat logs and was recomposed from scratch
+for every reel.
+
+**NOTHING HERE IS AUTOMATED, and that is a fact to plan around rather than route
+past.** `app/api/telegram/post/route.ts` exists but calls `sendMessage` - text
+only, no video - and re-appends the Arabic that `buildCaption` already included.
+There are no publish scripts in `scripts\`. Neither repo's `.env.local` carries
+Telegram credentials: `TELEGRAM_ALERT_BOT_TOKEN` and `TELEGRAM_CHANNEL_CHAT_ID`
+live only in Vercel/Railway. Instagram needs the Graph API, which OPEN_ITEMS has
+blocked behind the Facebook account appeal. YouTube and TikTok have no
+credentials set up at all. So Telegram is the ONE platform that could be
+automated today - Bot API `sendVideo`, token into `.env.local` - and the other
+three cannot be.
+
+**Order is fixed: TG -> IG -> YT Shorts -> TikTok, one platform at a time.**
+Finish all four for a language before producing the next language.
+
+### 1. Telegram — @SahihHadithReels
+
+Drag the MP4 into the channel and paste the caption from the admin. No
+per-platform edit. `fitTagLine` has already fitted it to the 1024-unit
+media-caption cap (P184), so if it was built in the admin it fits.
+
+### 2. Instagram — SahihHadithReels account
+
+Upload from the laptop, same as the other three. Caption: same as Telegram,
+unchanged. Then AI label **ON**, Share to Facebook **OFF**, Share.
+
+This step used to read "phone only — WhatsApp the file to yourself, save to
+gallery, upload in the IG app". That was a WORKAROUND from the first reels, when
+laptop upload was not working, and it outlived the problem by months. Corrected
+2026-10-16 by the operator, mid-publish, after the assistant read it out as
+current instruction.
+
+### 3. YouTube Shorts — Sahih Hadith Reels channel
+
+Brand Account under elfarhod@gmail.com. Create -> Upload. Three separate fields:
+
+- **Title** - `<Hook> | <Collection> <num>`. The number goes in BARE, no `#`.
+- **Description**:
+
+```
+<moral, one or two sentences>
+
+📖 Source: <Collection> #<num> - <Narrator> (RA)
+🔗 Verify: hadithverifier.com
+
+#Shorts #hadith #islam #<theme tags>
+```
+
+- **Tags** - comma separated, under **SHOW MORE** at the bottom of the Details page.
+
+Then Audience -> **No, not made for kids** on the adults lane -> Next through ->
+Visibility -> **Public** -> Publish. A vertical reel under 60s is picked up as a
+Short automatically; there is no flag to set.
+
+Add the `Nasheed: Aswati Studio` credit line to the description ONLY when the bed
+is an `aswati-*` track. YouTube is the only platform carrying that credit, and
+the Aswati licence section 4 requires no attribution at all - it is a courtesy,
+so do not attach it to a bed that is not theirs. The registry records no source
+field for the non-Aswati beds, so for those there is nothing to credit.
+
+### 4. TikTok — TikTok Studio, desktop
+
+One description field, and it is NOT the Telegram caption:
+
+- **Leave the Arabic matn out.** TikTok's renderer handles RTL inconsistently
+  inside mixed-script text, and the Arabic is already carried on the other three.
+- **Front-load the first line.** TikTok collapses the caption after roughly one
+  line, so the hadith's point goes first and the quoted matn follows it.
+
+Then Everyone -> AI label **ON** -> clear the Cornelius location -> checks pass
+-> **Post**.
+
+### Per-platform traps, learned the hard way
+
+Publish order: Telegram → Instagram → YouTube Shorts → TikTok. YouTube needs
+title, description, and tags as separate fields, and Tags is under SHOW MORE at
+the bottom of the Details page.
+
+**Per-platform, learned the hard way (2026-10-05):**
+
+- **YouTube** — no `#` anywhere in the TITLE. YouTube turns it into a hashtag
+  link, so "Sahih Muslim #2759" becomes a tag. Write the number bare in the
+  title; the `#` is fine in the description.
+- **TikTok** — leave the Arabic matn out. TikTok's caption renderer handles RTL
+  inconsistently inside mixed-script text. The Arabic is already carried on the
+  other three platforms. Front-load the first line too: TikTok collapses the
+  caption after roughly one line, so the hadith's point goes first and the
+  quoted matn follows.
+- **Instagram** — set the cover frame BY HAND. Reels whose first frame is dark
+  get scrolled past in the grid, and MODE B sets that open at night (m2759) or
+  on an unlit interior open on exactly that. Pull the cover from a bright
+  section near the end.
+
+- **Cyrillic captions need NO hand-correction.** P150's `buildRef()` in
+  `lib/refs.ts` already localises the collection, keeps the Latin citation in
+  parentheses and uses `№`. Do not "fix" it to Cyrillic-only; the Latin form is
+  intentional, because the collection and number are what a viewer types to
+  check the hadith for themselves.
+- **Confirm the upload actually played** before moving to the next platform.
+  R103 reported OK at 11.7 MB, then was found at 2.25 MB with no moov atom:
+  YouTube abandoned processing and TikTok hung, while Telegram had already
+  taken the good file (P190).
+
+After all four are live, update `reel-tracker.md` - the row, the
+duplicate-check index, theme coverage, the asset-reuse audit and the
+production stats. The template at the bottom of that file lists all five.
+
+---
+
 ## Audio policy — background beds
 
 **Rule:** background audio must be vocal-only nasheed (voice, or voice + daf)
@@ -633,6 +759,13 @@ for monetised use):
   ambient-ocean-bg.mp3       generated (ffmpeg pink noise), mono
   ambient-ocean-stereo-bg.mp3  generated, stereo
 
+**Per-bed gain (P251, 2026-10-16).** The mix is one level for every bed and the
+masters are not one loudness. Audio entries in the registry may carry an optional
+`gain`, which `render-reel.ps1` multiplies the 0.12 by; absent means 1.0. All
+eight `aswati-*` beds have one, derived as 10^((-13.38 - LUFS)/20) against
+`light-of-my-heart-bg`. If a bed file is ever replaced, re-measure its integrated
+LUFS and reset its gain - the old number describes the old file.
+
 **Retired:** the five instrumental beds are in `out/backgrounds/_instrumental/`
 — out of the random picker's reach, not deleted. 26 published reels carry them;
 whether to leave, re-render, or unlist is an open question for someone
@@ -654,3 +787,4 @@ verification — "acapella nasheed" returns instrumental tracks.
 | 2026-09-09 | Mascot rotation expanded from two lambs to five Qur'anic animals in varied regional dress, driven by kids-lane analytics. Voice now follows mascot gender rather than lamb identity. Kids captions address the parent. Weekly kids cadence. |
 | 2026-08-11 | Rewritten. Kids path re-verified end to end on Bukhari #8. Removed the seerah-attribution instruction (P105 violation), the manual MP3 download step (P106), the P079 "not editable" note, and the dead `<keyword>-story-narration-<lang>` convention that contradicted the naming section below it. Adults path marked unverified. |
 | 2026-09-10 | Step 4 and step 11 corrected: -Mascot is mandatory with five values (P157), -Resolution defaults to 480p (P164), and the nasheed picker is lane-filtered with no-repeat memory so naming a bed is now an override, not the rule (P159). Lint check count is printed, not hardcoded (P161). |
+| 2026-10-16 | Publishing procedure for all four platforms written down for the first time, as its own section: order, the fields each platform needs, the YT/TikTok/IG metadata shape, and the per-platform traps moved out of the kids Step 6 so both lanes read the same copy. Records that none of it is automated and why - the Telegram route is sendMessage, no tokens are in either .env.local, and IG is blocked behind the Facebook appeal. |

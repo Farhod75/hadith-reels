@@ -126,6 +126,14 @@ Themes worth noting against the tracker’s gap list: #17 (doubt/wara‘) and #2
 (zuhd) are both uncovered, and #2 and #10 bear on the Akhlaq gap. None is a
 duplicate of anything shipped.
 
+**TRACKER ROW NUMBERS — THE #6570 TABLE BELOW IS NOW WRONG.** It reserves
+R134–R137, written when #6570 was the next thing to publish. It is not:
+**Bukhari #1903 EN published 2026-10-16 and took R134** (in the tracker now).
+The tracker appends on post, so #6570's four rows renumber to **R138–R141** when
+it posts ~2026-10-27 — assuming #1903's RU/UZ/TJ take R135–R137 first, which they
+will if the set finishes before then. #1903's own set will not be contiguous
+either if #6570 lands mid-set. Fix the numbers in that table before pasting it.
+
 **#6570 PRODUCED 2026-10-14, all four languages — HELD until ~2026-10-27.**
 Publishing waits on the 2-3 week Tawheed-arc spacing from #6423 (posted
 2026-10-13). Nothing outstanding on the reels themselves; every frame checked.
@@ -250,6 +258,39 @@ subject (false speech) — look at it deliberately rather than by surprise.
 
 ---
 ## Blocks content — do not ship past these
+**#1903 العمل به — the RU matn is LOOSER than the EN, found 2026-10-16 while
+producing the RU leg. NOT a blocker; decide from a source at the set boundary.**
+
+The matn is من لم يدع قول الزور والعمل به. `qawl az-zur` is speech ONLY. The
+second clause is `al-'amal` (action) bound by `bihi`, a resumptive pronoun
+pointing back at qawl az-zur — so the hadith names false speech AND ACTING UPON
+IT, one thing plus its execution, not two independent sins.
+
+| column | stored text | pronoun |
+|---|---|---|
+| `text_english` | "false speech and acting upon it" | preserved |
+| `text_russian` | «лживые слова и поступки» | LOST |
+
+Read plainly the Russian is two coordinated adjectival nouns — false words and
+[false] deeds — a broader claim than the Arabic makes. Same hadith, same library,
+two extents. P220's class: translation fidelity has no automated reader, and no
+gate could see this. UZ and TJ not yet checked on the same clause; check them
+when those legs are produced.
+
+**Why it was NOT fixed on the spot:** it is imprecise rather than false, so it
+fails nothing the way the RU moral's «нужно Аллаху» did; the precision IS
+carried, in the H block («поступки по ней»), which is where P111 rule 18 says
+scholarship belongs while the matn stays as the source quotes it; and the honest
+fix is a sourcing task (Dorar + Fath al-Bari on العمل به, whether it means acting
+on the falsehood specifically or on sin generally), not a wording choice. Stage 3
+re-verification is blocked on the OpenAI billing regardless. #3435's clause was
+rewritten by three successive sessions, twice in OPPOSITE directions, each time
+decided late at night without a source — that is the trap this note exists to
+avoid.
+
+If it is reopened, it is reopened from a source, and all four languages move
+together or none do.
+
 
 **#3435 على ما كان من العمل — DECIDED 2026-10-12. Wording stands; the row
 stays `needs_human` on this clause, permanently, and that is the correct
@@ -347,7 +388,7 @@ Workflow I step 4 asks the operator to check against the Arabic; the operator
 has said they do not read Arabic fully. Stage 3 A/B verify (Workflow K) EXISTS
 and is documented — the claim that it was unbuilt was wrong (P221). It crashed
 on its own `incomplete` value until today (P222). With that fixed it ran all 5
-translated rows, and **pass B returned HTTP 429 on all 20 calls: “You have no
+translated rows, and **pass B returned HTTP 429 on all 20 calls [**NO LONGER TRUE — SEE THE CORRECTION BELOW THIS BLOCK**]: “You have no
 credits remaining” on the OpenAI account.** Every row came back `incomplete`,
 which the stage correctly refuses to pass to Stage 4. Stage 3 is one billing
 top-up away from being the control this needs; until then a human second reader
@@ -362,7 +403,7 @@ self”, not “heart”.
 - UZ: OPEN. «ўз қалбининг самимиятидан» is the translator's own, and the
   established EN rendering of this hadith is “sincerely from his heart”, so A
   may be stricter here than the convention. No second opinion exists while
-  pass B has no credits. TJ «холис аз таҳти дили худ» and EN “from his own
+  pass B has no credits [**STALE — B RUNS; see 2026-10-16 correction**]. TJ «холис аз таҳти дили худ» and EN “from his own
   heart” carry the same question. Decide the convention once, for all four
   languages, rather than per row.
 
@@ -566,6 +607,27 @@ translations, which are ours and not the source's (P178).
 ---
 
 ## Assets
+**THE ASWATI BEDS SIT TOO QUIET IN THE MIX — operator, by ear, 2026-10-16.**
+Only the `aswati-*` tracks; the `vocal-nasheed-*` beds and `light-of-my-heart-bg`
+are fine at the same setting. The adults mix is fixed at narration 1.4 / nasheed
+0.12 (P171), one level for every bed, so a quieter master lands under-audible
+while a louder one is right. Raise the Aswati ones a little.
+
+Not applied yet, deliberately: #1903 EN shipped on `light-of-my-heart-bg`, and
+changing the gain mid-set would mix the four languages of one reel differently.
+#1903's RU/UZ/TJ are being kept off Aswati beds so the question does not touch
+this set at all.
+
+Two ways to do it, and the second is better:
+  - Normalise the eight files in place — simplest, but it edits licensed
+    masters and records nothing about why.
+  - Add a per-bed gain to the registry and have `render-reel.ps1` multiply 0.12
+    by it. The registry is already the place a human records what a bed IS
+    (P168), the reason gets written down beside the value, and the originals are
+    untouched. It also gives the unplaced `aswati-Victory-March` somewhere to
+    record its tone, which the Aswati note below says it needs.
+
+Measure before setting numbers: integrated LUFS per bed, not a guessed multiplier.
 
 **Kids-lane nasheed beds.** The eight Aswati tracks registered 2026-10-05 are
 ADULTS ONLY. The kids rotation is unchanged and still thin. Separate search.
@@ -599,6 +661,94 @@ source calm beds or listen to the three and record what they actually are.
 ---
 
 ## Ideas, scoped but not scheduled
+**Use LATER SEGMENTS of a nasheed as separate beds — operator idea, 2026-10-16.**
+Every reel starts the bed at 0:00, so only the first 20-70s of each file is ever
+heard. Measured durations, all 17 adults-eligible beds (ffprobe, same session):
+
+| Bed | Length | Segments @45s |
+|---|---|---|
+| aswati-Victory-March | 220.0s | 4 |
+| aswati-Heartfelt-Gratitude | 206.9s | 4 |
+| path-to-jannah-bg | 156.9s | 3 |
+| light-of-my-heart-bg | 150.0s | 3 |
+| vocal-nasheed-07 | 148.3s | 3 |
+| aswati-Rising-Hope | 93.4s | 2 |
+| aswati-Steady-Motivation | 89.9s | 1 |
+| aswati-Focused-Determination | 88.4s | 1 |
+| aswati-Peaceful-Contemplation | 56.0s | 1 |
+| vocal-nasheed-03 | 50.9s | 1 |
+| aswati-Gentle-Reflection | 49.6s | 1 |
+| vocal-nasheed-02 | 47.6s | 1 |
+| aswati-Morning-Serenity | 46.3s | 1 |
+| vocal-nasheed-01 | 43.5s | 0 |
+| vocal-nasheed-06 | 37.9s | 0 |
+| vocal-nasheed-05 | 19.1s | 0 |
+| vocal-nasheed-04 | 16.3s | 0 |
+
+25.4 minutes of audio in total. The idea is worth doing but it is **1.5x, not 3x**:
+17 beds -> 26 segments at 45s, and 8 of the 26 come from two files. The range is
+16s to 220s, not the 20-60s it feels like.
+
+**FOUND WHILE MEASURING, AND MORE URGENT: four beds are SHORTER than the reels
+they carry.** `-stream_loop -1` is on the nasheed input, so they repeat.
+`vocal-nasheed-04` is 16.3s and carried R096, a 69.2s reel — 4.2 plays of the
+same vocal phrase. `vocal-nasheed-05` (19.1s) carried R131; `-06` (37.9s) and
+`-01` (43.5s) loop on anything average-length. Nothing measures this and no gate
+mentions it. Decide whether those four are retired, reserved for short reels, or
+accepted; right now they are drawn like any other bed.
+
+**What segmenting needs — it is not just `-ss`:**
+  1. **Offsets are listened to, not computed.** A 45s cut into a vocal nasheed can
+     start mid-word. Each offset is a human judgement, so it belongs in the
+     registry next to `verified`: `"segments": [0, 48, 96, 144]`, with a note on
+     what was checked.
+  2. **A segment must be as identifiable as a bed.** `.last-used.json`, the
+     tracker's Nasheed column and the P201 sidecar all key on filename. Without
+     an identity like `aswati-Victory-March.mp3@96`, the no-repeat rule cannot
+     tell two segments apart and the asset-reuse counts become wrong.
+  3. **`-ss` together with `-stream_loop -1` must be TESTED.** Whether the loop
+     restarts at 0 or at the offset is unknown, and guessing about a flag's
+     interaction is how P214 happened.
+  4. **Do it with P249's fix.** Both rewrite the picker's state; doing them
+     separately means touching the same code twice and re-testing it twice.
+**BETTER VARIANT, operator's: SPLIT THE FILES instead of seeking into them.**
+`light-of-my-heart-bg-s1.mp3`, `-s2`, `-s3` as three separate beds. This removes
+every objection above: **no code change at all** — no `-ss`, no `-stream_loop`
+interaction to test — and identity comes free, because a segment IS a filename,
+so `.last-used.json`, the tracker's Nasheed column, the P201 sidecar and the
+asset-reuse audit all keep working untouched. The picker sees distinct beds and
+its avoid logic applies with no change. Each segment gets its own registry entry:
+its own `verified` (a human listened to THAT segment, which is the honest claim),
+its own measured `gain`, its own note.
+
+If it is ever built, four decisions:
+  1. **No segment shorter than 70s.** The longest adults reel to date is 69.2s, so
+     a 70s floor means `-stream_loop` never repeats and the looping defect above
+     dies with it. Divide evenly rather than cutting fixed chunks: Victory-March
+     3x73s, Heartfelt-Gratitude 2x103s, path-to-jannah 2x78s,
+     light-of-my-heart 2x75s, vocal-nasheed-07 2x74s. Five beds -> eleven
+     segments, 17 adults beds -> 23.
+  2. **Retire the parent** (`lanes: []`) once split, or the same audio is drawable
+     twice: the parent's first 75s IS segment 1. `audit-assets.py --check`
+     already blocks an empty-lane bed, so the mechanism exists.
+  3. **Name them `-s1/-s2/-s3`**, not `-beg/-mid/-end`: "mid" is meaningless at
+     two segments and breaks at four. P197 is why naming conventions get decided
+     once rather than per file.
+  4. **Split points are chosen by ear.** A cut can land mid-word.
+
+**LICENCE GATE, and it is the reason this is parked rather than scheduled.** Four
+of the five long beds are Aswati, and splitting is editing a licensed master.
+Their licence section 1 calls the per-track certificates the proof of licence and
+only the terms snapshot is saved so far — read the terms on derivative edits
+before cutting those four. `path-to-jannah-bg` and `vocal-nasheed-07` are Pixabay
+and permissive, so a two-bed / four-segment pilot is available with no licence
+question at all.
+
+**Operator's call 2026-10-16: PARKED.** An idea, not a requirement — if the
+licence forbids it or it turns into a lot of change, the beds stay as they are.
+Reconsider only if bed variety becomes an actual complaint.
+
+
 
 **HV: verify a hadith from a video or reel link.** Proposed 2026-10-09. The
 reverse of the text/screenshot verifier: a lot of reels recite the hadith aloud,
@@ -633,6 +783,100 @@ places for a verdict to be wrong.
 ---
 
 ## Tools
+**CORRECTION 2026-10-16 — STAGE 3 PASS B WORKS. The no-credits note above is
+stale, and nothing but this line says so.** `verify-candidates.py` was run twice
+tonight against Bukhari #1903 and `gpt-5.6-terra` answered every call, at high
+confidence, both times. Whatever exhausted the OpenAI account has been topped up.
+Stage 3 is available now, not "one billing top-up away".
+
+**`--library` EXISTS AND HAD NEVER BEEN USED.** `verify-candidates.py --library`
+(L315) verifies rows in `hadith_library` rather than candidates. That matters
+more than it sounds: **the library predates the sourcing pipeline, so most of its
+rows have never been A/B verified at all.** 35 of 70 rows have been used in
+reels; #1903 was one of them, shipped in four languages tonight, and its first
+ever A/B run was after EN and RU had already published.
+
+What that first run found on #1903, both models agreeing, 0% disagreement:
+  - `text_uzbek_cyrillic` — «амал» is generic action, losing the referential
+    به that ties the deed to the falsehood. An OMISSION.
+  - `text_tajik` — «амали бад», "a general bad deed", a word that is in no
+    part of والعمل به. An ADDITION, and worse.
+  Both corrected, `text_uzbek_latin` regenerated via derive-uzbek-latin (P097),
+  re-verified pass/pass on both models.
+
+**RU IS A LIVE DISAGREEMENT ON THE SAME CLAUSE — DO NOT RE-ROLL IT.** On the
+first run both models passed `text_russian` at high confidence; on the second,
+against UNCHANGED text, B failed it at high confidence for the same reason it
+failed UZ. That is the non-determinism recorded for #3435. The design is explicit:
+disagreement is the output Stage 3 exists to produce and is never resolved by a
+third pass or by preferring one model, and P177 is the trap of re-running until
+the answer is nice. RU stands as `disagree` / needs_human, and it has SHIPPED.
+
+**UZ's four published captions quote the pre-correction matn.** The row was fixed
+about an hour after the UZ reel went out, so TG/IG/YT/TikTok still read «амалдан»
+while the library and the audio read «унга амал қилишдан». Same shape as #6570's
+Hurayrah. The burned audio cannot change; the captions can be edited in place.
+
+**NEXT STEP, and it is a real one: run `--library` over the rest.** 34 other used
+rows have never been through Stage 3. #1903 failed two of four languages on its
+first exposure. Do it in D5-sized batches and read the disagreement rate.
+
+**The ASSISTANT's hand-written translations have no G3 guard.** Found 2026-10-16
+on #1903 RU. `translate-candidates.py` translates every language from
+`text_arabic` and REFUSES to fall back to another translation (G3, L479), and
+prints `from: text_arabic (never another translation)` on each run. The generator
+writes S/M/H/C per language from that language's own column. So the pipeline
+never pivots through English. But when the assistant rewrites a defective block
+by hand in chat — which happened for RU's M and H — it worked from the ENGLISH
+text, and «стол» (EN's "table" for the meal) came across as an idiom that does
+not carry in Russian. The operator caught it. Same shape as `-Scenes` having a
+registry gate since P121 while the random-pick path still has none: the
+disciplined route is guarded and the ad-hoc one is not. There is no script to
+put a guard in, so the remedy is a rule: a hand-written block starts from the
+Arabic matn and that language's own stored text, never from another language's
+rendering.
+
+**Cyrillic captions put the period INSIDE the closing guillemet.** «…питьё.»
+where Russian puts it after the quotation mark: «…питьё». It comes from the stored
+matn carrying its own trailing period plus `buildCaption`'s wrapper, so it
+affects EVERY RU/UZ/TJ caption shipped, not one reel. Cosmetic, and the fix is a
+choice between stripping the terminal period in the wrapper (one place, affects
+all languages) or dropping it from the stored matn columns (many rows, and the
+matn is quoted source text). Not urgent; decide once rather than per reel.
+
+**P249 — the nasheed picker, now written up.** `.last-used.json` keeps one bed per
+LANE and is written at pick time, so an aborted render burns the slot and a
+re-render of a published reel silently changes its bed while the sidecar and the
+tracker column are rewritten to match. No per-reel or per-language rule exists in
+the picker at all — that is the #6570/#13 clash mechanism, still live. Workaround:
+pass `-Nasheed` explicitly for every language of a set. Fix: write the state after
+the render returns 0, key it by slug+lang, and read the set's `*-render.json`
+sidecars. Demonstrated three times in one evening on #1903 EN.
+
+**P250 — the FLUX still prompt is recorded nowhere, now written up.**
+`generate-image.ps1` writes no sidecar, and `animated-reel-scene-prompts.md` is a
+methodology doc rather than a log. #1903's four still prompts are LOST — not in
+the sidecars, not in that doc, not in the transcript. Every earlier set got away
+with it because the registry note was composed in the same session that generated
+the stills. Fix: `generate-image.ps1` writes `<name>-still.json` with prompt,
+negative prompt, model, variants returned and which was chosen.
+
+**NO PREFLIGHT — every precondition is checked at render time.** On 2026-10-16
+#1903 EN failed twice for reasons knowable in under a second: the four clips were
+unregistered (registry gate, after Whisper had already run) and the narration did
+not match `draft.txt` (stt lint, at the SRT pause, after ffmpeg had concatenated).
+A `-Check` mode on `render-reel.ps1` that validates registry membership,
+narration-against-draft and scene resolution BEFORE any slow or paid work would
+have caught both at the start. This is the highest-value unbuilt thing in the
+render path.
+
+**~~`reel-creation-pipeline.md` adults checklist has no registration step.~~ RESOLVED 2026-10-16 — a registration warning was added inside Step 13 (no renumbering), and Step 13's stale `normalized`-only claim was corrected for P217. See P253 for the wider problem.** Original note:
+Step 12 watch, Step 13 stage, Step 14 render — asset-registry registration appears
+in none of the sixteen, though the gate has blocked renders since P121/P237. The
+publishing procedure was the same kind of gap and was written down 2026-10-16;
+this one is still open. Adding a numbered step renumbers 13–16, so the likely fix
+is a note inside Step 13 rather than a new step.
+
 
 **Random scene selection has no registry gate.** `render-reel.ps1` without
 `-Scenes` globs `out\backgrounds\new\normalized\*.mp4` and draws three at

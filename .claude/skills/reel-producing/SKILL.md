@@ -375,6 +375,14 @@ Still to build:
 - The қаноат drift survived a corrected DB column in two languages. Is a
   per-hadith "known drift" note in `hadith_library` worth the schema change, or
   does the defect table cover it?
-- Adults lane needs its own E2E checklist before this agent can drive it;
+- ~~Adults lane needs its own E2E checklist before this agent can drive it;~~
+  **SATISFIED — `reel-creation-pipeline.md` carries a 16-step adults checklist
+  (Steps 1-16), plus a `Publishing — all four platforms` section added 2026-10-16.
+  This line stood after the precondition was met, so nobody re-evaluated whether
+  the agent could drive the lane. It can. On #1903 (2026-10-16) all four legs were
+  produced by hand without this skill being read once, and the defect review was
+  done against the ENGLISH blocks rather than against the table in Step 2 — which
+  is the work this file exists to prevent. See P253 on workarounds that outlive
+  their defect.** Original line kept above;
   `render-reel.ps1` has scene generation, Whisper subtitles and an
   `stt-validate` gate with no kids equivalent.

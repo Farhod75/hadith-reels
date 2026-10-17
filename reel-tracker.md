@@ -154,6 +154,10 @@
 | R131 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | RU | Adults | bukhari-13 | adults-ru-bukhari-13-story.mp3 | adults-ru-bukhari-13-moral.mp3 | adults-ru-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-ru-bukhari-13-bg-mixed.mp4 | vocal-nasheed-05.mp3 | YES | adults-ru-bukhari-13-reel.mp4 | 19.9s | 9.0 MB | restore-srt-casing.py INTRODUCED a defect (P243). Whisper transcribed «да благословит его Аллах» correctly; the script rewrote его -> Его, which reads as Allah being blessed rather than the Prophet ﷺ. Its source is the whole of draft.txt including the NON-NARRATED H block, where «Его понимают как» opens a sentence - the only standalone его/Его in the file. The ambiguity guard never fired because there was exactly one spelling to find, and it was the wrong one. Caught at the review pause and reverted by hand. Four cue breaks also split a verb from its object and were re-cued. published TG/IG/YT/TikTok |
 | R132 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | UZ | Adults | bukhari-13 | adults-uz-bukhari-13-story.mp3 | adults-uz-bukhari-13-moral.mp3 | adults-uz-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-uz-bukhari-13-bg-mixed.mp4 | aswati-Focused-Determination.mp3 | NO (P078) | adults-uz-bukhari-13-reel.mp4 | 25.6s | 11.9 MB | The moral attributed the claim to ALLAH - «Аллоҳ таоло мана шу сифатни ҳақиқий иймоннинг белгиси қилиб қўйган» - where the matn is the Prophet's ﷺ speech. P212's supplied warrant, and a clean instance of the adjacent exit (P111/P115/P116): rule 17 was flagged BEFORE generating, so instead of re-attributing to the Prophet ﷺ it re-attributed to Allah. H called the quality a рукн (pillar) where EN says sign and RU признак. Library matn corrected at SOURCE after the operator caught it at review: «ўз учун» -> «ўзи учун» in both Cyrillic and Latin. published TG/IG/YT/TikTok |
 | R133 | 2026-10-15 | Sahih al-Bukhari #13 | Anas ibn Malik | Sahih | Iman / Brotherhood | #iman #brotherhood #love #akhlaq | TJ | Adults | bukhari-13 | adults-tj-bukhari-13-story.mp3 | adults-tj-bukhari-13-moral.mp3 | adults-tj-bukhari-13-narration.mp3 | m1631-well.mp4, m1631-channel.mp4, m1631-grove.mp4 | adults-tj-bukhari-13-bg-mixed.mp4 | aswati-Steady-Motivation.mp3 | NO (P078) | adults-tj-bukhari-13-reel.mp4 | 19.8s | 8.9 MB | Rule 17 again, and the word matched RU #6570's exactly - «ин шарте аст» against «таково условие», one language and one reel apart. Across #6570 and #13 the moral re-attributed in SEVEN OF EIGHT generations (P245). H ran «Маънои муқарраршудаи он» - verbatim the phrase removed from TJ #6570 the day before. TTS defect found at narration, not review: «бародарат» narrated as «бародорат»; switched to the analytic «бародари худ», which sidesteps the suffix. published TG/IG/YT/TikTok |
+| R134 | 2026-10-16 | Sahih al-Bukhari #1903 | Abu Hurairah | Sahih | Fasting / Speech | #fasting #akhlaq #speech #sincerity | EN | Adults | bukhari-1903 | adults-en-bukhari-1903-story.mp3 | adults-en-bukhari-1903-moral.mp3 | adults-en-bukhari-1903-narration.mp3 | b1903-dates.mp4, b1903-majlis.mp4, b1903-courtyard.mp4, b1903-palms.mp4 | adults-en-bukhari-1903-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | YES | adults-en-bukhari-1903-reel.mp4 | 24.5s | 6.3 MB | FIRST ADULTS CLIP SET WITH FIGURES - b1903-majlis is a row of seated men shot from behind, so this set is not MODE B. The first three stills were generated as a circle and all showed faces; variant 3 put a central figure facing the group, which invites the Prophet ﷺ reading. Composition changed to a row facing away and the motion prompt holds every head still. NARRATION WAS GENERATED FROM THE PRE-CORRECTION STORY TEXT: the commentary gloss was moved to H in draft.txt but the admin textarea still held it, so the story audio ran 11s long and the stt lint returned 11 high findings - the burn would have put Khawlazur on screen, a word Whisper invented from Qawl az-zur. Caught at the SRT pause, not by review. Re-narrated story only (P125): 23.5s, 0 findings, similarity 1.000. THREE RENDERS - aborted, registry-blocked, clean - and the nasheed changed on all three because .last-used.json is written at pick time rather than after a successful render (P249). Clips are registered but verified:false - -FitScenes trimmed each to 6.128s of 10.04s, so the tail of every clip is still unwatched. Still prompts are LOST (P250): generate-image.ps1 records nothing, so the registry notes describe motion only. published TG/IG/YT/TikTok |
+| R135 | 2026-10-16 | Sahih al-Bukhari #1903 | Abu Hurairah | Sahih | Fasting / Speech | #fasting #akhlaq #speech #sincerity | RU | Adults | bukhari-1903 | adults-ru-bukhari-1903-story.mp3 | adults-ru-bukhari-1903-moral.mp3 | adults-ru-bukhari-1903-narration.mp3 | b1903-dates.mp4, b1903-majlis.mp4, b1903-courtyard.mp4, b1903-palms.mp4 | adults-ru-bukhari-1903-bg-mixed.mp4 | path-to-jannah-bg.mp3 | YES | adults-ru-bukhari-1903-reel.mp4 | 22.6s | 5.9 MB | THE GENERATED MORAL INVERTED THE MATN AND ATTRIBUTED THE INVERSION TO THE PROPHET ﷺ. It ended «ведь именно это, по слову Пророка ﷺ, нужно Аллаху от постящегося» - asserting that Allah NEEDS something of the fasting person, where the matn says فليس لله حاجة, Allah has NO need. A doctrinal inversion plus speech put in his mouth (P101 class, not merely P245's re-attribution), and it also added «ради Аллаха», absent from the matn. Cut whole. H ran «Установленное понимание хадиса таково» - scholars-say with the scholars removed, THIRD occurrence of that exact phrase after R102/R103 EN and TJ #6570 - and carried no actual scholarship, so it was rewritten to EN's content. S dropped the narrator entirely; C was a matn fragment, not a title. Operator corrected the assistant's Russian twice: «стол» for EN's table/tongue contrast was an English idiom carried across, and «хранить язык» became «оберегать язык». The pipeline translates every language from text_arabic and refuses to pivot (G3); the only English pivot was the assistant hand-writing M and H in chat, which no guard covers. WHISPER SPLIT THE NARRATOR'S NAME: «Абуху Райра» for «Абу Хурайра» - the identical phoneme string with the word boundary one position off, so the audio was correct and only the SRT needed editing; «сказал.» also fixed to «сказал:». The lint caught the name at 1 high / 2 medium. FOUND AND FIXED MID-REEL: piped Cyrillic arrived as mojibake, so the RU/UZ/TJ lint findings were unreadable in the console - PYTHONIOENCODING fixed the child's encoder and nothing fixed PowerShell's decoder (P252). Also found, logged, NOT changed: text_russian loses the به of والعمل به, so the RU matn reads looser than the EN. -Nasheed passed explicitly per P249; first reel whose sidecar records nasheedVol. published TG/IG/YT/TikTok |
+| R136 | 2026-10-16 | Sahih al-Bukhari #1903 | Abu Hurairah | Sahih | Fasting / Speech | #fasting #akhlaq #speech #sincerity | UZ | Adults | bukhari-1903 | adults-uz-bukhari-1903-story.mp3 | adults-uz-bukhari-1903-moral.mp3 | adults-uz-bukhari-1903-narration.mp3 | b1903-dates.mp4, b1903-majlis.mp4, b1903-courtyard.mp4, b1903-palms.mp4 | adults-uz-bukhari-1903-bg-mixed.mp4 | vocal-nasheed-07.mp3 | NO (P078) | adults-uz-bukhari-1903-reel.mp4 | 31.6s | 7.8 MB | LONGEST LEG of the set, and the only one with no subtitle checkpoint (P078), so the block review was the ONLY gate on the wording. SECOND LANGUAGE RUNNING WHERE THE MORAL PUT A WANT IN ALLAH: «Аллоҳ рўзадорнинг очлигини эмас, унинг ростгўйлигини сўрайди» - Allah ASKS for truthfulness, where the matn says He has no need; and it framed it as a contrast (hunger vs truthfulness), which is exactly the MOVE P239 named. H elevated beyond the matn - «рўзанинг моҳияти ... ростгўйликни сақлаш», the hadith says no such thing (P116 class) - omitted the hadith number, and wrote «Саҳиҳ Бухорийнинг» against refs.ts's «Саҳиҳ ал-Бухорий». S dropped the narrator and C was a matn fragment - second time each, after RU. OPERATOR CORRECTED THE ASSISTANT'S UZBEK, and one was a meaning fix not a style fix: «рўзадор сўзлари» -> «рўзадорнинг ёлғон сўзлари», because the draft claimed ALL speech spoils the fast, which is the same overstatement class the generator had just been caught on; and «буздирмаслиги» -> «бузмаслиги», the causative being wrong with сўзлари as the agent. FIRST LEG ON WHICH .claude/skills/reel-producing/SKILL.md WAS ACTUALLY READ - after the operator asked why the agents were not working. Its Step 2 found a drift four hand reviews had missed: EN's moral EXHORTS (so that it is not given up for nothing) while RU and UZ ASSERT (otherwise it will be in vain); RU had already shipped, so the set is inconsistent in register and UZ was kept matching RU. Step 2b could not run - it needs a DIFFERENT model given matn and blocks (D2, P120) and Stage 3's pass B is out of OpenAI credits, so all four legs got pass A only. Bed chosen by scripts/pick-nasheed.py with a stated reason, the skill's Step 7, for the first time this set: 9 uses, last in UZ at R080, 55 reels ago, 148s so it cannot loop under 30.6s. text_uzbek_cyrillic also loses the به of والعمل به - two of three confirmed, TJ outstanding. published TG/IG/YT/TikTok |
+| R137 | 2026-10-16 | Sahih al-Bukhari #1903 | Abu Hurairah | Sahih | Fasting / Speech | #fasting #akhlaq #speech #sincerity | TJ | Adults | bukhari-1903 | adults-tj-bukhari-1903-story.mp3 | adults-tj-bukhari-1903-moral.mp3 | adults-tj-bukhari-1903-narration.mp3 | b1903-dates.mp4, b1903-majlis.mp4, b1903-courtyard.mp4, b1903-palms.mp4 | adults-tj-bukhari-1903-bg-mixed.mp4 | vocal-nasheed-06.mp3 | NO (P078) | adults-tj-bukhari-1903-reel.mp4 | 26.8s | 6.7 MB | CLOSES THE SET. «Suhani durūgh va AMALI BAD» - the stored text_tajik carried «бад» (bad), a word that is in NO part of والعمل به. Not a loss like RU and UZ: an ADDITION. Stage 3 A/B was run against the LIBRARY row (--library, which exists and had never been used) and both models failed UZ and TJ independently, 0% disagreement, pass B quoting "it does not say a generic 'evil deed'". The row predates the sourcing pipeline so its four translations had NEVER been A/B verified. text_tajik and text_uzbek_cyrillic corrected mid-leg, text_uzbek_latin regenerated by derive-uzbek-latin (P097, okina correct), re-verified: UZ and TJ both flip to pass/pass. NOTE PASS B IS NOT OUT OF CREDITS - OPEN_ITEMS was stale on that. ON THE RE-RUN, RU MOVED FROM pass/pass TO A=pass/B=fail ON UNCHANGED TEXT - the non-determinism OPEN_ITEMS records for #3435. Left as a disagreement, NOT re-rolled: the design says disagreement is the output and is never resolved by preferring a model (P177's trap). UZ shipped an hour before its row was corrected, so its four published captions quote the old wording - same shape as #6570's Hurayrah. H ran «Маънои муқарраршудаи он» for the THIRD consecutive Tajik set - removed from #6570, back on R133, back again here; in Tajik this is a fixed behaviour of the generator, not a recurrence. THE REBUILT CAPTION CAME BACK WITH THE OLD MATN: buildCaption reads selected.text_tajik, a snapshot taken at row-selection time, so ↻ Rebuild faithfully reproduced the pre-UPDATE wording while the narration carried the corrected one. Hand-edited rather than re-selected, which would have discarded the four blocks. FIRST LEG PRODUCED AFTER READING CLAUDE.md steps 1-7 - the only leg of four with no confident-wrong call from the assistant. published TG/IG/YT/TikTok |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -204,6 +208,8 @@
 | Sahih al-Bukhari #5027 | EN, RU, UZ, TJ | Adults | R122, R123, R124, R125 |
 | Sahih al-Bukhari #6423 | EN, RU, UZ, TJ | Adults | R126, R127, R128, R129 |
 | Sahih al-Bukhari #13 | EN, RU, UZ, TJ | Adults | R130, R131, R132, R133 |
+| Sahih al-Bukhari #1903 | EN, RU, UZ, TJ | Adults | R134, R135, R136, R137 |
+| Sahih al-Bukhari #1903 vs #2654 | - | - | ADJACENT SUBJECT, DIFFERENT HADITH. #2654 (R094-R097, Major Sins) carries qawl az-zur - false testimony - as one item in a list of the greatest major sins; #1903 makes false speech the thing that voids a fast. Both ship with #speech in the tag line, and a viewer who saw one will hear the other as the same reminder. OPEN_ITEMS flagged #1903 as sitting close to #2654 and asked that it be picked deliberately rather than by surprise - it was. Same class as #6871/#2654 and the Tawheed cluster: the index keys on the number, so nothing automated flags the pair. Forty reels apart in the EN lane, which is ample spacing. |
 | Sahih al-Bukhari #6570 | — | — | SAME HADITH AS #99, not merely similar. Abu Hurairah on intercession appears TWICE in Bukhari: Riqaq #6570 and Ilm #99, and Dorar returns both as separate cards. Ship ONE number and keep it everywhere — a viewer who finds the other number reads our citation as wrong. Sourced 2026-10-12, not yet produced. |
 | Sahih Muslim #28 | — | — | SAME HADITH AS Sahih al-Bukhari #3435 (Ubadah ibn as-Samit; the testimony that names Isa, His word cast to Maryam, and a spirit from Him). Muttafaq alayh. The ZAD slide this came from cites «Бухорий ва Муслим», but our caption format carries ONE collection + number — decide which before producing, and expect viewers who learned it as “Bukhari and Muslim”. |
 | Sahih al-Bukhari #425 / #5401 / #6938 | — | — | THREE MORE ENTRIES around the same Itban ibn Malik event. We ship #6423, the short saying. #425 and #5401 are narrated by MAHMUD IBN AR-RABI‘ AL-ANSARI, not Itban, and are the long narrative about Itban’s failing eyesight; #6938 is a longer Itban variant with Malik ibn ad-Dukhshun. A viewer searching “Itban” lands on #425 first. #425 was itself wrongly recorded as our source until 2026-10-12 (P218). |
@@ -222,6 +228,7 @@
 | Fasting / Ramadan | 1 | R002 | EN |
 | Charity / Akhlaq | 1 | R003 | UZ |
 | Dua / Supplication | 1 | R001 | RU |
+| Fasting / Speech | 4 | R134-R137 | EN, RU, UZ, TJ |
 | Tawheed / Intentions | 4 | R010, R011, R012, R013 | EN, RU, UZ, TJ |
 | Tawheed / Sincerity | 4 | R126-R129 | EN, RU, UZ, TJ |
 | Iman / Brotherhood | 4 | R130-R133 | EN, RU, UZ, TJ |
@@ -282,13 +289,13 @@
 | vocal-nasheed-01.mp3 | 11 | R129 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129 |
 | vocal-nasheed-03.mp3 | 9 | R099 | R029, R035, R043, R058, R070, R081, R089, R092, R099 |
 | vocal-nasheed-05.mp3 | 10 | R131 | R032, R036, R045, R059, R069, R082, R093, R098, R109, R131 |
-| vocal-nasheed-06.mp3 | 9 | R130 | R033, R039, R048, R060, R066, R073, R075, R100, R130 |
-| vocal-nasheed-07.mp3 | 9 | R105 | R037, R049, R055, R063, R072, R080, R086, R097, R105 |
-| light-of-my-heart-bg.mp3 | 9 | R106 | R010, R013, R024, R038, R078, R091, R094, R104, R106 |
+| vocal-nasheed-06.mp3 | 10 | R137 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137 |
+| vocal-nasheed-07.mp3 | 10 | R136 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136 |
+| light-of-my-heart-bg.mp3 | 10 | R134 | R010, R013, R024, R038, R078, R091, R094, R104, R106, R134 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
-| path-to-jannah-bg.mp3 | 5 | R128 | R004, R023, R095, R103, R128 |
+| path-to-jannah-bg.mp3 | 6 | R135 | R004, R023, R095, R103, R128, R135 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
 | aswati-Peaceful-Contemplation.mp3 | 2 | R120 | R114, R120 |
 | aswati-Gentle-Reflection.mp3 | 2 | R121 | R115, R121 |
@@ -311,6 +318,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| b1903-dates, majlis, courtyard, palms | 1 set | 2026-10-16 (R134-R137) | R134-R137 (full set) |
 | b527-dawn, minaret, doorway, night | 2 sets | 2026-09-03 (R058–R061) | R034–R041, R058–R061 |
 | b5027-matn-v3, copy | 1 set | 2026-10-11 (R122-R125) | R122-R125 |
 | b6423-gate, kalima, plain, ash-v2 | 1 set | 2026-10-13 (R126–R129) | R126–R129 |
@@ -362,6 +370,10 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | b6423-kalima.mp4 | 4 | R126-R129 |
 | b6423-plain.mp4 | 4 | R126-R129 |
 | b6423-ash-v2.mp4 | 4 | R126-R129 |
+| b1903-dates.mp4 | 4 | R134-R137 |
+| b1903-majlis.mp4 | 4 | R134-R137 |
+| b1903-courtyard.mp4 | 4 | R134-R137 |
+| b1903-palms.mp4 | 4 | R134-R137 |
 | m1631-well.mp4 | 8 | R114-R117, R130-R133 |
 | m1631-channel.mp4 | 8 | R114-R117, R130-R133 |
 | m1631-grove.mp4 | 8 | R114-R117, R130-R133 |
@@ -416,19 +428,19 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 133 |
+| Total reels posted | 137 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 81 |
+| Adults reels | 85 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 34 |
-| Library rows | 70 (34 used, 36 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×63, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
-| Companions cited | 17 (Uthman ibn Affan ×4, Abu Hurairah ×42, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4) |
+| Hadiths used (unique) | 35 |
+| Library rows | 70 (35 used, 35 unused) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×67, Sahih Muslim ×28, Sunan Abu Dawud ×8, Jami at-Tirmidhi ×2) |
+| Companions cited | 17 (Uthman ibn Affan ×4, Abu Hurairah ×46, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4) |
 
-**133 reels from 34 hadiths.** Thirty-four of 70 library rows have been used;
-37 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**137 reels from 35 hadiths.** Thirty-five of 70 library rows have been used;
+35 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the

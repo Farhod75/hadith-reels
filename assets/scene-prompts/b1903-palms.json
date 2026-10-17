@@ -1,0 +1,18 @@
+﻿{
+    "video_url":  "https://v3b.fal.media/files/b/0aaea8ae/cQ5AyV0HoYZ2gvY04j5X9_output.mp4",
+    "name":  "b1903-palms",
+    "image":  "out\\refs\\b1903-palms-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1903-palms.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-16T21:25:05.3015204Z",
+    "size_bytes":  23805975,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "a slow steady breeze moving the palm fronds, long shadows shifting almost imperceptibly across the rippled sand, warm light deepening, slow gentle drift",
+    "request_id":  "01a1469a-b124-7e12-ae24-2ff6d73557c0",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-16T21:29:30.7779417Z",
+    "mode":  "image-to-video"
+}

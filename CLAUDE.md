@@ -54,6 +54,45 @@ document.
    that, not this document.
 
 **Steps 1–7 are not optional and not a menu.** Steps 8 and 9 are conditional.
+### ⚠ THE AUTO-LOAD IS SURFACE-DEPENDENT. DO NOT RELY ON IT.
+
+Line 3 of this file says "Auto-loaded by Claude Code on every session", and the
+note below says skills are "loaded automatically". **Both are true only in Claude
+Code with this repo as the working directory.** Added 2026-10-16, after a session
+where neither happened.
+
+Two surfaces where nothing auto-loads:
+
+  - **A cloud/Cowork session reaching this repo over the desktop bridge.** The
+    working directory is a container; the repo is a remote filesystem. No
+    CLAUDE.md, no skills, nothing. The nine reads above must be done EXPLICITLY,
+    as the first action, before anything substantive.
+  - **After a context compaction.** The summary that survives is a COPY, and this
+    section's whole premise is that a copy read carefully produces confident wrong
+    answers. A compaction is a new session for the purposes of this list, however
+    much project detail the summary carries. Feeling oriented is not being
+    oriented.
+
+**What it cost on 2026-10-16**, recorded because the failure was invisible from
+inside it. Four language legs of Bukhari #1903 were produced across a compacted
+session in which NONE of steps 1-7 was read up front. Every doc was opened
+reactively, after a failure or after the operator asked:
+
+  - `reel-creation-pipeline.md` — after the operator asked why steps kept being
+    missed. Two of those misses were written in it.
+  - `assets/asset-registry.json` — after the render was BLOCKED by the gate.
+  - `reel-tracker.md` — when told to update it.
+  - `.claude/skills/reel-producing/SKILL.md` — after the operator asked why the
+    agents were not working. All four legs had been produced by hand by then, and
+    the defect review had been done against the English blocks rather than
+    against that file's Step 2 table.
+  - `self_upskilling.md` and `QA_STANDARDS_AGENT_RULES.md` Section 10 — not read
+    at all.
+
+Three stale instructions were then followed as current (P253), one of which had
+the assistant tell the operator to delete a citation that P150 placed
+deliberately. The operator caught all three.
+
 
 **Agent skills live in `.claude/skills/<name>/SKILL.md`** and are loaded
 automatically. Three exist: `reel-producing` (the text half of a reel set,

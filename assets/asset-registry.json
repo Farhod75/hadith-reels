@@ -4,9 +4,10 @@
     "classification": "vocal | vocal+daf | ambience | instrumental | mascot | mascot-reference | scene",
     "lanes": "which lanes may use this asset: kids, adults, or both. An empty list means retired — approved for no lane, and the gate will block it.",
     "verified": "true once a human has listened to or viewed the asset and confirmed the classification. false = present but unconfirmed; the audit reports it.",
+    "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-14",
+  "updated": "2026-10-16",
 
   "audio": {
     "light-of-my-heart-bg.mp3": {
@@ -64,6 +65,7 @@
       "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "aswati-Focused-Determination.mp3": {
+      "gain": 1.41,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -72,6 +74,7 @@
       "notes": "Firm and forward-moving. 88.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Gentle-Reflection.mp3": {
+      "gain": 2.20,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -80,6 +83,7 @@
       "notes": "Quiet and unhurried. Shortest of the eight but still longer than any reel to date. 49.6s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Heartfelt-Gratitude.mp3": {
+      "gain": 1.58,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -88,6 +92,7 @@
       "notes": "Warm, long enough to bed several reels without reaching its own repeat. 206.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Morning-Serenity.mp3": {
+      "gain": 1.23,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -96,6 +101,7 @@
       "notes": "Calm and bright. Shortest bed in the whole library at 46.3s - still clears a 40s reel, but it is the one to watch if reels ever get longer. 46.3s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Peaceful-Contemplation.mp3": {
+      "gain": 1.14,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -104,6 +110,7 @@
       "notes": "Still and reflective; closest in character to the vocal-nasheed-0x beds. 56.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Rising-Hope.mp3": {
+      "gain": 1.00,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -112,6 +119,7 @@
       "notes": "Lifts through its length - check it against a sombre matn before pairing. 93.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Steady-Motivation.mp3": {
+      "gain": 1.19,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -120,6 +128,7 @@
       "notes": "Even and driving. 89.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Victory-March.mp3": {
+      "gain": 1.06,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -241,6 +250,35 @@
   },
 
   "scenes": {
+        "b1903-dates.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b1903-dates-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: a very slow push-in, fine dust turning through a shaft of light, the beam shifting almost imperceptibly across the floor, everything else completely still. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
+      "prompt_sidecar": "assets/scene-prompts/b1903-dates.json"
+    },
+    "b1903-majlis.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "CONTAINS FIGURES - NOT MODE B. A row of seated men shot from behind, no faces. FLUX 2 still b1903-majlis-1.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: robes and head cloths stirring in a faint breeze, dust drifting across the wall behind them, the men seated and completely still, nobody turns, nobody looks around, no head movement - the no-turn clauses are deliberate, because any face appearing breaks the figure rule mid-clip. COMPOSITION DELIBERATELY A ROW, NOT A CIRCLE: the first three stills were generated as a circle and all showed faces, and variant 3 put a central figure facing the group, which invites the Prophet (saw) reading - a hard block. Operator checked two frames (five backs, no faces, no visible hands); two frames are not the clip. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END - needs a face/hand check across the full 10s before verified:true. Sahih al-Bukhari #1903, R134-.",
+      "prompt_sidecar": "assets/scene-prompts/b1903-majlis.json"
+    },
+    "b1903-courtyard.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b1903-courtyard-2.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: a low steady wind lifting fine dust across the empty courtyard, the fringes of the woven mats stirring gently, the light fading almost imperceptibly, slow static shot. The mats are the companions' place of sitting with nobody in it - the counterpart to b1903-majlis, which has them. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
+      "prompt_sidecar": "assets/scene-prompts/b1903-courtyard.json"
+    },
+    "b1903-palms.mp4": {
+      "classification": "scene",
+      "lanes": ["adults"],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b1903-palms-2.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: a slow steady breeze moving the palm fronds, long shadows shifting almost imperceptibly across rippled sand, warm light deepening, slow gentle drift. Deepening warm light reads as the approach of sunset, which is the fast's end - check against m1631-grove (mature palms in planted rows, long shadows) before reusing either; they are close. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
+      "prompt_sidecar": "assets/scene-prompts/b1903-palms.json"
+    },
+
     "b6423-gate.mp4": {
       "classification": "scene",
       "lanes": ["adults"],

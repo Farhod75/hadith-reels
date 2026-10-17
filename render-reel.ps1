@@ -232,6 +232,10 @@ if ($Nasheed -and -not (Test-Path "out\backgrounds\$Nasheed")) {
 # all the ffmpeg work had run -- and the picker itself could never be tested
 # without a full paid render.
 $chosen = $null
+# P251: defaults, overridden from the registry once a bed is chosen.
+$nasheedVol    = 0.12
+$nasheedVolStr = '0.12'
+$gainNote      = ''
 if ($nasheeds.Count -ge 1) {
   $stateFile = "out\backgrounds\.last-used.json"
   if ($Nasheed) {
@@ -254,7 +258,31 @@ if ($nasheeds.Count -ge 1) {
     try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
     catch { Write-Host "  could not record last-used nasheed" -ForegroundColor DarkGray }
   }
-  Write-Host "  nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $avoided)" -ForegroundColor DarkGray
+  # P251: the adults mix is ONE level for every bed (narration 1.4 / nasheed
+  # 0.12, P171) and the beds are not one loudness. Measured 2026-10-16: the
+  # eight Aswati masters run -13.35 to -20.22 LUFS against light-of-my-heart-bg
+  # at -13.38, the bed the 0.12 was tuned on, so the quiet ones land
+  # under-audible. The operator heard it; no gate measures loudness. `gain` in
+  # the registry is the per-bed multiplier - absent means 1.0, so every bed
+  # without one is unchanged.
+  try {
+    $audioReg = (Get-Content "assets\asset-registry.json" -Raw | ConvertFrom-Json).audio
+    $bedName  = Split-Path $chosen -Leaf
+    $entry    = $audioReg.PSObject.Properties | Where-Object { $_.Name -eq $bedName }
+    if ($entry -and ($entry.Value.PSObject.Properties.Name -contains 'gain')) {
+      $g = [double]$entry.Value.gain
+      if ($g -gt 0 -and $g -le 4) {
+        $nasheedVol = [math]::Round(0.12 * $g, 4)
+        $gainNote   = ", gain x$g -> vol $nasheedVol"
+      } else {
+        Write-Host "  registry gain out of range for ${bedName}: $g - using 0.12" -ForegroundColor Yellow
+      }
+    }
+  } catch { Write-Host "  could not read the bed gain from the registry - using 0.12" -ForegroundColor DarkGray }
+  # InvariantCulture: a comma-decimal locale would hand ffmpeg volume=0,2640
+  # and the filter graph would not parse.
+  $nasheedVolStr = $nasheedVol.ToString([System.Globalization.CultureInfo]::InvariantCulture)
+  Write-Host "  nasheed: $(Split-Path $chosen -Leaf)  (lane: $Style, $($nasheeds.Count) beds, avoided: $avoided$gainNote)" -ForegroundColor DarkGray
 
   # P201: the tracker has a Nasheed column per reel and the asset-reuse audit
   # depends on it, but .last-used.json keeps ONE value per lane and the next
@@ -267,6 +295,7 @@ if ($nasheeds.Count -ge 1) {
     if (-not (Test-Path $workDir)) { New-Item -ItemType Directory -Force -Path $workDir | Out-Null }
     $sidecar = [ordered]@{
       nasheed   = (Split-Path $chosen -Leaf)
+      nasheedVol = $nasheedVol
       scenes    = $Scenes
       fitScenes = [bool]$FitScenes
       style     = $Style
@@ -360,9 +389,18 @@ if ($useSubs) {
     # transcription is abandoned. Forcing UTF-8 on the child process fixes it.
     $prevPyIO = $env:PYTHONIOENCODING
     $env:PYTHONIOENCODING = 'utf-8'
+    # P252: PYTHONIOENCODING fixes the CHILD's encoder. This fixes the PARENT's
+    # DECODER. PowerShell decodes a piped child's bytes using
+    # [Console]::OutputEncoding - CP437 on PS 5.1 - so a correctly-UTF-8 child
+    # whose output is PIPED still arrives mangled. restore-srt-casing.py prints
+    # straight to the console and reads fine; everything piped through
+    # ForEach-Object did not, which made the RU/UZ/TJ lint findings unreadable.
+    $prevConsoleEnc = [Console]::OutputEncoding
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
     & whisper "$narr" --model small --language $Lang --output_format srt --output_dir "$workDir" 2>&1 |
       ForEach-Object { if ("$_" -match 'Warning|FP16|usage:') {} else { Write-Host "   $_" -ForegroundColor DarkGray } }
     $env:PYTHONIOENCODING = $prevPyIO
+    [Console]::OutputEncoding = $prevConsoleEnc
     $ErrorActionPreference = $prevEAP
     if (-not (Test-Path $srt)) { Die "Whisper did not produce $srt (run it manually to see the error)" }
     # P211: stamp the sources this transcript was made from, so a later run can
@@ -429,10 +467,19 @@ if ($useSubs) {
     $ErrorActionPreference = 'Continue'
     $prevPyIO = $env:PYTHONIOENCODING
     $env:PYTHONIOENCODING = 'utf-8'      # P100: Cyrillic through a CP1252 console
+    # P252: PYTHONIOENCODING fixes the CHILD's encoder. This fixes the PARENT's
+    # DECODER. PowerShell decodes a piped child's bytes using
+    # [Console]::OutputEncoding - CP437 on PS 5.1 - so a correctly-UTF-8 child
+    # whose output is PIPED still arrives mangled. restore-srt-casing.py prints
+    # straight to the console and reads fine; everything piped through
+    # ForEach-Object did not, which made the RU/UZ/TJ lint findings unreadable.
+    $prevConsoleEnc = [Console]::OutputEncoding
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
     & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" 2>&1 |
       ForEach-Object { Write-Host "   $_" }
     $sttRc = $LASTEXITCODE
     $env:PYTHONIOENCODING = $prevPyIO
+    [Console]::OutputEncoding = $prevConsoleEnc
     $ErrorActionPreference = $prevEAP
     if ($sttRc -ne 0) {
       # Warn-only by design: the validator is a reader's aid, not a gate. The
@@ -654,7 +701,7 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
   # exactly as long as its first input, and -shortest then cuts the video
   # there — so -t alone could not add a tail. Padding the narration makes the
   # shortest stream genuinely 1s longer and all three agree.
-  "-filter_complex","[1:a]volume=1.4,apad=pad_dur=$tailPad[narration];[2:a]volume=0.12[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+  "-filter_complex","[1:a]volume=1.4,apad=pad_dur=$tailPad[narration];[2:a]volume=${nasheedVolStr}[music];[narration][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
   "-vf",$vf,
   "-map","0:v","-map","[aout]",
   # P143: was -t $narrDur exactly, so the video ended on the last syllable and
