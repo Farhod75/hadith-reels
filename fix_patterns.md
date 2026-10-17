@@ -10021,3 +10021,37 @@ already in this codebase: compare `selected.text_<lang>` against the live row an
 show the same amber "row changed since it was loaded — reselect" warning that the
 narration staleness check shows. Refetching inside `buildCaption` would also work
 and would not cost the blocks.
+## PATTERN 255: The BOM fix went to one writer and the push has been blocked ever since
+
+`git push` failed on the pre-push gate with `invalid JSON in
+assets/scene-prompts/b6570-plain.json`. Every one of the SEVENTEEN scene-prompt
+sidecars had a UTF-8 BOM.
+
+`scripts/generate-scene.ps1` L111 wrote them with
+`Set-Content -Path $side -Encoding UTF8`. On PowerShell 5.1 that emits a BOM, and
+a BOM is not valid JSON.
+
+**P186 is exactly this defect, already diagnosed, already fixed — in the other
+file.** `render-reel.ps1`'s P201 sidecar write carries the comment verbatim:
+"WriteAllText and not Set-Content -Encoding utf8: on PS 5.1 that writes a BOM and
+this file is read back as JSON (P186)." The sibling writer, added later by P215
+to record scene prompts, was never brought along.
+
+That is P237's shape for the FIFTH time in one evening — after P242, P248, P252
+and P253. Each time: a remedy applied to the instance that failed, its siblings
+untouched, the second one surfacing later and more expensively.
+
+**What it cost, and why nobody saw it.** The gate only runs on push, and the
+repo was **34 commits ahead of origin**. Days of work existed on one disk with no
+remote copy, and the signal — a push that fails — looks like a thing you deal
+with later. The failure is loud exactly once and then silent until the next push.
+
+**Rule:** when a pattern names a file-writing idiom as wrong, the fix is the
+IDIOM, not the line. Search the repo for the idiom before closing it. And treat a
+growing ahead-count as a defect report: a gate that blocks is only useful if
+somebody reads why.
+
+**Status:** FIXED 2026-10-16. BOM stripped from all 17 sidecars (bytes only, no
+other change); `generate-scene.ps1` now uses `WriteAllText` with
+`UTF8Encoding($false)`, matching `render-reel.ps1`. The gate was NOT relaxed to
+`utf-8-sig` — it caught a real defect and should keep catching it.

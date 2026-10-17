@@ -1,6 +1,11 @@
 ## [2026-10-16] — Per-bed nasheed gain, publishing procedure, P249-P251
 
 ### Fixed
+- All 17 scene-prompt sidecars carried a UTF-8 BOM and the pre-push JSON gate
+  had been blocking every push, with the repo 34 commits ahead of origin.
+  `generate-scene.ps1` wrote them with `Set-Content -Encoding UTF8`; P186 had
+  already fixed the same idiom in `render-reel.ps1` and this writer was left
+  behind. BOMs stripped, writer switched to `WriteAllText`. P255.
 - Cyrillic from piped child processes arrived as mojibake, so the RU/UZ/TJ
   Whisper cues and stt-lint findings were unreadable in the console. P100 set
   `PYTHONIOENCODING` on the child; PowerShell decodes piped bytes with

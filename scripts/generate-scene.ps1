@@ -108,7 +108,12 @@ function Write-Sidecar {
   if ($reqId) { $rec['request_id'] = $reqId }
   foreach ($k in $Extra.Keys) { $rec[$k] = $Extra[$k] }
   $rec['schema'] = 1
-  $rec | ConvertTo-Json -Depth 5 | Set-Content -Path $side -Encoding UTF8
+  # P255: Set-Content -Encoding UTF8 writes a BOM on PS 5.1 and this file is
+    # read back as JSON. P186 found that and fixed render-reel.ps1's sidecar;
+    # this sibling writer kept the BOM, so all 17 scene-prompt sidecars carried
+    # one and the pre-push JSON gate blocked every push for days.
+    [System.IO.File]::WriteAllText($side, ($rec | ConvertTo-Json -Depth 5),
+      (New-Object System.Text.UTF8Encoding($false)))
 }
 
 # --- read FAL_KEY from .env.local (never typed on the command line) ----------
