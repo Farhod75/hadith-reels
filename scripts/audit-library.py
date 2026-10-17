@@ -132,6 +132,18 @@ CYRILLIC_FIELDS = {
     'text_tajik': 'tj',
 }
 
+# P262: the alphabet each Cyrillic column is allowed to use. A letter can be
+# perfectly good Cyrillic and still be wrong for the language - Uzbek writes ў
+# (U+045E), Tajik writes ӯ (U+04EF), and on screen they are the same shape.
+# HOMOGLYPHS above only catches LATIN intruders; TJ_LETTERS only checks that
+# Tajik letters are PRESENT. A Cyrillic letter from the wrong alphabet passes
+# both, which is how ү (U+04AF) was nearly written into #1894's Tajik.
+ALPHABETS = {
+    'ru': set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя'),
+    'uz': set('абвгдеёжзийклмнопрстуфхцчшъьэюяўқғҳ'),
+    'tj': set('абвгдеёжзийклмнопрстуфхчшъэюяғӣқӯҳҷ'),
+}
+
 ALL_TEXT_FIELDS = [
     'text_arabic', 'text_english', 'text_russian',
     'text_uzbek', 'text_uzbek_cyrillic', 'text_uzbek_latin', 'text_tajik',
@@ -305,6 +317,47 @@ def check_homoglyphs(row):
                     f'Latin {", ".join(repr(c) for c in bad)} inside a '
                     f'Cyrillic word - «{word}» should be «{fixed}»',
                     ''))
+    return out
+
+
+def check_out_of_alphabet(row):
+    """P262: a Cyrillic letter that is not in the target language's alphabet.
+
+    The sibling of check_homoglyphs one step further in: that one catches a
+    LATIN character wearing a Cyrillic face, this one catches a CYRILLIC
+    character from the wrong language. Uzbek ў (U+045E) and Tajik ӯ (U+04EF)
+    are the dangerous pair - same shape, different codepoint, and the two
+    columns sit next to each other in every row.
+
+    Found by writing the defect: a hand-edit to #1894's Tajik typed ү (U+04AF,
+    the straight u of Kazakh and Mongolian) for ӯ. The surrounding sentence was
+    full of correct Tajik letters, so the diacritics check passed it, and the
+    letter is not Latin, so the homoglyph check passed it too. Only reading the
+    output back caught it.
+
+    WARN, not HIGH, on its first outing - the same reasoning as check_ha_formulas.
+    The alphabets above are hand-written, and a missing legitimate letter would
+    block every push under --strict. A library-wide scan on 2026-10-17 returned
+    zero findings across 72 rows, so raise this to HIGH once it has run clean
+    for a while.
+    """
+    out = []
+    for field, lang in CYRILLIC_FIELDS.items():
+        allowed = ALPHABETS.get(lang)
+        val = row.get(field)
+        if not allowed or not val:
+            continue
+        bad = {}
+        for ch in val:
+            if is_cyrillic(ch) and ch.lower() not in allowed:
+                bad[ch] = bad.get(ch, 0) + 1
+        for ch, n in sorted(bad.items()):
+            word = next((w for w in re.findall(r'\S+', val) if ch in w), '')
+            out.append(Finding(
+                'WARN', 'out-of-alphabet', ref_of(row), field,
+                f'{ch!r} (U+{ord(ch):04X}) is not in the {lang} alphabet '
+                f'- {n} occurrence(s), e.g. «{word}»',
+                ''))
     return out
 
 
@@ -494,6 +547,7 @@ CHECKS = [
     ('uz', check_uz_okina),
     ('uz', check_uz_script_mixing),
     (None, check_homoglyphs),
+    (None, check_out_of_alphabet),
     (None, check_ha_formulas),
     (None, check_missing_translations),
     (None, check_grade),

@@ -10477,3 +10477,67 @@ column re-derived, Stage 3 re-run: 8/8 pass across both models, zero
 disagreement. `matn_verified_at` cleared by the apply (P151) and left null -
 Stage 4 is the human gate. OPEN: the Tajik «мешиканиаш» reads like a malformed
 contraction; Stage 3 cannot see naturalness (P120) and it needs a Tajik speaker.
+## PATTERN 262: A Cyrillic letter from the wrong alphabet, written by the assistant and caught only by reading it back
+
+**Date:** 2026-10-17
+**Files:** scripts/audit-library.py; hadith_library (#1894)
+
+**The row first.** Bukhari #1894 stored 18 characters - `الصِّيَامُ جُنَّةٌ`,
+"Fasting is a shield" - where the matn runs on through the restraint of speech,
+the reply when provoked, the oath, the musk simile and `الصِّيَامُ لِي وَأَنَا
+أَجْزِي بِهِ`. 18 -> 370 characters, the largest restoration of the day. All
+four translations had stopped at the same two words, so the row was internally
+consistent and Stage 3 had nothing to catch - the same shape as #8, #1520 and
+#5185.
+
+The mirror's `idInBook=1894` is a DIFFERENT hadith (al-wisal). Ours sits at
+1826, offset 68 - and our own #1903 sits at 1835, the same offset, which
+confirmed the citation from internal data before any source was fetched.
+
+**Two translation defects, found by two different means.** Both models FAILED
+the Tajik unanimously: `لا يرفث` is obscene speech, and «бехудагӣ» is closer to
+absent-mindedness. No disagreement, so P177 does not apply - a unanimous fail is
+a defect. The Uzbek carried a case error that neither model saw and never could:
+«рўзадорнинг оғиз ҲИДИНИ ... хушбўйроқдир» puts the accusative on what has to be
+the subject. Stage 3's scope is faithfulness (P120); grammar is not in it.
+
+**THEN I WROTE THE DEFECT MYSELF.** Hand-editing the Tajik, I typed «нагүяд»
+with ү (U+04AF, the straight u of Kazakh and Mongolian) where Tajik takes ӯ
+(U+04EF). Every other ӯ in the sentence was correct; mine was the odd one. It
+was caught by reading the output back before signing, and by nothing else.
+
+**WHY NOTHING ELSE WOULD HAVE CAUGHT IT - verified, not assumed.** Read
+`audit-library.py` rather than guessing:
+
+  - `HOMOGLYPHS` (R027) is commented *"Latin characters that render identically
+    to a Cyrillic letter"*. ү is Cyrillic. It passes.
+  - `TJ_LETTERS` checks that Tajik letters are PRESENT. The sentence was full of
+    them. It passes.
+
+So a letter can be valid Cyrillic, invalid for the language, and invisible to
+every existing check. The dangerous pair is not even exotic: Uzbek ў (U+045E)
+and Tajik ӯ (U+04EF) are the same shape, and those two columns sit beside each
+other in every row of this library.
+
+**Fix: `check_out_of_alphabet` in audit-library.py.** Each Cyrillic column gets
+the alphabet its language actually uses, and any Cyrillic character outside it
+is reported. Unit-checked on four cases before shipping: U+04AF in Tajik fires;
+ў inside the Tajik column fires; ӯ inside the Uzbek column fires; correct
+uz/tj/ru text stays silent. A library-wide scan returned ZERO findings across 72
+rows, so the corpus was clean and my ү would have been the only instance.
+
+WARN, not HIGH, on its first outing - the same reasoning `check_ha_formulas`
+records for itself. The alphabets are hand-written and a missing legitimate
+letter would block every push under `--strict`. Raise it once it has run clean
+for a while.
+
+**Rule:** when you catch your own error by reading the output back, the fix is
+not finished at the text. Reading back does not scale and will not survive a
+tired session; the check does. Put the defect you just made into the gate. And
+before claiming a gap exists, READ the checker - "nothing would have caught
+this" is a claim about code, and it is cheap to verify and embarrassing to
+assert wrongly.
+
+**Status:** FIXED. #1894 at 370 chars, Tajik and Uzbek corrected, Latin
+re-derived, Stage 3 8/8 pass, `audit-library.py` clean (0 high, 0 warn), 66
+tests pass. `matn_verified_at` left null - Stage 4 is the human gate.

@@ -70,6 +70,13 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**#1894 DONE 2026-10-17.** Stored 18 chars where the matn runs 370 - the
+largest restoration so far. Tajik «бехудагӣ» for يرفث failed by both models
+unanimously and was corrected; Uzbek «оғиз ҳидини» carried a case error no
+model can see. Stage 3 8/8 pass, audit-library clean. A hand-edit of Claude's
+typed ү (U+04AF) for ӯ (U+04EF) and was caught only by reading it back, so
+`check_out_of_alphabet` now guards that class library-wide (WARN). P262.
+
 **#5185 DONE 2026-10-17.** Stored 32 chars - the opening imperative only, rib
 simile cut off - and it was STAMPED verified on 2026-09-05. Third stamped row
 found holding defective content. Restored to 225 chars, re-translated, Stage 3

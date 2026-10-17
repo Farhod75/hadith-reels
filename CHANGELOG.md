@@ -1,3 +1,34 @@
+## [2026-10-17e] - Bukhari #1894 restored, out-of-alphabet check added, P262
+
+### Added
+- `check_out_of_alphabet` in audit-library.py: a Cyrillic letter that is not in
+  the target language's alphabet. HOMOGLYPHS (R027) only catches LATIN
+  intruders and TJ_LETTERS only checks that Tajik letters are PRESENT, so a
+  wrong Cyrillic letter passes both - verified by reading the script, not
+  assumed. The dangerous pair is Uzbek ў (U+045E) against Tajik ӯ (U+04EF):
+  same shape, and the two columns sit beside each other in every row.
+  Unit-checked on four cases; library-wide scan returns zero findings over 72
+  rows. WARN on first outing, per the precedent check_ha_formulas records. P262.
+
+### Fixed
+- Bukhari #1894 stored 18 characters - 'Fasting is a shield' - where the matn
+  continues through restraint of speech, the reply when provoked, the oath, the
+  musk simile and 'fasting is for Me, and I shall reward it'. 18 -> 370 chars,
+  the largest restoration so far. All four translations stopped at the same two
+  words, so the row was internally consistent and Stage 3 had nothing to catch.
+- #1894 Tajik: «бехудагӣ» (absent-mindedness) for يرفث, which is obscene
+  speech. Both models failed it unanimously - a defect, not a disagreement.
+- #1894 Uzbek: «оғиз ҳидини» put the accusative on the sentence's subject.
+  Grammar, which Stage 3 cannot see by design (P120).
+- A hand-edit of mine typed ү (U+04AF) for ӯ (U+04EF) in the Tajik. Caught by
+  reading the output back before signing, and by nothing else - which is why
+  the check above now exists.
+
+### Notes
+- The mirror's idInBook=1894 is a different hadith; ours sits at 1826, offset
+  68, and our own #1903 sits at 1835 with the same offset - the citation was
+  confirmed from internal data before any source was fetched.
+
 ## [2026-10-17d] - Bukhari #5185 restored, extent convention set, P261
 
 ### Fixed
