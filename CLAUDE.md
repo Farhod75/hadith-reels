@@ -125,6 +125,27 @@ existed on one disk with no remote copy.
 
 A push that fails is a defect report. Read it the day it happens.
 
+**WHAT GOES IN THE PUSH, EVERY TIME — the three move together:**
+
+  1. **The change itself** — code, content, or the reel rows.
+  2. **Its `fix_patterns.md` entry.** A fix without a P-entry is not finished.
+     QA_STANDARDS 10 already requires the fix_patterns entry in the SAME commit
+     as the fix; this says it again at push time, where it is actually missed.
+  3. **Its `CHANGELOG.md` entry.**
+
+Plus `OPEN_ITEMS.md`: close an item IN THE FILE, in the same commit, when it
+ships — that is stated at the top of this file and is routinely the one left out.
+
+Never "document later". The documentation-discipline section below says that for
+docs; this says it for the push, because "I'll write the pattern up next time" and
+"I'll push tomorrow" are the same failure and they compound: the P-number is the
+only durable record of WHY, and an unpushed commit is a record that exists on one
+disk.
+
+The P-number is assigned from the frontier when the fix lands, never guessed, and
+never reserved in advance.
+
+
 ### SEARCH PREVIOUS CHATS BEFORE RECONSTRUCTING A CONVENTION.
 
 The operator's conventions live in past sessions as well as in these files, and
