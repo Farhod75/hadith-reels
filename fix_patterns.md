@@ -10335,3 +10335,83 @@ pass, zero disagreement. All four glosses gone without being edited.
 `matn_verified_at` left null - Stage 4 is the human gate. OPEN: the Tajik uses
 «На» for 'no' where «Не» is standard; Stage 3 cannot see this (P120 scopes it to
 faithfulness, not naturalness) and it needs a Tajik speaker.
+## PATTERN 260: The check that spent two runs measuring its own bugs
+
+**Date:** 2026-10-17
+**Files:** scripts/audit-diacritics.py (new)
+
+**What was built.** P259 showed that nothing compared our stored vowel marks
+against a source: Stage 3 asks whether the translation matches the matn, and
+`verify-matn-source.py` normalises diacritics away by design. So #1520's
+damma-for-kasra was invisible to both. `audit-diacritics.py` closes that gap -
+it matches on the consonantal skeleton, then compares the marks in the located
+span.
+
+**THE NUMBERS IT REPORTED, IN ORDER: 56, then 36, then 3.** The first two were
+its own defects. Both are worth naming, because both look exactly like findings.
+
+**Bug 1 - combining-mark order is not a difference.** A letter carrying both
+shadda and fatha can be stored shadda-first or fatha-first. They render
+identically. Our DB is NFC-normalised (fatha ccc=30 sorts before shadda ccc=33);
+the mirror is not. Every such letter in the library came back as a mismatch -
+`ours U+064E vs mirror U+0651`, over and over, which reads like a systematic
+corruption and is nothing at all. Fix: NFC both sides before comparing.
+
+**Bug 2 - a failed alignment is not a difference.** When the stored matn could
+not be located in the mirror entry, the first version fell back to comparing
+against the start of that entry, which is the ISNAD. Half the library duly
+reported `first diff at char 0`, ours showing the matn and the mirror showing
+`حَدَّثَنَا`. Fix: locate by walking consonants, and report NOT FOUND when the
+span cannot be established rather than comparing against something else.
+
+**Bug 3 - the span must include trailing marks.** Ending the span at the last
+CONSONANT clips the final i'rab vowel off the mirror side while ours keeps it.
+That produced 31 of 36 VOWEL findings, every one of them at the last character,
+every one of them `mirror U+0000`. The shape of the output is what gave it away:
+a real defect class does not land on the final character of thirty-one rows.
+
+**Result after the three fixes, over 72 rows:**
+
+| verdict | n | meaning |
+|---|---|---|
+| EXACT | 32 | identical after NFC |
+| PUNCTUATION | 5 | we add or drop a comma. Harmless. |
+| ORTHOGRAPHIC | 19 | لَا vs لاَ, hamza seat, alef maqsura. Both valid. |
+| **VOWEL** | **3** | same consonants, different reading. The #1520 class. |
+| LETTER | 0 | - |
+| NOT FOUND | 13 | stricter than verify-matn-source.py; see below |
+
+The three VOWEL rows are #463 (`انْتُقِصَ` passive vs `انْتَقَصَ` active), #223
+(`الطَّهُور` vs `الطُّهُور`) and #82 (`تَرْكُ` nominative vs `تَرْكَ`
+accusative). All three had been picked out by hand beforehand; the script
+converged on the same three independently, which is the only reason to trust it.
+
+**Rule:** when a new check reports a large number on its first run, the first
+hypothesis is the check, not the corpus. Read the SHAPE of the findings before
+the content - findings clustered at index 0, or at the final character, or all
+showing the same codepoint pair, are a method artefact. A check is not evidence
+until its own failure modes have been ruled out, and a count that collapses from
+56 to 3 under scrutiny was never a measurement of the library.
+
+**Also run the same day: `verify-matn-source.py --mirror`, for the first time.**
+66 found, 3 partial, 3 missing over 72 rows. The 3 missing are all Musnad Ahmad
+(#6576, #6626, #7936) and the mirror README states Ahmad chapters 8-30 are
+absent from its source - a mirror gap, not our defect. The 3 partial are #1899
+(0.80), #2616 (0.86) and #5185 (0.67). Three more carry an excerpt flag, where
+the stored matn is scattered rather than contiguous in the source entry: #2999
+(0.47), #1151 (0.58), #5971 (0.56).
+
+**The two tools disagree on NOT FOUND (13 vs 3), and that is by design.** This
+script demands an exact consonantal substring; `verify-matn-source.py` scores a
+fuzzy match. Neither number is wrong. Read them together: a row that this script
+cannot locate but the other scores 1.00 differs in orthography, not in content.
+
+**Cross-confirmation worth noting.** #5185 was flagged independently by three
+methods - an en/ar ratio of 0.53 with a 17-character English, a 0.67 partial
+here, and its presence in the A/B sweep. #2999's excerpt flag matches the
+PARTIAL EXTENT entry already recorded for it in OPEN_ITEMS.
+
+**Status:** SHIPPED. Not wired into the pre-push gate yet, deliberately -
+`--strict` would block every push on the three unresolved VOWEL rows. Wire it
+once those are adjudicated against a Tier-1 source. Nothing written to the DB:
+the mirror screens, a human confirms (P145).

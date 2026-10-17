@@ -1,3 +1,34 @@
+## [2026-10-17c] - audit-diacritics.py, first verify-matn-source run, P260
+
+### Added
+- `scripts/audit-diacritics.py`. Nothing compared our stored vowel marks
+  against a source: Stage 3 asks whether the translation matches the matn, and
+  verify-matn-source.py normalises diacritics away by design, so #1520's
+  damma-for-kasra was invisible to both. This matches on the consonantal
+  skeleton, then compares marks within the located span, and classifies the
+  result so the noise separates from the signal: EXACT 32, PUNCTUATION 5,
+  ORTHOGRAPHIC 19, VOWEL 3, LETTER 0, NOT FOUND 13 over 72 rows. P260.
+- Ran `verify-matn-source.py --mirror` for the first time since it was written:
+  66 found, 3 partial, 3 missing. The 3 missing are all Musnad Ahmad, which the
+  mirror README says is incomplete for chapters 8-30. Partial: #1899, #2616,
+  #5185. Excerpt flags (matn scattered, not contiguous): #2999, #1151, #5971.
+
+### Fixed
+- Three bugs in audit-diacritics.py, each found by reading the SHAPE of its own
+  output rather than the content. It reported 56 differences, then 36, then 3.
+  (1) combining-mark order: our DB is NFC, the mirror is not, so every letter
+  carrying both shadda and fatha mismatched. (2) failed alignment fell back to
+  comparing against the isnad, giving 'first diff at char 0' across half the
+  library. (3) the span ended at the last consonant, clipping the final i'rab
+  vowel off the mirror side - 31 of 36 VOWEL hits, all at the last character.
+
+### Notes
+- The three VOWEL rows (#463 passive/active, #223 tahur/tuhur, #82
+  nominative/accusative) are a worklist, not verdicts. The mirror is a
+  third-party scrape (P145); they need a Tier-1 source the way #1520 got one.
+- Not wired into the pre-push gate yet: --strict would block every push until
+  those three are resolved.
+
 ## [2026-10-17b] - Bukhari #1520 diacritic + matn, empty Uzbek Latin backfill, P259
 
 ### Fixed

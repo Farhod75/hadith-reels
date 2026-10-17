@@ -70,6 +70,35 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**DIACRITIC AUDIT, 2026-10-17 - 3 ROWS NEED A TIER-1 SOURCE.**
+`scripts/audit-diacritics.py --mirror "C:/QA/Hadith verification AI app/hadith-json"`
+Over 72 rows: EXACT 32, PUNCTUATION 5, ORTHOGRAPHIC 19, VOWEL 3, LETTER 0, NOT
+FOUND 13. Only VOWEL matters - same consonants, different reading, the #1520
+class. The mirror is a scrape, so these say OUR reading and ITS reading differ,
+not which is right:
+
+| row | ours | mirror | what changes |
+|---|---|---|---|
+| #463 | antuqisa | antaqasa | passive vs active voice |
+| #223 | at-tahur | at-tuhur | both attested readings |
+| #82 | tarku (nom) | tarka (acc) | which noun is the predicate |
+
+Not wired into the pre-push gate until these three are settled - `--strict`
+would block every push. P260.
+
+**verify-matn-source.py --mirror, FIRST EVER RUN, 2026-10-17.** 66 found, 3
+partial, 3 missing of 72.
+
+- MISSING, all Musnad Ahmad: #6576, #6626, #7936. The mirror README states
+  Ahmad chapters 8-30 are absent from its source data, so these are most likely
+  a mirror gap. #7936 is independently known bad (P244).
+- PARTIAL: #1899 (0.80), #2616 (0.86), #5185 (0.67).
+- EXCERPT, stored matn scattered rather than contiguous: #2999 (0.47), #1151
+  (0.58), #5971 (0.56). #2999 already sits in PARTIAL EXTENT below - confirmed
+  by a second method.
+- #5185 is now flagged by THREE independent methods: en/ar ratio 0.53 with a
+  17-char English, 0.67 partial here, and the A/B sweep. Worth doing early.
+
 **A cheap signal exists: character count.** #8 FAILED only because its
 translations enumerated what its Arabic did not. Rows with SHORTER Arabic
 PASSED, because their translations are equally short - consistent and
