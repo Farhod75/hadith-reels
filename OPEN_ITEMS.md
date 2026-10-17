@@ -56,6 +56,20 @@ flagged "added content" and the truth was a short Arabic. Muslim #223, #2699 and
 #2963 are the same shape and already recorded. Nothing in the pipeline checks
 that a stored matn is the WHOLE hadith.
 
+**#1520 DONE 2026-10-17 - and it was NOT truncation.** Two defects: a wrong
+diacritic (`lakunna` for `lakinna`, one vowel, a different word) and a cut matn
+missing Aisha's question. They concealed each other, and all four translations
+papered over the gap with a '(for women)' gloss that vanished on its own once
+the matn was restored. Stage 3: 8/8 pass. See P259. OPEN: the Tajik uses «На»
+for 'no' where «Не» is standard - needs a Tajik speaker, Stage 3 cannot see it.
+#1520 can come OFF the DISAGREE list above.
+
+**NEXT THREE, ranked by P259's gloss detector + ratio:** #1521 (gloss 'after
+Hajj free from all sins', ratio 2.33), #1773 (the mabrur gloss again, already in
+DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
+gloss in all four languages but is probably benign - al-bardayn really does mean
+Fajr and Asr.
+
 **A cheap signal exists: character count.** #8 FAILED only because its
 translations enumerated what its Arabic did not. Rows with SHORTER Arabic
 PASSED, because their translations are equally short - consistent and

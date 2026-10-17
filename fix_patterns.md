@@ -10194,6 +10194,12 @@ character count on `text_arabic` is an independent signal the models cannot
 supply, and it costs one query. Shortest used rows as a work queue: #1894 18,
 #1005 24, #1479 28, #1 34, #1417 41, #574 43, #1520 43.
 
+**CAVEAT, learned the same day (P259).** A HIGH en/ar ratio means LOOK HERE, not
+THIS IS TRUNCATED. #1520 ran 3.02 - higher than #8 - and its English was long
+because of an explanatory parenthetical, not because content was missing. The
+row was defective, but for a different reason. Treat the ratio as a sort order
+for human attention, never as a verdict.
+
 **`matn_verified_at` DOES NOT MEAN THE TRANSLATIONS ARE FAITHFUL.** It means a
 human read the row against the source (P151), and that is a different claim.
 #1903 was stamped by the operator hours before it failed UZ and TJ on both
@@ -10275,3 +10281,57 @@ enumerated - tracked in OPEN_ITEMS.
 **Status:** FIXED and verified. #8 re-applied, Uzbek Latin re-derived, Stage 3
 re-run: 8/8 pass across both models and all four languages, zero disagreement.
 `matn_verified_at` left null - Stage 4 is the human gate (G1).
+## PATTERN 259: Two defects that concealed each other, and the gloss that hid both
+
+**Date:** 2026-10-17
+**Files:** hadith_library (#1520)
+
+**What was wrong with Bukhari #1520.** Two things, not one.
+
+1. **A single wrong diacritic.** Stored `لَكُنَّ` (kaf with DAMMA = 'for you
+   [women]'). The source reads `لَكِنَّ` (kaf with KASRA = 'but'). One vowel, a
+   different word, a different grammatical role. The Arabic is what appears on
+   screen, so this is visible to any Arabic-reading viewer.
+2. **A truncated matn.** The hadith is a dialogue: Aisha asks whether women
+   should fight, and the answer opens with `لاَ،`. Only the tail of the answer
+   was stored.
+
+**How they hid each other.** With the question gone, 'but' had nothing to
+contrast with, so the sentence only parses as 'for you [women]'. The wrong
+diacritic then made that reading look correct. All four translations were built
+on it and each inserted the missing context as a parenthetical gloss - '(for
+women)', «(женщин)», «(аёллар)», «(занон)». The English matched sunnah.com's
+published Muhsin Khan rendering word for word, which is why review never caught
+it: the translation was defensible, and the Arabic underneath it was not.
+
+**THE DETECTOR THIS GIVES US.** A parenthetical gloss in a translation can be
+load-bearing - the translator supplying context the stored matn no longer
+carries. Restoring the matn made all four glosses disappear on their own, which
+is the confirmation. Scanned the library: 9 of 72 rows carry a gloss. The signal
+is NOT any parenthesis - most are grammatical particles («га», «дан») or a
+single clarifying noun. It is a gloss supplying CONTENT: a name, a condition, an
+explanation. Ranked by that plus the en/ar ratio:
+
+| row | gloss | ar | en/ar | note |
+|---|---|---|---|---|
+| #1521 | 'after Hajj free from all sins' | 85 | 2.33 | adjacent Hajj hadith, #1520's shape |
+| #1773 | 'the one accepted by Allah' | 121 | 1.53 | the mabrur gloss again; already in DISAGREE |
+| #1894 | 'protection' in uz+tj | 18 | 1.11 | shortest Arabic in the library |
+| #574 | 'Fajr and Asr' in all four | 43 | 1.63 | probably benign - al-bardayn does mean those two |
+
+**Rule:** when a translation explains something the Arabic does not say, suspect
+the Arabic before crediting the translator. And a diacritic is not a detail: in
+a stored matn it is the difference between two words, and nothing downstream -
+not Stage 3, not the content lint - compares our vowel marks against a source.
+
+**Also confirmed here:** the mirror numbers LOWER than sunnah.com and the gap
+widens through the book (#1520 sits at idInBook 1468; the script's own docstring
+notes 6446 at 6207). A number mismatch against the mirror is therefore NOT
+evidence of a miscitation. Check the isnad, not the index.
+
+**Status:** FIXED. Matn restored to 130 chars with the question and the correct
+`لَكِنَّ`, re-translated from it, Uzbek Latin re-derived, Stage 3 re-run: 8/8
+pass, zero disagreement. All four glosses gone without being edited.
+`matn_verified_at` left null - Stage 4 is the human gate. OPEN: the Tajik uses
+«На» for 'no' where «Не» is standard; Stage 3 cannot see this (P120 scopes it to
+faithfulness, not naturalness) and it needs a Tajik speaker.

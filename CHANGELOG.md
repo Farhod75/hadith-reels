@@ -1,3 +1,31 @@
+## [2026-10-17b] - Bukhari #1520 diacritic + matn, empty Uzbek Latin backfill, P259
+
+### Fixed
+- Bukhari #1520 stored `lakunna` (kaf with damma, 'for you women') where the
+  source reads `lakinna` (kaf with kasra, 'but'), and the matn was cut to the
+  tail of the answer - Aisha's question and the opening 'la' were missing. The
+  two defects concealed each other and all four translations compensated with a
+  '(for women)' gloss. Matn restored to 130 chars, re-translated from it, Latin
+  re-derived. Stage 3: 8/8 pass, and all four glosses disappeared untouched.
+  Verified against sunnah.com/bukhari:1520 and the local mirror. P259.
+- Six library row-writes had Uzbek Cyrillic with a COMPLETELY EMPTY Latin and
+  legacy column: #463, #1899, #3104, #2616 (two rows, duplicate number) and a
+  stale Latin on #6446. This is the P160 symptom, never backfilled. All derived
+  and verified in step.
+- #82's legacy `text_uzbek` held CYRILLIC, a P097 violation in a column the app
+  reads. Re-derived.
+
+### Added
+- P259's detector: a parenthetical gloss in a translation can be load-bearing,
+  supplying context a truncated matn no longer carries. 9 of 72 rows carry one;
+  the signal is a gloss supplying CONTENT, not a grammatical particle. Ranked
+  queue: #1521, #1773, #1894.
+
+### Corrected
+- P257's extent heuristic: a high en/ar ratio means LOOK HERE, not THIS IS
+  TRUNCATED. #1520 ran 3.02 because of an explanatory parenthetical, not missing
+  content. It is a sort order for attention, not a verdict.
+
 ## [2026-10-17] - Bukhari #8 matn restored, P258 silent-write fix
 
 ### Fixed
