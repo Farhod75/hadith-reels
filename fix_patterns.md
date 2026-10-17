@@ -10415,3 +10415,65 @@ PARTIAL EXTENT entry already recorded for it in OPEN_ITEMS.
 `--strict` would block every push on the three unresolved VOWEL rows. Wire it
 once those are adjudicated against a Tier-1 source. Nothing written to the DB:
 the mirror screens, a human confirms (P145).
+## PATTERN 261: What text_arabic holds when one narration carries two admonitions
+
+**Date:** 2026-10-17
+**Files:** hadith_library (#5185); convention, applies library-wide
+
+**The row.** Bukhari #5185 stored 32 characters - `اسْتَوْصُوا بِالنِّسَاءِ
+خَيْرًا` - and nothing else. The hadith continues through the rib simile, which
+is its entire substance, and closes by repeating the imperative. All four
+translations read "Treat women well." and stopped there, so the row was
+internally consistent and Stage 3 had nothing to catch.
+
+**It was STAMPED.** `matn_verified_at` was set 2026-09-05, on a fragment. That
+is the third row where a human verification stamp sat on defective content
+(#1903 and #527 in P257). The stamp means a human read the row against the
+source; it has never meant the row is complete, and three instances now say
+that distinction needs to be in the reviewer's head at stamping time.
+
+**Found by three independent methods, none of them a model judging meaning:**
+an en/ar ratio of 0.53 with a 17-character English; a 0.67 partial from
+`verify-matn-source.py --mirror`; and its presence in the A/B sweep. Agreement
+between cheap structural checks is worth more than one expensive opinion.
+
+**THE CONVENTION QUESTION.** sunnah.com's bukhari:5185 is ONE narration carrying
+TWO admonitions: the neighbour clause (`مَنْ كَانَ يُؤْمِنُ بِاللَّهِ`...) and
+then the women/rib passage. Bukhari also narrates the women hadith standalone
+elsewhere, in different wording - no `خيرا`, singular `الْمَرْأَةَ خُلِقَتْ`.
+So there were three defensible options: store the whole two-part matn, store
+the women clause in full under the same citation, or re-cite to the standalone
+narration.
+
+**RULE, set by the operator 2026-10-17:** `text_arabic` holds ONE COMPLETE
+admonition from the cited narration. Never a clipped one. Where a narration
+carries two, store the one the row is about, in full, and let the citation
+locate it - a reader who opens bukhari:5185 finds exactly that text there. What
+is forbidden is the third thing, which is what #5185 actually was: the opening
+words of an admonition with its substance cut off.
+
+This also governs the excerpt rows `verify-matn-source.py` flagged, where the
+stored matn is scattered rather than contiguous in the source entry: #2999
+(contiguous 0.47), #1151 (0.58), #5971 (0.56). Each needs the same judgement -
+complete admonition, or clipped?
+
+**A translator correction, and why it is not a P177 violation.** The first
+re-translation rendered `اسْتَوْصُوا بِالنِّسَاءِ` in Uzbek as «Аёлларга
+яхшилик билан васият қилинглар» - the dative -га aims the counsel AT women,
+where the Arabic aims it at the listener ABOUT women. EN, RU and TJ all read it
+the second way; Uzbek was the outlier. Model B flagged the same thing
+independently and Stage 3 returned disagree. The fix was NOT choosing B's
+verdict over A's: it was an editorial correction to the TEXT, made by the
+operator in his own language, after which the row was re-verified from scratch
+and both models passed. P177 forbids settling a disagreement by preferring a
+model or re-rolling; it does not forbid correcting the text the models
+disagreed about and asking again.
+
+**Rule:** when a model's objection and a human's objection coincide on the same
+clause, that is not two votes - it is one defect found twice. Fix the clause.
+
+**Status:** FIXED. 32 -> 225 chars, re-translated, Uzbek Latin and the legacy
+column re-derived, Stage 3 re-run: 8/8 pass across both models, zero
+disagreement. `matn_verified_at` cleared by the apply (P151) and left null -
+Stage 4 is the human gate. OPEN: the Tajik «мешиканиаш» reads like a malformed
+contraction; Stage 3 cannot see naturalness (P120) and it needs a Tajik speaker.

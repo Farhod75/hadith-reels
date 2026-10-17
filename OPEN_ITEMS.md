@@ -70,6 +70,20 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**#5185 DONE 2026-10-17.** Stored 32 chars - the opening imperative only, rib
+simile cut off - and it was STAMPED verified on 2026-09-05. Third stamped row
+found holding defective content. Restored to 225 chars, re-translated, Stage 3
+8/8 pass. Uzbek «васият қилинглар» corrected to «нисбатан яхши муомалада
+бўлинглар» (the dative aimed the counsel at women rather than about them).
+OPEN: Tajik «мешиканиаш» looks like a malformed contraction - needs a Tajik
+speaker. P261.
+
+**CONVENTION SET 2026-10-17:** `text_arabic` holds ONE COMPLETE admonition from
+the cited narration, never a clipped one. Where a narration carries two, store
+the one the row is about in full and let the citation locate it. Applies to the
+excerpt rows below - #2999 (contiguous 0.47), #1151 (0.58), #5971 (0.56) - each
+of which needs the same judgement: complete admonition, or clipped?
+
 **DIACRITIC AUDIT, 2026-10-17 - 3 ROWS NEED A TIER-1 SOURCE.**
 `scripts/audit-diacritics.py --mirror "C:/QA/Hadith verification AI app/hadith-json"`
 Over 72 rows: EXACT 32, PUNCTUATION 5, ORTHOGRAPHIC 19, VOWEL 3, LETTER 0, NOT

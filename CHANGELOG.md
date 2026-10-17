@@ -1,3 +1,32 @@
+## [2026-10-17d] - Bukhari #5185 restored, extent convention set, P261
+
+### Fixed
+- Bukhari #5185 stored 32 characters - the opening imperative of the hadith -
+  with the rib simile, which is its whole substance, cut off. All four
+  translations read 'Treat women well.' and stopped, so the row was internally
+  consistent and Stage 3 had nothing to catch. The row was STAMPED
+  matn_verified_at on 2026-09-05; that is the third verified row found holding
+  defective content. 32 -> 225 chars, re-translated, Latin re-derived, Stage 3
+  8/8 pass. P261.
+
+### Changed
+- CONVENTION, set by the operator: text_arabic holds ONE COMPLETE admonition
+  from the cited narration, never a clipped one. Where a narration carries two
+  (bukhari:5185 pairs a neighbour clause with the women/rib passage), store the
+  one the row is about, in full, and let the citation locate it. This also
+  governs the excerpt rows #2999, #1151 and #5971.
+- #5185 Uzbek: «васият қилинглар» aimed the counsel at women via the dative
+  -га, where the Arabic aims it at the listener about women; EN, RU and TJ all
+  read it the second way. Corrected to «нисбатан яхши муомалада бўлинглар».
+  Flagged independently by model B and by the operator, then re-verified from
+  scratch - a correction to the text, not a disagreement settled by preferring
+  a model (P177).
+
+### Notes
+- #5185 was surfaced by three independent structural checks with no model
+  judgement involved: en/ar ratio 0.53, a 0.67 partial from
+  verify-matn-source.py, and the A/B sweep.
+
 ## [2026-10-17c] - audit-diacritics.py, first verify-matn-source run, P260
 
 ### Added
