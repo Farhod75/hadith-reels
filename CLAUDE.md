@@ -109,6 +109,36 @@ snapshot of unknown age, in the same sentence as the claim. See QA_STANDARDS
 staleness is not the deliverable; the corrected doc is.
 
 ---
+### PUSH WHEN A SET CLOSES. DO NOT ASK.
+
+When a set's four legs are published and the tracker rows are written, **commit
+and push in the same session.** The set closing IS the trigger. "Shall I commit?"
+and "that's your call" are the rule being skipped politely — the operator has to
+say yes to something that was already decided.
+
+Written down 2026-10-17, after the rule was found to exist only in the operator's
+head and in past chats. What that cost: on 2026-10-16 the repo was **35 commits
+ahead of origin**. The pre-push gate had been failing since P215 (2026-10-11) on
+a UTF-8 BOM in the scene-prompt sidecars — see P255 — and nobody had read the
+error, because a failed push reads like something to handle later. Days of work
+existed on one disk with no remote copy.
+
+A push that fails is a defect report. Read it the day it happens.
+
+### SEARCH PREVIOUS CHATS BEFORE RECONSTRUCTING A CONVENTION.
+
+The operator's conventions live in past sessions as well as in these files, and
+these files are incomplete by construction — OPEN_ITEMS says so about itself.
+`conversation_search` is one call and it is authoritative where the repo is
+silent.
+
+On 2026-10-16 it found the four-platform publishing flow and Workflow K's A/B
+design immediately — after both had been reconstructed wrongly from memory
+first, and after the operator had to ask for them twice. Search BEFORE
+reconstructing, not after being corrected. "I think we documented that" from the
+operator is a pointer to go and read, never a prompt to agree or disagree
+(QA_STANDARDS 10.9).
+
 ## 📝 DOCUMENTATION DISCIPLINE (STRICT — applies to HV + HR)
 **EVERY fix, update, or enhancement MUST be documented in the same session it ships.**
 - Fixes → `fix_patterns.md` (log immediately after CI green, never deferred)

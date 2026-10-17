@@ -23,6 +23,10 @@
   a comma-decimal locale would have emitted `volume=0,2640`.
 
 ### Changed
+- `CLAUDE.md`: two operator rules that existed only in chat are now in the
+  repo — push when a set closes without asking, and search previous chats
+  before reconstructing a convention. Both were broken on 2026-10-16; the first
+  is why 35 commits sat unpushed behind a failing gate.
 - Corrected the stale OPEN_ITEMS claim that Stage 3 pass B has no OpenAI
   credits. It ran twice tonight. Recorded that `verify-candidates.py --library`
   exists and had never been used, that most library rows predate the sourcing
