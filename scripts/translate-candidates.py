@@ -191,7 +191,16 @@ def sb_patch(base, key, table, match, payload):
         'apikey': key, 'Authorization': f'Bearer {key}',
         'Content-Type': 'application/json', 'Prefer': 'return=representation'})
     with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode('utf-8'))
+        rows = json.loads(r.read().decode('utf-8'))
+    # P258: PostgREST answers 200 with [] when the match selects no row, so a
+    # PATCH that touched nothing is indistinguishable from one that worked and
+    # the caller prints 'written'. --apply reported writing four columns of
+    # Bukhari #8 and wrote none - it aimed a hadith_library id at
+    # hadith_candidates. A write that matched no row is a failure, everywhere.
+    if not rows:
+        raise RuntimeError(
+            f'PATCH {table} matched no row ({match}) - nothing was written')
+    return rows
 
 
 def translate(api_key, arabic, lang):
@@ -258,7 +267,7 @@ def sign_review(path=OUT_PATH):
     return 0
 
 
-def apply_from_json(base, key, path=OUT_PATH):
+def apply_from_json(base, key, path=OUT_PATH, library=False):
     """
     P177: write the REVIEWED translations to the DB. No model calls.
 
@@ -271,8 +280,11 @@ def apply_from_json(base, key, path=OUT_PATH):
     Hand-edit the JSON before applying - that is the point. A correction
     belongs in the reviewed text, not in an SQL patch after the write.
 
-    Candidates only. --library has its own matn_verified_at semantics (P151)
-    and is not worth folding in until something needs it.
+    Handles BOTH tables. --library was deferred here - "not worth folding in
+    until something needs it" - while the signature silently dropped it. When
+    something did need it, --library --apply aimed a hadith_library id at
+    hadith_candidates, matched no row, and reported success (P258). A
+    documented scope limit with no runtime guard is not a scope limit.
     """
     try:
         with open(path, encoding='utf-8') as fh:
@@ -308,10 +320,11 @@ def apply_from_json(base, key, path=OUT_PATH):
         print('  --sign again. Never apply text you have not read.')
         return 3
 
+    table = 'hadith_library' if library else 'hadith_candidates'
     width = 74
     print('=' * width)
     print(f' stage 2 APPLY - {len(results)} candidate(s) from {path}')
-    print(' no model calls. the reviewed text is the text written.')
+    print(f' no model calls. the reviewed text is the text written. -> {table}')
     print('=' * width)
 
     written = failed = 0
@@ -332,32 +345,44 @@ def apply_from_json(base, key, path=OUT_PATH):
         # a pipeline position. #3435 rests at needs_human permanently and by
         # ruling; 'translated' made it look eligible for Stage 3 and promotion.
         # Read the row first and write only what was actually reviewed.
-        try:
-            cur = sb_get(base, key, 'hadith_candidates',
-                         {'candidate_id': f'eq.{cid}',
-                          'select': 'status,translation_meta'})
-            cur = cur[0] if cur else {}
-        except Exception as e:  # noqa: BLE001
-            print(f'  {ref}: could not read current row ({e}) - REFUSING to write')
-            failed += 1
-            continue
-
-        payload = dict(proposed)
-        # MERGE provenance; a field absent from the reviewed file keeps its own.
-        meta = dict(cur.get('translation_meta') or {})
-        meta.update(r.get('translation_meta') or {})
-        payload['translation_meta'] = meta
-        # A terminal status is a human ruling. Writing a field does not revoke it.
-        if cur.get('status') in TERMINAL_STATUS:
-            print(f"  {ref}: status '{cur['status']}' left as is "
-                  f'(a decision, not a pipeline position)')
+        if library:
+            # P258: mirror the normal --library write (P151). translation_meta
+            # is not a library column, and a re-translation is UNVERIFIED until
+            # Stage 3 passes - so the stamp comes off. Writing a field must
+            # never leave a row claiming a human checked translations that did
+            # not exist when they checked it. That was the #2616 mistake.
+            payload = dict(proposed)
+            payload['matn_verified_at'] = None
+            match = {'id': f'eq.{cid}'}
+            note = ', matn_verified_at cleared - run Stage 3'
         else:
-            payload['status'] = 'translated'
-        payload['updated_at'] = now_iso()
+            try:
+                cur = sb_get(base, key, 'hadith_candidates',
+                             {'candidate_id': f'eq.{cid}',
+                              'select': 'status,translation_meta'})
+                cur = cur[0] if cur else {}
+            except Exception as e:  # noqa: BLE001
+                print(f'  {ref}: could not read current row ({e}) - REFUSING to write')
+                failed += 1
+                continue
+
+            payload = dict(proposed)
+            # MERGE provenance; a field absent from the reviewed file keeps its own.
+            meta = dict(cur.get('translation_meta') or {})
+            meta.update(r.get('translation_meta') or {})
+            payload['translation_meta'] = meta
+            # A terminal status is a human ruling. Writing a field does not revoke it.
+            if cur.get('status') in TERMINAL_STATUS:
+                print(f"  {ref}: status '{cur['status']}' left as is "
+                      f'(a decision, not a pipeline position)')
+            else:
+                payload['status'] = 'translated'
+            payload['updated_at'] = now_iso()
+            match = {'candidate_id': f'eq.{cid}'}
+            note = ''
         try:
-            sb_patch(base, key, 'hadith_candidates',
-                     {'candidate_id': f'eq.{cid}'}, payload)
-            print(f'  {ref}: written ({", ".join(sorted(proposed))})')
+            sb_patch(base, key, table, match, payload)
+            print(f'  {ref}: written ({", ".join(sorted(proposed))}){note}')
             written += 1
         except Exception as e:  # noqa: BLE001
             print(f'  {ref}: WRITE FAILED: {e}')
@@ -427,7 +452,7 @@ def main():
         if not args.commit:
             print('  --apply writes to the DB. Add --commit.')
             return 2
-        return apply_from_json(base, key)
+        return apply_from_json(base, key, library=args.library)
 
     # P219: --apply and --sign make no model calls, so the model key is
     # only needed past this point. Demanding it earlier would block

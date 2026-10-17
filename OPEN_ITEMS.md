@@ -31,20 +31,48 @@ Background and the three classes of finding: P257.
 |---|---|---|
 | Bukhari #527 | R034-R041 (8) | TJ: أحب "most beloved" rendered «беҳтарин» (best); قُلْتُ dropped |
 | Bukhari #6009 | R006-R009 (4) | all four langs: يأكل الثرى (eating earth) as licking mud; فشكر الله له (Allah thanked him) as accepted/pleased |
-| Bukhari #8 | R018-R021 (4) | **NOT a translation defect — `text_arabic` is truncated** to بني الإسلام على خمس with the five never enumerated. The captions shipped a one-line Arabic beside a full translation. |
+| Bukhari #8 | R018-R021 (4) | **FIXED 2026-10-17.** `text_arabic` restored to the full matn (31 -> 184 chars), verified against sunnah.com/bukhari:8 and the local mirror. Re-translated, Latin re-derived, Stage 3 8/8 pass. Awaiting Stage 4 sign-off. The 16 published captions still carry the old short Arabic. |
 | Bukhari #6857 | R098-R101 (4) | أكل الربا loses its verb; قذف المحصنات loosened; singular قال rendered plural |
 
 **DISAGREE — A and B split, human decides, never a third pass (P177):**
 #1, #1417, #82, #574, #4248, #2628, #2963, #2759, #5027, #13, #1773, #1520.
 
-**Do #8 first.** It is the cheapest to fix (restore the full matn to
-`text_arabic`) and the only one a viewer can see directly, because the caption
-prints the Arabic.
+**#8 DONE 2026-10-17.** Full matn restored and verified against two independent
+sources that agree: sunnah.com/bukhari:8 (the row's own cited `source_url`) and
+the local hadith-json mirror at idInBook=8. Re-translated from the corrected
+Arabic. Three translator interpolations were removed before apply, each flagged
+by a model and each absent from the Arabic: a bracketed noun in RU, an
+intensifier on iqam as-salah in UZ, and 'true' deity plus 'month of' in TJ.
+Stage 3 re-run: 8/8 pass, zero disagreement. `matn_verified_at` left null -
+Stage 4 is the human gate.
+
+**OPEN: the 16 published captions were NOT corrected.** R018-R021 shipped
+2026-08-11 to four platforms in four languages and still carry the 31-char
+Arabic and the reversed Hajj/fasting order. Decision not taken: edit them or
+leave them. The short Arabic is a true partial quote, not a fabrication.
 
 **Then re-check extent on the rest.** #8 was found by accident — the models
 flagged "added content" and the truth was a short Arabic. Muslim #223, #2699 and
 #2963 are the same shape and already recorded. Nothing in the pipeline checks
 that a stored matn is the WHOLE hadith.
+
+**A cheap signal exists: character count.** #8 FAILED only because its
+translations enumerated what its Arabic did not. Rows with SHORTER Arabic
+PASSED, because their translations are equally short - consistent and
+incomplete, invisible to a faithfulness check by the same construction that
+hides a split matn (P257). Shortest `text_arabic` among the 36 used rows, as a
+work queue: #1894 (18 chars), #1005 (24), #1479 (28), #1 (34), #1417 (41), #574
+(43), #1520 (43). #1894 is the top suspect. Note that #1, #1417, #574 and #1520
+already sit in the DISAGREE list above - short Arabic may be the real cause
+there rather than a translation defect.
+
+**P258 BLAST RADIUS - NOT YET ENUMERATED.** `--apply` silently wrote nothing for
+every `--library` row for as long as the flag existed (fixed 2026-10-17, P258).
+Any library row re-translated through the sign/apply route in that window kept
+its old text while the script reported success. Some of the 12 DISAGREE rows
+above may be that rather than translation defects. Needs: list the library rows
+whose matn was corrected after promotion and compare their translations against
+the current Arabic.
 
 **Do NOT re-run disagreements hoping for a cleaner roll.** The models are
 non-deterministic (#1903 RU moved pass/pass -> A=pass/B=fail on unchanged text).

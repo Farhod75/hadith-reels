@@ -10185,13 +10185,28 @@ half IS a faithful translation of its half of the Arabic. The gate compares a
 row's translations against that row's own Arabic and never asks whether the row
 is a whole hadith. A split matn is invisible to it by construction.
 
+**AND IT CANNOT SEE EXTENT - a cheap signal exists.** #8 FAILED only because its
+translations enumerated what its Arabic did not. The rows with SHORTER Arabic
+PASSED: #1894 (18 chars), #1005 (24), #1479 (28). They passed because their
+translations are equally short - consistent and incomplete, which is invisible
+to a faithfulness check by the same construction that hides a split matn. A
+character count on `text_arabic` is an independent signal the models cannot
+supply, and it costs one query. Shortest used rows as a work queue: #1894 18,
+#1005 24, #1479 28, #1 34, #1417 41, #574 43, #1520 43.
+
 **`matn_verified_at` DOES NOT MEAN THE TRANSLATIONS ARE FAITHFUL.** It means a
 human read the row against the source (P151), and that is a different claim.
 #1903 was stamped by the operator hours before it failed UZ and TJ on both
 models; #527 is an old verified row and its Tajik fails. Worse, the batch
 selector at `verify-candidates.py` L342 filters `matn_verified_at is.null` " " so
-a default `--library` run SKIPS precisely the rows that have shipped. The sweep
-only hit them because every row was named explicitly with `--row`.
+a default `--library` run skips the rows a human has STAMPED, which is not the
+same as the rows that have shipped. Measured over the 36 used rows: 13 stamped,
+23 null. A default run would therefore have covered 23 of them and skipped 13 -
+and the skipped 13 include #1903 and #527, both of which carry real defects.
+Verified is where the gate stops looking, which is exactly where two defects
+were sitting. The sweep only hit them because every row was named explicitly
+with `--row`. (Corrected 2026-10-17: the original wording here, 'SKIPS
+precisely the rows that have shipped', overstated it.)
 
 **Rule:** a gate that has never been pointed at the existing corpus has not been
 tested, it has only been written. When a verification stage is built for new
@@ -10203,3 +10218,60 @@ rows matter, and that assumption can be exactly backwards.
 **Status:** DOCUMENTED, nothing written to the DB " " every run was a dry run and
 `--commit` was never passed. The 16 non-clean rows are a work queue in
 OPEN_ITEMS. Raw log: `out/ab-library-sweep-2026-10-17.txt` (gitignored, on disk).
+## PATTERN 258: A deferred scope limit with no runtime guard - --apply reported writing four columns and wrote none
+
+**Date:** 2026-10-17
+**Files:** scripts/translate-candidates.py
+
+**What happened.** Bukhari #8's truncated matn was restored (P257's truncation
+class), re-translated with `--library --row 8`, reviewed, signed (P219), and
+applied with `--library --row 8 --apply --commit`. The script printed:
+
+    Sahih al-Bukhari #8: written (text_english, text_russian, text_tajik, text_uzbek_cyrillic)
+    written: 1   failed: 0
+
+Nothing was written. A read-back showed all four columns still holding the
+pre-correction text. Only `text_arabic` had changed, and that was done by hand
+in SQL.
+
+**Why.** `apply_from_json()` was candidates-only by design and said so in its own
+docstring: "Candidates only. --library has its own matn_verified_at semantics
+(P151) and is not worth folding in until something needs it." The deferral was
+reasonable. The guard was missing. `main()` called `apply_from_json(base, key)`
+and dropped `args.library` silently, so `--library --apply` was accepted, aimed
+a `hadith_library` id at `hadith_candidates`, matched no row, and reported
+success.
+
+**Why it looked like success.** PostgREST answers a PATCH that matches nothing
+with 200 and `[]`. `sb_patch` raised nothing, so the caller counted a write. A
+no-op and a real write were indistinguishable at the call site.
+
+**Why this one matters more than its size.** `--apply` is the P177 integrity path
+- the route whose entire purpose is that the reviewed text is the text that
+ships. It is the worst possible place for a silent no-op, because the operator
+has already read and signed the text and has no reason to look again.
+
+**Fix, two parts.**
+
+1. `sb_patch` raises when the representation comes back empty. This closes the
+   CLASS, not the instance: any PATCH in this script that matches no row is now
+   a failure instead of a success.
+2. `apply_from_json` takes `library=` and mirrors the normal `--library` write
+   (P151): match on `id`, drop `translation_meta` (not a library column), and
+   clear `matn_verified_at`, so a corrected row cannot keep a verification stamp
+   for translations nobody has checked - the #2616 mistake.
+
+**Rule:** a scope limit that lives only in a docstring is a comment, not a limit.
+If a function does not handle a flag, it must refuse that flag or implement it -
+silently ignoring it converts a known gap into a data-loss path the moment
+something needs it. And a write is never confirmed by the writer's own success
+message: read it back.
+
+**Blast radius, OPEN.** Any library row re-translated through the sign/apply
+route since `--library` existed kept its old text while reporting success. Some
+of P257's 12 disagreements may be this rather than translation defects. Not yet
+enumerated - tracked in OPEN_ITEMS.
+
+**Status:** FIXED and verified. #8 re-applied, Uzbek Latin re-derived, Stage 3
+re-run: 8/8 pass across both models and all four languages, zero disagreement.
+`matn_verified_at` left null - Stage 4 is the human gate (G1).

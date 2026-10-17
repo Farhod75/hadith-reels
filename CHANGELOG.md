@@ -1,3 +1,40 @@
+## [2026-10-17] - Bukhari #8 matn restored, P258 silent-write fix
+
+### Fixed
+- `--apply` reported writing four columns of Bukhari #8 to `hadith_library` and
+  wrote none of them. `apply_from_json()` was candidates-only by design and said
+  so in its docstring, but `main()` dropped `args.library` instead of refusing
+  it, so the write aimed a library id at `hadith_candidates` and matched no row.
+  PostgREST answers an unmatched PATCH with 200 and `[]`, so nothing raised.
+  `sb_patch` now fails on an empty representation, which closes the class, and
+  `apply_from_json` honours `--library`, clearing `matn_verified_at` per P151.
+  This is the P177 integrity path, so the no-op landed where it cost most. P258.
+
+### Changed
+- Bukhari #8 `text_arabic` restored from 31 chars to the full matn (184), matn
+  only and no isnad, per the convention every one of the 22 human-verified rows
+  follows. Verified against two independent sources that agree: sunnah.com's
+  bukhari:8, which is the row's own cited `source_url`, and the local
+  hadith-json mirror at idInBook=8. Both give the ending as Hajj BEFORE fasting
+  Ramadan - the reverse of the order all four translations carried.
+- #8 re-translated from the corrected Arabic; Uzbek Latin and the legacy column
+  re-derived. Three translator interpolations were removed before apply, each
+  flagged by a model and each absent from the Arabic: a bracketed noun in RU, an
+  intensifier on iqam as-salah in UZ, and 'true' deity plus 'month of' in TJ.
+  Stage 3 re-run after the edits: 8/8 pass, zero disagreement.
+
+### Corrected
+- P257 overstated its selector claim. A default `--library` run skips the rows a
+  human has STAMPED, not 'the rows that have shipped': 13 of 36 used rows are
+  stamped, 23 are null. The 13 skipped include #1903 and #527, which both carry
+  real defects.
+
+### Added
+- P257: the gate cannot see EXTENT either. Rows with shorter Arabic than #8
+  passed (#1894 at 18 chars, #1005 at 24, #1479 at 28) because their
+  translations are equally short. A character count on `text_arabic` is a cheap
+  independent signal the models cannot supply.
+
 ## [2026-10-16] — Per-bed nasheed gain, publishing procedure, P249-P251
 
 ### Fixed
