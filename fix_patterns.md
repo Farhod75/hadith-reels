@@ -10801,3 +10801,70 @@ candidates for review; it does not find errors.
 
 **Status:** both SHIPPED. No narrator misattribution found in the library. The
 five above need a human reading, not a fix.
+## PATTERN 267: Every vowel discrepancy closed, and a constructed sentence found
+
+**Date:** 2026-10-18
+**Files:** hadith_library (#223, #463, #82, #1151)
+
+**VOWEL is now 0 across 72 rows**, from 3. Each was resolved against a Tier-1
+source, and the three turned out to be three different things - which is the
+point of resolving rather than bulk-fixing.
+
+**#223 - real, one character.** Ours `الطَّهُورُ` (fatha), sunnah.com/muslim:223
+prints `الطُّهُورُ` (damma). Both readings are discussed in the commentary
+literature, but the cited source prints damma and matching the cited source is
+the standard. One codepoint, length unchanged.
+
+**#463 - real, two characters.** Ours `انْتُقِصَ` (passive), Dorar prints
+`انتَقَصَ` (active) and spells out the grammar: the verb is active and its
+subject is `شيءٌ`. Dorar specified fatha on BOTH the ta and the qaf, and both
+are what changed. Length unchanged.
+
+**#82 - NOT A DEFECT, and the interesting one.** Ours read `... تَرْكُ
+الصَّلَاةِ` with a damma where the source has fatha. But our text had no
+`إِنَّ`, and HadeethEnc gives the reason for the source's fatha: `ترك` is the
+ism of `إنّ` and takes the accusative. WITHOUT `إنّ`, the nominative `تَرْكُ` is
+the CORRECT vocalisation. Whoever shortened that row adjusted the grammar
+properly. The finding was evidence of care, not carelessness.
+
+It was still fixed - by restoring `إِنَّ` and the accusative it governs, so the
+row matches the cited source exactly. Left alone it would have differed by two
+characters forever and flagged on every run: a permanent false alarm teaches
+people to skim the report, which costs more than the row.
+
+**#1151 - a sentence that exists in no narration.** Stored:
+
+    كُلُّ عَمَلِ ابْنِ آدَمَ يُضَاعَفُ ... إِلَّا الصَّوْمَ فَإِنَّهُ لِي وَأَنَا أَجْزِي بِهِ
+
+Dorar (Tier 1, Muslim 1151) and the mirror both show a clause between those two
+halves: `الحسنة عشر أمثالها إلى سبعمائة ضعف` AND `قال الله عز وجل`. Removing it
+welds two halves into a grammatical sentence that is in no narration, and drops
+the divine-speech attribution that makes this a hadith qudsi. That is not
+truncation - truncation loses the end. This CONSTRUCTS. 86 -> 363 chars.
+
+The three excerpt rows flagged by `verify-matn-source` therefore resolved to
+three severities, and the contiguity score did not predict the order: #1151
+(0.58) was the worst, #2999 (0.47) is internally clipped and still open, #5971
+(0.56) is fine - complete dialogue, one word of edition variance.
+
+**FIRST USE OF VERIFY-BEFORE-WRITE (P266).** #1151's re-translation was scored
+with `--from-json` BEFORE `--apply`: 8/8 pass, nothing written. In that window
+the Uzbek was caught rendering `خلوف` as «оғиз қокисининг ҳиди» - a word that
+is not Uzbek, and inconsistent with #1894's «оғиз ҳиди» for the same Arabic.
+Corrected, re-verified 8/8, THEN applied. Yesterday that sequence would have
+required writing the bad text to a shipped row first.
+
+**THE NFC TRAP, CAUGHT A SECOND TIME - IN MY OWN VERIFICATION.** Checking the
+extracted #1151 matn, three of four probes returned False. The extraction was
+correct; the PROBES were hand-typed with shadda before damma, and NFC canonical
+ordering puts the vowel first, so they could not match. Exactly P260's bug, in
+the code written to guard against P260's bug.
+
+**Rule:** never hand-type a diacritic sequence to test for. Probe on the
+CONSONANT SKELETON - strip every mark from both sides and compare letters. It
+is immune to mark order by construction, and a check that cannot be written
+wrongly is worth more than one that is merely written correctly today.
+
+**Status:** #223, #463, #82, #1151 all FIXED and re-screened. VOWEL 0,
+NARRATOR 0 on #1151, audit-library clean. #2999 OPEN. `matn_verified_at` null
+on all four - Stage 4 is a human who reads Arabic (P265).

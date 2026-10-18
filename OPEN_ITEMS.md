@@ -70,6 +70,22 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**VOWEL 0 LIBRARY-WIDE, 2026-10-18 (P267).** #223 (one codepoint), #463 (two),
+#82 (restored `إِنَّ` + accusative - was NOT a defect, the nominative was
+correct without it, fixed so it stops flagging forever), #1151 (86 -> 363
+chars; the stored line was a sentence in no narration, welding two halves
+together and dropping `قال الله عز وجل`). All re-screened, all
+`matn_verified_at` null.
+
+- **#2999 STILL OPEN** - internally clipped: three clauses cut from the middle
+  and end (`وَلَيْسَ ذَاكَ لِأَحَدٍ إِلَّا لِلْمُؤْمِنِ`, and `فَكَانَ خَيْرًا لَهُ`
+  after BOTH `شَكَرَ` and `صَبَرَ`). Stamped 2026-09-04. Needs the same
+  treatment as #1151.
+- **#5971 is fine** - complete dialogue; ours has `النَّاسِ` where the mirror
+  does not, matching the widely-published Bukhari wording. No action.
+- The contiguity score did NOT predict severity. Read the rows, not the
+  numbers.
+
 **BUILT 2026-10-18 (P266):** `verify-candidates.py --from-json` closes the
 verify-before-write gap (P264), and `audit-diacritics.py` now compares the
 narrator against the mirror. No narrator misattribution found library-wide.

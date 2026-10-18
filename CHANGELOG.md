@@ -1,3 +1,35 @@
+## [2026-10-18b] - VOWEL 0 library-wide; #1151 was a constructed sentence (P267)
+
+### Fixed
+- #223: `الطَّهُورُ` -> `الطُّهُورُ`. One codepoint; sunnah.com/muslim:223
+  prints damma. Length unchanged.
+- #463: `انْتُقِصَ` (passive) -> `انتَقَصَ` (active). Two codepoints; Dorar
+  prints fatha on both the ta and the qaf and gives the grammar - the verb is
+  active, its subject is `شيءٌ`. Length unchanged.
+- #82: restored `إِنَّ` and the accusative `تَرْكَ` it governs, matching the
+  cited source. NOT originally a defect - without `إنّ` the nominative was
+  correct, and whoever shortened the row had adjusted the grammar properly.
+  Fixed anyway so it stops flagging forever: a permanent false alarm teaches
+  people to skim the report.
+- #1151: 86 -> 363 chars. The stored line welded `يُضَاعَفُ` directly onto
+  `إِلَّا الصَّوْمَ`, removing `الحسنة عشر أمثالها إلى سبعمائة ضعف` and
+  `قال الله عز وجل` - a grammatical sentence that appears in no narration, and
+  the loss of the divine-speech attribution that makes it a hadith qudsi.
+  Confirmed against Dorar and the mirror.
+
+### Notes
+- VOWEL discrepancies across the library: 3 -> 0. EXACT 32 -> 34.
+- The three excerpt rows resolved to three severities, and the contiguity
+  score did not predict the order: #1151 (0.58) worst, #2999 (0.47) internally
+  clipped and STILL OPEN, #5971 (0.56) fine.
+- FIRST use of verify-before-write (P266): #1151 scored 8/8 with --from-json
+  before --apply. In that window the Uzbek was caught rendering خلوف as
+  «оғиз қокисининг ҳиди» - not a word, and inconsistent with #1894's
+  «оғиз ҳиди». Corrected, re-verified, then applied.
+- The NFC trap caught a second time, in the probes written to guard against
+  it. Fix: probe on the consonant skeleton, which is immune to mark order by
+  construction.
+
 ## [2026-10-18] - verify-before-write and the narrator check (P266)
 
 ### Added
