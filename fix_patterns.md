@@ -11006,6 +11006,13 @@ reading on the second run and not on the first.
 
 Same model, same input text, different issue list.
 
+probe-passb.py's own closing line already said "One run is one sample -
+these models are non-deterministic," so the general caveat was known and
+written down. What is new is that it applies at the ISSUE level and not only
+to the verdict: the same model, on the same text, reports a different LIST.
+A verdict can be stable while what produced it is not - which P273 then
+caught in the worst possible way.
+
 This does not break P177 - it sharpens it. "Disagreement is the output" is
 sound, but the output is a SAMPLE, not a measurement. Specifically:
 
@@ -11021,3 +11028,76 @@ test run ONCE measures a sample of that model's behaviour, not the model. Sol
 passing four traps on one pass is encouraging and is not a calibration. Any
 model decision needs the test run several times, with the per-run variation
 reported, or it is reading noise.
+
+## PATTERN 273: Four runs of the pass-B probe, and the first one lied
+
+`probe-passb.py --model gpt-5.6-terra`, four consecutive runs. Run 1 returned
+a clean sweep - usable in all four languages, nothing blind, nothing noisy.
+Had it been run once, as every previous calibration in this project was, the
+entry here would read "terra is competent in all four languages."
+
+    case                   run1  run2  run3  run4
+    en clean   (want pass) pass  pass  pass  pass   consistent
+    en planted (want fail) fail  fail  fail  fail   consistent
+    ru clean   (want pass) pass  pass  FAIL  pass   *** VARIES ***
+    ru planted (want fail) fail  fail  fail  fail   consistent
+    uz clean   (want pass) pass  pass  pass  pass   consistent
+    uz planted (want fail) fail  PASS  fail  PASS   *** VARIES ***
+    tj clean   (want pass) pass  pass  pass  pass   consistent
+    tj planted (want fail) fail  fail  fail  fail   consistent
+
+**terra is BLIND on Uzbek in 2 of 4 runs.** The planted Uzbek defect is
+«Аллоҳ» -> «Худо», the R025 divine-name substitution. It is the single worst
+class of error this channel can ship, it is in the language with the largest
+audience, and the proposed pass-B model waves it through half the time.
+
+**Ruling: terra does not gate Uzbek.** Not at 50%. A gate that is right half
+the time on the category that matters most is not a weak gate, it is a gate
+that manufactures false confidence - the exact failure the probe's own
+docstring was written to catch ("it looks like a working gate from outside").
+
+Russian is separately unusable as a sole gate: it failed CLEAN text once in
+four, which is Stage 4 load rather than a safety hole, but it is noise.
+
+**The wider rule.** Every model calibration in this project so far has been a
+single pass, including Sol's four-row falsification test, which passed 4/4 and
+was described here as encouraging. On this evidence a single pass cannot
+distinguish a competent model from a lucky one. Any model decision needs N
+runs with the per-run spread reported; N=1 is not a measurement, and this
+entry exists because N=4 reversed the answer N=1 gave.
+
+
+## PATTERN 274: A test case with two planted defects scores neither
+
+The Tajik probe case carries TWO defects: the invented simile «ки чун сутуни
+осмон аст» AND the lost U+04E3 in «Некӣ» -> «Неки». It is scored by one
+verdict.
+
+Across all four runs terra returned `fail` on Tajik every time - a clean
+4/4 - and in all four runs the issue it reported was the simile. **It never
+once mentioned the diacritic.** The orthography class went untested while the
+scoreboard read perfect.
+
+So the Tajik column of P273's table is not evidence that terra reads Tajik. It
+is evidence that terra catches an invented simile in Tajik. Whether it can see
+a missing diacritic - the R037 class, and the one that actually recurs in this
+library - is still unknown after four runs and eight calls.
+
+**Two rules, both cheap:**
+
+1. One planted defect per case. A case with two cannot distinguish "caught
+   both" from "caught one", and the pass hides the miss.
+2. Score the ISSUE, not the verdict. The probe already receives a structured
+   issue list and throws away everything except `verdict`. Matching the
+   reported issue against the planted defect costs a string comparison and
+   would have turned four silent misses into four visible ones.
+
+The same critique applies to Stage 3's own `agreement` field, which is
+computed from verdicts: two models can "agree" on `fail` while failing a row
+for entirely different reasons, and #6009 is a live example - A failed the
+Uzbek on the gloss, B failed it on the same gloss, but A also flagged a
+tongue-out reading that B did not mention in that language at all.
+
+NOT FIXED. The probe is marked THROWAWAY and is not in the pipeline, so this
+is recorded rather than patched; the Stage 3 half of it is the part that
+matters and it is live.

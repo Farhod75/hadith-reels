@@ -1,3 +1,30 @@
+## [2026-10-18e] - terra fails the pass-B probe on Uzbek (P273-P274)
+
+### Measured
+- `probe-passb.py --model gpt-5.6-terra`, 4 consecutive runs:
+  - **uz planted: PASSED 2 of 4.** The planted defect is «Аллоҳ» -> «Худо»
+    (R025 divine-name substitution). terra is blind to it half the time.
+  - ru clean: FAILED 1 of 4 - noisy on clean Russian.
+  - en, tj: consistent across all four runs.
+  - **Run 1 alone was a clean sweep.** A single pass would have certified
+    terra in all four languages.
+
+### Ruled
+- **terra does not gate Uzbek.** A 50% miss rate on the divine-name class is
+  false confidence, not a weak gate.
+- No model decision on a single pass. N runs, spread reported. This retires
+  the reading of Sol's 4/4 falsification result as a calibration - it was one
+  sample and is now re-opened.
+
+### Notes
+- The Tajik probe case plants TWO defects (invented simile + lost U+04E3) and
+  scores one verdict. terra reported the simile 4/4 and the diacritic 0/4, so
+  its clean Tajik score tests nothing about the orthography class (P274).
+- Same flaw in Stage 3's `agreement`, which is computed from verdicts: two
+  models can "agree" on fail for different reasons. #6009 is a live example.
+- P272's entry corrected: `probe-passb.py` already documented run-to-run
+  non-determinism. The new part is that it applies at the issue level.
+
 ## [2026-10-18d] - #6009 closed; two findings about the gate itself (P271-P272)
 
 ### Fixed
