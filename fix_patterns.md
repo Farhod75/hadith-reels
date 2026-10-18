@@ -10868,3 +10868,99 @@ wrongly is worth more than one that is merely written correctly today.
 **Status:** #223, #463, #82, #1151 all FIXED and re-screened. VOWEL 0,
 NARRATOR 0 on #1151, audit-library clean. #2999 OPEN. `matn_verified_at` null
 on all four - Stage 4 is a human who reads Arabic (P265).
+
+## PATTERN 268: A token whose letters are each legal but whose shape is not
+
+Six malformed Uzbek Cyrillic tokens were sitting in published rows. Nothing
+flagged them. `check_out_of_alphabet` (P262) passed them, `check_homoglyphs`
+passed them, `check_ha_formulas` passed them - correctly, in every case,
+because every individual CHARACTER was a legal Uzbek letter. The defect was in
+how the letters were COMBINED, and a per-character check cannot see that.
+
+    #4250  гуноҳи ёъқ        -> йўқ
+    #2699  ёъл юрса ... ёълни -> йўл ... йўлни
+    #38    рўзасини туца      -> тутса
+    #3540  кечириб юбора-ман  -> юбораман
+    #2734  Аллоҳ банд аси     -> бандаси
+
+`ёъқ` is the tell: it is a Latin->Cyrillic round trip. `yoʻq` mapped letter by
+letter - `yo` to `ё`, the okina to `ъ`, `q` to `қ` - producing a string built
+entirely from the Uzbek alphabet that is not a possible Uzbek word. `банд аси`
+is the same failure with a space: a bound morpheme standing alone.
+
+**How they were found: not by a check.** They were read off a
+`derive-uzbek-latin.ts` log while verifying something else entirely. Four of
+the six had been through the full pipeline and were live.
+
+**Fix - `check_malformed_tokens` in `audit-library.py`.** Four rules, each an
+orthographic IMPOSSIBILITY rather than a judgement about wording, which is why
+the whole check needs no dictionary and no model call:
+
+    ёъ / Ёъ               ё is already iotated; ъ cannot follow it
+    ц in uz/tj            Russian-loan letter, in a matn nearly always тс
+    \w-(ман|сан|миз|...)  a personal ending is bound to its stem
+    bound morpheme alone  аси, лари, нинг, дир, ... as a free token
+
+**Measured before it was written, not after (P260).** Run against all 72 rows
+as a throwaway probe first: 6 hits, all 6 real, zero false positives. A fifth
+rule - `ъ` word-initial, also a true impossibility - returned 0 and was DROPPED
+rather than shipped. An unexercised rule in a passing check is a liability: it
+has never been wrong because it has never run.
+
+WARN on its first outing, same as P262 and `check_ha_formulas`. 6 warn -> 0
+after the five corrections; the sixth row is below.
+
+**The one the check cannot have.** #2307 reads «Лаззатлар бузовкисини — ўлимни
+кўп эсланг» - a garbling of «лаззатларни бузувчини», the destroyer of
+pleasures. Every token is a possible Uzbek word. Only someone who reads Uzbek
+can see it is the wrong one. That is the boundary of this entire class of
+check, and it is worth stating plainly: orthography is mechanisable, meaning is
+not.
+
+
+## PATTERN 269: A scoping flag that does not scope
+
+`derive-uzbek-latin.ts --library --row 2999 --commit` wrote all 72 rows.
+`--row` is parsed and then dropped - the same shape as P258, where `main()`
+dropped `args.library` while `--apply` reported success.
+
+No damage, because the transliteration is deterministic: the other 71 rows were
+rewritten with byte-identical values. But that was PROVEN, not assumed - a dry
+run re-derived all 72 and every one matched what is stored. The first attempt
+at that proof reported three mismatches, which were an artifact of keying the
+comparison on `(collection, hadith_number)`: three numbers legitimately appear
+twice in the library. Re-keyed on the Cyrillic text, 72/72 matched.
+
+**The rule.** A flag that narrows scope is a safety device, and a safety device
+that silently does nothing is worse than its absence - absence is at least
+visible. Before trusting `--row`, `--only`, `--limit` or a WHERE clause on any
+script that writes, run it once and count the rows it touched. P258 was this
+bug in the apply path; this is the same bug in the derive path; the next one
+will be somewhere else.
+
+
+## PATTERN 270: Three probe bugs in two days, all from re-deriving the normaliser
+
+Checking extracted Arabic against stored Arabic failed three times this week,
+and all three times the EXTRACTION WAS CORRECT and the probe was wrong:
+
+    NFC combining-mark order (P260)      shadda typed before damma
+    NFC combining-mark order again       the same bug, inside the code written to catch it
+    hamza carriers unfolded              ؤ (U+0624) and ئ (U+0626) not mapped to و / ي
+
+Each was written inline, ad hoc, for one row - and each one re-derived
+normalisation from memory instead of calling the function that already does it
+correctly in production.
+
+**The rule, which should have been written after the FIRST one:** a probe does
+not get its own normaliser. Import the production function, or compare on the
+consonant skeleton - strip every mark from both sides and compare letters only.
+The skeleton is immune to mark order and carrier choice by construction, and a
+check that CANNOT be written wrongly beats one that merely happens to be
+written correctly today.
+
+The deeper point is about where the suspicion went. Three times the instinct
+was that the source data was wrong; three times it was the instrument. A
+disagreement between a new probe and an established pipeline should put the
+probe under suspicion first - it is the thing that was written five minutes
+ago.

@@ -1,3 +1,32 @@
+## [2026-10-18c] - #2999 closed; a check for malformed Cyrillic tokens (P268-P270)
+
+### Fixed
+- #2999: 126 -> 210 chars. Restored `وَلَيْسَ ذَاكَ لِأَحَدٍ إِلَّا لِلْمُؤْمِنِ` and
+  `فَكَانَ خَيْرًا لَهُ` after BOTH `شَكَرَ` and `صَبَرَ`. Confirmed against Dorar
+  (al-Arna'ut: إسناده صحيح على شرط مسلم) and the mirror at idInBook=7314.
+  Re-translated, scored 8/8 with `--from-json` BEFORE apply, re-screened.
+- Five malformed Uzbek Cyrillic tokens, all in live rows: #4250 `ёъқ`->`йўқ`,
+  #2699 `ёъл`/`ёълни`->`йўл`/`йўлни`, #38 `туца`->`тутса`, #3540
+  `юбора-ман`->`юбораман`, #2734 `банд аси`->`бандаси`.
+
+### Added
+- `check_malformed_tokens` in `audit-library.py` (P268). Four orthographic
+  impossibilities - `ёъ`, `ц` in a matn, a hyphen before a personal ending, a
+  bound morpheme standing alone. No dictionary, no model call. Measured against
+  the library before being written: 6 hits, 6 real, 0 false positives. A fifth
+  rule returned 0 and was dropped rather than shipped unexercised. WARN on
+  first outing.
+
+### Notes
+- `audit-library.py`: 6 warn -> 0 warn. 0 high, 4 info.
+- `derive-uzbek-latin.ts --row` is silently ignored and writes the whole
+  library (P269). No damage - the transform is deterministic and all 72 rows
+  were proven byte-identical - but the flag is not a safety device.
+- Stage 4 unchanged: `matn_verified_at` stays null on every row (P265).
+- Open, needs an Uzbek reader: #2307 «Лаззатлар бузовкисини», likely a garbling
+  of «лаззатларни бузувчини». Every token is a possible word, so no mechanical
+  check can reach it.
+
 ## [2026-10-18b] - VOWEL 0 library-wide; #1151 was a constructed sentence (P267)
 
 ### Fixed

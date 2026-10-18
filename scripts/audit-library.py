@@ -144,6 +144,38 @@ ALPHABETS = {
     'tj': set('абвгдеёжзийклмнопрстуфхчшъэюяғӣқӯҳҷ'),
 }
 
+# P268: tokens that cannot exist in Uzbek or Tajik Cyrillic. Every rule here is
+# an orthographic impossibility, not a judgement about wording - which is why
+# each one can run at WARN with no dictionary and no model call behind it.
+#
+# Found by reading a derive-uzbek-latin.ts log, not by any check: six malformed
+# tokens sat in published rows while out-of-alphabet, homoglyph and ha-formula
+# all passed them, because every individual LETTER was legal. The defect was in
+# how the letters were combined. A per-character check cannot see that.
+MALFORMED_FIELDS = {'text_uzbek_cyrillic': 'uz', 'text_tajik': 'tj'}
+
+# ё is already iotated; ъ (tutuq belgisi) cannot follow it. This is the
+# signature of a Latin->Cyrillic round trip: yoʻq -> ёъқ instead of йўқ.
+MALFORMED_YO_RE = re.compile(u'[ёЁ]ъ')
+
+# ц belongs to Russian loanwords. In an Uzbek or Tajik matn it is nearly always
+# a mistyped тс - туца for тутса.
+MALFORMED_TS_RE = re.compile(u'[цЦ]')
+
+# A personal ending is bound to its stem; a hyphen before one is a stray.
+# Uzbek does hyphenate compounds (ота-она, мол-мулк), so only the endings match.
+MALFORMED_HYPHEN_RE = re.compile(r'\w-(?:ман|сан|миз|сиз|дир|ди)$')
+
+# Bound morphemes that can never stand as a free word. A space before one means
+# a word was split: бандаси -> «банд аси».
+MALFORMED_ORPHANS = {
+    u'аси', u'иси', u'лари', u'нинг', u'дир', u'диган', u'ганда',
+    u'моқда', u'ларини', u'идан', u'нидан', u'ини', u'ига', u'ида',
+}
+
+MALFORMED_STRIP = u'.,!?:;«»"()—-…'
+
+
 ALL_TEXT_FIELDS = [
     'text_arabic', 'text_english', 'text_russian',
     'text_uzbek', 'text_uzbek_cyrillic', 'text_uzbek_latin', 'text_tajik',
@@ -361,6 +393,51 @@ def check_out_of_alphabet(row):
     return out
 
 
+def check_malformed_tokens(row):
+    """P268: a token whose letters are each legal but whose shape is not.
+
+    The sibling of check_out_of_alphabet one level up: that one asks whether a
+    CHARACTER belongs to the language, this one asks whether a SEQUENCE could
+    occur in it. «ёъқ» is built entirely from letters in the Uzbek alphabet, so
+    every character-level check waved it through; it is still not a word.
+
+    All four rules are orthographic impossibilities rather than style, so they
+    need no dictionary. Measured against the whole library before being written
+    here: 6 hits across 72 rows, all 6 real, no false positives. A fifth rule
+    (ъ word-initial) returned 0 and was dropped rather than shipped unexercised.
+
+    WARN on its first outing, the same reasoning as check_ha_formulas and
+    check_out_of_alphabet: promote to HIGH once a pass has been adjudicated.
+    """
+    out = []
+    for field, lang in MALFORMED_FIELDS.items():
+        val = row.get(field)
+        if not val:
+            continue
+        for raw in re.findall(r'\S+', val):
+            w = raw.strip(MALFORMED_STRIP)
+            if not w:
+                continue
+            why = None
+            if MALFORMED_YO_RE.search(w):
+                why = (u'ёъ cannot occur - ё is already iotated and ъ cannot follow '
+                       u'it; this is a Latin->Cyrillic round trip of yoʻ')
+            elif MALFORMED_TS_RE.search(w):
+                why = (u'ц belongs to Russian loanwords - in a matn it is almost '
+                       u'always a mistyped тс')
+            elif MALFORMED_HYPHEN_RE.search(w):
+                why = u'a personal ending is bound to its stem; the hyphen is stray'
+            elif w.lower() in MALFORMED_ORPHANS:
+                why = (u'a bound morpheme standing alone - the preceding word was '
+                       u'split by a stray space')
+            if why:
+                out.append(Finding(
+                    'WARN', 'malformed-token', ref_of(row), field,
+                    u'«%s» is not a possible %s token - %s' % (raw, lang, why),
+                    ''))
+    return out
+
+
 def check_ha_formulas(row):
     """х where ҳ belongs, inside the fixed honorific and divine-name formulas.
 
@@ -548,6 +625,7 @@ CHECKS = [
     ('uz', check_uz_script_mixing),
     (None, check_homoglyphs),
     (None, check_out_of_alphabet),
+    (None, check_malformed_tokens),
     (None, check_ha_formulas),
     (None, check_missing_translations),
     (None, check_grade),
