@@ -1,3 +1,37 @@
+## [2026-10-18d] - #6009 closed; two findings about the gate itself (P271-P272)
+
+### Fixed
+- #6009: RU «держал его зубами, пока не выбрался» -> «взял его в рот»
+  (بِفِيهِ is *mouth*, and the Arabic does not narrate climbing out);
+  TJ «бархоста» removed (an action absent from the matn); UZ closing line
+  restored the Arabic image - «Ҳўл жигарли ҳар бир жонзотга [қилинган
+  яхшиликда] ажр бордир» for فِي كُلِّ ذَاتِ كَبِدٍ رَطْبَةٍ أَجْرٌ, which UZ alone
+  had generalised away while EN, RU and TJ all kept it.
+- The interpretive gloss is now bracketed in RU and UZ, matching the
+  convention TJ was already using («[некӣ ба]»).
+- `text_arabic` untouched, so `matn_screened_at` (2026-09-05) stands.
+
+### Ruled (Stage 4)
+- The "kindness done to" gloss: KEPT, bracketed. Cutting it would let the
+  Uzbek read as the reward going to the animal.
+- `ﷺ` after "O Messenger of Allah" in EN: KEPT. A convention, and P120 puts
+  conventions in `lint-content.py`, not Stage 3.
+- "Tongue out" for يَلْهَثُ: KEPT in all three languages.
+
+### Notes
+- An earlier claim here that the tongue-out renderings were additions was
+  WITHDRAWN and is now a recorded disagreement, not a defect: يلهث carries
+  tongue-protrusion lexically, model B holds otherwise, and P177 says that
+  split is the output.
+- Bracketing a gloss does NOT clear the Stage 3 finding - the models score
+  content, not typography (P271). All three rulings will re-fire on every
+  future run; there is no waiver mechanism. NOT BUILT.
+- Stage 3 is not reproducible at the issue level (P272): A flagged the Uzbek
+  tongue-out on the second run and not the first, with that sentence
+  unchanged between them. A single run is a sample. This blocks reading the
+  pending terra calibration from one pass.
+- `audit-library.py`: 0 high, 0 warn, 4 info.
+
 ## [2026-10-18c] - #2999 closed; a check for malformed Cyrillic tokens (P268-P270)
 
 ### Fixed

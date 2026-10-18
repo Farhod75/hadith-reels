@@ -10964,3 +10964,60 @@ was that the source data was wrong; three times it was the instrument. A
 disagreement between a new probe and an established pipeline should put the
 probe under suspicion first - it is the thing that was written five minutes
 ago.
+
+## PATTERN 271: An adjudicated finding has nowhere to live
+
+#6009 was ruled on by the human gate: the interpretive gloss stays but gets
+bracketed, the EN honorific stays, the tongue-out reading stays. The row was
+signed and written. Re-run Stage 3 tomorrow and all three come back.
+
+**Bracketing did not clear them.** The gloss was marked `[за добро к]` and
+`[қилинган яхшиликда]`, exactly as TJ already marked `[некӣ ба]` - and both
+models flagged it anyway. Stage 3 scores SEMANTIC content; an editorial
+bracket is typography. The bracket is for the reader, and it does nothing for
+the gate. Worth knowing before anyone brackets a phrase expecting a check to
+go quiet.
+
+So three findings are now permanently true of a row that a human has already
+adjudicated, and there is nowhere to write that down. The consequences are the
+ones P267 warned about in the #82 note: a finding that fires forever on a row
+nobody will change teaches people to skim the report, and skimming is how the
+NEXT finding gets missed. `matn_verified_at` does not help - it records that a
+human read the Arabic (P265), not that a human overruled a specific issue.
+
+**What is missing** is a per-row, per-issue waiver: the issue, the ruling, who
+ruled, when, and a hash of the text it was ruled on, so the waiver dies the
+moment the text changes. The hash is the part that makes it safe, and the
+mechanism already exists in this repo - `--sign` writes a sha256 of the
+reviewed JSON and `--apply` refuses if the file moved afterward. Same idea,
+different object.
+
+NOT BUILT. Recording it now because the gap was found by using the gate
+properly rather than by theorising, and because #6009 is the second row this
+week to need it (the first was #82).
+
+
+## PATTERN 272: Stage 3 is not reproducible at the issue level
+
+Two Stage 3 runs on #6009, minutes apart. Between them the Uzbek sentence
+containing «тилини чиқариб» was NOT touched - only the Russian question line
+and the Uzbek closing clause changed. Model A flagged the Uzbek tongue-out
+reading on the second run and not on the first.
+
+Same model, same input text, different issue list.
+
+This does not break P177 - it sharpens it. "Disagreement is the output" is
+sound, but the output is a SAMPLE, not a measurement. Specifically:
+
+  - A clean pass is not evidence that nothing is there. B flagged the
+    tongue in RU and TJ while missing the identical phrase in UZ, in the same
+    response; A caught the UZ instance only on a second run.
+  - "The other model did not flag it" is not corroboration.
+  - The D5 disagreement rate is a rate over a BATCH and means nothing
+    on one row - 100% of 1 says nothing at all.
+
+**The consequence for the pending terra calibration:** a four-row falsification
+test run ONCE measures a sample of that model's behaviour, not the model. Sol
+passing four traps on one pass is encouraging and is not a calibration. Any
+model decision needs the test run several times, with the per-run variation
+reported, or it is reading noise.
