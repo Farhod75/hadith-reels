@@ -11166,3 +11166,72 @@ where terra had failed both.
 docstring, disqualify one model on a defect the probe was built to catch, and
 make a swap justified by a 1-in-4 false-positive rate. The disqualification
 and the swap are real. The alarm that started it was not.
+
+## PATTERN 276: The check for missing attributions had the defect a check already exists for
+
+The last two A/B fails, #6857 and #527, both reduced to the same shape as
+#6009: ONE language out of step with the other three and with the Arabic.
+
+  - **#6857 RU.** «ростовщичество» (usury) for وأَكْلُ الرِّبَا (CONSUMING
+    usury). EN "consuming usury", UZ «рибо ейиш», TJ «хүрдани рибо» all keep
+    the verb. The giveaway was internal: the VERY NEXT item in the same Russian
+    sentence renders the identical construction أَكْلُ مَالِ الْيَتِيمِ correctly
+    as «поедание имущества сироты». A translation that contradicts itself inside
+    one sentence is an oversight, not a choice. -> «поедание ростовщического
+    дохода», parallel to the clause beside it.
+  - **#527 TJ.** «беҳтарин» (best) for أَحَبُّ إِلَى اللَّهِ (most BELOVED to
+    Allah; أفضل would be "best"). EN, RU and UZ all carry beloved-ness. Both
+    models flagged it independently as CHANGED. -> «маҳбубтар», which is also
+    the word probe-passb.py's own vetted clean Tajik uses for this very hadith.
+
+Both now 8/8 but for the item below. Both rows are PUBLISHED - #527 in eight
+reels (R034-R041), #6857 in four (R098-R101).
+
+**THE ATTRIBUTION RULING.** Sol flagged #527's RU, UZ and TJ for dropping
+قال / قلت / قال - EN keeps "He said / I said", the other three compress to
+dashes. Ruled, from purpose.md: **a dialogue matn keeps its speech
+attributions in every language.** The channel exists so viewers can tell
+authentic from fabricated, and a fabricated hadith almost always circulates as
+a free-floating aphorism with no speaker and nothing to trace. «Какое дело
+любимее всего Аллаху? — Молитва вовремя» reads as a maxim; with "He said"
+it reads as a report. Publishing authentic hadith in the aphorism form teaches
+the viewer the visual grammar of the fabrication.
+
+**NOT retrofitted into #527.** The ruling is one hour old and the row is
+published across eight reels. Errors get corrected in shipped content; a
+style ruling on its first outing does not. It governs new rows; #527 can be
+brought in line later if it holds up over a few sets.
+
+**THE CHECK: MEASURED, THEN NOT BUILT.** 11 of 72 rows have a speech verb in
+text_arabic. A probe for "Arabic attributes, translation does not" returned
+2 hits - and ONE WAS A FALSE POSITIVE IN ALL THREE LANGUAGES. #463 attributes
+perfectly: RU «скажет Он», UZ «айтади», TJ «мегүяд». Three bugs in my verb
+lists:
+
+    RU  matched сказа      -> misses скажет
+    UZ  matched айтди      -> misses айтади
+    TJ  wrote мегүяд with U+04AF where the text has мегӯяд with U+04EF
+
+**The third one is P262 exactly** - the Kazakh straight ү for the Tajik ӯ,
+the same substitution I typed into #1894's Tajik, which is the reason
+check_out_of_alphabet was written. Committed again, inside the probe for a
+different check. P270 said do not re-derive language handling inline; that
+rule was written about normalisers and it applies just as hard to REGEXES.
+
+So the real count is 1 row in 72, and the check is NOT BUILT: a pattern list
+this easy to get wrong is not worth shipping for a once-in-72 judgement that
+Sol already catches unprompted. The ruling belongs in the generator prompt,
+not in a regex.
+
+**What IS worth building, and is cheap: lint the checks' own patterns against
+ALPHABETS.** A regex containing a letter outside its target language's
+alphabet can never match correctly, and that is mechanically detectable by
+the table audit-library.py already has. The same check, pointed at the
+checking code instead of the data. It would have caught the ү instantly, and
+P262 says this pair is the one that recurs.
+
+**Published captions, under the 2026-10-17 rule (incomplete stays, incorrect
+gets fixed):** #6857's Russian drops a verb but still names the act -
+incomplete, captions stand. #527's Tajik states a different claim - incorrect,
+and its two Tajik reels (R037 kids, R041 adults) need the one word changed on
+all four platforms. Burned audio cannot change; the caption quote can.

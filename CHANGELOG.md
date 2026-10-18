@@ -1,3 +1,34 @@
+## [2026-10-18g] - last two A/B fails closed (P276)
+
+### Fixed
+- #6857 RU: «ростовщичество» -> «поедание ростовщического дохода» for
+  وَأَكْلُ الرِّبَا. The same Russian sentence already rendered the identical
+  construction correctly one item later («поедание имущества сироты»).
+- #527 TJ: «беҳтарин» (best) -> «маҳбубтар» (most beloved) for
+  أَحَبُّ إِلَى اللَّهِ. EN, RU and UZ all carried beloved-ness; TJ alone did not.
+- Both verified with `--from-json` before the write. #6857 now 8/8.
+
+### Ruled
+- **A dialogue matn keeps its speech attributions (قال / قلت) in every
+  language.** From purpose.md: fabricated hadith circulate as free-floating
+  aphorisms, so the stripped form is the shape the channel exists to counter.
+- **Not retrofitted into #527**, which is published across eight reels. Errors
+  are corrected in shipped content; a one-hour-old style ruling is not.
+- Published captions: #6857 RU is incomplete, not incorrect -> stands.
+  #527 TJ is incorrect -> R037 and R041 captions need «беҳтарин» ->
+  «маҳбубтар» on all four platforms.
+
+### Measured, not built
+- 11 of 72 rows have a speech verb in `text_arabic`; only #527 fails to carry
+  it through. A library check is not worth the pattern-maintenance burden.
+- The probe itself produced a false positive on #463 in all three languages,
+  including **U+04AF written for U+04EF** - the P262 substitution, committed
+  inside a check (P276).
+
+### Proposed
+- Lint the checks' own regexes against `ALPHABETS`: a pattern containing a
+  letter outside its target alphabet can never match. Would have caught it.
+
 ## [2026-10-18f] - pass B: gpt-5.6-terra -> gpt-6.1-sol (P275)
 
 ### Changed
