@@ -30,7 +30,7 @@ import urllib.error
 import urllib.request
 
 OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
-DEFAULT_MODEL = 'gpt-5.6-terra'
+DEFAULT_MODEL = 'gpt-6.1-sol'
 
 ARABIC = ('أَيُّ الْعَمَلِ أَحَبُّ إِلَى اللَّهِ قَالَ الصَّلَاةُ عَلَى وَقْتِهَا '
           'قُلْتُ ثُمَّ أَيٌّ قَالَ بِرُّ الْوَالِدَيْنِ')

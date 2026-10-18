@@ -7,20 +7,28 @@ Two INDEPENDENT passes over every translation of a candidate, checking one
 thing: does the translation say what the Arabic says, no more and no less.
 
   pass A = claude-sonnet-5   (Anthropic)
-  pass B = gpt-5.6-terra     (OpenAI)
+  pass B = gpt-6.1-sol       (OpenAI)
 
 Different companies, so uncorrelated failure modes - that is what D2 is for.
 B never sees A's output; each is given only the Arabic and the translation.
 
 SCOPE IS MEASURED, NOT ASSUMED (P120)
   Both passes judge FAITHFULNESS ONLY: added / omitted / changed / register.
-  They do NOT check project conventions. Probing gpt-5.6-terra on Bukhari #527
-  with planted defects (two identical runs) showed it catches invented content
-  in EN and TJ and a dual->singular meaning change in RU, but passes
-  «Аллоҳ»->«Худо» at HIGH confidence - because that translation is faithful to
-  اللَّه and is wrong only on a rule the model was never given. Putting the
-  rules in the prompt would turn a judgement engine into a rules engine and
-  degrade both.
+  They do NOT check project conventions. Probing on Bukhari #527 with planted
+  defects showed every candidate model catches invented content in EN and TJ
+  and a dual->singular meaning change in RU, but passes «Аллоҳ»->«Худо» at
+  HIGH confidence - because that translation is faithful to اللَّه and is wrong
+  only on a rule the model was never given. Putting the rules in the prompt
+  would turn a judgement engine into a rules engine and degrade both.
+
+  2026-10-18, P275: re-probed with FOUR runs per model across four candidates.
+  The «Худо» result above held for all of them and is not a defect in any of
+  them - it is this scope boundary working. What separated them was noise and
+  true-positive reach: terra false-failed CLEAN Russian in 1 run of 4 and never
+  once named the lost U+04E3 in the Tajik case; gpt-6.1-sol and gpt-6-astra
+  false-failed nothing in 4 runs and named it 4/4. gpt-6-luna false-failed
+  clean Russian in 4 of 4 and is disqualified. B moved terra -> gpt-6.1-sol on
+  that basis. One run cannot show any of this (P272); run four.
 
   Convention defects have deterministic owners and must be clean BEFORE this
   runs:
@@ -62,7 +70,7 @@ import urllib.request
 PROPOSED_PATH = os.path.join('out', 'candidate-translations.json')
 
 MODEL_A = 'claude-sonnet-5'
-MODEL_B = 'gpt-5.6-terra'
+MODEL_B = 'gpt-6.1-sol'
 
 ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages'
 ANTHROPIC_VERSION = '2023-06-01'

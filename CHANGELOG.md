@@ -1,3 +1,36 @@
+## [2026-10-18f] - pass B: gpt-5.6-terra -> gpt-6.1-sol (P275)
+
+### Changed
+- `verify-candidates.py`: `MODEL_B = 'gpt-6.1-sol'` (was `gpt-5.6-terra`),
+  docstring updated with the measurement behind it.
+- `probe-passb.py`: `DEFAULT_MODEL` follows, so the probe tests what is live.
+
+### Measured
+- `probe-passb.py` against 4 candidates, 4 runs each, 128 calls:
+  - all four models: 4/4 on every genuine faithfulness defect (invented
+    action, invented ranking, invented simile, dual->singular change).
+  - **gpt-6-luna DISQUALIFIED** - false-failed CLEAN Russian 4 of 4.
+  - gpt-5.6-terra - false-failed clean Russian 1 of 4; never named the lost
+    U+04E3 in the Tajik case (0 of 4).
+  - gpt-6.1-sol, gpt-6-astra - no false failures; named the diacritic 4/4.
+- Smoke-tested live on #6009: with sol as B, RU and TJ agree clean where
+  terra failed both.
+
+### Corrected
+- **P273 was wrong** and is marked as such in place. The Uzbek probe case
+  («Аллоҳ»->«Худо») tests a CONVENTION, not faithfulness: `lint-content.py`
+  catches it deterministically at FAIL (`DIVINE_SUBSTITUTES`), P120 puts
+  conventions outside Stage 3, no library row has ever contained it, and
+  `verify-candidates.py`'s docstring (lines 15-23) already documented the
+  behaviour with the correct explanation. Every candidate model does the same
+  thing, and terra is the only one that catches it at all.
+
+### Notes
+- This probe cannot separate sol from astra - identical in every cell. Sol
+  chosen as current-generation with independent (n=1) evidence behind it.
+- No row re-verification is implied: the rows gated under terra were gated on
+  faithfulness classes where terra scored 4/4.
+
 ## [2026-10-18e] - terra fails the pass-B probe on Uzbek (P273-P274)
 
 ### Measured

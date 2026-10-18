@@ -11051,6 +11051,15 @@ entry here would read "terra is competent in all four languages."
 class of error this channel can ship, it is in the language with the largest
 audience, and the proposed pass-B model waves it through half the time.
 
+**[CORRECTED 2026-10-18 - see P275. The ruling below is WRONG and the
+reasoning under it is wrong. The Uzbek case tests a CONVENTION, not
+faithfulness; lint-content.py already catches «Худо» deterministically at FAIL
+(DIVINE_SUBSTITUTES, line 58); P120 puts conventions outside Stage 3; no
+library row has ever contained it; and verify-candidates.py's own docstring
+had documented this exact behaviour, with the correct explanation, before this
+entry was written. Every candidate model behaves the same way. Left in place
+rather than deleted because the mistake is the lesson.]**
+
 **Ruling: terra does not gate Uzbek.** Not at 50%. A gate that is right half
 the time on the category that matters most is not a weak gate, it is a gate
 that manufactures false confidence - the exact failure the probe's own
@@ -11101,3 +11110,59 @@ tongue-out reading that B did not mention in that language at all.
 NOT FIXED. The probe is marked THROWAWAY and is not in the pipeline, so this
 is recorded rather than patched; the Stage 3 half of it is the part that
 matters and it is live.
+
+## PATTERN 275: Four models, sixteen runs, and the answer was in the docstring
+
+The question was whether to move pass B from gpt-5.6-terra to Sol, Astra or
+Luna. `probe-passb.py` against all four, four runs each, 128 calls:
+
+    model          planted caught (of 4)    clean false-fails   TJ diacritic
+    gpt-5.6-terra  en=4 ru=4 uz=2 tj=4      ru=1                0 of 4
+    gpt-6.1-sol    en=4 ru=4 uz=0 tj=4      none                4 of 4
+    gpt-6-astra    en=4 ru=4 uz=0 tj=4      none                4 of 4
+    gpt-6-luna     en=4 ru=4 uz=0 tj=4      ru=4                4 of 4
+
+**The Uzbek column is not a finding and never was.** The planted defect is
+«Аллоҳ» -> «Худо», and every model passes it because «Худо» IS a faithful
+rendering of اللَّه - it violates a house rule the model was never given, which
+is precisely the P120 boundary. `lint-content.py` already catches it at FAIL
+(`DIVINE_SUBSTITUTES`, line 58), deterministically, in both uz and tj, and no
+row in the library has ever contained it.
+
+**All of this was already written in verify-candidates.py's own docstring,
+lines 15-23, with the right explanation.** P273 was produced by re-running
+that probe, getting the documented result, and reporting it as an alarming
+discovery - "terra is blind on the worst class this channel can ship" - which
+is false twice over: the class is covered by a regex, and terra is the only
+model that catches it at all. The standing rule is "before assuming, check the
+docs." The doc was the file being edited.
+
+**What actually separated the models,** once the out-of-scope column is
+dropped: all four are 4/4 on every genuine faithfulness defect - invented
+action, invented ranking, invented simile, dual->singular meaning change. The
+difference is at the edges.
+
+  - **luna is disqualified.** It failed CLEAN Russian in 4 runs of 4. A gate
+    that fires on correct text is not a strict gate, it is an alarm nobody
+    will read by week two.
+  - **terra** false-failed clean Russian 1 run in 4, and never once named the
+    lost U+04E3 in the Tajik case across four runs - it reported the invented
+    simile every time and stopped there.
+  - **sol and astra** false-failed nothing in four runs and named the
+    diacritic 4/4.
+
+**Decision: B moves gpt-5.6-terra -> gpt-6.1-sol.** Sol dominates terra on
+both axes that matter - fewer false positives AND more true findings - which
+is a cleaner basis than a single-axis win. This probe CANNOT separate sol from
+astra; they are identical in every cell. Sol was chosen because it is the
+current generation and the only one with any independent evidence behind it
+(the four-row falsification test, n=1). If that distinction ever matters, it
+needs a harder test than one hadith with four obvious defects.
+
+Confirmed live on #6009: with sol as B the row's RU and TJ now agree clean,
+where terra had failed both.
+
+**The honest summary of this whole exercise:** 128 API calls to confirm a
+docstring, disqualify one model on a defect the probe was built to catch, and
+make a swap justified by a 1-in-4 false-positive rate. The disqualification
+and the swap are real. The alarm that started it was not.
