@@ -240,6 +240,49 @@ def locate(ours, entries):
             return entry, mc[start:end]
     return None
 
+# P266: particles and honorifics that carry no identifying signal. Dropping
+# them stops "Ibn"/"Abu"/"al-" from matching every narrator against every other.
+NAME_NOISE = {
+    'narrated', 'the', 'of', 'bin', 'ibn', 'abu', 'abi', 'umm', 'al', 'ath',
+    'ar', 'as', 'an', 'and', 'may', 'allah', 'be', 'pleased', 'with', 'him',
+    'her', 'them', 'his', 'father', 'reported', 'from', 'that',
+}
+
+
+def name_tokens(s):
+    """Identifying tokens of a narrator name, transliteration-tolerant."""
+    if not isinstance(s, str):
+        return set()
+    s = s.lower()
+    # Apostrophes and backticks mark a hamza or ayn INSIDE a word. Replacing
+    # them with a space splits the word: Mut`im became 'mut' + 'im', and the
+    # real match against 'Mutim' was destroyed before the comparison ran.
+    # Delete them; only spaces and hyphens separate names.
+    s = re.sub(r"[`'\u2018\u2019\u02bb\u02bc]", '', s)
+    s = re.sub(r'[^a-z\s]', ' ', s)
+    # Hurayrah and Hurairah are one man. Fold the ay/ai romanisation split.
+    return {t.replace('ay', 'ai')
+            for t in s.split() if len(t) >= 3 and t not in NAME_NOISE}
+
+
+def names_agree(ours, theirs):
+    """True if any identifying token matches, allowing transliteration drift.
+
+    'Hurairah' and 'Huraira' are the same man; 'Anas' and 'Jahimah' are not.
+    Prefix matching at 4+ characters accepts the first and rejects the second.
+    """
+    a, b = name_tokens(ours), name_tokens(theirs)
+    if not a or not b:
+        return True  # nothing to compare on - not a finding
+    for x in a:
+        for y in b:
+            if min(len(x), len(y)) >= 4 and (x.startswith(y) or y.startswith(x)):
+                return True
+            if x == y:
+                return True
+    return False
+
+
 def context(s, i, width=20):
     lo = max(0, i - width)
     return ('...' if lo else '') + s[lo:i + width] + ('...' if i + width < len(s) else '')
@@ -276,6 +319,7 @@ def main():
                 'NOT_FOUND', 'NO_MIRROR')}
     cache = {}
     findings = []
+    narrator_mismatches = []
 
     for row in rows:
         coll = row.get('collection')
@@ -294,6 +338,22 @@ def main():
             buckets['NOT_FOUND'].append((num, coll, len(ours)))
             continue
         entry, theirs = found
+
+        # P266: verify-matn-source.py's own limit 2 says it checks the TEXT
+        # only - not the grade, not the narrator. #3104 stored a correct-
+        # looking matn under the WRONG narrator and no script could see it; a
+        # second reader caught it by eye. The mirror carries the narrator on
+        # the entry we have already located, so the check is nearly free.
+        en = entry.get('english')
+        mirror_narrator = en.get('narrator') if isinstance(en, dict) else None
+        if mirror_narrator and not names_agree(row.get('narrator'),
+                                               mirror_narrator):
+            narrator_mismatches.append({
+                'hadith_number': num, 'collection': coll,
+                'mirror_idInBook': entry.get('idInBook'),
+                'ours': row.get('narrator'), 'mirror': mirror_narrator.strip(),
+            })
+
         verdict, i = classify(ours, theirs)
         buckets[verdict].append((num, coll))
         if verdict in ('VOWEL', 'LETTER', 'ORTHOGRAPHIC'):
@@ -313,6 +373,7 @@ def main():
     for k in ('EXACT', 'PUNCTUATION', 'ORTHOGRAPHIC', 'VOWEL', 'LETTER',
               'NOT_FOUND', 'NO_MIRROR'):
         print('  %-12s %d' % (k, len(buckets[k])))
+    print('  %-12s %d' % ('NARRATOR', len(narrator_mismatches)))
 
     vowels = [f for f in findings if f['verdict'] == 'VOWEL']
     letters = [f for f in findings if f['verdict'] == 'LETTER']
@@ -341,6 +402,19 @@ def main():
                       % (i, ord(a[i]) if i < len(a) else 0,
                          ord(b[i]) if i < len(b) else 0))
 
+    if narrator_mismatches:
+        print('')
+        print('-' * width)
+        print('  NARRATOR MISMATCH - the matn was located, but under a')
+        print('  different name. This is #3104\'s defect class (P266).')
+        print('-' * width)
+        for n in narrator_mismatches:
+            print('')
+            print('  #%s  %s  (mirror idInBook=%s)'
+                  % (n['hadith_number'], n['collection'], n['mirror_idInBook']))
+            print('    ours  : %s' % n['ours'])
+            print('    mirror: %s' % n['mirror'])
+
     if buckets['NOT_FOUND']:
         print('')
         print('-' * width)
@@ -354,6 +428,7 @@ def main():
     with open(os.path.join('out', 'diacritic-audit.json'), 'w',
               encoding='utf-8') as fh:
         json.dump({'summary': {k: len(v) for k, v in buckets.items()},
+                   'narrator_mismatches': narrator_mismatches,
                    'findings': findings}, fh, ensure_ascii=False, indent=2)
 
     print('')

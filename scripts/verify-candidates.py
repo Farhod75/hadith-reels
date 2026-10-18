@@ -58,6 +58,9 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+# P264: where translate-candidates.py writes its proposals.
+PROPOSED_PATH = os.path.join('out', 'candidate-translations.json')
+
 MODEL_A = 'claude-sonnet-5'
 MODEL_B = 'gpt-5.6-terra'
 
@@ -315,6 +318,11 @@ def main():
     ap.add_argument('--library', action='store_true',
                     help='verify rows in hadith_library instead of candidates '
                     '(P151: for rows re-translated after a matn correction)')
+    ap.add_argument('--from-json', dest='from_json', metavar='PATH',
+                    nargs='?', const=PROPOSED_PATH,
+                    help='P264: score the PROPOSED translations in this file '
+                    'against the matn WITHOUT writing them to the row first. '
+                    f'Defaults to {PROPOSED_PATH}. Refuses --commit.')
     args = ap.parse_args()
 
     env = load_env()
@@ -333,7 +341,38 @@ def main():
         # P151: a matn correction re-translates a row that is already in
     # hadith_library and will never re-enter the candidate flow.
     table = 'hadith_library' if args.library else 'hadith_candidates'
-    if args.library:
+    if args.from_json:
+        # P264: this script read only from the DATABASE, so the only way to
+        # Stage-3 a library re-translation was to write it to the live row
+        # first. A shipped row had to pass through an unverified state to be
+        # checked, and a bad verdict left it worse than before with no stored
+        # previous value to restore. #6009 is the row that proved the cost.
+        # This scores the PROPOSED text and touches nothing.
+        if args.commit:
+            print('  --from-json scores proposed text; there is no row to '
+                  'write to. Drop --commit.')
+            return 2
+        try:
+            with open(args.from_json, encoding='utf-8') as fh:
+                proposals = json.load(fh)
+        except FileNotFoundError:
+            print(f'  not found: {args.from_json}'
+                  ' - run a translate dry run first')
+            return 1
+        rows = []
+        for p in proposals:
+            coll, _, num = (p.get('ref') or '').rpartition('#')
+            if args.row and num.strip() != str(args.row):
+                continue
+            row = {'collection': coll.strip(), 'hadith_number': num.strip(),
+                   'text_arabic': p.get('text_arabic')}
+            row.update(p.get('proposed') or {})
+            rows.append(row)
+        if not rows:
+            print(f'  nothing to score in {args.from_json}'
+                  + (f' for hadith_number={args.row}' if args.row else ''))
+            return 0
+    elif args.library:
         params = {'select': '*', 'limit': str(args.limit),
                   'order': 'hadith_number.asc'}
         if args.row:
@@ -346,11 +385,12 @@ def main():
         if args.row:
             params['hadith_number'] = f'eq.{args.row}'
             params.pop('status')
-    try:
-        rows = sb_get(base, sb_key, table, params)
-    except Exception as e:  # noqa: BLE001
-        print(f'FAILED reading {table}: {e}')
-        return 2
+    if not args.from_json:
+        try:
+            rows = sb_get(base, sb_key, table, params)
+        except Exception as e:  # noqa: BLE001
+            print(f'FAILED reading {table}: {e}')
+            return 2
 
     if not rows:
         print("no candidates at status='translated'"
@@ -360,7 +400,8 @@ def main():
     w = 74
     print('=' * w)
     print(f' stage 3 A/B verify - {len(rows)} candidate(s)  '
-          f'[{"COMMIT" if args.commit else "DRY RUN"}]')
+          f'[{"COMMIT" if args.commit else "DRY RUN"}]'
+          + (f'  <- {args.from_json} (nothing written)' if args.from_json else ''))
     print(f' A = {MODEL_A}   B = {MODEL_B}   (B never sees A)')
     print(' scope: faithfulness to the matn only. conventions are checked by')
     print(' lint-content.py and audit-library.py, not here (P120).')

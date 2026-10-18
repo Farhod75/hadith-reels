@@ -70,6 +70,19 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**BUILT 2026-10-18 (P266):** `verify-candidates.py --from-json` closes the
+verify-before-write gap (P264), and `audit-diacritics.py` now compares the
+narrator against the mirror. No narrator misattribution found library-wide.
+
+- **5 narrator mismatches need a HUMAN READING, not a fix:** #31 (Abu Bakra vs
+  Al-Ahnaf bin Qais - companion vs immediate narrator, almost certainly fine),
+  #1987 (narrated from both Muadh and Abu Dharr), #6018 and #2616 (both
+  duplicate-number rows), #1005 (multiple chains). The mirror's narrator is
+  the IMMEDIATE narrator while ours is the COMPANION - expect benign
+  mismatches from that alone.
+- The library path is now translate -> verify -> apply. Use `--from-json`
+  BEFORE `--apply` on any shipped row.
+
 **STAMP STANDARD SET 2026-10-17 (P265).** `matn_screened_at` = machine:
 audit-diacritics EXACT against the mirror, found by verify-matn-source,
 citation and narrator confirmed. `matn_verified_at` = a person who READS

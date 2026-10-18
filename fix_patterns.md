@@ -10653,6 +10653,13 @@ after - the operator should get to decide whether a shipped row goes through an
 unverified state. And an order of operations that has only ever been tried on
 passing cases has not been tested.
 
+**Fix, BUILT 2026-10-18 (P266).** `--from-json [PATH]` scores the proposed
+translations against the matn without touching the row; it refuses `--commit`,
+defaults to `out/candidate-translations.json`, and was checked against #6009 -
+it reproduces the verdicts the database run gave for the same text. The library
+path is now translate -> verify -> apply, like the candidate path. Original
+note follows.
+
 **Fix, not yet built:** `verify-candidates.py` needs to accept the candidate
 text directly - a `--from-json out/candidate-translations.json` mode that scores
 the proposed translations against the matn without touching the row. Then the
@@ -10735,3 +10742,62 @@ whose current text does not match its screened hash. NOT BUILT.
 stamped with no screening behind it, others may be. Clearing them would also
 return them to the default batch selector, which filters
 `matn_verified_at is.null` (P257).
+## PATTERN 266: The narrator check, and a matcher that flagged its own romanisation
+
+**Date:** 2026-10-18
+**Files:** scripts/verify-candidates.py, scripts/audit-diacritics.py
+
+**Two gaps closed, both named by earlier patterns and neither built until now.**
+
+**1. `--from-json` (closes P264).** `verify-candidates.py` read only from the
+database, so a library re-translation had to be written to the live row before
+it could be Stage-3'd. `--from-json [PATH]` scores the proposed text instead:
+refuses `--commit` (there is no row to write to), defaults to
+`out/candidate-translations.json`, honours `--row`. Checked against #6009 - it
+reproduces the verdicts the database run produced for the same text. The
+library path is now translate -> verify -> apply.
+
+**2. The narrator check.** `verify-matn-source.py`'s own limit 2 states it
+verifies the TEXT only, not the grade and not the narrator. #3104 stored a
+plausible matn under the WRONG narrator and nothing automated could see it; a
+second model reader caught it by eye on 2026-10-17. `audit-diacritics.py`
+already locates the mirror entry, and that entry carries the narrator, so the
+comparison costs nothing extra.
+
+**THE MATCHER FLAGGED ITS OWN ROMANISATION FIRST.** The first run returned 7
+mismatches. Two were the matcher:
+
+  - `Abu Hurairah` vs `Abu Hurayrah` - the same man, ai/ay.
+  - `Jubayr ibn Mutim` vs ``Jubair bin Mut`im`` - the regex replaced the
+    backtick with a SPACE, splitting `Mut`im` into `mut` + `im` and destroying
+    the real match before the comparison ran. An apostrophe or backtick marks
+    a hamza or ayn INSIDE a word; it is not a separator.
+
+Fixed by deleting those marks rather than spacing them, and folding ay->ai.
+7 -> 5. Eleven unit cases cover both repairs and, more importantly, confirm
+that #3104, `Ibn Umar` vs `Ibn Mas'ud`, and #2616 still FLAG - a looser matcher
+that stopped catching real mismatches would be worse than the false positives.
+
+**Rule, third time this week:** a new check's first number is a statement about
+the check. Read the shape before the content. And when loosening a matcher to
+kill false positives, pin the true positives in tests FIRST, or the fix quietly
+removes the capability.
+
+**THE FIVE SURVIVORS ARE NOT #3104's CLASS.** A useful null result:
+
+| row | ours | mirror | reading |
+|---|---|---|---|
+| #31 | Abu Bakra | Al-Ahnaf bin Qais | Al-Ahnaf narrates FROM Abu Bakra - companion vs immediate narrator |
+| #1987 | Muadh ibn Jabal | Abu Dharr | narrated from both |
+| #6018 | Abu Hurairah | Abu Shuraih Al-Adawi | both versions exist; ours is a duplicate-number row |
+| #1005 | Jabir ibn Abdullah | Hudhaifa and Abu Shaiba | multiple chains |
+| #2616 | Muadh ibn Jabal | Ka'b bin Ujrah | the known 0.86 partial, duplicate-number row |
+
+**A systematic source of benign mismatch, worth knowing before anyone acts on
+this list:** the mirror's narrator field is the IMMEDIATE narrator in its
+English rendering, while our `narrator` column records the COMPANION. #31 is
+exactly that and is almost certainly correct as stored. This check finds
+candidates for review; it does not find errors.
+
+**Status:** both SHIPPED. No narrator misattribution found in the library. The
+five above need a human reading, not a fix.

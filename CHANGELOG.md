@@ -1,3 +1,31 @@
+## [2026-10-18] - verify-before-write and the narrator check (P266)
+
+### Added
+- `verify-candidates.py --from-json [PATH]`: score proposed translations
+  against the matn WITHOUT writing them to the row first. Closes P264 - a
+  library re-translation no longer has to overwrite a shipped row to be
+  checked. Refuses --commit, defaults to out/candidate-translations.json,
+  honours --row. Reproduces the database run's verdicts for #6009.
+- Narrator comparison in `audit-diacritics.py`. verify-matn-source.py's limit
+  2 says it checks the text only, not the narrator; #3104 stored a plausible
+  matn under the wrong one and nothing automated could see it. The mirror
+  entry is already located, so the check is nearly free. 11 unit cases.
+
+### Fixed
+- Two false positives in the narrator matcher, found on its first run and
+  fixed before the output was read as findings: `Hurairah`/`Hurayrah` (ai/ay),
+  and a regex that replaced a backtick with a SPACE, splitting ``Mut`im`` into
+  'mut' + 'im' and destroying the match. Apostrophes and backticks mark a
+  hamza or ayn inside a word; they are not separators. 7 findings -> 5.
+
+### Notes
+- No narrator misattribution found in the library. The five survivors are
+  multi-chain or companion-vs-immediate-narrator cases (#31, #1987, #6018,
+  #1005, #2616) and need a human reading, not a fix.
+- The mirror's narrator field holds the IMMEDIATE narrator; our column holds
+  the COMPANION. That is a systematic source of benign mismatch - #31 is
+  exactly that and is almost certainly correct as stored.
+
 ## [2026-10-17h] - matn_screened_at vs matn_verified_at standard set (P265)
 
 ### Changed
