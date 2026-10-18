@@ -70,6 +70,27 @@ DISAGREE), #1894 (18-char Arabic, the shortest in the library). #574 carries a
 gloss in all four languages but is probably benign - al-bardayn really does mean
 Fajr and Asr.
 
+**STAMP STANDARD SET 2026-10-17 (P265).** `matn_screened_at` = machine:
+audit-diacritics EXACT against the mirror, found by verify-matn-source,
+citation and narrator confirmed. `matn_verified_at` = a person who READS
+ARABIC compared the matn to the cited source. Nobody on the project does, so
+that column stays NULL. The five repaired rows are screened 2026-10-18,
+verified NULL.
+
+- **TODO: review the other 21 `matn_verified_at` rows** under this standard.
+  #5185 was stamped verified with no screening behind it; others may be.
+  Clearing them also returns them to the default batch selector (P257).
+- **TODO: stale screening stamps.** Nothing links `matn_screened_at` to the
+  text it screened, so an `UPDATE text_arabic` leaves it attesting to a string
+  that is gone - #8, #1520 and #1894 all carried a Sept 5 stamp for Arabic
+  replaced this morning. Fix: store a hash of the screened text and flag any
+  row whose current text does not match. NOT BUILT.
+- **TODO: find an Arabic reader** for a one-off verification pass. The
+  screening work makes that job much smaller.
+- A second model reader passed an adversarial test (two historical known-bad
+  rows from P142, unlabelled, both caught including a narrator error). Worth
+  re-testing on 3-4 more known-bad rows before leaning on it routinely.
+
 **#6009 PARTIALLY FIXED 2026-10-17 - STILL OPEN, TOP OF QUEUE.** Matn correct
 and untouched. The two sweep defects are fixed in all four: يأكل الثرى now
 'eating the moist earth', and فشكر الله له now 'Allah thanked him' instead of

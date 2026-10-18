@@ -1,3 +1,40 @@
+## [2026-10-17h] - matn_screened_at vs matn_verified_at standard set (P265)
+
+### Changed
+- STANDARD SET. matn_screened_at = audit-diacritics EXACT against the mirror,
+  found by verify-matn-source, citation and narrator confirmed - reproducible
+  by machine, no Arabic needed. matn_verified_at = a person who reads Arabic
+  compared the matn to the cited source. Nobody on the project reads Arabic, so
+  that column stays NULL until a reader reviews. P151 had defined the verified
+  stamp as human Arabic reading, which nobody could perform; the stamp was
+  therefore being applied on grounds never written down. P265.
+- The five repaired rows (#8, #1520, #5185, #1894, #1773) are now
+  matn_screened_at = 2026-10-18, matn_verified_at = NULL.
+
+### Corrected
+- Two claims made earlier today and checked wrong. (1) The two columns were NOT
+  conflated: 48 screened, 21 verified, only 3 carry both, and #5185 was
+  verified without ever being screened. (2) translate-candidates.py should NOT
+  clear matn_screened_at - that path changes translations, and screening is
+  about the Arabic.
+
+### Known issues
+- STALE SCREENING STAMPS. matn_screened_at records that text matched the mirror
+  on a date, with nothing linking the stamp to the text it screened. #8, #1520
+  and #1894 each carried a 2026-09-05 screening for Arabic replaced this
+  morning. No script writes text_arabic, so there is no code path to patch: the
+  fix is to store a hash of the screened text and flag any row whose current
+  text does not match it. NOT BUILT.
+- The other 21 matn_verified_at rows are unreviewed under the new standard.
+
+### Notes
+- A second model reader was calibrated rather than trusted: given four rows,
+  two of them historical known-bad values from P142 and unlabelled, both traps
+  being authentic famous sayings on the wrong reference. It caught both,
+  including a narrator error that was never hinted at, and passed both
+  controls. Agreement on easy cases is free; the adversarial test is what the
+  reliance rests on.
+
 ## [2026-10-17g] - #6009 partially fixed, verify-before-write gap, caption rule
 
 ### Changed

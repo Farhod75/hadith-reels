@@ -10663,3 +10663,75 @@ better on `شكر` and `يأكل الثرى` and worse on detail. `matn_verified
 so the row cannot pass Stage 4. The pre-fix translations are recoverable from
 the session transcript if wanted. Needs one more pass, with the operator on the
 Russian, Uzbek and Tajik.
+## PATTERN 265: The verification gate asked for a capability nobody on the project has
+
+**Date:** 2026-10-17
+**Files:** hadith_library (matn_screened_at / matn_verified_at); standard, not code
+
+**THE QUESTION THAT EXPOSED IT.** Handed five repaired rows to stamp, the
+operator asked: "I don't know Arabic, how can I verify?" P151 defines
+`matn_verified_at` as "a human read the row against the source." Nobody on this
+project reads Arabic. So the stamp has never meant what the rule says, and
+every row carrying it was stamped on some other basis that was never written
+down.
+
+**That reframes P257's finding.** Three stamped rows held defective matns -
+#1903, #527, and #5185 with a 32-character fragment. P257 called that "verified
+is where the gate stops looking." The truer reading is that the gate specified
+an impossible act, so it was satisfied by something else. A rule nobody can
+follow is not a strict rule; it is an undefined one.
+
+**TWO WRONG GUESSES, BOTH CORRECTED BY LOOKING.** Worth recording because both
+were plausible and both were checkable in one query.
+
+  1. "The two columns were conflated - screening was recorded as verification."
+     FALSE. 48 rows screened, 21 verified, only THREE carry both. They were
+     used on largely disjoint sets. #5185 in particular was verified WITHOUT
+     ever being screened - the opposite of the story.
+  2. "`translate-candidates.py` should clear `matn_screened_at` alongside
+     `matn_verified_at`." WRONG. That path changes TRANSLATIONS. Screening is
+     about the ARABIC. A re-translation does not invalidate a matn screening.
+
+**THE STANDARD, set 2026-10-17.**
+
+| column | attests | who can set it |
+|---|---|---|
+| `matn_screened_at` | `audit-diacritics` EXACT against the mirror, found by `verify-matn-source`, citation and narrator confirmed | reproducible by machine; no Arabic needed |
+| `matn_verified_at` | a person who reads Arabic compared the matn to the cited source | nobody on the project today |
+
+`matn_verified_at` stays NULL until an Arabic reader reviews. An honest empty
+column beats a stamp that overstates itself, and the screening work makes that
+reader's eventual job much smaller.
+
+**A SECOND READER, CALIBRATED RATHER THAN TRUSTED.** The operator ran the five
+through another model, which passed four and flagged one real divergence. That
+report could not be distinguished from accurate recall - these are famous
+hadiths, where a good model's memory and the truth coincide. So it was given a
+falsification test instead: four rows, two of them historical known-bad values
+from P142, unlabelled. Both traps are AUTHENTIC, FAMOUS sayings sitting on the
+WRONG reference - the exact failure mode that put them in this library.
+
+It caught both. On #3104 it produced the correct dual `رِجْلَيْهَا`, stated that
+`الأمهات` never appears at that reference, and caught the narrator error that
+was never hinted at. On #2616 it gave the real clause and identified
+`الصلاة عماد الدين` as a paraphrase. Both controls passed.
+
+**Rule:** a second reader is worth what its adversarial test says it is worth,
+not what its agreement says. Agreement on easy cases is free. Before relying on
+any checker - model or script - feed it inputs where the plausible answer and
+the true answer differ, and see which one comes back.
+
+**THE STALE-STAMP HOLE, open.** `matn_screened_at` records that the text matched
+the mirror on a date. Nothing links the stamp to the text it screened, so a
+later `UPDATE text_arabic` leaves the stamp in place attesting to a string that
+no longer exists - which is exactly what happened to #8, #1520 and #1894 today,
+each carrying a 2026-09-05 screening for Arabic replaced this morning. No script
+writes text_arabic, so there is no code path to patch; the fix is to store a
+hash of the screened text beside the timestamp and have the audit flag any row
+whose current text does not match its screened hash. NOT BUILT.
+
+**Status:** the five are screened 2026-10-18 and verified by nobody. The other
+21 `matn_verified_at` rows are unreviewed under this standard - if #5185 was
+stamped with no screening behind it, others may be. Clearing them would also
+return them to the default batch selector, which filters
+`matn_verified_at is.null` (P257).
