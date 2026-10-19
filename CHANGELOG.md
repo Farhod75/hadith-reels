@@ -1,3 +1,32 @@
+## [2026-10-19] - the disagreement backlog re-read under Sol (P280)
+
+### Fixed
+- **#13**: the added qualifier "true believer" removed from all four languages
+  («истинно», «ҳақиқий», «ҳақиқӣ», and English's "truly"). `لاَ يُؤْمِنُ أَحَدُكُمْ`
+  is flat; the qualifier is the classical نفي الكمال softening, which is
+  commentary and not the matn.
+- **#2759**: `عز وجل` restored in RU, UZ and TJ; UZ «кечаги гуноҳкор» (which
+  reads as *yesterday's* sinner) replaced, restoring the day/night symmetry;
+  UZ «очур» (opens) put back to «чўзади» (extends) for `يَبْسُطُ يَدَهُ`; RU clause
+  structure restored so the sinner repents rather than Allah accepting.
+- Both verified 8/8 before the write. Latin re-derived, audit 0 high 0 warn.
+
+### Resolved by the model swap
+- **#2628** is now a clean 8/8 under Sol. It was a disagreement only because
+  terra was pass B. The swap paid for itself on the first batch.
+
+### Measured
+- Of the eight open disagreements: 1 resolved by the swap, 2 were real, 5 were
+  **A flagging Tajik while passing the identical issue in Uzbek** (P280). On
+  #2963 A listed the same defect against the Uzbek and still passed it. The
+  verdicts move by language inside one response; the issue lists are sound.
+
+### Notes
+- Third P108 instance in two days: the re-translation broke two things that
+  were already correct in the row it replaced.
+- The «очур»/«чўзади» swap passed both models and was caught by the operator
+  reading it. A model comparison let a weaker verb through; a speaker did not.
+
 ## [2026-10-18i] - pre-gate backlog closed
 
 ### Fixed

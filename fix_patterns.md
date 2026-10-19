@@ -11368,3 +11368,58 @@ from this session, so unlike #8, #1520, #1773 and #2999 this restoration has NO
 Tier 1 confirmation. The mirror screens, it does not certify (P145), and
 `matn_verified_at` stays null regardless (P265). A Tier 1 check on this text is
 OWED.
+
+## PATTERN 280: Re-reading the disagreements under a new B, and a model that judges one language harder
+
+The twelve rows P257 left as DISAGREE were adjudicated under gpt-5.6-terra.
+B is now gpt-6.1-sol (P275), so the split that produced them no longer exists.
+Eight were still open; re-scored:
+
+    #2628   pass 8/8     - the model swap RESOLVED it
+    #13     fail, both models, ru + uz + tj
+    #2759   fail, both models, uz + tj
+    #2963, #4248, #5027, #82, #574   A fails Tajik, B passes
+
+**The five Tajik-only flags are not Tajik defects.** A's complaints are real
+observations - singular نِعْمَةَ rendered plural, singular مَنْ rendered plural,
+الرَّجُلِ ("the man") as «инсон» ("person"), البردين glossed with the prayer
+names. But on #2963 A verdicts `uz: pass` AND, in the same response, lists the
+IDENTICAL issue against the Uzbek. Same defect, same row, same call: fail in
+Tajik, pass in Uzbek.
+
+So this is not evidence about the text. It is A's verdict threshold moving by
+language. P272 said Stage 3 is unstable at the issue level across runs; this
+shows the VERDICT moving across languages inside one response. The issue lists
+remain useful. The verdicts, read alone, are not.
+
+Corollary for #574: the Uzbek already brackets its gloss - «(Бомдод ва Аср)» -
+and A flagged it anyway. P271 from a second direction: brackets are for the
+reader, never for the gate.
+
+**#13 - "true believer" is commentary, not matn.** لاَ يُؤْمِنُ أَحَدُكُمْ is flat:
+"none of you believes". RU had «истинно», UZ «ҳақиқий мўмин», TJ «мӯмини ҳақиқӣ».
+The qualifier is the classical softening - نفي الكمال, negation of perfection - and
+it is a real scholarly reading, but it is commentary and the matn does not
+carry it. ENGLISH HAD IT TOO ("None of you truly believes") and both models
+passed English on the library run; B failed it only when re-scored after the
+other three were fixed. Removed from all four by operator ruling.
+
+**#2759 - two findings and one regression.** عز وجل was absent from RU, UZ and TJ
+while present in the Arabic and the English. And UZ read «кечаги гуноҳкор» for
+مُسِيءُ اللَّيْلِ - in Uzbek кеча is both "night" and "yesterday", so it reads as
+YESTERDAY's sinner and collapses the hadith's day/night symmetry.
+
+**THE RE-TRANSLATION BROKE TWO THINGS THAT WERE RIGHT (P108, third instance
+in two days).** The fresh Russian rendered لِيَتُوبَ مُسِيءُ النَّهَارِ as
+«чтобы принял Он покаяние» - so that HE may accept the repentance - moving the
+subject from the sinner to Allah. The ORIGINAL Russian had it right
+(«чтобы мог покаяться грешивший днём»). Fixed by restoring the old clause and
+keeping only the honorific that was genuinely missing.
+
+**And the one no check could reach.** The new Uzbek replaced «чўзади» (extends)
+with «очур» (opens) for يَبْسُطُ يَدَهُ. Both models passed it. The operator caught
+it by reading: يبسط is to spread or extend, not to open. A model comparison
+against the Arabic let a weaker verb through; a speaker of the language did
+not. That is the boundary of this entire gate, stated plainly.
+
+Both rows 8/8 after the corrections; audit clean.
