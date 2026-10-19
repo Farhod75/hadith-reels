@@ -1,3 +1,36 @@
+## [2026-10-18h] - the pre-gate sweep, and Bukhari #1 (P277-P279)
+
+### Fixed
+- **Sahih al-Bukhari #1**: matn 34 -> 199 chars. The stored row was the opening
+  phrase only; restored `وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى` and the hijra clause.
+  All four translations re-done: every one had lost `إِنَّمَا`'s restrictive
+  force ("only"), and three carried an invented verb where the Arabic is a
+  nominal sentence. Verified 8/8 before the write; Latin re-derived; mirror
+  re-screened FOUND 1.00 on the new text.
+
+### Measured
+- **Pre-gate sweep (P278).** R042 (2026-08-25) is the first reel gated before
+  production. Of 134 tracked reels, 38 predate it, covering 10 hadith.
+  **7 of those 10 carried a defect**; the three clean are Abu Dawud #3641,
+  Abu Dawud #1479 and Muslim #482. Bukhari #1417 (EN) is now the only pre-gate
+  row still open.
+
+### Ruled
+- P261 extended: where "one complete admonition" and "the complete narration"
+  differ, take the NARRATION. #1 is the first case where they diverged.
+- Published captions on TikTok: the platform freezes them after 7 days (P277).
+  The 2026-10-17 rule is amended to "incorrect gets fixed where the platform
+  allows, pinned-comment correction where it does not." Both #527 Tajik reels
+  carry a pinned correction.
+
+### Notes
+- The #1 re-translation reproduced the Russian defect it was meant to fix
+  (P108), and the assistant's own proposed Russian was worse than the text it
+  replaced - Russian has no present-tense copula, so the verb is grammatical
+  necessity, not interpolation. A third model's wording was adopted.
+- **#1 has no Tier 1 confirmation** - mirror only, as sunnah.com and Dorar were
+  unreachable from this session. Owed.
+
 ## [2026-10-18g] - last two A/B fails closed (P276)
 
 ### Fixed

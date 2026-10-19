@@ -11235,3 +11235,121 @@ gets fixed):** #6857's Russian drops a verb but still names the act -
 incomplete, captions stand. #527's Tajik states a different claim - incorrect,
 and its two Tajik reels (R037 kids, R041 adults) need the one word changed on
 all four platforms. Burned audio cannot change; the caption quote can.
+
+## PATTERN 277: TikTok captions are frozen after 7 days
+
+Editing #527's Tajik caption on TikTok returned: "Captions and covers can only
+be edited within the first 7 days of posting." The field is greyed out. The
+post is from August.
+
+The published-caption rule set on 2026-10-17 - INCOMPLETE STAYS, INCORRECT
+GETS FIXED - assumed captions are editable. On TikTok they are editable for one
+week. Every correction after that is impossible by platform policy, and this is
+the first time the rule has been exercised on a post older than that.
+
+**Remedy adopted: a pinned comment.** The post keeps its history and views, the
+correction sits at the top of the comments, and nothing is hidden. Used on both
+#527 Tajik reels (R037, R041):
+
+    Ислоҳ: дар матн «маҳбубтар» (аҳабб илаллоҳ) дуруст аст, на «беҳтарин».
+    Саҳеҳи Бухорӣ №527.
+
+**The rule is amended:** incorrect gets fixed WHERE THE PLATFORM ALLOWS, and
+pinned-comment correction where it does not. Deleting and reposting is not the
+remedy - it destroys the post's history to fix one word.
+
+The wider lesson is about time. A caption defect found inside a week is free to
+fix; after that it is permanent on one platform of four. That is an argument
+for catching matn defects BEFORE publication, which is what the Stage 3 gate is
+for, and it is the cost side of the P278 backlog below.
+
+
+## PATTERN 278: Dating the gate, and sweeping everything that predates it
+
+#527 was published 15-16 August. The tracker records R042, on 25 August, as the
+FIRST REEL FROM A HADITH VERIFIED BY THE SOURCING PIPELINE BEFORE PRODUCTION.
+So #527 went out nine days before any reel was gated. It was never scored at
+publish time; it surfaced later only because a library-wide Stage 3 run put it
+in the A/B-fails backlog.
+
+That is a generalisable question, and it has an exact answer: **what was
+published before the gate existed?**
+
+    reels in tracker          134   (2026-05-15 .. 2026-10-16)
+    published BEFORE 2026-08-25    38 reels, 10 distinct hadith
+    published on/after             96 reels, 22 distinct hadith
+
+Of the 10 pre-gate hadiths, five had already been found defective and fixed
+this week - #8, #1520, #1773, #6009, #527. The remaining five had never been
+checked. Running Stage 3 on them:
+
+    Sunan Abu Dawud #3641    8/8 clean
+    Sunan Abu Dawud #1479    8/8 clean
+    Sahih Muslim #482        8/8 clean
+    Sahih al-Bukhari #1417   EN fails, both models
+    Sahih al-Bukhari #1      fails in all four languages, both models (P279)
+
+**7 of 10 pre-gate hadiths carried a defect. 0 of the post-gate rows reached
+publication with one.** That is the gate's value stated as a number, and it is
+the first time this project has had that number.
+
+**The method, for reuse:** find the date a gate went live, select everything
+published before it, and run the gate retroactively. The work is cheap - five
+rows, five minutes - and it converts an unknown exposure into a finite list.
+Any new gate should be dated in the tracker on the day it ships, precisely so
+this query stays possible.
+
+
+## PATTERN 279: The first hadith in Bukhari, published as a clipped phrase
+
+Sahih al-Bukhari #1, the hadith of intentions, narrated by Umar ibn al-Khattab.
+Published as R010-R013. Stored matn, 34 characters:
+
+    إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ
+
+The narration continues `وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى` and then the hijra
+clause. 34 -> 199 characters.
+
+**A NEW CASE FOR P261.** Until now "one complete admonition" and "the complete
+narration" coincided - #8, #1151 and #2999 each restored to the whole narration
+because the whole narration WAS one admonition. Here they differ: the principle
+is one statement and the hijra sentence is a second one illustrating it.
+
+Ruled: take the FULL narration. The defect being repaired was created by
+someone keeping the famous part and dropping the rest - the same instinct that
+would stop at the principle. And the hijra clause is not ornament: two men make
+the identical journey, and the example only demonstrates the two clauses
+because both are present.
+
+**THE SECOND DEFECT, WHICH THE TRUNCATION HID.** All four translations lost
+`إِنَّمَا`, a restrictive particle - ONLY, not merely "indeed". Both models
+flagged it independently in all four languages. EN, UZ and TJ also carried an
+invented verb ("judged", «баҳоланади», «арзёбӣ мешаванд») where the Arabic is a
+nominal sentence with no verb at all. Without the restriction the hadith reads
+as "intention is a factor in how deeds are assessed"; with it, intention
+CONSTITUTES the deed - which is why the hadith governs the validity of wudu and
+prayer and not only their reward.
+
+**THE RE-TRANSLATION REPRODUCED THE RUSSIAN DEFECT (P108).** The fresh
+translation returned «Поистине, деяния оцениваются по намерениям» - the same
+missing restriction and the same added verb as the text it replaced. B caught
+it; A passed it. A re-roll is a new draft with its own defects, not a fix.
+
+**And the assistant's proposed Russian was worse than the one it replaced.**
+«Деяния — только по намерениям» is abrupt in Russian, which has no present-tense
+copula: an Arabic nominal sentence genuinely needs a verb there, so
+«оцениваются» is grammatical necessity rather than interpolation, and does not
+need the brackets P276 applied to #6009. A third model's wording was adopted
+instead:
+
+    Поистине, деяния оцениваются только по намерениям, и каждому
+    человеку — лишь то, что он намеревался.
+
+It carries the restriction twice and drops the verb in the second clause,
+mirroring the Arabic, which has none there either. 8/8 on re-scoring.
+
+**Source caveat:** mirror-sourced only. sunnah.com and Dorar were not reachable
+from this session, so unlike #8, #1520, #1773 and #2999 this restoration has NO
+Tier 1 confirmation. The mirror screens, it does not certify (P145), and
+`matn_verified_at` stays null regardless (P265). A Tier 1 check on this text is
+OWED.
