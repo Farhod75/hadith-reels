@@ -11300,6 +11300,21 @@ Any new gate should be dated in the tracker on the day it ships, precisely so
 this query stays possible.
 
 
+**CLOSED 2026-10-18.** All ten pre-gate hadiths are now checked and repaired.
+#1417 was the last: its matn is COMPLETE - the mirror's quoted portion is
+exactly the stored 41 characters, the first pre-gate row that was not
+truncated - and its only defect was in English, where the plural imperative
+`اتَّقُوا` was rendered "Protect yourself". Both models, same finding, agreement
+`fail` rather than a split. One word; 8/8 after.
+
+Its captions STAND under the 2026-10-17 rule as amended by P277: a
+singular-for-plural is a grammatical error, not a false statement about what
+was said, so it is incomplete rather than incorrect.
+
+Final tally for the pre-gate set: 10 hadiths, 38 reels, **7 carried a defect,
+3 were clean** (Abu Dawud #3641, Abu Dawud #1479, Muslim #482).
+
+
 ## PATTERN 279: The first hadith in Bukhari, published as a clipped phrase
 
 Sahih al-Bukhari #1, the hadith of intentions, narrated by Umar ibn al-Khattab.

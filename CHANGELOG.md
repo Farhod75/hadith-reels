@@ -1,3 +1,26 @@
+## [2026-10-18i] - pre-gate backlog closed
+
+### Fixed
+- **Sahih al-Bukhari #1417 (EN)**: "Protect yourself" -> "Protect
+  yourselves". `اتَّقُوا` is a plural imperative; both models flagged it, same
+  reason, `agreement=fail` rather than a split. Verified 8/8 before the write.
+- Its matn is COMPLETE - the mirror's quoted portion matches the stored 41
+  characters exactly. The first pre-gate row that was not truncated.
+- `text_arabic` untouched, so `matn_screened_at` stands; EN-only change, so no
+  Latin re-derive.
+
+### Closed
+- **The pre-gate backlog (P278).** All ten hadiths published before the gate
+  existed are now checked: 7 carried a defect, 3 were clean (Abu Dawud #3641,
+  Abu Dawud #1479, Muslim #482).
+- #1417's captions stand: singular-for-plural is a grammatical error, not a
+  false statement of what was said - incomplete, not incorrect.
+
+### Notes
+- Narrator checked against the mirror isnad: stored "Adiy ibn Hatim" vs the
+  mirror's "Adi ibn Hatim" - a romanisation variant, not a mismatch.
+- No new P-number for #1417: one word is a fix, not a pattern.
+
 ## [2026-10-18h] - the pre-gate sweep, and Bukhari #1 (P277-P279)
 
 ### Fixed
