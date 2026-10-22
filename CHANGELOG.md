@@ -1,3 +1,25 @@
+## [2026-10-22d] - weekly tool check run (Kling 4.0 announced, no API)
+
+### Checked
+- **ElevenLabs TTS - CURRENT, by probe rather than release note.** `eleven_v4`
+  and `eleven_v4_turbo` both return audio; `eleven_v5` and `eleven_v5_turbo`
+  both return `model_not_found`. No v5 exists.
+- **Kling 4.0 - ANNOUNCED, NOT CALLABLE.** Live on fal in the playground and
+  fal Agent; the model page says API access is coming soon. So
+  `fal-ai/kling-video/v3/pro` is still the latest version we can call, and that
+  row is accurate rather than behind. Two things recorded for the day it opens:
+  the path shape drops the `fal-ai/` prefix entirely (`kling/v4/image-to-video`),
+  which is the SECOND instance of the unguarded-path concern already noted for
+  `flux-3` and therefore a shape problem rather than a one-off; and at $0.235/s
+  for 1080p a four-clip set runs about $9.40 against today's $3.50.
+- **FLUX - still BEHIND one major version.** FLUX 3 is callable at
+  `blackforestlabs/flux-3/text-to-image`, $0.048 per 1 MP image. Status
+  unchanged, now with an endpoint and a price attached to it.
+- **ASR - nothing new.** No Scribe v3; the latest is v2 plus a
+  `scribe-v2-medical` variant. The 2026-10-15 verdict stands.
+
+Next due 2026-10-29.
+
 ## [2026-10-22c] - OPEN_ITEMS reconciled; the draft.txt sync gate built (P282)
 
 ### Added

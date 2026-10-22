@@ -78,9 +78,9 @@ UZ fix built in `out/candidate-translations.json` and never applied); the five
 narrator mismatches (#31, #1987, #6018, #1005, #2616); 21 legacy
 `matn_verified_at` stamps under P265; #1520's four published captions; Bukhari
 #1 Tier 1 confirmation, where the fetcher caps quotes at 125 characters so the
-vocalised matn is still mirror-only; the weekly `self_upskilling.md` check, due
-2026-10-22 with only the ElevenLabs leg done and FLUX a major version behind;
-and HV `/api/health` returning 404 while the site root returns 200.
+vocalised matn is still mirror-only; the weekly `self_upskilling.md` check, RUN
+2026-10-22 and next due 2026-10-29 - Kling 4.0 is announced but has no API, so
+v3/pro is still current; FLUX remains a major version behind; and HV `/api/health` returning 404 while the site root returns 200.
 
 ---
 

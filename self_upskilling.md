@@ -11,8 +11,8 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-10-15
-**Next due:** 2026-10-22
+**Last checked:** 2026-10-22
+**Next due:** 2026-10-29
 
 ---
 
@@ -20,11 +20,11 @@
 
 | Tool | In use | Where it is set | Latest known | Status |
 |---|---|---|---|---|
-| ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT, re-confirmed 2026-10-15 — no v5 exists (P193) |
-| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | Kling 3.0 | CURRENT, re-confirmed 2026-10-15 (adopted 2026-10-11) |
-| FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | **FLUX 3 Image, 2026-10-01** | **BEHIND one major version** — see open evals |
+| ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT, re-confirmed 2026-10-22 BY PROBE — `eleven_v4` and `eleven_v4_turbo` both return audio; `eleven_v5` and `eleven_v5_turbo` both return `model_not_found`. No v5 exists (P193) |
+| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | **Kling 4.0 — playground only** | LATEST CALLABLE VERSION, re-confirmed 2026-10-22. 4.0 is live on fal but has NO API yet — see open evals |
+| FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | **FLUX 3 Image, 2026-10-01** | **BEHIND one major version** — re-confirmed 2026-10-22: FLUX 3 is callable at `blackforestlabs/flux-3/text-to-image`, $0.048 per 1 MP image. See open evals |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
-| Whisper (ASR) | local `openai-whisper` | PATH | ElevenLabs **Scribe v2**, never tested here | RU ASR is a standing cost (R095, R099, R107); Scribe may close P078 — see open evals |
+| Whisper (ASR) | local `openai-whisper` | PATH | ElevenLabs **Scribe v2** | Scribe v2 PROBED 2026-10-15, verdict recorded below. Re-checked 2026-10-22: no Scribe v3 exists; latest is v2 plus a `scribe-v2-medical` variant. Nothing new to evaluate |
 
 ## How to check each, without trusting a release note
 
@@ -40,6 +40,30 @@
   generator's additions (P191/P195), so the eval is the four blocks, not the API.
 
 ## Open evaluations
+
+- **Kling 4.0 — ANNOUNCED, NOT CALLABLE. Checked 2026-10-22.** Live on fal in
+  the playground and fal Agent; the model page says **"API access is coming
+  soon."** So `fal-ai/kling-video/v3/pro` is still the latest version we can
+  actually call, and the CURRENT row above is accurate rather than behind.
+
+  Two things to carry to the day it opens:
+
+  1. **The path shape changes.** 4.0 is `kling/v4/image-to-video` — no
+     `fal-ai/` prefix, no `kling-video` segment. `generate-scene.ps1`'s version
+     handling was written around `fal-ai/kling-video/vN/...`. This is the same
+     unguarded-path concern already recorded for `flux-3` below, now with a
+     second instance, which makes it a shape problem rather than a one-off.
+  2. **Specs worth having:** 3–30s clips (v3 tops out well below that, which is
+     why `-FitScenes` exists), up to 10 keyframes, 21:9, stereo audio, 8,000-token
+     prompts. 4.0 Flash has been in limited early access since 2026-09-28 and
+     caps at 20s. Pricing $0.157/s at 720p, $0.235/s at 1080p — against four 10s
+     clips per set that is roughly $9.40 at 1080p, about 2.7x the current
+     $3.50 for a set.
+
+  Evaluate at a SET boundary with the same prompt on both models, per the rule
+  above. Do not adopt mid-set: it re-rolls every scene prompt we have tuned.
+
+  Sources: https://fal.ai/learn/tools/what-is-kling-4-0 · https://fal.ai/models/kling/v4/image-to-video
 
 - ~~**Kling 3.0**~~ — **EVALUATED AND ADOPTED 2026-10-11.** Multi-shot generation and 15s clips (2.6 Pro is capped at 10s,
   which is why `-FitScenes` exists). No known defect in 2.6 Pro drives this; it
