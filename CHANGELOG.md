@@ -1,3 +1,29 @@
+## [2026-10-22f] - the pre-flight was checking a route that never existed
+
+### Fixed
+- **`CLAUDE.md` step 4** ran `curl -s https://hadithverifier.com/api/health`
+  against a route that has never existed in `hadith-verifier`. There is no
+  `app/api/health` anywhere in that repo and nothing in it references the path.
+  Probed 2026-10-22: `/` returns 200, `/api/health` returns 404. So the session
+  pre-flight has reported a failing upstream on every session since the
+  checklist was written, and the failure was the checklist.
+
+  Now probes the site root for a status code, with a comment saying plainly
+  what that does and does not prove - the deployment is serving; Supabase
+  reachability is untested.
+
+### Found, decision open
+- **Build a real `/api/health`?** Confirming Supabase is reachable is what the
+  pre-flight actually wants to know, and the root-200 check does not give it.
+  Recorded in OPEN_ITEMS rather than built: a new public endpoint on a live
+  site is the operator's call, not a cleanup.
+- **`/api/test` is a public debug endpoint on the live site.** Returns
+  `hasSlack` and `slackStart`, the first 30 characters of `SLACK_WEBHOOK_URL`.
+  Thirty characters stops short of the token - `https://hooks.slack.com/services/`
+  is 33 - so no credential is exposed, but it confirms to any caller that a
+  webhook is configured and it is reachable without auth. Delete, gate or keep
+  deliberately.
+
 ## [2026-10-22e] - #2307 repaired; a check for parenthetical alternates (P289)
 
 ### Fixed
