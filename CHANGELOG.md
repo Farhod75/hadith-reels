@@ -1,3 +1,35 @@
+## [2026-10-22i] - the narrator backlog worked through (P292)
+
+### Fixed
+- **Muslim #1005** narrator: Jabir ibn Abdullah -> **Hudhayfah ibn al-Yaman**.
+  *Every act of goodness is charity* is Jabir's in **Bukhari 6021**; Muslim 1005
+  is Hudhayfah's. The matn and number were Muslim's, the narrator was Bukhari's.
+- **Bukhari #6018** (the "honour his neighbour" row) -> **#6019, Abu Shuraih
+  al-Adawi**, source_url updated. Our matn is `فَلْيُكْرِمْ جَارَهُ`, which is 6019.
+  6018 is Abu Hurairah and says *do not harm* his neighbour. Never produced, so
+  no caption carried it.
+- **Tirmidhi #1987** narrator: Mu'adh ibn Jabal -> **Abu Dharr**, matching
+  `tirmidhi:1987`'s own isnad. Classically both carry it; the citation decides.
+
+All three written with `patch_library_row` (P290), by id. All three audit clean.
+
+### Not defects, closed
+- **#31** - Al-Ahnaf bin Qais is the sub-narrator; Abu Bakra is the companion
+  and ours is right. The mirror's `narrator` is a lead-in string, not a
+  companion field, so this class recurs by design.
+- **#2616, both rows** - `locate()` matched them to a Ka'b bin Ujrah hadith
+  about unjust rulers. Ours (Mu'adh ibn Jabal) is right.
+
+### Needs doing
+- **R090-R093's captions are live with "Jabir ibn Abdullah"** and need editing
+  to Hudhayfah ibn al-Yaman on TG / IG / YT. TikTok captions are frozen after
+  7 days (P277) and this set is from 2026-09-24.
+
+### Note
+R082-R085 were verified by transcribing the published audio - the narrated text
+is not on disk (P246) and #6018 had two candidate rows. They shipped "speak good
+or stay silent", the correctly-cited row. Nothing to correct there.
+
 ## [2026-10-22h] - the health route is live; step 4 points at it again
 
 ### Changed

@@ -11838,3 +11838,48 @@ Slack webhook was configured - was removed in the same change.
 **Status:** FIXED in `hadith-verifier` 71e5f00
 
 ---
+## PATTERN 292: five "narrator mismatches" that were four different things
+
+One backlog line - *five narrator mismatches (#31, #1987, #6018, #1005, #2616)* -
+had sat unexamined for weeks. Worked through, it was not five of anything.
+
+**Two were not defects.**
+
+- **#31.** Ours says Abu Bakra; the mirror's lead-in says Al-Ahnaf bin Qais.
+  The isnad is `عَنِ الأَحْنَفِ بْنِ قَيْسٍ` relating that Abu Bakra told him, and
+  the text has Abu Bakra saying *"I heard Allah's Messenger ﷺ"*. Al-Ahnaf is the
+  sub-narrator. **The mirror's `narrator` is a LEAD-IN STRING, not a companion
+  field**, so it names whoever the chain reaches last. The check will keep
+  producing this class and it needs reading, not fixing.
+- **#2616, both rows.** The check matched them to mirror entry 614, a Ka'b bin
+  Ujrah hadith about unjust rulers, which has nothing to do with either matn.
+  `locate()` mis-matched. Ours - Mu'adh ibn Jabal - is right.
+
+**Three were real, and each was wrong in a different way.**
+
+- **#1987** - ours named Mu'adh ibn Jabal. The hadith is classically carried by
+  both Abu Dharr and Mu'adh, but `tirmidhi:1987`'s own isnad is `عَنْ أَبِي ذَرٍّ`.
+  A viewer who types our citation sees Abu Dharr, so the citation decides.
+- **#1005** - the matn and the number were Muslim's; the narrator was Bukhari's.
+  *Every act of goodness is charity* is Jabir ibn Abdullah's in **Bukhari 6021**;
+  **Muslim 1005** is the **Hudhayfah** version. Two correct attributions, crossed.
+  Nothing in the row was malformed, which is why every check passed it.
+- **#6018** - our stored matn is `فَلْيُكْرِمْ جَارَهُ`, *let him honour his
+  neighbour*. That is **Bukhari 6019, Abu Shuraih al-Adawi**. Bukhari **6018**
+  is Abu Hurairah and says *do NOT HARM his neighbour* - a different verb and a
+  different companion. Number and narrator both wrong.
+
+**The published reels were fine, and finding that out took a transcription.**
+#6018 has two library rows and R082-R085 could have used either. The narrated
+text is not on disk (P246), so the only way to know which shipped was to run
+whisper over the published audio: *"whoever believes in Allah in the last day,
+let him speak good or let him stay silent"* - the other row, correctly cited.
+**#1005's four reels are live with the wrong companion** and need caption edits.
+
+**The lesson.** A backlog line with a count in it is not a diagnosis. Five
+items, four kinds, two non-defects, and the one that mattered most - a crossed
+attribution where every field was individually correct - was invisible to every
+check in the repo and to the check that flagged it, which flagged it for the
+wrong reason.
+
+---
