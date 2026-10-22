@@ -11883,3 +11883,35 @@ check in the repo and to the check that flagged it, which flagged it for the
 wrong reason.
 
 ---
+## PATTERN 292 (addendum): the narrator map had no entry for two of the three
+
+`buildRef()` localises the companion's name from `NARRATORS` in `lib/refs.ts`
+and falls back to the stored Latin when there is no entry:
+
+```ts
+const n = (NARRATORS[narrator] as any)?.[lang]
+return `${coll}${num}, ${n || narrator}`
+```
+
+So correcting a narrator in the library is only half the fix. `Abu Dharr` was
+already mapped; `Hudhayfah ibn al-Yaman` and `Abu Shuraih al-Adawi` were not,
+and every Cyrillic caption would have carried a Latin name in the middle of a
+Cyrillic reference line - visibly wrong, and silent, because a fallback is not
+an error.
+
+Both added, following the existing conventions: Russian keeps `ибн аль-`,
+Uzbek drops the article, Tajik takes the izafet and contracts the kunya.
+Verified through `buildRef` in all four languages:
+
+```
+ru | Сахих Муслим (Sahih Muslim) №1005, Хузайфа ибн аль-Яман
+uz | Саҳиҳ Муслим (Sahih Muslim) №1005, Ҳузайфа ибн Яман
+tj | Саҳеҳи Муслим (Sahih Muslim) №1005, Ҳузайфа ибни Яман
+tj | Саҳеҳи Бухорӣ (Sahih al-Bukhari) №6019, Абӯшурайҳи Адавӣ
+```
+
+**The general shape:** a lookup table with a graceful fallback hides exactly the
+case it was built for. Any correction to a value that a table localises has to
+check the table, and the check is not optional because nothing fails.
+
+---

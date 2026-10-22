@@ -1,3 +1,15 @@
+## [2026-10-22j] - narrator map entries for the corrected names (P292)
+
+### Fixed
+- **`lib/refs.ts`**: added `Hudhayfah ibn al-Yaman` and `Abu Shuraih al-Adawi`
+  to `NARRATORS`. `buildRef()` falls back to the stored Latin when a name is
+  absent, so without these every Cyrillic caption would have carried a Latin
+  name inside a Cyrillic reference line - wrong, and silent, because a fallback
+  is not an error. `Abu Dharr` was already mapped.
+
+  Verified through `buildRef` in all four languages; the Latin parenthetical
+  that P150 requires is intact.
+
 ## [2026-10-22i] - the narrator backlog worked through (P292)
 
 ### Fixed
