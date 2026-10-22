@@ -11423,3 +11423,84 @@ against the Arabic let a weaker verb through; a speaker of the language did
 not. That is the boundary of this entire gate, stated plainly.
 
 Both rows 8/8 after the corrections; audit clean.
+
+## PATTERN 281: Set-Location moves PowerShell, not .NET
+
+`generate-scene.ps1` died on the first clip of the #1488 set:
+
+    Could not find a part of the path
+    'C:\Users\Farhod\assets\scene-prompts\ad1488-mat.json'
+
+The script sets `$repo` from `$PSScriptRoot` and calls `Set-Location $repo` on
+line 68, so PowerShell's own location was correct. But `$promptDir` was the
+RELATIVE string `"assets\scene-prompts"`, and the sidecar is written with
+`[System.IO.File]::WriteAllText`. **.NET resolves a relative path against
+`[Environment]::CurrentDirectory`, which `Set-Location` never updates** - it
+holds whatever directory the shell PROCESS started in. `Test-Path` passed,
+because that is a PowerShell cmdlet and honours `$PWD`; the write then went
+somewhere else entirely.
+
+**It was introduced by P255, which was itself a correct fix.** P255 replaced
+`Set-Content -Encoding UTF8` with `WriteAllText` to stop the BOM that was
+blocking every push. The BOM went away and a cmdlet that respects `$PWD` was
+swapped for a .NET call that does not. The bug then hid for weeks because the
+operator's shell happened to start in the repo; it only surfaced on a terminal
+opened somewhere else.
+
+**Fix:** `$promptDir = Join-Path $repo "assets\scene-prompts"`. Absolute.
+
+**The rule:** in a PowerShell script, any `[System.IO.*]` call takes an ABSOLUTE
+path. `Set-Location`, `Push-Location` and `$PWD` are invisible to it. The three
+`WriteAllText` calls in `render-reel.ps1` were audited at the same time and are
+all safe - two resolve through `Resolve-Path`, one through `$PWD` - so this was
+the only instance.
+
+**Third in a family.** P186: `Set-Content -Encoding utf8` writes a BOM, so only
+the FIRST block of a lint file could ever go missing. P255: the same BOM, in the
+sibling writer, blocking pushes for days. P281: the fix for P255. Each repair
+was right and each moved the defect one layer sideways. The question to ask of
+the next one is not "is this correct" but "what does this call resolve
+differently from the thing it replaces".
+
+**And a rule broken while fixing it.** The comment went into the script as
+"P283" - a number guessed rather than checked. ways-of-working says to verify
+the frontier before assigning one, precisely because overwriting an existing
+number destroys a real fix. The frontier was P280. Corrected to P281 before the
+commit, but the guess should not have been typed at all.
+
+
+## PATTERN 282: Two gates that pass because what they check is not what matters
+
+Both found in one reel, and neither is a bug in the checker.
+
+**1. `stt-validate` compared the subtitles against a stale `draft.txt` and
+returned 0.958.** The narration said «стесняется вернуть»; `draft.txt` still said
+«не желает возвращать», the pre-correction wording. A whole clause differed
+and the comparison reported one MEDIUM, on something else. The check is sound;
+its authority rests entirely on `draft.txt` being in sync with the admin text,
+and **nothing enforces that.** ways-of-working says sync before TTS - that is a
+rule with no gate behind it. The H block was worse than the M: it still carried
+«побуждающими Его» ("impelling Him"), a theological error already corrected in
+the admin, and H is the block that becomes the caption and the YouTube
+description. Had the draft not been read by eye it would have published.
+
+NOT BUILT: compare `draft.txt` against the admin's generated blocks before
+narration and refuse on a mismatch.
+
+**2. The casing restorer left the divine pronoun lowercase, correctly.** Whisper
+returned «раб его» and «проси его» where the source has «Его». The restorer
+fixed «Он», «Сам», «Стыдлив» and «Щедр» and left these, because it only
+restores where the source has the same word and «его» appears legitimately
+lowercase in cue 1 - «да благословит его Аллах», referring to the Prophet ﷺ.
+It had no safe call to make. Nothing else checks it: the existing divine-name
+check in `lint-content.py` tests WHICH name is used, not the case of a pronoun
+referring to Him, which is the same blind spot P139 recorded for grammatical
+case.
+
+NOT BUILT: in a Russian line that names Allah, a third-person pronoun referring
+to Him is capitalised. Narrow, mechanical, and it would have caught both cues.
+
+**What the two share:** each gate did exactly what it was written to do. One
+trusted an input nobody verifies, the other declined a judgement it was right to
+decline. Neither is fixed by making the checker stricter - the first needs a
+gate one step earlier, the second needs a different check entirely.

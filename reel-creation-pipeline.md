@@ -439,6 +439,12 @@ Pass it explicitly — the default is not the current practice:
 
 → `out\backgrounds\new\b6857-still.mp4`.
 
+The run also writes a prompt sidecar to `assets/scene-prompts/<Name>.json` -
+the record that makes a paid clip reproducible (P215). That path is ABSOLUTE as
+of P281; before then it was relative and `[System.IO.File]::WriteAllText`
+resolved it against the directory the SHELL started in, so the step failed on
+any terminal not opened in the repo.
+
 **⚠ Kling regularly exceeds 8 minutes and has been measured at 505s and 564s.**
 The poll deadline is 20 minutes (P134 — note the inline comment mislabels this
 as P133). If it times out, the job usually still completes server-side:

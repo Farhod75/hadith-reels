@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf6783/dq8loXx_4IW_dn77NZrMx_output.mp4",
+    "name":  "ad1488-mat",
+    "image":  "out\\refs\\ad1488-mat-3.jpg",
+    "file":  "out\\backgrounds\\new\\ad1488-mat.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-22T13:07:52.1696427Z",
+    "size_bytes":  8069652,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "frayed fringe stirring faintly in a light breeze, low dust drifting across the ground, evening light dimming almost imperceptibly, camera still",
+    "request_id":  "01a163b9-a0f4-7ab2-a322-f9ccda7c537a",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-22T13:10:32.6290125Z",
+    "mode":  "image-to-video"
+}

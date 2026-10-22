@@ -1,3 +1,44 @@
+## [2026-10-22] - Sunan Abu Dawud #1488 RU shipped; a path bug and two gate gaps (P281-P282)
+
+### Fixed
+- **`scripts/generate-scene.ps1`**: `$promptDir` is now absolute
+  (`Join-Path $repo ...`). It was relative, and `[System.IO.File]::WriteAllText`
+  resolves relative paths against `[Environment]::CurrentDirectory`, which
+  `Set-Location` does not update - so the sidecar was written to wherever the
+  shell started. Introduced by P255's BOM fix; hidden for weeks because the
+  shell usually started in the repo (P281).
+
+### Shipped
+- **R138 - Sunan Abu Dawud #1488, RU, adults.** 22.95s, 3.74 MB, 1080x1920,
+  four new Kling v3 Pro clips (`ad1488-mat/raised/night/dawn`), nasheed
+  `aswati-Peaceful-Contemplation.mp3`, subtitles burned. Live on TG/IG/YT/TikTok.
+- Stage 3 blocked this row before production: `حَيِيٌّ` was rendered "Kind"/«Добрый»
+  in EN and RU, losing the حيي/يستحيي echo the hadith is built on, and UZ/TJ
+  added supplication the matn does not state. All four re-translated, 8/8 after.
+- Four clips registered in `assets/asset-registry.json`, `verified: true` after
+  the operator watched them. All probe 10.04s / 1080x1920 / 24fps / audio:0.
+
+### Found, not built
+- **`draft.txt` has no sync gate** (P282). `stt-validate` scored subtitles
+  against a stale draft at 0.958 while a whole clause differed, and the H block
+  still carried «побуждающими Его» - a theological error already fixed in the
+  admin, and H becomes the caption.
+- **Divine-pronoun casing is unchecked** (P282). Whisper returned «раб его» /
+  «проси его»; the casing restorer correctly declined, and `lint-content.py`
+  checks which divine name is used, not the case of a pronoun referring to Him.
+
+### Notes
+- The scene-prompt JSON was revised at the religious gate before any spend:
+  close-ups of hands were replaced after the pipeline doc's warning that
+  generators fumble hands, and the arc was re-cut to bookend on the prayer mat.
+  Scenes 2 and 3 depict two different anonymous people, a man and a woman,
+  both silhouetted - `عَبْدِهِ` is generic.
+- A dawn still with a vertical shaft of light descending onto the mat was
+  rejected as reading like a depicted response.
+- Slug is `sunan-abu-dawud-1488` (admin derivation), clips are `ad1488-*`
+  (§5b collection prefix). The two conventions differ and the tracker already
+  records that inconsistency.
+
 ## [2026-10-19] - the disagreement backlog re-read under Sol (P280)
 
 ### Fixed

@@ -136,7 +136,10 @@ $outFile = Join-Path $outDir "$Name.mp4"
 # model comparison possible - so it is recorded beside the registry that indexes
 # each scene, where it is version-controlled. A negation under /out/ cannot work:
 # git does not descend into an ignored directory to re-include a file.
-$promptDir = "assets\scene-prompts"
+$promptDir = Join-Path $repo "assets\scene-prompts"   # P281: ABSOLUTE.
+# [System.IO.File]::WriteAllText below resolves a RELATIVE path against
+# [Environment]::CurrentDirectory, which Set-Location does NOT update, so a
+# relative $promptDir wrote to wherever the shell process started.
 if (-not (Test-Path $promptDir)) { New-Item -ItemType Directory -Path $promptDir | Out-Null }
 
 $headers = @{ "Authorization" = "Key $FAL_KEY"; "Content-Type" = "application/json" }

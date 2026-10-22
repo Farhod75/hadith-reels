@@ -7,60 +7,86 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-16",
-
+  "updated": "2026-10-22",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Vocal with frame drum only, no lute or synth. Daf carries the strongest permitting position among instruments."
     },
     "path-to-jannah-bg.mp3": {
       "classification": "vocal+daf",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Vocal plus drums, no melodic instruments."
     },
     "vocal-nasheed-01.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified."
     },
     "vocal-nasheed-02.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-03.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Used on R029, R043. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-04.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-05.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-06.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Used on R033. LISTENED 2026-08-29: vocal only, confirmed. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-07.mp3": {
       "classification": "vocal",
-      "lanes": ["kids", "adults"],
+      "lanes": [
+        "kids",
+        "adults"
+      ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed."
     },
@@ -74,7 +100,7 @@
       "notes": "Firm and forward-moving. 88.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Gentle-Reflection.mp3": {
-      "gain": 2.20,
+      "gain": 2.2,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -110,7 +136,7 @@
       "notes": "Still and reflective; closest in character to the vocal-nasheed-0x beds. 56.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/."
     },
     "aswati-Rising-Hope.mp3": {
-      "gain": 1.00,
+      "gain": 1.0,
       "classification": "vocal",
       "lanes": [
         "adults"
@@ -140,7 +166,7 @@
       "classification": "vocal",
       "lanes": [],
       "verified": true,
-             "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. RETIRED 2026-09-10. Three strikes: (1) the random picker chose it for the R029 TJ ADULTS reel and it had to be re-rendered — this entry is why the lane field exists; (2) pulled from the TJ #5971 set, upbeat tempo read as flippant under a hadith on a mother's right; (3) drawn again for RU #6018 and it sounds like it is playing at 2x speed. The tempo is wrong for narration, not just for solemn topics. File kept on disk; approved for no lane."
+      "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. RETIRED 2026-09-10. Three strikes: (1) the random picker chose it for the R029 TJ ADULTS reel and it had to be re-rendered — this entry is why the lane field exists; (2) pulled from the TJ #5971 set, upbeat tempo read as flippant under a hadith on a mother's right; (3) drawn again for RU #6018 and it sounds like it is playing at 2x speed. The tempo is wrong for narration, not just for solemn topics. File kept on disk; approved for no lane."
     },
     "_retired/ambient-ocean-bg.mp3": {
       "classification": "ambience",
@@ -185,41 +211,50 @@
       "notes": "RETIRED. Lute, drums. Used on R027 (published)."
     }
   },
-
   "mascots": {
-        "camel-dawn-v1.png": {
+    "camel-dawn-v1.png": {
       "classification": "mascot",
-      "lanes": ["kids"],
+      "lanes": [
+        "kids"
+      ],
       "verified": true,
       "notes": "Camel, Chust doppa, desert dawn. 4K, Nano Banana Pro. Fabric lip-sync tested clean."
     },
-        "hoopoe-garden-v1.png": {
+    "hoopoe-garden-v1.png": {
       "classification": "mascot",
       "lanes": [],
       "verified": true,
       "notes": "RETIRED 2026-09-10, never shipped. Closed beak: Fabric animated a mouth behind the rigid beak, which read as anatomically wrong. Superseded by hoopoe-garden-v2.png with the beak parted. Do not re-approve — see P167."
     },
     "hoopoe-garden-v2.png": {
-        "classification": "mascot",
-        "lanes": ["kids"],
-        "verified": true,
-        "notes": "Hoopoe, Kyrgyz kalpak, garden midday. 4K, Nano Banana Pro. BEAK PARTED in the still — v1 had a closed beak and Fabric animated a mouth behind it, which read as anatomically wrong. Any non-lipped mascot needs a parted mouth in the still (P167)."
-      },
+      "classification": "mascot",
+      "lanes": [
+        "kids"
+      ],
+      "verified": true,
+      "notes": "Hoopoe, Kyrgyz kalpak, garden midday. 4K, Nano Banana Pro. BEAK PARTED in the still — v1 had a closed beak and Fabric animated a mouth behind it, which read as anatomically wrong. Any non-lipped mascot needs a parted mouth in the still (P167)."
+    },
     "bee-orchard-v1.png": {
       "classification": "mascot",
-      "lanes": ["kids"],
+      "lanes": [
+        "kids"
+      ],
       "verified": true,
       "notes": "Bee, Tajik toqi, girl, orchard afternoon. 4K, Nano Banana Pro. Fabric lip-sync not yet tested."
     },
     "lamb-boy-mosque-night-v3.png": {
       "classification": "mascot",
-      "lanes": ["kids"],
+      "lanes": [
+        "kids"
+      ],
       "verified": true,
       "notes": "Boy lamb, moonlit mosque, night. 4K, face-locked via Nano Banana Pro."
     },
     "lamb-girl-garden-day-v2.png": {
       "classification": "mascot",
-      "lanes": ["kids"],
+      "lanes": [
+        "kids"
+      ],
       "verified": true,
       "notes": "Girl lamb, mosque garden, day. 4K, regenerated from the 480p reference."
     },
@@ -248,148 +283,192 @@
       "notes": "SUPERSEDED by v2 (the 4K regeneration). Kept for provenance."
     }
   },
-
   "scenes": {
-        "b1903-dates.mp4": {
+    "b1903-dates.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": false,
       "notes": "MODE B, no figures. FLUX 2 still b1903-dates-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: a very slow push-in, fine dust turning through a shaft of light, the beam shifting almost imperceptibly across the floor, everything else completely still. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
       "prompt_sidecar": "assets/scene-prompts/b1903-dates.json"
     },
     "b1903-majlis.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": false,
       "notes": "CONTAINS FIGURES - NOT MODE B. A row of seated men shot from behind, no faces. FLUX 2 still b1903-majlis-1.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: robes and head cloths stirring in a faint breeze, dust drifting across the wall behind them, the men seated and completely still, nobody turns, nobody looks around, no head movement - the no-turn clauses are deliberate, because any face appearing breaks the figure rule mid-clip. COMPOSITION DELIBERATELY A ROW, NOT A CIRCLE: the first three stills were generated as a circle and all showed faces, and variant 3 put a central figure facing the group, which invites the Prophet (saw) reading - a hard block. Operator checked two frames (five backs, no faces, no visible hands); two frames are not the clip. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END - needs a face/hand check across the full 10s before verified:true. Sahih al-Bukhari #1903, R134-.",
       "prompt_sidecar": "assets/scene-prompts/b1903-majlis.json"
     },
     "b1903-courtyard.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": false,
       "notes": "MODE B, no figures. FLUX 2 still b1903-courtyard-2.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: a low steady wind lifting fine dust across the empty courtyard, the fringes of the woven mats stirring gently, the light fading almost imperceptibly, slow static shot. The mats are the companions' place of sitting with nobody in it - the counterpart to b1903-majlis, which has them. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
       "prompt_sidecar": "assets/scene-prompts/b1903-courtyard.json"
     },
     "b1903-palms.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": false,
       "notes": "MODE B, no figures. FLUX 2 still b1903-palms-2.jpg -> Kling 3.0 Pro i2v 10s, generate_audio false. Recorded motion: a slow steady breeze moving the palm fronds, long shadows shifting almost imperceptibly across rippled sand, warm light deepening, slow gentle drift. Deepening warm light reads as the approach of sunset, which is the fast's end - check against m1631-grove (mature palms in planted rows, long shadows) before reusing either; they are close. Probed 10.04s / 1080x1920 / 24fps / audio:0. NOT YET WATCHED END TO END and the FLUX still prompt was never recorded anywhere - description and verified:true owed once the reel is reviewed. Sahih al-Bukhari #1903, R134-.",
       "prompt_sidecar": "assets/scene-prompts/b1903-palms.json"
     },
-
     "b6423-gate.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Mud-brick courtyard gate standing open at first light, both leaves wide, a shaft of morning light falling through onto swept earth. The dawn visit the matn opens with. MODE B, no figures. FLUX 2 still b6423-gate-3.jpg -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6423, R126-."
     },
     "b6423-plain.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "An unbroken level plain of pale cracked earth to the horizon under a colourless sky, no hill, tree or structure anywhere, flat shadowless light. The standing on the Day of Resurrection, with nobody depicted. MODE B. FLUX 2 still b6423-plain-1.jpg -> Kling 3.0 Pro i2v 10s. Deliberately NOT the dunes (b6446-dunes, b2654-dawn-v3): shaped sand reads as landscape, this reads as extent. Sahih al-Bukhari #6423, R126-."
     },
     "b6423-ash-v2.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A stone hearth banked with cold grey ash, undisturbed, in even cold light. The Fire forbidden, written as a STATE rather than a negation, per R026. MODE B. FLUX 2 still b6423-ash-2.jpg -> Kling 3.0 Pro i2v 10s. V2 BECAUSE V1 LIT THE FIRE: the first prompt asked for 'cool light creeping across the settled ash' and Kling read light-moving-across-ash as licence to put light IN it - a white-hot core grew from 51 to 1346 pixels above 230 brightness over the 10s, peaking at pure white. On THIS hadith that is the picture contradicting the words. Re-rolled holding the light off the ash; v2 measures 54 -> 146, peak 243. b6423-ash.mp4 (v1) left unregistered as the evidence. Sahih al-Bukhari #6423, R126-."
     },
     "b6423-kalima.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A single sheet of undyed parchment on dark stone under raking dawn light, carrying the testimony in real Arabic. MODE B. FLUX 2 produced the BLANK sheet (b6423-kalima-1.jpg); the text is composited by scripts/composite-matn.py - Amiri via npm, RAQM/HarfBuzz shaping with direction=rtl, perspective warp, multiply blend - because FLUX cannot write Arabic and a near-correct kalima would be worse than none. Rendered WITHOUT tashkeel: a 7th-century sheet carries no vowel marks, and every diacritic is one more thing that can go subtly wrong on the one phrase this channel cannot afford to get wrong. -KeepText per P216. Verified surviving to the last frame, 9.5s of 10s, with correct joining. Sahih al-Bukhari #6423, R126-."
     },
     "b6570-lamp.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A single clay oil lamp burning on a stone ledge against a mud-plastered wall, flame upright and steady, warm light raking the rough plaster. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. Flame verified ALIVE and steady at 9.5s: the b6423-ash check run in reverse. There the risk was Kling lighting a fire in a hearth meant to stay dead; here the flame is MEANT to be alive, so the failure would have been guttering or flaring, and it did neither. Distinct from b6446-lamp, which is a lamp in a stone niche with mat and jar (sufficiency); this is the lamp alone. Sahih al-Bukhari #6570, R130-."
     },
     "b6570-ink.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A low wooden writing board on a plain floor carrying two sheets of undyed handmade paper, a reed pen resting across the mouth of a small glazed inkwell, raking side light. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. The sheets are deliberately BLANK: this is the moment before writing, not a page of text, which is what keeps it distinct from b5027-copy (a finished manuscript beside a sheet carrying the composited first line of the matn). No text in frame means nothing for Kling to warp, so no -KeepText and no frame-by-frame check needed. Sahih al-Bukhari #6570, R130-."
     },
     "b6570-kalima.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A sheet of BRIGHT GREEN handmade paper on a pale ground, deckle-edged, carrying the testimony in real Arabic in near-black ink. MODE B. The green sheet is the deliberate variation on b6423-kalima's undyed parchment - the operator asked for it so the three-reel Tawheed arc reads as one set with distinct frames rather than a repeat. FLUX 2 produced the BLANK sheet; the text is composited by scripts/composite-matn.py (Amiri via npm, RAQM/HarfBuzz shaping, direction=rtl, perspective warp) because FLUX cannot write Arabic and a near-correct kalima would be worse than none. Rendered WITHOUT tashkeel, as b6423-kalima was and for the same reason. -KeepText per P216. Verified at BOTH 5.0s and 9.5s: joining, the hamza on إله and the shadda on الله all intact, letters undeformed. Sahih al-Bukhari #6570, R130-."
     },
     "b6570-plain.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A flat gravel plain of grey stones running to a level horizon under a colourless dawn sky, no hill, tree or structure anywhere. The standing, with nobody depicted. MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s. NEAR-DUPLICATE OF b6423-plain BY FUNCTION: both are the same beat of the same arc, and they differ only in ground (pale cracked earth there, grey gravel here) and sky. Never put both in one reel, and choose between them deliberately rather than by whichever the name search returns first. Like b6423-plain it is deliberately NOT the dunes (b6446-dunes, b2654-dawn-v3): shaped sand reads as landscape, this reads as extent. Sahih al-Bukhari #6570, R130-."
     },
     "b6570-garden.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "A walled garden with a straight stone water channel running away from camera to a dark doorway in a pale stone wall, clipped hedges and fruit trees close on both sides, dappled light on the water. MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s. The garden implied rather than named - a built, tended, enclosed place with somewhere to walk toward. Distinct from m1631-channel, which is a rough irrigation channel with young sprouts on open ground (benefit still arriving); this one is formal, walled and finished. Sahih al-Bukhari #6570, R130-."
     },
     "b5027-copy.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "The finished manuscript beside a loose sheet carrying the first line of the matn freshly written, reed pen and clay inkwell at hand, afternoon light raking across both. Transmission with no figures - learn AND teach, the text moving from one page to the next. MODE B. FLUX 2 b5027-copy-3.jpg -> first line composited (Amiri + HarfBuzz) as b5027-copy-matn-1.jpg -> Kling 3.0 Pro i2v 10s with -KeepText (P216). FLUX wrote gibberish on the codex despite a positively-phrased blank instruction; at this scale it reads as texture and the only legible script is the real matn, same call as ad3641-rahle. Camera phrased as almost static after 3.0 over-travelled on b5027-matn. Sahih al-Bukhari #5027, R122-."
     },
     "b5027-matn-v3.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Open manuscript codex on a cloth-draped chest, the hadith matn written on the right page, morning light casting window-pane shadow bars across the left page. MODE B, no figures. FLUX 2 BLANK page b5027-blank-3.jpg -> real matn composited with Amiri + HarfBuzz, perspective warp, multiply blend (b5027-matn-1.jpg) -> Kling 3.0 Pro i2v 10s. FIRST CLIP ON KLING 3.0, and the first with real Arabic that survived animation. A hadith manuscript, NOT a mushaf - ad3641-rahle deliberately not reused and no mushaf image attempted, see OPEN_ITEMS. Sahih al-Bukhari #5027, R122-."
     },
     "t3895-hearth.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Clay pot over embers in a mud-brick room, steam rising toward a high window. The work behind a shared meal, before anyone sees it. MODE B, no figures. FLUX 2 still t3895-hearth-1.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
     },
     "t3895-dastarkhan.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Reed mat spread on an earth floor laid for six - flatbread and a clay bowl at each place, jug and dates at the head, centre deliberately clear so the platter scene can fill it. MODE B, no figures. FLUX 2 still t3895-dastarkhan-1.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
     },
     "t3895-platter.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Close on a communal platter of tharid - bread soaked in broth with stewed meat - bread arranged around the rim, steam rising. Era choice recorded: the operator proposed a Tajik dastarkhan with plov, which is Central Asian and roughly a millennium after the Hijaz. Composition kept, contents made 7th-century. Reads the same to the target audience without the anachronism. MODE B, no figures. FLUX 2 still t3895-platter-2.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
     },
     "t3895-house.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Mud-brick house at dusk seen from its own courtyard, warm light from one open shutter falling across the yard and the near wall. No lamp is named anywhere in the prompt and the source stays out of frame - a named lamp generated a temple shrine on b2654 and a shrine niche on b6446. Nearest neighbour in the library is b2654-threshold (lamplight from a doorway at dusk); this is the whole dwelling from the yard, not a doorway. MODE B, no figures. FLUX 2 still t3895-house-3.jpg -> Kling 2.6 Pro i2v 10s. Jami at-Tirmidhi #3895, R118-."
     },
     "m1631-well.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Stone well-head in a date grove, rope worn over the notched rim, bucket resting. Sadaqah jariyah. MODE B, no figures. FLUX 2 still m1631-well-2.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
     },
     "m1631-channel.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Built stone irrigation channel carrying water to planted ground, young sprouts on both banks. Benefit still arriving. MODE B, no figures. FLUX 2 still m1631-channel-2.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
     },
     "m1631-circle.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Ring of cushions and reed mats on a swept stone floor, light from a pointed arch. Beneficial knowledge, deliberately without a manuscript so ad3641-rahle stays clear for #5027. MODE B, no figures. FLUX 2 still m1631-circle-3.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
     },
     "m1631-grove.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Mature date palms in planted rows heavy with fruit, long shadows. What outlasts the planter. MODE B, no figures. FLUX 2 still m1631-grove-3.jpg -> Kling 2.6 Pro i2v 10s. Muslim #1631, R114-."
     },
@@ -473,7 +552,7 @@
       "verified": true,
       "notes": "Two folded robes on a weathered wooden counter in the same shuttered room as b2628-musk: one clean pale linen, one charred black along the folds with embers still glowing and a thread of smoke lifting. Kling 2.6 Pro 10s, image-to-video. MODE B. Closing beat. Variant 2 chosen because it is the only one where the burn reads as BURNED — in the others the dark cloth could be dyed or merely sooty, which loses the whole contrast. Reached after four rounds: hanging-on-a-line variants were rejected for modern clothespins, and a lying-on-the-ground version for reading as a figure. RENAMED b2628-robes.mp4 -> m2628-robes.mp4 on 2026-10-09 (P197): the clip is Sahih Muslim #2628 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
-        "b6857-still.mp4": {
+    "b6857-still.mp4": {
       "classification": "scene",
       "lanes": [
         "adults"
@@ -539,220 +618,327 @@
     },
     "ij4248-sky.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Night sky over empty desert, Milky Way, slow upward tilt. Kling 2.6 Pro 10s, generate_audio off. MODE B — no figures, no structures. Generated for Ibn Majah #4248 (repentance). RENAMED b4248-sky.mp4 -> ij4248-sky.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4248 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
     "ij4248-clearing.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Storm cloud breaking, warm light falling through the gap onto an empty plain. Kling 2.6 Pro 10s. MODE B. Carries the theme most directly of the three. RENAMED b4248-clearing.mp4 -> ij4248-clearing.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4248 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
     "ij4248-tide.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Thin sheet of water sliding over wet sand, leaving the surface unmarked. Kling 2.6 Pro 10s. MODE B. RENAMED b4248-tide.mp4 -> ij4248-tide.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4248 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
     "ij4251-path.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Worn path through dry grass at dusk. Ibn Majah #4251, R074-. First scene set generated on Kling 2.6 Pro at 10s. RENAMED b4251-path.mp4 -> ij4251-path.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4251 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
-      "ij4251-rain.mp4": {
+    "ij4251-rain.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Rain striking pools on cracked earth. Ibn Majah #4251, R074-. RENAMED b4251-rain.mp4 -> ij4251-rain.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4251 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
-      "ij4251-door.mp4": {
+    "ij4251-door.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Plank door drifting open onto dawn over hills. Ibn Majah #4251, R074-. Regenerated twice: the first prompt held the door static, the second kept warm lamplight beyond it instead of dawn. RENAMED b4251-door.mp4 -> ij4251-door.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4251 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
-      "ij4251-dawn.mp4": {
+    "ij4251-dawn.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Mist lifting after rain, light strengthening. Ibn Majah #4251, R074-. RENAMED b4251-dawn.mp4 -> ij4251-dawn.mp4 on 2026-10-09 (P197): the clip is Sunan Ibn Majah #4251 and carried a Bukhari prefix. Found by audit-assets --names, not by reading."
     },
-
-      "b6446-market.mp4": {
+    "b6446-market.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Stone market arcade at rest, goods stacked and unattended — the 'abundance of possessions' half of the matn. No figures. Bukhari #6446."
     },
     "b6446-dunes.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Vast empty dunes, nothing built and nothing owned. No figures. Bukhari #6446. Took 1678s to generate — see P133."
     },
     "b6446-lamp.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Bare stone niche lit by one lamp, mat and a single jar — sufficiency, not accumulation. No figures. Bukhari #6446."
     },
     "b6446-dawn.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Open sky before sunrise over a still plain. No figures. Bukhari #6446."
     },
     "ad3641-stars.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Night sky before moonrise. MODE B, no figures. Kling i2v from FLUX still."
     },
     "ad3641-moon.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Moonrise over dunes. MODE B, no figures."
     },
     "ad3641-rahle.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Manuscript on a rahle, page turned by draft. MODE B, no hands, no faces. Third FLUX round — negative prompting reinforced what it forbade."
     },
     "ad3641-window.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Moonlight through an arched mosque window. MODE B, empty hall."
     },
     "b527-dawn.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Prayer mat on a stone floor at dawn, light crossing it from a high window. No figures. Bukhari #527, used on R038-R041. Registered retroactively 2026-08-25 (P121) — watched before it shipped, so the human check was real, it was just never recorded."
     },
     "b527-minaret.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Minaret in silhouette at the turn of the hour. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
     },
     "b527-doorway.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Lamplit wooden doorway at dusk, worn stone path. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
     },
     "b527-night.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Mosque courtyard at night, hanging lamp reflected in still water. No figures. Bukhari #527, R038-R041. Registered retroactively (P121)."
     },
     "m2999-dawn.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Wide valley at first light, mist in the hollows. No figures. Muslim #2999, used on R042-R045. Registered retroactively (P121)."
     },
     "m2999-harvest.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Ripe wheat field with a laden fruit tree at the edge — the prosperity branch of the matn. No figures. Muslim #2999, R042-R045. Registered retroactively (P121)."
     },
     "m2999-storm.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Storm sky over open desert, distant rain sheets — the adversity branch. No figures, no suffering depicted. Muslim #2999, R042-R045. Registered retroactively (P121)."
     },
     "m2999-steady.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Kling v2.1, MODE B. Ancient olive on a rocky hillside, roots gripping stone. Judged at generation as a setting the matn implies rather than a simile for the believer (P111 rule 14). Muslim #2999, R042-R045. Registered retroactively (P121)."
     },
     "b1-scene1.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Used on R010-R013. Confirm MODE B compliance."
     },
     "b1-scene2.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1-scene4.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-dua.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-path.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "b1520-scene1.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Confirm MODE B compliance."
     },
     "kaaba.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry. Used on R004 or R005 (random pick, never logged)."
     },
     "kaaba-5s.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-balcony.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-crowd.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Wide tawaf footage; individuals are distant and none is the subject. Verified 2026-09-01."
     },
     "Kaaba-drone.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry."
     },
     "kaaba-roof.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Predates the registry."
     },
     "makka-tower.mp4": {
       "classification": "scene",
-      "lanes": ["adults"],
+      "lanes": [
+        "adults"
+      ],
       "verified": true,
       "notes": "Drone view of Masjid al-Haram with the 2012 clock tower. Accurate modern footage. Verified 2026-09-01 — do NOT pair with a 7th-century-era narrative; that is a per-reel judgement, not a property of the clip."
+    },
+    "ad1488-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. An empty worn prayer mat on packed earth at dusk. No figures. FLUX 2 still ad1488-mat-N.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: frayed fringe stirring faintly in a light breeze, low dust drifting across the ground, evening light dimming almost imperceptibly, camera still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-22: MODE B held, no never-depict content, era plausible. Sunan Abu Dawud #1488, R138-.",
+      "prompt_sidecar": "assets/scene-prompts/ad1488-mat.json"
+    },
+    "ad1488-raised.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Anonymous man in profile from the right, kneeling on the mat, hands open at the chest in dua, backlit to silhouette at sunset. No facial detail. FLUX 2 still ad1488-raised-N.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: slow gentle breathing motion, robe and headcloth stirring faintly in a light breeze, dust drifting in the warm air, sun sinking almost imperceptibly, camera still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-22: MODE B held, no never-depict content, era plausible. Sunan Abu Dawud #1488, R138-.",
+      "prompt_sidecar": "assets/scene-prompts/ad1488-raised.json"
+    },
+    "ad1488-night.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Anonymous woman in profile, kneeling on the mat, hands open at the chest in dua under a star field, lantern beside her. Silhouette, no facial detail. FLUX 2 still ad1488-night-N.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: very slow subtle motion, lantern flame flickering gently, fine sand drifting low across the mat, stars steady, almost still, camera still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-22: MODE B held, no never-depict content, era plausible. Sunan Abu Dawud #1488, R138-.",
+      "prompt_sidecar": "assets/scene-prompts/ad1488-night.json"
+    },
+    "ad1488-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Dawn light across the same empty prayer mat. No figures. FLUX 2 still ad1488-dawn-N.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: dust motes drifting slowly through the warm light, fringe stirring faintly, dawn light strengthening almost imperceptibly, camera still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-22: MODE B held, no never-depict content, era plausible. Sunan Abu Dawud #1488, R138-.",
+      "prompt_sidecar": "assets/scene-prompts/ad1488-dawn.json"
     }
   }
 }

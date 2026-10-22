@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf67f4/HcuQPzTbnyTYQoMgcZwj8_output.mp4",
+    "name":  "ad1488-dawn",
+    "image":  "out\\refs\\ad1488-dawn-2.jpg",
+    "file":  "out\\backgrounds\\new\\ad1488-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-22T13:25:19.0566432Z",
+    "size_bytes":  24154491,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "dust motes drifting slowly through the warm light, fringe stirring faintly, dawn light strengthening almost imperceptibly, camera still",
+    "request_id":  "01a163c9-9a4b-7dc3-934c-16b33e2a92f8",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-22T13:31:08.6729422Z",
+    "mode":  "image-to-video"
+}
