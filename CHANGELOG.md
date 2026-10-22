@@ -1,3 +1,41 @@
+## [2026-10-22e] - #2307 repaired; a check for parenthetical alternates (P289)
+
+### Fixed
+- **Jami at-Tirmidhi #2307**, three defects in one row that `audit-library.py`
+  passed at 0 findings:
+  - UZ «бузовкисини» -> «бузувчисини». Not a word; P268 cannot see it because
+    every letter is legal and the shape is not an enumerated orphan suffix.
+  - TJ «Сабабкунандаи» (*causer*) -> «Қатъкунандаи» (*cutter-off*), operator's
+    choice from three options. هَاذِم is the destroyer; the old text asserted
+    the opposite role.
+  - TJ «марг(мург)ро» -> «маргро». A parenthetical alternate in a published
+    field, where «мург» means *bird*.
+
+  Verified BEFORE writing per P266 - scored with `verify-candidates.py
+  --from-json`, A=pass/high and B=pass/high on all four languages, and only
+  then written. Previous values kept in `out/2307-before.json`. The Latin was
+  re-derived with `--library --number 2307 --commit`, which reported `rows: 1`,
+  confirmed against a 72-row before-snapshot. No repeat of P269.
+
+  #2307 has never been produced, so no published caption carried any of this.
+
+### Added
+- **`audit-library.py` `embedded-alternate`** (P289, WARN). A parenthesis
+  touching a word character on either side is an unresolved alternate; one
+  standing free between spaces is a translator's gloss and is not flagged. The
+  library separates cleanly on that rule - 13 fields hold a parenthesis, 5 are
+  embedded, all 5 are defects, none of the other 8 is.
+
+### Found, needs a language decision
+- **Tirmidhi #3540** - «сен **Мен(га)** дуо қилиб»
+- **Bukhari #1469** - «Ҳеч кимга **сабр(дан)** яхшироқ»
+
+  Both in `text_uzbek`, `text_uzbek_cyrillic` and `text_uzbek_latin`. #3540 was
+  one of the five malformed-token rows repaired on 2026-10-18 and this survived
+  that repair, because the repair was looking for a different shape. Left for
+  the operator: which reading is meant is a wording judgement, not a defect
+  with one mechanical answer.
+
 ## [2026-10-22d] - weekly tool check run (Kling 4.0 announced, no API)
 
 ### Checked

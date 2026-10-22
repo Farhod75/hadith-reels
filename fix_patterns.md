@@ -11716,3 +11716,60 @@ inline commas.
 published slug. There is nothing to gain and a finished reel to lose.
 
 ---
+## PATTERN 289: a row with three defects that passed every check
+
+`audit-library.py --row 2307` returned **0 high, 0 warn, 0 info** on this:
+
+```
+text_uzbek_cyrillic  Лаззатлар бузовкисини — ўлимни кўп эсланг.
+text_tajik           Сабабкунандаи лаззатҳоро — марг(мург)ро зиёд ёд кунед.
+```
+
+Three defects in one row, none seen:
+
+1. **«бузовкисини» is not a word.** It should be «бузувчисини» (destroyer).
+   P268's malformed-token check cannot see it: every letter is legal, and the
+   shape is not one of the orphan suffixes that check enumerates.
+2. **«Сабабкунандаи» means CAUSER.** هَاذِم is the destroyer, the cutter-off.
+   The Tajik asserted the opposite role of the thing the hadith is about, and
+   no deterministic check can see a meaning inversion - that is Stage 3's job,
+   and Stage 3 runs on candidates, not on library rows unless someone passes
+   `--library`.
+3. **«марг(мург)ро» carries a parenthetical alternate**, and «мург» is *bird*.
+   Death, or possibly chicken. Nothing anywhere looked for a parenthesis.
+
+The third is the one worth building, because it is purely mechanical.
+
+**New check `embedded-alternate` (WARN).** A parenthesis TOUCHING a word
+character on either side is an unresolved alternate; one standing free between
+spaces is a translator's gloss and is not flagged. The library separated
+cleanly on that rule: 13 fields contain a parenthesis, 5 are embedded, all 5
+are defects, and none of the other 8 is - «(Бомдод ва Аср)» on #574, "Dua
+(supplication)" on #1479, «(бегуноҳ)» on #1521.
+
+Beyond #2307 it found two more rows, in three fields each because `text_uzbek`,
+`text_uzbek_cyrillic` and `text_uzbek_latin` all carry it:
+
+| row | field text |
+|---|---|
+| Tirmidhi #3540 | «сен **Мен(га)** дуо қилиб» |
+| Bukhari #1469 | «Ҳеч кимга **сабр(дан)** яхшироқ» |
+
+#3540 was one of the five malformed-token rows repaired on 2026-10-18 and this
+survived that repair, because the repair was looking for a different shape.
+
+**The lesson is the row, not the check.** Three defects of three different
+kinds sat in one row: an orthographic one a check could have caught and didn't,
+a semantic one only a model or a reader catches, and a structural one nobody
+had thought to look for. A clean `audit-library` run means the enumerated
+failure modes are absent. It has never meant the row is right, and this row is
+the cleanest demonstration of that so far.
+
+**Fixed 2026-10-22**, verified BEFORE writing per P266: the corrected text was
+scored with `verify-candidates.py --from-json` and came back A=pass/high,
+B=pass/high on all four languages, and only then written to the row. The
+previous values are in `out/2307-before.json`. `derive-uzbek-latin.ts --library
+--number 2307 --commit` reported `rows: 1`, confirmed against a 72-row
+before-snapshot - no repeat of P269.
+
+---

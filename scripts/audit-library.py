@@ -352,6 +352,12 @@ def check_homoglyphs(row):
     return out
 
 
+# P289: a parenthesis touching a word character on either side. A translator's
+# gloss stands free between spaces - «... (Бомдод ва Аср) ...» - and is
+# deliberately NOT matched; an embedded one is an unresolved alternate.
+EMBEDDED_ALTERNATE = re.compile(r'\w\([^)]{1,40}\)|\([^)]{1,40}\)\w', re.UNICODE)
+
+
 def check_out_of_alphabet(row):
     """P262: a Cyrillic letter that is not in the target language's alphabet.
 
@@ -435,6 +441,46 @@ def check_malformed_tokens(row):
                     'WARN', 'malformed-token', ref_of(row), field,
                     u'«%s» is not a possible %s token - %s' % (raw, lang, why),
                     ''))
+    return out
+
+
+def check_embedded_alternate(row):
+    """P289: a parenthetical alternate wedged inside a word.
+
+    «марг(мург)ро» sat in #2307's Tajik - "death(bird)" - and «Мен(га)» and
+    «сабр(дан)» sit in #3540's and #1469's Uzbek, in BOTH scripts. Each is an
+    editor in two minds, or a suffix the translator could not settle, left in a
+    field that is quoted verbatim into captions and narrated aloud.
+
+    A FREE-STANDING parenthetical is a different thing and is deliberately NOT
+    flagged: «(Бомдод ва Аср)» on #574, "Dua (supplication)" on #1479 and
+    «(бегуноҳ)» on #1521 are translator's glosses, which this project has always
+    allowed.
+
+    The distinction is mechanical - a parenthesis touching a word character on
+    either side is embedded, one standing between spaces is a gloss - and a
+    library-wide scan on 2026-10-22 separated them cleanly: 13 fields contain a
+    parenthesis, 5 of those are embedded, all 5 are defects, and none of the
+    other 8 is.
+
+    Found because #2307's row passed audit-library at 0 findings while carrying
+    three separate defects. WARN rather than HIGH on its first outing, the same
+    reasoning as check_out_of_alphabet.
+    """
+    out = []
+    for field in ALL_TEXT_FIELDS:
+        val = row.get(field)
+        if not val or '(' not in val:
+            continue
+        for m in EMBEDDED_ALTERNATE.finditer(val):
+            frag = m.group(0)
+            word = next((w for w in re.findall(r'\S+', val) if frag in w), frag)
+            out.append(Finding(
+                'WARN', 'embedded-alternate', ref_of(row), field,
+                f'a parenthetical is wedged inside a word - «{word}». A gloss '
+                f'stands free between spaces; this is an unresolved alternate, '
+                f'and the field is quoted into captions and narrated aloud',
+                ''))
     return out
 
 
@@ -626,6 +672,7 @@ CHECKS = [
     (None, check_homoglyphs),
     (None, check_out_of_alphabet),
     (None, check_malformed_tokens),
+    (None, check_embedded_alternate),
     (None, check_ha_formulas),
     (None, check_missing_translations),
     (None, check_grade),
