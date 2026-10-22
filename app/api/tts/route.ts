@@ -112,11 +112,15 @@ const TTS_INSTRUCTIONS: Record<string, string> = {
     "ғ as voiced uvular g (like Arabic غ). Do not use Russian phonetic patterns. " +
     "This is a religious children's story — speak with reverence and clarity.",
 
-  'tj.adults':
+    'tj.adults':
     "Speak as a native Tajik (Тоҷикӣ) speaker. Use scholarly, reverent tone. " +
     "Pronounce these Tajik Cyrillic letters precisely: ҳ as aspirated h (like Arabic ح); " +
     "қ as deep uvular k (like Arabic ق); ҷ as English 'j' in 'judge'; ӣ as long 'ee'; ӯ as long 'oo'; " +
-    "ғ as voiced uvular g (like Arabic غ). Do not use Russian phonetic patterns. " +
+    "ғ as voiced uvular g (like Arabic غ). " +
+    "Vowel quality carries meaning: дастон / дастонат / дастонаш = 'das-TON' " +
+    "(hands), with a clear short 'a' in the first syllable — never 'dos-TON', " +
+    "which is достон, a story or epic. " +
+    "Do not use Russian phonetic patterns. " +
     "This is religious content — speak with gravity and respect.",
 }
 

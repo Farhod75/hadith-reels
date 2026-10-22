@@ -26,8 +26,9 @@ A block runs until the next label or end of file.
            Without it, check 4 flags every simile marker.
 
 TWO CLASSES OF CHECK
-  CONTENT  (5) - what a block says: divine name, unnamed authority, seerah
-                 source, invented simile, meaning inversion.
+  CONTENT  (6) - what a block says: divine name, unnamed authority, seerah
+                 source, fabricated book/chapter claim, invented simile,
+                 meaning inversion.
   STRUCTURE (2) - the SHAPE of the file: a missing block, and two blocks that
                  are identical. Added after the Muslim #2999 kids set, where
                  both fired and neither was caught by anything automated (P124).
@@ -268,6 +269,47 @@ def check_seerah_source(blocks):
                     out.append(Finding(lvl, 'seerah-source',
                                        BLOCK_NAMES[key], line_no, line, note))
                     break
+    return out
+
+
+BOOK_CLAIM = [
+    r'китоб\w*',
+    r'боб\w*',
+    r'книг\w*',
+    r'глав\w*',
+    r'\bbook\b',
+    r'\bkitab\b',
+    r'\bchapter\b',
+    r'\bbab\b',
+]
+
+
+def check_book_claim(blocks):
+    """P287: the H block naming a book or chapter of the collection.
+
+    Sunan Abu Dawud #1488 shipped a UZ H block reading «дуо китобида», the Book
+    of Du'a. Du'a is the BAB; the KITAB is al-Witr. The library row's `book`
+    column was EMPTY, so the generator produced the subdivision out of nothing,
+    and the same defect then appeared in TJ. Every other check passed the blocks
+    clean, because a fabricated source is not a divine name, a seerah title, a
+    simile or an inversion.
+
+    Low precision by design. H is one short block and this fires at most once
+    per reel. A collection name on its own is not the problem - naming a
+    SUBDIVISION is, because the only authority for one is the `book` column and
+    a Tier 1 page.
+    """
+    out = []
+    for line_no, line in blocks.get('H', []):
+        for pat in BOOK_CLAIM:
+            if re.search(pat, line, re.IGNORECASE | re.UNICODE):
+                out.append(Finding(
+                    'WARN', 'book-claim', BLOCK_NAMES['H'], line_no, line,
+                    'names a book or chapter of the collection - the library '
+                    "row's `book` column is the only source for that, and it is "
+                    'often EMPTY. Confirm against it and a Tier 1 page, or cite '
+                    'the number alone'))
+                break
     return out
 
 
@@ -554,6 +596,7 @@ def main():
         ('divine-name-case',  lambda: check_divine_name_case(blocks, args.lang)),
         ('unnamed-authority', lambda: check_unnamed_authority(blocks, args.lang)),
         ('seerah-source',     lambda: check_seerah_source(blocks)),
+        ('book-claim',        lambda: check_book_claim(blocks)),
         ('simile',            lambda: check_simile(blocks, args.lang, args.matn)),
         ('quote-addition',    lambda: check_quote_addition(blocks, args.lang, args.matn)),
         ('companion-honorific', lambda: check_companion_honorific(blocks, args.lang)),

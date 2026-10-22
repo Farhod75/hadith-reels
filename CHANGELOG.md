@@ -1,3 +1,64 @@
+## [2026-10-22b] - #1488 EN/UZ/TJ shipped; the set's gates built (P283-P287)
+
+### Added
+- **`reel-retro.md`** and **Step 17 - Retro** in the pipeline. One entry per
+  set, written after the last platform and before the tracker rows. It records
+  what had to be said out loud before a defect was caught - corrections of the
+  assistant included - so a recurring correction becomes a gate instead of
+  being re-explained every session.
+- **`audit-docs.py` `check_retro`**: fails when the newest `reel-tracker.md`
+  row has no `reel-retro.md` entry. Verified both ways - DRIFT before the rows
+  existed, OK after.
+- **`lint-content.py` `book-claim`** (P287): WARN when the H block names a book
+  or chapter of the collection. Re-ran against both #1488 drafts; both fire.
+  Header count moved from CONTENT (5) to (6).
+- **`render-reel.ps1`** (P286): refuses when `-Scenes` is passed without
+  `-FitScenes` and the arithmetic says clips would actually be dropped. It does
+  not second-guess a deliberate full-length render.
+
+### Fixed
+- **`render-reel.ps1` `-ValidateOnly`** (P288): was declared in `param()` and
+  referenced nowhere else, so the flag documented as "run step 0 and exit"
+  performed a full render. Used as a pre-commit smoke test it overwrote the
+  published TJ reel locally with three random clips; restored by re-rendering
+  with the original parameters. Now exits after the Step 0 checks.
+- **`app/api/tts/route.ts`**, `tj.adults`: word-level example pronunciation for
+  дастон / дастонат / дастонаш (P284). `Дастонатро` narrated as `Достонатро` -
+  your stories for your hands - sentence-initially only, the position P087
+  recorded for Uzbek ҳ. Validated by re-narrating the moral alone. The Cyrillic
+  was NOT respelled; PATTERN 95 rejects that approach.
+
+### Shipped
+- **R139 EN, R140 UZ, R141 TJ - Sunan Abu Dawud #1488, adults.** All four
+  platforms each. R138 (RU) shipped earlier the same day.
+- All four languages A/B verified against the LIBRARY row (`--library`) after
+  the operator asked whether Stage 3 still ran on hand-corrected rows. It had
+  not been. A=pass / B=pass at high confidence on all four. TJ first returned
+  A=error with an empty body; re-ran unchanged and it passed (P285).
+
+### Found
+- **A fabricated book attribution in two languages** (P287). UZ «дуо китобида»
+  and TJ «китоби дуо» - the Book of Du'a. Du'a is the *bab*; the *kitab* is
+  al-Witr. The library row's `book` column is EMPTY, so both were generated out
+  of nothing, and every existing check passed them clean.
+- **This CHANGELOG's own 2026-10-22 entry cites references that do not exist**
+  (P283): a «§5b collection prefix» section present in no doc, and a tracker
+  record of the slug/clip naming split that the tracker does not contain. The
+  convention is now written down, in P283 and pipeline Step 11.
+
+### Not built
+- `draft.txt` sync gate (P282). It cost a scare in this set - `stt-validate`
+  scored correct Russian subtitles at 0.291 because the draft still held the EN
+  blocks.
+
+### Notes
+- **Integrity against presentation**, settled here: a published reel is
+  replaced for a wrong matn, translation, narrator, citation or divine
+  attribute; pacing, cover frame and subtitle styling are fixed forward. R138
+  (RU) is live showing roughly 2.5 of its 4 clips and was deliberately kept.
+- **After `lg`, nothing reopens but an integrity defect.** Not wording
+  preference, not a synonym, not a caption/audio phrasing difference.
+
 ## [2026-10-22] - Sunan Abu Dawud #1488 RU shipped; a path bug and two gate gaps (P281-P282)
 
 ### Fixed

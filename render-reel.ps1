@@ -335,6 +335,17 @@ if ($problems.Count -gt 0) {
 }
 Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.Count) nasheeds"
 
+  if ($ValidateOnly) {
+    # P288: this switch is documented as "run step 0 and exit - smoke test for
+    # the pre-push hook". It was declared in param() and referenced NOWHERE
+    # else, so it silently performed a FULL render instead. Run against a
+    # published slug it overwrote that reel with three random background clips
+    # and a different nasheed. A no-op flag is worse than a missing one,
+    # because the doc promised a safe check and the name says so twice.
+    Say "`n  -ValidateOnly: prerequisites OK, exiting before Step 4. Nothing written."
+    exit 0
+  }
+
 # --- STEP 4: concat story + moral (0.5s pause, P135) into one narration ------
 Say "`n[1/5] Step 4 - concatenating story + moral narration..."
 $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$story,"-i",$moral,
@@ -629,6 +640,26 @@ if ($animated) {
       Die "-FitScenes needs ${fitDur}s per clip but the shortest clip is only ${short}s. $($picked.Count) clips cover ${have}s of the ${want}s of audio. Pass $needed scene clips (or fewer, shorter) - otherwise the background wraps to clip 1 and the reel ends on its opening image."
     }
 
+  }
+  else {
+    # P286: -FitScenes is opt-in for behaviour that should be asserted. It was
+    # omitted twice in the Sunan Abu Dawud #1488 set and the RU reel shipped
+    # showing roughly 2.5 of its 4 clips, live on four platforms before anyone
+    # noticed. P194 describes the drop itself; what was missing was anything
+    # that REFUSES. This does not second-guess a deliberate full-length render -
+    # it fires only when the arithmetic says clips will actually be lost.
+    $nd  = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
+    $acc = 0.0
+    $shown = 0
+    foreach ($c in $picked) {
+      if ($acc -ge $nd) { break }
+      $acc += [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $c.FullName)
+      $shown++
+    }
+    if ($shown -lt $picked.Count) {
+      $ndr = [math]::Round($nd, 2)
+      Die "$($picked.Count) scene clips passed but the narration is only ${ndr}s, so only $shown of them reach the screen - the rest sit past the end of the audio and never render. Pass -FitScenes to trim each clip to an equal share, or pass $shown clips. P194/P286."
+    }
   }
   $tmps = @()
   $idx = 0

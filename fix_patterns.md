@@ -11504,3 +11504,194 @@ to Him is capitalised. Narrow, mechanical, and it would have caught both cues.
 trusted an input nobody verifies, the other declined a judgement it was right to
 decline. Neither is fixed by making the checker stricter - the first needs a
 gate one step earlier, the second needs a different check entirely.
+
+## PATTERN 283: Two naming schemes in one pipeline, and nothing maps them
+
+The output folder is the admin's slug. The clips are a collection prefix.
+
+```
+out\work\adults\sunan-abu-dawud-1488\<lang>\   <- admin slug
+assets\scene-prompts\ad1488-mat.json           <- collection prefix
+out\backgrounds\new\ad1488-mat.mp4             <- collection prefix
+```
+
+The slug is the collection spelled out plus the number, derived by the admin
+from `collection`. The clip prefix is a short code for the same collection plus
+the same number:
+
+| prefix | collection |
+|---|---|
+| `b` | Sahih al-Bukhari |
+| `m` | Sahih Muslim |
+| `ad` | Sunan Abu Dawud |
+| `t` | Jami at-Tirmidhi |
+| `ij` | Sunan Ibn Majah |
+| `ah` | Musnad Ahmad |
+
+Neither `reel-creation-pipeline.md` nor this file said so until now. The
+CHANGELOG's 2026-10-22 entry did note it once, in passing - and that note is
+the finding, not the record:
+
+> Slug is `sunan-abu-dawud-1488` (admin derivation), clips are `ad1488-*`
+> (§5b collection prefix). The two conventions differ and the tracker already
+> records that inconsistency.
+
+There is no §5b in any doc in this repo, and the tracker records nothing of the
+kind. A note citing two references that do not exist reads, to anyone skimming,
+exactly like the thing being documented somewhere else. It is worse than
+silence, because it stops the next person looking.
+
+Found because the operator asked whether it had been written down. The
+assistant then searched two files, found nothing, and told him it was recorded
+nowhere - also wrong, in the other direction, and for the same reason: a
+partial search reported as a complete one.
+
+**Consequence:** a clip filed under the slug name is invisible to
+`render-reel.ps1 -Scenes`, which takes clip names; and a scene looked for under
+the wrong prefix appears not to exist, which invites regenerating a clip that is
+already on disk - a paid Kling call for nothing.
+
+Recorded, not fixed. Both schemes are load-bearing and renaming either one
+breaks sidecars on published reels.
+
+---
+
+## PATTERN 284: A Tajik vowel that only breaks sentence-initially
+
+`Дастонатро` (your hands) narrated as `Достонатро` (your stories). The same stem
+in the STORY block, `дастонашро`, narrated correctly in the same run.
+
+The difference is position: M opens with the word, capitalised, first in the
+sentence. That is the position P087 recorded for Uzbek `ҳ` - the engine's
+Russian prior is strongest where it has the least left context.
+
+**Fix, validated rather than hopeful:** a word-level example in the `tj.adults`
+`instructions` string in `app/api/tts/route.ts`. The letter-level guidance
+already there cannot reach this, because no letter is wrong - the vowel quality
+is.
+
+```
+"Vowel quality carries meaning: дастон / дастонат / дастонаш = 'das-TON' " +
+"(hands), with a clear short 'a' in the first syllable - never 'dos-TON', " +
+"which is достон, a story or epic. " +
+```
+
+Re-narrated the moral alone; the word came back correct. The story was left
+untouched - it had never been wrong.
+
+**Do NOT respell the Cyrillic to steer the engine.** PATTERN 95 rejected that
+approach explicitly and says do not reintroduce it. The `instructions`
+parameter is the lever (P074), and a concrete example pronunciation is what
+makes it bite.
+
+**No dev-server restart for a change to this file.** Next 16 hot-reloads route
+handlers on save. Restarting, or reloading the admin page, would have cost the
+operator the four edited blocks - they live in React `useState` with no
+localStorage and no DB write.
+
+---
+
+## PATTERN 285: `agreement: incomplete` means re-run, never adjudicate
+
+#1488's library row came back `tj: A=error/low, B=pass/high`, with `raw: ""`.
+A returned an empty body.
+
+In the JSON that shape is hard to tell from a real split, and the instinct is to
+treat it as the disagreement the stage exists to produce. It is not. A missing
+pass is a transport failure, and adjudicating it means ruling on one model's
+opinion unopposed - which is the trap P177 names.
+
+Re-ran unchanged: `A=pass/high, B=pass/high` on all four languages. Nothing
+about the text had changed.
+
+**Rule:** `fail` and `disagree` go to Stage 4. `incomplete` goes back to the
+queue. The script already models the three statuses separately; nothing told the
+operator what to do with the third.
+
+---
+## PATTERN 286: `-FitScenes` now refuses when clips would actually be dropped
+
+The switch has been opt-in since P194 named the defect it prevents. Opt-in is
+the wrong shape for it. Omitting it costs clips silently, and in the Sunan Abu
+Dawud #1488 set it was omitted twice - the RU reel shipped showing roughly 2.5
+of its 4 clips and is live on four platforms.
+
+P194 describes what happens. Nothing refused.
+
+`render-reel.ps1` now walks the picked clips against the narration length when
+`-FitScenes` is absent, and dies when the last clips would never reach the
+screen:
+
+```
+4 scene clips passed but the narration is only 21.95s, so only 3 of them reach
+the screen - the rest sit past the end of the audio and never render. Pass
+-FitScenes to trim each clip to an equal share, or pass 3 clips. P194/P286.
+```
+
+It does not second-guess a deliberate full-length render. The arithmetic has to
+say clips are actually lost before it fires.
+
+---
+
+## PATTERN 287: a fabricated book and chapter, clean through every check
+
+Sunan Abu Dawud #1488's UZ H block read «Абу Довуднинг Сунан китобида, дуо
+китобида» - in Abu Dawud's Sunan, in the Book of Du'a. Du'a is the BAB. The
+KITAB is al-Witr. The library row's `book` column is EMPTY, so the generator
+produced the subdivision out of nothing - and the TJ block did the same thing
+independently, «китоби дуо».
+
+`lint-content.py` passed both at 0 fail, 0 warn, and was right to: a fabricated
+source is not a divine name, a seerah title, a simile or an inversion, and no
+existing check looks at source claims that are not seerah titles (P105/P115).
+
+It was caught by reading the block and checking sunnah.com book 8 against
+hadithunlocked. That is, by someone asking where the claim came from.
+
+New check `book-claim` - WARN, H block only. Deliberately low precision: H is
+one short block and this fires at most once per reel. A collection name on its
+own is fine; naming a SUBDIVISION is what needs confirming, because the only
+authority for one is the `book` column and a Tier 1 page.
+
+Both drafts were re-run against the new check and both fire.
+
+**The shape worth remembering:** every gate passed, and the text was still
+wrong. A clean run means the known failure modes are absent, never that the
+content is true - which is what this file's own header says and what it is easy
+to stop believing after a few clean runs.
+
+---
+## PATTERN 288: a documented switch that does nothing, and overwrites a published reel
+
+`render-reel.ps1 -ValidateOnly` is documented in the script's own header as
+"run step 0 and exit - smoke test for the pre-push hook". It was declared in
+`param()` and referenced NOWHERE else in 766 lines. Passing it performed a full
+render.
+
+Run against a published slug as a pre-commit smoke test, it overwrote
+`adults-tj-sunan-abu-dawud-1488-reel.mp4` with three RANDOM background clips -
+`m2628-stall`, `t3895-platter`, `makka-tower` - and a different nasheed,
+because with no `-Scenes` the script falls back to a random three. The four
+published copies were unaffected. The local canonical file was not.
+
+Restored by re-rendering with the original parameters, `-Nasheed` passed
+explicitly so the bed matched what shipped: 23.7s / 3.89 MB against the
+original 23.7s / 3.9 MB.
+
+**A no-op flag is worse than a missing one.** A missing flag errors. This one
+says what it does twice over - `Validate`, `Only` - and the header promises a
+safe check, so the reasonable action on reading it is the destructive one.
+
+Fixed with an early `exit 0` after the Step 0 checks.
+
+**Second finding, from the failed restore.** `powershell -File script.ps1
+-Scenes a.mp4,b.mp4` passes the whole comma list as ONE string: the first
+attempt died with `scene clip not found: ad1488-mat.mp4,ad1488-raised.mp4,...`.
+`-File` does not parse PowerShell syntax in its arguments. A detached run that
+needs an array argument goes through a wrapper `.ps1`, never `-File` with
+inline commas.
+
+**The rule underneath both:** do not smoke-test a render script against a
+published slug. There is nothing to gain and a finished reel to lose.
+
+---

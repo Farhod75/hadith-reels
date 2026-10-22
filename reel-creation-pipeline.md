@@ -427,6 +427,25 @@ the scene:
 .\scripts\generate-scene.ps1 -Name "b6446-market" -Image "out\refs\b6446-market-2.jpg" -Prompt "gentle drifting motion, light shifting warmly, cloth moving in a soft breeze"
 ```
 
+**Clip names use the COLLECTION PREFIX, not the slug (P283).** The output folder
+is the admin's slug - `out\work\adults\sunan-abu-dawud-1488\<lang>\` - while
+clips, registry entries and prompt sidecars use a short collection code plus the
+number: `ad1488-mat.mp4`. Both schemes are load-bearing, and nothing maps them
+except this table:
+
+| prefix | collection |
+|---|---|
+| `b` | Sahih al-Bukhari |
+| `m` | Sahih Muslim |
+| `ad` | Sunan Abu Dawud |
+| `t` | Jami at-Tirmidhi |
+| `ij` | Sunan Ibn Majah |
+| `ah` | Musnad Ahmad |
+
+A clip filed under the slug name is invisible to `render-reel.ps1 -Scenes`, and
+a scene looked for under the wrong prefix invites regenerating a clip that is
+already on disk - a paid Kling call for nothing.
+
 Text-to-video when no still is needed — same script, omit `-Image`.
 
 ⚠ **`-Duration` defaults to 5.** Every set since R074 is 10s, and four 5s clips
@@ -551,6 +570,31 @@ FP16 warning goes to stderr and would otherwise terminate the script).
 
 Order, fields and traps for all four platforms: see **Publishing — all four
 platforms** below. YT "Made for kids" = **No** on this lane.
+
+---
+
+### Step 17 - Retro
+
+Mandatory, after the last platform of the last language and **before** the
+tracker rows. Append an entry to `reel-retro.md` using the template at the top
+of that file.
+
+`audit-docs.py` fails when the newest `reel-tracker.md` row has no entry here,
+so this is a gate rather than a habit.
+
+What it is for: `fix_patterns.md` records what went wrong. The retro records
+**what had to be said out loud before it was caught** - including corrections of
+the assistant - so a recurring correction becomes a gate instead of being
+re-explained every session.
+
+Two rules settled on #1488 that the retro carries forward:
+
+- **Integrity against presentation.** A published reel is replaced for a wrong
+  matn, translation, narrator, citation or divine attribute. Pacing, cover frame
+  and subtitle styling are fixed forward. Engagement is not worth resetting for
+  a presentation defect.
+- **After `lg`, nothing reopens but an integrity defect.** Not wording
+  preference, not a synonym, not a caption/audio phrasing difference.
 
 ---
 

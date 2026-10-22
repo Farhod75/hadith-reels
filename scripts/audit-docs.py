@@ -41,6 +41,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRACKER  = os.path.join(ROOT, 'reel-tracker.md')
 PATTERNS = os.path.join(ROOT, 'fix_patterns.md')
 REGISTRY = os.path.join(ROOT, 'assets', 'asset-registry.json')
+RETRO    = os.path.join(ROOT, 'reel-retro.md')
 HV_ROOT  = os.path.join(os.path.dirname(ROOT), 'hadith-verifier')
 
 fails, warns = [], []
@@ -293,6 +294,36 @@ def check_sibling_frontier(frontier):
                         'of writing a number down.' % (n, hv_top, frontier))
 
 
+def check_retro(rows):
+    """Step 17: the newest tracker row must be covered by a reel-retro.md entry.
+
+    The retro was agreed as a step, and a step with no caller is the exact shape
+    P119, P126 and P185 each failed in. This is the caller. It checks COVERAGE
+    only - that an entry exists for the newest set - never whether the entry
+    says anything useful, which needs a reader.
+    """
+    text = read(RETRO)
+    covered = set()
+    for m in re.finditer(r'^##\s+R(\d{3})(?:\s*-\s*R(\d{3}))?\b', text, re.MULTILINE):
+        lo = int(m.group(1))
+        hi = int(m.group(2)) if m.group(2) else lo
+        if hi < lo:
+            lo, hi = hi, lo
+        covered.update(range(lo, hi + 1))
+    if not covered:
+        fail('retro', 'reel-retro.md has no ## R### entries - cannot confirm '
+                      'coverage of any set')
+        return
+    ids = [int(r[C_ID][1:]) for r in rows if re.match(r'^R\d{3}$', r[C_ID])]
+    if not ids:
+        return
+    newest = max(ids)
+    if newest not in covered:
+        fail('retro', 'newest tracker row R%03d has no reel-retro.md entry - '
+                      'Step 17, write the retro before the tracker rows'
+                      % newest)
+
+
 def cadence_line(rows):
     """P248: the newest reel row, computed from the table this script already parses.
 
@@ -343,6 +374,7 @@ def main():
     check_duplicate_index(tracker, rows)
     check_nasheed_table(tracker, rows)
     check_registry(rows)
+    check_retro(rows)
     frontier = check_pattern_refs()
     check_sibling_frontier(frontier)
 
