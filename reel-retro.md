@@ -109,3 +109,65 @@ something the repo could have answered on its own. The gap is not knowledge.
 It is that nothing forces the check to run before the claim is made.
 
 ---
+## R090-R093 (correction) - Sahih Muslim #1005 - 2026-10-22
+
+Not a production set. A post-publication correction, logged because the retro
+is where recurrence gets counted.
+
+**Caught before publish** - nothing; this was already live since 2026-09-24.
+
+**Escaped to publish**
+
+- Four kids reels carried **Jabir ibn Abdullah** where Muslim #1005 is
+  **Hudhayfah ibn al-Yaman**. Jabir's wording of the same meaning is Bukhari
+  6021. The matn, the number and the collection were all correct. Only the
+  companion came from the other collection.
+
+**Root causes**
+
+- **Nothing compares the stored narrator against the cited source.** Stage 3
+  checks translation against matn. `audit-library` checks fields one at a time.
+  `verify-matn-source` asks whether the text appears in the collection, and it
+  does. No check asks whether the narrator belongs to the hadith the citation
+  points at, so a row where every field is individually correct passes
+  everything.
+- **The narrator check we do have asks a different question.** It compares
+  against the mirror's `narrator`, which is a LEAD-IN STRING naming whoever the
+  chain reaches last - so it flagged #31 and #2616, which were right, and its
+  real catches needed a human to separate from its false ones.
+- **A backlog line with a count in it hid four different problems.** "Five
+  narrator mismatches" sat for weeks reading like one task.
+
+**Prevention landed**
+
+- P292 and its addendum: the three real corrections, the two non-defects
+  explained, and `NARRATORS` entries so the corrected names localise instead of
+  falling back to Latin inside Cyrillic captions.
+- P290's `patch_library_row` was used for all three writes.
+
+**Prevention deferred**
+
+- A check that compares `narrator` against the cited source rather than the
+  mirror's lead-in. This is the gap that let it through and it is still open.
+- Caption rebuild returns the wrong lane's voice (see below). Not built.
+
+**Operator corrections of the assistant: 2**
+
+1. **The caption rebuild came back in the adults voice.** The instruction was
+   to paste the rebuilt caption; the operator compared it to the live post and
+   stopped. Live kids caption: *"Show your children that kindness itself is
+   charity."* Rebuild: *"Do not wait for wealth to give charity..."* - adults
+   register, and `#kids` and `#maruf` dropped from the tag line. The admin
+   builds from the library row and the row does not carry the lane, so a
+   rebuild for a published reel can silently change voice. Pasting it would
+   have broken P222's kids-caption rule on four live posts to fix one name.
+   Method changed mid-task to a single-name find/replace.
+2. **"What do I need to do?"** - twice in one evening, because the assistant
+   reported findings instead of giving directions.
+
+**The finding:** the fix was one name. The assistant's first method would have
+rewritten four live captions to change it, and the check that found the problem
+flagged two correct rows alongside it. Both are the same error - acting on what
+a tool reports without asking what the tool actually compares.
+
+---
