@@ -11487,6 +11487,27 @@ description. Had the draft not been read by eye it would have published.
 NOT BUILT: compare `draft.txt` against the admin's generated blocks before
 narration and refuse on a mismatch.
 
+**BUILT 2026-10-22** as `scripts/check-draft-sync.py`, wired into
+`render-reel.ps1` Step 0 ahead of the `-ValidateOnly` exit, so the smoke test
+covers it too. It does NOT compare against the admin's blocks - those live in
+React state and never touch disk. It compares against the LIBRARY ROW, which is
+the source of truth the blocks were built from anyway:
+
+1. SCRIPT - the S block must be in the writing system the language uses. That
+   alone catches the whole-wrong-language case, the 0.291 one.
+2. MATN - the S block must quote `text_<lang>`, compared on letters only so
+   punctuation and quote marks cannot mask a difference, reported as a ratio.
+
+The second check is the one that matters. A draft holding another language is
+loud and harmless; a stale draft in the RIGHT language is quiet and scored
+0.958 while a whole clause differed. Comparing against the database rather than
+against a threshold on the SRT is what separates them.
+
+Verified four ways against a draft holding the Tajik blocks: `--lang tj` passes
+on an exact quote, `--lang uz` and `--lang ru` fail on the matn at 0.324 and
+0.137, `--lang en` fails on the script check before it ever reaches the
+database.
+
 **2. The casing restorer left the divine pronoun lowercase, correctly.** Whisper
 returned «раб его» and «проси его» where the source has «Его». The restorer
 fixed «Он», «Сам», «Стыдлив» and «Щедр» and left these, because it only

@@ -18,6 +18,72 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ---
 
+## Reconciled 2026-10-22
+
+This file was written 2026-10-18 and then went four days without an update while
+nine commits landed. Everything in this section was reconciled against `git log`
+and `CHANGELOG.md`, not from memory. Where a status further down this file
+disagrees with this section, this section is the newer one.
+
+**Closed since 2026-10-18:**
+
+| item | closed by |
+|---|---|
+| Muslim #2999 - internally clipped matn | `350d71b` (P268-P270) |
+| Bukhari #6009 - re-translation defects | `f247a06` (P271-P272) |
+| Bukhari #527 and #6857 - the last two A/B FAILs | `58a10ff` (P276) |
+| Bukhari #1 restored; the pre-gate sweep | `bd4af8e` (P277-P279) |
+| #1417 and the pre-gate backlog | `d9e465e` |
+| Pass B moved gpt-5.6-terra -> gpt-6.1-sol | `cf19813` (P275) |
+| The disagreement backlog, re-read under Sol | `4733385` (P280) |
+| Sunan Abu Dawud #1488 - all four languages, R138-R141 | `4beccbe`, `19fbbaf` |
+
+The FAIL table under Production queue is therefore spent: all four of its rows
+are closed. The DISAGREE list was re-read under Sol in `4733385` and should be
+read there rather than here.
+
+**Added 2026-10-22, open:**
+
+- **No `pre-commit` hook exists.** `core.hooksPath` is `.githooks` and it holds
+  exactly one file, `pre-push`. TypeScript, tag vocabulary, diacritics,
+  `audit-docs.py`, 66 Python tests and the PowerShell checks all run at PUSH
+  time only. Nothing gates a commit. Decide whether that is intended - it means
+  a bad commit is only caught when you try to push it.
+- **`draft.txt` sync gate (P282) - BUILT 2026-10-22.**
+  `scripts/check-draft-sync.py`, wired into `render-reel.ps1` Step 0 ahead of
+  the `-ValidateOnly` exit. It compares the S block against the LIBRARY ROW,
+  not the admin's blocks, which live in React state and never touch disk:
+  writing-system check plus a letters-only comparison against `text_<lang>`.
+  Verified four ways. This had cost the #1488 set a scare - correct Russian
+  subtitles scored 0.291 because the draft still held the EN blocks.
+- **Divine-pronoun casing check (P282)** - not built.
+- **This file drifts and nothing notices.** `audit-docs.py` gained a retro gate
+  on 2026-10-22; it has no equivalent for OPEN_ITEMS. The four days of drift
+  were found by the operator asking - the same way its first four missing items
+  were found on 2026-10-08.
+
+**Rules settled 2026-10-22**, now carried in `reel-creation-pipeline.md` Step 17
+and `reel-retro.md`:
+
+- **Integrity against presentation.** A published reel is replaced for a wrong
+  matn, translation, narrator, citation or divine attribute. Pacing, cover frame
+  and subtitle styling are fixed forward. R138 (RU #1488) is live showing roughly
+  2.5 of its 4 clips and was deliberately kept on that basis.
+- **After `lg`, nothing reopens but an integrity defect.**
+- **`agreement: incomplete` means re-run, never adjudicate** (P285).
+- **Never smoke-test a render script against a published slug** (P288).
+
+**Still open, carried unchanged:** #2307 TJ («Сабабкунандаи» for هاذم, and the
+UZ fix built in `out/candidate-translations.json` and never applied); the five
+narrator mismatches (#31, #1987, #6018, #1005, #2616); 21 legacy
+`matn_verified_at` stamps under P265; #1520's four published captions; Bukhari
+#1 Tier 1 confirmation, where the fetcher caps quotes at 125 characters so the
+vocalised matn is still mirror-only; the weekly `self_upskilling.md` check, due
+2026-10-22 with only the ElevenLabs leg done and FLUX a major version behind;
+and HV `/api/health` returning 404 while the site root returns 200.
+
+---
+
 ## Production queue
 **A/B SWEEP OF THE SHIPPED LIBRARY, 2026-10-17 — 16 ROWS NEED ADJUDICATION.**
 First Stage 3 run over `hadith_library`: 34 rows, 35 verdicts, **19 pass / 4
@@ -29,10 +95,10 @@ Background and the three classes of finding: P257.
 
 | row | reels | finding |
 |---|---|---|
-| Bukhari #527 | R034-R041 (8) | TJ: أحب "most beloved" rendered «беҳтарин» (best); قُلْتُ dropped |
-| Bukhari #6009 | R006-R009 (4) | all four langs: يأكل الثرى (eating earth) as licking mud; فشكر الله له (Allah thanked him) as accepted/pleased |
+| Bukhari #527 | R034-R041 (8) | **CLOSED 2026-10-18 (58a10ff, P276).** TJ: أحب "most beloved" rendered «беҳтарин» (best); قُلْتُ dropped |
+| Bukhari #6009 | R006-R009 (4) | **CLOSED 2026-10-18 (f247a06, P271-P272).** all four langs: يأكل الثرى (eating earth) as licking mud; فشكر الله له (Allah thanked him) as accepted/pleased |
 | Bukhari #8 | R018-R021 (4) | **FIXED 2026-10-17.** `text_arabic` restored to the full matn (31 -> 184 chars), verified against sunnah.com/bukhari:8 and the local mirror. Re-translated, Latin re-derived, Stage 3 8/8 pass. Awaiting Stage 4 sign-off. The 16 published captions still carry the old short Arabic. |
-| Bukhari #6857 | R098-R101 (4) | أكل الربا loses its verb; قذف المحصنات loosened; singular قال rendered plural |
+| Bukhari #6857 | R098-R101 (4) | **CLOSED 2026-10-18 (58a10ff, P276).** أكل الربا loses its verb; قذف المحصنات loosened; singular قال rendered plural |
 
 **DISAGREE — A and B split, human decides, never a third pass (P177):**
 #1, #1417, #82, #574, #4248, #2628, #2963, #2759, #5027, #13, #1773, #1520.
@@ -77,7 +143,7 @@ chars; the stored line was a sentence in no narration, welding two halves
 together and dropping `قال الله عز وجل`). All re-screened, all
 `matn_verified_at` null.
 
-- **#2999 STILL OPEN** - internally clipped: three clauses cut from the middle
+- **#2999 CLOSED 2026-10-18 (`350d71b`, P268-P270)** - internally clipped: three clauses cut from the middle
   and end (`وَلَيْسَ ذَاكَ لِأَحَدٍ إِلَّا لِلْمُؤْمِنِ`, and `فَكَانَ خَيْرًا لَهُ`
   after BOTH `شَكَرَ` and `صَبَرَ`). Stamped 2026-09-04. Needs the same
   treatment as #1151.
@@ -120,7 +186,8 @@ verified NULL.
   rows from P142, unlabelled, both caught including a narrator error). Worth
   re-testing on 3-4 more known-bad rows before leaning on it routinely.
 
-**#6009 PARTIALLY FIXED 2026-10-17 - STILL OPEN, TOP OF QUEUE.** Matn correct
+**#6009 CLOSED 2026-10-18 (`f247a06`, P271-P272).** The note below is the
+2026-10-17 interim state, kept for the record. Matn correct
 and untouched. The two sweep defects are fixed in all four: يأكل الثرى now
 'eating the moist earth', and فشكر الله له now 'Allah thanked him' instead of
 'accepted'/'was pleased' (the divine-act flattening, the serious one). But the

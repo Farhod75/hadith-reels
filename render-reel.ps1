@@ -335,6 +335,26 @@ if ($problems.Count -gt 0) {
 }
 Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.Count) nasheeds"
 
+  # P282: draft.txt is the text stt-validate compares the burned subtitles
+  # against, and nothing enforced that it holds THIS language's words. It has
+  # failed in both directions - a stale same-language draft scoring 0.958 while
+  # a whole clause differed, and the EN blocks sitting in place through a RU
+  # render, which scored correct Russian subtitles at 0.291 with "source is
+  # latin" on every cue. The first shape is the dangerous one, which is why
+  # this compares against the DATABASE rather than a threshold on the SRT.
+  if (Test-Path -LiteralPath $Draft) {
+    $prevPyIO = $env:PYTHONIOENCODING
+    $env:PYTHONIOENCODING = 'utf-8'
+    & python "scripts\check-draft-sync.py" --lang $Lang --slug $Slug --draft $Draft
+    $draftRc = $LASTEXITCODE
+    $env:PYTHONIOENCODING = $prevPyIO
+    if ($draftRc -ne 0) {
+      Die "$Draft is not in sync with the row being rendered (P282) - see above. Re-sync it before TTS: the subtitle validator's authority rests entirely on this file."
+    }
+  } else {
+    Say "  NOTE  $Draft not found - draft sync check skipped (P282)."
+  }
+
   if ($ValidateOnly) {
     # P288: this switch is documented as "run step 0 and exit - smoke test for
     # the pre-push hook". It was declared in param() and referenced NOWHERE

@@ -1,3 +1,41 @@
+## [2026-10-22c] - OPEN_ITEMS reconciled; the draft.txt sync gate built (P282)
+
+### Added
+- **`scripts/check-draft-sync.py`** - P282's gate, finally built, and wired
+  into `render-reel.ps1` Step 0 ahead of the `-ValidateOnly` exit so the smoke
+  test covers it. It does NOT compare against the admin's generated blocks:
+  those live in React state and never reach disk. It compares against the
+  LIBRARY ROW, which is what the blocks were built from. Two checks - the
+  writing system of the S block, and a letters-only comparison against
+  `text_<lang>` reported as a ratio.
+
+  The second is the one that matters. A draft holding another language is loud
+  and harmless; a stale draft in the RIGHT language is quiet and scored 0.958
+  while a whole clause differed. Comparing against the database rather than a
+  threshold on the SRT is what separates them.
+
+  Verified four ways against a draft holding the Tajik blocks: `tj` passes on
+  an exact quote, `uz` and `ru` fail on the matn at 0.324 and 0.137, `en` fails
+  on the writing system before it reaches the database. End to end through
+  `render-reel.ps1`: TJ passes and exits, UZ dies before TTS.
+
+### Changed
+- **`OPEN_ITEMS.md` reconciled.** It was written 2026-10-18 and went four days
+  while nine commits landed, so it still listed #2999, #6009, #527 and #6857 as
+  open - all four closed between `350d71b` and `58a10ff`. New dated section
+  reconciled against `git log` and this file, marking what closed and what was
+  added. The stale per-item lines are marked in place rather than deleted, per
+  that file's own rule.
+
+### Found
+- **No `pre-commit` hook exists.** `core.hooksPath` is `.githooks` and it holds
+  exactly one file, `pre-push`. Every check runs at push time; nothing gates a
+  commit. Recorded in OPEN_ITEMS as a decision to take, not a defect to fix.
+- The assistant had told the operator no hooks were installed at all, having
+  looked only in `.git/hooks`. Third partial search reported as a complete one
+  in a single session, after the P283 naming question and the `-ValidateOnly`
+  incident.
+
 ## [2026-10-22b] - #1488 EN/UZ/TJ shipped; the set's gates built (P283-P287)
 
 ### Added
