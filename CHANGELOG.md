@@ -1,3 +1,31 @@
+## [2026-10-22g] - #1469 fixed; a write that hit a second hadith (P290)
+
+### Fixed
+- **Bukhari #1469** «сабр(дан)» -> «сабрдан» in all three Uzbek fields,
+  verified before writing: A=pass/high, B=pass/high on all four languages.
+- **A second row, written by mistake and restored.** The PATCH was keyed on
+  `hadith_number=eq.1469`, which matched TWO rows carrying different hadiths,
+  and PostgREST updated both. Row `833a2647…` («مَنْ يَتَصَبَّرْ يُصَبِّرْهُ اللَّهُ»)
+  took on the other row's Uzbek text. Restored from a 72-row snapshot taken
+  earlier for the P269 guard, with the Cyrillic rebuilt via `latinToCyrillic`
+  (no flags). Both rows verified correct afterwards; `audit-library --row 1469`
+  is clean.
+
+### Added
+- **`patch_library_row()`** in `audit-library.py` (P290). Requires a uuid,
+  filters on `id`, and raises unless exactly one row comes back. Write by id;
+  the number identifies a hadith to a reader, not a row to a database.
+
+### Found, needs a decision
+- **Tirmidhi #3540 fails Stage 3 in three languages, independently, on both
+  models** - and not because of the parenthesis fix, which is orthogonal. The
+  stored RU, UZ and TJ all omit «وَلَا أُبَالِي» ("and I do not mind") and
+  «عَلَى مَا كَانَ فِيكَ» ("whatever is in you"). EN carries both and passes.
+  The «Мен(га)» fix is therefore HELD: the row needs three re-translations, not
+  a bracket removal, and that is a content decision.
+- #2616 and #6018 share the duplicate-number trap and both sit in the
+  narrator-mismatch backlog - the next thing anyone would fix by number.
+
 ## [2026-10-22f] - the pre-flight was checking a route that never existed
 
 ### Fixed

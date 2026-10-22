@@ -11773,3 +11773,47 @@ previous values are in `out/2307-before.json`. `derive-uzbek-latin.ts --library
 before-snapshot - no repeat of P269.
 
 ---
+## PATTERN 290: a correction that wrote itself into a second, unrelated hadith
+
+Fixing «сабр(дан)» on Bukhari #1469 meant one PATCH:
+
+```
+PATCH /rest/v1/hadith_library?hadith_number=eq.1469
+```
+
+PostgREST answered `HTTP 200, 2 rows`. There are TWO rows numbered 1469 and
+they are different hadiths:
+
+| id | matn |
+|---|---|
+| `5ccdd3a6…` | مَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا وَأَوْسَعَ مِنَ الصَّبْرِ |
+| `833a2647…` | مَنْ يَتَصَبَّرْ يُصَبِّرْهُ اللَّهُ |
+
+The second one's three Uzbek fields silently became the first one's text. Its
+Russian and Tajik still described its own matn, so the row now contradicted
+itself in a way nothing would flag: every field well-formed, every check clean,
+one language saying something else entirely.
+
+**The information was already there, on every run.** `check_duplicate_numbers`
+has reported #1469, #2616 and #6018 since P147, and its own message says
+*"match the wording, not the number, when selecting."* It reports at INFO,
+where it reads as background, and `audit-library.py` had been run several times
+that same hour. Nothing was missing except attention.
+
+**Recovery was luck.** A 72-row `text_uzbek_latin` snapshot taken earlier for an
+unrelated reason - guarding the P269 re-derive - still held the original Latin.
+The Cyrillic was not in it and was rebuilt with `latinToCyrillic`, which
+returned no flags. Had either been untrue, the row's Uzbek would have been
+gone, and the only tell would have been a row whose languages disagreed.
+
+**Fixed:** `patch_library_row(base, key, row_id, patch)` in `audit-library.py`.
+It requires a uuid, filters on `id=eq.…`, and raises when the response is
+anything other than exactly one row - so a widened filter fails loudly instead
+of succeeding quietly.
+
+**The rule:** write to `hadith_library` by `id`. The number identifies a
+hadith to a reader; it does not identify a row to a database. #2616 and #6018
+carry the same trap, and both sit in the narrator-mismatch backlog, which is
+the next thing anyone would fix by number.
+
+---

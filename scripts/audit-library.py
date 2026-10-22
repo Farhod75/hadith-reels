@@ -237,6 +237,41 @@ def fetch_rows(base_url, key, table, row=None):
         return json.loads(resp.read().decode('utf-8'))
 
 
+def patch_library_row(base_url, key, row_id, patch):
+    """P290: write by ID. NEVER by hadith_number - it is not unique.
+
+    #1469, #2616 and #6018 each have TWO rows carrying different hadiths, and
+    check_duplicate_numbers has reported all three at INFO on every run since
+    P147. A PATCH filtered on `hadith_number=eq.1469` matches both rows and
+    PostgREST updates both without complaint: one correction, two rows written,
+    and the second row silently acquires the first one's text.
+
+    That happened on 2026-10-22. Recovery needed a 72-row before-snapshot taken
+    for an unrelated reason, plus latinToCyrillic to rebuild a field the
+    snapshot did not cover. There was no reason it had to be recoverable.
+
+    Returns the updated row. Raises if the filter matched anything other than
+    exactly one row, so a widened filter fails loudly instead of succeeding
+    quietly.
+    """
+    if not re.match(r'^[0-9a-f-]{36}$', str(row_id or '')):
+        raise ValueError('patch_library_row needs a uuid id, got %r' % (row_id,))
+    url = '%s/rest/v1/hadith_library?%s' % (
+        base_url.rstrip('/'), urllib.parse.urlencode({'id': 'eq.%s' % row_id}))
+    req = urllib.request.Request(
+        url, data=json.dumps(patch, ensure_ascii=False).encode('utf-8'),
+        method='PATCH', headers={
+            'apikey': key, 'Authorization': 'Bearer %s' % key,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        rows = json.loads(resp.read().decode('utf-8'))
+    if len(rows) != 1:
+        raise RuntimeError(
+            'PATCH on id=%s touched %d rows, expected exactly 1' % (row_id, len(rows)))
+    return rows[0]
+
+
 def ref_of(row):
     return f'{row.get("collection", "?")} #{row.get("hadith_number", "?")}'
 
