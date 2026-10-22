@@ -479,13 +479,12 @@ git log --oneline -5
 # 3. Confirm the hook is actually wired
 git config core.hooksPath          # must print .githooks
 
-# 4. Check upstream HV is serving
-#    There is NO /api/health route - it has never existed, and the command that
-#    used to sit here 404'd on every session since this checklist was written.
-#    This only proves the deployment is serving; it says nothing about whether
-#    Supabase is reachable. Building a real health route is an open decision -
-#    see OPEN_ITEMS.
-curl -s -o /dev/null -w "%{http_code}\n" https://hadithverifier.com/
+# 4. Check upstream HV is serving AND can reach Supabase
+#    Returns {"status":"ok","db":"reachable","ms":N}. A 503 means the
+#    deployment is up but the database is not answering - the distinction a
+#    root-200 check cannot make. Route added 2026-10-22 (P291); before that
+#    this step curled a path that had never existed and failed every session.
+curl -s https://hadithverifier.com/api/health | jq
 
 # 5. Run smoke test
 npm run test:smoke

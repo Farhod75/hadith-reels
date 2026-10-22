@@ -11817,3 +11817,24 @@ carry the same trap, and both sit in the narrator-mismatch backlog, which is
 the next thing anyone would fix by number.
 
 ---
+## PATTERN 291: A health check for a route that never existed
+
+**Allocated to the HV repo.** The defect and the fix both live there, so the
+full entry is in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier - a number
+allocated in the sibling and invisible here is how two repos start reusing one.
+
+HR's `CLAUDE.md` step 4 curled `https://hadithverifier.com/api/health`, a path
+that had never existed in `hadith-verifier`. The pre-flight therefore reported
+a failing upstream on every session since the checklist was written, and the
+failure was the checklist - a caller with no check, the inverse of the
+P119/P126/P185 shape.
+
+The route is now built and reports whether Supabase actually answered, not
+merely that the deployment is serving, and exposes no configuration detail.
+`/api/test` - a public, unauthenticated debug route that reported whether a
+Slack webhook was configured - was removed in the same change.
+
+**Status:** FIXED in `hadith-verifier` 71e5f00
+
+---

@@ -1,3 +1,19 @@
+## [2026-10-22h] - the health route is live; step 4 points at it again
+
+### Changed
+- **`CLAUDE.md` step 4** goes back to `curl -s .../api/health | jq`, now that
+  the route exists. Verified live: `{"status":"ok","db":"reachable","ms":197}`,
+  and `/api/test` returns 404.
+- **OPEN_ITEMS**: the health route and the debug endpoint are closed; the
+  absence of a pre-commit hook is recorded as a deliberate decision rather than
+  an accident. Everything gates at push, and a pre-commit running that suite
+  would tax every commit for a check the push already makes.
+
+### Note
+The HV side is `hadith-verifier` `71e5f00` (P291) - the route, the removal, and
+the pattern. The P sequence stays global across both repos; HR holds the
+frontier at P290.
+
 ## [2026-10-22g] - #1469 fixed; a write that hit a second hadith (P290)
 
 ### Fixed

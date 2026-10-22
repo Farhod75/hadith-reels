@@ -44,26 +44,20 @@ read there rather than here.
 
 **Added 2026-10-22, open:**
 
-- **HV has no `/api/health` route, and the pre-flight has been checking it.**
-  `CLAUDE.md` step 4 ran `curl -s https://hadithverifier.com/api/health | jq`
-  against a route that has never existed in `hadith-verifier`. Probed
-  2026-10-22: `/` returns 200, `/api/health` returns 404. The check was fixed
-  on 2026-10-22 to probe the site root, which proves only that the deployment
-  is serving. **Decision open:** build a real `/api/health` that also confirms
-  Supabase is reachable - that is what the pre-flight actually wants to know -
-  or leave the weaker check and drop the item deliberately.
-- **`/api/test` is a public debug endpoint on the live site.** It returns
-  `hasSlack` and `slackStart`, the first 30 characters of
-  `SLACK_WEBHOOK_URL`. Thirty characters stops short of the token
-  (`https://hooks.slack.com/services/` is 33), so no credential is exposed, but
-  it does confirm to anyone who asks that a webhook is configured, and it is a
-  debug surface reachable without auth. **Decision open:** delete it, gate it,
-  or keep it deliberately.
-- **No `pre-commit` hook exists.** `core.hooksPath` is `.githooks` and it holds
-  exactly one file, `pre-push`. TypeScript, tag vocabulary, diacritics,
-  `audit-docs.py`, 66 Python tests and the PowerShell checks all run at PUSH
-  time only. Nothing gates a commit. Decide whether that is intended - it means
-  a bad commit is only caught when you try to push it.
+- ~~**HV has no `/api/health` route**~~ - **BUILT 2026-10-22 (P291).** Live and
+  returning `{"status":"ok","db":"reachable","ms":197}`. It confirms Supabase
+  answered, not merely that the deployment is serving, and reports no
+  environment detail. `CLAUDE.md` step 4 points at it again.
+- ~~**`/api/test` is a public debug endpoint**~~ - **REMOVED 2026-10-22
+  (P291).** Returns 404. It had exposed `hasSlack` and the first 30 characters
+  of `SLACK_WEBHOOK_URL` - short of the token, so no credential, but an
+  unauthenticated debug surface on a production domain.
+- **No `pre-commit` hook, and that is DELIBERATE as of 2026-10-22.**
+  `core.hooksPath` is `.githooks` and it holds one file, `pre-push`. Everything
+  gates at push: TypeScript, tag vocabulary, diacritics, `audit-docs.py`, 66
+  Python tests, PowerShell parse. A pre-commit running that suite would tax
+  every commit for a check the push already makes. Decided rather than
+  inherited; revisit only if something starts slipping between commit and push.
 - **`draft.txt` sync gate (P282) - BUILT 2026-10-22.**
   `scripts/check-draft-sync.py`, wired into `render-reel.ps1` Step 0 ahead of
   the `-ValidateOnly` exit. It compares the S block against the LIBRARY ROW,
