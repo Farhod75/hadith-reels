@@ -56,7 +56,8 @@ FIELD = {'en': 'text_english', 'ru': 'text_russian',
 SCRIPT = {'en': 'LATIN', 'ru': 'CYRILLIC', 'uz': 'CYRILLIC',
           'tj': 'CYRILLIC', 'ar': 'ARABIC'}
 
-THRESHOLD = 0.90
+# P294: no longer a pass threshold - the matn must appear contiguously.
+# Kept only to describe how far off a stale draft is.
 
 
 def letters_only(s):
@@ -144,16 +145,34 @@ def main():
         return 2
 
     a, b = letters_only(story), letters_only(matn)
+
+    # P294: the matn must appear CONTIGUOUSLY. The ratio was accepting an
+    # inserted word - «яъне» added four letters to a forty-five letter matn and
+    # scored 0.94 against a 0.90 threshold. A gloss after the quote is a
+    # placement problem; a word inside it is speech the Prophet (saw) did not
+    # say. The ratio stays, but only to describe HOW far off a stale draft is -
+    # it no longer decides.
     if b and b in a:
         print('OK  draft.txt S block quotes %s exactly (%s)'
               % (FIELD[args.lang], _al.ref_of(row)))
         return 0
 
     ratio = difflib.SequenceMatcher(None, a, b).ratio()
-    if ratio >= THRESHOLD:
-        print('OK  draft.txt S block matches %s at %.3f (%s)'
-              % (FIELD[args.lang], ratio, _al.ref_of(row)))
-        return 0
+
+    # An insertion scores high and is NOT a near miss: every letter of the matn
+    # is present, in order, with something wedged between.
+    sm = difflib.SequenceMatcher(None, b, a)
+    covered = sum(bl.size for bl in sm.get_matching_blocks())
+    if b and covered == len(b):
+        print('INSERTION: every letter of %s is present in the S block, in '
+              'order, with text wedged between (similarity %.3f).'
+              % (FIELD[args.lang], ratio))
+        print('  draft: %s' % story[:200])
+        print('  db   : %s' % matn[:200])
+        print('  -> words added INSIDE the quotation are speech the Prophet')
+        print('     (saw) did not say. Quote the matn exactly; commentary')
+        print('     belongs in H (P294).')
+        return 1
 
     print('MISMATCH: the S block does not quote %s (%s). similarity %.3f'
           % (FIELD[args.lang], _al.ref_of(row), ratio))

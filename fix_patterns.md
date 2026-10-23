@@ -11988,21 +11988,35 @@ A gloss after the quote is a scholarship-placement problem. A word inside it is
 speech attributed to the Prophet ﷺ that he did not say. `lint-content` returned
 **0 findings**.
 
-**And the draft-sync gate built the day before would have passed it too.**
-`check-draft-sync.py` compares the S block against `text_<lang>` on letters
-only and accepts at `ratio >= 0.90`. «яъне» adds four letters to a forty-five
-letter matn: **0.94**. The threshold was chosen to tolerate punctuation and
-quote marks, and an inserted word is exactly the thing it should not tolerate.
+**The draft-sync gate's threshold was a real hole - but not on this row, and
+the first version of this pattern said otherwise without measuring.**
 
-**What the threshold is actually for.** The gate's real job is catching a draft
-holding the WRONG language or the PREVIOUS wording — both of which score far
-below 0.90. Nothing about that job needs slack for an insertion. The matn
-should appear in the S block as an exact contiguous substring after
-punctuation is stripped, and anything short of that is a finding.
+`check-draft-sync.py` compared the S block against `text_<lang>` on letters
+only and accepted at `ratio >= 0.90`. This entry originally claimed «яъне»
+scored 0.94 and would have passed. **It was never run.** Measured afterwards:
+the S block including its «Паёмбар ﷺ фармуданд:» prefix scores **0.788** against
+a forty-five letter matn, so the old gate would have CAUGHT this one.
 
-NOT BUILT: tighten `check-draft-sync.py` so the matn must appear contiguously,
-and report an insertion separately from a mismatch. The ratio stays useful for
-saying HOW far off a stale draft is; it should not be what decides.
+The hole is real on longer rows, where a short insertion is a smaller fraction
+of the whole. Simulating a one-word insertion into the twelve longest Tajik
+matns in the library:
+
+```
+#6009  427 letters  0.954  PASSED        #1     186  0.949  PASSED
+#1894  316          0.948  PASSED        #2628  179  0.947  PASSED
+#6570  280          0.966  PASSED        #5971  170  0.944  PASSED
+#2654  223          0.927  PASSED        #2999  160  0.941  PASSED
+#6857  232          0.934  PASSED
+```
+
+**Nine of twelve.** The longer the matn, the more an insertion disappears into
+the ratio - which is exactly backwards, since longer matns are where a wedged
+word is hardest to spot by eye.
+
+**Fixed:** the matn must now appear as a CONTIGUOUS substring. An insertion is
+reported as its own class - every letter present, in order, with text wedged
+between - rather than as a generic mismatch. The ratio is kept only to describe
+how far off a stale draft is; it no longer decides.
 
 **Caught by** comparing the S quote against the DB by hand, in the same check
 that confirmed the codepoints. Not by any gate.

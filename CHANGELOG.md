@@ -1,3 +1,24 @@
+## [2026-10-23d] - the draft-sync gate requires the matn contiguously (P294)
+
+### Fixed
+- **`scripts/check-draft-sync.py`**: the matn must now appear as a CONTIGUOUS
+  substring of the S block. An insertion is reported as its own class - every
+  letter present, in order, with text wedged between - rather than as a generic
+  mismatch. The 0.90 ratio is kept only to describe how far off a stale draft
+  is; it no longer decides.
+
+  Regression tested against the exact Tajik S block that shipped: caught, and
+  named as an insertion. The corrected S block passes.
+
+### Corrected
+- **P294's claim about that gate was wrong and is now measured.** It said the
+  gate would have passed «яъне» at 0.94. The number was never run. Measured:
+  0.788, so the old gate would have caught that row. The threshold was a real
+  hole on longer matns - a one-word insertion scores >= 0.90 on nine of the
+  twelve longest Tajik rows, because the longer the matn the more an insertion
+  disappears into the ratio, which is backwards. P294, the R145 tracker note
+  and the [2026-10-23b] entry all corrected.
+
 ## [2026-10-23c] - Tirmidhi #3540 re-translated (P296)
 
 ### Fixed
@@ -32,9 +53,12 @@
 - **P294 — words added INSIDE the quotation.** The generator appended
   commentary to S in all four languages. Three put it after the closing quote;
   Tajik put «яъне» inside it, which is speech attributed to the Prophet ﷺ that
-  he did not say. `lint-content` returned 0 findings, and the draft-sync gate
-  built the day before would have passed it at 0.94 against a 0.90 threshold.
-  Recorded, not built: require the matn as a contiguous substring.
+  he did not say. `lint-content` returned 0 findings. The assistant also
+  claimed the day-old draft-sync gate would have passed it at 0.94 - that
+  number was never run, and the real figure is 0.788, so that gate would in
+  fact have caught this row. The hole was real on longer matns: a one-word
+  insertion scores >= 0.90 on nine of the twelve longest Tajik rows.
+  Corrected in P294; the gate now requires the matn as a contiguous substring.
 - **P295 — the TTS instruction lever worked once and not twice.** P284's
   word-level example fixed `дастон`; the identical fix for `яки` did nothing.
   The edit was reverted rather than left as an instruction that lies. M was
