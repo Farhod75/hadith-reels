@@ -11971,3 +11971,76 @@ a way to manufacture content the generator declined to produce. The difference
 is whether the post step changes what is depicted or only how the camera sees it.
 
 ---
+## PATTERN 294: words added INSIDE the quotation, and a gate that would have passed them
+
+Across one hadith in four languages the generator appended commentary to the
+STORY block every single time. Three of those were a sentence after the closing
+quotation mark — `lint-content`'s `quote-addition` caught EN and UZ, missed RU.
+
+Tajik did something worse. It put the commentary **inside** the quotation:
+
+```
+stored   «Қатъкунандаи лаззатҳоро — маргро зиёд ёд кунед»
+S block  «Қатъкунандаи лаззатҳоро — ЯЪНЕ маргро — зиёд ёд кунед»
+```
+
+A gloss after the quote is a scholarship-placement problem. A word inside it is
+speech attributed to the Prophet ﷺ that he did not say. `lint-content` returned
+**0 findings**.
+
+**And the draft-sync gate built the day before would have passed it too.**
+`check-draft-sync.py` compares the S block against `text_<lang>` on letters
+only and accepts at `ratio >= 0.90`. «яъне» adds four letters to a forty-five
+letter matn: **0.94**. The threshold was chosen to tolerate punctuation and
+quote marks, and an inserted word is exactly the thing it should not tolerate.
+
+**What the threshold is actually for.** The gate's real job is catching a draft
+holding the WRONG language or the PREVIOUS wording — both of which score far
+below 0.90. Nothing about that job needs slack for an insertion. The matn
+should appear in the S block as an exact contiguous substring after
+punctuation is stripped, and anything short of that is a finding.
+
+NOT BUILT: tighten `check-draft-sync.py` so the matn must appear contiguously,
+and report an insertion separately from a mismatch. The ratio stays useful for
+saying HOW far off a stale draft is; it should not be what decides.
+
+**Caught by** comparing the S quote against the DB by hand, in the same check
+that confirmed the codepoints. Not by any gate.
+
+---
+
+## PATTERN 295: the TTS instruction lever worked once and did not work twice
+
+P284 fixed a Tajik vowel — `Дастонатро` narrated as `Достонатро` — with a
+word-level example in `tj.adults`'s `instructions`, and the re-narration came
+back correct. That made it look like a general lever.
+
+On the next set the same engine narrated «яки мо» as «ёки мо», the same class
+of substitution: a clear `я` flattened toward `ё`. The same fix was applied in
+the same place, in the same shape:
+
+```
+"Likewise яки = 'ya-KEE' (each one, as in ҳар яки мо), with a clear open " +
+"'ya' - never 'yo-KEE'. " +
+```
+
+**No change.** The edit was reverted rather than left in place: an instruction
+that does not work is worse than no instruction, because the next person reads
+it and believes the word is handled.
+
+**The fallback is rewording, and it is only available in some blocks.** M was
+changed from «ҳар яки мо» to «ҳар кадоми мо» — same meaning, and the word that
+trips the engine is gone. That move is legitimate because **M is the channel
+speaking**. It is NOT available in S, where the words are the Prophet's ﷺ and
+the matn is fixed; there the only options are an instruction that works, a
+different voice, or shipping the mispronunciation.
+
+**So the order is:** try the instruction once; if it does not take, revert it
+and reword if the block is ours. Do not keep adding examples to a string that
+has stopped paying.
+
+**Still true from PATTERN 95:** do not respell the Cyrillic to steer the
+engine. Rewording changes what the channel says in its own voice; respelling
+corrupts the stored text to manipulate a model.
+
+---

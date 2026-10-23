@@ -171,3 +171,68 @@ flagged two correct rows alongside it. Both are the same error - acting on what
 a tool reports without asking what the tool actually compares.
 
 ---
+## R142-R145 - Jami at-Tirmidhi #2307 - 2026-10-23
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG / YT Shorts / TikTok
+
+**Caught before publish**
+
+- **S carried commentary in all four languages.** EN and UZ were caught by
+  `lint-content`'s quote-addition check; RU was not; TJ put the word INSIDE the
+  quotation, which no check caught at all (P294).
+- **UZ's S gloss WAS the M block, word for word.** The narration would have
+  said the same sentence twice. `check_duplicate_blocks` did not fire because
+  only S's tail matched.
+- **The scholars-say construction in all four languages** - "Its established
+  meaning is", «Его установленный смысл», «Маънои муқарраршудаи он чунин аст».
+  Fourth consecutive Tajik set. This is a fixed behaviour, not a recurrence.
+- **RU's story was narrated from the pre-correction text** (R134 again). Caught
+  by arithmetic: 18s against EN's 6s for the same one sentence.
+- **Two RU subtitle fixes the lint passed clean**: «сказал.» introducing a
+  quotation, and a dropped «к» in «обращённое к каждому».
+- **EN subtitle cue 5** lowercased the divine pronoun - P282's unbuilt check.
+- **The book-claim check, one day old, fired on "Book of Zuhd"** and the claim
+  turned out to be TRUE. Confirmed against the mirror's chapter table rather
+  than assumed, and reworded to the source's own "Chapters on Zuhd".
+
+**Escaped to publish** - nothing known.
+
+**Root causes**
+
+- `lint-content` checks a block against the matn; it does not check a block
+  against ANOTHER block, which is why UZ's duplicate passed.
+- The draft-sync gate's 0.90 ratio tolerates an inserted word (P294).
+- The admin's textarea and the generated audio can disagree, and nothing
+  compares them. The new `.txt` sidecars make the check possible; nothing runs it.
+
+**Prevention landed**
+
+- P294 and P295 recorded; P284's lever demoted from "the fix" to "try once".
+- `.txt` sidecars beside each mp3 turned RU's diagnosis from a transcription
+  into a ten-second file read - P246 effectively closing.
+
+**Prevention deferred**
+
+- Tighten `check-draft-sync.py` to require the matn as a contiguous substring.
+- Compare `story.txt` / `moral.txt` against `draft.txt` before the render. Both
+  files now exist; nothing reads them together.
+- Divine-pronoun casing check (P282), still not built, bit again on EN cue 5.
+
+**Operator corrections of the assistant: 4**
+
+1. **Slug guessed.** Used `tirmidhi-2307`; the admin derives `at-tirmidhi-2307`,
+   and R118 in this very tracker is `at-tirmidhi-3895`. P283's exact subject,
+   two days after writing P283.
+2. **"What does S (replace - the gloss moves to H) mean? Give me clear paste
+   text."** Labels explaining the edit instead of the edit.
+3. **Asked to re-watch a reel after already saying `lg`** - "sg lg means I
+   watched".
+4. **Rewrote the assistant's Uzbek and Tajik M blocks** before they were used.
+
+**The finding:** every one of the four legs needed the same two edits, and the
+assistant proposed them one language at a time as if each were a discovery. The
+pattern was visible after EN. Nothing in the pipeline says: when a block defect
+appears in the first language of a set, expect it in the other three and say so
+up front.
+
+---

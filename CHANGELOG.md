@@ -1,3 +1,36 @@
+## [2026-10-23b] - #2307 shipped in four languages (R142-R145, P294-P295)
+
+### Shipped
+- **R142-R145 — Jami at-Tirmidhi #2307, adults**, all four platforms each.
+  Scene arc: a toy cradle with a faceless straw doll, autumn leaves, a sinking
+  sun, an empty mat with a walking stick. Infancy to old age; nothing on screen
+  depicts death, because the matn says remember it.
+
+### Found
+- **P294 — words added INSIDE the quotation.** The generator appended
+  commentary to S in all four languages. Three put it after the closing quote;
+  Tajik put «яъне» inside it, which is speech attributed to the Prophet ﷺ that
+  he did not say. `lint-content` returned 0 findings, and the draft-sync gate
+  built the day before would have passed it at 0.94 against a 0.90 threshold.
+  Recorded, not built: require the matn as a contiguous substring.
+- **P295 — the TTS instruction lever worked once and not twice.** P284's
+  word-level example fixed `дастон`; the identical fix for `яки` did nothing.
+  The edit was reverted rather than left as an instruction that lies. M was
+  reworded to «ҳар кадоми мо» instead — legitimate because M is the channel
+  speaking, and unavailable in S where the words are the Prophet's ﷺ.
+
+### Notes
+- The `book-claim` check added yesterday fired on "Book of Zuhd" and the claim
+  was TRUE. Confirmed against the mirror's chapter table — chapterId 36 is
+  كتاب الزهد — and reworded to the source's own "Chapters on Zuhd". A check that
+  asks you to confirm is working when the confirmation passes.
+- RU's story was narrated from the pre-correction text (R134 again), caught by
+  arithmetic: 18s against EN's 6s for the same single sentence. The `.txt`
+  sidecars now written beside each mp3 made it a file read instead of a
+  transcription — P246 effectively closing.
+- The scholars-say construction appeared in **all four languages** of one
+  hadith. It is a fixed behaviour of the generator, not a recurrence.
+
 ## [2026-10-23] - #2307 scene clips registered; motion added in post (P293)
 
 ### Added
