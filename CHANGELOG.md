@@ -1,3 +1,25 @@
+## [2026-10-23c] - Tirmidhi #3540 re-translated (P296)
+
+### Fixed
+- **Jami at-Tirmidhi #3540**, RU, UZ and TJ re-translated by the operator after
+  both models failed all three independently: «عَلَى مَا كَانَ فِيكَ» and
+  «وَلَا أُبَالِي» were missing or narrowed. EN was corrected in the same pass once
+  the other three made it the only narrow one. All four scored before writing;
+  written by id with `patch_library_row`. The «Мен(га)» parenthetical went with
+  the rewrite. `derive-uzbek-latin --number 3540 --commit` reported 1 row,
+  confirmed against a 72-row snapshot. Row audits clean.
+
+### Adjudicated
+- A failed the Tajik on verb tense while passing non-past renderings in the
+  other three languages in the same response. Operator ruled the Tajik stands:
+  غَفَرْتُ in a conditional promise carries an assured future sense, and
+  «ҳар чӣ дар ту бошад» is concessive rather than a tense error. Recorded per
+  P177 - disagreement is the output, and the human gate decides it.
+
+### Corrected
+- The assistant attributed the shifting model flags to P280 without
+  establishing it. The observation stands; the classification does not.
+
 ## [2026-10-23b] - #2307 shipped in four languages (R142-R145, P294-P295)
 
 ### Shipped

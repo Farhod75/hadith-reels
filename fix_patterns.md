@@ -12044,3 +12044,51 @@ engine. Rewording changes what the channel says in its own voice; respelling
 corrupts the stored text to manipulate a model.
 
 ---
+## PATTERN 296: two clauses missing in three languages, and an adjudication
+
+Tirmidhi #3540's Arabic:
+
+```
+يَا ابْنَ آدَمَ إِنَّكَ مَا دَعَوْتَنِي وَرَجَوْتَنِي غَفَرْتُ لَكَ عَلَى مَا كَانَ فِيكَ وَلَا أُبَالِي
+```
+
+Two clauses were missing from the stored translations:
+
+| | عَلَى مَا كَانَ فِيكَ | وَلَا أُبَالِي |
+|---|---|---|
+| EN | narrowed to "what you have done" | present |
+| RU | narrowed to «то, что ты совершил» | **absent** |
+| UZ | **absent** | **absent** |
+| TJ | narrowed to «гуноҳони» (sins) | **absent** |
+
+Both models failed RU, UZ and TJ independently and agreed on why. The row had
+never been produced, so nothing published carried it - it surfaced only because
+the paren fix on «Мен(га)» ran the row through Stage 3 on the way past.
+
+**The operator re-translated all three and they passed 6/6.** Each went
+deliberately general - «что бы за тобой ни было», «сенда нима бўлишидан қатъи
+назар», «ҳар чӣ дар ту бошад» - which then left EN as the only narrow one, and
+A flagged it on the next run. EN corrected, all four passed.
+
+**Then A failed Tajik on tense** - غفرت is past, «мебахшам» is not - while
+passing «Я прощу», "I will forgive" and «кечираман» in the same response.
+
+**Adjudicated by the operator, kept as written.** His reasoning, recorded
+because it is the ruling and not a preference:
+
+- غَفَرْتُ is grammatically past, but in a conditional promise it conveys an
+  assured future result. The non-past renderings are defensible in all four.
+- «ҳар чӣ дар ту бошад» is concessive - *whatever there may be in you* - which
+  is an interpretive rendering, not a tense error. An explicitly retrospective
+  Tajik would be «ҳар чӣ дар ту буда бошад».
+- Accepting non-past in three languages and rejecting it in the fourth is
+  inconsistent on the model's own account.
+
+**And a correction to this file's own habit.** The assistant labelled the
+shifting flags "P280" - A's threshold moving by language. The operator rejected
+the label: the instability is observed, the cause is not established, and
+naming an existing pattern is not the same as demonstrating one. What is
+recorded here is the observation - A flagged a different language on each of
+two runs over text that did not change between them - and nothing more.
+
+---
