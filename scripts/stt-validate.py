@@ -273,6 +273,62 @@ def cue_for_token_index(cues, tok_index):
 
 # ------------------------------------------------------------------- checks
 
+# P282/P298: the divine pronoun, lowercased by Whisper and left by the
+# restorer. Keyed per language: the capitalised forms that refer to Allah.
+DIVINE_PRONOUNS = {
+    'en': ('Him', 'His', 'He'),
+    'ru': (u'\u0415\u0433\u043e', u'\u0415\u043c\u0443', u'\u0418\u043c',
+           u'\u041e\u043d', u'\u041d\u0451\u043c', u'\u0421\u0430\u043c'),
+}
+
+
+def check_divine_pronoun_case(cues, source, lang):
+    """P298: a divine pronoun the source capitalises and the SRT does not.
+
+    Whisper returns «раб его» and "turn you back to him"; restore-srt-casing
+    only restores where the source has the SAME WORD and declines when the
+    lowercase form is also legitimate elsewhere in the file - which it is,
+    because "peace be upon him" and «да благословит его Аллах» refer to the
+    Prophet (saw) and are correctly lowercase. P282 recorded the restorer as
+    right to decline and the gap as unfilled. Tirmidhi #2307's English cue 5
+    shipped to the checkpoint reading "turn you back to him".
+
+    This does not try to resolve which pronoun refers to whom - that is the
+    judgement the restorer correctly refuses. It counts: if the SOURCE
+    capitalises a pronoun N times and the SRT capitalises it fewer times, at
+    least one was flattened, and it points at the cues holding the lowercase
+    form so a human can look.
+
+    WARN only. A false positive costs one glance at one cue.
+    """
+    forms = DIVINE_PRONOUNS.get(lang)
+    if not forms:
+        return []
+    srt_text = ' '.join(c['text'] for c in cues)
+    out = []
+    for form in forms:
+        want = len(re.findall(r'(?<!\w)%s(?!\w)' % re.escape(form), source))
+        if not want:
+            continue
+        got = len(re.findall(r'(?<!\w)%s(?!\w)' % re.escape(form), srt_text))
+        if got >= want:
+            continue
+        lower = form.lower()
+        hits = [c for c in cues
+                if re.search(r'(?<!\w)%s(?!\w)' % re.escape(lower), c['text'])]
+        where = ', '.join(str(c['index']) for c in hits[:6]) or 'not located'
+        out.append(Finding(
+            'medium', 'divine_pronoun_case',
+            'the source capitalises %r %d time(s); the subtitles do so %d. '
+            'Lowercase %r appears in cue(s) %s - check whether one of them '
+            'refers to Allah (P282/P298). A pronoun for the Prophet (saw) is '
+            'correctly lowercase.' % (form, want, got, lower, where),
+            cue=hits[0]['index'] if hits else None,
+            srt_text=hits[0]['text'] if hits else '',
+            source_text=form))
+    return out
+
+
 def check_timing(cues, narration_dur):
     out = []
     for j, c in enumerate(cues):
@@ -467,6 +523,7 @@ def main():
         findings += check_alignment(cues, source)
     findings += check_script(cues, source)
     findings += check_homoglyphs(cues, script_of(source))
+    findings += check_divine_pronoun_case(cues, source, args.lang)
     sym, forms = check_prophet_symbol(cues)
     findings += sym
 

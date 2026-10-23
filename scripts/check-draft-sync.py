@@ -99,12 +99,83 @@ def story_block(path):
     return ' '.join(blocks['S']).strip()
 
 
+def blocks_of(path):
+    """All S/M/H/C blocks from a draft file."""
+    try:
+        text = io.open(path, encoding='utf-8-sig').read()
+    except (IOError, OSError) as e:
+        print('FAILED: cannot read %s (%s)' % (path, e))
+        sys.exit(2)
+    blocks, current = {}, None
+    for raw in text.splitlines():
+        m = re.match(r'^\s*([SMHC])\s*:\s*(.*)$', raw)
+        if m:
+            current = m.group(1)
+            blocks.setdefault(current, []).append(m.group(2))
+        elif current:
+            blocks[current].append(raw)
+    return dict((k, ' '.join(v).strip()) for k, v in blocks.items())
+
+
+def check_narration(root, style, lang, slug, drafts):
+    """P297: what was NARRATED must be what the draft says.
+
+    The admin textarea and draft.txt can disagree, and the audio is generated
+    from the textarea. Tirmidhi #2307's Russian story was narrated from the
+    pre-correction text while draft.txt already held the fix; it was caught by
+    arithmetic - 18s against English's 6s for the same single sentence - and
+    only after the TTS had been paid for. R134 is the same defect two sets
+    earlier.
+
+    Since 2026-10-23 the TTS route writes a .txt beside each .mp3, so the
+    narrated text is on disk and this comparison is possible. Nothing read the
+    two together until now.
+
+    Returns 0 clean, 1 on a mismatch, and 0 with a note when the sidecars do
+    not exist - older sets predate them and must not fail for that.
+    """
+    base = os.path.join(root, 'out', 'work', style, slug, lang,
+                        '%s-%s-%s' % (style, lang, slug))
+    pairs = (('S', base + '-story.txt'), ('M', base + '-moral.txt'))
+    present = [p for _, p in pairs if os.path.exists(p)]
+    if not present:
+        print('NOTE  no narration sidecars for %s/%s/%s - comparison skipped'
+              % (style, slug, lang))
+        return 0
+
+    bad = 0
+    for key, path in pairs:
+        if not os.path.exists(path):
+            print('NOTE  %s missing, not compared' % os.path.basename(path))
+            continue
+        narrated = io.open(path, encoding='utf-8-sig').read().strip()
+        drafted = drafts.get(key, '')
+        if letters_only(narrated) == letters_only(drafted):
+            continue
+        bad += 1
+        print('MISMATCH: the %s block was NARRATED from different text than '
+              'draft.txt holds.' % key)
+        print('  narrated: %s' % narrated[:200])
+        print('  draft   : %s' % drafted[:200])
+    if bad:
+        print('  -> the audio is already made and it does not say what the')
+        print('     draft says. Re-narrate the affected block before')
+        print('     rendering; the subtitle validator compares against the')
+        print('     draft and will score the wrong thing (P297).')
+        return 1
+    print('OK  narration matches draft.txt (%d block(s) compared)' % len(present))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description='draft.txt vs the library row.')
     ap.add_argument('--lang', required=True, choices=sorted(FIELD))
     ap.add_argument('--slug', required=True,
                     help='collection-number, e.g. sunan-abu-dawud-1488')
     ap.add_argument('--draft', default='draft.txt')
+    ap.add_argument('--style', default='adults',
+                    choices=('adults', 'kids'),
+                    help='lane, for locating the narration sidecars')
     args = ap.parse_args()
 
     m = re.search(r'(\d+)$', args.slug)
@@ -155,7 +226,8 @@ def main():
     if b and b in a:
         print('OK  draft.txt S block quotes %s exactly (%s)'
               % (FIELD[args.lang], _al.ref_of(row)))
-        return 0
+        return check_narration(ROOT, args.style, args.lang, args.slug,
+                               blocks_of(draft_path))
 
     ratio = difflib.SequenceMatcher(None, a, b).ratio()
 

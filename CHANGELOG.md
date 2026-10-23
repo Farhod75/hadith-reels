@@ -1,3 +1,23 @@
+## [2026-10-23e] - two gates from the backlog (P297, P298)
+
+### Added
+- **`check_narration()`** in `check-draft-sync.py` (P297), wired into
+  `render-reel.ps1` Step 0. Compares the narrated `story.txt` / `moral.txt`
+  against `draft.txt`'s S and M blocks and refuses the render when they differ.
+  This is the defect that hit Tirmidhi #2307's Russian and R134 before it, both
+  times caught by arithmetic rather than by anything automated. Older sets have
+  no sidecars and are noted and skipped.
+- **`check_divine_pronoun_case()`** in `stt-validate.py` (P298), MEDIUM. Counts
+  capitalised divine pronouns in the source against the subtitles and names the
+  cues holding the lowercase form. It does not decide which pronoun refers to
+  whom - that is the judgement `restore-srt-casing.py` correctly refuses - it
+  only reports that one went missing. `en` and `ru`; uz/tj have no subtitles
+  under P078.
+
+Both regression-tested against the exact text that shipped: the narration gate
+fails a mismatched draft and passes the live Tajik sidecars; the pronoun gate
+fires on the reconstructed pre-fix cue 5 and is clean on the corrected SRT.
+
 ## [2026-10-23d] - the draft-sync gate requires the matn contiguously (P294)
 
 ### Fixed

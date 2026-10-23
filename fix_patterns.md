@@ -12106,3 +12106,57 @@ recorded here is the observation - A flagged a different language on each of
 two runs over text that did not change between them - and nothing more.
 
 ---
+## PATTERN 297: what was narrated and what the draft says were never compared
+
+The admin textarea and `draft.txt` can disagree, and the TTS is generated from
+the textarea. Tirmidhi #2307's Russian story was narrated from the
+pre-correction text while `draft.txt` already held the fix. R134 is the same
+defect two sets earlier.
+
+**Both times it was caught by arithmetic, not by a check.** S came back 18s
+against English's 6s for the same single sentence. If the two had been closer
+in length the audio would have gone into the render, and `stt-validate` would
+then have compared the subtitles - generated FROM that audio - against a draft
+the audio does not match, and reported a divergence whose cause is the audio.
+
+Since 2026-10-23 the TTS route writes a `.txt` beside each `.mp3`, so the
+narrated text is on disk. Nothing read the two together.
+
+**Built:** `check_narration()` in `check-draft-sync.py`, called when the matn
+check passes and wired into `render-reel.ps1` Step 0 behind the existing
+`--style` lane. It compares `story.txt` and `moral.txt` against the draft's S
+and M on letters only, and refuses the render on a mismatch.
+
+Sets that predate the sidecars have no `.txt` files and are noted and skipped -
+a gate that fails on absent data would make every older slug unrenderable.
+
+Regression: the live Tajik sidecars pass; a draft holding different M text
+fails with both texts printed.
+
+---
+
+## PATTERN 298: the divine pronoun the restorer was right not to fix
+
+`restore-srt-casing.py` restores case only where the source has the same word,
+and declines when the lowercase form is also legitimate in the same file. It is
+right to decline: "peace be upon him" and «да благословит его Аллах» refer to
+the Prophet (saw) and are correctly lowercase. P282 recorded the decline as
+correct and the gap as unfilled.
+
+Tirmidhi #2307's English cue 5 reached the subtitle checkpoint reading **"turn
+you back to him"** where `draft.txt` has "Him". It was caught by eye.
+
+**Built:** `check_divine_pronoun_case()` in `stt-validate.py`. It does not try
+to resolve which pronoun refers to whom - that is the judgement the restorer
+correctly refuses. It COUNTS: if the source capitalises `Him` three times and
+the subtitles capitalise it twice, one was flattened, and it names the cues
+holding the lowercase form so a human can look.
+
+MEDIUM, not HIGH. A false positive costs one glance at one cue.
+
+Covers `en` and `ru`. Uzbek and Tajik are not listed because P078 means those
+lanes have no subtitles to check.
+
+Regression: reconstructing the pre-fix cue 5 fires it; the shipped SRT is clean.
+
+---

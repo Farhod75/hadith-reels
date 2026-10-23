@@ -345,7 +345,7 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
   if (Test-Path -LiteralPath $Draft) {
     $prevPyIO = $env:PYTHONIOENCODING
     $env:PYTHONIOENCODING = 'utf-8'
-    & python "scripts\check-draft-sync.py" --lang $Lang --slug $Slug --draft $Draft
+    & python "scripts\check-draft-sync.py" --lang $Lang --slug $Slug --draft $Draft --style $Style
     $draftRc = $LASTEXITCODE
     $env:PYTHONIOENCODING = $prevPyIO
     if ($draftRc -ne 0) {
