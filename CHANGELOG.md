@@ -1,3 +1,23 @@
+## [2026-10-23] - #2307 scene clips registered; motion added in post (P293)
+
+### Added
+- **Four scene clips for Jami at-Tirmidhi #2307**, registered in
+  `assets/asset-registry.json`, all `verified: true` after the operator watched
+  them end to end: `t2307-cradle`, `t2307-leaves`, `t2307-dusk`,
+  `t2307-mat-push`.
+
+  The arc is the operator's: a toy cradle with a faceless straw doll, autumn
+  leaves, a sinking sun, and an empty mat with a walking stick beside it -
+  infancy to old age, with nothing on screen depicting death. The matn says
+  *remember* it.
+
+### Fixed
+- **`t2307-mat` was a near-frozen frame** out of Kling, twice - frame deltas
+  0.83 then 1.34 on a paid re-roll, against 5.05 for the quietest clip that
+  worked. Motion added in ffmpeg instead: a 7% push-in, delta 10.99. The
+  unmodified original is kept alongside and the registry entry records the
+  deltas, the filter and the fact that the motion is not the model's (P293).
+
 ## [2026-10-22j] - narrator map entries for the corrected names (P292)
 
 ### Fixed

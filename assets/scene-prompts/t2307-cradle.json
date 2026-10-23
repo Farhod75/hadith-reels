@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf7b36/TQLn7KRN5tljunXsuXoHO_output.mp4",
+    "name":  "t2307-cradle",
+    "image":  "out\\refs\\t2307-cradle-2.jpg",
+    "file":  "out\\backgrounds\\new\\t2307-cradle.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-23T03:06:28.1736390Z",
+    "size_bytes":  27934126,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "almost imperceptible slow push-in, fine dust motes drifting through the shaft of window light, warm light shifting very slowly, the cradle and doll completely still, no other movement",
+    "request_id":  "01a166b9-638f-7a11-a284-9a34c6bb8b4b",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-23T03:14:22.2010175Z",
+    "mode":  "image-to-video"
+}

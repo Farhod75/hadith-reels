@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf7b90/nlfZF9JKp52G5KPe0_apr_output.mp4",
+    "name":  "t2307-dusk",
+    "image":  "out\\refs\\t2307-dusk-2.jpg",
+    "file":  "out\\backgrounds\\new\\t2307-dusk.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-23T03:20:29.1380541Z",
+    "size_bytes":  26580991,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "the light sinking very slowly, shadows lengthening almost imperceptibly across the ground, high thin cloud drifting, static camera, vast and unhurried",
+    "request_id":  "01a166c6-385c-76b1-bac4-3dc4492aa2ad",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-23T03:29:48.7897663Z",
+    "mode":  "image-to-video"
+}

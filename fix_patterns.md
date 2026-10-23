@@ -11915,3 +11915,59 @@ case it was built for. Any correction to a value that a table localises has to
 check the table, and the check is not optional because nothing fails.
 
 ---
+## PATTERN 293: when the generator will not animate a frame, move the camera instead
+
+`t2307-mat` — an empty prayer mat with a walking stick beside it — came back
+from Kling as a near-frozen frame. The operator spotted it; the measurement
+confirmed it.
+
+**Measuring it is the part worth keeping.** Extract three frames (0.5s, 5.0s,
+9.3s), scale to 96x170 greyscale raw, and take the mean absolute byte
+difference. Across this set:
+
+| clip | start-end delta |
+|---|---|
+| t2307-mat (Kling, 1st) | **0.83** |
+| t2307-mat (Kling, paid re-roll) | **1.34** |
+| t2307-dusk | 5.05 |
+| t2307-leaves | 6.57 |
+| t2307-cradle | 22.76 |
+
+A number settles in seconds what "looks static" argues about, and it put the
+two mat attempts an order of magnitude below the quietest clip that worked.
+
+**The re-roll did not help, and P108 said it wouldn't.** The second prompt named
+the motion twice and said *steadily* rather than *slowly*. 0.83 to 1.34. Two
+paid attempts is the limit: the model has a prior about this frame and prompt
+wording was not going to move it.
+
+**The fix was free.** The motion did not have to come from the generator:
+
+```
+scale=2160:3840:flags=lanczos,
+zoompan=z='min(1+0.00028*on,1.07)':d=1:
+        x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=24
+```
+
+A 7% push-in over 10s. Delta 1.34 -> **10.99**, now the most alive of the four.
+Upscaling to 2160x3840 first means the zoom crops into real pixels rather than
+interpolated ones.
+
+**Rules that go with it.**
+
+- **Write a NEW file.** `t2307-mat-push.mp4` is the asset; the untouched Kling
+  original stays at `t2307-mat.mp4`. A post-processed clip that overwrites its
+  source cannot be compared against it later.
+- **Say so in the registry.** The entry records the deltas, the exact filter
+  and that the original is kept. An asset whose motion is not the model's needs
+  to say so, or the next person reads the sidecar prompt and believes it.
+- **Check what the zoom crops.** A push-in can quietly take the subject out of
+  frame, and on this clip the walking stick IS the subject. Watched before
+  accepting.
+
+**Where this does and does not apply.** Camera motion added in post is honest
+for a background plate — it is our own footage and our own transform. It is NOT
+a way to manufacture content the generator declined to produce. The difference
+is whether the post step changes what is depicted or only how the camera sees it.
+
+---

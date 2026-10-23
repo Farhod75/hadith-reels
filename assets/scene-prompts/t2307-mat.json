@@ -1,0 +1,18 @@
+{
+    "name":  "t2307-mat",
+    "image":  "out\\refs\\t2307-mat-1.jpg",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-23T04:20:09.9468934Z",
+    "size_bytes":  21573072,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "visible dust motes drifting and turning slowly through the low shaft of light, the bright edge of sunlight creeping steadily across the weave of the mat and up the stick, warm light deepening toward amber over the shot, mat and stick themselves completely still, static camera",
+    "request_id":  "01a166fc-dc46-7600-92c3-530f2109d88e",
+    "file":  "out\\backgrounds\\new\\t2307-mat.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-23T04:25:59.2642000Z",
+    "video_url":  "https://v3b.fal.media/files/b/0aaf7cec/nN76k3OHod4LNm-RxhUzx_output.mp4",
+    "mode":  "image-to-video"
+}

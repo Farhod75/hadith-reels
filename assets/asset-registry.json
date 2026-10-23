@@ -904,6 +904,42 @@
       "verified": true,
       "notes": "Drone view of Masjid al-Haram with the 2012 clock tower. Accurate modern footage. Verified 2026-09-01 — do NOT pair with a 7th-century-era narrative; that is a per-reel judgement, not a property of the clip."
     },
+    "t2307-cradle.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. A small wooden TOY cradle on a woven rug, a faceless straw doll resting beside it, morning light through a lattice window. No figures, no faces - the doll is explicitly featureless and the prompt said so twice. The cradle is a TOY, not a crib: an empty real crib reads as a dead infant, which this hadith does not say. Operator's concept. FLUX 2 still t2307-cradle-2.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: almost imperceptible slow push-in, dust motes drifting through the shaft of light, cradle and doll still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Frame delta start-end 22.76. Watched end to end by the operator 2026-10-22. Jami at-Tirmidhi #2307, R142-.",
+      "prompt_sidecar": "assets/scene-prompts/t2307-cradle.json"
+    },
+    "t2307-leaves.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Dry autumn leaves drifting past an old stone wall in late afternoon light. No figures. FLUX 2 still t2307-leaves-2.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: leaves drifting slowly downward, light raking across the stone, static camera. Probed 10.04s / 1080x1920 / 24fps / audio:0. Frame delta start-end 6.57. Watched end to end by the operator 2026-10-22. Jami at-Tirmidhi #2307, R142-.",
+      "prompt_sidecar": "assets/scene-prompts/t2307-leaves.json"
+    },
+    "t2307-dusk.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Sun sinking behind distant bare hills, shadows lengthening across empty ground. No figures. FLUX 2 still t2307-dusk-2.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: light sinking slowly, shadows lengthening, high thin cloud drifting, static camera. Probed 10.04s / 1080x1920 / 24fps / audio:0. Frame delta start-end 5.05. Watched end to end by the operator 2026-10-22. Jami at-Tirmidhi #2307, R142-.",
+      "prompt_sidecar": "assets/scene-prompts/t2307-dusk.json"
+    },
+    "t2307-mat-push.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. An empty prayer mat with a worn walking stick laid beside it in last light. No figures. The stick is the close of the life the cradle opens - operator's concept. FLUX 2 still t2307-mat-1.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. FIRST ASSET IN THIS REGISTRY CARRYING POST-GENERATION MOTION. Kling returned a near-frozen frame TWICE - frame delta start-end 0.83 on the first attempt and 1.34 on a paid re-roll with a stronger motion prompt, against 5.05 for t2307-dusk and 22.76 for t2307-cradle. Rather than pay a third time the motion was added in ffmpeg: scale 2160x3840 lanczos -> zoompan z=min(1+0.00028*on,1.07) s=1080x1920 fps=24, libx264 crf 17, a 7 percent push-in over 10s. Delta after: 10.99. The unmodified Kling original is kept at out/backgrounds/new/t2307-mat.mp4 and is NOT this asset. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-23. Jami at-Tirmidhi #2307, R142-.",
+      "prompt_sidecar": "assets/scene-prompts/t2307-mat.json"
+    },
     "ad1488-mat.mp4": {
       "classification": "scene",
       "lanes": [

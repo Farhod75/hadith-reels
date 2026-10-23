@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf7b68/fi8e-2hLZ5ko9tCsYnwVX_output.mp4",
+    "name":  "t2307-leaves",
+    "image":  "out\\refs\\t2307-leaves-2.jpg",
+    "file":  "out\\backgrounds\\new\\t2307-leaves.mp4",
+    "resolution":  "1080x1920",
+    "submitted_utc":  "2026-10-23T03:14:24.4968696Z",
+    "size_bytes":  25630837,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "a few dry leaves drifting slowly downward past the stone, light raking and shifting warmly across the wall, static camera, no shake",
+    "request_id":  "01a166c0-a859-7cc1-8288-2da04491b1bc",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-23T03:20:16.3265179Z",
+    "mode":  "image-to-video"
+}
