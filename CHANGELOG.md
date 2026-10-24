@@ -1,3 +1,30 @@
+## [2026-10-24c] - scene clips validated in Step 0
+
+### Changed
+- **`render-reel.ps1` checks scene clips in Step 0.** They were resolved and
+  registry-checked inside Step 6, which runs after Step 4 concatenates the
+  narration and, on en/ru/ar, after Whisper - so a knowable failure cost a
+  narration build first. The new block validates only; Step 6 keeps its own
+  resolution and its own P121 gate, so the render path is unchanged and this
+  can fail earlier, never differently. Problems are collected and reported
+  together, matching Step 0's existing style rather than dying on the first.
+- **A comma-bearing clip name is now diagnosed as P302.** `-Scenes a,b` splits
+  at the PowerShell parser when typed and stays one string when passed through
+  `Start-Process -ArgumentList` with `-File`. The old error printed the whole
+  list as a single missing filename, which reads as six missing clips and is
+  one mis-bound parameter. Tested three ways: a valid set reports `6 scene
+  clip(s) resolved and registry-approved`, a mis-bound list names P302 and says
+  to launch with `-Command`, and an unknown name reports as not found - all
+  three before Step 4.
+
+### Fixed
+- **Two OPEN_ITEMS entries described gaps the repo had already closed**, found
+  while picking work from that file. The preflight item claimed no precondition
+  was checked up front, when Step 0 already carried the audio registry and the
+  draft-sync gate; the random-scene item claimed that path had no registry
+  gate, when P237 built one. A backlog that overstates what is missing costs
+  the same as one that understates it.
+
 ## [2026-10-24b] - P301 corrected: the claim was on an Aswati bed
 
 ### Fixed

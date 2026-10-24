@@ -355,6 +355,44 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
     Say "  NOTE  $Draft not found - draft sync check skipped (P282)."
   }
 
+  # P302 and the preflight gap: scene clips were resolved and registry-checked
+  # in Step 6, which runs AFTER Step 4 concatenates the narration and, on
+  # en/ru/ar, after Whisper. On 2026-10-24 the Tajik leg died at [3/5] with the
+  # narration already built, on a -Scenes list that had bound as one string;
+  # #1903 EN failed twice the same way in October, once on unregistered clips
+  # after Whisper had run. All of it is knowable before any slow or paid work.
+  # This VALIDATES ONLY - Step 6 still resolves and still gates, so the render
+  # path is unchanged and this can fail earlier, never differently.
+  if ($Scenes -and $Scenes.Count -gt 0) {
+    $sceneProblems = @()
+    foreach ($name in $Scenes) {
+      if ($name -like '*,*') {
+        # P302: PowerShell splits a comma list at the PARSER, so -Scenes a,b
+        # becomes an array when typed and stays one string when passed through
+        # Start-Process -ArgumentList with -File. Say which it is.
+        $sceneProblems += "-Scenes arrived as ONE string rather than a list (P302) - launch with -Command, not -File: $name"
+        continue
+      }
+      $clip = Join-Path $normDir $name
+      if (-not (Test-Path $clip)) { $clip = Join-Path "out\backgrounds\new" $name }
+      if (-not (Test-Path $clip)) {
+        $sceneProblems += "scene clip not found in out\backgrounds\new\normalized\ or out\backgrounds\new\: $name"
+        continue
+      }
+      $preAudit = & python "scripts\audit-assets.py" --check $name --lane $Style 2>&1
+      if ($LASTEXITCODE -ne 0) {
+        $preAudit | ForEach-Object { Write-Host "        $_" -ForegroundColor DarkGray }
+        $sceneProblems += "scene clip rejected by the asset registry (P121): $name"
+      }
+    }
+    if ($sceneProblems.Count -gt 0) {
+      Write-Host "`nCannot render -- fix these first:" -ForegroundColor Red
+      $sceneProblems | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }
+      exit 1
+    }
+    Ok "$($Scenes.Count) scene clip(s) resolved and registry-approved"
+  }
+
   if ($ValidateOnly) {
     # P288: this switch is documented as "run step 0 and exit - smoke test for
     # the pre-push hook". It was declared in param() and referenced NOWHERE

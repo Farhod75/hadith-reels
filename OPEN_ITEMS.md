@@ -1147,7 +1147,7 @@ with it because the registry note was composed in the same session that generate
 the stills. Fix: `generate-image.ps1` writes `<name>-still.json` with prompt,
 negative prompt, model, variants returned and which was chosen.
 
-**NO PREFLIGHT — every precondition is checked at render time.** On 2026-10-16
+**~~NO PREFLIGHT — every precondition is checked at render time.~~ RESOLVED 2026-10-24, and the item overstated what was missing.** Step 0 already validated the audio registry and ran `check-draft-sync` (P282); the scene clips were the only precondition still checked inside Step 6, after Step 4 concatenates the narration and, on en/ru/ar, after Whisper. That check now also runs in Step 0, so `-ValidateOnly` genuinely covers the render path. It VALIDATES ONLY - Step 6 still resolves and still gates, so this can fail earlier, never differently. A comma-bearing clip name is now named as P302 (a `-Scenes` list that bound as one string) rather than reported as a missing file, which is how the Tajik leg of #3540 presented: six present clips printed as one missing filename, at [3/5], with the narration already built. Original note: On 2026-10-16
 #1903 EN failed twice for reasons knowable in under a second: the four clips were
 unregistered (registry gate, after Whisper had already run) and the narration did
 not match `draft.txt` (stt lint, at the SRT pause, after ffmpeg had concatenated).
@@ -1164,7 +1164,7 @@ this one is still open. Adding a numbered step renumbers 13–16, so the likely 
 is a note inside Step 13 rather than a new step.
 
 
-**Random scene selection has no registry gate.** `render-reel.ps1` without
+**~~Random scene selection has no registry gate.~~ STALE - it has had one since P237.** `render-reel.ps1` draws from the registry-approved list rather than checking after the draw, and dies if fewer than three approved clips exist for the lane. Verified by reading the script on 2026-10-24 while picking work from this file. Original note: `render-reel.ps1` without
 `-Scenes` globs `out\backgrounds\new\normalized\*.mp4` and draws three at
 random, with no call to audit-assets. `-Scenes` has had that gate since P121,
 and the nasheed picker got one in P168; this path never did, so an
