@@ -224,6 +224,7 @@
 | Sunan Abu Dawud #1488 | EN, RU, UZ, TJ | Adults | R138, R139, R140, R141 |
 | Jami at-Tirmidhi #2307 | EN, RU, UZ, TJ | Adults | R142, R143, R144, R145 |
 | Sahih al-Bukhari #1903 vs #2654 | - | - | ADJACENT SUBJECT, DIFFERENT HADITH. #2654 (R094-R097, Major Sins) carries qawl az-zur - false testimony - as one item in a list of the greatest major sins; #1903 makes false speech the thing that voids a fast. Both ship with #speech in the tag line, and a viewer who saw one will hear the other as the same reminder. OPEN_ITEMS flagged #1903 as sitting close to #2654 and asked that it be picked deliberately rather than by surprise - it was. Same class as #6871/#2654 and the Tawheed cluster: the index keys on the number, so nothing automated flags the pair. Forty reels apart in the EN lane, which is ample spacing. |
+| Jami at-Tirmidhi #3540 | EN, RU, UZ, TJ | Adults | R146, R147, R148, R149 |
 | Sahih al-Bukhari #6570 | — | — | SAME HADITH AS #99, not merely similar. Abu Hurairah on intercession appears TWICE in Bukhari: Riqaq #6570 and Ilm #99, and Dorar returns both as separate cards. Ship ONE number and keep it everywhere — a viewer who finds the other number reads our citation as wrong. Sourced 2026-10-12, not yet produced. |
 | Sahih Muslim #28 | — | — | SAME HADITH AS Sahih al-Bukhari #3435 (Ubadah ibn as-Samit; the testimony that names Isa, His word cast to Maryam, and a spirit from Him). Muttafaq alayh. The ZAD slide this came from cites «Бухорий ва Муслим», but our caption format carries ONE collection + number — decide which before producing, and expect viewers who learned it as “Bukhari and Muslim”. |
 | Sahih al-Bukhari #425 / #5401 / #6938 | — | — | THREE MORE ENTRIES around the same Itban ibn Malik event. We ship #6423, the short saying. #425 and #5401 are narrated by MAHMUD IBN AR-RABI‘ AL-ANSARI, not Itban, and are the long narrative about Itban’s failing eyesight; #6938 is a longer Itban variant with Malik ibn ad-Dukhshun. A viewer searching “Itban” lands on #425 first. #425 was itself wrongly recorded as our source until 2026-10-12 (P218). |
@@ -297,7 +298,7 @@
 
 | Nasheed | Uses | Last used | Reel IDs |
 |---|---|---|---|
-| vocal-nasheed-02.mp3 (WITHDRAWN) | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 |
+| vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090. WITHDRAWN 2026-10-24 (P301): moved to `out/backgrounds/_claimed/` with `lanes: []` after a YouTube Content ID block was first attributed to it. The block was in fact on an Aswati bed; this withdrawal stands on provenance - the Pixabay uploader was not the rights holder - and no claim against this bed has been observed. |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
 | vocal-nasheed-04.mp3 | 15 | R147 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113, R126, R147 |
 | vocal-nasheed-01.mp3 | 12 | R144 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129, R144 |
@@ -444,14 +445,14 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 145 |
+| Total reels posted | 149 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 93 |
+| Adults reels | 97 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 37 |
-| Library rows | 72 (37 used, 35 unused) |
+| Hadiths used (unique) | 38 |
+| Library rows | 71 (38 used, 33 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×67, Sahih Muslim ×28, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
 | Companions cited | 18 (Uthman ibn Affan ×4, Abu Hurairah ×50, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4) |
 

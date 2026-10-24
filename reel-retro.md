@@ -236,3 +236,98 @@ appears in the first language of a set, expect it in the other three and say so
 up front.
 
 ---
+
+## R146-R149 - Jami at-Tirmidhi #3540 - 2026-10-24
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG / YT Shorts / TikTok
+
+**Caught before publish**
+
+- UZ rendered the measure clause as «шунга яқин», close to that, which makes
+  the forgiveness fall SHORT of the sins and inverts the hadith. RU's «почти
+  равным ей» carried the same ambiguity. The near-ness belongs to the sins:
+  قُرَاب is nearly the earth's fill of them, and the forgiveness matches it.
+  Both caught by the operator reading the blocks back, not by any gate.
+- TJ's H block tied forgiveness to the measure of the servant's dua rather than
+  to the measure of the SINS - the same inversion, one block over - and
+  asserted «Маънои муқарраршудаи он», its established meaning, with no scholar
+  cited. Fifth consecutive Tajik set to generate that construction.
+- TTS read TJ «сипас» (then) as «сипос» (gratitude), inside quoted divine
+  speech. Caught by ear.
+- draft.txt was stale on both the EN and the RU legs, and the P297 gate's own
+  advice was backwards on EN: it said re-narrate when the audio was correct.
+- Whisper needed six hand-corrections on RU against English's two, including a
+  P298 divine-pronoun cue. Cue 1 was left lowercase deliberately - the pronoun
+  there is the Prophet's.
+- The sixth scene clip was measured rather than estimated: the render was run
+  to get 11.93s against 10.042s available before any money was spent.
+
+**Escaped to publish**
+
+- The EN reel was BLOCKED GLOBALLY on YouTube for its bed. Nothing in the
+  pipeline reads a bed's rights, so it could not have been caught.
+- The wrong diagnosis of that block - `vocal-nasheed-02.mp3` rather than
+  `aswati-Steady-Motivation.mp3` - reached a pushed pattern and a registry note
+  before anyone read the leg's `render.json`.
+
+**Root causes**
+
+- `verified: true` on an audio entry means a human listened to it. It has never
+  meant licensed, and the schema has no licence field. The Aswati certificate
+  licensed a remix platform's terms of service, not the recordings its users
+  uploaded: ffprobe reads the eight beds as a SoundCloud rip, the instrumental
+  of an existing named nasheed, and five phone voice memos from one evening.
+- A conclusion drawn from the bed I expected the leg to carry rather than from
+  the sidecar that records what it did carry.
+- `TTS_INSTRUCTIONS` has been dead code since P102, so a mispronunciation can
+  only be fixed in the text - and a word inside the matn quote drags the
+  library row and the published caption with it.
+- Scene clips were validated after the narration had been built.
+
+**Prevention landed**
+
+- P300 (a transfer that reported success and left the previous version),
+  P301 (the licence covered the platform, not the recording), P302 (a comma
+  list through Start-Process binds as one string), P303 (no invisible fix for a
+  mispronunciation).
+- Scene clips now validated in Step 0, with the comma case named as P302
+  instead of reported as a missing file.
+- ID3 evidence recorded on all eight aswati registry entries; the TJ voice
+  watch-list extended with the v4 сипас->сипос defect.
+- A Content ID smoke test was run and came back clean on the ElevenLabs trial
+  bed: a bed alone on a black frame, uploaded unlisted, Claims read ten minutes
+  later.
+
+**Prevention deferred**
+
+- A licence field on the audio schema, and a gate that refuses a bed without
+  one. A field records a claim; it does not test one, so the smoke test above
+  belongs beside it, not instead of it.
+- The `lanes` decision on the eight aswati beds. Emptying them leaves the
+  picker with nothing and halts production, and nothing in the library is
+  provably clean to fall back to.
+
+**Operator corrections of the assistant: 6**
+
+1. **«шунга яқин» and «почти равным ей»** - the inverted measure, in two
+   languages, neither flagged by a gate.
+2. **«рўбарў» narrates as «рўбаро»** - caught by ear, in the UZ moral.
+3. **«сипас» narrates as «сипос»** - caught by ear, in the TJ matn quote.
+4. **"Where is tag?"** - the YouTube pack was handed over without the Tags
+   field, three languages running.
+5. **«мебахшояд» against «мебахшам»** was flagged as an inconsistency and is
+   not one: S is direct speech in the first person and M speaks about Him. The
+   assistant raised a grammar question in a language it does not have.
+6. **Publishing order** - each language fully published before the next is
+   begun, restated when the assistant moved ahead.
+
+**The finding:** every fact in this set that was read from disk was right, and
+the one taken from memory was wrong - and that one reached a pattern, a
+registry note and a push. `render.json` records the bed for every leg and was
+sitting there the whole time. Nothing in the pipeline says that a claim about
+which asset a PUBLISHED reel carries must be read from that leg's sidecar
+before it is written down. The tracker rows for this set were therefore built
+column by column from `render.json`, ffprobe and the library row, which is how
+the three wrong beds in the assistant's own notes were found at all.
+
+---
