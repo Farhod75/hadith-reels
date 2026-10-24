@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf9fa1/lgQV6wd6mIyTXHU1PSMvE_output.mp4",
+    "name":  "t3540-earth",
+    "image":  "out\\refs\\t3540-earth-2.jpg",
+    "file":  "out\\backgrounds\\new\\t3540-earth.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-24T05:00:35.8221137Z",
+    "size_bytes":  24204034,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "gentle subtle motion, fine sand drifting low across the plain, clouds moving slowly above the far horizon, light shifting gradually, no camera movement",
+    "request_id":  "01a16c48-3c39-7760-9d19-498668b782e1",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-24T05:06:10.1194543Z",
+    "mode":  "image-to-video"
+}

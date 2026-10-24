@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aafaea4/VGW4LeWydkD2c0oLloGSp_output.mp4",
+    "name":  "t3540-rain",
+    "image":  "out\\refs\\t3540-rain-2.jpg",
+    "file":  "out\\backgrounds\\new\\t3540-rain.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-24T15:40:32.0753285Z",
+    "size_bytes":  22699914,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "gentle subtle motion, rain falling steadily through the frame, the white cloud drifting slowly, the rainbow holding steady and unchanged in place, light shifting gradually across the plain below, no camera movement",
+    "request_id":  "01a16e92-1d86-7573-9663-9d546392cfd4",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-24T15:47:21.1219413Z",
+    "mode":  "image-to-video"
+}

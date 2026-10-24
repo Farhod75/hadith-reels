@@ -279,7 +279,11 @@ would have caught the set on the day it shipped.
 1. **This step (Claude):** hadith text -> scene-prompt JSON (above).
 2. **Human review:** approve/edit the JSON (the religious gate).
 3. **Kling (shipped):** each approved `prompt` -> a 10s clip via `generate-scene.ps1`
-   (pass `-Duration 10`; it defaults to 5). Model is Kling 2.6 Pro.
+   (pass `-Duration 10`; it defaults to 5). Model is Kling 3.0 Pro since
+   2026-10-11 - it casts physically coherent directional light where 2.6 gave a
+   flat warm patch, and it reads motion instructions more aggressively, so phrase
+   camera moves conservatively. 2.6 Pro stays reachable with `-Model` for a scene
+   that wants less movement. `generate-scene.ps1` carries the current rates.
 4. **Assembly:** the clips replace the random-Kaaba pick in `render-reel.ps1`'s Step 6 —
    everything after (narration concat, subtitle review, nasheed mix, final merge) is the
    SAME proven pipeline. So Pillar 2 reuses Pillar 1's back half.

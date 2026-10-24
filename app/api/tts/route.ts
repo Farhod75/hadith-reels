@@ -204,6 +204,12 @@ export async function POST(req: NextRequest) {
           //                The voice never changed, and the plan to replace
           //                Meisam with a native Tajik voice was built on a
           //                wrong diagnosis.
+          //                v4 ALSO: сипас->сипос, new 2026-10-24 (P303).
+          //                «сипос» is a different word - gratitude - and it
+          //                landed inside quoted divine speech. Fixed in the
+          //                TEXT («он гоҳ» / «баъд»): TTS_INSTRUCTIONS below
+          //                has not been called since P102, so there is no
+          //                lever here that leaves the text alone.
           //   UZ / Opa Johann  v3: етим->этим, Оқ->ўқ
           //                    v4: both correct — AND емоқ->эмоқ, new.
           // That last line is why this is a switch, not a cure. Word-initial

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf9fc2/tAYPi4dLjlzUSkMeQI3F7_output.mp4",
+    "name":  "t3540-mercy",
+    "image":  "out\\refs\\t3540-mercy-v2-2.jpg",
+    "file":  "out\\backgrounds\\new\\t3540-mercy.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-24T05:06:12.8900547Z",
+    "size_bytes":  27076466,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "gentle subtle motion, the green grass rippling in a soft breeze, the sun rising almost imperceptibly at the horizon, light warming across the meadow, the standing figure remains completely still and faces away throughout, never turning, never looking back, no camera movement",
+    "request_id":  "01a16c4d-60e5-75b1-ab56-c1f390e7aaed",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-24T05:12:01.4169689Z",
+    "mode":  "image-to-video"
+}

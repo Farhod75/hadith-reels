@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf9f3f/xJ2BloLLXS2l5_E8NJj-W_output.mp4",
+    "name":  "t3540-dua",
+    "image":  "out\\refs\\t3540-dua-1.jpg",
+    "file":  "out\\backgrounds\\new\\t3540-dua.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-24T04:44:02.6727670Z",
+    "size_bytes":  8953072,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "gentle subtle motion, the raised hands held steady in supplication, a faint breeze moving the sleeve edges, dawn light warming slowly over the dunes, hands never lowered, no camera movement",
+    "request_id":  "01a16c39-14b5-7eb1-a440-0655b478d492",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-24T04:48:59.1549407Z",
+    "mode":  "image-to-video"
+}

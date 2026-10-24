@@ -12237,3 +12237,137 @@ whenever the translator moves. `verify-candidates.py` deliberately untouched -
 the production gate was not modified to carry out a measurement.
 
 ---
+## PATTERN 300: a transfer reported success and left the previous version in place
+
+`device_commit_files` returned the destination path under `written`, with
+nothing under `rejected`. The file on disk was the PREVIOUS version. The
+corrected Russian, Uzbek and Tajik translations were then read from that stale
+file and written to the row.
+
+**The write verified itself correctly.** A read-back compares the destination
+against what the script intended to write, and the script's intention came from
+the same stale bytes. A read-back catches a write that failed; it cannot catch a
+source that was wrong. `audit-library` passes both versions identically, because
+the uncorrected text is flawless Uzbek - just not the text that was approved.
+
+Caught by `derive-uzbek-latin.ts` echoing the source Cyrillic in its dry run
+with the corrected word visibly absent. An intermediate output read by eye, not
+a gate. There was no reason it had to be noticed.
+
+**Three latches, applied for the rest of the set:**
+  1. a new filename on every transfer - never overwrite a path a previous
+     attempt used, so a stale read cannot masquerade as a fresh one;
+  2. SHA-256 computed here and compared against the destination after the
+     transfer, which is what actually detects the mechanism;
+  3. a pre-flight assertion naming the specific strings that must be present
+     in the SOURCE before any write.
+
+The third would have refused the first attempt. The first two make the failure
+visible instead of silent. Used today on `out/patch-tj-3540.py`, where the hash
+matched byte for byte before it was allowed to run.
+
+---
+
+## PATTERN 301: Content ID found the owner of a royalty-free bed, and `verified` never meant licensed
+
+#3540 EN was blocked GLOBALLY on YouTube. The claim named "The Motion Wave" by
+Abdullaerh Dee, owner Jungle Entertainment Ventures, type Audio. That is
+`vocal-nasheed-02.mp3`, whose registry note reads "Pixabay, I_read_quran". The
+uploader was not the rights holder, Pixabay served it as royalty-free anyway,
+and Content ID found the real owner.
+
+**The hole is structural, not clerical.** The audio schema has no licence field.
+`verified: true` on an audio entry means a human listened to it; it has never
+meant anything about rights. So a bed whose entire provenance is "downloaded
+from an aggregator" passes every gate this project has, and the failure surfaces
+only after publication, on the platform, retroactively, across every reel that
+ever used it. Eleven published reels carry this one: R030, R041, R046, R056,
+R061, R064, R071, R076, R079, R085, R090.
+
+No dispute filed. Disputing means asserting rights we do not have.
+
+**Withdrawn by two independent latches**, because one alone has failed before:
+`lanes: []`, which is the registry gate's own definition of retired, and moved
+into `out/backgrounds/_claimed/`, since the picker globs `out/backgrounds/*.mp3`
+at the top level only. `_claimed` rather than `_retired` on purpose - `_retired`
+holds beds pulled for CONTENT reasons, and the distinction decides what happens
+to the reels already carrying it.
+
+**What the 16 remaining adults beds actually rest on:** eight `aswati-*` with a
+perpetual commercial licence and the certificate on disk; six Pixabay
+`vocal-nasheed-01, 03, 04, 05, 06, 07` sharing the withdrawn one's provenance,
+suspected by association and NOT proven, so not withdrawn; and
+`light-of-my-heart-bg.mp3` and `path-to-jannah-bg.mp3` with no recorded source
+at all.
+
+Until the schema carries a licence field and the gate refuses a bed without one,
+"royalty-free" from an aggregator is an uploader's unverified claim, not a
+licence.
+
+---
+
+## PATTERN 302: a comma list passed through Start-Process arrives as one string
+
+Renders outlast the bridge's ~60s, so they run detached via
+`Start-Process powershell ... -RedirectStandardOutput`. Passing the scene list
+through `-ArgumentList` with `-File` handed PowerShell one quoted token, so the
+`[string[]]` parameter bound an array of ONE element whose single member was the
+whole comma-separated list.
+
+The log said `stitching 1 ordered scene clips`, then failed with the entire list
+printed as one missing filename:
+
+    FAILED: scene clip not found in out\backgrounds\new\normalized\ or
+    out\backgrounds\new\: t3540-dua.mp4,t3540-light-push.mp4,...
+
+which reads as six missing clips and is one mis-bound parameter. All six files
+were present.
+
+Interactively `-Scenes a.mp4,b.mp4` splits, because the PowerShell PARSER splits
+it before binding. `-ArgumentList` quotes each element it is given, so nothing
+splits.
+
+**Fix:** launch with `-Command` and the whole invocation as a single string,
+which PowerShell parses exactly as if typed. `-File` stays fine for parameters
+whose values are single tokens.
+
+**Why it was diagnosable at all:** the script printed the count it had bound.
+A detached run's log is the only witness it has, so any step that takes a list
+should print how many items it got.
+
+---
+
+## PATTERN 303: there is no invisible fix for a mispronunciation
+
+`eleven_v4` / Meisam read Tajik «сипас» (then) as «сипос» (gratitude) in the
+#3540 narration - a different word, inside quoted divine speech.
+
+**The project appears to have a lever for this. It is dead.**
+`TTS_INSTRUCTIONS` in `app/api/tts/route.ts` carries per-language phonetic
+instruction strings, including a Tajik entry about vowel quality written for
+exactly this a->o class. L73 says it outright: "RETAINED FOR REFERENCE ONLY -
+no longer called". It was written for OpenAI `gpt-4o-mini-tts` and nothing has
+called it since P102 moved UZ/TJ to ElevenLabs. The request body carries `text`,
+`model_id` and `voice_settings`, nothing else; `cleanForTTS` expands the
+ligatures and strips markdown; there is no pronunciation dictionary.
+
+**So the only lever is the text - and where the text sits decides the cost.**
+The Uzbek «рўбарў»->«юзма-юз» fix was free because it was in the derived
+moral. This one was in the matn quote, and `check-draft-sync` (P282) compares
+the S block against `text_<lang>` in the DATABASE - so the row moves with the
+narration, and the published caption moves with the row. One mispronounced word:
+a re-narration, a `patch_library_row` by uuid, and a caption recount.
+
+**The replacement has to survive the surrounding grammar.** «баъд» was chosen
+for both occurrences and collides at the first: «баъд аз» is the preposition
+pair "after", so «баъд аз Ман омурзиш хоҳӣ» reads "after Me you ask
+forgiveness". «он гоҳ» at the first, «баъд» at the second.
+
+**And this is a v4 defect.** The voice log at L202 records TJ/Meisam failing
+атри->отри, Даре->Доре, Марде->Мардэ on v3 and getting all three right on
+v4. «сипас»->«сипос» is the same class, new on v4 - which is exactly what
+L209-215 says to expect: a model change re-rolls WHICH words fail, it does not
+end the class. Added to that log so the next model switch re-auditions it.
+
+---
+

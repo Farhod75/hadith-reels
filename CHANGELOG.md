@@ -1,3 +1,75 @@
+## [2026-10-24a] - #3540 across four languages; a claimed nasheed withdrawn (P300-P303)
+
+### Changed
+- **Jami at-Tirmidhi #3540 extended from one clause to the full three-part
+  matn** in all six fields. The stored text was only the first address; the
+  hadith escalates twice more, and the third - sins nearly filling the earth,
+  met by forgiveness of the same measure - is the line the reel is built on.
+  Arabic verbatim from the source and confirmed a contiguous substring of it;
+  English is sunnah.com's published translation verbatim; Russian, Uzbek and
+  Tajik are the operator's. `text_uzbek_latin` derived with
+  `derive-uzbek-latin.ts`, never hand-written (D4).
+- **قُرَاب restored in all three Cyrillic translations.** The word means nearly
+  the fill of a thing, not the full fill. English kept it ("nearly as great as
+  the earth"); Russian, Uzbek and Tajik had all flattened it to "filling the
+  earth", which claims more than the Arabic does. Now «почти» / «қаријб» /
+  «қарибан». Found by `grok-4.7` in the P299 probe - `gemini-4-argon` and
+  `gpt-6.1-sol` passed all three 4/4 at HIGH confidence.
+- **The measure clause corrected in UZ and RU after the operator read it back.**
+  «шунга яқин» and «почти равным ей» both say the forgiveness falls SHORT
+  of the sins, inverting the hadith. The near-ness belongs to the sins, not to
+  the forgiveness.
+- **TJ «сипас» -> «он гоҳ» / «баъд»** (P303), because the voice read it as
+  «сипос» - gratitude - inside the quoted divine speech. `text_tajik` patched
+  by uuid to match, 466 -> 466 chars, and the row checked letters-only against
+  the narration rather than against a retyping.
+- **`animated-reel-scene-prompts.md` named Kling 2.6 Pro as the current model.**
+  The script default moved to 3.0 Pro on 2026-10-11. Section 6 corrected; the
+  2.6 references in section 7 are left, being a record of a decision already
+  taken.
+- **`vocal-nasheed-02.mp3` withdrawn** (P301) to `out/backgrounds/_claimed/`
+  with `lanes: []`, after a YouTube Content ID block. Not `_retired`: that holds
+  beds pulled for content reasons, and this is about rights.
+
+### Added
+- **Six `t3540-*` scene clips registered and verified**, all 1080x1920 / 24fps /
+  10.04s / no audio stream. A sixth was needed for the Uzbek leg: Uzbek TTS
+  reads the same matn ~22% slower than English, and `-FitScenes` refused at
+  11.93s per clip against 10.042s available. Measured by running the render, not
+  estimated, before asking for the money. `t3540-light-push.mp4` is a P293
+  camera push-in on a frame the generator would not animate (delta 0.83 -> 10.01).
+  The Tajik leg reused all six at 9.689s and cost nothing.
+
+### Fixed
+- **P300** - a file transfer reported success and left the previous version in
+  place; the corrected translations were written from the stale file and the
+  write verified itself correctly against it.
+- **P301** - `verified` on an audio entry means a human listened, never that the
+  bed is licensed, and the schema has no licence field at all.
+- **P302** - a comma-separated `-Scenes` list passed through `Start-Process
+  -ArgumentList` with `-File` bound as a single string; the log said "stitching
+  1 ordered scene clips" and reported six present files as one missing one.
+- **P303** - `TTS_INSTRUCTIONS` has been dead code since P102, so a
+  mispronunciation can only be fixed in the text, and a word inside the matn
+  quote drags the library row and the caption with it.
+- **A stale `draft.txt` blocked the EN render through my own P297 gate**, whose
+  advice was backwards: the draft was stale, not the audio. Re-synced byte for
+  byte from the narration sidecars, twice, rather than retyped.
+
+### Verified
+- `verify-matn-source` 1.00 FOUND on the extended Arabic; `audit-library --row
+  3540 --strict` 0 high, 0 warn, 0 info; grade uncontested across Shakir,
+  al-Albani, Bashar Awad and Zubair Ali Zai, with at-Tirmidhi's gharib note
+  recorded as a description of the isnad's singularity rather than a weakening.
+- `check-draft-sync` clean on every leg before its render. Six RU subtitle
+  corrections against English's two, all caught by `stt-validate`, including a
+  P298 divine-pronoun cue; cue 1 left lowercase deliberately, the Prophet's
+  pronoun being the distinction P298 hands to a human.
+
+### Published
+- EN, RU, UZ, TJ to Telegram, Instagram, YouTube Shorts and TikTok, one language
+  fully published before the next was begun. Spend on the set: $7.44.
+
 ## [2026-10-23f] - a model probe, and what four verifiers missed (P299)
 
 ### Added

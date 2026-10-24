@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-22",
+  "updated": "2026-10-24",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -35,15 +35,6 @@
       ],
       "verified": true,
       "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified."
-    },
-    "vocal-nasheed-02.mp3": {
-      "classification": "vocal",
-      "lanes": [
-        "kids",
-        "adults"
-      ],
-      "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed."
     },
     "vocal-nasheed-03.mp3": {
       "classification": "vocal",
@@ -209,6 +200,12 @@
       "lanes": [],
       "verified": true,
       "notes": "RETIRED. Lute, drums. Used on R027 (published)."
+    },
+    "_claimed/vocal-nasheed-02.mp3": {
+      "classification": "vocal",
+      "lanes": [],
+      "verified": true,
+      "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed. CLAIMED AND WITHDRAWN 2026-10-24: YouTube Content ID blocked the #3540 EN reel GLOBALLY on this audio - \"The Motion Wave\", Abdullaerh Dee, owner Jungle Entertainment Ventures. The Pixabay uploader was not the rights holder. No dispute filed: disputing means asserting rights we do not have. Moved to _claimed/ and lanes emptied, so neither the picker nor the gate can reach it. Eleven published reels carry it - R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 - and the operator's decision is to re-record the bed only for whichever of those YouTube actually blocks, and only for the YouTube copy; Telegram, Instagram and TikTok are left as published. The other six Pixabay beds (vocal-nasheed-01, 03, 04, 05, 06, 07) share the provenance and are NOT yet withdrawn - suspected by association, not proven."
     }
   },
   "mascots": {
@@ -975,6 +972,60 @@
       "verified": true,
       "notes": "MODE B. Dawn light across the same empty prayer mat. No figures. FLUX 2 still ad1488-dawn-N.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: dust motes drifting slowly through the warm light, fringe stirring faintly, dawn light strengthening almost imperceptibly, camera still. Probed 10.04s / 1080x1920 / 24fps / audio:0. Watched end to end by the operator 2026-10-22: MODE B held, no never-depict content, era plausible. Sunan Abu Dawud #1488, R138-.",
       "prompt_sidecar": "assets/scene-prompts/ad1488-dawn.json"
+    },
+    "t3540-dua.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Weathered hands raised open in supplication, dark silhouette against a pale dawn sky over desert dunes. No face, no figure beyond the forearms - the matn's subject is 'O son of Adam', so an anonymous human act is permitted and is closer to the text than a landscape. FLUX 2 still t3540-dua-1.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: hands held steady, faint breeze at the sleeve edges, dawn light warming, static camera. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 10.31 (P293 method). Watched end to end by the operator 2026-10-24. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-dua.json"
+    },
+    "t3540-light-push.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. A woven prayer mat on a stone floor facing a plain mud-brick wall, warm morning light from a high side window. No people. The first still had the mat facing an open doorway with the light pouring through it, which reads as praying toward the door - the operator caught it and the scene was regenerated with the mat to a blank wall and the light from the side. POST-PROCESSED, P293: the Kling output t3540-light.mp4 came back at frame delta 0.47, below the 0.83 that got t2307-mat rejected and far below the 5.05 of the quietest shipped clip - effectively a still. Motion added in post rather than paying for a re-roll (P108): scale=2160:3840:flags=lanczos,zoompan=z='min(1+0.00028*on,1.07)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=24 - a 7% push-in over 10s on an upscaled copy. Delta 0.47 -> 10.01. Checked what the zoom crops: the mat stays fully in frame throughout; only the window edge leaves, and the window is not the subject. The untouched Kling original is kept at t3540-light.mp4 and is deliberately NOT registered - the push version is the asset that ships. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Watched end to end by the operator 2026-10-24. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-light.json"
+    },
+    "t3540-clouds.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. A towering cloud mass with a veil of rain beneath it over an empty desert plain. No figures. Carries the matn's second address - sins reaching the clouds of the sky - which is the hadith's own image, not an invented simile. FLUX 2 still t3540-clouds-2.jpg -> Kling v3 Pro i2v 10s, generate_audio false. Recorded motion: cloud mass drifting slowly, rain veil shifting, faint wind on the plain, static camera. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 5.04, level with t2307-dusk at 5.05. Watched end to end by the operator 2026-10-24. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-clouds.json"
+    },
+    "t3540-earth.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. An immense desert plain to a distant horizon under a heavy sky. No figures. Carries the third address - sins nearly filling the earth. FLUX 2 still t3540-earth-2.jpg -> Kling v3 Pro i2v 10s, generate_audio false. Recorded motion: sand drifting low across the plain, cloud moving above the horizon, static camera. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 8.48 - it looked the most static of the five by eye and measured second most alive, which is why the number is taken and not the impression. Watched end to end by the operator 2026-10-24. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-earth.json"
+    },
+    "t3540-mercy.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. A lush green meadow at sunrise, the earth's horizon curving at the left and right edges as it does seen from altitude, one distant figure from behind in an undyed wool robe and plain head cloth. No face. The curvature is the operator's concept and carries qurab al-ard, the measure of the earth, which the matn names twice. First generation dressed the figure in a modern cut; regenerated with period dress. FLUX 2 still t3540-mercy-v2-2.jpg -> Kling v3 Pro i2v 10s, generate_audio false. Recorded motion: grass rippling, sun rising imperceptibly, and an explicit instruction that the figure stays still and faces away and never turns - image-to-video can rotate a figure, and a turn here would put a face in frame. Checked at 0.2 / 5.0 / 9.6s: facing away in all three. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 2.18, BELOW the quietest shipped clip. A P293 push-in was NOT applied: it would crop the curved horizon at the edges, which is the whole point of the shot. The operator watched the assembled reel and accepted it at 2.18, so the push-in is declined deliberately and not pending. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-mercy.json"
+    },
+    "t3540-rain.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B. Rain falling from a cumulus mass onto an empty desert plain, bright sunlit white cloud on the left, a clear rainbow arcing through the rain on the right. No figures. Sixth clip, added for the Uzbek leg and reused by the rest of the set. It sits FOURTH in the order - dua, light-push, clouds, rain, earth, mercy - because the matn's second address resolves there: 'then you sought forgiveness from Me, I would forgive you'. The hadith escalates and resolves twice, and the clip order now follows that rhythm rather than running two heavy skies back to back. The rainbow is the operator's concept. Visual metaphor is permitted by the scene spec's Atmospheric / symbolic palette; the Arabic asserts no simile, so P111 r14 is untouched. FLUX 2 still t3540-rain-2.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: rain falling steadily, the white cloud drifting, the rainbow explicitly instructed to hold steady and unchanged - a rainbow that drifts or flickers reads as an artefact. Checked at 0.2 / 5.0 / 9.6s: it holds. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 8.18 (P293 method), second liveliest of the six. Watched end to end by the operator 2026-10-24, in the assembled Uzbek reel. Jami at-Tirmidhi #3540.",
+      "prompt_sidecar": "assets/scene-prompts/t3540-rain.json"
     }
   }
 }

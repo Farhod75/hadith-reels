@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0aaf9f5a/-MvytSF_P5DxmwtBRIyWk_output.mp4",
+    "name":  "t3540-light",
+    "image":  "out\\refs\\t3540-light-v2-3.jpg",
+    "file":  "out\\backgrounds\\new\\t3540-light.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-24T04:49:00.5067178Z",
+    "size_bytes":  26184903,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "gentle subtle motion, fine dust motes drifting slowly through the shaft of window light, the patch of light creeping almost imperceptibly across the stone floor, the mat completely still, no camera movement",
+    "request_id":  "01a16c3d-a01d-7f53-836c-b8d98cae5708",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-24T04:54:39.5544475Z",
+    "mode":  "image-to-video"
+}
