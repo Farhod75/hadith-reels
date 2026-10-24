@@ -12160,3 +12160,80 @@ lanes have no subtitles to check.
 Regression: reconstructing the pre-fix cue 5 fires it; the shipped SRT is clean.
 
 ---
+
+## PATTERN 299: four verifiers agreed, and the one that disagreed was right
+
+Stage 3 runs two passes because two uncorrelated models catch more than one.
+This measured what "uncorrelated" is worth: four models from four companies
+over #3540's four translations, four runs each - 64 calls through Abacus
+RouteLLM, which is OpenAI-compatible and therefore reaches Gemini, Qwen, Grok
+and GPT through one code path, one body and one parser. Adding a candidate is
+a model id, not an integration.
+
+The text was the operator's own, already reviewed and already in the row.
+
+  gemini-4-argon   16/16 pass
+  gpt-6.1-sol      16/16 pass        (the incumbent pass B, as the control)
+  grok-4.7          7 fail, 4 transport errors
+  qwen3.8-max       8/16 unparseable
+
+**The unanimous pass was wrong.** Our English read "whatever you have done" for
+عَلَى مَا كَانَ فِيكَ, which is "for whatever WAS IN you" - a state, not a deed.
+The Arabic does not say the person did anything. Sunnah.com's published
+translation reads "despite whatever may have occurred from you" and does not
+make that move. gemini-4-argon and gpt-6.1-sol both passed it at HIGH
+confidence, four runs each, eight calls, no issue raised.
+
+grok-4.7 named it in every run that completed, in English and in Russian, and
+PASSED the Tajik - which renders the same phrase «ҳар чӣ дар ту бошад», "in
+you", literally. It was not guessing. It discriminated between three renderings
+of one phrase on the basis the Arabic actually supports.
+
+**Sensitivity and gate-fitness are different properties, and this is the first
+case where they point opposite ways.** grok-4.7 also failed the Russian 4/4:
+«что бы за тобой ни было» is the Russian idiom for what a person carries, and
+the preposition differs without the meaning differing. P275 disqualified
+gpt-6-luna for false-failing clean Russian 4 of 4. By that rule grok-4.7 cannot
+be pass B - it would block nearly every Russian row. By the same evidence it is
+the only one of the four that read the Arabic closely enough to find a real
+defect.
+
+So it is not a gate, and it is not noise either. Recorded here rather than
+wired in: a reader that blocks everything is not a gate, and a finding this
+good should not be discarded along with the model that produced it.
+
+**What this answers.** If `gpt-6.1-sol` becomes the TRANSLATOR - and it already
+has been, off-platform, for at least two rows - it cannot also be pass B. D2
+does not require the verifier to remember writing the text. A model accepts the
+constructions it produces, so a translator and a verifier drawn from the same
+model fail together: correlated blind spots, not recognition. `gemini-4-argon`
+is the measured replacement - Google, a third company, indistinguishable from
+the incumbent across 16 calls.
+
+**qwen3.8-max is a format failure, not a capability failure.** It answers with
+its reasoning in prose and the JSON never arrives, so `_parse` returns error.
+In one run it also mis-transcribed the Arabic it was quoting, لَكِ for لَكَ.
+Fixing the format means changing the prompt, and this gate's own comment says
+prompt divergence makes disagreement uninterpretable. Not pursued; recorded so
+it is not re-litigated.
+
+**Built:** `scripts/probe-models.py`. It imports `SYSTEM`, `user_msg` and
+`_parse` from `verify-candidates.py` rather than copying them - two copies
+would drift and every number it printed would then be anchored to nothing. It
+writes only to `out/`, touches no row, and says on exit that it decides nothing
+(G1). Four runs per model per language by default, because P272 and the terra
+result both say one run cannot show noise. `--from-json` scores proposed text
+before it is written, which is the P264 shape applied to model selection.
+
+Two smaller things the probe taught. `max_tokens` must match pass_a's 3000: a
+reasoning model at 120 spent the budget thinking and returned a two-character
+fragment, which looks like a broken model and is a broken budget. And the
+frontier of THIS file is not greppable as `P\d{3}` - the headings read
+`PATTERN 299`, so a search for `P299` finds nothing. That very search reported
+P286 as the frontier and nearly put a wrong number on this entry.
+
+**Status:** probe built and run. `gemini-4-argon` cleared as pass B for
+whenever the translator moves. `verify-candidates.py` deliberately untouched -
+the production gate was not modified to carry out a measurement.
+
+---

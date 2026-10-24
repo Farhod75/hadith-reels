@@ -1,3 +1,48 @@
+## [2026-10-23f] - a model probe, and what four verifiers missed (P299)
+
+### Added
+- **`scripts/probe-models.py`** (P299) - measures a model as a Stage 3 pass
+  before it is trusted as one. Imports `SYSTEM`, `user_msg` and `_parse` from
+  `verify-candidates.py`, so the numbers are anchored to the gate's own prompt
+  rather than to a second copy that would drift. Writes only to `out/`, touches
+  no row, decides nothing (G1). Four runs per model per language by default
+  (P272). `--from-json` scores proposed text before it is written, which is
+  P264's shape applied to model selection. Every vendor is reached through
+  Abacus RouteLLM, which is OpenAI-compatible, so adding a candidate is a model
+  id rather than an integration.
+
+### Measured
+- 64 calls over #3540's four translations, on text the operator had already
+  reviewed. `gemini-4-argon` 16/16 pass; `gpt-6.1-sol` 16/16 pass (the
+  incumbent, as the control); `grok-4.7` 7 fail and 4 transport errors;
+  `qwen3.8-max` 8/16 unparseable - it answers in prose, which is a format
+  failure, not a capability one.
+- **`gemini-4-argon` is cleared as pass B** for whenever the translator moves
+  off Anthropic. A third company, and indistinguishable from the incumbent
+  across 16 calls. `verify-candidates.py` was not modified.
+- **The unanimous pass was wrong.** Our English read "whatever you have done"
+  for عَلَى مَا كَانَ فِيكَ - "for whatever was IN you", a state, not a deed.
+  Both clean models passed it at HIGH confidence; only `grok-4.7` named it, and
+  it correctly PASSED the Tajik, which renders the phrase literally. grok is
+  still not usable as pass B - it failed the Russian 4/4 on an idiom that
+  carries the meaning - which is the point of the entry: sensitivity and
+  gate-fitness came apart for the first time.
+- Report preserved at `out/model-probe-calibration-3540-short.{txt,json}`.
+
+### Removed
+- **Jami at-Tirmidhi #1899 deleted from `hadith_library`** (72 → 71 rows).
+  at-Tirmidhi records the mawquf version as أصح while Shakir and al-Albani
+  grade the marfu' sahih. That is a contested grade, and the #5486 precedent
+  says a channel publishing only sahih and hasan cannot carry one. Never used
+  for a reel. Deleted by uuid under the P290 rule, with a snapshot taken first
+  at `out/deleted-1899-20261024T000631Z.json`.
+
+### Noted
+- `#6871` was proposed as a candidate twice in one session before
+  `fix_patterns.md` and `OPEN_ITEMS.md` were read, both of which already record
+  it as #2654's twin and #2654 as published. Nothing in code enforces that
+  list - selection reads `list-library.py`, which knows nothing about it.
+
 ## [2026-10-23e] - two gates from the backlog (P297, P298)
 
 ### Added
