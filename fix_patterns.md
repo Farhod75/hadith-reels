@@ -12268,41 +12268,79 @@ matched byte for byte before it was allowed to run.
 
 ---
 
-## PATTERN 301: Content ID found the owner of a royalty-free bed, and `verified` never meant licensed
+## PATTERN 301: the licence certificate covered the platform, not the recording
 
-#3540 EN was blocked GLOBALLY on YouTube. The claim named "The Motion Wave" by
-Abdullaerh Dee, owner Jungle Entertainment Ventures, type Audio. That is
-`vocal-nasheed-02.mp3`, whose registry note reads "Pixabay, I_read_quran". The
-uploader was not the rights holder, Pixabay served it as royalty-free anyway,
-and Content ID found the real owner.
+#3540 EN was blocked GLOBALLY on YouTube. Studio's claim overview reads "The
+Motion Wave", Abdullaerh Dee, Copyright, Audio - "Blocking the video globally
+and making it ineligible to earn", with no strike against the channel.
 
-**The hole is structural, not clerical.** The audio schema has no licence field.
-`verified: true` on an audio entry means a human listened to it; it has never
-meant anything about rights. So a bed whose entire provenance is "downloaded
-from an aggregator" passes every gate this project has, and the failure surfaces
-only after publication, on the platform, retroactively, across every reel that
-ever used it. Eleven published reels carry this one: R030, R041, R046, R056,
-R061, R064, R071, R076, R079, R085, R090.
+**Which bed, established by elimination rather than by memory.** That reel
+carries three sources of sound: our ElevenLabs narration, six scene clips, and
+one music bed. The six clips were each probed at `audio streams 0` when they
+were registered. `render.json` for the EN leg names the bed:
+`aswati-Steady-Motivation.mp3`. The file has not been written since 01:28 and
+the upload came after it. So Content ID matched the ASWATI bed.
 
-No dispute filed. Disputing means asserting rights we do not have.
+**The registry said that bed was safe, and said so on the strength of a
+certificate.** Its note records an Aswati Content License of 21 June 2026 -
+worldwide, non-exclusive, royalty-free, perpetual, commercial and monetized use
+permitted - with the certificate on disk in `out/backgrounds/licenses/`.
 
-**Withdrawn by two independent latches**, because one alone has failed before:
-`lanes: []`, which is the registry gate's own definition of retired, and moved
-into `out/backgrounds/_claimed/`, since the picker globs `out/backgrounds/*.mp3`
-at the top level only. `_claimed` rather than `_retired` on purpose - `_retired`
-holds beds pulled for CONTENT reasons, and the distinction decides what happens
-to the reels already carrying it.
+**The ID3 tags say what the files are.** All eight, read with ffprobe:
 
-**What the 16 remaining adults beds actually rest on:** eight `aswati-*` with a
-perpetual commercial licence and the certificate on disk; six Pixabay
-`vocal-nasheed-01, 03, 04, 05, 06, 07` sharing the withdrawn one's provenance,
-suspected by association and NOT proven, so not withdrawn; and
-`light-of-my-heart-bg.mp3` and `path-to-jannah-bg.mp3` with no recorded source
+    Gentle-Reflection      IQDAM NASHEED (1) (Instrumental) (Remix) (Remastered)
+    Heartfelt-Gratitude    soundcloud_1742523564_audio (Remix) (Remastered x2)
+                           (Backing Vocals) (Remix)
+    Peaceful-Contemplation conscious-nasheed (Remix)            artist: hm765
+    Steady-Motivation      13.9s Recording (Aug 10 @ 10:46 PM) (Remix)
+                           (Remastered x2)
+    Morning-Serenity       10.5s Recording (Aug 10 @ 10:57 PM) (Remix) (Remastered)
+    Focused-Determination  18.2s Recording (Aug 10 @ 10:43 PM) (Remix) (Remastered)
+    Victory-March          20.6s Recording (Aug 10 @ 11:12 PM) (Remix) (Remastered x2)
+    Rising-Hope            humming - 13_04_2025, 15.25 (Cover) (Remix) (Remastered)
+
+Seven carry `artist=marsadinstitute`, one a different uploader. One is a file
+pulled off SoundCloud and remixed twice. One is the instrumental of an existing
+named nasheed. Five are phone voice memos recorded between 22:43 and 23:12 on a
+single evening, run through "Remix" and "Remastered".
+
+This is a user-upload remix platform. The certificate licenses what the platform
+grants, which is its own terms of service; it cannot license rights in
+recordings the uploaders did not hold. Structurally identical to the Pixabay
+beds - an aggregator's assurance standing in for provenance - one layer up and
+with a certificate that made it look settled.
+
+**The schema has no licence field at all.** `verified: true` on an audio entry
+means a human listened to it. It has never meant anything about rights, and
+nothing in the pipeline asks where a bed came from. The failure is invisible
+until a platform asserts it, retroactively, across every reel that ever used
+the track.
+
+**CORRECTED 2026-10-24, and the correction is the second lesson.** The first
+version of this entry, written hours before the evidence, said the claim was on
+`vocal-nasheed-02.mp3` and listed the eleven reels carrying it as the exposure.
+That bed was withdrawn on the strength of it. The reasoning ran: a Content ID
+claim appeared, we have one bed with known-weak provenance, therefore it is that
+bed. `render.json` was sitting on disk the whole time and was not read, and the
+registry note and a pushed pattern both carried the wrong diagnosis into the
+repository. Withdrawing `vocal-nasheed-02` was not wrong on provenance grounds,
+but it was not the remedy for this, and the eleven reels were not the exposed
+set.
+
+**The actual exposure**, from the tracker's nasheed table, is every reel on an
+aswati bed - R114 through R143, roughly twenty - plus #3540 EN, UZ and TJ.
+Nothing in the library is provably clean: eight aswati beds are the above, seven
+Pixabay beds were uploaded by someone who was not the rights holder, and
+`light-of-my-heart-bg.mp3` and `path-to-jannah-bg.mp3` have no recorded source
 at all.
 
-Until the schema carries a licence field and the gate refuses a bed without one,
-"royalty-free" from an aggregator is an uploader's unverified claim, not a
-licence.
+**What a licence field cannot do, and what can.** A field records a claim; it
+does not test one. Both failures here were assurances taken at face value, and a
+third assurance is not the fix. The test that settles it is empirical and costs
+nothing: upload the bed alone as an unlisted video on the channel and read the
+Claims tab. Run before the bed enters the registry, that check would have caught
+this in October, and it is the gate this pattern asks for - alongside the field,
+not instead of it.
 
 ---
 

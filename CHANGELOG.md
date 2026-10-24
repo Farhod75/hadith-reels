@@ -1,3 +1,21 @@
+## [2026-10-24b] - P301 corrected: the claim was on an Aswati bed
+
+### Fixed
+- **P301 named the wrong bed.** The YouTube Content ID block on #3540 EN was
+  attributed to `vocal-nasheed-02.mp3` hours before the evidence was read. The
+  leg's `render.json` says `aswati-Steady-Motivation.mp3`, the reel file has not
+  been written since 01:28, and the six scene clips were each probed at `audio
+  streams 0` - so the matched audio is the Aswati bed by elimination. Pattern
+  rewritten, registry notes corrected on all nine affected entries.
+- **The Aswati provenance does not survive its own files.** ID3 tags read with
+  ffprobe: one SoundCloud rip remixed twice, one instrumental of an existing
+  named nasheed, five phone voice memos from one evening, seven under
+  `artist=marsadinstitute` and one under another uploader. The Content License
+  on disk grants the platform's terms, not rights in the underlying recordings.
+- **`lanes` left untouched on every bed.** Emptying the aswati lanes leaves the
+  picker with nothing and halts production; that is the operator's decision, not
+  a cleanup, and nothing in the library is provably clean to fall back to.
+
 ## [2026-10-24a] - #3540 across four languages; a claimed nasheed withdrawn (P300-P303)
 
 ### Changed
