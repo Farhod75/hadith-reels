@@ -1,3 +1,25 @@
+## [2026-10-25b] - the render records what it rendered, after rendering it
+
+### Fixed
+- **P249: both records were written at PICK time.** `.last-used.json` meant an
+  aborted render burned the slot - a bed counted as used by a reel that does
+  not exist. `<base>-render.json` is worse, because it is evidence: on
+  2026-10-24 it was what established which bed a PUBLISHED reel carried, after
+  a Content ID claim had been attributed to the wrong bed. A record that a
+  failed run can write is not evidence, and `-ValidateOnly` was rewriting it
+  while promising in its own output to write nothing - including during that
+  day's checks. Both moved to STEP 7b, after the merge returns 0 and after
+  P154's three checks that it produced a new file.
+- Verified both ways: hashing the sidecar either side of a `-ValidateOnly` run
+  shows it untouched, and a full render prints `recorded: ...` after the final
+  merge with a fresh timestamp.
+
+### Deferred
+- The picker still keys `.last-used.json` by LANE, so there is no per-set or
+  per-language rule and the #6570/#13 clash mechanism is live. That changes
+  what the picker CHOOSES rather than when it writes, and wants its own change
+  with someone watching. Recorded in OPEN_ITEMS rather than quietly half-fixed.
+
 ## [2026-10-25a] - a rights block on every bed, and a gate that reads it
 
 ### Added

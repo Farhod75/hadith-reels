@@ -9786,6 +9786,15 @@ check is measuring something else and will look correct while being wrong.
     existing `*-render.json` sidecars so it knows what the other languages of
     THIS reel already used instead of guessing from a single global slot.
 
+
+**STATUS 2026-10-25: the write timing is fixed, the keying is not.** Both the
+sidecar and `.last-used.json` moved to STEP 7b, after the merge returns 0 and
+after the three checks that it wrote a new file. `-ValidateOnly` now genuinely
+writes nothing - verified by hashing the sidecar either side of a run. A full
+render was then run end to end and `recorded: <base>-render.json` appears after
+the final merge, not minutes before it. The keying by lane is deliberately
+untouched and stays open in OPEN_ITEMS.
+
 ---
 
 ## PATTERN 250: The prompt that decides what is in the frame is the one nothing records

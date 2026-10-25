@@ -1130,7 +1130,7 @@ choice between stripping the terminal period in the wrapper (one place, affects
 all languages) or dropping it from the stored matn columns (many rows, and the
 matn is quoted source text). Not urgent; decide once rather than per reel.
 
-**P249 — the nasheed picker, now written up.** `.last-used.json` keeps one bed per
+**P249 — the nasheed picker. WRITE TIMING FIXED 2026-10-25; the KEYING is still open.** Both records now land in STEP 7b, after the final merge returns 0 and after P154's three checks that it produced a new file. An aborted render no longer burns the slot, and `-ValidateOnly` no longer rewrites a sidecar while promising to write nothing - which it had been doing, including during the checks run on 2026-10-24. That sidecar is evidence: it is what established which bed a published reel carried after a Content ID claim was attributed to the wrong one, and a record a failed run can write is not evidence. STILL OPEN: the state is keyed by LANE, so there is no per-set or per-language rule and the #6570/#13 clash mechanism is live. That changes what the picker CHOOSES rather than when it writes, so it wants its own change with someone watching; every recent set passes `-Nasheed` explicitly, so the selection path barely runs. Original note: `.last-used.json` keeps one bed per
 LANE and is written at pick time, so an aborted render burns the slot and a
 re-render of a published reel silently changes its bed while the sidecar and the
 tracker column are rewritten to match. No per-reel or per-language rule exists in

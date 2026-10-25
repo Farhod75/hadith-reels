@@ -255,8 +255,10 @@ if ($nasheeds.Count -ge 1) {
     $chosen = $pick.FullName
     $avoided = if ($last) { $last } else { 'none' }
     $state[$Style] = $pick.Name
-    try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
-    catch { Write-Host "  could not record last-used nasheed" -ForegroundColor DarkGray }
+    # P249: written HERE until 2026-10-25, at pick time. An aborted render then
+    # burned the slot - a bed counted as used by a reel that does not exist, and
+    # the next render avoided something nothing had ever shipped. Deferred to
+    # STEP 7b, after the merge returns 0.
   }
   # P251: the adults mix is ONE level for every bed (narration 1.4 / nasheed
   # 0.12, P171) and the beds are not one loudness. Measured 2026-10-16: the
@@ -291,30 +293,11 @@ if ($nasheeds.Count -ge 1) {
   # the only thing that knows; it writes it down, beside the output, now.
   # WriteAllText and not Set-Content -Encoding utf8: on PS 5.1 that writes a
   # BOM and this file is read back as JSON (P186).
-  try {
-    if (-not (Test-Path $workDir)) { New-Item -ItemType Directory -Force -Path $workDir | Out-Null }
-    $sidecar = [ordered]@{
-      nasheed   = (Split-Path $chosen -Leaf)
-      nasheedVol = $nasheedVol
-      scenes    = $Scenes
-      fitScenes = [bool]$FitScenes
-      style     = $Style
-      lang      = $Lang
-      slug      = $Slug
-      rendered  = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
-    } | ConvertTo-Json
-    # P228: WriteAllText is a .NET call, and .NET resolves a RELATIVE path
-    # against [Environment]::CurrentDirectory - which PowerShell does NOT
-    # update on Set-Location. PS cwd was the repo root while .NET cwd was
-    # the user profile, so every write went to C:\Users\<me>\out\work\...
-    # and threw. No reel has EVER had a render.json. Absolute path, always.
-    $sidecarPath = Join-Path (Resolve-Path $workDir).Path "$base-render.json"
-    [System.IO.File]::WriteAllText($sidecarPath, $sidecar,
-      (New-Object System.Text.UTF8Encoding($false)))
-    Write-Host "  nasheed recorded: $base-render.json" -ForegroundColor DarkGray
-  } catch {
-    Write-Host "  could not write $base-render.json: $($_.Exception.Message)" -ForegroundColor Yellow
-  }
+  # P249: the sidecar used to be written HERE, at pick time, and it is
+  # EVIDENCE - on 2026-10-24 it was what established which bed a published reel
+  # carried, after a Content ID claim had been attributed to the wrong one. A
+  # record a failed run can write is not evidence, and -ValidateOnly rewrote it
+  # while promising to write nothing. Moved to STEP 7b.
 
   # P117: asset lane gate. A bed approved for the other lane is a lookup
   # failure, not a judgement call - twice on 2026-08-15 the picker crossed lanes.
@@ -808,6 +791,53 @@ if (-not (Test-Path $reel)) { Die "final merge failed ($reel not created)" }
 $reelAgeMin = [int]((Get-Date) - (Get-Item $reel).LastWriteTime).TotalMinutes
 if ($reelAgeMin -gt 5) {
   Die "final merge wrote nothing - $reel is $reelAgeMin min old. ffmpeg returned 0 but produced no new file."
+}
+
+# --- STEP 7b: record what was actually rendered (P249) -----------------------
+# Everything below describes a file that now exists and was written by THIS
+# run: the merge returned 0, the reel is on disk, and it is newer than five
+# minutes (P154's three checks, immediately above).
+
+if ($chosen) {
+  # P201: the tracker has a Nasheed column per reel and the asset-reuse audit
+  # depends on it, but .last-used.json keeps ONE value per lane and the next
+  # render overwrites it. On the R110-R113 set three of the four bed names
+  # survived nowhere but a console buffer that was then closed. The picker is
+  # the only thing that knows; it writes it down, beside the output.
+  try {
+    if (-not (Test-Path $workDir)) { New-Item -ItemType Directory -Force -Path $workDir | Out-Null }
+    $sidecar = [ordered]@{
+      nasheed   = (Split-Path $chosen -Leaf)
+      nasheedVol = $nasheedVol
+      scenes    = $Scenes
+      fitScenes = [bool]$FitScenes
+      style     = $Style
+      lang      = $Lang
+      slug      = $Slug
+      rendered  = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+    } | ConvertTo-Json
+    # P228: WriteAllText is a .NET call, and .NET resolves a RELATIVE path
+    # against [Environment]::CurrentDirectory - which PowerShell does NOT
+    # update on Set-Location. PS cwd was the repo root while .NET cwd was
+    # the user profile, so every write went to C:\Users\<me>\out\work\...
+    # and threw. No reel has EVER had a render.json. Absolute path, always.
+    # WriteAllText and not Set-Content -Encoding utf8: on PS 5.1 that writes a
+    # BOM and this file is read back as JSON (P186).
+    $sidecarPath = Join-Path (Resolve-Path $workDir).Path "$base-render.json"
+    [System.IO.File]::WriteAllText($sidecarPath, $sidecar,
+      (New-Object System.Text.UTF8Encoding($false)))
+    Write-Host "  recorded: $base-render.json" -ForegroundColor DarkGray
+  } catch {
+    Write-Host "  could not write $base-render.json: $($_.Exception.Message)" -ForegroundColor Yellow
+  }
+
+  # The lane's last-used bed, for the avoid-a-repeat rule. Only when the picker
+  # actually drew one: with -Nasheed the operator chose, and an override should
+  # not steer the next random draw.
+  if ($state -and $stateFile) {
+    try { $state | ConvertTo-Json | Out-File -FilePath $stateFile -Encoding utf8 }
+    catch { Write-Host "  could not record last-used nasheed" -ForegroundColor DarkGray }
+  }
 }
 
 # --- STEP 8: verify ----------------------------------------------------------
