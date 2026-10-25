@@ -12342,6 +12342,19 @@ Claims tab. Run before the bed enters the registry, that check would have caught
 this in October, and it is the gate this pattern asks for - alongside the field,
 not instead of it.
 
+
+**STATUS 2026-10-25: the field and the gate landed.** Every audio entry now
+carries a `rights` block - status, source, basis, doubt, and a `content_id`
+result - and `audit-assets.py` reads it in one place used by both the gate and
+the picker. An observed claim blocks and is withheld from the picker's list;
+`unverified` passes and prints on every use, because nothing in the library is
+provably clean and the operator's decision is that production continues with
+the exposure visible. All 25 audio entries were backfilled as `unverified`:
+eight aswati, eight Pixabay, nine with no recorded source at all.
+`aswati-Steady-Motivation.mp3` is the only one carrying a recorded claim, so it
+is the only one blocked - 16 live beds became 15. The empirical check this
+entry asked for is written into `reel-creation-pipeline.md` under Audio policy.
+
 ---
 
 ## PATTERN 302: a comma list passed through Start-Process arrives as one string

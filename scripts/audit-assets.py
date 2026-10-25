@@ -76,6 +76,40 @@ def find_entry(reg, name):
     return None, None, None
 
 
+def rights_block_reason(section, entry):
+    """Why this asset may not be used, on RIGHTS grounds. None = no reason.
+
+    P301: `verified` on an audio entry means a human listened to it. It has
+    never meant licensed, and until 2026-10-25 the schema had no field that
+    could mean it. A bed whose whole provenance was "downloaded from an
+    aggregator" therefore passed every gate, and the failure surfaced on
+    YouTube, retroactively, across every reel that had used it.
+
+    This is the ONLY place that reads the block, so the gate and the picker
+    cannot disagree - the mistake P168 fixed for retirement and P121 for scene
+    clips, where the rule lived in one caller and not the other.
+
+    Audio only. An observed claim blocks because the outcome is known, not
+    suspected. 'unverified' does NOT block: nothing in the library is provably
+    clean and production continues by decision - see cmd_check, which says so
+    out loud on every use.
+    """
+    if section != 'audio':
+        return None
+    rights = entry.get('rights')
+    if not isinstance(rights, dict):
+        return ('no rights block. Record where it came from, what the claim to '
+                'use it rests on, and the Content ID result before using it.')
+    cid = rights.get('content_id') or {}
+    if cid.get('result') == 'claimed':
+        return 'Content ID has CLAIMED this audio. %s' % (
+            cid.get('evidence') or 'See the registry entry.')
+    if rights.get('status') == 'contested':
+        return 'rights are contested. %s' % (
+            rights.get('doubt') or 'See the registry entry.')
+    return None
+
+
 def cmd_check(reg, name, lane):
     section, key, entry = find_entry(reg, name)
     base = os.path.basename(name)
@@ -100,6 +134,19 @@ def cmd_check(reg, name, lane):
         print(f'  approved for:   {", ".join(lanes)}')
         print(f'  {entry.get("notes", "")}')
         return 1
+
+    reason = rights_block_reason(section, entry)
+    if reason:
+        print(f'BLOCKED: {base} - {reason}')
+        return 1
+
+    rights = entry.get('rights') or {}
+    if section == 'audio' and rights.get('status') != 'verified':
+        # Printed on EVERY use, deliberately. The exposure is recorded rather
+        # than hidden, and a line that appears on every render is the only
+        # honest way to carry an unproven licence.
+        print(f'  RIGHTS  {base}: {rights.get("status", "unknown")} - '
+              f'{rights.get("source", "source not recorded")}')
 
     if not entry.get('verified', False):
         print(f'OK (unverified): {base} - approved for {lane}, but no human '
@@ -225,6 +272,10 @@ def cmd_list(reg, lane, classification=None):
             if not isinstance(meta, dict):
                 continue
             if lane in (meta.get('lanes') or []):
+                # Silently skipped, not reported: stdout here is machine-read
+                # and a stray line breaks the caller. --check explains why.
+                if rights_block_reason(section, meta):
+                    continue
                 out.append(name)
     for name in sorted(out):
         print(name)

@@ -1,3 +1,39 @@
+## [2026-10-25a] - a rights block on every bed, and a gate that reads it
+
+### Added
+- **`rights` on every audio entry** (P301): status, source, basis, doubt, and a
+  `content_id` result. `verified: true` means a human listened to the file and
+  has never meant licensed; before this the schema had no field that could.
+  All 25 entries backfilled as `unverified` - eight aswati, eight Pixabay, nine
+  with no recorded source at all. Not one bed in the library is provably clean,
+  which is the honest reading rather than a pessimistic one.
+- **`rights_block_reason` in `audit-assets.py`**, read by BOTH `cmd_check` and
+  `cmd_list`. P168 moved retirement into the registry precisely because a rule
+  living in one caller and not the other meant an asset was drawn and then
+  refused, killing the render; a rights rule only the gate knew would repeat
+  it. A missing block blocks, an observed Content ID claim blocks and is
+  withheld from the picker's list, `contested` blocks, and `unverified` passes
+  while printing a RIGHTS line on every use.
+- **The Content ID check written into the pipeline** under Audio policy: build
+  a test file carrying the bed and nothing else, upload unlisted, read the
+  Claims tab, record the result, delete the video. Ten minutes, and the only
+  check in that section that is not somebody's assurance.
+
+### Changed
+- `aswati-Steady-Motivation.mp3` is blocked and withheld from the picker - the
+  one bed with a recorded claim. Live adults beds 16 -> 15. The other seven
+  aswati beds stay in circulation by the operator's decision; the exposure is
+  printed on every render rather than hidden.
+
+### Fixed
+- **The audio policy section claimed the library was "all Pixabay,
+  royalty-free, cleared for monetised use".** That is the belief that cost a
+  globally blocked reel. Corrected to point at the per-bed `rights` block.
+- **A KNOWN GAP that P168 closed** - lane separation described as filename
+  convention not enforced in code - was still standing in the same section. A
+  doc that overstates what is unsettled costs the same as one that overstates
+  what is settled: the next reader stops looking.
+
 ## [2026-10-24c] - scene clips validated in Step 0
 
 ### Changed

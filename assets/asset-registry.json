@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -16,7 +16,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Vocal with frame drum only, no lute or synth. Daf carries the strongest permitting position among instruments."
+      "notes": "Vocal with frame drum only, no lute or synth. Daf carries the strongest permitting position among instruments.",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "path-to-jannah-bg.mp3": {
       "classification": "vocal+daf",
@@ -25,7 +36,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Vocal plus drums, no melodic instruments."
+      "notes": "Vocal plus drums, no melodic instruments.",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-01.mp3": {
       "classification": "vocal",
@@ -34,7 +56,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified."
+      "notes": "Pixabay, I_read_quran. Downloaded from an 'acapella nasheed' search — the search term is not a verification. Used on R044. Listen and set verified.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-03.mp3": {
       "classification": "vocal",
@@ -43,7 +76,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R029, R043. LISTENED 2026-08-29: vocal only, confirmed."
+      "notes": "Pixabay, I_read_quran. Used on R029, R043. LISTENED 2026-08-29: vocal only, confirmed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-04.mp3": {
       "classification": "vocal",
@@ -52,7 +96,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
+      "notes": "Pixabay, I_read_quran. Used on R031. ~30s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-05.mp3": {
       "classification": "vocal",
@@ -61,7 +116,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed."
+      "notes": "Pixabay, I_read_quran. Used on R032, R045. ~35s — will loop on longer reels. LISTENED 2026-08-29: vocal only, confirmed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-06.mp3": {
       "classification": "vocal",
@@ -70,7 +136,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R033. LISTENED 2026-08-29: vocal only, confirmed. LISTENED 2026-08-29: vocal only, confirmed."
+      "notes": "Pixabay, I_read_quran. Used on R033. LISTENED 2026-08-29: vocal only, confirmed. LISTENED 2026-08-29: vocal only, confirmed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-nasheed-07.mp3": {
       "classification": "vocal",
@@ -79,7 +156,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed."
+      "notes": "Pixabay, I_read_quran. Longest of the set. LISTENED 2026-08-29: vocal only, confirmed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "aswati-Focused-Determination.mp3": {
       "gain": 1.41,
@@ -88,7 +176,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Firm and forward-moving. 88.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"18.2s Recording (Aug 10 @ 10:43 PM) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Firm and forward-moving. 88.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"18.2s Recording (Aug 10 @ 10:43 PM) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: 18.2s Recording (Aug 10 @ 10:43 PM) (Remix) (Remastered), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "aswati-Gentle-Reflection.mp3": {
       "gain": 2.2,
@@ -97,7 +196,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Quiet and unhurried. Shortest of the eight but still longer than any reel to date. 49.6s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"IQDAM NASHEED (1) (Instrumental) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Quiet and unhurried. Shortest of the eight but still longer than any reel to date. 49.6s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"IQDAM NASHEED (1) (Instrumental) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: IQDAM NASHEED (1) (Instrumental) (Remix) (Remastered), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "aswati-Heartfelt-Gratitude.mp3": {
       "gain": 1.58,
@@ -106,7 +216,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Warm, long enough to bed several reels without reaching its own repeat. 206.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"soundcloud_1742523564_audio (Remix) (Remastered x2) (Backing Vocals) (Remix)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Warm, long enough to bed several reels without reaching its own repeat. 206.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"soundcloud_1742523564_audio (Remix) (Remastered x2) (Backing Vocals) (Remix)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: soundcloud_1742523564_audio (Remix) (Remastered x2) (Backing Vocals) (Remix), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "aswati-Morning-Serenity.mp3": {
       "gain": 1.23,
@@ -115,7 +236,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Calm and bright. Shortest bed in the whole library at 46.3s - still clears a 40s reel, but it is the one to watch if reels ever get longer. 46.3s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"10.5s Recording (Aug 10 @ 10:57 PM) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Calm and bright. Shortest bed in the whole library at 46.3s - still clears a 40s reel, but it is the one to watch if reels ever get longer. 46.3s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"10.5s Recording (Aug 10 @ 10:57 PM) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: 10.5s Recording (Aug 10 @ 10:57 PM) (Remix) (Remastered), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "aswati-Peaceful-Contemplation.mp3": {
       "gain": 1.14,
@@ -124,7 +256,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Still and reflective; closest in character to the vocal-nasheed-0x beds. 56.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"conscious-nasheed (Remix), artist hm765\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Still and reflective; closest in character to the vocal-nasheed-0x beds. 56.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"conscious-nasheed (Remix), artist hm765\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: conscious-nasheed (Remix), artist hm765. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": "#3540 UZ published 2026-10-24 on this bed showed no notice in Studio the same day. That is NOT a clean result: Content ID can claim at any time afterwards, and a same-day look proves nothing."
+        }
+      }
     },
     "aswati-Rising-Hope.mp3": {
       "gain": 1.0,
@@ -133,7 +276,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Lifts through its length - check it against a sombre matn before pairing. 93.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"humming - 13_04_2025, 15.25 (Cover) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Lifts through its length - check it against a sombre matn before pairing. 93.4s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"humming - 13_04_2025, 15.25 (Cover) (Remix) (Remastered)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: humming - 13_04_2025, 15.25 (Cover) (Remix) (Remastered), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": "#3540 TJ published 2026-10-24 on this bed showed no notice in Studio the same day. Same caveat as Peaceful-Contemplation: not a clean result."
+        }
+      }
     },
     "aswati-Steady-Motivation.mp3": {
       "gain": 1.19,
@@ -142,7 +296,18 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Even and driving. 89.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"13.9s Recording (Aug 10 @ 10:46 PM) (Remix) (Remastered x2)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Even and driving. 89.9s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"13.9s Recording (Aug 10 @ 10:46 PM) (Remix) (Remastered x2)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: 13.9s Recording (Aug 10 @ 10:46 PM) (Remix) (Remastered x2), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": "2026-10-24",
+          "result": "claimed",
+          "evidence": "YouTube Content ID blocked the #3540 EN reel GLOBALLY on this audio: \"The Motion Wave\", Abdullaerh Dee, owner Jungle Entertainment Ventures, type Audio, no strike against the channel. Established by elimination - the six scene clips were each probed at audio streams 0 and the narration is our own TTS, so the bed named in that leg's render.json is the only music in the file. No dispute filed."
+        }
+      }
     },
     "aswati-Victory-March.mp3": {
       "gain": 1.06,
@@ -151,61 +316,171 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Martial in character and the most assertive of the eight. Longest bed in the library. Most likely of the set to fight a gentle hadith; pair deliberately. 220.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"20.6s Recording (Aug 10 @ 11:12 PM) (Remix) (Remastered x2)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's."
+      "notes": "Martial in character and the most assertive of the eight. Longest bed in the library. Most likely of the set to fight a gentle hadith; pair deliberately. 220.0s vocal only - listened end to end by the operator before registering; the Aswati library also carries percussion tracks, so a later download is NOT vocal by default and must be heard first. Aswati starter pack, downloaded 2026-10-05. Aswati Content License (21 June 2026): worldwide, non-exclusive, royalty-free, PERPETUAL for files downloaded lawfully, commercial and monetized use permitted, NO attribution required. Redistribution of the file itself is forbidden - out/ is gitignored, which is the only reason these are not in the repo, so never move a bed outside out/backgrounds/. License certificate in out/backgrounds/licenses/. PROVENANCE CONTRADICTED 2026-10-24 (P301): ffprobe reads this file's ID3 tags as \"20.6s Recording (Aug 10 @ 11:12 PM) (Remix) (Remastered x2)\". Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos, a SoundCloud rip, or the instrumental of an existing named nasheed, each marked (Remix)/(Remastered). This is a user-upload remix platform, so the Content License on disk grants the platform's own terms and cannot grant rights in recordings its uploaders did not hold. YouTube Content ID blocked the #3540 EN reel GLOBALLY on aswati-Steady-Motivation.mp3 - claim \"The Motion Wave\", Abdullaerh Dee. lanes deliberately NOT emptied: that would leave the picker with no bed at all and stop production, and the decision is the operator's.",
+      "rights": {
+        "status": "unverified",
+        "source": "Aswati starter pack",
+        "basis": "Aswati Content License, 21 June 2026: worldwide, non-exclusive, royalty-free, perpetual for files downloaded lawfully, commercial and monetized use permitted, no attribution required. Certificate on disk in out/backgrounds/licenses/. Downloaded 2026-10-05.",
+        "doubt": "P301. ffprobe reads this file's ID3 tags as: 20.6s Recording (Aug 10 @ 11:12 PM) (Remix) (Remastered x2), artist marsadinstitute. Seven of the eight aswati beds carry artist=marsadinstitute and titles that are phone voice memos recorded between 22:43 and 23:12 on one evening, a file pulled off SoundCloud and remixed twice, or the instrumental of an existing named nasheed - each marked (Remix) and (Remastered). That is a user-upload remix platform. The licence grants the platform's own terms of service and cannot grant rights in recordings its uploaders did not hold.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "vocal-hamd-kids-01.mp3": {
       "classification": "vocal",
       "lanes": [],
       "verified": true,
-      "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. RETIRED 2026-09-10. Three strikes: (1) the random picker chose it for the R029 TJ ADULTS reel and it had to be re-rendered — this entry is why the lane field exists; (2) pulled from the TJ #5971 set, upbeat tempo read as flippant under a hadith on a mother's right; (3) drawn again for RU #6018 and it sounds like it is playing at 2x speed. The tempo is wrong for narration, not just for solemn topics. File kept on disk; approved for no lane."
+      "notes": "Pixabay, foisal72. Hamd/naat, kids register. LISTENED 2026-08-29: vocal only, confirmed. RETIRED 2026-09-10. Three strikes: (1) the random picker chose it for the R029 TJ ADULTS reel and it had to be re-rendered — this entry is why the lane field exists; (2) pulled from the TJ #5971 set, upbeat tempo read as flippant under a hadith on a mother's right; (3) drawn again for RU #6018 and it sounds like it is playing at 2x speed. The tempo is wrong for narration, not just for solemn topics. File kept on disk; approved for no lane.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_retired/ambient-ocean-bg.mp3": {
       "classification": "ambience",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED 2026-08-25 (P121). Non-musical — ffmpeg-generated filtered pink noise, mono — but backgrounds are VOCAL NASHEED ONLY, and ambience is not a nasheed. Was registered as adults-approved, so the gate correctly passed it and it reached the R044 UZ adults render via the random picker, forcing a re-render. The gate was not at fault; the registry disagreed with the policy. Moved to out/backgrounds/_retired/."
+      "notes": "RETIRED 2026-08-25 (P121). Non-musical — ffmpeg-generated filtered pink noise, mono — but backgrounds are VOCAL NASHEED ONLY, and ambience is not a nasheed. Was registered as adults-approved, so the gate correctly passed it and it reached the R044 UZ adults render via the random picker, forcing a re-render. The gate was not at fault; the registry disagreed with the policy. Moved to out/backgrounds/_retired/.",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_retired/ambient-ocean-stereo-bg.mp3": {
       "classification": "ambience",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED 2026-08-25 (P121). Stereo sibling of ambient-ocean-bg.mp3, offset tremolo per channel. Same reason: backgrounds are vocal nasheed only."
+      "notes": "RETIRED 2026-08-25 (P121). Stereo sibling of ambient-ocean-bg.mp3, offset tremolo per channel. Same reason: backgrounds are vocal nasheed only.",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_instrumental/mubarak-bg.mp3": {
       "classification": "instrumental",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED 2026-08-15. Lute, flute, drums. Moved out of the picker's reach after a viewer flagged instrumental music under hadith narration."
+      "notes": "RETIRED 2026-08-15. Lute, flute, drums. Moved out of the picker's reach after a viewer flagged instrumental music under hadith narration.",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_instrumental/nasheed-bg-1.mp3": {
       "classification": "instrumental",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED. Synth pad. Used on R022 (published)."
+      "notes": "RETIRED. Synth pad. Used on R022 (published).",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_instrumental/ramadan-1-bg.mp3": {
       "classification": "instrumental",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED. Lute, drums, electric piano or synth. Used on R026 (published)."
+      "notes": "RETIRED. Lute, drums, electric piano or synth. Used on R026 (published).",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_instrumental/ramadan-2-bg.mp3": {
       "classification": "instrumental",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED. Lute, drums. Used on R014-R021, R025 (published)."
+      "notes": "RETIRED. Lute, drums. Used on R014-R021, R025 (published).",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_instrumental/ramadan-bg.mp3": {
       "classification": "instrumental",
       "lanes": [],
       "verified": true,
-      "notes": "RETIRED. Lute, drums. Used on R027 (published)."
+      "notes": "RETIRED. Lute, drums. Used on R027 (published).",
+      "rights": {
+        "status": "unverified",
+        "source": "not recorded",
+        "basis": "None. Where this file came from was never written down.",
+        "doubt": "P301. With no recorded source there is nothing to check and nothing to rely on. Treat as unknown rather than as safe.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": null
+        }
+      }
     },
     "_claimed/vocal-nasheed-02.mp3": {
       "classification": "vocal",
       "lanes": [],
       "verified": true,
-      "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed. CLAIMED AND WITHDRAWN 2026-10-24: YouTube Content ID blocked the #3540 EN reel GLOBALLY on this audio - \"The Motion Wave\", Abdullaerh Dee, owner Jungle Entertainment Ventures. The Pixabay uploader was not the rights holder. No dispute filed: disputing means asserting rights we do not have. Moved to _claimed/ and lanes emptied, so neither the picker nor the gate can reach it. Eleven published reels carry it - R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 - and the operator's decision is to re-record the bed only for whichever of those YouTube actually blocks, and only for the YouTube copy; Telegram, Instagram and TikTok are left as published. The other six Pixabay beds (vocal-nasheed-01, 03, 04, 05, 06, 07) share the provenance and are NOT yet withdrawn - suspected by association, not proven. CORRECTION 2026-10-24 (P301): the claim described above was NOT on this bed. #3540 EN carries aswati-Steady-Motivation.mp3 per its render.json, and that is the audio Content ID matched. This note was written from the bed expected rather than the bed recorded, and the eleven reels listed are not the exposed set. The withdrawal stands on provenance grounds - the Pixabay uploader was not the rights holder - but it was not the remedy for that block, and no claim against this bed has been observed."
+      "notes": "Pixabay, I_read_quran. Used on R030. LISTENED 2026-08-29: vocal only, confirmed. CLAIMED AND WITHDRAWN 2026-10-24: YouTube Content ID blocked the #3540 EN reel GLOBALLY on this audio - \"The Motion Wave\", Abdullaerh Dee, owner Jungle Entertainment Ventures. The Pixabay uploader was not the rights holder. No dispute filed: disputing means asserting rights we do not have. Moved to _claimed/ and lanes emptied, so neither the picker nor the gate can reach it. Eleven published reels carry it - R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090 - and the operator's decision is to re-record the bed only for whichever of those YouTube actually blocks, and only for the YouTube copy; Telegram, Instagram and TikTok are left as published. The other six Pixabay beds (vocal-nasheed-01, 03, 04, 05, 06, 07) share the provenance and are NOT yet withdrawn - suspected by association, not proven. CORRECTION 2026-10-24 (P301): the claim described above was NOT on this bed. #3540 EN carries aswati-Steady-Motivation.mp3 per its render.json, and that is the audio Content ID matched. This note was written from the bed expected rather than the bed recorded, and the eleven reels listed are not the exposed set. The withdrawal stands on provenance grounds - the Pixabay uploader was not the rights holder - but it was not the remedy for that block, and no claim against this bed has been observed.",
+      "rights": {
+        "status": "unverified",
+        "source": "Pixabay, uploader I_read_quran",
+        "basis": "Pixabay's royalty-free listing, uploader I_read_quran. The uploader is not established as the rights holder.",
+        "doubt": "P301. vocal-nasheed-02.mp3 shares this provenance exactly and was withdrawn after a YouTube Content ID claim was first attributed to it. Suspected by association; nothing has been proven against the others, and nothing has been established in their favour either.",
+        "content_id": {
+          "checked": null,
+          "result": null,
+          "evidence": "No claim has ever been observed against this bed. The 2026-10-24 block was attributed to it in error and the attribution was corrected the same day; the withdrawal stands on provenance, not on a claim."
+        }
+      }
     }
   },
   "mascots": {

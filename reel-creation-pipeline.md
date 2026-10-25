@@ -800,8 +800,9 @@ every reel since inherited it. Scholars differ on instruments generally, but
 the daf has the strongest permitting position, and ambience is not music at
 all. Vocal-only sidesteps a dispute this project has no need to enter.
 
-**Current library** (`out/backgrounds/`, all Pixabay, royalty-free, cleared
-for monetised use):
+**Current library** (`out/backgrounds/`; provenance is recorded per bed in the
+registry's `rights` block, and as of 2026-10-25 NOT ONE of them is provably
+cleared - see "Rights" below):
   vocal-nasheed-01..07.mp3   vocal-only background nasheeds
   vocal-hamd-kids-01.mp3     hamd/naat, kids lane
   light-of-my-heart-bg.mp3   vocal + daf
@@ -821,12 +822,65 @@ LUFS and reset its gain - the old number describes the old file.
 whether to leave, re-render, or unlist is an open question for someone
 qualified, not an engineering decision.
 
-**KNOWN GAP:** render-reel.ps1 globs `out/backgrounds/*.mp3`, so it can pick
-a kids-lane hamd for an adults reel or ocean for a kids reel. Lane separation
-is by filename convention only and is not enforced in code.
+**~~KNOWN GAP: lane separation is by filename convention only.~~ CLOSED by
+P168.** The picker asks the registry what it may use (`audit-assets.py --list
+--lane <style> --section audio`) rather than globbing and filtering by name, so
+a retired or wrong-lane bed is never drawn in the first place. Since 2026-10-25
+that same list also withholds a bed with an observed Content ID claim.
 
-**Rule for new beds:** listen before adding. A search term is not a
-verification — "acapella nasheed" returns instrumental tracks.
+**Rights (P301, 2026-10-25).** Every audio entry in the registry carries a
+`rights` block:
+
+```
+"rights": {
+  "status":     "verified" | "unverified" | "contested",
+  "source":     where the file came from,
+  "basis":      what the claim to use it rests on,
+  "doubt":      why that basis may not hold,
+  "content_id": { "checked": date, "result": "clean" | "claimed", "evidence": ... }
+}
+```
+
+`verified: true` elsewhere in the entry means a human LISTENED to it. It has
+never meant licensed, and before this block the schema had no field that could.
+That is how `aswati-Steady-Motivation.mp3` reached the #3540 EN reel and got it
+blocked globally on YouTube: a Content License sat on disk, and the file's own
+ID3 tags read as a phone voice memo remixed twice.
+
+`audit-assets.py` reads the block in ONE place, `rights_block_reason`, used by
+both the gate and the picker - P168's lesson, where a rule that lived in one
+caller and not the other meant an asset was drawn and then refused.
+
+  - no `rights` block -> BLOCKED. A new bed cannot enter without one.
+  - `content_id.result == "claimed"` -> BLOCKED, and withheld from `--list`.
+    An observed claim is a known outcome, not a suspicion.
+  - `status == "contested"` -> BLOCKED.
+  - `status == "unverified"` -> PASSES, and prints a RIGHTS line on every use.
+    Nothing in the library is provably clean; production continues by the
+    operator's decision of 2026-10-25, with the exposure printed rather than
+    hidden.
+
+**Rule for new beds:** listen before adding - a search term is not a
+verification, and "acapella nasheed" returns instrumental tracks. Then, before
+it enters the registry, run the Content ID check:
+
+  1. Build a test file carrying the bed and nothing else:
+     `ffmpeg -f lavfi -i color=c=black:s=1080x1920:r=24 -i <bed> -map 0:v -map 1:a
+      -t 60 -c:v libx264 -preset veryfast -pix_fmt yuv420p -c:a aac -b:a 192k <out>.mp4`
+  2. Upload it to the channel as **Unlisted**, audience "not made for kids".
+  3. Wait for processing, then read the video's **Claims** tab.
+  4. Record the date, the result and what was seen in `rights.content_id`.
+     Delete the test video.
+
+Ten minutes, and it is the only check here that is not somebody's assurance. A
+licence field records a claim; it does not test one. Run on the ElevenLabs
+trial bed on 2026-10-24 it came back with no notice; run in October on the
+beds already in use it would have found this before eleven reels carried one.
+
+**A licence does not survive its own file.** Read the ID3 tags of anything
+downloaded from an aggregator or a remix platform before trusting a
+certificate: `ffprobe -v error -show_entries format_tags=title,artist <file>`.
+Seven of the eight aswati beds name an uploader rather than a composer.
 
 ---
 
