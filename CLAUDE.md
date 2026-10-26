@@ -1,4 +1,4 @@
-﻿# CLAUDE.md
+# CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
 # Last updated: 2026-10-08
@@ -54,6 +54,44 @@ document.
    that, not this document.
 
 **Steps 1–7 are not optional and not a menu.** Steps 8 and 9 are conditional.
+
+### 💸 BEFORE YOU SPEND — the operator pays per token, out of credit
+
+Added 2026-10-26, at his request, after he showed five Anthropic receipts in one
+day and the same pattern on the two days before. A working day had been running
+about $50, and a measurable part of that was rework this agent created rather
+than work the channel needed.
+
+What was wasted that day, named so the rules below are not abstract:
+
+- Stage 3 was run over 26 library rows, roughly 208 model calls, before anyone
+  looked for the sweep of 2026-10-17 that OPEN_ITEMS' Production queue already
+  records — 34 rows, 19 pass / 4 fail / 12 disagree.
+- A caption-correction task was handed to him across three platforms, taken
+  from an OPEN_ITEMS entry, without a single post being checked first. All four
+  platforms already carried the corrected text. He verified it himself, with
+  four screenshots, which is the agent's job done by the operator.
+- Three file transfers failed and were re-verified (P300).
+- Long jobs were polled every 20–30 seconds through the device bridge.
+
+**The rules, in order of what they save:**
+
+1. **No paid run before searching for an existing result.** Look in `out/`, in
+   OPEN_ITEMS' Production queue, and in the tracker. A prior report may be gone
+   from `out/` — it is gitignored — but the RECORD of it lives in the docs, and
+   that record says what it found.
+2. **Verify the premise before handing him a task.** OPEN_ITEMS carries items
+   that were fixed and never closed: three were found stale on 2026-10-25 and a
+   fourth on 10-26. If the premise cannot be checked from here, ask for ONE
+   piece of evidence — never edits across three platforms on an unchecked note.
+3. **Poll a long job once, at a realistic interval.** A render is about two
+   minutes, a push with E2E about three. Checking every twenty seconds is a
+   round trip to his machine and a cost on both sides for nothing.
+4. **Batch the verification.** One call that checks five things beats five calls
+   that check one.
+
+This is not frugality for its own sake. Every token spent redoing work is a
+token not spent on the reels, and he is paying for it.
 ### ⚠ THE AUTO-LOAD IS SURFACE-DEPENDENT. DO NOT RELY ON IT.
 
 Line 3 of this file says "Auto-loaded by Claude Code on every session", and the
