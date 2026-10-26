@@ -1,3 +1,29 @@
+## [2026-10-26a] - the closing period moves outside the guillemet
+
+### Fixed
+- **`buildCaption` put the closing period inside the quotation.** Russian,
+  Uzbek and Tajik typography all write «…питьё». while a question or
+  exclamation mark stays inside: «Кто это?». The stored matn carries its own
+  terminal period and the wrapper put it inside, so this shipped on every
+  RU/UZ/TJ caption rather than on one reel. Fixed in the wrapper and not in the
+  rows, for the reason P236 gives three comments above it: the matn is quoted
+  as the source quotes it, and it is the WRAPPER that creates the boundary.
+  Editing the stored columns would change quoted source text across many rows
+  to undo something we add. `en` and `ar` are untouched - English convention
+  differs, Arabic uses other quotation marks, and neither was reported. A
+  trailing `..` is left alone so an ellipsis keeps its dots. Future captions
+  only; everything published keeps the old form, by the operator's decision.
+- **R146 carries the YouTube re-upload.** The blocked EN reel was re-uploaded
+  on `vocal-nasheed-07.mp3` - a new video with a new URL, since a blocked one
+  cannot be un-blocked. The Nasheed column and the usage table are deliberately
+  unchanged: they count per reel, and this is a per-platform fact, with
+  Telegram, Instagram and TikTok still carrying the original bed. The published
+  original is kept on disk as the canonical file for those three.
+- **A third stale OPEN_ITEMS entry closed.** "UZ's four published captions
+  quote the pre-correction matn" - they do not, and both Telegram and Instagram
+  carry edit markers showing they were corrected at the time. After the
+  preflight and random-scene entries yesterday, that is three in two days.
+
 ## [2026-10-25c] - the still prompt is written down
 
 ### Added

@@ -1098,7 +1098,7 @@ disagreement is the output Stage 3 exists to produce and is never resolved by a
 third pass or by preferring one model, and P177 is the trap of re-running until
 the answer is nice. RU stands as `disagree` / needs_human, and it has SHIPPED.
 
-**UZ's four published captions quote the pre-correction matn.** The row was fixed
+**~~UZ's four published captions quote the pre-correction matn.~~ ALREADY FIXED - entry was stale, confirmed 2026-10-26.** Telegram and Instagram both read «Ким ёлғон сўз ва унга амал қилишдан воз кечмаса…» and both carry an edit marker, so they were corrected at the time and this note outlived them. YouTube was never affected: that description format carries a one-line summary and the moral, not the matn (P105). TikTok is the only one that could still be stale and it is past P277's seven-day window either way. Original note: The row was fixed
 about an hour after the UZ reel went out, so TG/IG/YT/TikTok still read «амалдан»
 while the library and the audio read «унга амал қилишдан». Same shape as #6570's
 Hurayrah. The burned audio cannot change; the captions can be edited in place.

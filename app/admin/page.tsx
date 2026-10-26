@@ -339,6 +339,28 @@ export default function AdminPage() {
     // narrative and inflated importance instead. The hadith text and the
     // Arabic matn are the caption's verifiability (P106, P153). Only the tag
     // line below gives when Telegram's cap is tight.
+    // Russian, Uzbek and Tajik typography put a closing period AFTER the
+    // closing guillemet - «…питьё». - while a question or exclamation mark
+    // stays inside: «Кто это?». The stored matn carries its own terminal
+    // period, the wrapper put it inside, and so every RU/UZ/TJ caption this
+    // project has published reads «…питьё.». One defect, every caption,
+    // not one reel.
+    //
+    // The fix belongs here for the same reason P236's did, three comments
+    // above: the matn is quoted as the source quotes it, and it is the WRAPPER
+    // that creates the boundary. Editing the stored columns would change
+    // quoted source text across many rows to undo something we add.
+    //
+    // en and ar are left alone - English convention differs, Arabic uses other
+    // quotation marks, and neither was reported. A trailing '..' is left alone
+    // so an ellipsis does not lose a dot.
+    const wrapMatn = (text: string) => {
+      const inner = text.replace(/«/g, '„').replace(/»/g, '“').trimEnd()
+      if (!['ru', 'uz', 'tj'].includes(lang)) return `«${inner}»`
+      if (inner.endsWith('.') && !inner.endsWith('..')) return `«${inner.slice(0, -1)}».`
+      return `«${inner}»`
+    }
+
     const captionBody =
       `${data.title}\n\n` +
       // P180: these matns begin with « themselves (the first words are the
@@ -358,7 +380,7 @@ export default function AdminPage() {
       // convention in all three Cyrillic languages this channel publishes.
       (hadithText.trim().startsWith('«')
         ? `${hadithText}\n\n`
-        : `«${hadithText.replace(/«/g, '„').replace(/»/g, '“')}»\n\n`) +
+        : `${wrapMatn(hadithText)}\n\n`) +
       // P153: the Arabic was in the DB and in the admin card but never
       // reached a viewer, so nobody with Arabic could check the translation
       // against the source — which is the one external check this project
