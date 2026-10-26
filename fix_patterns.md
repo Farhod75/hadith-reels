@@ -9835,6 +9835,16 @@ prompt, the model, the variants returned and which one was chosen. The chosen
 variant matters as much as the prompt: `b1903-majlis` went through three circle
 stills that all showed faces before the composition was changed to a row facing
 away, and only the final choice is visible in the output.
+
+**STATUS 2026-10-25: FIXED.** `generate-image.ps1` now writes a sidecar per
+call to `assets/still-prompts/`, mirroring what `generate-scene.ps1` has
+written since P215. It records the prompt, model, image size, inference steps,
+safety tolerance, request id, submitted and completed timestamps, each variant
+with its file and url, and the seed when fal returns one. `chosen` stays null
+until a human picks. Verified by building the sidecar from stub values and
+reading it back: valid JSON, no BOM (P186), nested variants at depth 5. The
+generation call itself was not run - it costs money and those are gated.
+
 ## PATTERN 251: One mix level, for beds that are not one loudness
 
 The operator said the Aswati beds sit too quiet. By ear, mid-session, with no
@@ -12276,6 +12286,21 @@ visible instead of silent. Used today on `out/patch-tj-3540.py`, where the hash
 matched byte for byte before it was allowed to run.
 
 ---
+
+
+**SHARPENED 2026-10-25, after it recurred twice in one session.** The first
+latch says "a new filename on every transfer". It does not say WHICH side, and
+the ambiguity cost three attempts: the destination was renamed each time -
+`close-p250b.py`, `close-p250c.py`, `close-p250d.py` - and each one arrived
+carrying stale bytes, once the previous version and once an intermediate state
+that matched no version on either machine. Copying the source to a new path in
+the container and sending that landed byte-exact on the first attempt.
+
+So the stale snapshot is keyed by the SOURCE path, not the destination. Editing
+a file in place and re-sending it is the case that fails. The rule is: after
+editing, copy to a NEW source path and send that. The hash comparison is what
+makes this visible at all - without it the third attempt would have run an
+intermediate version of the script against the repository.
 
 ## PATTERN 301: the licence certificate covered the platform, not the recording
 

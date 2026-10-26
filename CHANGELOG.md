@@ -1,3 +1,23 @@
+## [2026-10-25c] - the still prompt is written down
+
+### Added
+- **`assets/still-prompts/<name>-still.json`, written by
+  `generate-image.ps1`** (P250). `generate-scene.ps1` has recorded every
+  image-to-video call since P215; the script that makes the STILL those clips
+  are animated from recorded nothing at all, so #1903's four still prompts are
+  gone - not in a sidecar, not in `animated-reel-scene-prompts.md` (a
+  methodology doc, not a log), not in any transcript. Every earlier set
+  survived only because the registry note happened to be written in the same
+  session as the generation.
+- The sidecar carries prompt, model, image size, inference steps, safety
+  tolerance, request id, both timestamps, every variant with its file and url,
+  and the seed when fal returns one. `chosen` is null until a human picks a
+  variant - the script cannot know, and a guess would put a wrong answer where
+  a blank is the honest one.
+- The folder is tracked and is NOT under `out/`. A sidecar written beside the
+  images in `out/refs/` would vanish on a clean checkout, which is the loss
+  this prevents.
+
 ## [2026-10-25b] - the render records what it rendered, after rendering it
 
 ### Fixed

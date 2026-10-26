@@ -1139,7 +1139,7 @@ pass `-Nasheed` explicitly for every language of a set. Fix: write the state aft
 the render returns 0, key it by slug+lang, and read the set's `*-render.json`
 sidecars. Demonstrated three times in one evening on #1903 EN.
 
-**P250 — the FLUX still prompt is recorded nowhere, now written up.**
+**~~P250 — the FLUX still prompt is recorded nowhere.~~ FIXED 2026-10-25.** `generate-image.ps1` writes `assets/still-prompts/<name>-still.json`: prompt, model, image size, inference steps, safety tolerance, the request id, both timestamps, every variant with its file and url, and the seed when fal returns one. `chosen` is left null - the script cannot know which variant a human will pick, and a guess would put a wrong answer where a blank is the honest one. The folder is tracked and is NOT under `out/`, which is gitignored: a sidecar beside the images would vanish on a clean checkout, which is the loss itself. #1903's four prompts stay lost. Original note:
 `generate-image.ps1` writes no sidecar, and `animated-reel-scene-prompts.md` is a
 methodology doc rather than a log. #1903's four still prompts are LOST — not in
 the sidecars, not in that doc, not in the transcript. Every earlier set got away

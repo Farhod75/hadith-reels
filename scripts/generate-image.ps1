@@ -78,6 +78,9 @@ Write-Host "  prompt: $Prompt" -ForegroundColor DarkGray
 
 # --- submit ------------------------------------------------------------------
 Say "`n[1/3] Submitting to fal.ai..."
+# P250: recorded for the sidecar below. A prompt with no timestamp cannot be
+# matched to the image it produced once more than one run exists.
+$submittedUtc = (Get-Date).ToUniversalTime().ToString('o')
 try {
   $submit = Invoke-RestMethod -Method Post -Uri "https://queue.fal.run/$Model" -Headers $headers -Body $body
 } catch {
@@ -97,6 +100,7 @@ do {
   Write-Host "        status: $($st.status)" -ForegroundColor DarkGray
   if ((Get-Date) -gt $deadline) { Die "timed out after 4 min" }
 } while ($st.status -ne 'COMPLETED')
+$completedUtc = (Get-Date).ToUniversalTime().ToString('o')
 Ok "done"
 
 # --- fetch + download all variants -------------------------------------------
@@ -106,11 +110,62 @@ catch { Die "result fetch failed: $($_.Exception.Message)" }
 if (-not $res.images) { Die "no images in result: $($res | ConvertTo-Json -Compress -Depth 5)" }
 
 $i = 0
+$variants = @()
 foreach ($img in $res.images) {
   $i++
   $dest = Join-Path $refDir "$Name-$i.jpg"
   Invoke-WebRequest -Uri $img.url -OutFile $dest
-  if (Test-Path $dest) { Ok "$dest" } else { Write-Host "  (failed: variant $i)" -ForegroundColor Yellow }
+  $got = Test-Path $dest
+  if ($got) { Ok "$dest" } else { Write-Host "  (failed: variant $i)" -ForegroundColor Yellow }
+  $variants += [ordered]@{
+    n          = $i
+    file       = $dest
+    url        = $img.url      # fal URLs expire; kept for the audit trail only
+    downloaded = [bool]$got
+  }
+}
+
+# --- P250: write the prompt down ---------------------------------------------
+# generate-scene.ps1 has written a sidecar per clip since P215. This script,
+# which makes the STILL that clip is animated from, wrote nothing - so #1903's
+# four still prompts are lost outright, and every earlier set survived only
+# because the registry note happened to be written in the same session.
+#
+# assets/still-prompts/ and not out/refs/: out/ is gitignored, so a sidecar
+# beside the images would disappear on a clean checkout - exactly the loss this
+# prevents.
+try {
+  $stillDir = "assets\still-prompts"
+  if (-not (Test-Path $stillDir)) { New-Item -ItemType Directory -Force -Path $stillDir | Out-Null }
+  $sidecar = [ordered]@{
+    schema              = 1
+    mode                = 'text-to-image'
+    name                = $Name
+    model               = $Model
+    prompt              = $Prompt
+    image_size          = 'portrait_16_9'
+    num_inference_steps = 28
+    safety_tolerance    = '2'
+    count_requested     = $Count
+    request_id          = $submit.request_id
+    submitted_utc       = $submittedUtc
+    completed_utc       = $completedUtc
+    variants            = $variants
+    # Filled in by hand when a variant is picked for animation. The script
+    # cannot know which one a human will choose, and a guess here would be a
+    # wrong answer where a blank is the honest one.
+    chosen              = $null
+  }
+  if ($res.PSObject.Properties.Name -contains 'seed') { $sidecar.seed = $res.seed }
+  # P228: WriteAllText is .NET and resolves a relative path against
+  # [Environment]::CurrentDirectory, which PowerShell does not update on
+  # Set-Location. Absolute, always. P186: no BOM - this is read back as JSON.
+  $stillPath = Join-Path (Resolve-Path $stillDir).Path "$Name-still.json"
+  [System.IO.File]::WriteAllText($stillPath, ($sidecar | ConvertTo-Json -Depth 5),
+    (New-Object System.Text.UTF8Encoding($false)))
+  Ok "prompt recorded: $stillDir\$Name-still.json"
+} catch {
+  Write-Host "  could not write the still sidecar: $($_.Exception.Message)" -ForegroundColor Yellow
 }
 
 Write-Host "`nNEXT: review $refDir\$Name-*.jpg -- pick the best (MODE B, era-accurate, no forbidden figure)," -ForegroundColor Cyan
