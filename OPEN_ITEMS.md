@@ -843,6 +843,32 @@ exist. Either write it or drop this item deliberately.
 ---
 
 ## Platforms
+**THE PIPELINE DOC STILL SAYS TO ADD THE ASWATI COURTESY CREDIT, AND IT HAS NOW
+BEEN OVERRIDDEN TWICE BY JUDGEMENT INSTEAD OF ONCE BY AN EDIT.**
+`reel-creation-pipeline.md` section 3 reads: "Add the `Nasheed: Aswati Studio`
+credit line to the description ONLY when the bed is an `aswati-*` track."
+
+P301 is why that is now wrong. The Aswati certificate licensed a remix
+platform's terms of service, not the recordings its users uploaded; ffprobe
+reads the eight beds as a SoundCloud rip, the instrumental of an existing named
+nasheed, and five phone voice memos from one evening, under three different
+uploader names. Crediting "Aswati Studio" asserts a provenance known to be
+false, and the licence requires no attribution at all — so the credit is not
+merely unnecessary, it is a claim we cannot support.
+
+It was omitted on #3540 (2026-10-24, recorded in R146's tracker note as
+"correct under the licence's no-attribution clause and now moot") and omitted
+again on all four #6570 legs (2026-10-27), each time by reading P301 rather
+than by reading the pipeline. A rule that is correctly ignored twice is a rule
+that will be followed by whoever reads it next.
+
+**DECISION NEEDED, one line either way:** delete the instruction, or replace it
+with "no courtesy credit for any bed whose provenance is unverified in the
+registry — which is currently all of them." The second is better, because it
+names the registry as the authority and survives a bed that one day does have
+evidence behind it. Not done here because it changes a published instruction
+rather than a record of fact, and the operator has not been asked.
+
 
 **Check the Instagram comment Inbox.** Business Suite showed an empty comment
 queue against a post with 251 comments. Comments made before the Page was
