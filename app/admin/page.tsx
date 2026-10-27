@@ -7,7 +7,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { fitTagLine, TAG_BLOCKLIST, TELEGRAM_CAPTION_LIMIT } from '@/lib/tags'
-import { buildRef, buildTranslationCredit } from '@/lib/refs'
+import { buildCaptionBody, CAPTION_L10N } from '@/lib/caption'
 import { MASCOTS, mascotGender, type MascotKey } from '@/lib/mascots'
 
 type Lang   = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
@@ -315,83 +315,26 @@ export default function AdminPage() {
     // in his own language first and so does the audience.
     const topicTags = (selected.tags || [])
       .filter(t => !TAG_BLOCKLIST.includes(t.toLowerCase()))
-    // P150: verify line and hashtags were hardcoded English and appended to
-    // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English —
-    // they come from the library's `tags` column and travel across languages.
-    const CAPTION_L10N: Record<string, { verify: string; tags: string; kids: string; lang: string }> = {
-      en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english' },
-      ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский' },
-      uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча' },
-      tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ' },
-      ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية' },
-    }
+    // P150: the verify line and the hashtag suffix are localised from one
+    // table. CAPTION_L10N lives in lib/caption.ts because the body quotes
+    // `verify` from it while the tag line below quotes `tags`, `kids` and
+    // `lang` — two tables for one row of data would drift.
     const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
-    const hadithText = selected.text_display || selected.text_english
-    // P150: localised collection with the Latin name kept in parentheses —
-    // the citation has to stay verifiable, and some readers read only their
-    // own language.
-    const ref = buildRef(selected.collection, selected.hadith_number, selected.narrator, lang)
-    // P176: HadeethEnc's licence requires crediting them on every row carrying
-    // their text. Returns '' for in-house rows, so nothing is emitted.
-    const credit = buildTranslationCredit(selected.translation_source, lang)
-    // The body never flexes. P116: length pressure on generated text is
-    // fabrication pressure — told to be shorter, the model complied on
-    // narrative and inflated importance instead. The hadith text and the
-    // Arabic matn are the caption's verifiability (P106, P153). Only the tag
-    // line below gives when Telegram's cap is tight.
-    // Russian, Uzbek and Tajik typography put a closing period AFTER the
-    // closing guillemet - «…питьё». - while a question or exclamation mark
-    // stays inside: «Кто это?». The stored matn carries its own terminal
-    // period, the wrapper put it inside, and so every RU/UZ/TJ caption this
-    // project has published reads «…питьё.». One defect, every caption,
-    // not one reel.
-    //
-    // The fix belongs here for the same reason P236's did, three comments
-    // above: the matn is quoted as the source quotes it, and it is the WRAPPER
-    // that creates the boundary. Editing the stored columns would change
-    // quoted source text across many rows to undo something we add.
-    //
-    // en and ar are left alone - English convention differs, Arabic uses other
-    // quotation marks, and neither was reported. A trailing '..' is left alone
-    // so an ellipsis does not lose a dot.
-    const wrapMatn = (text: string) => {
-      const inner = text.replace(/«/g, '„').replace(/»/g, '“').trimEnd()
-      if (!['ru', 'uz', 'tj'].includes(lang)) return `«${inner}»`
-      if (inner.endsWith('.') && !inner.endsWith('..')) return `«${inner.slice(0, -1)}».`
-      return `«${inner}»`
-    }
 
-    const captionBody =
-      `${data.title}\n\n` +
-      // P180: these matns begin with « themselves (the first words are the
-      // Prophet's speech), so the wrapper produced «« and a lone closing ».
-      // Only wrap text that isn't already quoted.
-      //
-      // P236: that handled a matn that BEGINS with «. A matn carrying «
-      // INSIDE it is the other half of the same problem, and P180 does not
-      // see it: wrapping gives «… «kalima» …», identical guillemets nested,
-      // which Russian, Uzbek and Tajik typography all read as broken. It hit
-      // Bukhari #6423 in RU and UZ and was corrected BY HAND both times, in
-      // the same hour, before anyone noticed it was one defect rather than
-      // two. #6570 would have been the third and fourth.
-      // The fix belongs here and not in the rows: the matn is quoted as the
-      // source quotes it, and it is the WRAPPER that creates the second
-      // level. Demote the inner pair to „…“, which is the second-level
-      // convention in all three Cyrillic languages this channel publishes.
-      (hadithText.trim().startsWith('«')
-        ? `${hadithText}\n\n`
-        : `${wrapMatn(hadithText)}\n\n`) +
-      // P153: the Arabic was in the DB and in the admin card but never
-      // reached a viewer, so nobody with Arabic could check the translation
-      // against the source — which is the one external check this project
-      // has. Full matn, never truncated.
-      (selected.text_arabic ? `${selected.text_arabic}\n\n` : '') +
-      `${data.moral}\n\n` +
-      `📖 ${ref}\n` +
-      // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
-      // blank line where the credit would have been.
-      (credit ? `${credit}\n` : '') +
-      `🔍 ${l10n.verify}: hadithverifier.com\n\n`
+    // P305: the body is assembled in lib/caption.ts so that
+    // scripts/build-caption.ts produces a byte-identical caption without
+    // the admin. Everything that used to sit inline here moved with it,
+    // unchanged: the localised ref line (P150), the HadeethEnc credit
+    // (P176), the full Arabic matn (P153), the quote nesting (P180, P236)
+    // and the closing period that belongs outside the guillemet in
+    // ru/uz/tj. P246 is what forced the move — #6570 shipped its reels
+    // before its captions were built, draft.txt was overwritten in
+    // between, and the captions had to be rebuilt from the row plus text
+    // recovered from the narration audio, which the admin cannot do.
+    //
+    // text_display is resolved per language by /api/reels (P108), so the
+    // row passed here already carries the right matn for `lang`.
+    const captionBody = buildCaptionBody({ row: selected, blocks: data, lang })
 
     // P184: UZ and TJ cleared Telegram's 1024 on nearly every set and were
     // trimmed by hand, after posting, once Telegram had already truncated

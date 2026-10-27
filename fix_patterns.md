@@ -12456,3 +12456,98 @@ end the class. Added to that log so the next model switch re-auditions it.
 
 ---
 
+## PATTERN 304: a detached helper inherits none of the render script's setup
+
+#6570's Uzbek and Tajik morals existed only as audio (P246), so Whisper was run
+over them directly to recover the text, with the project's own invocation from
+Step 5 of `render-reel.ps1` — `--model small`, `--language uz` and `tg`. The job
+outlasts the bridge's ~60s, so it ran detached. It failed twice and reported a
+clean finish both times.
+
+**The first failure is P302 again, written by the author of P302.** The runner
+script was placed in the repo, whose path contains spaces, and launched with an
+array argument list. `-ArgumentList` quotes each element it is given, so the
+receiving process parsed `-File` as `C:\QA\Hadith`:
+
+    Processing -File 'C:\QA\Hadith' failed because the file does not have a
+    '.ps1' extension.
+
+which names the extension and never mentions the truncation, so it reads as a
+different problem entirely. P302 is about a comma list; this is a path with
+spaces. Same boundary, same flattening, different disguise — which is why P302's
+fix should be read as "nothing with internal whitespace crosses `-ArgumentList`"
+rather than as a rule about lists. Writing the runner to `$env:TEMP`, which has
+no spaces on this machine, ends it.
+
+**The second failure was the PATH.** With the runner found and running, Whisper
+died inside `subprocess`:
+
+    FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+That is Whisper failing to launch **ffmpeg**, not failing to find the mp3.
+`ffmpeg` is not on the system PATH here; `render-reel.ps1` puts it there itself
+at its preflight, `if (Test-Path "$known\ffmpeg.exe") { $env:PATH += ";$known" }`.
+A helper started outside that script never sees it. The knowledge was in the
+repo and the helper simply did not inherit it.
+
+**Both runs reported success.** The runner called `whisper` as its last
+statements and never checked for output, so `=== DONE` printed on schedule, the
+log read as ordered and complete, and the output directory was empty. That is
+P154's shape — exit code, file exists, file age — applied to a helper instead of
+to the pipeline.
+
+**Fix:** a helper that runs a pipeline tool outside the pipeline script must
+reproduce that script's preflight, PATH fixes included, and must assert its
+output file exists before claiming it finished. Read the preflight rather than
+re-deriving it: it is at the top of `render-reel.ps1` and already names every
+tool and its known location.
+
+---
+
+## PATTERN 305: the caption body could only be built by the admin
+
+#6570's four reels were rendered 14-15 October and held until the 27th for the
+Tawheed arc's spacing. Its captions were never built, and in between `draft.txt`
+was overwritten by the next set's generation (P246). On publish day the title
+and moral survived only as audio for UZ and TJ, and only inside the burned
+subtitles for EN and RU.
+
+The body was assembled inline inside `buildCaption()` in `app/admin/page.tsx` —
+about seventy lines of template string. That made the admin the only thing in
+the project able to produce a caption, and it left two bad options:
+**re-generate the blocks**, when P245 re-attributed the moral in 7 of 8
+generations and this is rule 25's own test case (P239); or **hand-assemble four
+captions**, applying the quote rules by eye on the very reel P236 names as the
+case that would have been the third and fourth hand-correction of nested
+guillemets.
+
+Neither is a method, and both were avoidable: nothing in the body needs a
+browser. It is a pure function of the library row plus two strings.
+
+**What moved.** `lib/caption.ts` now owns `buildCaptionBody()`, `wrapMatn()` and
+`CAPTION_L10N`. The admin imports them; so does `scripts/build-caption.ts`,
+which takes the blocks from a JSON file. The move was a cut and paste, comments
+included, and `npx tsc --noEmit` passes.
+
+**Why one file and not two copies.** Everything in it is a typographic fix that
+took a published defect to find — P180 (a matn beginning with «), P236 (a matn
+carrying « inside it, nested identically), and the closing period that belongs
+outside the guillemet in ru/uz/tj. Each was one defect across every caption
+rather than one reel. A second implementation guarantees the next such fix lands
+in one copy only, which is P121/P168/P237's argument for the asset registry
+applied to text assembly.
+
+**Rule:** anything that composes PUBLISHED text belongs in `lib/`, not in a
+component. The test is whether a script can produce it. If the only way to get a
+caption is to open a browser and press a button, then losing the browser's
+inputs means losing the caption.
+
+**It earned itself on the first run.** Selecting `text_display` failed —
+it is NOT a column, `/api/reels` computes it per language (P108) — so a script
+has to read `text_russian` / `text_uzbek_cyrillic` / `text_tajik` directly. And
+EN's tag line fits a single topic hashtag at 1020 of Telegram's 1024 while RU,
+UZ and TJ keep four or five, because `fitTagLine` drops the English hashtags
+first for the Cyrillic languages and the topic tags first for English. Neither
+was visible while the body lived in a component.
+
+---

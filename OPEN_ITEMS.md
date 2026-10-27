@@ -94,6 +94,44 @@ v3/pro is still current; FLUX remains a major version behind; and HV `/api/healt
 ---
 
 ## Production queue
+**A/B RUN OVER THE REMAINING SHIPPED-UNVERIFIED ROWS, 2026-10-26 — 1 FAIL, 8
+DISAGREE, AND THE REPORT FILE IS GONE.** Stage 3 was run over 26 `hadith_library`
+rows carrying `matn_verified_at IS NULL` that the 2026-10-17 sweep had not
+covered — roughly 208 model calls. The report was written into `out/`, which is
+gitignored, and the container it ran from is gone. **This entry is the only
+surviving record of that run**, reconstructed from the session, not from a file.
+Treat the list below as the run's reported output rather than as re-verified
+fact; anything acted on should be re-read against the row first.
+
+**FAIL — both passes refuse, and it has shipped:**
+
+| row | reels | finding |
+|---|---|---|
+| Jami at-Tirmidhi #1956 | R003 | UZ omits `لَكَ` ("for you"). Pass A and pass B independently refuse the Uzbek. Pass B flags the same omission in EN, RU and TJ; pass A does not. |
+
+#1956 is a Stage 4 question, not a fix to make here. The standing rule holds:
+all four languages move together or none do. R003 is one of the earliest reels
+on the channel, so a correction is also a decision about editing a published
+post — see the PUBLISHED CAPTIONS rule set of 2026-10-17.
+
+**DISAGREE — A and B split, human decides, never a third pass (P177):**
+#527 (RU, UZ, TJ), #6009 (EN, RU, UZ), #2963 (UZ, TJ), #5027 (TJ), #2654 (RU),
+#1417 (UZ), #1488 (TJ), #82 (TJ).
+
+Note that #527 and #6009 were CLOSED on 2026-10-18 as FAIL rows and re-translated.
+These disagreements are therefore about the CORRECTED text, not the text that
+was fixed. Re-read them against the row before adjudicating, per the
+2026-10-17 rule about aggregation hiding non-conflicts.
+
+**What this run cost, and the lesson that was already written down.** The
+2026-10-17 sweep over 34 library rows was recorded in this very section, with
+its counts, and it was not looked for before the 26-row run was launched. The
+rule now in `CLAUDE.md`'s pre-session check — "no paid run before searching for
+an existing result" — was added the same day, after this. The second half of the
+lesson is this entry's own existence: a paid run whose output lives only in
+gitignored `out/` has been paid for twice the moment the container is recycled.
+**Write the verdicts into the docs in the same session that produces them.**
+
 **A/B SWEEP OF THE SHIPPED LIBRARY, 2026-10-17 — 16 ROWS NEED ADJUDICATION.**
 First Stage 3 run over `hadith_library`: 34 rows, 35 verdicts, **19 pass / 4
 fail / 12 disagree, 46% not clean.** Conventions audited clean first. Dry runs
@@ -412,83 +450,126 @@ Themes worth noting against the tracker’s gap list: #17 (doubt/wara‘) and #2
 (zuhd) are both uncovered, and #2 and #10 bear on the Akhlaq gap. None is a
 duplicate of anything shipped.
 
-**TRACKER ROW NUMBERS — THE #6570 TABLE BELOW IS NOW WRONG.** It reserves
-R134–R137, written when #6570 was the next thing to publish. It is not:
-**Bukhari #1903 EN published 2026-10-16 and took R134** (in the tracker now).
-The tracker appends on post, so #6570's four rows renumber to **R138–R141** when
-it posts ~2026-10-27 — assuming #1903's RU/UZ/TJ take R135–R137 first, which they
-will if the set finishes before then. #1903's own set will not be contiguous
-either if #6570 lands mid-set. Fix the numbers in that table before pasting it.
+**TRACKER ROW NUMBERS — SETTLED 2026-10-27. #6570 TAKES R150–R153.** This note
+previously reserved R134–R137, then corrected itself to R138–R141. Both were
+stale by the time anyone read them. The frontier is **R149** (#3540 TJ, posted
+2026-10-24), the tracker appends on post, so the four #6570 rows are
+**R150 EN, R151 RU, R152 UZ, R153 TJ**. Verified against the tracker rather
+than carried from this note — which is the lesson: a reserved row number goes
+stale the moment another set posts, so reserve nothing and read the frontier.
 
-**#6570 PRODUCED 2026-10-14, all four languages — HELD until ~2026-10-27.**
-Publishing waits on the 2-3 week Tawheed-arc spacing from #6423 (posted
-2026-10-13). Nothing outstanding on the reels themselves; every frame checked.
-
-The tracker is deliberately NOT updated yet. Its own rule is "After posting a
-reel - append a new row", so R134-R137, the clip-library rows and the
-production stats (→ 137 reels, 35 hadiths) all go in on publish day. Everything
-needed to write them:
+**#6570 PRODUCED 2026-10-14, all four languages. The hold expired 2026-10-27.**
+Publishing waited on the 2-3 week Tawheed-arc spacing from #6423 (posted
+2026-10-13). What was actually posted, and when, is recorded in the tracker on
+posting — never here, and never ahead of it.
 
 | Row | Lang | Duration | Size | Nasheed | Scenes |
 |---|---|---|---|---|---|
-| R134 | EN | 44.8s | 10.1 MB | aswati-Peaceful-Contemplation | lamp, ink, plain, kalima, garden |
-| R135 | RU | 47.1s | 10.5 MB | aswati-Steady-Motivation | lamp, ink, plain, kalima, garden |
-| R136 | UZ | 53.2s | 13.5 MB | aswati-Heartfelt-Gratitude | lamp, ink, plain, **b6423-plain**, kalima, garden |
-| R137 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
+| R150 | EN | 44.8s | 10.0 MB | aswati-Peaceful-Contemplation | lamp, ink, plain, kalima, garden |
+| R151 | RU | 47.0s | 10.5 MB | **aswati-Victory-March** (re-rendered 2026-10-27) | lamp, ink, plain, kalima, garden |
+| R152 | UZ | 53.2s | 13.5 MB | aswati-Heartfelt-Gratitude | lamp, ink, plain, **b6423-plain**, kalima, garden |
+| R153 | TJ | 43.7s | 9.9 MB | vocal-nasheed-05 | lamp, ink, plain, kalima, garden |
 
 Subtitles EN/RU only (P078). Scene order is NOT the order the clips were
 generated in: the kalima was moved from third to fourth after the first EN
-render put the green sheet on screen one beat BEFORE the words - see P238's
+render put the green sheet on screen one beat BEFORE the words — see P238's
 neighbour note and the EN frame check. UZ carries a sixth clip for P240.
 
-**Before publishing, three things:**
+**RU WAS RE-RENDERED, AND THE RIGHTS GATE IS WHY.** The leg shipped from the
+render of 2026-10-14 on `aswati-Steady-Motivation.mp3` — the bed YouTube
+Content ID claimed GLOBALLY on #3540 EN ("The Motion Wave", Abdullaerh Dee,
+owner Jungle Entertainment Ventures). `audit-assets.py --check` blocks it, which
+is the first real case the rights field and its single gate have caught since
+they were built on 2026-10-25. Had the gate not existed, the second blocked
+video of the month would have been uploaded.
 
-1. **Rebuild the EN caption** from the blocks. `text_english` was normalized
-   after the EN reel was rendered (P241), so the caption as built still reads
-   `Hurayrah` while the narration and burned subtitles read `Hurairah`.
-2. ~~**`matn_verified_at`** is null on both #6423 and #6570.~~ **SET by the
-   operator 2026-10-15** (2026-10-16 00:54 UTC) on both rows, read back after
-   the UPDATE rather than trusting "Success. No rows returned". The UPDATE
-   carried `AND matn_verified_at IS NULL` so it could not overwrite an existing
-   date. P151 holds: the field means a HUMAN read the row against the source, so
-   setting it is an assertion only the operator can make — #6570 was re-verified
-   2026-10-14 and #6423 was in the batch of four verified 2026-10-12.
-3. **Nasheed spacing — RESOLVED 2026-10-15.** Posted order per language runs
-   #6423 → #13 → #6570. All four now pass the tracker's rule (not the same
-   nasheed on 2 consecutive reels in the same language):
+Re-rendered on `aswati-Victory-March.mp3`, chosen by `pick-nasheed.py`: 1 use
+overall, never in RU, and R147 (#3540 RU) was `vocal-nasheed-04`, so the
+no-two-consecutive-in-one-language rule holds. 220s long, so it cannot loop
+under a 47s reel — the script's third choice, `aswati-Morning-Serenity`, is
+46.3s and would have looped by one second, which is why bed duration is
+measured and not assumed. P211 matched the narration fingerprint and kept the
+SRT, so the picture, the narration and the burned subtitles are byte-identical
+and only the music moved. The rejected render is kept on disk as
+`adults-ru-bukhari-6570-reel.rejected-steadymotivation.mp4`.
 
-   - **RU: no action.** #6570 RU's `aswati-Steady-Motivation` clashed with
-     #6423 RU (R127), but #13 RU (R131) sits between them on
-     `vocal-nasheed-05`. Not consecutive. NOT re-rendered.
-   - **EN: re-rendered** 2026-10-15 17:54 with
-     `-Nasheed aswati-Peaceful-Contemplation.mp3`. Was `vocal-nasheed-06`, the
-     same bed as #13 EN (R130). 44.8s / 10.1 MB unchanged; only the bed differs.
-   - **UZ: re-rendered** 2026-10-15 18:23 with
-     `-Nasheed aswati-Heartfelt-Gratitude.mp3`. Was
-     `aswati-Focused-Determination`, the same bed as #13 UZ (R132).
-     53.2s / 13.5 MB unchanged.
-   - **TJ: no action.** `vocal-nasheed-05`; TJ's previous bed was
-     `aswati-Steady-Motivation` (R133).
+**The subtitle validator was SKIPPED on that re-render, deliberately.** It
+compares the SRT against `draft.txt`'s S and M blocks, and those blocks are
+precisely what was lost (below). Reconstructing them from the SRT in order to
+feed them back would have compared the SRT against itself and proved nothing.
+The render printed its own `[skip]` notice. Nothing was left unvalidated that
+had not already been reviewed at the original render on 2026-10-14.
 
-   Beds read back from the four P201 `*-render.json` sidecars, not from the
-   session log — the chat had RU and TJ transposed for several turns, and the
-   sidecars are what caught it. `-Nasheed` was passed explicitly so the picker
-   could not re-roll.
-4. **The narrated TEXT for these four reels is not on disk (P246).**
-   `draft.txt` was overwritten by #13's generation the next day. EN and RU can
-   be reconstructed from their `*-narration.srt`; UZ and TJ ship without
-   subtitles (P078) and have NO text record — the reviewed wording survives
-   only as audio. Not in the repo, the session transcript, or chat history.
+**THE GENERATED TEXT WAS RECOVERED, NOT RE-GENERATED (P246, P305).**
+`draft.txt` had been overwritten by #13's generation the next day, so on publish
+day the title and moral survived only as audio for UZ and TJ, and only inside
+the burned subtitles for EN and RU. Re-generating was not an option on this reel
+in particular: P245 re-attributed the moral in 7 of 8 generations and this is
+rule 25's own test case (P239).
 
-   On publish day, for UZ and TJ, either:
-   - **transcribe** the caption's story line from the reel audio — keeps the
-     wording that was actually reviewed and corrected, ~15 min; or
-   - **regenerate** in admin and re-review all four blocks — fresh text means
-     fresh defects, and P245 re-attributed the moral in 7 of 8 generations.
+| block | EN | RU | UZ | TJ |
+|---|---|---|---|---|
+| matn (S) | database | database | database | database |
+| moral (M) | `narration.srt` | `narration.srt` | Whisper over `moral.mp3` | Whisper over `moral.mp3` |
+| title (C) | written fresh | written fresh | written fresh | written fresh |
 
-   Transcribing is cheaper and safer. Reels rendered from 2026-10-15 onward
-   archive their own text (`{style}-{lang}-{slug}-{section}.txt`, written by the
-   TTS route beside each mp3), so this applies to #6570 alone.
+UZ and TJ were transcribed with the project's own Whisper invocation from Step 5
+of `render-reel.ps1` — `--model small`, `--language uz` and `tg` — then checked
+against the audio duration: 13.92s of 13.95s for UZ, 10.84s of 10.92s for TJ,
+so neither transcript was truncated. **The Uzbek moral is genuinely shorter than
+the other three** and quotes the kalima where EN, RU and TJ say "the words of
+tawheed"; that is what the audio says, not a transcription loss. ﷺ was restored
+in all four morals — `cleanForTTS()` expands it before narration, so both the
+SRT and the transcript carry the spoken words.
+
+**The title had to be written fresh, and that is safe.** `draft.txt`'s C block
+is the TITLE, not a closing line, and only S and M reach TTS, so no recording of
+it exists in the repo, the audio, the transcript or chat history. It was never
+published, so there is no artefact to stay consistent with. Written under the
+generator's own rule from `app/api/generate-reel/route.ts`: at most 8 words,
+drawn from the matn, naming no benefit and promising no outcome.
+
+**The four captions were built by script, not by hand.**
+`npx tsx scripts/build-caption.ts --blocks out/caption-6570.json` wrote
+`out/caption-6570-{en,ru,uz,tj}.txt` — 1020 / 1019 / 982 / 981 characters, all
+inside Telegram's 1024, each read back after writing. The `Hurayrah` /
+`Hurairah` mismatch that this section used to list as a pre-publish task
+(`text_english` was normalised after the EN reel rendered, P241) resolved
+itself: the row now reads `Hurairah` and the caption is built from the row.
+
+**EN's tag line fits only one topic hashtag** at 1020 of 1024, while RU, UZ and
+TJ keep four or five. `fitTagLine` drops the English hashtags first for the
+Cyrillic languages and the topic tags first for English, so the asymmetry is the
+algorithm and not a defect. Instagram allows 2200 and YouTube far more, but TG
+and IG share one caption by the operator's rule, so the Telegram budget governs
+both. Open, unprioritised: a per-platform tag budget would recover four
+hashtags on EN.
+
+**The Uzbek kalima was checked and is correct as stored.**
+`text_uzbek_cyrillic` reads «Ла илаҳа иллаллоҳ», which reads as a slip against
+«илоҳ». It is not: the project's own corrected ZAD Aqeedah course material uses
+«Ла илаҳа иллаллоҳ» throughout, transliterating the Arabic *ilāha*, while
+«илоҳ» is the separate Uzbek noun the same book uses in «Аллоҳдан ўзга ҳақ илоҳ
+йўқ». The same book also carries this very hadith, with «чин қалбидан» where we
+have «ўз ичидан» — the self-versus-heart question settled on 2026-10-13 in
+favour of «себя», which stands. Recorded because the suspicion would otherwise
+come back a third time.
+
+**`matn_verified_at` is set on both #6423 and #6570**, by the operator on
+2026-10-15 (2026-10-16 00:54 UTC), read back after the UPDATE rather than
+trusting "Success. No rows returned". The UPDATE carried
+`AND matn_verified_at IS NULL` so it could not overwrite an existing date. P151
+holds: the field means a HUMAN read the row against the source, so setting it is
+an assertion only the operator can make.
+
+**Nasheed spacing across the arc — RESOLVED 2026-10-15, still true after the RU
+re-render.** Posted order per language runs #6423 → #13 → #6570. EN was
+re-rendered 2026-10-15 17:54 onto `aswati-Peaceful-Contemplation` (was
+`vocal-nasheed-06`, the same bed as #13 EN at R130) and UZ 2026-10-15 18:23 onto
+`aswati-Heartfelt-Gratitude` (was `aswati-Focused-Determination`, the same bed
+as #13 UZ at R132). TJ needed no change. Beds are read from the four P201
+`*-render.json` sidecars, never from the session log — the chat had RU and TJ
+transposed for several turns and the sidecars are what caught it.
 **Rule 25's verdict is in — see P239.** It lost 3-of-4. The fifteen-rule
 rewrite in `docs/proposed-rules-positive-form.md` stays on hold; what goes in
 next is one rule naming the MOVE (affirmation rendered as contrast), tested
@@ -882,8 +963,12 @@ is variety across themes. Interleave other themes between them.
    a single hasan li-ghayrihi, would undercut the premise it is built on. The
    fact that it is popular is the reason to leave it alone, not to run it.
 
-Not yet in the library — all numbers were checked against it and none exist as
-rows. **Sourced 2026-10-12 via Workflow L** (`upload-candidates.py --queries`,
+PARTLY IN THE LIBRARY NOW — corrected 2026-10-27, checked row by row with
+`list-library.py --row`. **#6423 and #6570 ARE library rows** and have both
+shipped. **#3435, Muslim #28 and Bukhari #99 return no row** and still need
+Workflow L plus translations. The original note, true on 2026-10-12, said
+none of them existed; it was read as current twice after it stopped being
+true. **Sourced 2026-10-12 via Workflow L** (`upload-candidates.py --queries`,
 Dorar only, no API key): 3 queries → 6 rows in `out/candidates-dorar.json`,
 39 daif/empty dropped, 0 duplicates. Keep **bukhari #3435, #6423, #6570**;
 the other three rows are Muslim/longer variants of the same three hadiths.

@@ -331,3 +331,100 @@ column by column from `render.json`, ffprobe and the library row, which is how
 the three wrong beds in the assistant's own notes were found at all.
 
 ---
+
+## R150-R153 - Sahih al-Bukhari #6570 - 2026-10-27
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG / YT Shorts / TikTok
+
+The second reel of the Tawheed arc, produced 2026-10-14 and held thirteen days
+for the operator's 2-3 week spacing from #6423. Nothing was generated, rendered
+or paid for on publish day except one re-render; the whole set cost zero in
+paid API.
+
+**Caught before publish**
+
+- **RU was sitting on the bed YouTube Content ID claimed.**
+  `aswati-Steady-Motivation.mp3` is the bed that blocked #3540 EN globally, and
+  the RU leg had been rendered on it on 2026-10-14, before that was known.
+  `audit-assets.py --check` blocked it - the first real case the rights field
+  and its single gate have caught since they were built two days earlier. Had
+  the gate not existed, the second blocked video of the month would have gone
+  up. Re-rendered on `aswati-Victory-March.mp3`.
+- **The bed's DURATION mattered and was measured.** `pick-nasheed.py`'s third
+  choice, `aswati-Morning-Serenity`, is 46.3s against a 47.0s reel and would
+  have looped by one second. The recommendation ranks by usage, not by length.
+- **A suspicion about the Uzbek kalima was wrong, and checking is what settled
+  it.** `text_uzbek_cyrillic` reads «Ла илаҳа иллаллоҳ» and OPEN_ITEMS quotes
+  «Ла илоҳа иллаллоҳ» from another source, so the row looked defective. The
+  project's own corrected ZAD Aqeedah material uses «илаҳа» throughout - it
+  transliterates the Arabic *ilāha*, while «илоҳ» is the separate Uzbek noun
+  the same book uses in «Аллоҳдан ўзга ҳақ илоҳ йўқ». Nothing to change. This
+  would have become a correction task handed to the operator on an unchecked
+  premise, which is the specific failure of 2026-10-26.
+- **`text_display` is not a column.** The first run of the new caption script
+  selected it and Supabase refused the query. `/api/reels` computes it per
+  language (P108); a script has to read `text_russian` /
+  `text_uzbek_cyrillic` / `text_tajik` directly.
+- **The Whisper helper failed twice while reporting a clean finish** (P304):
+  once on a space-containing path flattened through
+  `Start-Process -ArgumentList`, which is P302 in a different disguise and
+  written by the author of P302; once because ffmpeg is not on the system PATH
+  and the render script adds it itself, so a detached helper never sees it.
+  Both runs printed `=== DONE` over an empty output directory.
+
+**Escaped to publish**
+
+- Nothing in the content. The risk carried into publication is recorded below
+  rather than hidden: two of the eight narrated blocks were read back by the
+  assistant rather than by the operator.
+
+**Carried risk, stated**
+
+- **The UZ and TJ morals were recovered from audio by Whisper and
+  reconstructed by the assistant**, then confirmed by the operator on the
+  strength of listening to the reels. Transcript coverage was checked against
+  the audio duration first - 13.92s of 13.95s for UZ, 10.84s of 10.92s for TJ -
+  so nothing was truncated, and the two shakiest tokens were named explicitly
+  when the reconstruction was put up for confirmation rather than buried in a
+  paragraph. Still: this is the one text in the set that passed through the
+  assistant's reading before the operator's.
+- **All four titles were written fresh.** `draft.txt`'s C block is the TITLE,
+  only S and M reach TTS, and the file had been overwritten, so no recording of
+  the original exists anywhere. Nothing had been published, so there was no
+  artefact to stay consistent with. Written under the generator's own rule from
+  `route.ts`: at most 8 words, drawn from the matn, naming no benefit.
+
+**Root causes**
+
+- **`draft.txt` is one mutable file for a pipeline that holds reels for weeks.**
+  #6570 was rendered on the 14th and published on the 27th; the next set's
+  generation overwrote the only copy of its text on the 15th (P246). Reels
+  rendered from 2026-10-15 onward archive their own text beside each mp3, so
+  this is closed for everything after #6570 - but the hold, not the overwrite,
+  is what made it bite, and the arc has one more reel to come.
+- **The caption body could only be built by the admin** (P305). Seventy lines
+  of template string inside a React component meant that losing the component's
+  inputs meant losing the caption, and that the only fallbacks were
+  re-generating the blocks - P245 re-attributed the moral in 7 of 8 generations,
+  on rule 25's own test case - or hand-applying the quote rules on the very reel
+  P236 names as the case that would have been the third and fourth
+  hand-correction of nested guillemets. Extracted to `lib/caption.ts`.
+- **A reserved row number goes stale the moment another set posts.** This
+  section's own note reserved R134-R137, corrected itself to R138-R141, and both
+  were wrong by publish day. Read the frontier; reserve nothing.
+- **The pipeline doc still says to add the Aswati courtesy credit** for any
+  `aswati-*` bed. P301 showed those beds are user-upload remixes and the
+  licence requires no attribution, so the credit asserts a provenance known to
+  be false. It was omitted on all four legs here and on #3540 before that, which
+  means the doc has now been overridden twice by judgement instead of once by an
+  edit. Recorded in OPEN_ITEMS.
+
+**What the set did not need**
+
+The subtitle validator was skipped on the RU re-render, deliberately and with
+the render's own `[skip]` notice: it compares the SRT against `draft.txt`'s S
+and M blocks, which are precisely what was lost. Reconstructing them from the
+SRT to feed them back would have compared the SRT against itself. P211 matched
+the narration fingerprint and kept the reviewed SRT, so the picture, narration
+and burned subtitles are byte-identical to the leg reviewed on 2026-10-14 and
+only the music moved.

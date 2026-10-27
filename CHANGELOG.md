@@ -1,3 +1,84 @@
+## [2026-10-27] - the caption body leaves the admin, and #6570's lost text is recovered
+
+### Added
+- **`lib/caption.ts` owns the caption body (P305).** `buildCaptionBody()`,
+  `wrapMatn()` and `CAPTION_L10N` moved out of `app/admin/page.tsx` unchanged,
+  comments included. The admin imports them. `npx tsc --noEmit` clean.
+  Before this the only way to produce a caption was to open the admin and press
+  a button, so losing the generated blocks meant losing the caption — which is
+  exactly what had happened to #6570, rendered 14-15 October, held until today
+  for the Tawheed arc's spacing, with `draft.txt` overwritten in between (P246).
+- **`scripts/build-caption.ts`** builds a reel's captions from the library row
+  plus the two generated blocks given as JSON, with no admin and no
+  re-generation: `npx tsx scripts/build-caption.ts --blocks out/caption-6570.json`.
+  It refuses to guess when `hadith_number` matches more than one row and prints
+  the uuids instead (P147), exits 2 rather than 0 on a read it could not make
+  (P093), fits the tag line with the same `fitTagLine()` the admin uses (P184),
+  and reads each file back after writing it (P186).
+
+### Fixed
+- **#6570 RU was sitting on the bed YouTube Content ID claimed.**
+  `aswati-Steady-Motivation.mp3` — the bed that blocked #3540 EN globally
+  ("The Motion Wave", Abdullaerh Dee, Jungle Entertainment Ventures). The
+  rights field and its single gate, built last session, caught their first real
+  case: `audit-assets.py --check` blocks it. Re-rendered on
+  `aswati-Victory-March.mp3`, recommended by `pick-nasheed.py` — 1 use overall,
+  never in RU, and the previous RU reel (R147) was on `vocal-nasheed-04`, so the
+  no-two-consecutive rule holds. 220s long, so it cannot loop under a 47s reel;
+  the script's third choice, `aswati-Morning-Serenity`, is 46.3s and would have
+  looped by a second, which is why the duration was measured. Picture,
+  narration and burned subtitles unchanged — P211 matched the narration
+  fingerprint and kept the SRT, so only the music moved. The rejected render is
+  kept as `...-reel.rejected-steadymotivation.mp4`.
+- **The Tawheed queue in OPEN_ITEMS said none of its hadiths were in the
+  library.** True on 2026-10-12, read as current twice after it stopped being
+  true. Checked row by row: #6423 and #6570 are library rows and have both
+  shipped; #3435, Muslim #28 and Bukhari #99 return no row.
+- **The #6570 tracker table reserved R134-R137, corrected once to R138-R141.**
+  Both stale. The frontier is R149, so #6570 takes **R150-R153**.
+
+### Recovered
+- **#6570's text, rather than re-generated.** P245 re-attributed the moral in 7
+  of 8 generations, and this reel is rule 25's own test case (P239), so
+  re-generating was not an option here in particular. The matn came from the
+  database in all four languages. EN and RU morals came from
+  `narration.srt`. UZ and TJ morals were transcribed from `moral.mp3` with the
+  project's own Whisper invocation (`--model small`, `--language uz` and `tg`)
+  and checked against the audio duration — 13.92s of 13.95s for UZ, 10.84s of
+  10.92s for TJ, so neither was truncated. The Uzbek moral is genuinely shorter
+  than the other three and quotes the kalima where the others say "the words of
+  tawheed"; that is the audio, not a transcription loss. ﷺ was restored in all
+  four: `cleanForTTS()` expands it before narration, so both the SRT and the
+  transcript hold the spoken words.
+- **The title was written fresh for all four languages.** `draft.txt`'s C block
+  is the TITLE, not a closing line, and only S and M reach TTS, so no recording
+  of it exists anywhere. Written under the generator's own rule: at most 8
+  words, drawn from the matn, promising nothing the matn does not.
+
+### Checked and left alone
+- **The Uzbek kalima is correct as stored.** `text_uzbek_cyrillic` reads
+  «Ла илаҳа иллаллоҳ», which looks like a slip against «илоҳ». The project's
+  own corrected ZAD Aqeedah course material uses «Ла илаҳа иллаллоҳ»
+  throughout — it transliterates the Arabic *ilāha*, while «илоҳ» is the
+  separate Uzbek noun the same book uses in «Аллоҳдан ўзга ҳақ илоҳ йўқ».
+  Recorded because the suspicion would otherwise come back.
+- **EN's caption fits one topic hashtag** at 1020 of Telegram's 1024, while RU,
+  UZ and TJ keep four or five: `fitTagLine` drops the English hashtags first for
+  the Cyrillic languages and the topic tags first for English. Noted, not
+  changed.
+
+### Also
+- **P304** — a detached helper inherits none of `render-reel.ps1`'s setup. The
+  Whisper job failed twice while reporting a clean finish: once because
+  `-ArgumentList` as an array split the repo's space-containing path so `-File`
+  received `C:\QA\Hadith` (P302 again, in a different disguise), and once
+  because ffmpeg is not on the system PATH — the render script adds it itself,
+  and a helper started outside it never sees that.
+- **The 2026-10-26 Stage 3 run is now written down.** It covered 26 library
+  rows, its report went to gitignored `out/`, and the container is gone. The
+  findings — Tirmidhi #1956 UZ omitting لَكَ, and eight disagreements — now live
+  in OPEN_ITEMS' Production queue, which is the only surviving record.
+
 ## [2026-10-26a] - the closing period moves outside the guillemet
 
 ### Fixed
