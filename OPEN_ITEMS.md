@@ -169,6 +169,30 @@ flagged "added content" and the truth was a short Arabic. Muslim #223, #2699 and
 #2963 are the same shape and already recorded. Nothing in the pipeline checks
 that a stored matn is the WHOLE hadith.
 
+**A WORD-COUNT RATIO AGAINST THE MIRROR DOES NOT WORK — measured 2026-10-27,
+recorded so nobody builds it twice.** The obvious cheap check is to divide our
+stored word count by the matching mirror entry's and flag anything well under
+1.00. It was built as a one-off (`out/extent_check.py`, reusing
+verify-matn-source.py's loader) and run over twenty shipped rows plus four
+candidates. It does not separate truncated from complete:
+
+- A 0.60 threshold flags **18 of 20 shipped rows**, including every row the
+  project has reviewed and accepted.
+- **#8, the known truncation, sits at 0.42 — mid-pack**, above eleven rows that
+  are fine.
+- #5027 and #3895 shipped at **0.09**, the same band as rows that have never
+  been questioned, because our matn is the saying and the mirror entry carries
+  the isnad and often a longer narration around it.
+- The highest shipped ratios are #6009 at 0.73 and #6423 at 0.72, so even a
+  complete extract never approaches 1.00 and there is no baseline to measure
+  against.
+
+The ratio measures how much narrative frame the mirror has, not whether our
+matn is whole. Anything built here has to compare our matn against the mirror's
+MATN with the isnad stripped, and the mirror's own structure would have to be
+trusted to do that. Still NOT BUILT, and now with a reason rather than an
+absence.
+
 **#1520 DONE 2026-10-17 - and it was NOT truncation.** Two defects: a wrong
 diacritic (`lakunna` for `lakinna`, one vowel, a different word) and a cut matn
 missing Aisha's question. They concealed each other, and all four translations
@@ -767,12 +791,22 @@ self”, not “heart”.
   already-faithful text; reverted to the translator's «искренне, от самого
   себя» on the operator's call, through sign → apply (not an SQL patch), and
   verified in the DB. Provenance on that field is back to `machine`.
-- UZ: OPEN. «ўз қалбининг самимиятидан» is the translator's own, and the
-  established EN rendering of this hadith is “sincerely from his heart”, so A
-  may be stricter here than the convention. No second opinion exists while
-  pass B has no credits [**STALE — B RUNS; see 2026-10-16 correction**]. TJ «холис аз таҳти дили худ» and EN “from his own
-  heart” carry the same question. Decide the convention once, for all four
-  languages, rather than per row.
+- UZ: **CLOSED 2026-10-27, and the text it describes no longer exists.** This
+  line quoted «ўз қалбининг самимиятидан» in Uzbek, «холис аз таҳти дили худ»
+  in Tajik and “from his own heart” in English. A read of the row on publish
+  day returns none of them: EN “sincerely from his own self”, UZ «ихлос билан,
+  ўз ичидан», TJ «холис аз ҷониби худи ӯ». All three say SELF, which is what
+  pass A asked for. The convention this line asked someone to decide was
+  decided on 2026-10-13 and is recorded further down this same section — so
+  the section carried two items contradicting each other for a fortnight, and
+  the stale one said OPEN about a reel that shipped as R150–R153. Closed
+  against the DATABASE row, not against the other note: a note agreeing with a
+  note is not evidence.
+  **The pattern, fifth instance in three days:** an item that records a
+  finding and an item that records its resolution are written in different
+  sessions and never reconciled, so the file accumulates pairs where the older
+  half is the one a reader hits first. Resolving an item means editing the item
+  that raised it, not adding a second one.
 
 **The Tawheed run carries four viewer-confusion traps, all rowed in the
 tracker’s duplicate-check index (2026-10-12).** Same handling as #6871/#2654
@@ -843,8 +877,8 @@ exist. Either write it or drop this item deliberately.
 ---
 
 ## Platforms
-**THE PIPELINE DOC STILL SAYS TO ADD THE ASWATI COURTESY CREDIT, AND IT HAS NOW
-BEEN OVERRIDDEN TWICE BY JUDGEMENT INSTEAD OF ONCE BY AN EDIT.**
+**ASWATI COURTESY CREDIT - CLOSED 2026-10-27. The credit is scoped to beds whose
+provenance the REGISTRY has verified, and that rule governs the Aswati beds too.**
 `reel-creation-pipeline.md` section 3 reads: "Add the `Nasheed: Aswati Studio`
 credit line to the description ONLY when the bed is an `aswati-*` track."
 
@@ -862,12 +896,14 @@ again on all four #6570 legs (2026-10-27), each time by reading P301 rather
 than by reading the pipeline. A rule that is correctly ignored twice is a rule
 that will be followed by whoever reads it next.
 
-**DECISION NEEDED, one line either way:** delete the instruction, or replace it
-with "no courtesy credit for any bed whose provenance is unverified in the
-registry — which is currently all of them." The second is better, because it
-names the registry as the authority and survives a bed that one day does have
-evidence behind it. Not done here because it changes a published instruction
-rather than a record of fact, and the operator has not been asked.
+**The operator chose the registry-scoped form on 2026-10-27**, and
+`reel-creation-pipeline.md` section 3 now reads that way, so the instruction and
+the practice agree for the first time. Currently NO bed qualifies — all 25
+audio entries carry `rights.status: "unverified"` — so no reel carries a credit
+line at all. The first bed to earn one will earn it by having evidence recorded
+in the registry, not by having a vendor's name, and `audit-assets.py` already
+reads that same field for the block decision (P237), so one field now answers
+both questions.
 
 
 **Check the Instagram comment Inbox.** Business Suite showed an empty comment

@@ -731,11 +731,26 @@ Then Audience -> **No, not made for kids** on the adults lane -> Next through ->
 Visibility -> **Public** -> Publish. A vertical reel under 60s is picked up as a
 Short automatically; there is no flag to set.
 
-Add the `Nasheed: Aswati Studio` credit line to the description ONLY when the bed
-is an `aswati-*` track. YouTube is the only platform carrying that credit, and
-the Aswati licence section 4 requires no attribution at all - it is a courtesy,
-so do not attach it to a bed that is not theirs. The registry records no source
-field for the non-Aswati beds, so for those there is nothing to credit.
+**Courtesy credit - scoped to the registry. Operator's decision, 2026-10-27.**
+Add a `Nasheed: <source>` credit line to the YouTube description ONLY for a bed
+whose provenance the REGISTRY has verified - that is, whose audio entry carries a
+`rights.status` other than `unverified`. For every other bed, add nothing. This
+rule governs the Aswati beds exactly as it governs the rest; there is no
+per-vendor exception any more.
+
+**Right now that means no bed gets a credit line.** All 25 audio entries read
+`rights.status: "unverified"`. The Aswati beds are why the rule changed: the
+certificate licensed a remix platform's terms of service, not the recordings its
+users uploaded, and ffprobe reads the eight of them as a SoundCloud rip, the
+instrumental of an existing named nasheed, and five phone voice memos from one
+evening under three uploader names (P301). Crediting "Aswati Studio" asserts a
+provenance known to be false, and their licence section 4 requires no
+attribution in any case.
+
+The rule this replaces - credit any `aswati-*` track - was correctly ignored
+twice before it was changed, on #3540 and on all four #6570 legs. A rule
+overridden by judgement is a rule waiting to be obeyed by whoever has not read
+P301, which is why it was edited rather than left to be ignored a third time.
 
 ### 4. TikTok — TikTok Studio, desktop
 
