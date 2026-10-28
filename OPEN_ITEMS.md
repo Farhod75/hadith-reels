@@ -188,7 +188,12 @@ candidates. It does not separate truncated from complete:
   against.
 
 The ratio measures how much narrative frame the mirror has, not whether our
-matn is whole. Anything built here has to compare our matn against the mirror's
+matn is whole. **Worked example, 2026-10-27:** Bukhari #3559 scores
+0.10. Reading the mirror entry shows why — it carries the isnad, a description
+of the Prophet's manner, our saying, and a SECOND unrelated saying about taking
+the Qur'an from four named companions. Our stored Arabic is an exact and
+complete quotation of the first saying. The ratio called a clean row defective
+and would have sent someone to repair text that needs nothing. Anything built here has to compare our matn against the mirror's
 MATN with the isnad stripped, and the mirror's own structure would have to be
 trusted to do that. Still NOT BUILT, and now with a reason rather than an
 absence.
