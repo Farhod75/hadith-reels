@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b3559-meadow",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal. A wide meadow of wildflowers in full bloom stretching to a line of distant hills, white and yellow and soft violet flowers through tall green grass, bright clear morning light, a few blossoming trees far off on the horizon, airy and open, no people, no buildings, no text.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a182e1-f38f-7fb1-98e1-c74fdc66a511",
+    "submitted_utc":  "2026-10-28T14:20:08.3770773Z",
+    "completed_utc":  "2026-10-28T14:20:16.6495347Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b3559-meadow-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a9/kBbugcpQJjYeRU_Gs1PNw_86LBQ6M3.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b3559-meadow-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a9/lR4QNe1OC3GhfaBgDg_un_DwXyMBrc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b3559-meadow-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a9/1O5RRElYXg2_JQaj8-z0e_giMd56d8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1454128568
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b3559-blossom",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal. A single almond tree in full blossom standing alone in an open field at golden hour, dense white and pale pink flowers covering every branch, warm low sunlight behind it rimming the petals, soft green grass below, clear sky, shallow depth of field, luminous and joyful, no people, no buildings, no text.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a182e1-587e-75c1-a3a4-8f011d78c4c6",
+    "submitted_utc":  "2026-10-28T14:19:28.0567424Z",
+    "completed_utc":  "2026-10-28T14:19:37.0068623Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b3559-blossom-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a5/f6aUkFYlFRJTgrBD42CZh_OKE8MbN4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b3559-blossom-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a5/Wr0Z2HDXq1BRgOeBJb-MC_VTbwb47o.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b3559-blossom-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033a5/VQru9GOlW_Q3VHclgnlt4_bCCEby5t.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  297288427
+}

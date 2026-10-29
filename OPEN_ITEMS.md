@@ -654,6 +654,42 @@ subject (false speech) — look at it deliberately rather than by surprise.
 
 ---
 ## Blocks content — do not ship past these
+**No gate compares a library row's Arabic to its own cited source — P306,
+found 2026-10-28.**
+
+Bukhari #3559 shipped two reels whose matn was authentic Bukhari from the right
+narrator but belonged to reference 3759, 3760, because the number had been
+resolved through the local mirror's `id` — which runs about 38 behind
+sunnah.com's reference numbering in that region. Citation, narrator, grade,
+authority tier and `source_url` all looked correct, and the text was real, so
+nothing downstream could fire. `matn_screened_at` had been set on 2026-09-05;
+nothing had ever fetched `source_url` and compared the Arabic to it. The gate
+below is the only check that distinguishes 3559 from 3759.
+
+The gate is small: fetch the Arabic from the row's own `source_url`, normalise
+diacritics and `ـ` elongation, compare to `text_arabic`, report disagreements
+rather than patching them. Run it over all 71 rows before the next set — this
+row was wrong in the library for roughly five months and nothing in the pipeline
+could see it.
+
+Until it exists, `matn_screened_at` records that a row was looked at, which is
+much weaker than it reads, and a row whose Arabic has never been compared to its
+source is unverified whatever its timestamps say.
+
+**`stt-validate` cannot see the expanded honorific — P308, found 2026-10-28.**
+
+The draft holds the glyph `ﷺ`; the TTS route expands it to spoken words; Whisper
+transcribes the expansion. So the longest span in every reel's subtitles has
+nothing in the draft to be compared against, and a mangled honorific scores
+1.000 with zero findings. «доблагословит» — «да благословит» collapsed into one
+non-word — reached the #3559 Russian subtitles and was caught by reading, as
+«Аллахам» and «Их Адис» were before it.
+
+Fix: expand the same honorifics the TTS route expands, per language, from the
+same mapping, before comparing. Until then a similarity of 1.000 on a file
+containing a spoken honorific means "the comparable part matched", and honorific
+spans need an eye on them.
+
 **#1903 العمل به — the RU matn is LOOSER than the EN, found 2026-10-16 while
 producing the RU leg. NOT a blocker; decide from a source at the set boundary.**
 
@@ -1346,6 +1382,26 @@ registered as a developer the same day.
 ---
 
 ## Recently closed
+
+- 2026-10-28 — R154—R157 shipped, Sahih al-Bukhari #3559, four languages,
+  four platforms each. The set REPLACED two already-published reels: the
+  library row cited Bukhari #3559 while storing a different hadith's matn, and
+  because the words were in the narration and the burned subtitles no caption
+  edit could reach them, so all eight posts were deleted and all four languages
+  reproduced. P306—P310 recorded, plus a P306 addendum. The screening note that
+  had cleared this hadith described a source page that does not exist and has
+  been replaced in the tracker.
+
+- 2026-10-28 — Telegram publishing automated. `/api/telegram/post` gained a
+  `sendVideo` path that uploads the reel itself, guards the repo boundary and
+  the 1024-character video-caption cap, and no longer double-appends the Arabic
+  line; `scripts/post-telegram.py --lang <l> --slug <s>` posts a rendered reel
+  in one command, with `--dry-run`. Deliberately NOT wired into
+  `render-reel.ps1`: the project's rule is human approval before every publish,
+  so what changed is the cost of deciding, not the decision. STILL BLOCKED on
+  `TELEGRAM_ALERT_BOT_TOKEN` and `TELEGRAM_CHANNEL_CHAT_ID`, which exist in
+  Vercel and not in `.env.local`; pulling them needs `vercel login`, which is
+  interactive.
 
 - 2026-10-10 — P213 closed. `lint-content.py` now flags an abbreviated
   companion honorific in a NARRATED block (S or M). A check, not an

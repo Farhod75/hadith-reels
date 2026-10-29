@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab038b3/k2-m4QjP_OES0RNbkcRSH_output.mp4",
+    "name":  "b3559-meadow",
+    "image":  "out\\refs\\b3559-meadow-3.jpg",
+    "file":  "out\\backgrounds\\new\\b3559-meadow.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-28T17:51:53.2404250Z",
+    "size_bytes":  37050892,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "a gentle wind moving across the meadow in slow waves, grass and flowers bending and rising, the distant trees barely stirring, light steady, camera held completely still",
+    "request_id":  "01a183a3-cf6b-75c0-8379-3780e46f73e3",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-28T17:59:16.5451073Z",
+    "mode":  "image-to-video"
+}

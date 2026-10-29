@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0391d/K0uv9FDIzkEmt9bj-JFSz_output.mp4",
+    "name":  "b3559-canopy",
+    "image":  "out\\refs\\b3559-canopy-3.jpg",
+    "file":  "out\\backgrounds\\new\\b3559-canopy.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-28T18:09:16.0470908Z",
+    "size_bytes":  35043250,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "branches swaying very slightly, sunlight flickering softly between the blossoms, a petal or two drifting across the frame, camera held completely still",
+    "request_id":  "01a183b3-b8e0-71b3-950d-af69c244261c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-28T18:14:56.9755793Z",
+    "mode":  "image-to-video"
+}

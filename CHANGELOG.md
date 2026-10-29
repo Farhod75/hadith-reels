@@ -1,3 +1,62 @@
+## [2026-10-28] — a published matn was wrong, and Telegram learned to post itself
+
+### Fixed
+
+- **Library row #3559 carried a different hadith (P306).** The row named
+  `Sahih al-Bukhari`, `3559`, `Abdullah ibn Amr`, `grade: sahih`,
+  `authority: tier1` and `source_url: sunnah.com/bukhari:3559` — all correct —
+  and stored «إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ أَحْسَنَكُمْ أَخْلَاقًا» under them. Bukhari 3559
+  reads «إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا». The stored wording is authentic
+  Bukhari from the very same narrator — it is 3759, 3760, in Kitab Fada'il Ashab
+  an-Nabi — so the defect was the NUMBER, not the words. The number came from
+  the local mirror, whose `id` runs about 38 behind sunnah.com's reference in
+  this region: mirror entry 3597 is 3759, 3760, and mirror entry 3559 is a
+  hadith of Jabir entirely. Settled by opening both pages.
+  `text_arabic` and all four translations replaced; `text_uzbek_latin` and the
+  legacy `text_uzbek` re-derived; the `love` tag dropped, since it described the
+  superseded wording. `narrator`, `collection`, `hadith_number`, `grade` and
+  `source_url` untouched. `matn_verified_at` left NULL per P265 and
+  `matn_screened_at` deliberately NOT refreshed — the screening that passed this
+  row is what is in question.
+- **Two reels were already public.** EN and RU had shipped on Telegram,
+  Instagram, YouTube Shorts and TikTok. The wrong words were in the narration
+  audio and the burned subtitles, so no platform could repair them by editing a
+  caption. All eight posts were deleted and all four languages reproduced.
+- **Subtitles, by hand.** EN cue 6 read `place` for `placed` — the validator
+  caught that one. RU cues 1 and 5 read «доблагословит» for «да благословит»,
+  which the validator structurally cannot catch (P308), and which scored
+  similarity 1.000. Both fixed and re-rendered; the edited SRTs survived per
+  P211.
+
+### Added
+
+- **`sendVideo` on `/api/telegram/post`.** Posts the reel itself rather than
+  only its caption. Resolves `videoPath` against the repo root and refuses
+  anything outside it, requires `.mp4`, enforces Telegram's 1024-character
+  video-caption cap rather than truncating, and reports bytes and caption length
+  back. The text-only `sendMessage` path is unchanged, so the admin studio's
+  button still works.
+- **`scripts/post-telegram.py`.** One command per reel, with `--dry-run`.
+  Reads the caption from `out/caption-<n>-<lang>.txt`, so the posted text is the
+  same text the narration and the database carry. Not wired into the render:
+  human approval before every publish stands.
+- **PATTERN 306—310 and a P306 addendum.** The conflated matn; an approved block
+  that exists only in the conversation; the honorific outside the subtitle
+  validator's reach; a render that dies with the bridge call driving it; .NET
+  file APIs ignoring PowerShell's location. The addendum covers the screening
+  note that described a source page which does not exist.
+
+### Changed
+
+- **`parse_mode: 'HTML'` removed from the Telegram route.** The captions are
+  plain text; under HTML any bare `&` or `<` would have failed the send. The
+  route also no longer appends `hadith.text_arabic` to a caption that already
+  contains it.
+- **Tracker.** R154—R157, a new `Character / Akhlaq` theme row, four nasheed
+  rows, the `b3559` scene set and the missing `b6570` scene row, and stats to
+  157 reels from 40 hadiths. The #3559 duplicate-check entry was rewritten: its
+  2026-10-27 note was false in every material particular.
+
 ## [2026-10-27] - the caption body leaves the admin, and #6570's lost text is recovered
 
 ### Added

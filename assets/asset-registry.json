@@ -1301,6 +1301,42 @@
       "verified": true,
       "notes": "MODE B. Rain falling from a cumulus mass onto an empty desert plain, bright sunlit white cloud on the left, a clear rainbow arcing through the rain on the right. No figures. Sixth clip, added for the Uzbek leg and reused by the rest of the set. It sits FOURTH in the order - dua, light-push, clouds, rain, earth, mercy - because the matn's second address resolves there: 'then you sought forgiveness from Me, I would forgive you'. The hadith escalates and resolves twice, and the clip order now follows that rhythm rather than running two heavy skies back to back. The rainbow is the operator's concept. Visual metaphor is permitted by the scene spec's Atmospheric / symbolic palette; the Arabic asserts no simile, so P111 r14 is untouched. FLUX 2 still t3540-rain-2.jpg -> Kling v3 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Recorded motion: rain falling steadily, the white cloud drifting, the rainbow explicitly instructed to hold steady and unchanged - a rainbow that drifts or flickers reads as an artefact. Checked at 0.2 / 5.0 / 9.6s: it holds. Probed 10.04s / 1080x1920 / 24fps / audio streams 0. Frame delta start-end 8.18 (P293 method), second liveliest of the six. Watched end to end by the operator 2026-10-24, in the assembled Uzbek reel. Jami at-Tirmidhi #3540.",
       "prompt_sidecar": "assets/scene-prompts/t3540-rain.json"
+    },
+    "b3559-blossom.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b3559-blossom-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Depicts: a single almond tree in full blossom alone in an open field at golden hour, the whole tree inside the frame with the horizon visible. Recorded motion: a faint breeze stirring the blossoms, a few petals drifting down, the light holding steady, camera held completely still. Probed 10.041667s / 1080x1920x24/1 / audio:0. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6; the meadow prompt asked for a slow push-in and that was removed before spending. NOT YET WATCHED END TO END - verified:true owed once the reel is reviewed. Sahih al-Bukhari #3559, R154-.",
+      "prompt_sidecar": "assets/scene-prompts/b3559-blossom.json"
+    },
+    "b3559-canopy.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b3559-canopy-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Depicts: looking up through a blossoming canopy, blossom across the top of the frame and clean blue sky with sun rays across the lower half. Recorded motion: branches swaying very slightly, sunlight flickering between the blossoms, a petal or two drifting across the frame, camera held completely still. Probed 10.041667s / 1080x1920x24/1 / audio:0. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6; the meadow prompt asked for a slow push-in and that was removed before spending. NOT YET WATCHED END TO END - verified:true owed once the reel is reviewed. Sahih al-Bukhari #3559, R154-.",
+      "prompt_sidecar": "assets/scene-prompts/b3559-canopy.json"
+    },
+    "b3559-meadow.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b3559-meadow-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Depicts: a wide meadow of wildflowers running to layered green hills, blossoming trees along the mid-ground. Recorded motion: a gentle wind moving across the meadow in slow waves, the distant trees barely stirring, camera held completely still. Probed 10.041667s / 1080x1920x24/1 / audio:0. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6; the meadow prompt asked for a slow push-in and that was removed before spending. NOT YET WATCHED END TO END - verified:true owed once the reel is reviewed. Sahih al-Bukhari #3559, R154-.",
+      "prompt_sidecar": "assets/scene-prompts/b3559-meadow.json"
+    },
+    "b3559-orchard.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B, no figures. FLUX 2 still b3559-orchard-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Depicts: a sunlit orchard path between rows of apple trees in fruit, long shadows raking across the grass in late light. Recorded motion: leaves and branches stirring gently, dappled light shifting slowly across the grass, the fruit hanging still, camera held completely still. Probed 10.041667s / 1080x1920x24/1 / audio:0. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6; the meadow prompt asked for a slow push-in and that was removed before spending. NOT YET WATCHED END TO END - verified:true owed once the reel is reviewed. Sahih al-Bukhari #3559, R154-.",
+      "prompt_sidecar": "assets/scene-prompts/b3559-orchard.json"
     }
   }
 }

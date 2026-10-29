@@ -428,3 +428,109 @@ SRT to feed them back would have compared the SRT against itself. P211 matched
 the narration fingerprint and kept the reviewed SRT, so the picture, narration
 and burned subtitles are byte-identical to the leg reviewed on 2026-10-14 and
 only the music moved.
+
+---
+
+## R154-R157 - Sahih al-Bukhari #3559 - 2026-10-28
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG / YT Shorts / TikTok. EN and RU replaced
+posts deleted the same day.
+
+**Caught before publish**
+
+- **The matn was under the wrong number.** The row cited Bukhari #3559 and
+  stored «إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ», which is authentic Bukhari from the same
+  narrator at 3759, 3760; reference 3559 carries «إِنَّ مِنْ خِيَارِكُمْ». Caught
+  because the operator said «Старайся сравнивать с оригиналом арабским» - an
+  instruction, not a gate. Settled by opening both sunnah.com pages and the
+  local mirror.
+- The 2026-10-27 screening note in the tracker, which described a source page
+  that does not exist and asserted a comparison nobody had made.
+- The `love` tag, residue of the superseded wording, still in the row and in all
+  four captions after the matn was fixed.
+- TJ moral opened «чун қарзе» - "like a debt" - a comparison absent from the
+  matn. The only linter finding across four languages (P111 r14).
+- EN subtitle cue 6 read `place` for `placed`. The subtitle validator caught
+  this one.
+- RU subtitle cues 1 and 5 read «доблагословит». Caught by reading; the
+  validator scored similarity 1.000 and reported nothing.
+- All four renders failed the P194/P286 scene-budget gate on the first attempt
+  because `-FitScenes` was omitted - and the previous render's own
+  `render.json` recorded `fitScenes: true`.
+
+**Escaped to publish**
+
+- EN and RU had shipped earlier the same day on the wrong matn, four platforms
+  each. Eight posts deleted and replaced; their view counts are gone. The words
+  were in the narration and the burned subtitles, so no caption edit could have
+  reached them - this is the first set where a published reel had to be
+  withdrawn for an integrity defect rather than kept as a presentation one.
+
+**Root causes**
+
+- No gate compares a row's Arabic to its own `source_url`. `matn_screened_at`
+  was set on 2026-09-05 and meant only that a row had been looked at.
+- **The local mirror's `id` was used as the hadith reference number.** It is
+  not: in this region the mirror runs about 38 behind sunnah.com, so entry 3597
+  is 3759, 3760. The lookup returned genuine, correctly-narrated text under the
+  wrong citation, which is why no content check could fire - the matn was real,
+  the narrator matched, the grade was right and the chapter was adjacent.
+- The screening note recorded the key it had resolved, "idInBook 3597", and
+  then wrote its findings as facts about `bukhari:3559`. Right about every word
+  it quoted, wrong about which hadith they belong to.
+- The approved UZ blocks existed only in the conversation and were lost when the
+  context compacted, because the draft file is written at render time rather
+  than at approval time.
+- `stt-validate` has nothing to compare the expanded honorific against: the
+  draft holds `ﷺ`, the route expands it, Whisper transcribes the expansion.
+- `-FitScenes` is still opt-in for behaviour that should be asserted. Second
+  set in a row, and this time the answer was already on disk.
+
+**Prevention landed**
+
+- P306-P310 and a P306 addendum.
+- Draft files for all four languages, written at approval time rather than
+  before the render, each verified against the matn stored in the database.
+- Telegram publishing automated: `sendVideo` on the route, one command in
+  `scripts/post-telegram.py`.
+- The tracker's #3559 note replaced with what the page actually says, and the
+  missing `b6570` scene row added while there.
+
+**Prevention deferred**
+
+- The matn-vs-source gate. In OPEN_ITEMS under "Blocks content".
+- Honorific expansion in `stt-validate`. In OPEN_ITEMS under "Blocks content".
+- `-FitScenes` asserted rather than opt-in. Open since R138-R141.
+- Generating the caption-blocks spec from the draft files is NOT landed. A
+  one-off script in `out/` did it for this set; making it the standing path in
+  `build-caption.ts` is open. Said plainly because writing it down as landed is
+  the exact move P306's addendum is about.
+- `TELEGRAM_ALERT_BOT_TOKEN` and `TELEGRAM_CHANNEL_CHAT_ID`, blocked on an
+  interactive `vercel login`.
+
+**Operator corrections of the assistant: 4**
+
+1. «Старайся сравнивать с оригиналом арабским» - which is what surfaced the
+   wrong matn. Without it this set would have shipped four languages on it.
+2. RU matn word order: «лучше среди вас по нраву».
+3. «И так подробно что я смотрю и где?» - a status report that buried the one
+   thing he needed under everything that had happened.
+4. The UZ singular against a plural predicate, «энг суюклиси», caught on the
+   superseded attempt earlier the same day.
+
+**The finding:** nothing here was fabricated and nothing was sloppy. A genuine
+Bukhari matn, from the right companion, carefully read and accurately
+summarised, sat under the wrong number because one identifier was resolved in
+the wrong scheme. Every downstream check passed because every downstream check
+was looking at real text. That is the dangerous shape: not a wrong answer, but a
+right answer to the wrong question, wearing all the marks of diligence.
+
+Said against the assistant as much as the pipeline. The first diagnosis of this
+set - that the wording came from Jabir and Abu Tha'laba in Ahmad and
+at-Tirmidhi, truncated, with the wrong companion attached - was wrong, and was
+stated confidently enough to move the operator toward deleting eight posts on a
+severity the facts did not support. A citation-only fix to 3759 was available
+the whole time, because the narrator was already right. Three sources had been
+checked and the one record that would have settled it, the mirror entry the
+screening note itself named, was not opened until afterwards. Checking three
+sources is not the same as checking the right one.

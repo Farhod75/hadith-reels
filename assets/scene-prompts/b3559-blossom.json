@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0388f/c-Kqdmn-EhXmheWbEBA18_output.mp4",
+    "name":  "b3559-blossom",
+    "image":  "out\\refs\\b3559-blossom-3.jpg",
+    "file":  "out\\backgrounds\\new\\b3559-blossom.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-28T17:44:12.0549864Z",
+    "size_bytes":  34241265,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "almost imperceptible motion, a faint breeze stirring the blossoms, a few petals drifting slowly down, the light holding steady, camera held completely still",
+    "request_id":  "01a1839c-c5c5-79e0-800d-c892a63af43d",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-28T17:51:49.0080489Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b3559-canopy",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal. Looking straight up through the canopy of a blossoming tree into a bright blue sky, branches heavy with white blossom framing the frame, sunlight breaking between the flowers in soft rays, luminous, uplifting, no people, no buildings, no text.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a182e3-2bdf-75f3-b483-e0f9b73ebc7f",
+    "submitted_utc":  "2026-10-28T14:21:28.3337722Z",
+    "completed_utc":  "2026-10-28T14:21:40.6918541Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b3559-canopy-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033b1/8vOpBCXaWlc7gxjSPx-58_uyv3WYvo.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b3559-canopy-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033b1/9A8TGiobqtDTIvHyX70FL_68TnNdi3.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b3559-canopy-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab033b1/aqQ4JyZtDfGSleGUC9aG7_VhASVaMA.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  341784874
+}

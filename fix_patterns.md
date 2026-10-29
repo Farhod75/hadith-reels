@@ -12551,3 +12551,191 @@ first for the Cyrillic languages and the topic tags first for English. Neither
 was visible while the body lived in a component.
 
 ---
+
+## PATTERN 306: the mirror's id is not the collection's reference number
+
+Library row #3559 named `Sahih al-Bukhari`, `3559`, `Abdullah ibn Amr`,
+`grade: sahih`, `authority: tier1` and
+`source_url: https://sunnah.com/bukhari:3559`, and stored
+«إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ أَحْسَنَكُمْ أَخْلَاقًا». That matn is authentic Bukhari and
+Abdullah ibn Amr really narrated it — but it is **Sahih al-Bukhari 3759, 3760**,
+in Kitab Fada'il Ashab an-Nabi, under the chapter on the merits of Abdullah ibn
+Mas'ud, where the Prophet ﷺ goes on to name four companions to learn the Qur'an
+from. Reference 3559 is a *different* hadith from the *same* narrator:
+«إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا», in Kitab al-Manaqib. Two authentic
+narrations, one companion, two numbers.
+
+**The number came from the local mirror, whose key is not the reference
+number.** `hadith-json/db/by_book/the_9_books/bukhari.json` carries `id` and
+`idInBook`, and in this region they run about 38 behind sunnah.com's
+`Reference`. Mirror entry 3597 is sunnah.com 3759, 3760. Mirror entry 3559 is a
+hadith of Jabir about the Prophet's ﷺ hawari being az-Zubayr ibn al-Awwam —
+neither of the two above. A lookup that treats the mirror's `id` as the hadith
+number therefore returns real, well-formed, correctly-narrated text under the
+wrong citation, and every field around it stays plausible.
+
+**That is why nothing caught it.** The matn was genuine, so no lint rule fires.
+The narrator matched, so no narrator check fires. The grade was right. The
+chapter was adjacent. The H block generated around it described the Prophet's ﷺ
+manner, which both narrations share. `matn_screened_at` was set on 2026-09-05,
+and nothing had ever fetched the row's own `source_url` and compared the Arabic
+to it — the one check that tells 3559 from 3759.
+
+Two reels had already published, EN and RU on four platforms each, carrying a
+genuine hadith under a citation pointing at a different one. The words were in
+the narration audio and the burned subtitles, so no platform could repair them
+by editing a caption: all eight posts were deleted and replaced. The row was
+then corrected to the matn reference 3559 actually carries, rather than re-cited
+to 3759 — the operator's call, and the cheaper one, since #3559's own wording
+needed no fresh verification. **That alternative was real and was initially
+described as impossible:** a citation-only fix was available precisely because
+the narrator was already right, and saying otherwise pushed the decision toward
+deleting eight posts on a stronger claim than the facts supported.
+
+**Fix:** never resolve a hadith number through the mirror's `id` or `idInBook`.
+The mirror is a corpus, not an index into sunnah.com's numbering; its ordering
+and the reference numbering coincide only by accident. Resolve by fetching the
+row's own `source_url`, and build the gate that compares that page's Arabic to
+`text_arabic`. Until it exists, `matn_screened_at` records that a row was looked
+at, which is much weaker than it reads, and a row whose Arabic has never been
+compared to its cited page is unverified whatever its timestamps say.
+---
+
+## PATTERN 307: an approved block that exists only in the conversation is lost
+
+#3559's Uzbek S/M/H/C were reviewed and approved. The draft file was not
+written, because Step 4 writes it just before the render and the render was
+waiting on the Tajik leg. The context compacted in between, and the summary
+carried the approved moral as «Ахлоқингни Аллоҳ олдидаги бурчинг деб асра —
+сўзингда, ғазабингда, муомалангда…» — truncated with an ellipsis. Nothing else
+held the full text: not the repo, not `gen-3559-uz.json`, which still carried
+the pre-review generation, not the transcript, which begins at the compaction,
+not the chat history. The operator had to re-approve a reconstruction.
+
+This is P246's root cause, one step earlier. P246 was about `draft.txt` being a
+single mutable slot, and `-Draft <file>` closed that. But a per-language file
+that does not exist yet protects nothing. The window between "approved" and
+"written to disk" is where the text is unowned, and on this set that window was
+hours long.
+
+**Fix:** write the draft file at the moment the blocks are approved, not at the
+moment they are first needed. Approval is the event that makes the text worth
+keeping; the render is merely the first thing that reads it. Step 4 belongs
+immediately after the Step 3 review in `reel-creation-pipeline.md`, not beside
+Step 11.
+
+---
+
+## PATTERN 308: the expanded honorific is outside the subtitle validator's reach
+
+The #3559 Russian subtitles read «Пророк, доблагословит его Аллах и
+приветствует, сказал» in cues 1 and 5 — «да благословит» collapsed into a
+single non-word. `stt-validate` scored similarity **1.000** with zero findings
+on that file.
+
+This is not a threshold that needs tuning. The draft holds the glyph `ﷺ`; the
+TTS route expands it to spoken words (P070); Whisper transcribes what was
+spoken. The expanded honorific therefore exists in the audio and in the
+subtitle and **nowhere in the text the validator compares against**. There is
+nothing for it to disagree with, and a perfect score is the honest answer to
+the question it was actually asked.
+
+Everything inside that span is unchecked, in every reel, in every language. It
+is also the longest unchecked span in a reel and the one most likely to be
+mangled, being the least word-like. This is the third occurrence of the shape:
+«Аллахам» on R039 and «Их Адис» on R043 were both word-boundary inventions
+caught by ear or by eye, never by a gate.
+
+The same run showed the gate working where it can: the English cue read `place`
+where the draft said `placed`, and that was flagged, because `placed` is in the
+draft.
+
+**Fix:** `stt-validate` should expand the same honorifics the TTS route
+expands, per language, from the same mapping, before comparing. Until it does,
+honorific spans must be read by eye, and a similarity of 1.000 on a file
+containing a spoken honorific should be read as "the comparable part matched".
+
+---
+
+## PATTERN 309: a render driven through one bridge call dies with the call
+
+`render-reel.ps1` was invoked directly through the device bridge. The bridge
+returned after about 60 seconds saying the tool "may still be running there".
+It was not. `narration.mp3` had been written, Whisper had started, and by the
+next check both the Whisper and ffmpeg processes were gone while `reel.mp4`
+still carried its old timestamp. The call's timeout took the process tree with
+it.
+
+The bridge's message is phrased for a command that might survive, which is the
+wrong thing to assume for anything long. A render is minutes. Worse, the
+partial artefacts it leaves — a fresh narration beside a stale reel — look
+exactly like a render still in progress, so the state invites the wrong
+conclusion in both directions.
+
+**Fix:** anything longer than the bridge window runs detached, writes to a log
+file, and is polled by reading that log. Launch it from `$env:TEMP` per P304,
+have it print a terminal marker, and treat the marker's absence as "still
+running" rather than inferring progress from file timestamps. The four #3559
+renders were driven this way: one runner, four languages, `=== EXIT <lang>` per
+leg and `=== ALL DONE` at the end. It also caught a second thing that a
+foreground run would have hidden — all four legs failed identically on the
+P194/P286 scene-budget gate, which was visible at a glance in one log.
+
+---
+
+## PATTERN 310: .NET file APIs ignore PowerShell's current location
+
+Reading a draft with `[System.IO.File]::ReadAllBytes('out\draft-...txt')`
+after a `cd` into the repo returned **0 bytes**, for a file `Get-ChildItem`
+listed as 983. No exception, no error — an empty read.
+
+`Set-Location` moves PowerShell's location, not the .NET process's working
+directory, and .NET resolves a relative path against the latter. The two agree
+only by coincidence. An empty result is the worst available failure here,
+because "this draft is empty" is a believable state, and acting on it would
+have overwritten reviewed text with nothing.
+
+**Fix:** pass absolute paths to every `[System.IO.*]` call, or use
+`Get-Content`/`Set-Content`, which respect the session's location. A helper
+that reads a repo file through .NET should also assert a non-zero length before
+trusting what it read — P154's shape, applied to a read instead of a write.
+
+---
+
+## PATTERN 306 (addendum): the screening note was accurate about the wrong record
+
+The 2026-10-27 screening note in the tracker's duplicate-check index said that
+`sunnah.com/bukhari:3559` — "read from the project's local mirror, idInBook
+3597" — holds the isnad, a description of the Prophet's ﷺ manner, the saying the
+row stores, and a second saying about learning the Qur'an from four named
+companions; and that "our stored Arabic is an exact and complete quotation of
+the first saying".
+
+**Every one of those claims is true of mirror entry 3597.** It is a careful and
+accurate reading. Its single error is the equals sign: mirror `idInBook 3597` is
+not `bukhari:3559`, it is `bukhari:3759, 3760`. The note named the key it had
+used, which is the only reason the mistake was findable a day later and the
+diagnosis above reconstructible at all.
+
+Two consequences, pulling opposite ways. The note's conclusions about *extent*
+were sound: the 0.10 word-count ratio really was a false positive, because entry
+3597 really is a composite carrying an isnad and a second saying, so the
+negative result recorded against that ratio stands. But its confidence was
+earned on content and then spent on identity. A note can be right about every
+word it quotes and still attach those words to the wrong hadith, and nothing in
+a careful reading of the wrong record announces that it is the wrong record.
+
+The first draft of this addendum claimed the note had fabricated a verification
+it never performed. It had not. That misreading was written into five patterns,
+a tracker row, a retro and a changelog before the mirror was actually opened,
+and was corrected before the commit landed. It is recorded here because the
+shape is the same one the pattern is about: a confident wrong diagnosis and a
+confident wrong citation fail identically, and both survive review by being
+internally coherent.
+
+**Fix:** a screening note states the identifier it resolved *and the scheme it
+resolved it in* — "mirror idInBook 3597", not "bukhari:3559" — so the mapping
+stays visible as an assumption instead of settling into a fact. Where a note
+claims the source was read, it names the URL actually opened.
+
+---
