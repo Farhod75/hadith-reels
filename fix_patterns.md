@@ -13586,3 +13586,91 @@ P326 (the session's other run-ahead-of-the-docs detour).
 written down.
 
 ---
+
+## PATTERN 327: the mitigation warned, and the fact was there to be fetched
+
+**Found:** 2026-10-30, while filling one empty cell.
+
+**What was asked for.** `#1161` and `#5185` had an empty `book` column, so I
+offered to fill them. Both were rows I had touched myself, which is the only
+reason they were the two I noticed.
+
+**What was actually there.** `book` was empty on **69 of 72 library rows.** Not
+a per-row gap - an unpopulated column, with three filled cells carrying three
+different conventions (`'The Book on Faith'`, `'Ar-Riqaq'`, `'Kitab as-Sawm'`)
+and no convention stated in CLAUDE.md, sourcing-pipeline-design.md, OPEN_ITEMS
+or QA_STANDARDS. `promote-candidates.py` hardcodes `"book": None  # not in
+candidates`, so every row the pipeline promotes arrives empty by construction.
+
+**Why that matters, in this repo's own words.** P287 is a fabricated book and
+chapter that went clean through every check: Sunan Abu Dawud #1488's UZ and TJ
+H blocks each invented «дуо китобида» / «китоби дуо», independently, because
+Du'a is the BAB and the KITAB is at-Tafri' li-abwab al-Witr. P287 records the
+cause in one sentence - *"The library row's `book` column is EMPTY, so the
+generator produced the subdivision out of nothing"* - and names where the fact
+lives: *"the only authority for one is the `book` column and a Tier 1 page."*
+
+The mitigation that shipped was `book-claim`, a WARN in `lint-content.py`, H
+block only. It is a good check. But it catches the SYMPTOM and cannot supply
+the FACT, and the fact was sitting on a page the repo already fetches and
+caches. So for 96% of the library the generator had no authority to draw on,
+and the only thing standing between it and another #1488 was a warning that
+fires after the invention has been written.
+
+**That is the pattern worth the number.** A mitigation that warns is not a fix
+when the missing fact is obtainable. P287 did the hard part - it found the
+cause and said exactly where the answer was - and then nobody went and got it,
+for sixty-nine rows, for the five weeks the warning made the problem feel
+handled. A WARN converts an absent fact into a managed risk, and a managed risk
+stops being investigated.
+
+**Fix.** `scripts/backfill-book.py`, dry-run by default. It reuses
+`verify-matn-number.py`'s `target_url()` and `fetch()`, so URLs are not guessed
+and the existing `out/source-cache` is reused - the whole 72-row run made **zero**
+network requests. Result: **63 written, 0 failed, 6 refused.**
+
+**The format decision, and why it is not a transliteration.** The operator's
+first choice was `Kitab an-Nikah`. The probe killed it: the page publishes an
+English title and the Arabic, never a transliteration, so that form would have
+been 40-60 strings derived BY ME in the one field whose purpose is to be the
+authority against derived strings. The three pre-existing cells settle it
+independently - the one copied from the page still matches the page, and the two
+typed by hand disagree with each other. Verbatim English it is. (The Arabic is
+printed beside each title in the report, for reading, and deliberately not
+stored: a second column would be a second thing to keep true.)
+
+**What the two-source rule caught.** The script requires BOTH JSON-LD sources -
+breadcrumb position 4 and `about[0].name` - and refuses when they disagree. Five
+rows disagreed, all five pointing at hadeethenc.com rather than sunnah.com,
+where the breadcrumb is a THEMATIC CATEGORY («الرقائق والمواعظ», «فقه الأخلاق»)
+and `about` is the Prophet ﷺ. A single-source extractor would have written
+«الرقائق والمواعظ» into a column that means kitab - a category presented as a
+subdivision, which is P287's exact defect, committed by the tool built to
+prevent it. The sixth refusal is #6570, the one row whose `source_url` is a
+Dorar search query (P322).
+
+**Confirmations worth recording.**
+
+- Abu Dawud #1488 now reads `Prayer (Kitab Al-Salat): Detailed Injunctions
+  about Witr` / كتاب تفريع أبواب الوتر. P287's ruling - the kitab is al-Witr,
+  Du'a is the bab - is correct, and now checkable from the row.
+- Tirmidhi #2616 has TWO rows (P147). One held `'The Book on Faith'` by hand;
+  the empty twin received `The Book on Faith` from the page. The hand value and
+  the source agree exactly, which is the format argument made without me.
+- #1161's kitab is كتاب الرضاع, *The Book on Suckling* - NOT an-Nikah, which is
+  #5185's. My own worked example in the format question named the wrong one.
+
+**Still open, by design.** Six rows remain empty and are listed in the report
+every run. Five need a sunnah.com-numbered page, and their stored number came
+from HadeethEnc, so it must not be assumed to be sunnah's - that is P306
+territory and needs checking per row, not a guess. #6570 cannot be checked at
+all until it has a real source URL.
+
+**Related:** P287 (the fabrication this column prevents, and the WARN it
+shipped), P306 (a mirror's number is not the other's), P322 (#6570's search
+query), P325 (`--row`, which this script has from birth), P147 (two rows at one
+number).
+
+**Status:** FIXED for 63 rows; 6 reported and open.
+
+---

@@ -484,6 +484,20 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `stt-validate.py` — SRT vs source narration diff (Workflow F)
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
+- `backfill-book.py` — fills `hadith_library.book` from the Tier 1 page
+  (P287/P327). **FORMAT: the page's own English book title, VERBATIM** —
+  `The Book of (The Wedlock)`, `The Book on Suckling`, `Prayer (Kitab
+  Al-Salat): Detailed Injunctions about Witr`. **Never a transliteration.**
+  The source does not publish one, so `Kitab an-Nikah` would be a DERIVED
+  string in the one field whose entire job is to be the authority against
+  derived strings — and the three rows filled before 2026-10-30 prove the
+  point: the one copied from the page (`The Book on Faith`) matches what the
+  page still says today, and the two typed by hand (`Kitab as-Sawm`,
+  `Ar-Riqaq`) produced two different conventions. The script requires the
+  page's TWO JSON-LD sources (breadcrumb position 4 and `about[0].name`) to
+  AGREE, and reports instead of choosing when they do not — which is what
+  keeps a HadeethEnc *thematic category* («الرقائق والمواعظ») out of a column
+  that means kitab. Dry run by default; `--row` to scope (P325).
 - `translate-candidates.py` — Stage 2 of the sourcing pipeline (Workflow I)
 - `source-candidates.py`, `upload-candidates.py`, `promote-candidates.py` — Stages 0/1/5
 - `scripts/lib/` — sourcing modules + 49 offline pytest tests (no network)

@@ -28,6 +28,25 @@
 
 ### Added
 
+- **`scripts/backfill-book.py`, and 63 rows of the authority P287 said was
+  missing (P327).** `hadith_library.book` was empty on 69 of 72 rows. P287 - a
+  fabricated book and chapter that passed every check - records the cause as
+  *"the `book` column is EMPTY, so the generator produced the subdivision out of
+  nothing"* and says where the fact lives: *"the `book` column and a Tier 1
+  page."* The mitigation that shipped was a `book-claim` WARN, which catches the
+  symptom and cannot supply the fact - so for 96% of the library the generator
+  still had nothing to draw on. The new script reads the book off the Tier 1
+  page, reusing `verify-matn-number.py`'s URL builder and cache (the full run
+  made zero network requests): **63 written, 0 failed, 6 refused.** Format is
+  the page's own English title VERBATIM, never a transliteration - the source
+  publishes none, and the three cells filled earlier prove the point: the one
+  copied from the page still matches it, the two typed by hand disagree with
+  each other. The script requires the page's two JSON-LD sources to agree, which
+  is what kept a HadeethEnc thematic category («الرقائق والمواعظ») out of a
+  column that means kitab. Six rows stay empty and are listed every run: five
+  carry HadeethEnc numbers that must not be assumed to be sunnah's (P306), and
+  #6570 still has only a Dorar search query (P322).
+
 - **P326, a rule about method, after two parsers answered nothing.** Deciding
   whether that blanket write was safe, I captured the script's dry-run output and
   wrote a parser to compare it against the DB. v1 dropped lines beginning with

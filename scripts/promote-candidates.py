@@ -193,7 +193,8 @@ def map_to_library(c: dict, tags: list[str] | None = None) -> dict:
         "text_tajik":          c.get("text_tajik"),
         "narrator":            c.get("narrator"),
         "collection":          library_collection(c.get("collection")),
-        "book":                None,                      # not in candidates
+        "book":                None,                      # not in candidates; backfill-book.py
+                                                           # fills it from Tier 1 (P327)
         "hadith_number":       c.get("hadith_number"),
         "grade":               c.get("grade"),
         "tags":                list(tags or []),          # P181: from --tags, not derived                        # empty — red_flags is a verifier concept
