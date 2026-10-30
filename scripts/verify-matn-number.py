@@ -144,6 +144,12 @@ def target_url(row):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--number')
+    ap.add_argument('--gate', action='store_true',
+                    help='exit non-zero unless every row checked is MATCH '
+                         'or MERGED. Used by render-reel.ps1 STEP 0 (P319). '
+                         'A row that CANNOT be checked blocks too, because '
+                         'a checker that cannot run must never read as '
+                         'success (CLAUDE.md HARD RULE 4).')
     ap.add_argument('--no-cache', action='store_true')
     a = ap.parse_args()
 
@@ -276,7 +282,31 @@ def main():
     print('  MISMATCH means REVIEW, not FAIL. Nothing was written.')
     print('-' * 64)
     print('report: %s' % os.path.relpath(REPORT, ROOT))
-    sys.exit(1 if bad else 0)
+    if not a.gate:
+        sys.exit(1 if bad else 0)
+
+    # --gate (P319). The sweep above REPORTS; this decides. render-reel.ps1
+    # calls it at STEP 0 so a reel cannot be built from a row whose Arabic is
+    # not at the number it cites - which is exactly what shipped twice as
+    # #3559 (P306). Anything that is not MATCH or MERGED blocks, INCLUDING
+    # the verdicts that only mean 'could not check': a gate that passes when
+    # it could not look is not a gate.
+    unresolved = [r for r in out if r['verdict'] in ('REVIEW', 'ERROR', 'SKIP')]
+    print()
+    if bad:
+        print('GATE: BLOCKED - %d row(s) store Arabic that is not at the '
+              'number they cite. This is the P306 defect. Fix the row, '
+              'never the gate.' % len(bad))
+        sys.exit(1)
+    if unresolved:
+        kinds = ', '.join(sorted({r['verdict'] for r in unresolved}))
+        print('GATE: BLOCKED - %d row(s) could not be verified (%s). A row '
+              'whose source cannot be read is not a row that passed; see '
+              'P311 and P312 for what these verdicts mean.'
+              % (len(unresolved), kinds))
+        sys.exit(2)
+    print('GATE: PASS - every row checked sits at the number it cites.')
+    sys.exit(0)
 
 
 if __name__ == '__main__':

@@ -679,7 +679,12 @@ npm run test:multilingual
    is what that produces
 
 ### Workflow J — Produce an animated adults reel (scene lane)
-1. Verify the DB row first: grade, all four language texts, diacritics
+1. Verify the DB row first: grade, all four language texts, diacritics.
+   **The matn-vs-number check is now a GATE inside `render-reel.ps1` (P319).**
+   It runs at STEP 0 and refuses the render unless the row's Arabic is
+   confirmed to sit at the number it cites - and it refuses just as hard when
+   it CANNOT check, per HARD RULE 4. You no longer have to remember to run
+   `verify-matn-number.py`; you have to fix the row when it says no.
 2. Generate text in the admin → `draft.txt` → Workflow E
 3. TTS per language — the route writes into the work tree (P106); nothing to download
 4. Four NEW Kling scenes per hadith, MODE B (no figures BY DEFAULT - see THE FACE

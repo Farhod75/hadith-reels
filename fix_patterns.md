@@ -13040,3 +13040,63 @@ and did not happen - the same class of uncertainty, opposite direction).
 **Status:** FIXED (method recorded; no script promoted)
 
 ---
+
+## PATTERN 319: the check existed, so nobody noticed it was not a gate
+
+**Found:** 2026-10-29, closing the #5185 set.
+
+**The situation, stated plainly.** P306 found that library row #3559 cited
+Bukhari 3559 while storing the matn of 3759, 3760 - authentic text, correct
+narrator, wrong number - and that it had been that way for roughly five months
+with two reels published from it. `verify-matn-number.py` was written in
+response and swept all 71 rows. OPEN_ITEMS recorded the sweep. The next set,
+#5185, was verified before a word was generated and shipped once instead of
+twice.
+
+So the defect looked closed. It was not. **The protection was me remembering to
+run a script.** Nothing in the pipeline required it. The #5185 set passed
+because this session happened to run the sweep by hand; a session that did not
+would have produced a reel from an unverified row and nothing would have
+objected. A check whose execution depends on somebody's memory protects only
+the runs where the memory worked.
+
+**Fix:** `verify-matn-number.py --gate` and a call to it in `render-reel.ps1`
+STEP 0, where ffmpeg, whisper, the narration files and the asset-registry lane
+gate are already validated. The number is derived from `-Slug`. The render dies
+with the rest of STEP 0's list.
+
+**The gate blocks three ways, not one:**
+
+    MISMATCH            -> exit 1   the P306 defect itself
+    REVIEW/ERROR/SKIP   -> exit 2   could not check
+    number not derivable from the slug -> blocked in the .ps1
+
+The second one is the part worth defending. A network failure, an unreachable
+source page, or a `source_url` that is a Dorar SEARCH QUERY rather than a hadith
+page (#6570) all produce a verdict that is not MISMATCH - and under the sweep's
+old exit logic they counted as not-bad, which is to say as pass. CLAUDE.md HARD
+RULE 4 already says it for the pre-push hook: *a missing checker must never read
+as success.* The same sentence applies here.
+
+**Known consequence, accepted deliberately.** The 2026-10-29 sweep left 13 rows
+at MISMATCH and one at SKIP. Those rows are now unrenderable until they are
+fixed. Most are already published and the operator's standing decision is to
+leave published rows alone - that decision still holds for the DATABASE, but a
+re-render of one of them will now stop. That is the correct behaviour: it is the
+#3559 failure being refused rather than repeated. If a published row must be
+re-rendered as-is, the row gets fixed first.
+
+**Lesson.** "We built the check" and "the check runs" are different claims, and
+the gap between them is invisible from inside a session that ran it. When a
+defect gets a script, ask what calls the script. If the answer is a person, the
+defect is still open. P119 said the same thing about the pre-push hook - *a gate
+is not proven by passing, it is proven by failing on demand* - and this is that
+lesson arriving from the other direction: a gate nothing calls never gets the
+chance to fail.
+
+**Related:** P306 (the citation defect), P311 and P312 (what the verdicts mean),
+P119 (a gate pointed at nothing), HARD RULE 4.
+
+**Status:** FIXED
+
+---

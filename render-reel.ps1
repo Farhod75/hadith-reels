@@ -311,6 +311,32 @@ if (Test-Path $reel) {
   Write-Host "  NOTE  $reel already exists and will be overwritten." -ForegroundColor Yellow
 }
 
+# P319: the matn-vs-number GATE. Bukhari #3559 shipped two reels whose stored
+# Arabic belonged to reference 3759, 3760 - real Bukhari, right narrator, wrong
+# number - and nothing in this pipeline could see it for roughly five months.
+# verify-matn-number.py was written after that and swept all 71 rows BY HAND.
+# Running a check by hand is not a gate: it protects only the sets somebody
+# remembered. So it runs here, at STEP 0, before the render and before any paid
+# step. --gate blocks on MISMATCH and ALSO on 'could not check', per HARD RULE 4.
+$hadithNumber = ($Slug -split '-')[-1]
+if ($hadithNumber -match '^\d+$') {
+  Say "`n      matn-vs-number gate (P319): #$hadithNumber"
+  $matnOut  = & python "scripts\verify-matn-number.py" --number $hadithNumber --gate 2>&1
+  $matnCode = $LASTEXITCODE
+  if ($matnCode -ne 0) {
+    $matnOut | ForEach-Object { Write-Host "      $_" -ForegroundColor DarkYellow }
+    $problems += "matn-vs-number gate BLOCKED #$hadithNumber (exit $matnCode) - " +
+                 "the row's stored Arabic is not confirmed to sit at the number it " +
+                 "cites. See P306, P319. Fix the library row before rendering."
+  } else {
+    Ok "matn sits at the cited number (#$hadithNumber)"
+  }
+} else {
+  $problems += "could not derive a hadith number from -Slug '$Slug', so the " +
+               "matn-vs-number gate (P319) could not run - and a gate that " +
+               "cannot run is not a pass."
+}
+
 if ($problems.Count -gt 0) {
   Write-Host "`nCannot render -- fix these first:" -ForegroundColor Red
   $problems | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }
