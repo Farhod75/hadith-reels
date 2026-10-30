@@ -13100,3 +13100,60 @@ P119 (a gate pointed at nothing), HARD RULE 4.
 **Status:** FIXED
 
 ---
+
+## PATTERN 320: the gate looked forward and never behind
+
+**Found:** 2026-10-29, proposed by the operator after P314 landed.
+
+**The hole.** The pre-push hook checks the code being pushed - TypeScript, the
+tag vocabulary, the library, the docs, Python, PowerShell, JSON, E2E - and knew
+nothing about whether the LAST push went green. So when GitHub moved the
+`ubuntu-latest` image on 2026-10-19 and CI went red on 10-22, the hook waved
+through thirty-one more pushes. hadith-verifier went red exactly ONCE and sat
+unnoticed for a week, because nothing was pushed to it at all. Both were found
+only because the operator asked why GitHub was showing failures.
+
+CLAUDE.md already says a failed push is a defect report to be read the day it
+happens. A failed RUN is the same thing, and nothing enforced it.
+
+**Fix.** The hook asks the public GitHub API for the last completed ci.yml run
+on main and refuses the push when it failed. No token and no `gh` CLI - the repo
+is public and `gh` is not installed on this machine. The slug comes from
+`git remote get-url origin`, so the same block works in hadith-verifier
+unchanged. JSON is parsed with `$PY_BIN`, the interpreter the hook already
+locates for its Python and JSON branches, rather than with grep and sed.
+
+**Three outcomes, and the middle one is the design:**
+
+    success                  -> prints the run number, push proceeds
+    failure, and the push     -> WARN and allow. Without this the fix for a red
+      touches .github/workflows/  CI could never be pushed and the gate would
+                                  deadlock against itself.
+    failure, anything else   -> BLOCKED, with the run number and the link
+
+**The unreachable case is a DELIBERATE deviation from HARD RULE 4,** and it is
+written into the hook beside the code so a later reader does not take it for an
+oversight. That rule - a missing checker must never read as success - governs
+checkers of the CODE being pushed. This one checks a REMOTE state. Blocking
+every push while offline, or while GitHub is down, costs more than a red run
+noticed one push later, which the loud warning still achieves. If that trade
+ever proves wrong the fix is to make it blocking, not to delete the check.
+
+**Proven by failing, not by passing (P119).** The hook is the one file the gate
+cannot check for itself - `.githooks` matches DOC_PATTERNS, so a hook-only
+change skips every branch - so the decision logic was exercised by hand against
+real API responses: a known-green run, run #365 which is known red, and an
+empty body for the offline path.
+
+**Lesson.** P319 was a check nothing called. This is a check that looked in only
+one direction. Both are the same question asked twice - not "does the gate
+work?" but "what is the gate blind to?" A green local gate and a red remote run
+were never contradictory: they are two different claims, and only one of them
+was ever being made.
+
+**Related:** P314 (the runner migration this failed to surface), P319 (a check
+nothing called), P119 (a gate pointed at nothing), HARD RULE 4.
+
+**Status:** FIXED
+
+---
