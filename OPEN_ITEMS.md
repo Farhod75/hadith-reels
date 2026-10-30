@@ -671,15 +671,19 @@ unpublished; this is here so the finding is not lost rather than as a task.
   a history: P142 found it storing a munkar wording and it was corrected then,
   which fixed the text and left the number.
 - **Sunan an-Nasai #463** (R066–R069, adults lane, four languages). The matn is
-  present somewhere in an-Nasai per the mirror but not at 463, and its real
-  reference has not been established. The weakest of the thirteen at 4%
-  contiguous overlap with the cited page.
+  present somewhere in an-Nasai per the mirror but not at 463. **Its real
+  reference WAS established 2026-10-30: #467, offset +4** (P328). Found by
+  searching the stored matn through tohed's Arabic keyword index and verifying
+  the candidate with the gate's own containment test. 4% contiguous overlap
+  with the cited page — the weakest of the thirteen, and consistent with the
+  number simply being wrong rather than the text varying.
 
-Both are the #3559 shape — real text, wrong citation — at lower severity, since
-neither resolves to a *different* hadith as far as has been checked. Eight
-published reels between them. If this is ever reopened, the first step is
-establishing #463's real number, which the mirror cannot give because its ids
-are not reference numbers (P306, P311).
+All three are the #3559 shape — real text, wrong citation — at lower severity,
+since none resolves to a *different* hadith. Twelve published reels between
+them. **The step this item said had to come first is done:** #463 → #467 and
+#3104 → #3106 are both established, so reopening is now a decision about
+published reels rather than an investigation. The mirror still cannot give
+these numbers (P306, P311) — the matn can.
 
 **Seven library rows match their cited page only partially — needs a reader of
 Arabic, 2026-10-29.** Found by the first full sweep of
@@ -687,6 +691,26 @@ Arabic, 2026-10-29.** Found by the first full sweep of
 the matn rather than at its edges, the page has words our row does NOT have —
 every difference is an omission on our side, not a substitution. Nothing
 contradicts the source.
+
+**Measured 2026-10-30 (P328): the number is RIGHT on all of these; only the
+wording differs.** The reading above was done by eye; these are the numbers
+behind it. `cover` is the longest contiguous run the stored matn shares with
+the page it cites, over the matn's length:
+
+    Sahih al-Bukhari #6009   92.7%        Sahih Muslim #2699       70.5%
+    Musnad Ahmad     #6626   87.9%        Sunan Abu Dawud #3641    65.9%
+    Sunan Ibn Majah  #4248   80.9%        Sahih al-Bukhari #527    64.8%
+    Jami at-Tirmidhi #2307   79.2%        Sunan Abu Dawud #1488    63.8%
+    Sahih al-Bukhari #5971   71.9%
+
+The threshold is not invented. The three rows whose numbers were PROVEN wrong
+score 4.1% (#463), 16.7% (#3104) and 37.0% (#6871), and #7936 scores 7.7%.
+There is a clean gap between 37% and 64% with nothing in it, so cover separates
+*wrong reference* from *same hadith, different wording* without a judgement
+call. **What still wants an Arabic reader is the wording question** — is an
+omitted `يعني` or `ليلة البدر` acceptable in a published matn — not the
+reference question, which is now answered. Those two had been bundled as one
+blocked item.
 
 | row | missing from ours | note |
 |---|---|---|
@@ -711,17 +735,39 @@ only the citation was unusable. `source_url` is now
 --gate` exits 0. No valid provenance was rewritten - a search query was never
 a citation. It shipped as R150–R153. (P322 addendum, P327 addendum.)
 
-**OPEN 2026-10-30: #6871's number is NOT confirmed as sunnah.com's — a live
-P306 case.** Its `source_url` is `hadeethenc.com/ar/browse/hadith/3044`, so no
-gate has ever compared the stored number against sunnah's numbering. Tested
-directly on 2026-10-30: the stored matn (54 normalised chars) is **not** a
-contiguous run on `tohed/bukhari/6871` or either neighbour. Four sibling rows
-from the same 2026-10-12 insert batch — #31, #2654, #6857 and Muslim #2628 —
-all DID resolve, so this is not a batch-wide defect. #6871 needs its real
-reference found **by matn, not by number**. Not urgent: P-notes already say
-#6871 must never follow #2654 without a deliberate call, so it is not queued.
-Its `book` is empty for the same reason and is now the ONLY empty one in the
-library (71 of 72 filled).
+**CLOSED 2026-10-30, same day: #6871 was #6675 all along — CORRECTED.** The
+item above opened hours earlier saying the number needed finding *"by matn,
+not by number"*, and that is exactly what found it. Searching the stored matn
+«الكبائر: الإشراك بالله، وعقوق الوالدين، وقتل النفس، واليمين الغموس» through
+tohed's Arabic keyword index returned **exactly one** Bukhari reference holding
+it as a contiguous run, out of 24 candidates surfaced by 15 phrase windows:
+**#6675**, offset **−196** — the P306 mirror-offset band (#3559 was ~162).
+
+Corroborated by the source's own arrangement: the hadith's fourth item is
+*al-yamin al-ghamus*, the false oath, and #6675 sits in Kitab al-Ayman
+wan-Nudhur, **The Book of Oaths and Vows**. The page also names the row's
+narrator, Abdullah ibn Amr.
+
+The row was UNPUBLISHED (no R-row in the tracker), so the standing rule —
+fix only what is unpublished — permitted the correction. `hadith_number`
+6871 → 6675, `source_url` → `https://sunnah.com/bukhari:6675`, `book` →
+*The Book of Oaths and Vows*. The gate passes. **`book` is now filled on all
+72 rows.** The tracker's duplicate-check row and the pointer item below were
+renumbered in the same commit, so no live instruction names a number the
+library no longer has.
+
+**OPEN 2026-10-30: Musnad Ahmad #7936's number is wrong and its real
+reference is NOT established.** Its matn
+«من أعطي فشكر وابتلي فصبر وظلم فاستغفر وظلم فعفا» covers only **7.7%** of the
+page it cites — the band the three proven wrong-number rows sit in (4.1%,
+16.7%, 37.0%), while the nine variance rows sit at 63.8–92.7%. So it is not
+at #7936. But 15 phrase windows and **69** fetched candidate pages across
+musnad-ahmad did not surface a reference that holds it. UNPUBLISHED (no
+tracker line), `screened=Y verified=n`. Two possibilities and the evidence
+does not separate them: tohed's Musnad Ahmad index does not cover it, or the
+stored wording is not any single narration. Given HARD RULE 1, this row
+should be **re-sourced from scratch** rather than renumbered — and it must
+not be produced until it is.
 
 **No gate compares a library row's Arabic to its own cited source — P306,
 found 2026-10-28.**
@@ -930,7 +976,7 @@ automatically:
   cite as #6423; #425 and #5401 are not even narrated by Itban.
 - **The three hadiths sound like one** to a viewer. Hence 2–3 weeks apart.
 
-**Sahih al-Bukhari #6871 must never follow #2654 without a deliberate call.**
+**Sahih al-Bukhari #6675 must never follow #2654 without a deliberate call.** (This row cited #6871 until 2026-10-30; corrected per P328.)
 Different number, same subject (al-kaba'ir). The duplicate index keys on the
 number so nothing flags the pair, and NO automated check covers it — a
 similarity check was written and removed on 2026-10-09 because the pair scores

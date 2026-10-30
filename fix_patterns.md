@@ -13760,3 +13760,81 @@ place to stop asking.
 **Status:** 5 of 6 closed; #6871 open.
 
 ---
+
+## PATTERN 328: the number was findable by the text all along
+
+**Found:** 2026-10-30. Thirteen rows had been waiting on the wrong person.
+
+**The standing position.** `verify-matn-number.py` reported twelve MISMATCH
+rows plus #6871, whose number had never been checkable at all. The backlog was
+recorded as *"needs a reader of Arabic"*, and OPEN_ITEMS said of #463 that
+*"its real reference has not been established"* and that establishing it would
+be the first step if the item were ever reopened — *"which the mirror cannot
+give because its ids are not reference numbers."* True about the mirror. But
+the row holds the Arabic, and somebody else's index is searchable.
+
+**en.tohed.com indexes Arabic.** `GET /hadith/search/?q=&book=`, discovered by
+reading the page this repo already fetches and caches. Probed before use: the
+harakat-free phrase «وزوجها عنها راض» with `book=tirmidhi` returns 2 results,
+#1161 among them. The ENGLISH index is useless for this - "pleased with her"
+returns 107 results in Tirmidhi alone. Arabic plus the book filter is what
+makes it precise, and the row already has the Arabic.
+
+**Results.**
+
+    Sunan an-Nasai  #3104  ->  #3106   offset   +2   PUBLISHED, already known
+    Sunan an-Nasai  #463   ->  #467    offset   +4   PUBLISHED, new
+    Sahih al-Bukhari #6871 ->  #6675   offset -196   unpublished, CORRECTED
+    Musnad Ahmad    #7936  ->  not found after 69 candidate pages
+
+#6871's correction is the solid one. Of 24 candidates surfaced by 15 phrase
+windows, **exactly one** Bukhari reference holds its matn, so "the real number"
+is a well-posed question with one answer. The source's own arrangement agrees:
+the hadith's fourth item is *al-yamin al-ghamus*, the false oath, and #6675
+sits in Kitab al-Ayman wan-Nudhur. The page names the narrator too. Offset −196
+is the P306 mirror band — #3559 was about 162.
+
+**Where I overclaimed, and what fixed it.** `find_ref.py`'s own closing line
+called the ten unfound rows *"edition or quotation variance rather than a wrong
+number"*. That was not earned: for #4248 the search reported 300 results and
+only the first 8 candidates per phrase were ever fetched. **"I did not find it"
+is not "it is not there"** - the same shape as P322's "permanently
+unverifiable", written by me in the same session that corrected P322 for
+exactly that.
+
+**The measure that earns the verdict.** Ask the other question instead: how
+much of the stored matn does the page it CITES actually contain? The gate wants
+EXACT containment, so one dropped word fails it at the correct number. Longest
+contiguous shared run over matn length:
+
+    proven wrong number : 4.1%  7.7%  16.7%  37.0%
+    variance            : 63.8% 64.8% 65.9% 70.5% 71.9% 79.2% 80.9% 87.9% 92.7%
+
+A clean gap between 37% and 64% with nothing in it. The three rows whose real
+reference was independently located are the control, and they land in the low
+band, which is what makes the measure a measure rather than a guess.
+
+**So the nine are variance, and that is not my finding.** The 2026-10-29 sweep
+had already read them and recorded that *every difference is an omission on our
+side, not a substitution* - a dropped `يعني`, one `ثم`, a `ليلة البدر`. This
+adds the numbers and the control. #7936 is the one that breaks ranks at 7.7%:
+its number is wrong and its real reference is NOT established, so it wants
+re-sourcing rather than renumbering, and it must not be produced until it is.
+
+**Lesson.** *"Needs a reader of Arabic"* was true of one question and false of
+the other. **Is this the right reference?** is a mechanical question - the text
+is in the row, the index is searchable, containment is exact. **Is this wording
+acceptable to publish?** genuinely needs a reader. Those two were bundled into
+one blocked item, and the bundle sat for two days behind the half that needed a
+human. When something is blocked on a person, check whether all of it is.
+
+**Related:** P306 (mirror ids are not reference numbers - the offsets here are
++2, +4, −196), P311, P322 addendum (the same "cannot be checked" error, found
+the same day), P327 (the Tier 1 page as the authority), P205 (why #6675/#2654
+needs a human note and not a similarity check).
+
+**Status:** #6871 FIXED. #3104, #463 established and reported, published so
+untouched by standing rule. #7936 open for re-sourcing. Nine measured as
+variance.
+
+---

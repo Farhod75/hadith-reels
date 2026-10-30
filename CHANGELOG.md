@@ -45,6 +45,29 @@
   rows; #6871 is the one left and is open as a live P306 case, its stored matn
   being absent from `bukhari/6871` and both neighbours.
 
+- **Thirteen rows were not waiting on an Arabic reader after all (P328).** The
+  MISMATCH backlog was recorded as needing a human who reads Arabic, and
+  OPEN_ITEMS said #463's real reference *"has not been established"* and could
+  not be, *"because the mirror's ids are not reference numbers."* True of the
+  mirror - but the row holds the Arabic and en.tohed.com indexes Arabic:
+  `GET /hadith/search/?q=&book=`, found by reading a page this repo already
+  caches. Searching each stored matn and verifying candidates with the gate's
+  own containment test located three: #3104 → #3106 (+2, already known), **#463
+  → #467 (+4, new)** and **#6871 → #6675 (−196)**. #6871 was unpublished and is
+  CORRECTED - number, source_url and book - with exactly one of 24 candidates
+  holding its matn, the source's own arrangement agreeing (its fourth item is
+  the false oath; #6675 sits in the Book of Oaths and Vows) and the page naming
+  its narrator. **`book` is now filled on all 72 rows.** The ten unfound rows
+  got a real verdict from a different measure - how much of the matn the CITED
+  page contains - where the three located rows serve as a control: proven-wrong
+  numbers score 4.1-37.0%, variance 63.8-92.7%, a clean gap with nothing in it.
+  Nine are variance, which the 2026-10-29 sweep had already read as omissions on
+  our side; this adds numbers. **Musnad Ahmad #7936 breaks ranks at 7.7%**: its
+  number is wrong, 69 candidate pages did not find the real one, and it wants
+  re-sourcing rather than renumbering. The lesson recorded: "is this the right
+  reference" is mechanical, "is this wording publishable" needs a reader, and
+  bundling them parked the mechanical half behind the human one for two days.
+
 ### Added
 
 - **`scripts/backfill-book.py`, and 63 rows of the authority P287 said was
