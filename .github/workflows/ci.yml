@@ -16,15 +16,23 @@ on:
 jobs:
   test:
     name: Build + Playwright Tests
-    runs-on: ubuntu-latest
+    # PINNED, NOT `ubuntu-latest` (P314). On 2026-10-19 GitHub began moving the
+    # `ubuntu-latest` label to Ubuntu 26.04, choosing the image AT RANDOM per run
+    # until 2026-11-19 (actions/runner-images#14748). Playwright 1.60 has no
+    # Ubuntu 26 support, so `playwright install` exited 1 before a single test ran
+    # and 31 consecutive runs went red without one line of our code changing.
+    # A floating label is an undeclared dependency on somebody else's release
+    # schedule. Bump this deliberately, after checking the toolchain; never by
+    # letting it drift. See OPEN_ITEMS (Tools) for the Playwright ceiling.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -52,7 +60,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: playwright-report
@@ -60,7 +68,7 @@ jobs:
           retention-days: 30
 
       - name: Upload screenshots on failure
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: test-screenshots

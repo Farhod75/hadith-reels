@@ -654,12 +654,56 @@ subject (false speech) — look at it deliberately rather than by surprise.
 
 ---
 ## Blocks content — do not ship past these
+**Two PUBLISHED rows cite a number their matn does not sit at — recorded, not
+acted on, 2026-10-29.** The operator's decision was to fix only what is
+unpublished; this is here so the finding is not lost rather than as a task.
+
+- **Sunan an-Nasai #3104** (R070–R073, kids lane, four languages). The stored
+  matn sits whole at **#3106**. The text is authentic and the narrator,
+  Mu'awiyah ibn Jahimah, matches; the citation is two numbers off. This row has
+  a history: P142 found it storing a munkar wording and it was corrected then,
+  which fixed the text and left the number.
+- **Sunan an-Nasai #463** (R066–R069, adults lane, four languages). The matn is
+  present somewhere in an-Nasai per the mirror but not at 463, and its real
+  reference has not been established. The weakest of the thirteen at 4%
+  contiguous overlap with the cited page.
+
+Both are the #3559 shape — real text, wrong citation — at lower severity, since
+neither resolves to a *different* hadith as far as has been checked. Eight
+published reels between them. If this is ever reopened, the first step is
+establishing #463's real number, which the mirror cannot give because its ids
+are not reference numbers (P306, P311).
+
+**Seven library rows match their cited page only partially — needs a reader of
+Arabic, 2026-10-29.** Found by the first full sweep of
+`scripts/verify-matn-number.py`. In all six where the difference falls inside
+the matn rather than at its edges, the page has words our row does NOT have —
+every difference is an omission on our side, not a substitution. Nothing
+contradicts the source.
+
+| row | missing from ours | note |
+|---|---|---|
+| Jami at-Tirmidhi #2307 | `يعني` | a transmitter's gloss, routinely dropped |
+| Sahih al-Bukhari #527 | one `ثم` | connective |
+| Sahih al-Bukhari #5971 | two `ثم` | the mother-three-times hadith; the repetition carries the meaning |
+| Sahih Muslim #2699 | `به` | particle |
+| Sunan Abu Dawud #1488 | a fragment | probably an artefact of character-level diffing |
+| Sunan Abu Dawud #3641 | `ليلة البدر` | "the night of the full moon" — a real clause, trimmed |
+
+Worth an Arabic reader's eye: **#5971** and **#3641**. The rest are almost
+certainly edition or quotation-boundary variance. `out/matn-diff-for-review.txt`
+holds the Arabic fragments in a form that can be shown to someone who reads it.
+
+Also from that sweep: **#6570 cannot be machine-verified at all** — its
+`source_url` is a Dorar SEARCH QUERY rather than a hadith page, so there is no
+page to compare against. It shipped as R150–R153.
+
 **No gate compares a library row's Arabic to its own cited source — P306,
 found 2026-10-28.**
 
 Bukhari #3559 shipped two reels whose matn was authentic Bukhari from the right
 narrator but belonged to reference 3759, 3760, because the number had been
-resolved through the local mirror's `id` — which runs about 38 behind
+resolved through the local mirror's `id` — which runs 162 behind
 sunnah.com's reference numbering in that region. Citation, narrator, grade,
 authority tier and `source_url` all looked correct, and the text was real, so
 nothing downstream could fire. `matn_screened_at` had been set on 2026-09-05;
@@ -1257,6 +1301,28 @@ places for a verdict to be wrong.
 ---
 
 ## Tools
+
+- **`@playwright/test` is 1.60.0 and cannot run on Ubuntu 26. Deadline: GitHub
+  retiring the `ubuntu-24.04` image.** CI is pinned to `ubuntu-24.04` (P314), so
+  this is not urgent - and not optional. 1.61.0 is the first release that
+  supports Ubuntu 26, verified by reading its bundle: it carries both the apt
+  dependency list and a real chromium download for `ubuntu26.04-x64`, neither of
+  which exists in 1.60.0. 1.64.1 is current. Bumping it moves the Chromium the
+  30 E2E tests run against and needs a chromium download (revision 1248; this
+  machine has up to 1243), so it gets its own session and its own push, never a
+  ride on someone else's commit. Verify afterwards with:
+  `PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu26.04-x64 npx playwright install --with-deps chromium --dry-run`
+  which must exit 0 and print real download URLs.
+- **Turbopack warns "Encountered unexpected file in NFT list
+  ./app/api/telegram/post/route.ts".** Cosmetic: a build WARNING, not an error.
+  The Vercel build succeeds and the route works in production (message_ids 168,
+  169, 170). Cause: the route resolves a path against `process.cwd()` and reads
+  it at runtime, which Next's file tracer cannot follow statically, so it pulls
+  `next.config.js` into that route's trace list. Declaring `runtime = 'nodejs'`
+  does NOT silence it (tried 2026-10-29). The documented lever is
+  `outputFileTracingExcludes` in `next.config.js`. Deliberately not applied: it
+  is a config change to silence a warning on a route that works, and the noise
+  breaks nothing. Do not re-investigate the cause - it is written here.
 **CORRECTION 2026-10-16 — STAGE 3 PASS B WORKS. The no-credits note above is
 stale, and nothing but this line says so.** `verify-candidates.py` was run twice
 tonight against Bukhari #1903 and `gpt-5.6-terra` answered every call, at high

@@ -471,7 +471,7 @@ posts deleted the same day.
 - No gate compares a row's Arabic to its own `source_url`. `matn_screened_at`
   was set on 2026-09-05 and meant only that a row had been looked at.
 - **The local mirror's `id` was used as the hadith reference number.** It is
-  not: in this region the mirror runs about 38 behind sunnah.com, so entry 3597
+  not: in this region the mirror runs 162 behind sunnah.com, so entry 3597
   is 3759, 3760. The lookup returned genuine, correctly-narrated text under the
   wrong citation, which is why no content check could fire - the matn was real,
   the narrator matched, the grade was right and the chapter was adjacent.

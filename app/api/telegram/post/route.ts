@@ -25,6 +25,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import path from 'path'
 
+// This route reads the rendered .mp4 off disk and streams it to Telegram, so it
+// needs the Node runtime and must never be pre-rendered. Declared rather than
+// inherited: on the edge runtime readFile and Buffer do not exist, and the
+// failure would only surface at publish time.
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 const MESSAGE_LIMIT = 4096
 const CAPTION_LIMIT = 1024
 

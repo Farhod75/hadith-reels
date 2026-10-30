@@ -12567,8 +12567,10 @@ narrations, one companion, two numbers.
 
 **The number came from the local mirror, whose key is not the reference
 number.** `hadith-json/db/by_book/the_9_books/bukhari.json` carries `id` and
-`idInBook`, and in this region they run about 38 behind sunnah.com's
-`Reference`. Mirror entry 3597 is sunnah.com 3759, 3760. Mirror entry 3559 is a
+`idInBook`, and in this region they run 162 behind sunnah.com's
+`Reference`. Mirror entry 3597 is sunnah.com 3759, 3760. The offset is
+not constant - it GROWS through the book, and by sunnah.com 6446 it is 239
+(mirror 6207) - so it can never be applied as a fixed correction. Mirror entry 3559 is a
 hadith of Jabir about the Prophet's ﷺ hawari being az-Zubayr ibn al-Awwam —
 neither of the two above. A lookup that treats the mirror's `id` as the hadith
 number therefore returns real, well-formed, correctly-narrated text under the
@@ -12737,5 +12739,160 @@ internally coherent.
 resolved it in* — "mirror idInBook 3597", not "bukhari:3559" — so the mapping
 stays visible as an assumption instead of settling into a fact. Where a note
 claims the source was read, it names the URL actually opened.
+
+---
+
+## PATTERN 311: "anywhere in the collection" cannot see a wrong number
+
+`verify-matn-source.py` has existed since P142 and states its own question in
+its header: *"does our stored Arabic appear ANYWHERE in the collection it
+claims?"* It deliberately does not match on the number, and says why — the
+local mirror's ids are not sunnah.com's reference numbers, and the header even
+gives an example, "Bukhari 6446 there is 6207".
+
+That trade caught two real defects (#2318, #3104) and opened exactly one hole.
+For #3559 the answer was FOUND, and FOUND was correct: the stored matn is
+genuine Bukhari, from the row's own narrator, sitting at reference 3759, 3760.
+Right collection, right narrator, real text, wrong number — the one shape the
+check is blind to by construction. Two reels published on it.
+
+**The knowledge needed to avoid it was already in the repo.** The screening note
+of 2026-10-27 resolved the hadith through the mirror's `idInBook` and recorded
+that it had done so, in a repo whose own verification script explains on line
+one that mirror ids and reference numbers are different things. Nothing was
+missing; the existing warning was simply not read as applying.
+
+`scripts/verify-matn-number.py` now asks the other half: **is our Arabic on the
+page at the cited number?** It fetches the row's own `source_url` — or, for
+sunnah.com, `en.tohed.com`, which serves the same reference numbering and does
+answer scripts — normalises both sides to bare Arabic letters, and requires a
+contiguous substring. Run over all 71 rows on 2026-10-29: 57 clean, 13
+mismatches, 1 unverifiable.
+
+**Fix:** the two scripts are halves of one question and neither is sufficient.
+`verify-matn-source.py` proves the text exists in the collection;
+`verify-matn-number.py` proves it exists at the citation. A row is screened when
+both have run. Neither writes to the database, and neither sets
+`matn_verified_at` — P265 still reserves that for a human who reads Arabic.
+
+---
+
+## PATTERN 312: a source that paginates Arabic and English differently makes false mismatches
+
+The first sweep of `verify-matn-number.py` flagged Bukhari #5185: the stored
+matn scored 6.5% against the page at its cited number. The triage then found
+the whole matn sitting at #5186 and labelled it an off-by-one numbering error.
+
+It is neither. `sunnah.com/bukhari:5185` is the merged reference "Sahih
+al-Bukhari 5185, 5186" and carries the matn in full. On `en.tohed.com`, which
+the gate substitutes because sunnah.com refuses scripts, the ENGLISH of that
+hadith is on page 5185 and the ARABIC continues on 5186. The gate compares
+Arabic, so it read an isnad and concluded the matn was elsewhere.
+
+Two things follow, pulling in opposite directions. The citation was correct and
+nearly got "fixed" — a gate that reports a clean row as defective sends someone
+to repair text that needs nothing, which is the failure recorded against the
+extent ratio in OPEN_ITEMS. And the merged reference is real and common:
+3759, 3760 and 5185, 5186 are both one entry under two numbers.
+
+**Fix:** before reporting a mismatch, check the cited number ±1. A hit there is
+a merged reference, not a defect, and is reported as such. This would have
+cleared #5185 and #3104 automatically and would NOT have cleared #3559, whose
+matn sits 200 numbers away. More generally: when a gate substitutes source B
+for cited source A, the substitution is an assumption the report must carry on
+every row, and a disagreement is evidence about the pair, not about the row.
+
+---
+
+## PATTERN 313: FLUX writes PNG under a .jpg extension
+
+`scripts/generate-image.ps1` saves its output as `out/refs/<name>-N.jpg`. The
+bytes are PNG. Checked on all twelve stills generated for #5185 on 2026-10-29:
+every one begins `89 50 4E 47`, and not one is a JPEG.
+
+Harmless where the file is only handed back to fal for image-to-video, which
+sniffs content. It is not harmless anywhere that trusts the extension: a
+viewer that refuses to render, a tool that picks an encoder by suffix, a
+preview that silently shows nothing. The stills had to be copied to correctly
+named `.png` files before they would display for review.
+
+**Fix:** name the file for what it contains. Until `generate-image.ps1` is
+changed, anything that reads `out/refs/*.jpg` should sniff the first four bytes
+rather than trust the name, and anything that shows a still to a human should
+copy it to a correct extension first.
+
+---
+
+## PATTERN 314: `ubuntu-latest` is not a version, and the runner moved under us
+
+**Found:** 2026-10-29, after 31 consecutive red CI runs.
+
+**Symptom:** every push from #335 (2026-10-22) through #365 failed in 30-55s
+with `Process completed with exit code 1`, and produced NO `playwright-report/`
+and no `test-results/` artifact at all. The last green run was #334 on
+2026-10-19. The first red commit touched no application code - only docs and a
+`.ps1`. On that exact commit, in a clean clone, `npm ci`, `npx tsc --noEmit`
+and `npm run build` all pass, and the live site still serves every string the
+E2E suite asserts. Nothing in `package.json`, `package-lock.json`,
+`.github/workflows`, `tests/` or `playwright.config.ts` had changed since green.
+
+**Root cause:** two facts that are only a defect together.
+
+1. On 2026-10-19 GitHub began migrating the `ubuntu-latest` label to Ubuntu
+   26.04 "over a period of several weeks", completing 2026-11-19
+   (actions/runner-images#14748). During the rollout the image is picked AT
+   RANDOM, run by run. So this did not arrive as an event; it arrived as
+   intermittency that then became permanent.
+2. `@playwright/test` is pinned at 1.60.0, which has no notion of Ubuntu 26.
+   `calculatePlatform()` in `playwright-core` clamps with `if (major < 26)`, so
+   26.04 falls past every branch to a hostPlatform of `ubuntu26.04-x64` - for
+   which the apt dependency table has no entry and the chromium download table
+   holds `void 0`. `installDependenciesLinux` only WARNS and returns; the throw
+   comes from `_downloadExecutable`. The string `ubuntu26` does not appear once
+   in playwright-core 1.60.0.
+
+Step 7, `npx playwright install --with-deps chromium`, therefore died before a
+single test ran. Reproduced exactly, on the failing commit, using the library's
+own override rather than waiting for a runner:
+
+    PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu26.04-x64 npx playwright install --with-deps chromium
+    Cannot install dependencies for ubuntu26.04-x64 with Playwright 1.60.0!
+    Error: ERROR: Playwright does not support chromium on ubuntu26.04-x64   -> exit 1
+
+**Fix:** pin the runner - `runs-on: ubuntu-24.04`, which is GitHub's own
+documented mitigation, with the reason written beside it in the workflow. Also
+bumped `actions/checkout`, `actions/setup-node` and `actions/upload-artifact`
+from v4 to v7 (v4 was being force-run on Node 24 with a deprecation warning on
+every run), and CI's Node from 20 to 22, which is what this machine actually
+runs - CI and local had been on different majors.
+
+**Lesson:** a green CI run proves the code AND the machine. When CI goes red
+with no code change, suspect the machine before the code - and read the run
+ANNOTATIONS, not the duration. The notice naming the Ubuntu 26 migration was
+printed on all 31 red runs, and the error's `#step:7:9` anchor named the failing
+step on every one of them. The diagnosis was sitting in plain text for a week.
+A red CI run is a defect report; this repo already says that about a failed
+push (see the push section of CLAUDE.md) and it is equally true here.
+
+**A second defect, found in passing and corrected in the same commit.** Five
+documents stated that the mirror's `id` "runs about 38 behind" sunnah.com. 38
+is the distance between two MIRROR entries (3597 - 3559); it is not an offset
+between the two numbering schemes. The real offset there is 162 (mirror 3597 =
+sunnah 3759), and it GROWS through the book - by sunnah 6446 it is 239 (mirror
+6207). Every one of the five sentences contradicted its own worked example in
+the same breath. Corrected in CHANGELOG.md, fix_patterns.md (P306),
+OPEN_ITEMS.md, reel-retro.md and reel-tracker.md. The 2026-10-28 session
+recorded this correction as already made. It had not been made anywhere - which
+is P307 again: a correction that exists only in a conversation did not happen.
+Anyone applying "38" as a fixed offset would have mis-cited a hadith.
+
+**Deferred deliberately, not forgotten.** `@playwright/test` stays at 1.60.0
+for now. 1.61.0 is the FIRST release that supports Ubuntu 26 - verified by
+reading its bundle: it carries both the apt dependency list and a real chromium
+download for `ubuntu26.04-x64`, neither of which exists in 1.60.0. 1.64.1 is
+current. The pin buys time; it does not remove the ceiling - when GitHub
+retires the `ubuntu-24.04` image, this returns. Bumping Playwright moves the
+Chromium the 30 E2E tests run against, so it is its own change with its own
+run (QA_STANDARDS 10.11). Tracked in OPEN_ITEMS under Tools.
 
 ---

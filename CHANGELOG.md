@@ -1,3 +1,37 @@
+## [2026-10-29] - CI had been red for a week because the runner moved, not the code
+
+### Fixed
+
+- **`ubuntu-latest` migrated to Ubuntu 26.04 and took CI with it (P314).** Every
+  push from #335 (2026-10-22) through #365 failed in 30-55s - 31 runs - with no
+  Playwright report produced at all. Nothing in this repo had changed: on the
+  failing commit, in a clean clone, `npm ci`, `npx tsc --noEmit` and
+  `npm run build` all pass, and the live site serves every string the E2E suite
+  asserts. GitHub began moving the `ubuntu-latest` label to Ubuntu 26.04 on
+  2026-10-19 - the day of the last green run - picking the image at random per
+  run until 2026-11-19. `@playwright/test` 1.60.0 has no Ubuntu 26 support, so
+  `playwright install --with-deps chromium` exited 1 before any test ran.
+  `runs-on` is now pinned to `ubuntu-24.04`, with the reason beside it.
+- **The three GitHub actions were three majors behind.** `actions/checkout`,
+  `actions/setup-node` and `actions/upload-artifact` were on v4, being force-run
+  on Node 24 with a deprecation warning on every run. All three are now v7.
+  CI's Node goes 20 -> 22, which is what this machine runs (v22.21.1); CI and
+  local had been on different majors.
+- **The Telegram post route now declares its runtime.** It reads the rendered
+  `.mp4` off disk, which the edge runtime cannot do. `runtime = 'nodejs'` and
+  `dynamic = 'force-dynamic'` are declared rather than inherited, so the route
+  cannot be moved to a runtime that would break it at publish time.
+- **"About 38 behind" was wrong in five documents (P314).** 38 is the gap
+  between two mirror entries, not the offset between the mirror's `id` and
+  sunnah.com's reference. The offset is 162 there and grows to 239 by Bukhari
+  6446. Corrected in CHANGELOG.md, fix_patterns.md, OPEN_ITEMS.md,
+  reel-retro.md and reel-tracker.md. The previous session recorded this fix as
+  made; it had not been made anywhere.
+
+### Carried in this commit, written earlier and never committed
+
+- P311, P312 and P313, and the #5185 entries in OPEN_ITEMS.md.
+
 ## [2026-10-28] — a published matn was wrong, and Telegram learned to post itself
 
 ### Fixed
@@ -9,7 +43,7 @@
   reads «إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا». The stored wording is authentic
   Bukhari from the very same narrator — it is 3759, 3760, in Kitab Fada'il Ashab
   an-Nabi — so the defect was the NUMBER, not the words. The number came from
-  the local mirror, whose `id` runs about 38 behind sunnah.com's reference in
+  the local mirror, whose `id` runs 162 behind sunnah.com's reference in
   this region: mirror entry 3597 is 3759, 3760, and mirror entry 3559 is a
   hadith of Jabir entirely. Settled by opening both pages.
   `text_arabic` and all four translations replaced; `text_uzbek_latin` and the
