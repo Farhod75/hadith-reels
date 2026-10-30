@@ -299,6 +299,17 @@ destroyed a working file during one session.
   as `ReadAllBytes('CLAUDE.md')` after cd-ing into the repo returned another
   file's counts twice in a row, and CLAUDE.md was edited on the strength of
   them. Always pass an absolute path to these methods.
+- **`core.autocrlf=true` in BOTH repos, and no `.gitattributes` (P324).** So the
+  WORKTREE's line endings are git's to change, not a property of the file: a
+  `git checkout --` can hand back the same blob with CRLF where you measured LF.
+  It happened on 2026-10-30 to `hadith-verifier/.githooks/pre-push` - LF before,
+  CRLF after a revert, identical `hash-object`, and it still ran. The bare-LF
+  count below is still worth printing, because it catches endings mixed WITHIN
+  one write, which is the damage that matters. But it is not an identity check,
+  and a sha taken before a checkout will not match one taken after. The
+  authoritative question is always what git says changed:
+  `git diff --numstat` - a small insertion count means the write was surgical,
+  and a whole-file diff means the endings moved.
 - **Verify after writing — never assume:**
   `python -c "d=open('<path>','rb').read(); print(len(d), d.count(b'\x00'), d[:4])"`
   Want: expected byte count, 0 nulls, and a sane first four bytes.

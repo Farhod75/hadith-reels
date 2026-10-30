@@ -13389,3 +13389,56 @@ which is the information that existed all evening and never reached the work.
 **Status:** FIXED
 
 ---
+
+## PATTERN 324: the worktree's line endings are not the file's identity
+
+**Found:** 2026-10-30, by a guard firing on nothing.
+
+**What happened.** Porting P320 into hadith-verifier, the hook was deliberately
+broken to prove the gate blocks, then restored with `git checkout --`. The
+restore guard compared sha256 before and after and refused to continue:
+
+    hook sha (correct)   : 33d80967e433038362b0387b
+    hook sha after revert: 11ef9f832bbff9d8d2c3d55e   -> STOPPED
+
+Nothing was wrong. `core.autocrlf = true` is set in both repos and there is no
+`.gitattributes`, so git stores LF in the blob and writes CRLF into the
+worktree on checkout. The file went in at 249 LF / 0 CRLF and came back at
+307 LF / 307 CRLF - same blob (`hash-object` matched the committed sha exactly),
+different bytes on disk. The content was correct: the deliberate `status=failure`
+was gone and `status=completed` was back. `sh -n` passed and the hook ran.
+
+**Why this matters more than one false alarm.** CLAUDE.md's write discipline says
+to *"re-count bare LFs to prove the line endings did not move"*. That guard is
+genuinely useful - it catches endings mixed WITHIN a single write, which is the
+damage that actually corrupts a file. But it is not an identity check, and this
+session treated a measured LF/CRLF count as though it were a property of the
+file. It is a property of the worktree at the moment you looked, and git may
+change it between two looks without any edit at all.
+
+**The authoritative check is git's own diff.** `git diff --numstat` answers the
+question that matters: a small insertion count means the write was surgical, a
+whole-file diff means the endings moved. Every commit on 2026-10-29 and 10-30
+was checked this way after the fact and all were surgical - 111/0, 7/10, 6/1,
+and 62/52 for a block that was deliberately moved. The discipline held; the
+premise under it was shakier than it looked.
+
+**What NOT to do about it.** Do not set `.gitattributes` or change
+`core.autocrlf` to make the measurements stable. Every file in both repos was
+committed under the current setting, and changing it would rewrite the worktree
+for files nobody is touching - a large, pointless diff in exchange for making a
+secondary guard tidier. The fix is to know what the guard means.
+
+**Lesson.** A guard that fires is not automatically right. This one stopped a
+push over a difference that was not a difference - which is the cheap direction
+to fail, and exactly why it is worth keeping. But "the check said no" is the
+start of an investigation, not the end of one, and the second question is always
+what the check actually measures.
+
+**Related:** the DEV ENVIRONMENT GOTCHA section of CLAUDE.md (the LF/CRLF guard
+this qualifies), P300 (a write that reported success and did not happen - the
+same family of uncertainty about what is really on disk).
+
+**Status:** RECORDED. No setting changed, by design.
+
+---
