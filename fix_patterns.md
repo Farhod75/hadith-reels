@@ -13442,3 +13442,105 @@ same family of uncertainty about what is really on disk).
 **Status:** RECORDED. No setting changed, by design.
 
 ---
+
+## PATTERN 325: the tool could not be aimed, so it was pointed at everything
+
+**Found:** 2026-10-30, while filling Uzbek Latin for one newly translated row.
+
+**What happened.** `derive-uzbek-latin.ts` accepts `--number` to scope a run to
+one hadith, but refused it unless `--library` was also given:
+
+    if (number && !library) { console.error('--number only applies with --library'); process.exit(1) }
+
+So for `hadith_candidates` there was no way to scope anything. The script
+selects every row with non-null `text_uzbek_cyrillic` and, with `--commit`,
+rewrites `text_uzbek_latin` on all of them. On 2026-10-30 that was **12 rows,
+of which exactly one - `tirmidhi #1161` - actually had no Latin.** The other
+eleven already had it, including one row at `needs_human` and three at
+`verified`.
+
+**Why that is worse than noise.** The derivation is deterministic, so for a row
+whose Latin this script produced, rewriting it is a content no-op. But the
+script also PRINTS `FLAGS` where the transliteration is genuinely ambiguous -
+Cyrillic `е` can be Latin `e` or `ye` and only a reader of the sentence knows
+which. Those flags exist to prompt a human correction. A blanket `--commit`
+therefore reverts exactly the rows a human had reason to touch, back to the
+machine's guess, with no diff and no record. The one row that needed the write
+was the one row that could not be asked for.
+
+**Fix.** Delete the refusal. Nothing else changes: `q.eq('hadith_number',
+number)` is applied to whichever table is selected, so scoping already worked
+end to end and was simply not let through. The usage header now documents the
+candidate form. P147 still holds - `hadith_number` is not unique in
+`hadith_candidates` either, so `--number` may match several rows; the loop
+prints and writes each, exactly as it already did for `--library`.
+
+**Lesson.** A write tool with no way to narrow its target does not stay
+narrow - it gets run wide, because that is the only way to run it. The guard
+here was not protecting anything; it was a line someone wrote while adding
+`--library` (P160) to describe what they had tested, and it hardened into a
+restriction. When a flag is refused, check whether the refusal is load-bearing
+or just undocumented scope.
+
+**Related:** P160 (where `--number` was introduced, for library rows only),
+P147/P290 (`hadith_number` is not unique), P326 (how this was nearly answered
+the hard way).
+
+**Status:** FIXED
+
+---
+
+## PATTERN 326: parsing the tool's report instead of asking the source of truth
+
+**Found:** 2026-10-30, by my own wasted work. Recorded because the failure was
+not the parser - it was reaching for a parser at all.
+
+**The question.** Before allowing `derive-uzbek-latin.ts --commit` to touch 12
+candidate rows, would it overwrite a Latin field that someone had corrected by
+hand?
+
+**What I did.** Captured the script's dry-run output to a file and wrote a
+parser to compare the `latin:` it printed against the DB. Twice:
+
+- **v1** skipped every output line starting with `[` in order to drop the
+  `[DRY RUN]` header - and so truncated any VALUE whose continuation line starts
+  with `[`, which is exactly `#3435`'s second riwaya paragraph
+  (`[Boshqa rivoyatda qoʻshimcha qilingan]: ...`). It reported `#3435` as
+  DIFFERS. **The difference was entirely my own parse.**
+- **v2** fixed that and added a self-check: the parsed Cyrillic must equal the
+  DB's `text_uzbek_cyrillic` byte for byte, on the reasoning that the two values
+  come out of one block by one code path. It reported **0 of 12 trustworthy** and
+  refused to conclude - because the premise was also wrong. The script prints
+  `deriveBothScripts(...).cyrillic`, the NORMALISED Cyrillic, not the stored
+  field. There was never a reason for them to match.
+
+**What answered it.** One REST query: which rows have `text_uzbek_latin` null.
+Exactly one, `tirmidhi #1161`. Eleven already had Latin. That is the whole
+answer, it took one call, and it needed no parser, because the data was never
+in the report - the report was a rendering of data that lives in a store I can
+query.
+
+**Lesson.** When a tool prints a human-readable report of data that lives in a
+queryable store, the store is the source of truth and the report is a view of
+it. A parser over the view adds a second place for the answer to be wrong, and
+its bugs do not look like bugs - they look like findings about the data. v1's
+false DIFFERS was one keystroke from being written into a pattern file as a
+fact about `#3435`.
+
+**The part that worked.** v2's self-check refused to draw a conclusion rather
+than drawing a wrong one. That is the cheap direction to fail, and it is the
+only reason the premise error surfaced at all instead of producing a confident
+twelve-row verdict. Same shape as P324: a guard firing is the start of an
+investigation, not the end of one - and here the investigation ended at the
+guard's own premise.
+
+**Rule.** Before parsing any tool output, ask where that data actually lives. If
+it is in Supabase, a file, or a git object, query THAT. Parse output only when
+the output is the only artifact - a test summary, a timing, an exit code.
+
+**Related:** P325 (the question that prompted this), P324 (a guard that fired on
+nothing), P307 (a correction that existed only in a conversation).
+
+**Status:** RECORDED. No code change - this is a rule about method.
+
+---

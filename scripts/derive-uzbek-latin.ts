@@ -4,6 +4,8 @@
 //
 //   npx tsx scripts/derive-uzbek-latin.ts                          # dry run, candidates
 //   npx tsx scripts/derive-uzbek-latin.ts --commit                 # write candidates
+//   npx tsx scripts/derive-uzbek-latin.ts --number 1161             # one candidate row
+//   npx tsx scripts/derive-uzbek-latin.ts --number 1161 --commit
 //   npx tsx scripts/derive-uzbek-latin.ts --library                # dry run, library
 //   npx tsx scripts/derive-uzbek-latin.ts --library --number 5971  # one library row
 //   npx tsx scripts/derive-uzbek-latin.ts --library --number 5971 --commit
@@ -29,7 +31,17 @@ const library = process.argv.includes('--library')
 const numIdx = process.argv.indexOf('--number')
 const number = numIdx !== -1 ? process.argv[numIdx + 1] : null
 if (numIdx !== -1 && !number) { console.error('--number needs a value'); process.exit(1) }
-if (number && !library) { console.error('--number only applies with --library'); process.exit(1) }
+// P325: --number used to be REFUSED for candidates. The refusal was
+// arbitrary - the query below applies .eq('hadith_number', number) to
+// WHICHEVER table is selected, so scoping already worked and was simply not
+// let through. Without it, --commit rewrote text_uzbek_latin on every
+// candidate row carrying Cyrillic - 12 rows on 2026-10-30, when exactly ONE
+// (tirmidhi #1161) had none - so a row whose Latin had been corrected by hand,
+// which is what the е/ye FLAGS report exists to prompt, would be silently
+// reverted to the machine's guess. A tool that cannot be aimed gets pointed
+// at everything. P147 still applies to candidates: hadith_number is not
+// unique there either, so --number can match more than one row - the loop
+// prints each and writes each, same as for --library.
 
 const table  = library ? 'hadith_library' : 'hadith_candidates'
 const keyCol = library ? 'id' : 'candidate_id'

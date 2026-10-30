@@ -1,3 +1,34 @@
+## [2026-10-30] - a write tool that could not be aimed, and a question answered the hard way
+
+### Fixed
+
+- **`--number` was refused for candidates, so `--commit` could only run wide
+  (P325).** `derive-uzbek-latin.ts` accepts `--number` to scope a run, but a
+  guard rejected it unless `--library` was also passed - leaving no way to scope
+  `hadith_candidates` at all. With `--commit` the script rewrites
+  `text_uzbek_latin` on every row holding Cyrillic: 12 rows on 2026-10-30, when
+  exactly one (`tirmidhi #1161`) had none. The other eleven already had Latin,
+  including one row at `needs_human` and three at `verified`. Since the script
+  also prints `FLAGS` where Cyrillic `е` could be Latin `e` or `ye` - ambiguity
+  only a reader can settle - a blanket write reverts precisely the rows a human
+  had reason to correct, with no diff and no record. The guard is gone; nothing
+  else changed, because `q.eq('hadith_number', number)` was already applied to
+  whichever table is selected. `--number 1161 --commit` then wrote one row.
+
+### Added
+
+- **P326, a rule about method, after two parsers answered nothing.** Deciding
+  whether that blanket write was safe, I captured the script's dry-run output and
+  wrote a parser to compare it against the DB. v1 dropped lines beginning with
+  `[` to skip the `[DRY RUN]` header and truncated `#3435`'s second riwaya
+  paragraph, reporting a DIFFERS that was entirely its own parse. v2 added a
+  self-check comparing parsed Cyrillic to the stored field, which refused to
+  conclude - correctly, since the script prints the NORMALISED Cyrillic, so the
+  two were never meant to match. One REST query answered the question: one row
+  had null Latin. The rule recorded: when a tool prints a view of data that
+  lives in a queryable store, query the store - a parser over the view adds a
+  second place to be wrong, and its bugs read as findings about the data.
+
 ## [2026-10-29] - CI had been red for a week because the runner moved, not the code
 
 ### Fixed
