@@ -13201,3 +13201,50 @@ isolation can still be dead code for the case that matters.
 **Status:** FIXED
 
 ---
+
+## PATTERN 321: the open item named the row, and nothing read it at the moment
+
+**Found:** 2026-10-29, after the #5185 set had already shipped.
+
+**What happened.** On 2026-10-17 the #5185 entry in OPEN_ITEMS was closed with
+one thing left open: *"Tajik «мешиканиаш» looks like a malformed contraction -
+needs a Tajik speaker."* On 2026-10-29 the TJ leg of that exact row was written,
+narrated, rendered, subtitle-reviewed, captioned and published to four
+platforms. The word is in the published caption. The item was never raised.
+
+OPEN_ITEMS was not neglected that evening - it was READ, and EDITED twice: once
+to correct "about 38 behind" and once to record two new gate gaps. The item sat
+a few hundred lines from the edits. Reading a file is not the same as reading the
+part of it that bears on what you are about to do.
+
+**It cost nothing, this time.** The operator reads Tajik and confirmed the word
+is correct. That is luck, not process: had it been malformed, a fifth reel would
+have needed deleting and replacing across four platforms, which is exactly what
+#3559 cost three days earlier.
+
+**The gap, stated precisely.** Nothing cross-references OPEN_ITEMS against the
+hadith number being produced. The pre-session check reads OPEN_ITEMS whole, which
+is the wrong granularity: by the time you are rendering #5185's Tajik leg, what
+you need is not the file, it is the three lines in it that say "#5185".
+
+**Prescribed fix, NOT yet built.** `render-reel.ps1` STEP 0 already derives the
+hadith number for the P319 gate. The same number should grep OPEN_ITEMS.md and
+print every matching line as a NOTE - warn-only, never blocking, because most
+open items are not defects in the row. Fifteen lines beside a gate that already
+exists. Deliberately deferred rather than written at 22:50 on the same evening
+three of my own gate changes each turned out to have a hole in it; a mitigation
+written tired is the next pattern. Tracked in OPEN_ITEMS under Pipeline / design.
+
+**Lesson.** This is the fourth shape of one question in a single evening. P319: a
+check nothing called. P320: a check that looked only forward. P320 addendum: a
+check placed after the door it guarded. P321: a record nobody read at the one
+moment it mattered. Writing something down is not the same as it being in front
+of the person who needs it - and the fix is never "read more carefully", it is
+putting the relevant line where the work already is.
+
+**Related:** P307 (a correction that existed only in a conversation), P227 (the
+tracker and OPEN_ITEMS falling out of step), P319, P320.
+
+**Status:** item CLOSED; the cross-reference NOT built.
+
+---

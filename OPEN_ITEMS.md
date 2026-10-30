@@ -312,8 +312,15 @@ simile cut off - and it was STAMPED verified on 2026-09-05. Third stamped row
 found holding defective content. Restored to 225 chars, re-translated, Stage 3
 8/8 pass. Uzbek «васият қилинглар» corrected to «нисбатан яхши муомалада
 бўлинглар» (the dative aimed the counsel at women rather than about them).
-OPEN: Tajik «мешиканиаш» looks like a malformed contraction - needs a Tajik
-speaker. P261.
+CLOSED 2026-10-29: Tajik «мешиканиаш» confirmed CORRECT by the operator, who
+reads Tajik. Not a malformed contraction. It shipped in R161 and in the
+published TJ caption and it stays. P261.
+
+The uncomfortable part, kept deliberately: this item named a specific word in a
+specific row, and it was still open while that row's TJ leg was written,
+narrated, rendered, reviewed and published on four platforms. OPEN_ITEMS was
+read and edited that same evening. Nobody was asked. See P321 - it cost nothing
+here only because the answer happened to be "correct".
 
 **CONVENTION SET 2026-10-17:** `text_arabic` holds ONE COMPLETE admonition from
 the cited narration, never a clipped one. Where a narration carries two, store
@@ -924,6 +931,17 @@ to that row.
 ---
 
 ## Pipeline / design
+
+- **Nothing cross-references OPEN_ITEMS against the hadith number being
+  produced (P321).** On 2026-10-29 the TJ leg of #5185 was produced and
+  published while an open item naming a specific Tajik word in that exact row
+  sat unread in this file - which had been read and edited twice the same
+  evening. The word turned out to be correct, so it cost nothing; had it not
+  been, it would have been a fifth reel deleted off four platforms.
+  `render-reel.ps1` STEP 0 already derives the hadith number for the P319 gate;
+  the same number should grep this file and print every matching line as a NOTE.
+  Warn-only, never blocking - most open items are not defects in the row.
+  Fifteen lines beside a gate that already exists.
 
 - **No gate reads the S/M seam (P315).** `lint-content.py` fires
   `duplicate-block` only when two blocks are IDENTICAL, so a moral that repeats
