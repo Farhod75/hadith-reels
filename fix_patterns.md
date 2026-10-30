@@ -13157,3 +13157,47 @@ nothing called), P119 (a gate pointed at nothing), HARD RULE 4.
 **Status:** FIXED
 
 ---
+
+## PATTERN 320 (addendum): the new gate was unreachable for most of its own cases
+
+**Found:** 2026-10-29, minutes after P320 was committed, by the manual proof
+CLAUDE.md requires for hook changes.
+
+P320 put the CI-status check at the END of the pre-push hook, next to the other
+gates, which is where it looked like it belonged. But the hook exits early for a
+doc-only push:
+
+    # Doc-only -> skip
+    if [ "$NON_DOC" -eq 0 ]; then
+      echo "Doc-only push - skipping tests"
+      exit 0
+    fi
+
+So the check never ran on a doc-only push - and docs and content were the
+MAJORITY of the 31 pushes that went out onto a red CI. The gate was blind to
+most of its own use case while reading, in the file, as though it covered
+everything.
+
+**How it was found.** Exactly the way CLAUDE.md says to find it: *"Prove hook
+changes by hand with a deliberately broken file BEFORE committing. That manual
+proof is the only verification this file gets."* The query was flipped to ask
+for the last FAILED run, a doc-only commit was pushed, and instead of blocking
+it printed "Doc-only push - skipping tests" and pushed. The proof was run one
+commit too late - P320 was already committed - which is the only part of this
+worth regretting.
+
+**Fix.** The block moved to immediately before the doc-only exit, where every
+push reaches it. Two consequences of the new position, both handled in the code:
+it discovers its own interpreter, because `PY_BIN` is defined further down; and
+it calls `exit 1` directly, because `FAILED` is not initialised yet.
+
+**Lesson, and it is the same one twice in one evening.** P319 was a check nothing
+called. P320 was a check that looked only forward. This is a check placed after
+the door it was meant to guard. Three shapes of the same question: not "is the
+check correct?" but "on which paths does it actually execute?" In a script with
+early exits, position IS the logic - and a block that reads correctly in
+isolation can still be dead code for the case that matters.
+
+**Status:** FIXED
+
+---

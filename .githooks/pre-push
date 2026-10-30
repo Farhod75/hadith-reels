@@ -51,6 +51,68 @@ NON_DOC=$(echo "$CHANGED_FILES" | grep -vE "$DOC_PATTERNS" | wc -l | tr -d ' ')
 echo "📊 Classification: Doc=$HAS_DOC API=$HAS_API UI=$HAS_UI Remotion=$HAS_REMOTION Config=$HAS_CONFIG Py=$HAS_PY Ps1=$HAS_PS1 Json=$HAS_JSON TSScript=$HAS_TSSCRIPT Test=$HAS_TEST"
 echo ""
 
+# --- P320: do not pile commits on a red CI -----------------------------------
+# On 2026-10-19 GitHub began moving the `ubuntu-latest` image under us. CI went
+# red on 10-22 and THIRTY-ONE pushes followed before anyone looked; hadith-
+# verifier went red ONCE and sat unnoticed for a week, because nothing was
+# pushed to it at all. This hook checked the code being pushed and had no idea
+# the last push never went green.
+#
+# PLACED BEFORE THE DOC-ONLY EXIT ON PURPOSE (P320 addendum). The first version
+# of this block sat at the end of the file beside the other gates, and a
+# doc-only push - which exits a few lines below - never reached it. Most of the
+# 31 pushes that went out onto a red CI were docs and content, so the block was
+# blind to the majority of its own use case. It has its own interpreter lookup
+# because PY_BIN is defined further down, and it exits directly because FAILED
+# is not initialised yet.
+#
+# No token and no gh CLI (not installed here) - the repo is public. The slug
+# comes from origin, so this same block works in hadith-verifier unchanged.
+CI_PY=""
+for c in python python3 py; do
+  if command -v "$c" > /dev/null 2>&1; then CI_PY="$c"; break; fi
+done
+echo "▶ Last CI run on main..."
+REPO_SLUG=$(git remote get-url origin 2>/dev/null \
+  | sed -e 's#^.*github\.com[:/]##' -e 's#\.git$##')
+CI_JSON=""
+if [ -n "$REPO_SLUG" ]; then
+  CI_JSON=$(curl -s --max-time 8 \
+    "https://api.github.com/repos/$REPO_SLUG/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1" \
+    2>/dev/null)
+fi
+CI_CONCL=""
+CI_NUM="?"
+if [ -n "$CI_JSON" ] && [ -n "$CI_PY" ]; then
+  CI_CONCL=$(echo "$CI_JSON" | "$CI_PY" -c "import sys,json; d=json.load(sys.stdin); r=(d.get('workflow_runs') or [{}])[0]; print(r.get('conclusion') or '')" 2>/dev/null)
+  CI_NUM=$(echo "$CI_JSON" | "$CI_PY" -c "import sys,json; d=json.load(sys.stdin); r=(d.get('workflow_runs') or [{}])[0]; print(r.get('run_number') or '?')" 2>/dev/null)
+fi
+
+if [ -z "$CI_CONCL" ]; then
+  # A DELIBERATE deviation from HARD RULE 4, written here so it is not read
+  # later as an oversight. That rule governs checkers of the CODE being pushed;
+  # this checks a REMOTE state. Blocking every push while offline or while
+  # GitHub is down costs more than a red run noticed one push later - which this
+  # loud warning still achieves.
+  echo "  ⚠  WARN  could not read the last CI run (offline, or GitHub unreachable)."
+  echo "          CI status is UNKNOWN for this push - check it afterwards:"
+  echo "          https://github.com/$REPO_SLUG/actions"
+elif [ "$CI_CONCL" = "success" ]; then
+  echo "✅ Last CI run (#$CI_NUM) was green"
+elif echo "$CHANGED_FILES" | grep -q '^\.github/workflows/'; then
+  # Not optional. Without this the fix for a red CI could never be pushed, and
+  # the gate would deadlock against itself.
+  echo "  ⚠  WARN  last CI run (#$CI_NUM) was '$CI_CONCL', but this push"
+  echo "          changes .github/workflows/ - letting it through as the repair."
+else
+  echo "❌ Last CI run (#$CI_NUM) on main was '$CI_CONCL'."
+  echo "   Fix CI before stacking work on top of it. P314 cost 31 red pushes"
+  echo "   and a week of hadith-verifier sitting red, because nothing checked."
+  echo "   https://github.com/$REPO_SLUG/actions/workflows/ci.yml"
+  echo "   The CI fix itself is allowed through: touch .github/workflows/."
+  exit 1
+fi
+echo ""
 # Doc-only → skip
 if [ "$NON_DOC" -eq 0 ]; then
   echo "✅ Doc-only push — skipping tests"
@@ -325,58 +387,6 @@ if [ "$((HAS_API + HAS_UI + HAS_TEST))" -gt 0 ] && [ $FAILED -eq 0 ]; then
   [ $FAILED -eq 0 ] && echo "✅ E2E tests OK"
 fi
 
-# --- P320: do not pile commits on a red CI -----------------------------------
-# On 2026-10-19 GitHub began moving the `ubuntu-latest` image under us. CI went
-# red on 10-22 and THIRTY-ONE pushes followed before anyone looked; hadith-
-# verifier went red ONCE and sat unnoticed for a week, because nothing was
-# pushed to it at all. This hook checked the code being pushed and had no idea
-# the last push never went green. A gate that only looks forward cannot see it.
-#
-# No token and no gh CLI (not installed here) - the repo is public. The slug
-# comes from origin, so this same block works in hadith-verifier unchanged.
-if [ $FAILED -eq 0 ]; then
-  echo "▶ Last CI run on main..."
-  REPO_SLUG=$(git remote get-url origin 2>/dev/null \
-    | sed -e 's#^.*github\.com[:/]##' -e 's#\.git$##')
-  CI_JSON=""
-  if [ -n "$REPO_SLUG" ]; then
-    CI_JSON=$(curl -s --max-time 8 \
-      "https://api.github.com/repos/$REPO_SLUG/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=1" \
-      2>/dev/null)
-  fi
-
-  CI_CONCL=""
-  CI_NUM="?"
-  if [ -n "$CI_JSON" ] && [ -n "$PY_BIN" ]; then
-    CI_CONCL=$(echo "$CI_JSON" | "$PY_BIN" -c "import sys,json; d=json.load(sys.stdin); r=(d.get('workflow_runs') or [{}])[0]; print(r.get('conclusion') or '')" 2>/dev/null)
-    CI_NUM=$(echo "$CI_JSON" | "$PY_BIN" -c "import sys,json; d=json.load(sys.stdin); r=(d.get('workflow_runs') or [{}])[0]; print(r.get('run_number') or '?')" 2>/dev/null)
-  fi
-
-  if [ -z "$CI_CONCL" ]; then
-    # A DELIBERATE deviation from HARD RULE 4, written here so it is not read
-    # later as an oversight. That rule governs checkers of the CODE being
-    # pushed; this checks a REMOTE state. Blocking every push while offline or
-    # while GitHub is down costs more than a red run noticed one push later -
-    # which this loud warning still achieves.
-    echo "  ⚠  WARN  could not read the last CI run (offline, or GitHub unreachable)."
-    echo "          CI status is UNKNOWN for this push - check it afterwards:"
-    echo "          https://github.com/$REPO_SLUG/actions"
-  elif [ "$CI_CONCL" = "success" ]; then
-    echo "✅ Last CI run (#$CI_NUM) was green"
-  elif echo "$CHANGED_FILES" | grep -q '^\.github/workflows/'; then
-    # Not optional. Without this the fix for a red CI could never be pushed,
-    # and the gate would deadlock against itself.
-    echo "  ⚠  WARN  last CI run (#$CI_NUM) was '$CI_CONCL', but this push"
-    echo "          changes .github/workflows/ - letting it through as the repair."
-  else
-    echo "❌ Last CI run (#$CI_NUM) on main was '$CI_CONCL'."
-    echo "   Fix CI before stacking work on top of it. P314 cost 31 red pushes"
-    echo "   and a week of hadith-verifier sitting red, because nothing checked."
-    echo "   https://github.com/$REPO_SLUG/actions/workflows/ci.yml"
-    echo "   The CI fix itself is allowed through: touch .github/workflows/."
-    FAILED=1
-  fi
-fi
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 if [ $FAILED -ne 0 ]; then
   echo "❌ Push blocked — fix issues above"
