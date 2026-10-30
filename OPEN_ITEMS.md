@@ -932,16 +932,13 @@ to that row.
 
 ## Pipeline / design
 
-- **Nothing cross-references OPEN_ITEMS against the hadith number being
-  produced (P321).** On 2026-10-29 the TJ leg of #5185 was produced and
-  published while an open item naming a specific Tajik word in that exact row
-  sat unread in this file - which had been read and edited twice the same
-  evening. The word turned out to be correct, so it cost nothing; had it not
-  been, it would have been a fifth reel deleted off four platforms.
-  `render-reel.ps1` STEP 0 already derives the hadith number for the P319 gate;
-  the same number should grep this file and print every matching line as a NOTE.
-  Warn-only, never blocking - most open items are not defects in the row.
-  Fifteen lines beside a gate that already exists.
+- **CLOSED 2026-10-30: OPEN_ITEMS is cross-referenced at render time (P321).**
+  `render-reel.ps1` STEP 0 greps this file for the hadith number it already
+  derives for the P319 gate, and prints every matching line as a NOTE. Warn-only
+  and never blocking: most open items are not defects in the row, and blocking
+  on them would train the operator to look past the message. Proven against
+  #5185, where it prints the lines that were sat on all evening, and against a
+  number this file does not mention, where it says so.
 
 - **No gate reads the S/M seam (P315).** `lint-content.py` fires
   `duplicate-block` only when two blocks are IDENTICAL, so a moral that repeats

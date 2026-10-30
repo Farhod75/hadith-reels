@@ -337,6 +337,35 @@ if ($hadithNumber -match '^\d+$') {
                "cannot run is not a pass."
 }
 
+# P321: surface the OPEN_ITEMS lines that name THIS hadith, before the render.
+# On 2026-10-29 the TJ leg of #5185 was written, narrated, rendered, reviewed,
+# captioned and published to four platforms while an open item naming a specific
+# Tajik word in that exact row sat unread in OPEN_ITEMS.md - a file that had been
+# read AND edited twice the same evening. The word turned out to be correct, so it
+# cost nothing; had it not been, it would have been a fifth reel deleted off four
+# platforms. Reading a file is not the same as reading the part of it that bears
+# on the work in front of you, so the relevant lines come to the work instead.
+#
+# WARN-ONLY, and that is deliberate. Most open items are not defects in the row;
+# blocking on them would train the operator to look past the message, which is
+# how a gate turns into noise. $hadithNumber is already derived above for P319.
+if ($hadithNumber -match '^\d+$' -and (Test-Path 'OPEN_ITEMS.md')) {
+  $oiHits = @(Select-String -Path 'OPEN_ITEMS.md' -Pattern "#$hadithNumber\b" -ErrorAction SilentlyContinue)
+  if ($oiHits.Count -gt 0) {
+    Write-Host "`n  NOTE  OPEN_ITEMS.md names #$hadithNumber in $($oiHits.Count) place(s) - read before shipping:" -ForegroundColor Yellow
+    $oiHits | Select-Object -First 8 | ForEach-Object {
+      $t = $_.Line.Trim()
+      if ($t.Length -gt 140) { $t = $t.Substring(0, 140) + '...' }
+      Write-Host "        line $($_.LineNumber): $t" -ForegroundColor DarkYellow
+    }
+    if ($oiHits.Count -gt 8) {
+      Write-Host "        ... and $($oiHits.Count - 8) more - open the file" -ForegroundColor DarkYellow
+    }
+  } else {
+    Ok "OPEN_ITEMS.md says nothing about #$hadithNumber"
+  }
+}
+
 if ($problems.Count -gt 0) {
   Write-Host "`nCannot render -- fix these first:" -ForegroundColor Red
   $problems | ForEach-Object { Write-Host "   - $_" -ForegroundColor Red }

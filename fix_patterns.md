@@ -13359,3 +13359,33 @@ gate that surfaced both), P306, HARD RULE 4.
 **Status:** FIXED
 
 ---
+
+## PATTERN 321 (addendum): the cross-reference, built
+
+**2026-10-30.** P321 prescribed the fix and deliberately did not build it -
+*"a mitigation written tired is the next pattern"*. Built now, fresh.
+
+`render-reel.ps1` STEP 0 greps `OPEN_ITEMS.md` for the hadith number it already
+derives for the P319 gate and prints each matching line as a NOTE. Fifteen lines
+beside a gate that already existed, exactly as costed.
+
+**Warn-only, and the reasoning matters more than the code.** The obvious instinct
+after a near-miss is to make it blocking. That would be wrong here: most open
+items are not defects in the row - the #5185 entry alone matches five times, and
+four of those are history rather than warnings. A gate that blocks on history
+teaches the operator to look past it, and then it is worse than nothing, because
+it also carries the appearance of safety. P319 blocks because its question has a
+yes/no answer. This one does not, so it reports.
+
+**What it prints, on the row that caused it:**
+
+    NOTE  OPEN_ITEMS.md names #5185 in 5 place(s) - read before shipping:
+          line 252: #5185 was stamped verified with no screening behind it...
+          line 310: **#5185 DONE 2026-10-17.** Stored 32 chars - the opening...
+          ...
+
+which is the information that existed all evening and never reached the work.
+
+**Status:** FIXED
+
+---
