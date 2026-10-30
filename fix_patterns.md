@@ -13248,3 +13248,114 @@ tracker and OPEN_ITEMS falling out of step), P319, P320.
 **Status:** item CLOSED; the cross-reference NOT built.
 
 ---
+
+## PATTERN 322: the only source URL was a search query, so the row could never be checked
+
+**Found:** 2026-10-29 while sourcing Tirmidhi #1161, by the gate built hours
+earlier in P319.
+
+**Symptom.** A Workflow L candidate carries exactly one source URL:
+
+    source_urls = {"dorar": "https://dorar.net/hadith/search?q=%D8%A3..."}
+
+`promote-candidates.pick_deeplink` prefers a `sunnah` key and falls back to
+`dorar`, so the promoted library row cites a SEARCH QUERY. That is not a page.
+It cannot be fetched and compared, so `verify-matn-number.py` can only ever
+report SKIP for it - and since P319 the matn gate BLOCKS a render on SKIP. Every
+candidate Workflow L has ever produced would have been unrenderable.
+
+**It had already shipped once.** #6570 is the single dorar.net `source_url`
+among 71 library rows, and the one row the sweep records as machine-unverifiable
+for good. It went out as R150-R153. The defect was recorded as a property of
+that row rather than as a property of the pipeline that produced it, so nothing
+stopped the next one.
+
+**Fix.** `to_row` now adds a sunnah.com deep link beside the Dorar search URL,
+built from the collection and number. `pick_deeplink` then does the right thing
+with no change at all - the preference order was already correct and was simply
+never given the key it preferred. The nine slugs `canonical_collection` can emit
+are exactly sunnah.com's own, checked against all 71 library rows, 65 of which
+already carry this form. `build_source_url` in `scripts/lib/source_sunnah.py`
+already existed and is already tested; nothing new had to be written to build
+the URL.
+
+**What this does and does not claim - the part worth being precise about.** It
+asserts NOTHING about whether Dorar's number is sunnah.com's reference number.
+It makes the claim CHECKABLE. If the number is wrong the gate now says MISMATCH,
+which is P306 caught instead of shipped. Before this, the row was not right or
+wrong - it was unfalsifiable, and an unverifiable row is the worse of the two
+states precisely because it never triggers anything.
+
+A synthetic `auto-...` number gets no link: there is no page behind it, and
+inventing a URL that resolves to the wrong hadith would be worse than having
+none. An existing `sunnah` key is never overwritten.
+
+**Lesson.** P319 was built to catch wrong citations in the library. The first
+thing it caught was the pipeline that writes them. A gate placed at the end of a
+pipeline reports on the whole pipeline, not just on the last step - and the
+fastest way to find out what a new gate is worth is to point it at work that was
+already considered finished.
+
+**Related:** P319 (the gate that caught it), P306 (a wrong number that shipped),
+P311 and P312 (what the verdicts mean), P177 (fix it in the reviewed text, never
+in a patch afterwards).
+
+**Status:** FIXED in the pipeline. The #1161 candidate row already inserted with
+the old shape is corrected separately - see the Production queue.
+
+---
+
+## PATTERN 323: the candidate's collection slug was never translated for the library
+
+**Found:** 2026-10-30, immediately after P322, while checking whether #1161
+could actually be promoted and rendered.
+
+**The mismatch.** `hadith_candidates` carries dedup's canonical SLUG -
+`"tirmidhi"` - because that is what `canonical_collection` returns and what the
+UNIQUE key dedups on. `hadith_library` carries the DISPLAY name -
+`"Jami at-Tirmidhi"` - and all 71 rows do, without exception.
+`promote-candidates.map_to_library` passed the value through unchanged:
+
+    "collection": c.get("collection"),
+
+So the first Workflow L row ever promoted would have been the only row in the
+library named unlike every other. That alone is cosmetic. What is not cosmetic:
+`verify-matn-number.py`'s TOHED map is keyed by the DISPLAY name, so
+`target_url` would have returned *"collection 'tirmidhi' has no tohed
+mapping"*, the verdict would have been REVIEW, and since P319 the matn gate
+BLOCKS on REVIEW. The pipeline would have sourced a hadith, promoted it, and
+then refused to render it - with an error pointing at the collection rather than
+at the promotion step that wrote it.
+
+**Why it had never bitten.** Nothing had ever been promoted by Workflow L. Every
+one of the 71 rows was written by a path that already used display names, so the
+missing translation sat harmlessly in a function nobody had exercised end to
+end. P322 and this are the same discovery: a gate at the end of a pipeline
+reports on the pipeline, and the parts never exercised are where it reports
+loudest.
+
+**Fix.** `LIBRARY_COLLECTION` maps the seven slugs that have a library precedent
+to their display names - names READ OFF the live library, not invented, and
+exactly the seven keys TOHED recognises. `library_collection()` is idempotent,
+so a row already carrying a display name is untouched, and it RAISES on anything
+else.
+
+**Raising is the design, not laziness.** dedup can also emit `malik` and
+`darimi`. Neither has a library precedent or a TOHED mapping: nobody has decided
+their display name or checked whether the verification source serves them.
+Refusing to promote costs one conversation. Writing the slug through costs a row
+that silently cannot be rendered plus a session spent finding out why - which is
+the same trade HARD RULE 4 makes for a missing checker.
+
+**A test guards the drift, not just the mapping.**
+`test_every_mapped_name_is_a_tohed_key` loads BOTH modules and asserts every
+display name this map can produce is a TOHED key. The bug was not a wrong value;
+it was two maps in two files with no stated relationship. A test on the values
+would not have caught it. A test on the RELATIONSHIP does.
+
+**Related:** P322 (the search-query source_url, found the same way), P319 (the
+gate that surfaced both), P306, HARD RULE 4.
+
+**Status:** FIXED
+
+---

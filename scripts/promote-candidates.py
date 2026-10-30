@@ -90,6 +90,54 @@ def rest_patch(url: str, key: str, table: str, query: str, patch: dict) -> None:
     urllib.request.urlopen(req, timeout=30).read()
 
 
+# ── candidate slug -> library display name ──────────────────────────
+# P323. hadith_candidates carries dedup's canonical SLUG ("tirmidhi"), because
+# that is what canonical_collection returns and what the UNIQUE key dedups on.
+# hadith_library carries the DISPLAY name ("Jami at-Tirmidhi") - all 71 rows do,
+# without exception. This function was missing, so the slug went straight
+# through: a promoted Workflow L row would have been the only row in the library
+# named differently from every other, AND verify-matn-number.py's TOHED map is
+# keyed by the display name - so the P319 matn gate would have refused the row
+# with "collection 'tirmidhi' has no tohed mapping" and blocked every render of
+# the hadith the pipeline had just sourced.
+#
+# The seven names below are READ OFF the live library, not invented, and they are
+# exactly the seven keys TOHED recognises.
+LIBRARY_COLLECTION = {
+    "bukhari":  "Sahih al-Bukhari",
+    "muslim":   "Sahih Muslim",
+    "tirmidhi": "Jami at-Tirmidhi",
+    "abudawud": "Sunan Abu Dawud",
+    "nasai":    "Sunan an-Nasai",
+    "ibnmajah": "Sunan Ibn Majah",
+    "ahmad":    "Musnad Ahmad",
+}
+
+
+def library_collection(name: str) -> str:
+    """Slug -> display name. Idempotent. REFUSES anything it does not know.
+
+    dedup can also emit `malik` and `darimi`, and neither has a library
+    precedent or a TOHED mapping - nobody has decided their display name or
+    checked whether the verification source serves them. Raising is the correct
+    answer there: refusing to promote costs one conversation, whereas writing an
+    unverifiable name costs a row that silently cannot be rendered and a session
+    spent finding out why. A missing mapping must not read as success.
+    """
+    n = (name or "").strip()
+    if not n:
+        raise ValueError("collection is empty - refusing to promote (P323)")
+    if n in LIBRARY_COLLECTION:
+        return LIBRARY_COLLECTION[n]
+    if n in set(LIBRARY_COLLECTION.values()):
+        return n
+    raise ValueError(
+        "collection %r has no library display name (P323). Known slugs: %s. "
+        "Add it to LIBRARY_COLLECTION *and* to TOHED in verify-matn-number.py, "
+        "or the row will promote and then be unrenderable."
+        % (n, ", ".join(sorted(LIBRARY_COLLECTION))))
+
+
 # ── source_urls (jsonb) -> one canonical deep-link ───────────────────────────
 def pick_deeplink(source_urls) -> str:
     """Prefer Sunnah, then Dorar, then any first URL.
@@ -144,7 +192,7 @@ def map_to_library(c: dict, tags: list[str] | None = None) -> dict:
         "text_uzbek":          c.get("text_uzbek_latin"), # legacy back-compat col = Latin (see D4a)
         "text_tajik":          c.get("text_tajik"),
         "narrator":            c.get("narrator"),
-        "collection":          c.get("collection"),
+        "collection":          library_collection(c.get("collection")),
         "book":                None,                      # not in candidates
         "hadith_number":       c.get("hadith_number"),
         "grade":               c.get("grade"),

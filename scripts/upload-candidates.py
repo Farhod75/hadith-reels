@@ -27,6 +27,7 @@ sys.path.insert(0, os.path.join(_here, "lib"))
 sys.path.insert(0, _here)
 from source_dorar import search_dorar, fetch_dorar  # noqa: E402
 from dedup import find_duplicates, normalize_arabic  # noqa: E402
+from source_sunnah import build_source_url  # noqa: E402
 
 
 def load_env(path=".env.local") -> dict:
@@ -72,17 +73,52 @@ def syn_number(number: str, matn: str) -> str:
     return number if number else "auto-" + hashlib.sha1(normalize_arabic(matn).encode("utf-8")).hexdigest()[:10]
 
 
+def with_sunnah_link(source_urls, collection: str, number: str) -> dict:
+    """PURE: add a sunnah.com deep link beside whatever Dorar gave us.
+
+    P322. Workflow L sources by SEARCH, so the only URL Dorar yields is a search
+    query. `promote-candidates.pick_deeplink` prefers a `sunnah` key and falls
+    back to `dorar`, so with no sunnah key the promoted library row ends up
+    citing a search query - which is not a page, cannot be fetched, and makes the
+    row permanently unverifiable. That is how #6570 shipped: it is the single
+    dorar.net source_url among 71 library rows, and the one row
+    verify-matn-number.py can only ever report as SKIP. Since P319 the matn gate
+    BLOCKS a render on SKIP, so without this every Workflow L candidate would be
+    unrenderable from the moment it was promoted.
+
+    This asserts NOTHING about whether the number is right. It makes the claim
+    CHECKABLE: a sunnah.com page can be fetched and compared, and if Dorar's
+    number is not sunnah.com's reference the gate reports MISMATCH - which is
+    P306 being caught instead of shipped. An unverifiable row cannot even be
+    wrong, which is the worse state of the two.
+
+    Only for a real number. A synthetic `auto-...` number (syn_number, for a
+    Dorar card with no citation) has no page, so no link is invented for it. The
+    nine slugs `canonical_collection` can emit are exactly sunnah.com's own, so
+    the collection needs no translation - verified against all 71 library rows,
+    65 of which already carry this form.
+    """
+    out = dict(source_urls or {})
+    if out.get("sunnah"):
+        return out
+    if collection and number and str(number).isdigit():
+        out["sunnah"] = build_source_url(collection, str(number))
+    return out
+
+
 def to_row(cand: dict, dd: dict) -> dict:
     """PURE: candidate + dedup result → hadith_candidates row."""
     status = "needs_human" if (dd["fuzzy_hits"] and not dd["hard_hit"]) else "deduped"
+    number = syn_number(cand.get("hadith_number", ""), cand["text_arabic"])
     return {
         "collection": cand["collection"],
-        "hadith_number": syn_number(cand.get("hadith_number", ""), cand["text_arabic"]),
+        "hadith_number": number,
         "narrator": cand.get("narrator"),
         "grade": cand["grade"],
         "grading_source": cand["grading_source"],
         "grade_confirmed": cand.get("grade_confirmed", True),
-        "source_urls": cand.get("source_urls", {}),
+        "source_urls": with_sunnah_link(cand.get("source_urls", {}),
+                                        cand["collection"], number),
         "text_arabic": cand["text_arabic"],
         "status": status,
         "dedup_hard_hit": dd["hard_hit"],
