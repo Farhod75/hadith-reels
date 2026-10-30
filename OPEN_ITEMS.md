@@ -701,9 +701,27 @@ Worth an Arabic reader's eye: **#5971** and **#3641**. The rest are almost
 certainly edition or quotation-boundary variance. `out/matn-diff-for-review.txt`
 holds the Arabic fragments in a form that can be shown to someone who reads it.
 
-Also from that sweep: **#6570 cannot be machine-verified at all** — its
-`source_url` is a Dorar SEARCH QUERY rather than a hadith page, so there is no
-page to compare against. It shipped as R150–R153.
+**CLOSED 2026-10-30: #6570 is machine-verified and passes the gate.** This
+item read *"#6570 cannot be machine-verified at all"* because its `source_url`
+was a Dorar SEARCH QUERY rather than a hadith page. That was a claim about the
+CITATION, not about the row: the stored matn (171 normalised chars) sits
+contiguously on `tohed/bukhari/6570`, so the NUMBER was right all along and
+only the citation was unusable. `source_url` is now
+`https://sunnah.com/bukhari:6570` and `verify-matn-number.py --number 6570
+--gate` exits 0. No valid provenance was rewritten - a search query was never
+a citation. It shipped as R150–R153. (P322 addendum, P327 addendum.)
+
+**OPEN 2026-10-30: #6871's number is NOT confirmed as sunnah.com's — a live
+P306 case.** Its `source_url` is `hadeethenc.com/ar/browse/hadith/3044`, so no
+gate has ever compared the stored number against sunnah's numbering. Tested
+directly on 2026-10-30: the stored matn (54 normalised chars) is **not** a
+contiguous run on `tohed/bukhari/6871` or either neighbour. Four sibling rows
+from the same 2026-10-12 insert batch — #31, #2654, #6857 and Muslim #2628 —
+all DID resolve, so this is not a batch-wide defect. #6871 needs its real
+reference found **by matn, not by number**. Not urgent: P-notes already say
+#6871 must never follow #2654 without a deliberate call, so it is not queued.
+Its `book` is empty for the same reason and is now the ONLY empty one in the
+library (71 of 72 filled).
 
 **No gate compares a library row's Arabic to its own cited source — P306,
 found 2026-10-28.**

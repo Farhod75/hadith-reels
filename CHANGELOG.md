@@ -26,6 +26,25 @@
   live model, says the code is the authority, and records what the staleness
   cost.
 
+- **#6570 is no longer unverifiable, and four more rows got their book
+  (P322/P327 addenda).** P322 left #6570 as the single legacy row citing a Dorar
+  search query - *"not a page, not fetchable, permanently unverifiable"*, the one
+  row the sweep could only ever report as SKIP. That described the tool's
+  dispatch, not the world: `target_url()` builds a tohed URL only for sunnah.com
+  hosts, so a bad citation made a good NUMBER uncheckable. Built that URL from
+  collection+number instead and put the gate's own question to it - the stored
+  matn is a contiguous 171-character run at `bukhari:6570`. `source_url` is now
+  the real page, the row passes the gate, and **zero** library rows carry a
+  search query as their source. The same test resolved four of the five
+  HadeethEnc-cited rows (#31 MERGED at #30 per P312, #2654, #6857, Muslim
+  #2628), each book re-derived from its page at write time rather than
+  transcribed. #2654 is the one that justifies the two-source rule: its
+  HadeethEnc breadcrumb reads «فقه الأخلاق», a thematic category, where the real
+  kitab is ash-Shahadat - a single-source extractor would have stored P287's
+  defect in the column built to prevent it. `book` is now filled on 71 of 72
+  rows; #6871 is the one left and is open as a live P306 case, its stored matn
+  being absent from `bukhari/6871` and both neighbours.
+
 ### Added
 
 - **`scripts/backfill-book.py`, and 63 rows of the authority P287 said was

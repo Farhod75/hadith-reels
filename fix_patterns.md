@@ -13674,3 +13674,89 @@ number).
 **Status:** FIXED for 63 rows; 6 reported and open.
 
 ---
+
+## PATTERN 322 (addendum): the legacy row was checkable all along
+
+**2026-10-30.** P322 fixed the pipeline and left #6570 as the single legacy
+row, describing it as citing *"a search - not a page, not fetchable,
+permanently unverifiable"* and as *"the one row the sweep can only ever report
+as SKIP."*
+
+The first half was right. The second was too strong, and it mattered, because
+it closed the question. The Dorar search query was indeed unusable - but the
+row's NUMBER was never in doubt, it had simply never been TESTED, because
+`target_url()` builds a tohed URL only for sunnah.com hosts and #6570's host is
+dorar.net. Build that URL from collection+number and put the gate's own
+question to it - is the stored matn a contiguous run on the page at this
+number? - and the answer is yes: 171 normalised characters, exact, at
+`bukhari:6570`.
+
+The repo corroborated it from the other side the whole time: OPEN_ITEMS has
+said *"#6570 in Kitab ar-Riqaq"* since 2026-10-12, and the page's book is
+*The Book of Ar-Riqaq (Softening of The Hearts)*.
+
+`source_url` is now `https://sunnah.com/bukhari:6570`, the row passes the gate,
+and **zero** library rows carry a search query as their source. No valid
+provenance was rewritten: a search query was never a citation.
+
+**Lesson.** "Permanently unverifiable" described the TOOL'S DISPATCH, not the
+world. A bad citation made a good number uncheckable, because the checker keys
+its URL on the cited host - and then the uncheckability was written down as a
+property of the row, where it sat for eight days. Keep "we cannot check this"
+apart from "this cannot be checked": the first is a question about the checker,
+and it has an answer.
+
+**Status:** CLOSED.
+
+---
+
+## PATTERN 327 (addendum): five of the six refusals resolved, and my own
+sentence corrected
+
+**2026-10-30, hours after P327.** P327 left six rows refused and said of them
+that five *"carry HadeethEnc numbers that must not be assumed to be sunnah's
+(P306)"* and that *"#6570 cannot be checked at all until it has a real source
+URL."*
+
+The first is still the right caution. The second was wrong, and it was mine,
+written the same afternoon. **Not assuming is not the same as not testing.**
+Build the tohed URL from collection+number and put the gate's own question to
+the stored matn, and five of the six answer:
+
+    #31           MERGED at #30   The Book of Belief (Faith)            (P312)
+    #2654         MATCH           The Book of Witnesses
+    #6570         MATCH           The Book of Ar-Riqaq (Softening of The Hearts)
+    #6857         MATCH           The Book of Al-Maharbeen
+    Muslim #2628  MATCH           The Book of Virtue, Enjoining Good Manners...
+    #6871         NOT CONFIRMED   54 chars, not at #6871 nor either neighbour
+
+A hit is evidence the number is sunnah's; a miss is evidence it is not. Neither
+is a guess - which is the whole difference between testing a number and
+assuming one, and the reason the caution and the test are not in conflict.
+
+**What the two-source refusal had been protecting.** #2654's HadeethEnc
+breadcrumb reads «فقه الأخلاق», fiqh al-akhlaq - a thematic category. Its actual
+kitab is ash-Shahadat, *The Book of Witnesses*. A single-source extractor would
+have stored the category as the book: P287's defect, in the column built to
+prevent it. The rule earned its keep on this row specifically.
+
+The five rows KEEP their HadeethEnc `source_url`. HadeethEnc is Tier 1 and
+their citations are valid; what is missing is only the gate's ability to check a
+NUMBER against them, and changing a row's stated provenance to make a checker
+happy is the operator's call, not a tool's. #6570 is the exception and is
+handled in the P322 addendum, on the ground that a search query was never a
+citation in the first place.
+
+`book` is filled on **71 of 72** rows. #6871 is the one left, for the stated
+reason, and it is in OPEN_ITEMS as a live P306 case.
+
+**Lesson, on top of P327's own.** P327's point was that a mitigation which
+warns is not a fix when the fact is obtainable. The addendum is the same
+mistake one level up: I wrote "cannot be checked" about five rows after
+checking none of them, in the pattern whose lesson is that the answer was
+sitting there. A refusal is a good place to stop writing. It is not a good
+place to stop asking.
+
+**Status:** 5 of 6 closed; #6871 open.
+
+---
