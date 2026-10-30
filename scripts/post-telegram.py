@@ -29,6 +29,17 @@ import sys
 import urllib.error
 import urllib.request
 
+# P317: this script prints the caption's first line, and on a Windows console in
+# cp1252 that raises UnicodeEncodeError on the first Cyrillic character - killing
+# the publish at the print, before the dry-run checks and before anything is
+# sent. The caption is non-Latin for ru, uz and tj by definition, so the output
+# encoding is part of this script's contract, not the operator's environment.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = os.environ.get('HR_DEV_ORIGIN', 'http://localhost:3002')
 CAPTION_LIMIT = 1024

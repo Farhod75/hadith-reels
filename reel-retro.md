@@ -534,3 +534,61 @@ the whole time, because the narrator was already right. Three sources had been
 checked and the one record that would have settled it, the mirror entry the
 screening note itself named, was not opened until afterwards. Checking three
 sources is not the same as checking the right one.
+
+## R158-R161 - Sahih al-Bukhari #5185 - 2026-10-29
+
+Four legs, four platforms each, no reruns. The set that followed #3559 and was
+produced in the same session that found CI had been red for a week.
+
+**What the set was for.** "Treat women well, for they were created from a rib"
+is a hadith whose point is routinely inverted in the retelling: the rib becomes
+a claim about what women ARE, when in the text it is the REASON given for a
+command that opens and closes the passage. Every language block was built to
+keep that shape - command, reason, command - and the seerah block says so
+explicitly, because a reader who meets this hadith as a description rather than
+an instruction has been given the opposite of it.
+
+**Imagery: the rule held against my own first instinct.** Asked for scenes, the
+obvious move is figures. animated-reel-scene-prompts.md line 70 says the default
+is NO FIGURES AT ALL, and depicting women was declined on that basis. What
+replaced it came out better than the obvious version: an almond branch under
+early-spring snow that straightens slightly as the sun takes the snow off it -
+the operator's idea - which is the matn's own argument in one image. Nothing in
+the four scenes depicts a person.
+
+**What actually went wrong, in order of cost.**
+
+1. **The RU subtitle pass, five findings.** One inverted the meaning: the draft
+   said straightened force breaks, rather than what is straightened BY force.
+   Two participles drifted feminine, turning a sentence about the rib into a
+   sentence about a woman. And the closing guillemet sat after our moral, which
+   silently attributed our words to the Prophet. That last one is now P316.
+   None of this was caught by a gate; it was caught by reading.
+2. **The EN moral echoed the story's last line**, so a burned subtitle cue read
+   "So treat women well. Treat women well." P315. The S and M blocks are linted
+   separately and the seam between them is read by nothing.
+3. **I spelled out the UZ honorific** after being told, in this project, twice
+   before, that the glyph is right for all four languages - it is at R041 and
+   R044. Then I corrected myself a second time, because my first correction
+   claimed the glyph would shorten the narration. It does not: cleanForTTS
+   expands it before the request, so 48.17s against 47.13s.
+4. **The Telegram publish timed out mid-upload** on 7.0 MB and left the outcome
+   unknown. The wrong move was available and tempting - run it again - and would
+   have put a second copy of the reel in the channel. P318 records the read-only
+   way to settle it: a no-op markup edit tells you whether a message id exists
+   without sending anything. Exactly one existed, 171.
+5. **The post script could not print Tajik** on a cp1252 console and died before
+   sending. P317, fixed in the closing commit rather than left to an environment
+   variable, because a script whose job is to print a non-Latin caption does not
+   get to depend on the console it is run from.
+
+**The honest note on sequencing.** This set sat half-finished for hours while CI
+was diagnosed, and the TJ leg was approved only at the end of the evening. That
+was the right order - a red CI is a defect report and HV had been quietly red
+for a week behind it - but it is worth writing down that the content work
+stopped, rather than pretending the two ran in parallel.
+
+**Against the previous set.** #3559 was four legs that had to be DELETED and
+replaced after publication, on a citation defect nobody could see. #5185 is four
+legs that went out once. The difference is not luck: verify-matn-number.py, built
+during #3559, ran over this row before a word was generated.

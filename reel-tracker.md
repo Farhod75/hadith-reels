@@ -178,6 +178,10 @@
 | R155 | 2026-10-28 | Sahih al-Bukhari #3559 | Abdullah ibn Amr | Sahih | Character / Akhlaq | #kindness #akhlaq #prophet #hadith | RU | Adults | bukhari-3559 | adults-ru-bukhari-3559-story.mp3 | adults-ru-bukhari-3559-moral.mp3 | adults-ru-bukhari-3559-narration.mp3 | b3559-blossom.mp4, b3559-meadow.mp4, b3559-orchard.mp4, b3559-canopy.mp4 | adults-ru-bukhari-3559-bg-mixed.mp4 | aswati-Focused-Determination.mp3 | Yes | adults-ru-bukhari-3559-reel.mp4 | 22.1s | 10.3 MB | Replaces a published RU reel on the superseded matn. SUBTITLE DEFECT THE VALIDATOR CANNOT SEE: cues 1 and 5 read "доблагословит" - "да благословит" collapsed into one non-word - and stt-validate scored similarity 1.000 with zero findings, because the draft holds the glyph ﷺ and the expanded honorific exists only in the audio, so there is nothing to compare it against. Third occurrence of that shape after «Аллахам» on R039 and «Их Адис» on R043; now P308. Also restored the comma after «нравом». Fixed by hand and re-rendered. |
 | R156 | 2026-10-28 | Sahih al-Bukhari #3559 | Abdullah ibn Amr | Sahih | Character / Akhlaq | #kindness #akhlaq #prophet #hadith | UZ | Adults | bukhari-3559 | adults-uz-bukhari-3559-story.mp3 | adults-uz-bukhari-3559-moral.mp3 | adults-uz-bukhari-3559-narration.mp3 | b3559-blossom.mp4, b3559-meadow.mp4, b3559-orchard.mp4, b3559-canopy.mp4 | adults-uz-bukhari-3559-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-uz-bukhari-3559-reel.mp4 | 27.1s | 13.1 MB | FIRST UZBEK PUBLICATION OF THIS HADITH - the earlier attempt never reached a reel. Two corrections before this render: the operator caught «энг суюклиси», singular against a plural predicate, and the agreed form «суюкликларингиз» was corrected to «суюклиларингиз» against the project reference 2002-hadis.pdf #574; then the matn itself was replaced, which superseded both. The approved blocks of that first attempt were lost when the context compacted, because no draft file had been written at approval time - now P307. Longest of the set at 27.1s against EN 20.7s, a 31% spread, outside the 20% parity target in CLAUDE.md. No subtitles per P078. |
 | R157 | 2026-10-28 | Sahih al-Bukhari #3559 | Abdullah ibn Amr | Sahih | Character / Akhlaq | #kindness #akhlaq #prophet #hadith | TJ | Adults | bukhari-3559 | adults-tj-bukhari-3559-story.mp3 | adults-tj-bukhari-3559-moral.mp3 | adults-tj-bukhari-3559-narration.mp3 | b3559-blossom.mp4, b3559-meadow.mp4, b3559-orchard.mp4, b3559-canopy.mp4 | adults-tj-bukhari-3559-bg-mixed.mp4 | aswati-Rising-Hope.mp3 | NO (P078) | adults-tj-bukhari-3559-reel.mp4 | 24.3s | 11.7 MB | CLOSES THE SET, and the first Tajik publication of this hadith. The linter earned its keep here: the moral opened «Ахлоқи худро чун қарзе» - "like a debt" - and P111 r14 flagged a comparison absent from the matn, the only finding across all four languages. Rewritten through «вазифа», which carries the duty without the simile, matching how EN, RU and UZ phrase the same line. Bed is aswati-Rising-Hope, unused on this set and on #6570. No subtitles per P078. |
+| R158 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | EN | Adults | bukhari-5185 | adults-en-bukhari-5185-story.mp3 | adults-en-bukhari-5185-moral.mp3 | adults-en-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4 | adults-en-bukhari-5185-bg-mixed.mp4 | vocal-nasheed-07.mp3 | YES | adults-en-bukhari-5185-reel.mp4 | 34.9s | 6.2 MB | OPENS THE SET. TG message_id 168. Scenes are drawn from the matn only - an almond branch under snow straightening as it thaws, a sapling, a crescent, a garden - and carry NO FIGURES, per animated-reel-scene-prompts.md: depicting women was declined and the imagery taken from the rib's own logic instead. The moral first echoed the story's closing line, so burned cue 6 read "So treat women well. Treat women well." - an audible stutter that also merged the Prophet's words with ours. Rewritten to open "So act on it." See P315: no gate reads the S/M seam. |
+| R159 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | RU | Adults | bukhari-5185 | adults-ru-bukhari-5185-story.mp3 | adults-ru-bukhari-5185-moral.mp3 | adults-ru-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4 | adults-ru-bukhari-5185-bg-mixed.mp4 | vocal-nasheed-06.mp3 | YES | adults-ru-bukhari-5185-reel.mp4 | 38.1s | 6.7 MB | TG message_id 169. The costliest subtitle review of the set: two HIGH and three MEDIUM. The worst inverted the meaning outright - the draft read that straightened force breaks, instead of what is straightened BY force. Two participles had drifted to the feminine, which made the sentence read as being about a woman rather than about the rib. And the closing guillemet landed after OUR moral instead of after the Prophet's words, attributing our sentence to him; that is P316, and it is not the first time. |
+| R160 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | UZ | Adults | bukhari-5185 | adults-uz-bukhari-5185-story.mp3 | adults-uz-bukhari-5185-moral.mp3 | adults-uz-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4, b5185-almond.mp4 | adults-uz-bukhari-5185-bg-mixed.mp4 | vocal-nasheed-03.mp3 | NO (P078) | adults-uz-bukhari-5185-reel.mp4 | 49.2s | 8.3 MB | TG message_id 170. Longest leg of the set at 49.2s - Uzbek reported speech takes explicit tags, the known structural reason (HARD RULE 6). Needed a fifth clip; almond was repeated rather than generating a new scene. I spelled the honorific out here and was corrected: the glyph is correct for UZ and TJ exactly as for EN and RU, which the tracker already recorded at R041 and R044. I then had to correct myself a second time - restoring the glyph does NOT shorten the narration (48.17s vs 47.13s), because cleanForTTS expands it to the same words before the request. No subtitles per P078. |
+| R161 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | TJ | Adults | bukhari-5185 | adults-tj-bukhari-5185-story.mp3 | adults-tj-bukhari-5185-moral.mp3 | adults-tj-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4, b5185-almond.mp4 | adults-tj-bukhari-5185-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | NO (P078) | adults-tj-bukhari-5185-reel.mp4 | 42.0s | 7.0 MB | CLOSES THE SET. TG message_id 171 - and getting that number took work: the post command timed out mid-upload on 7.0 MB, leaving it unknown whether the reel had posted. Retrying would have risked a second copy in the channel, so it was settled with a read-only probe instead (P318): exactly one new message existed. Before that, the post script died on a cp1252 console trying to print the Tajik first line (P317, fixed in this commit). Bed is light-of-my-heart-bg, unused on the previous three sets. No subtitles per P078. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -189,6 +193,7 @@
 
 | Hadith | Languages Posted | Styles Posted | Reel IDs |
 |---|---|---|---|
+| Sahih al-Bukhari #5185 | EN, RU, UZ, TJ | Adults | R158-R161. Bukhari 5185 and 5186 are TWO SEPARATE SAYINGS at adjacent references, both on treating women well; 5185 is the rib hadith from Abu Hurairah, and a source that prints them merged is normal rather than a mismatch (P312). In the Book of Nikah it also sits beside a command about not harming one's neighbour, which is why the seerah block names that adjacency instead of inventing context (CLAUDE.md, BEFORE YOU SPEND rule 5). The neighbouring hadith's own reference number is deliberately NOT recorded here: it was not re-opened in this session, and P306 is what writing an unverified number looks like. |
 | Jami at-Tirmidhi #3373 | RU | Adults | R001 |
 | Sahih al-Bukhari #1894 | EN | Adults | R002 |
 | Jami at-Tirmidhi #1956 | UZ | Adults | R003 |
@@ -278,7 +283,7 @@
 | Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 | Gratitude / Contentment | 4 | R106-R109 | EN, RU, UZ, TJ |
 | Death / Afterlife | 4 | R114–R117 | EN, RU, UZ, TJ |
-| Family / Marriage | 4 | R118–R121 | EN, UZ, RU, TJ |
+| Family / Marriage | 8 | R118–R121, R158–R161 | EN, UZ, RU, TJ |
 | Quran / Tilawah | 4 | R122–R125 | EN, RU, UZ, TJ |
 | Dua / Divine attributes | 4 | R138–R141 | EN, RU, UZ, TJ |
 | Death / Remembrance | 4 | R142–R145 | EN, RU, UZ, TJ |
@@ -316,11 +321,11 @@
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
 | vocal-nasheed-04.mp3 | 15 | R147 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113, R126, R147 |
 | vocal-nasheed-01.mp3 | 12 | R144 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129, R144 |
-| vocal-nasheed-03.mp3 | 10 | R140 | R029, R035, R043, R058, R070, R081, R089, R092, R099, R140 |
+| vocal-nasheed-03.mp3 | 11 | R160 | R029, R035, R043, R058, R070, R081, R089, R092, R099, R140, R160 |
 | vocal-nasheed-05.mp3 | 12 | R153 | R032, R036, R045, R059, R069, R082, R093, R098, R109, R131, R145, R153 |
-| vocal-nasheed-06.mp3 | 10 | R137 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137 |
-| vocal-nasheed-07.mp3 | 10 | R136 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136 |
-| light-of-my-heart-bg.mp3 | 10 | R134 | R010, R013, R024, R038, R078, R091, R094, R104, R106, R134 |
+| vocal-nasheed-06.mp3 | 11 | R159 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137, R159 |
+| vocal-nasheed-07.mp3 | 11 | R158 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136, R158 |
+| light-of-my-heart-bg.mp3 | 11 | R161 | R010, R013, R024, R038, R078, R091, R094, R104, R106, R134, R161 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
@@ -348,6 +353,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| b5185-almond, sapling, crescent, garden | 1 set | 2026-10-29 (R158-R161) | R158-R161. EN and RU ran on four clips; almond was repeated as a fifth for UZ and TJ, whose narration runs longer (49.2s and 42.0s against 34.9s). All four clips are PNG written under a .jpg extension at the stills stage - see P313. |
 | b3559-blossom, meadow, orchard, canopy | 1 set | 2026-10-28 (R154-R157) | R154-R157 (full set, -FitScenes) |
 | b6570-lamp, ink, plain, kalima, garden | 1 set | 2026-10-27 (R150-R153) | R150-R153 (full set) |
 | t3540-dua, light-push, clouds, rain, earth, mercy | 1 set | 2026-10-24 (R146-R149) | R146-R149. EN and RU ran on five; rain was added fourth in the order for the Uzbek leg and reused by TJ. |
@@ -461,13 +467,13 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 157 |
+| Total reels posted | 161 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 105 |
+| Adults reels | 109 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 40 |
+| Hadiths used (unique) | 41 |
 | Library rows | 71 (40 used, 31 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×75, Sahih Muslim ×28, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
 | Companions cited | 19 (Abdullah ibn Amr ×4, Uthman ibn Affan ×4, Abu Hurairah ×54, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4) |
@@ -507,6 +513,7 @@ Then update:
 
 | Date | Change | By |
 |---|---|---|
+| 2026-10-29 | R158-R161 - Sahih al-Bukhari #5185 EN/RU/UZ/TJ adults, treating women well. Second set in Family / Marriage, which had been covered only by R118-R121. Four patterns recorded: P315 (a moral that repeats the story's closing line, which no gate reads), P316 (the RU closing guillemet landing after our moral and attributing it to the Prophet), P317 (post-telegram.py dying on a cp1252 console before sending anything), P318 (a publish that times out mid-upload, and how to establish whether it landed without double-posting). | Farhod / Claude |
 | 2026-10-11 | R122–R125 — Sahih al-Bukhari #5027 EN/RU/UZ/TJ adults, learning the Quran and teaching it. Fills Quran / Tilawah, which had zero coverage. First set on Kling 3.0 (evaluated against 2.6 Pro at this boundary and adopted) and the first clips carrying real readable Arabic, composited onto a blank FLUX page. P214, P215, P216, P217. | Farhod / Claude |
 | 2026-05-16 | Initial creation, 5 reels logged retroactively + tonight's | Farhod / Claude session |
 | 2026-06-13 | First kids talking-mascot reel: Bukhari 6009 EN | Farhod / Claude |

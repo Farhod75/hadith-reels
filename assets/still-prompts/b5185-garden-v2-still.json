@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5185-garden-v2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a tended courtyard garden at first light, long flower beds running along both side walls and a round raised flower bed in the centre, dense blooms in soft pink white and deep red, a narrow stone path leading between them far into the frame, strong sense of depth and volume, dew on the petals, blossoming branches arching overhead, warm golden low light, bare clean paving with nothing set down on it, no vessels, no pots, no containers, no people, no text, warm and cared for.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a188d0-46bf-7d93-b5e6-b71571ebfe24",
+    "submitted_utc":  "2026-10-29T17:58:32.9115580Z",
+    "completed_utc":  "2026-10-29T17:58:41.6454761Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5185-garden-v2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab05a88/liXUQ8Vinmx2-dJPN9Mjs_TxT42qTd.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5185-garden-v2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab05a88/O0ree4b6PXHvrcQH5Ehbg_0VWzRfa7.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5185-garden-v2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab05a88/vQwEpkMliws-HkzXu0MMO_4tIJtOg0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  523984863
+}

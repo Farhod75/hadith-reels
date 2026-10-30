@@ -89,6 +89,18 @@ What was wasted that day, named so the rules below are not abstract:
    round trip to his machine and a cost on both sides for nothing.
 4. **Batch the verification.** One call that checks five things beats five calls
    that check one.
+5. **Open the cited page before producing, and record what else is at that
+   reference.** A hadith number is not always one hadith. `bukhari:5185` is the
+   merged reference "Sahih al-Bukhari 5185, 5186" and carries a command about
+   not harming a neighbour before the one about women; `bukhari:3759` is
+   likewise "3759, 3760" and adds learning the Qur'an from four named
+   companions; #2654 and #6857 list three greatest sins and four. Storing one
+   span of such an entry is legitimate, but a viewer who opens the number sees
+   the rest, so the H block has to say what else is there. Skipping this is
+   what the #3559 set cost: a citation that resolved to a different hadith,
+   four languages reproduced and eight published posts deleted. The check is
+   two minutes and it belongs to selection, not to review. See
+   `sourcing-pipeline-design.md` Stage 1C.
 
 This is not frugality for its own sake. Every token spent redoing work is a
 token not spent on the reels, and he is paying for it.

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5185-almond",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a slender almond branch in early spring, dark bare wood with a few pale pink blossoms just opening, bowed down under a thin layer of fresh snow, bright low morning sun catching the melting edge of the snow, meltwater droplets falling from the twigs, the branch beginning to lift as the weight releases, cold clear blue sky behind, shallow depth of field, no people, no text, quiet and hopeful.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a188b9-45b8-7192-9f48-6560cd4d05ee",
+    "submitted_utc":  "2026-10-29T17:33:25.2793739Z",
+    "completed_utc":  "2026-10-29T17:33:34.0707192Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5185-almond-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f1/2_jGIa85VIQ6avCFOV2A9_JMRd9tJP.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5185-almond-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f1/THRudbX8kaQ1vi6S5x_Zr_fBNwZir1.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5185-almond-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f1/gmrfNdDFExdBvksgvctcq_TMMOJAj6.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1647248318
+}

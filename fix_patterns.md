@@ -12896,3 +12896,147 @@ Chromium the 30 E2E tests run against, so it is its own change with its own
 run (QA_STANDARDS 10.11). Tracked in OPEN_ITEMS under Tools.
 
 ---
+
+## PATTERN 315: the moral repeated the story's closing line, and no gate reads the seam
+
+**Found:** 2026-10-29, in the burned EN subtitles of R158.
+
+**Symptom:** subtitle cue 6 read "So treat women well. Treat women well." The S
+block ends with the hadith's closing imperative, and the M block opened by
+echoing it. Read aloud it is a stutter; read as text it is worse, because the
+quoted words and our words run together and the moral appears to be part of what
+the Prophet said.
+
+**Why nothing caught it.** `lint-content.py` checks each block, and its
+`duplicate-block` FAIL (P128) fires only when two blocks are IDENTICAL. A moral
+that repeats the last sentence of the story is not a duplicate block; it is a
+duplicated SEAM. `stt-validate.py` compares the SRT against the draft, so a
+faithful rendering of a bad draft scores clean. Both gates passed.
+
+**Fix for this instance:** the M block was rewritten to open "So act on it.",
+which keeps the imperative force without reusing the words.
+
+**The general check, until a gate exists:** read the last sentence of S and the
+first sentence of M together, as one line, in every language. That is the only
+place this defect lives, and it takes one look per leg.
+
+**Related:** P128 (duplicate-block, which this slips past), P180 (quotes the
+caption wrapped twice - the same confusion of whose words are whose, on a
+different surface).
+
+**Status:** FIXED for R158; no gate yet.
+
+---
+
+## PATTERN 316: the closing guillemet landed after our moral, not after his words
+
+**Found:** 2026-10-29, in the RU subtitles of R159. Not the first time.
+
+**Symptom:** the quotation that opens with the hadith was closed with a `»`
+placed after OUR moral rather than after the Prophet's words. The effect is not
+cosmetic: everything between is read as his speech, so our sentence is
+attributed to him. In a project whose whole premise is that the quoted words are
+exactly the quoted words, this is the most serious class of formatting defect
+there is.
+
+**Why it recurs.** The S block is quoted and the M block is not, so the closing
+guillemet belongs at the end of S - but S and M are adjacent in the draft and
+the subtitle generator sees one stream of text. Russian is where it keeps
+landing, because `«»` are the natural quotes there and the opening one is
+typed without a thought about where the closing one goes.
+
+**Fix for this instance:** moved by hand, then re-rendered.
+
+**The check:** in every language that uses `«»`, find the closing mark and
+confirm the text before it is ONLY the matn. If our moral is inside the quotes,
+the reel is misattributing. Do this at the subtitle gate, before the burn -
+afterwards it means a re-render, which is what it cost here.
+
+**Related:** P180 (the caption wrapped text that already carried its own
+quotes), P315 (the same seam, a different symptom).
+
+**Status:** FIXED for R159; recurring, no gate.
+
+---
+
+## PATTERN 317: post-telegram.py died on a cp1252 console before sending anything
+
+**Found:** 2026-10-29, publishing the TJ leg of #5185.
+
+**Symptom:**
+
+    first line     : 
+    UnicodeEncodeError: 'charmap' codec can't encode characters in position
+    17-18: character maps to <undefined>
+
+`post-telegram.py` prints the caption's first line as part of its pre-flight
+report. On a Windows console in cp1252 that raises on the first Cyrillic
+character, and the script dies at the PRINT - before the dry-run checks, before
+anything is sent. Exit 1, nothing published, no explanation unless you read the
+traceback.
+
+**Why it had not bitten before.** EN is Latin and prints fine. RU and UZ are
+Cyrillic and DID publish - from a console whose code page was UTF-8. So the
+script's behaviour depended entirely on which shell launched it, which is the
+worst kind of latent defect: it works until the day something else runs it.
+
+**Fix:** the script now forces `sys.stdout`/`sys.stderr` to UTF-8 with
+`errors='replace'` at import time, wrapped in try/except. A script whose job is
+to print a non-Latin caption does not get to inherit the console's encoding.
+Setting `PYTHONIOENCODING=utf-8` also works and is what unblocked the publish in
+the moment, but an environment variable is not a fix - it is a thing to
+remember, and the next person will not.
+
+**Lesson:** any script in this repo that prints library text prints non-Latin by
+definition - four languages, three scripts, plus Arabic. Treat the output
+encoding as part of the contract, not as the operator's problem.
+
+**Status:** FIXED
+
+---
+
+## PATTERN 318: a publish timed out mid-upload, and retrying would have double-posted
+
+**Found:** 2026-10-29, posting the 7.0 MB TJ reel of #5185.
+
+**Symptom:** the publish command returned "Command execution timed out" with no
+output. The upload had been in flight for the whole window, so the post may have
+completed server-side or may not have. The obvious response - run it again - is
+exactly wrong: Telegram would accept a second sendVideo and the channel would
+carry the reel twice.
+
+**Why it happens here:** a render or an upload driven through one bridge call
+dies with the call at roughly 60s (P309), and a 7 MB video does not finish in 60s.
+P309 covers renders; this is the same ceiling hit on an irreversible PUBLIC
+action, where the consequence is not a lost job but a duplicate post.
+
+**The method - establish the facts without sending anything.** Telegram has no
+read-only "get message" for bots, but it has a no-op edit:
+
+    POST editMessageReplyMarkup {chat_id, message_id}   # no reply_markup
+
+Our posts carry no inline keyboard, so this changes nothing, and the reply
+classifies the id three ways:
+
+    "message to edit not found"  -> the id does not exist; safe to post once
+    "message is not modified"    -> it exists, it is ours, unchanged
+    "message can't be edited"    -> it exists, sent by someone else
+
+Probing the next few ids also detects a DOUBLE post, which a single-id check
+cannot. Do NOT use `editMessageCaption` for this - if the caption differs it
+rewrites a live post. Reply markup is the surface with nothing on it.
+
+**What it found:** ids 168, 169, 170 and 171 existed and 172 did not. Exactly one
+new message, so the TJ post had landed despite the timeout, and a retry would
+have been the only defect in the set.
+
+**Rule:** when a publish command dies without reporting, do not re-run it. Verify
+first. The operator's own glance at the channel is also a valid answer and is
+faster - but it does not rule out a duplicate, so probe anyway.
+
+**Related:** P309 (one bridge call, ~60s), P300 (a write that reports success
+and did not happen - the same class of uncertainty, opposite direction).
+
+**Status:** FIXED (method recorded; no script promoted)
+
+---

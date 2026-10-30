@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab05cb9/fnCtsevdxgCScBLNe6U2w_output.mp4",
+    "name":  "b5185-garden",
+    "image":  "out\\refs\\b5185-garden-v2-3.jpg",
+    "file":  "out\\backgrounds\\new\\b5185-garden.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-29T19:26:55.6192585Z",
+    "size_bytes":  31887140,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "blossom branches overhead swaying very slightly, a few petals drifting down across the frame, light holding steady, camera held completely still",
+    "request_id":  "01a18921-2e5a-7073-8297-9d296e3e0088",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-29T19:35:18.8849717Z",
+    "mode":  "image-to-video"
+}

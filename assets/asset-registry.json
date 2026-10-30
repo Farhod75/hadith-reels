@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-25",
+  "updated": "2026-10-29",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -1337,6 +1337,42 @@
       "verified": false,
       "notes": "MODE B, no figures. FLUX 2 still b3559-orchard-3.jpg -> Kling 3.0 Pro i2v 10s (fal-ai/kling-video/v3/pro/image-to-video), generate_audio false. Depicts: a sunlit orchard path between rows of apple trees in fruit, long shadows raking across the grass in late light. Recorded motion: leaves and branches stirring gently, dappled light shifting slowly across the grass, the fruit hanging still, camera held completely still. Probed 10.041667s / 1080x1920x24/1 / audio:0. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6; the meadow prompt asked for a slow push-in and that was removed before spending. NOT YET WATCHED END TO END - verified:true owed once the reel is reviewed. Sahih al-Bukhari #3559, R154-.",
       "prompt_sidecar": "assets/scene-prompts/b3559-orchard.json"
+    },
+    "b5185-almond.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. Imagery drawn from the matn itself rather than borrowed: the hadith turns on a rib, on bending versus breaking, and on care rather than force. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6. Watched and approved by the operator 2026-10-29. Sahih al-Bukhari #5185. Depicts: a slender almond branch in early spring bowed under a layer of fresh snow, blossoms hanging below, meltwater dripping, clear blue sky. The operator asked for this one specifically. Recorded motion: snow shedding, the branch lifting very slightly as the weight releases. The matn says that what is left alone keeps its shape and what is forced straight breaks; here the weight is what bends it and the branch recovers on its own. Probed 10.041667s / 1080x1920x24 / audio:0.",
+      "prompt_sidecar": "assets/scene-prompts/b5185-almond.json"
+    },
+    "b5185-sapling.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. Imagery drawn from the matn itself rather than borrowed: the hadith turns on a rib, on bending versus breaking, and on care rather than force. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6. Watched and approved by the operator 2026-10-29. Sahih al-Bukhari #5185. Depicts: a young fruit tree loosely bound to a wooden stake with a soft cloth, the cloth deliberately slack, walled orchard receding. Recorded motion: the cloth stirring in a light breeze, leaves moving softly. Support rather than force. Probed 10.041667s / 1080x1920x24 / audio:0.",
+      "prompt_sidecar": "assets/scene-prompts/b5185-sapling.json"
+    },
+    "b5185-crescent.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. Imagery drawn from the matn itself rather than borrowed: the hadith turns on a rib, on bending versus breaking, and on care rather than force. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6. Watched and approved by the operator 2026-10-29. Sahih al-Bukhari #5185. Depicts: a slender crescent low over still water at dusk, its curve mirrored unbroken. Recorded motion: the surface rippling so the reflection slowly breaks and reforms. The curve as a made form, not a flaw - which is the reading the H block defends. Probed 10.041667s / 1080x1920x24 / audio:0.",
+      "prompt_sidecar": "assets/scene-prompts/b5185-crescent.json"
+    },
+    "b5185-garden.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. Imagery drawn from the matn itself rather than borrowed: the hadith turns on a rib, on bending versus breaking, and on care rather than force. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6. Watched and approved by the operator 2026-10-29. Sahih al-Bukhari #5185. Depicts: a tended courtyard garden at first light, flower beds along both walls and a round bed in the centre, a stone path running into depth toward an arch, blossom overhead. Revised at the operator's request from an earlier version that had a vessel on the paving and too little depth. Recorded motion: branches swaying slightly, a few petals drifting. Probed 10.041667s / 1080x1920x24 / audio:0.",
+      "prompt_sidecar": "assets/scene-prompts/b5185-garden.json"
     }
   }
 }

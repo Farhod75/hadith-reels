@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab05c42/C1ubTv_ihcEUdkUcUQulh_output.mp4",
+    "name":  "b5185-almond",
+    "image":  "out\\refs\\b5185-almond-1.jpg",
+    "file":  "out\\backgrounds\\new\\b5185-almond.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-29T19:07:42.9487921Z",
+    "size_bytes":  23390054,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "almost imperceptible motion, meltwater dripping steadily from the blossoms, snow slowly shedding from the upper surface of the branch, the branch lifting very slightly as the weight releases, light holding steady, camera held completely still",
+    "request_id":  "01a1890f-9782-7b61-9ab8-16c29e6427c9",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-29T19:14:36.9621781Z",
+    "mode":  "image-to-video"
+}

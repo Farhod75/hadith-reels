@@ -70,6 +70,7 @@ every public-facing artifact**; **API/schema stability for the shared table**.
    Stage 1  DEDUP ──────────────────────────▼──────────────────────────────
    A) hard key (collection, number) vs LIVE library (69) + pending candidates
    B) fuzzy matn similarity → "possible dup" FLAG for human (never auto-drop) [G2]
+   C) reference neighbourhood: what does this NUMBER actually resolve to? [P306]
                                             │
    Stage 2  TRANSLATE ──────────────────────▼──────────────────────────────
    EN/RU/UZ/TJ from the ARABIC MATN ONLY. Never from another translation.
@@ -190,6 +191,19 @@ embedding may override it.
   `dedup_fuzzy_hits` entry. **Advisory only — surfaced to the human, never an
   auto-drop** (G2). Embedding retrieval is allowed *only* to *find* candidates to
   show; it does not decide.
+- **1C Reference neighbourhood** — open the candidate's own `source_url` and
+  record what the number actually resolves to: a merged reference (`Sahih
+  al-Bukhari 5185, 5186`), a second and unrelated saying inside the same entry,
+  or an adjacent narration of the same hadith with a different count. 1A keys on
+  `(collection, hadith_number)` and therefore cannot see any of this — the key
+  is identical whether the reference holds one saying or three. Record the
+  finding on the candidate so the H block can state it, and so the
+  duplicate-check index gets a row; **never auto-drop**. Added 2026-10-29 at the
+  operator's instruction, after #3559 shipped on a number that resolved to a
+  different hadith — the local mirror's `id` had been read as the reference
+  number (P306) — and after #5185 turned out to be a merged entry whose first
+  clause is about neighbours, not women.
+
 - Shipped: `scripts/lib/dedup.py` + `upload-candidates.py`, pytest-covered
   (`new` / `duplicate` / `review_fuzzy` states all asserted).
 

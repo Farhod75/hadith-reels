@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5185-crescent",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a slender crescent moon low over completely still water at dusk, the curve of the moon mirrored unbroken in the surface, deep indigo sky fading to warm amber at the horizon, faint reeds in silhouette at the lower edge, absolute calm, no people, no text, reverent.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a188ba-aa7e-7d22-8116-4b968b58f072",
+    "submitted_utc":  "2026-10-29T17:34:57.0667343Z",
+    "completed_utc":  "2026-10-29T17:35:09.3434544Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5185-crescent-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059fa/GI0a1KQjhL3Jk9Vb6mXmV_amfleBY4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5185-crescent-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059fa/7b0HQ8WibxFw0uNSjMbon_6E0enF7J.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5185-crescent-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059fa/ivZyxJkfwFgFNY4CD_TKJ_rlXUOhPc.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  194158020
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5185-sapling",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a young fruit tree sapling in a walled garden, its slim trunk loosely bound to a wooden stake with a soft strip of pale cloth, the cloth deliberately slack rather than tight, freshly turned dark earth at its base, warm low early light raking across the wall, no people, no text, careful and gentle.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a188b9-dc38-7083-9939-22836001c31c",
+    "submitted_utc":  "2026-10-29T17:34:04.2729595Z",
+    "completed_utc":  "2026-10-29T17:34:12.5088119Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5185-sapling-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f5/6ukHWByNchVxWUmWiIP1Y_on75h4jg.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5185-sapling-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f5/gfvdNPmiZFakcCrgTZy8U_9fGNyjZj.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5185-sapling-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab059f5/7uwLxoSaK3ZRpkJ-xyh6m_QkF82Ro1.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1227374545
+}

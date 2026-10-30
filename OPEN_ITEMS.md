@@ -925,6 +925,24 @@ to that row.
 
 ## Pipeline / design
 
+- **No gate reads the S/M seam (P315).** `lint-content.py` fires
+  `duplicate-block` only when two blocks are IDENTICAL, so a moral that repeats
+  the STORY'S CLOSING SENTENCE passes clean - and then gets burned into a
+  subtitle. On R158 cue 6 read "So treat women well. Treat women well.", which
+  also merged the Prophet's words with ours. `stt-validate.py` cannot catch it
+  either: it compares the SRT against the draft, so a faithful rendering of a bad
+  draft scores 1.000. The check that would work is mechanical - compare the last
+  sentence of S against the first sentence of M per language and flag a shared
+  clause - and it belongs in `lint-content.py` beside the existing structural
+  checks. Until it exists, read the seam by hand on every leg.
+- **The closing guillemet keeps landing after our moral (P316).** The S block is
+  quoted and the M block is not, so `»` belongs at the end of S; on R159 it sat
+  after our sentence, attributing our words to the Prophet. This is the most
+  serious formatting class in the project - the channel's whole premise is that
+  the quoted words are exactly the quoted words - and it is recurring, in Russian
+  especially. A gate is possible and narrow: assert that the text enclosed by
+  `«...»` in the draft matches the library matn, nothing more. Related: P180.
+
 **Re-measure the rest of the pronunciation watch-list against v4.** The ﷺ
 entry is CLOSED (2026-10-09): checked on v4, all languages handle it, and
 `cleanForTTS` expands it before TTS anyway so the model never sees it — the
