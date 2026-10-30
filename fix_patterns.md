@@ -13544,3 +13544,45 @@ nothing), P307 (a correction that existed only in a conversation).
 **Status:** RECORDED. No code change - this is a rule about method.
 
 ---
+
+## PATTERN 275 (addendum): the stale line manufactured the alarm
+
+**2026-10-30.** Running Workflow K on `tirmidhi #1161`, the script banner read
+`B = gpt-6.1-sol` while CLAUDE.md step 4 still read `B = gpt-5.6-terra`. In that
+order it reads as undeclared model drift with step 8's calibration never run, so
+I stopped the workflow to check.
+
+**The calibration had been run.** This pattern is it: four models, four runs
+each, 128 calls, commit `cf19813` on 2026-10-18, recorded in OPEN_ITEMS, with
+`probe-passb.py` already defaulting to sol. `cf19813` touched CHANGELOG.md,
+fix_patterns.md, probe-passb.py and verify-candidates.py - **and not CLAUDE.md.**
+Forty-seven commits followed, six of them editing CLAUDE.md, and none caught it.
+
+**Then the check nearly reproduced P273 verbatim.** Reading this pattern's own
+table, I was about to report sol's `uz=0` cell as a weakness in Uzbek - the one
+language whose wording had just been hand-corrected, which made it feel urgent.
+That is the non-finding this pattern exists to close: the planted Uzbek defect is
+«Аллоҳ» -> «Худо», every model passes it because «Худо» IS faithful to اللَّه, it
+breaks a house rule no model was given (the P120 boundary), and
+`lint-content.py`'s `DIVINE_SUBSTITUTES` catches it deterministically in uz and
+tj. On genuine faithfulness defects all four models were 4/4 in every language.
+P273 was produced by exactly this route. The guard against it was four lines
+below the table I was reading.
+
+**Lesson.** A stale doc line does not sit quietly - it manufactures
+investigations, and they land on whoever next reads the two sources side by side.
+The cost here was two detours inside one workflow, both into questions already
+answered in this repo, and the second one came within a sentence of being written
+down as a finding about a shipped language. Where code and doc disagree about a
+model string, the code is the authority; the documentation discipline's *"update
+docs BEFORE or ALONGSIDE the code push"* is the rule that keeps that from
+mattering, and `cf19813` is what it looks like when the rule is skipped for one
+file.
+
+**Related:** P273 (the non-finding, in full), P120 (what A/B is and is not for),
+P326 (the session's other run-ahead-of-the-docs detour).
+
+**Status:** FIXED - CLAUDE.md step 4 names the live model and says why it is
+written down.
+
+---

@@ -15,6 +15,17 @@
   else changed, because `q.eq('hadith_number', number)` was already applied to
   whichever table is selected. `--number 1161 --commit` then wrote one row.
 
+- **Workflow K named the wrong pass-B model for twelve days (P275 addendum).**
+  CLAUDE.md step 4 read `B = gpt-5.6-terra` while the code, `probe-passb.py`'s
+  default, P275 and OPEN_ITEMS all said `gpt-6.1-sol`. Pass B moved in `cf19813`
+  on 2026-10-18 - a commit that updated CHANGELOG, fix_patterns, probe-passb and
+  verify-candidates, and not CLAUDE.md. Forty-seven commits followed, six of them
+  editing CLAUDE.md. Read against the script's banner the stale string looks like
+  undeclared drift with step 8's calibration never run, and today it stopped a
+  workflow to re-establish something the repo already knew. Step 4 now names the
+  live model, says the code is the authority, and records what the staleness
+  cost.
+
 ### Added
 
 - **P326, a rule about method, after two parsers answered nothing.** Deciding

@@ -732,7 +732,14 @@ npm run test:multilingual
    check conventions, and a row with a divine-name or diacritic defect will
    pass A/B cleanly (P120)
 3. Dry run: `python scripts\verify-candidates.py --limit 10`
-4. A = `claude-sonnet-5`, B = `gpt-5.6-terra`. B never sees A's output
+4. A = `claude-sonnet-5`, B = `gpt-6.1-sol`. B never sees A's output.
+   **This line read `gpt-5.6-terra` until 2026-10-30** - twelve days and 47
+   commits after the move (`cf19813`, 2026-10-18, P275), six of which edited
+   this file. A stale model string here is not cosmetic: read against the
+   script's own banner it looks exactly like undeclared drift with step 8
+   never run, and on 2026-10-30 it stopped a workflow to re-investigate a
+   question this repo had already settled. **`MODEL_B` in
+   `verify-candidates.py` is the authority; this line follows it.**
 5. Read the disagreement rate at the bottom. Near 0% over a real batch means
    the passes are correlated and B is buying nothing; very high means mistuned
 6. `--commit` writes `verify_a` / `verify_b` / `verify_agreement` and sets
