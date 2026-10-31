@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-265 patterns in 272 entries, frontier **P335**. The P-sequence is shared with
+265 patterns in 275 entries, frontier **P335**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -24,10 +24,10 @@ BEFORE changing it.
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
+- `audit-docs.py` (6) - P247, P248, P253, P332, P335, P334
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
 - `verify-candidates.py` (6) - P221, P235, P257, P264, P266, P299
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
-- `audit-docs.py` (5) - P247, P248, P253, P332, P335
 - `fix_patterns.md` (5) - P209, P247, P256, P291, P332
 - `page.tsx` (5) - P071, P126, P150, P236, P305
 - `reel-creation-pipeline.md` (5) - P193, P253, P283, P301, P307
@@ -318,5 +318,8 @@ BEFORE changing it.
 - **P333** - `$args` is reserved, so the helper ran npx with nothing
 - **P334** - the hooks were written in a shape nothing runs
 - **P335** - 817 KB of lessons that nothing read
+- **P334 (addendum 2)** - (addendum): the fix would have been truncated to its first 2,000 characters
+- **P335 (addendum 2)** - (addendum): the retrieval eval - measure before building a RAG
+- **P300 (addendum 2)** - (addendum): three more times in one morning, and the shape of it
 
-<!-- pattern-index-stamp entries=272 patterns=265 frontier=335 sha1=5c7cf53946c5706c5d065c322f2b5b0c49fbcce2 -->
+<!-- pattern-index-stamp entries=275 patterns=265 frontier=335 sha1=cc2029ed42d15ced81c769d21870b1124d2b419e -->

@@ -14226,3 +14226,94 @@ first). A filename is countable. A theme is not.
 **Status:** FIXED. 21 KB, 269 entries, 24 files cross-referenced.
 
 ---
+
+## PATTERN 334: (addendum): the fix would have been truncated to its first 2,000 characters
+
+**Date:** 2026-10-31  Found the same morning, before any session used it.
+
+Reading the hooks reference further, to design retrieval, turned up:
+"A hook's `additionalContext` ... and its plain stdout, are capped at
+10,000 characters". Over the cap, Claude Code saves the output to a file and
+passes the path plus a 2,000-character preview, and "doesn't ask Claude to
+read the file". The v1 hook printed 21,338 characters. Everything after the
+header and the first few file lines would have gone exactly where P334 said
+the patterns had always gone - somewhere nothing reads.
+
+I had read that page that morning for the schema and stopped at the part I
+needed. The schema was right; the delivery was wrong. Same shape as P332's
+first audit: correct about what it checked, silent about what it did not.
+
+**Fix.** The same reference says each hook's output is measured on its own,
+even when several hooks run for one event. `session-start.js <k>` prints
+part k of the index (each under 9,000 characters); settings.json declares
+one handler per part plus one spare; `audit-docs.py` runs `--plan` and fails
+the push if a part has no handler or any part exceeds 10,000. The text is
+now phrased as facts, not commands - the docs warn that out-of-band
+instructions can trip prompt-injection defences and be surfaced instead of
+used.
+
+**Scope, stated plainly.** These hooks run in a LOCAL Claude Code session in
+this folder (terminal, VS Code). They do not run in a claude.ai cloud thread
+in a Project: the settings docs say that in such a thread "none of a
+repository's `.claude/settings.json` permission rules, hooks, or `env`
+apply". The session that built this is one of those. The protection is for
+local work.
+
+---
+
+## PATTERN 335: (addendum): the retrieval eval - measure before building a RAG
+
+**Date:** 2026-10-31
+
+Proposed next step: retrieve the relevant patterns per prompt. Measured first,
+on 9 real repeats with known answers (P300, P329, P326, P309, P302, P333,
+P147, P330, P078), each asked as the operator writes (Russian) and as the work
+is described (English). recall@5:
+
+| method | RU | EN |
+|---|---|---|
+| BM25 (words) | 3/9 | 8/9 |
+| multilingual embeddings (paraphrase-multilingual-MiniLM-L12-v2, chunked) | 4/9 | 3/9 |
+| hybrid (reciprocal rank fusion) | 2/9 | 7/9 |
+
+- The three Russian BM25 hits each rode on an English token in the Russian
+  sentence (`powershell`, `npx`, `-NoReview`, `whisper`). On plain Russian,
+  word search finds nothing: the patterns are English.
+- The small multilingual model fixes some Russian (P300 rank 3, P329 rank 1)
+  and loses English badly. Fusing a weak ranker into a strong one made both
+  worse.
+- The English queries were written knowing the answers, so 8/9 is an upper
+  bound. Nine cases is a direction, not a statistic.
+- Cost: one query 0.027 s once loaded; model load 35 s on first run
+  (download included), corpus encode 81 s for 1,115 chunks. A per-prompt hook
+  that loads the model in a fresh process each time is not viable without a
+  resident process; warm load time was not measured.
+
+**Decision recorded:** no per-prompt RAG on this evidence. Nothing here
+retrieves the right lesson for a Russian request often enough to trust, and
+a retriever that is usually wrong teaches its reader to skip what it says.
+What did hold up: English, code-shaped text finds its pattern by plain words
+- and the text of an ACTION (a command, a file path) is English and
+code-shaped. The hooks reference confirms PreToolUse can return
+`additionalContext` "next to the tool result". That is the next experiment:
+query the action, not the request. Untested.
+
+---
+
+## PATTERN 300: (addendum): three more times in one morning, and the shape of it
+
+**Date:** 2026-10-31
+
+Three transfers reported `written` and left the previous bytes on the machine:
+the Playwright script (3,328 bytes on disk, 3,707 sent), its re-send, and a
+.ps1 edited after it was created. In every case the file in the outputs
+folder had been REWRITTEN or EDITED in place under the same name. Every file
+copied to a new name with the shell arrived correctly. That is an
+observation over a handful of cases, not a mechanism.
+
+**Rule, until the mechanism is known:** never re-send a changed file under
+the name it was first sent with - copy it to a new name. Before launching
+anything transferred, check a marker that exists only in the new version, on
+the machine. The marker check caught all three; nothing ran stale twice.
+
+---

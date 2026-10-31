@@ -479,6 +479,47 @@ def check_pattern_index():
                 fail('PATTERN_INDEX', line.strip())
 
 
+def check_session_hook_parts():
+    """Every part of the session-start output must have a handler, and fit.
+
+    Claude Code caps a hook's stdout at 10,000 characters; over the cap it
+    keeps a 2,000-character preview and files the rest where nothing reads it
+    (P334 addendum). The hook splits PATTERN_INDEX.md into parts and reports
+    the plan with --plan; this compares that plan with the handlers
+    settings.json declares. The slicing rule lives in the hook only (P270).
+    """
+    hook = os.path.join(ROOT, '.claude', 'hooks', 'session-start.js')
+    sett = os.path.join(ROOT, '.claude', 'settings.json')
+    for p in (hook, sett):
+        if not os.path.exists(p):
+            fail('SESSION_HOOK', '%s is missing' % os.path.relpath(p, ROOT))
+            return
+    try:
+        r = subprocess.run(['node', hook, '--plan'], capture_output=True,
+                           text=True, cwd=ROOT)
+    except FileNotFoundError:
+        warn('SESSION_HOOK', 'node not on PATH - hook plan not checked')
+        return
+    m = re.search(r'parts=(\d+)', r.stdout)
+    if r.returncode != 0 or not m:
+        fail('SESSION_HOOK', 'session-start.js --plan failed: %s'
+             % (r.stderr or r.stdout).strip()[:200])
+        return
+    need = int(m.group(1))
+    for k, chars in re.findall(r'part (\d+) chars=(\d+)', r.stdout):
+        if int(chars) > 10000:
+            fail('SESSION_HOOK', 'part %s is %s chars - over the 10,000 cap'
+                 % (k, chars))
+    with io.open(sett, encoding='utf-8') as f:
+        declared = set(int(x) for x in
+                       re.findall(r'session-start\.js (\d+)', f.read()))
+    missing = [k for k in range(1, need + 1) if k not in declared]
+    if missing:
+        fail('SESSION_HOOK', 'the index needs %d parts; settings.json has no '
+             'handler for part(s) %s - add them, or the tail of the index '
+             'never reaches the session' % (need, ', '.join(map(str, missing))))
+
+
 def main():
     ap = argparse.ArgumentParser(description='Mechanical doc consistency checks.')
     ap.add_argument('--quiet', action='store_true', help='failures only')
@@ -500,6 +541,7 @@ def main():
     check_stack_facts()
     check_upskilling_due()
     check_pattern_index()
+    check_session_hook_parts()
 
     if not args.quiet:
         print('doc audit: %d reels, pattern frontier P%03d%s'

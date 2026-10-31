@@ -6,7 +6,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node .claude/hooks/session-start.js"
+            "command": "node .claude/hooks/session-start.js 1"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-start.js 2"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-start.js 3"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-start.js 4"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-start.js 5"
           }
         ]
       }

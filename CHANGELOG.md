@@ -1,3 +1,28 @@
+## [2026-10-31d] - the session hook fits its cap, and a RAG measured before it was built
+
+### Fixed
+
+- **The SessionStart hook would have delivered its first 2,000 characters
+  only (P334 addendum).** Claude Code caps hook stdout at 10,000 characters
+  and files the rest without asking Claude to read it; v1 printed 21,338. The
+  hook now prints the index in parts, one handler each, and `audit-docs.py`
+  fails the push when a part has no handler or exceeds the cap. Also stated:
+  these hooks run in local Claude Code sessions, not in claude.ai cloud
+  threads in a Project.
+
+### Measured
+
+- **Retrieval over fix_patterns.md, before building it (P335 addendum).**
+  recall@5 on 9 real repeats: BM25 RU 3/9 EN 8/9; small multilingual
+  embeddings RU 4/9 EN 3/9; hybrid RU 2/9 EN 7/9. No per-prompt RAG on this
+  evidence. Next experiment: retrieve on the action (PreToolUse), whose text is
+  English and code.
+- **P300 recurred three times (addendum):** a changed file re-sent under its
+  first name arrived stale; copies under new names did not. The on-machine
+  marker check caught all three.
+
+---
+
 ## [2026-10-31c] - Playwright current, CI unpinned, and the patterns now load themselves
 
 ### Fixed
