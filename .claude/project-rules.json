@@ -1,0 +1,25 @@
+{
+  "_what": "Keys that used to sit in .claude/settings.json but are not Claude Code settings. Moved here 2026-10-31 (P334) so settings.json validates against the published schema. NOTHING READS THIS FILE - it is a record of intent, kept because the intent is sound even where the wiring never was.",
+  "_stale": [
+    "agents.verify / agents.verify_fast name --project=ipad. playwright.config.ts declares ONE project, chromium. Those commands have never been runnable.",
+    "agents.log / agents.docs point at tests/playwright/multi-agent/agents/*.js. tests/ holds one file, hadith-reels.spec.ts. Also never runnable.",
+    "The Stop hook (log-session.js) is NOT re-enabled. It has never executed, and it writes to CLAUDE.md, AGENTS.md and CHANGELOG.md unattended - inventing BUG-### numbers and inserting after the first '---'. CHANGELOG entries are written deliberately, in the same atomic commit as the code and the pattern. An untested writer editing three constitution docs on every session end is not automation, it is an unreviewed commit. Wire it only after it is tested on a copy."
+  ],
+  "rules": {
+    "auto_log_bugs": true,
+    "auto_update_changelog": true,
+    "auto_update_fix_patterns": true,
+    "require_test_before_commit": true,
+    "min_touch_target_px": 72,
+    "forbid_emoji_selectors": true,
+    "forbid_powershell_set_content_utf8": true,
+    "always_use_pom_fixture": true
+  },
+  "agents": {
+    "verify": "npx playwright test --project=ipad",
+    "verify_fast": "npx playwright test --project=ipad --workers=4",
+    "log": "node tests/playwright/multi-agent/agents/log-agent.js",
+    "docs": "node tests/playwright/multi-agent/agents/docs-agent.js"
+  },
+  "skip_patterns": ["node_modules", ".vercel", "test-results", "*.log"]
+}

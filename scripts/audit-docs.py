@@ -34,6 +34,7 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -458,6 +459,26 @@ def check_upskilling_due():
 
 # --------------------------------------------------------------------- main
 
+def check_pattern_index():
+    """PATTERN_INDEX.md must still describe fix_patterns.md.
+
+    The generator owns the comparison and this calls it with --check rather
+    than recomputing the stamp here. P270 is three probe bugs in two days, all
+    from re-deriving a normaliser that already existed; a second copy of the
+    parse would be the same mistake with a different file.
+    """
+    gen = os.path.join(ROOT, 'scripts', 'build-pattern-index.py')
+    if not os.path.exists(gen):
+        fail('PATTERN_INDEX', 'scripts/build-pattern-index.py is missing')
+        return
+    r = subprocess.run([sys.executable, gen, '--check'],
+                       capture_output=True, text=True, cwd=ROOT)
+    if r.returncode != 0:
+        for line in (r.stdout + r.stderr).strip().splitlines():
+            if line.strip():
+                fail('PATTERN_INDEX', line.strip())
+
+
 def main():
     ap = argparse.ArgumentParser(description='Mechanical doc consistency checks.')
     ap.add_argument('--quiet', action='store_true', help='failures only')
@@ -478,6 +499,7 @@ def main():
     check_sibling_frontier(frontier)
     check_stack_facts()
     check_upskilling_due()
+    check_pattern_index()
 
     if not args.quiet:
         print('doc audit: %d reels, pattern frontier P%03d%s'

@@ -14098,6 +14098,131 @@ P246 (a cached frontier that went sixty patterns stale), P320 (a gate that
 blocks rather than warns), P326/P329 (the answer already in the repo, unread),
 P275 (a stale line manufactures investigations).
 
-**Status:** FIXED. The three facts corrected and the three checks live.
+**Status:** FIXED. The three facts corrected and TWO checks live; the third was removed, as described above. (This line said "three checks" until 2026-10-31c - the pattern about docs describing code that does not exist described code that did not exist.)
+
+---
+
+## PATTERN 333: `$args` is reserved, so the helper ran npx with nothing
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** process (7 min of a
+live PID doing nothing, and the same session nearly called it "slow tests")
+
+**What happened.** The Playwright upgrade ran detached (P309) through a helper
+`function Run([string]$label, [string]$exe, [string[]]$args)` that splatted
+`& $exe @args`. `$args` is a PowerShell AUTOMATIC variable. A parameter of that
+name does not shadow it the way a reader expects: the splat passed the empty
+automatic array, `npx` started with NO arguments, opened an interactive shell
+(`cmd.exe /d /s /c cmd.exe` under it, visible in Win32_Process) and waited on a
+stdin that a detached process does not have. The log sat at `STEP 0` for seven
+minutes.
+
+**Then P300 happened inside the fix.** The corrected script was re-transferred
+to the SAME staged path; the bridge reported `written` and the machine kept the
+old bytes (3328 on disk vs 3707 in the container). The relaunch ran v1 again.
+P300 is exactly this - "a transfer reported success and left the previous
+version in place" - and it is in the index this session built, which is the
+argument for the index in one line.
+
+**Fix.** Never name a parameter `$args`, `$input`, `$this`, `$_` or `$matches`.
+Call local CLIs through `node node_modules/...` rather than `npx` in a
+console-less process. After every transfer, check a marker that exists only in
+the new version ON THE MACHINE before launching, and use a new staged filename
+for a re-transfer.
+
+**Outcome.** `@playwright/test` 1.60.0 -> 1.64.1, pinned EXACT (`^1.60.0` floated
+across minors, the dependency P314 warned about one level down). Baseline and
+after both 30/30; `tsc --noEmit` clean; the OPEN_ITEMS acceptance test -
+`PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu26.04-x64 ... install --with-deps
+chromium --dry-run` - exit 0 with real linux64 URLs. OPEN_ITEMS had predicted
+chromium revision 1248; the install downloaded chromium-1248. `ci.yml` moved
+from `ubuntu-24.04` to `ubuntu-latest`, deliberately, with the evidence in the
+comment.
+
+**Status:** FIXED.
+
+---
+
+## PATTERN 334: the hooks were written in a shape nothing runs
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** process (every
+session since the file was written started with none of what it promised)
+
+**What happened.** `.claude/settings.json` declared a SessionStart hook meant to
+feed the constitution into every session:
+`"SessionStart": "cat CLAUDE.md AGENTS.md FIX_PATTERNS.md 2>/dev/null | head -300 || ..."`
+It could not have worked, four separate ways:
+
+1. **Schema.** The documented shape is event -> ARRAY of matcher groups, each
+   with a `hooks` array of `{"type": "command", ...}` handlers
+   (code.claude.com/docs/en/hooks). A bare string is a value the schema rejects;
+   rejected entries are skipped. All five hooks in the file had this shape.
+2. **Shell.** `cat`/`head`/`2>/dev/null`/`||` is bash. This machine is Windows;
+   `head` does not exist and `cat` is a PowerShell alias.
+3. **Truncation.** CLAUDE.md is 870 lines. `head -300` stops inside it, so
+   AGENTS.md and the patterns would never have appeared even on Linux.
+4. **Name.** `FIX_PATTERNS.md` resolves on Windows only because NTFS is
+   case-insensitive; in CI or a cloud clone it is a missing file.
+
+**Proof it never ran, not inference.** The Stop hook, `log-session.js`, leaves
+fingerprints - "Auto-logged: by Claude Code Stop hook", "Auto-log:". There are
+ZERO in CLAUDE.md, AGENTS.md and CHANGELOG.md, while the marker it writes
+after IS present in CLAUDE.md. Someone prepared the target and nothing fired.
+
+The same file carried `rules`, `agents` and `skip_patterns`, which are not
+Claude Code settings. All four `agents` commands are dead: two name
+`--project=ipad` (playwright.config.ts declares only `chromium`), two point at
+`tests/playwright/multi-agent/agents/*.js` (tests/ holds one spec file).
+
+**Fix.** settings.json rewritten to the documented schema, with `$schema` so
+VS Code validates it from now on. One hook: SessionStart ->
+`node .claude/hooks/session-start.js`, which prints PATTERN_INDEX.md and the
+weekly-check due date. SessionStart stdout is added to the session's context
+by Claude Code itself (the hooks reference names SessionStart as one of the
+four events where that happens), so this does not depend on anyone choosing
+to read a file. The non-settings keys moved to `.claude/project-rules.json`
+with their staleness written next to them.
+
+**The Stop hook was deliberately NOT re-enabled.** It has never executed and
+it would edit CLAUDE.md, AGENTS.md and CHANGELOG.md unattended on every
+session end, inventing BUG-### numbers. CHANGELOG entries are written in the
+same atomic commit as the code and the pattern. An untested writer on three
+constitution docs is an unreviewed commit, not automation.
+
+**Not yet verified:** that the hook fires. The command runs (327 lines, 21 KB)
+and the schema matches the docs; firing is observable only from a NEW Claude
+Code session in this folder. Confirm with `/status` or `claude doctor`.
+
+**Status:** FIXED, firing to be confirmed in the next local session.
+
+---
+
+## PATTERN 335: 817 KB of lessons that nothing read
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** process
+
+**What happened.** fix_patterns.md had grown to 817 KB / 14103 lines. Nothing
+reads that at session start, so a pattern was consulted only when someone
+already suspected it applied. P326, P329 and P332 were each a repeat of
+something already written down; P333 hit P300 again an hour into this
+session.
+
+**Fix.** `scripts/build-pattern-index.py` generates PATTERN_INDEX.md: every
+pattern by number with its title VERBATIM, and a by-file cross-reference -
+which patterns mention which script, from the backticked filenames in each
+body. Before touching `generate-scene.ps1`, the line for it lists every pattern
+that ever touched it; that is the lookup that would have stopped P329.
+The index ends with a stamp (entries, patterns, frontier, sha1 of the headings).
+`audit-docs.py` calls the generator with `--check` and fails the push when it
+differs, so a pattern cannot be added without regenerating the index. It calls
+the generator rather than re-parsing, because P270 is three bugs from
+re-deriving a normaliser that already existed.
+
+**A topic table was built first and removed.** Nine keyword topics over the
+titles left 113 of 269 in "Unsorted": the later titles are aphorisms - "A key
+that identifies nothing", "The check existed. Nothing ran it." That is the
+second regex pointed at prose in one day (P332's removed range check was the
+first). A filename is countable. A theme is not.
+
+**Status:** FIXED. 21 KB, 269 entries, 24 files cross-referenced.
 
 ---

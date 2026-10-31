@@ -16,15 +16,24 @@ on:
 jobs:
   test:
     name: Build + Playwright Tests
-    # PINNED, NOT `ubuntu-latest` (P314). On 2026-10-19 GitHub began moving the
-    # `ubuntu-latest` label to Ubuntu 26.04, choosing the image AT RANDOM per run
-    # until 2026-11-19 (actions/runner-images#14748). Playwright 1.60 has no
-    # Ubuntu 26 support, so `playwright install` exited 1 before a single test ran
-    # and 31 consecutive runs went red without one line of our code changing.
-    # A floating label is an undeclared dependency on somebody else's release
-    # schedule. Bump this deliberately, after checking the toolchain; never by
-    # letting it drift. See OPEN_ITEMS (Tools) for the Playwright ceiling.
-    runs-on: ubuntu-24.04
+    # UNPINNED 2026-10-31, deliberately - which is what the pin's own comment
+    # asked for: "Bump this deliberately, after checking the toolchain; never
+    # by letting it drift." (P314, P333)
+    #
+    # The pin was never about the image. It was about the toolchain: Playwright
+    # 1.60 had no Ubuntu 26 support, so `playwright install` exited 1 before a
+    # single test ran, and 31 consecutive runs went red without one line of our
+    # code changing. `@playwright/test` is now 1.64.1, pinned EXACT in
+    # package.json, and it carries both images.
+    #
+    # Evidence taken on 2026-10-31, in its own session and its own push, as
+    # OPEN_ITEMS required:
+    #   PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu26.04-x64 playwright install
+    #     --with-deps chromium --dry-run   ->  exit 0, real linux64 URLs
+    #   30/30 E2E pass on 1.60.0 AND on 1.64.1; tsc --noEmit clean on both
+    # So whichever image the randomised `ubuntu-latest` label picks now works.
+    # The version to watch is in package.json, not here.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7

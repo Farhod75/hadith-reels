@@ -25,7 +25,7 @@
     "remotion": "^4.0.460"
   },
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "1.64.1",
     "@remotion/cli": "^4.0.460",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

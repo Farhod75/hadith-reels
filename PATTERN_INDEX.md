@@ -1,0 +1,322 @@
+# PATTERN_INDEX.md
+
+**Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
+`audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
+
+265 patterns in 272 entries, frontier **P335**. The P-sequence is shared with
+hadith-verifier, so the count here is lower than the frontier.
+
+**Read the pattern, never this line.** Full text: search `## PATTERN <n>`
+in `fix_patterns.md`. A one-line title is a pointer, not the lesson.
+
+---
+
+## By file - every pattern that touched it
+
+Extracted from the backticked filenames in each pattern's body; files
+named by fewer than 3 patterns are left out. Check the line for a file
+BEFORE changing it.
+
+- `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
+- `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
+- `stt-validate.py` (10) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330
+- `route.ts` (8) - P071, P095, P140, P188, P232, P246, P284, P303
+- `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
+- `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
+- `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
+- `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
+- `verify-candidates.py` (6) - P221, P235, P257, P264, P266, P299
+- `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
+- `audit-docs.py` (5) - P247, P248, P253, P332, P335
+- `fix_patterns.md` (5) - P209, P247, P256, P291, P332
+- `page.tsx` (5) - P071, P126, P150, P236, P305
+- `reel-creation-pipeline.md` (5) - P193, P253, P283, P301, P307
+- `restore-srt-casing.py` (5) - P200, P243, P246, P252, P298
+- `.last-used.json` (4) - P159, P162, P201, P249
+- `derive-uzbek-latin.ts` (4) - P160, P268, P300, P325
+- `make-kids-reel.ps1` (4) - P124, P136, P158, P166
+- `CLAUDE.md` (3) - P247, P253, P291
+- `asset-registry.json` (3) - P117, P123, P251
+- `candidate-translations.json` (3) - P219, P264, P266
+- `check-draft-sync.py` (3) - P282, P294, P297
+- `generate-talking-clip.py` (3) - P137, P138, P164
+- `probe-passb.py` (3) - P221, P222, P275
+
+---
+
+## By number
+
+- **P046** - HR ci.yml had language-speech real API step
+- **P047** - Tab button locator breaks with emoji text
+- **P048** - Never test emoji tab labels — test functionality
+- **P049** - Dual Seerah sources for UZ/TJ/RU vs AR/EN
+- **P050** - TJ (Tajik) — no text_tajik column in DB
+- **P054** - @remotion/renderer native binaries break Next.js build
+- **P062** - $env:BASE_URL session variable overrides playwright config
+- **P063** - Watch tab emoji button — all locator strategies fail
+- **P064** - Admin page Telegram button hidden — wrong step
+- **P065** - Vercel served cached old admin page after new commit
+- **P067** - @fal-ai/client SDK breaks Turbopack CI build
+- **P068** - hadithreels.com domain registered + connected
+- **P069** - Complete reel production template finalized
+- **P070** - TTS text cleaning + UZ/TJ kids voice fix
+- **P071** - OpenAI Nova TTS for UZ/TJ Cyrillic
+- **P078** - Whisper STT produces Latin transliteration for UZ/TJ — q→k drift
+- **P079** - Admin story/moral text not editable before TTS generation
+- **P084** - Admin TTS request omits `style` → kids use adults (male) voice
+- **P085** - RU kids narration used male voice (ElevenLabs Abrar)
+- **P086** - Pre-push hook ran full E2E on API-only / doc pushes
+- **P087** - UZ kids TTS mispronounced ҳ / ж / ғ (Nova phonetics)
+- **P088** - Public library capped at 40 rows; counter wrong
+- **P089** - Search only matched loaded rows (capped at 40)
+- **P090** - Retired model ID + structured-output truncation
+- **P091** - RLS disabled + allow-all policy defeating RLS
+- **P092** - Mockable Claude via MOCK_CLAUDE seam + isolated test server
+- **P093** - Windows/git-bash env + exit-code gotchas that silently defeat a CI gate
+- **P094** - Stage 5 promote (candidate→library) + CHECK constraints as schema contract
+- **P095** - Uzbek TTS pronunciation — engine differences + Cyrillic homoglyph corruption
+- **P096** - Replayed backfill corrections + silent zero-row updates
+- **P097** - Transliterator returned raw Latin source — okina/tutuq drift
+- **P098** - Poll loop killed a COMPLETED job — deadline checked before success
+- **P099** - amix outlived -shortest — frozen subtitle tail on every animated reel
+- **P100** - Whisper crashed on Cyrillic — CP1252 console, not a transcription failure
+- **P101** - generate-reel fabricated hadith — invented scenes + speech attributed to the Prophet ﷺ
+- **P102** - OpenAI TTS hardened plain г to ғ in Uzbek — moved UZ/TJ to ElevenLabs v3
+- **P103** - Prompt rules mandated the fabrication they forbade
+- **P104** - Kids voices split by mascot; OpenAI fully retired from TTS
+- **P105** - Seerah attribution fired unconditionally — false source credit in captions
+- **P106** - Pipeline automation — TTS to disk, work tree, wrapper, caption template
+- **P107** - PowerShell splat by position bound to the wrong script
+- **P108** - Stale `selected` after language switch; narrator epithets and inverted isnad verbs
+- **P109** - Search box never called the API it was built for
+- **P110** - CI type-check gate could not fail
+- **P111** - Prompt did not pin the divine name or block invented similes
+- **P112** - RU kids boy voice produced a background hum
+- **P113** - Adults render path never received the P106 work-tree restructure
+- **P114** - Whisper crashed on Cyrillic; SRT still written to the pre-restructure path
+- **P115** - Seerah source named in a negative claim
+- **P116** - Short matn padded with unearned elevation
+- **P117** - No gate on which assets a lane may use
+- **P118** - Voice comments named voices the IDs did not resolve to
+- **P119** - Pre-push hook blind to Python, and pointed at nothing
+- **P120** - Verifier competence is per-defect-class, not per-language
+- **P121** - The asset gate checked one asset class out of two
+- **P122** - The same invented claim appears in all four languages
+- **P123** - The classifier's remaining blind spots — .ps1 and .json
+- **P124** - Generated text cannot be edited after narration
+- **P125** - Per-block re-narrate, and a stale-text warning
+- **P126** - The classifier's third blind spot — and the map of the rest
+- **P127** - A dead pattern, and why an undefined one is worse
+- **P128** - Structural defects no per-block check can see
+- **P133** - The title had no constraint, so it escalated
+- **P134** - A poll deadline set from a guess, not a measurement
+- **P135** - A fixed pad on top of a variable silence
+- **P136** - A gate that lexed instead of checking
+- **P137** - Recovery that existed only as a printed suggestion
+- **P138** - Paying twice for work already done
+- **P139** - The right name in the wrong case
+- **P140** - Reading the first content block
+- **P141** - A report line for the expected state
+- **P142** - Nothing verified the matn against its source
+- **P143** - A tail that three flags refused to allow
+- **P144** - A token budget spent before the answer
+- **P145** - Screening 65 rows when the source refuses to talk
+- **P146** - A ranking change that picked the wrong hadith
+- **P147** - A key that identifies nothing
+- **P148** - A real filename used as a placeholder
+- **P149** - A rule enforced in one language and not another
+- **P150** - Twenty reels of hand-fixing a two-line defect
+- **P151** - A corrected matn had nowhere to go
+- **P152** - A failed call counted as a disagreement
+- **P153** - The source was never shown
+- **P154** - Fifteen exchanges to read an error message
+- **P155** - Twenty morals with no one to address
+- **P156** - A default that doubled the bill
+- **P157** - A default that was harmless with two options
+- **P158** - The admin knew two mascots and defaulted to a dead language
+- **P159** - A random picker with no lane and no memory
+- **P160** - The derive script only knew about candidates
+- **P161** - The library was checked for homoglyphs, the generator wasn't
+- **P162** - The adults picker, and a gate that ran too late to be tested
+- **P163** - A default that was protective until the caller changed
+- **P164** - 720p was a June choice nobody priced
+- **P165** - Stage 0 was blocked on the only source that needed a key
+- **P166** - Committed the reference, not the thing
+- **P167** - A mascot with no mouth to open
+- **P168** - Retirement the picker couldn't see
+- **P169** - Ten Latin captions the generator never wrote
+- **P170** - The old picker was left behind the comment that replaced it
+- **P171** - The mix nobody had listened to on a phone
+- **P172** - Stage 0 wired to a source that needs no key
+- **P173** - Refs by query, and drops that were only console output
+- **P174** - A dedup key is not a citation
+- **P175** - The upload mapping discards what the source was for
+- **P176** - Wiring a column all the way to the reader
+- **P177** - The review gate reviewed a draft that was thrown away
+- **P178** - Tier-1 for grading is not Tier-1 for translation
+- **P179** - The adapter put the isnad where the narrator goes
+- **P180** - The caption wrapped text that already carried its own quotes
+- **P181** - The promoter hardcoded empty tags and said nothing
+- **P182** - The tag vocabulary drifted out from under its own translation
+- **P183** - A blocklist that predated the thing it was blocking
+- **P184** - The caption had no idea how long it was allowed to be
+- **P185** - The check existed. Nothing ran it.
+- **P186** - The file was fine. The reader could not see its first line.
+- **P187** - The doc rule had no caller either
+- **P188** - The write said "written" and wrote nothing
+- **P189** - stt-validate.py: seven weeks, three catches, no caller
+- **P190** - The render reported OK on a file that was not a video
+- **P191** - The generator reaches for the same four additions in every language
+- **P192** - A real word in the wrong place: the matn said "the one who blows the inspection"
+- **P193** - A model upgrade is a re-roll, not a cure — the mispronunciation class moved words
+- **P194** - The background is built at clip length, the reel is cut to narration length — a short reel drops its tail
+- **P195** - Rule 8 reads as satisfied by a paraphrase, so every moral re-attributes
+- **P196** - The linter only ever sees text a human already cleaned
+- **P197** - A convention that lives only in filenames is not a convention
+- **P198** - Nothing watched the tools, so three of them were a major version behind
+- **P199** - The rules are written in English and they hold best in English
+- **P200** - Whisper transcribes sound, so everything that is only in the text dies
+- **P201** - The nasheed a render chose exists only in the console
+- **P202** - A still is identified by its file suffix, never by where it sat in a paste
+- **P203** - A Status line is not a list
+- **P204** - A measurement written down as a rule, in a pipeline that never runs it
+- **P205** - The check was written, measured, and deleted the same day
+- **P206** - Forty-three kilobytes of skill in a path nothing loads from
+- **P207** - The clause splitter the quotation mark defeats
+- **P208** - The header comment that sent two sessions to the wrong path
+- **P209** - The line-ending map describes the index, not the working tree
+- **P210** - The similarity gate that measured nothing
+- **P211** - The transcript cache that outlived its audio
+- **P212** - The rule that manufactured the defect it forbade
+- **P213** - The abbreviation the voice had to guess at
+- **P214** - The safety guard scoped to the model it was written for
+- **P215** - The clip kept, the prompt thrown away
+- **P216** - The negative prompt that fought the picture it was given
+- **P217** - The folder that was a location pretending to be a state
+- **P218** - Built, documented, and still not found
+- **P219** - A review gate with a second writer behind it
+- **P220** - In-house translation changed a ruling
+- **P221** - Declared a documented stage unbuilt
+- **P222** - A display string ended a paid run
+- **P223** - One transient failure discarded eight paid calls
+- **P224** - Graded a translator against a reading, not a source
+- **P225** - Two passes failed for opposite reasons and it scored as agreement
+- **P226** - The rule was in the field description, not in the rule list
+- **P227** - The queue is not part of the shipping ritual
+- **P228** - A relative path in .NET resolves against a directory PowerShell does not update
+- **P229** - -FitScenes measured the narration before the pad that follows it
+- **P230** - The source appends punctuation that is not in the matn
+- **P231** - A diagnostic that lives only in a console is lost exactly when it is needed
+- **P232** - A model cannot hand-serialize text it does not control
+- **P233** - A rule that names forms is walked around by the next form
+- **P234** - A write that advances the pipeline erased a decision and a provenance record
+- **P235** - The check that found two defects in one day was not in any workflow
+- **P236** - Half a problem was fixed, and the other half was hand-corrected four times
+- **P237** - The third input to the same render had no gate, because it is the one nobody uses
+- **P238** - The caption was derived once from data that keeps changing
+- **P239** - A rule written for one failure family lost to it in three languages out of four
+- **P240** - -FitScenes cannot stretch a clip, and the loop makes the shortfall look deliberate
+- **P241** - The correction was made somewhere that does not persist
+- **P242** - The rebuild control reverts the one input that has no editor
+- **P243** - The casing restorer read blocks that are never spoken, and corrupted one that is
+- **P244** - The fabrication was what made the truncation invisible
+- **P245** - The moral re-attributes in seven generations out of eight
+- **P246** - A verifier reported agreement with a source it could not read
+- **P247** - A check ran daily for two weeks and reported to nobody
+- **P248** - The fix went into one check and not its neighbour, again
+- **P249** - The picker remembers one bed per lane, and writes it down before the render succeeds
+- **P250** - The prompt that decides what is in the frame is the one nothing records
+- **P251** - One mix level, for beds that are not one loudness
+- **P252** - The encoding fix went to the child process and not to the parent
+- **P253** - A workaround written down as a rule, outliving the defect it worked around
+- **P254** - The rebuild re-derived from a snapshot taken before the fix
+- **P255** - The BOM fix went to one writer and the push has been blocked ever since
+- **P256** - A convention that became impossible to follow, and stopped silently
+- **P257** - The library behind 137 shipped reels had never been verified, and 46% of it is not clean
+- **P258** - A deferred scope limit with no runtime guard - --apply reported writing four columns and wrote none
+- **P259** - Two defects that concealed each other, and the gloss that hid both
+- **P260** - The check that spent two runs measuring its own bugs
+- **P261** - What text_arabic holds when one narration carries two admonitions
+- **P262** - A Cyrillic letter from the wrong alphabet, written by the assistant and caught only by reading it back
+- **P263** - A Stage 3 'disagree' that was two models agreeing
+- **P264** - There is no way to verify a library re-translation before writing it
+- **P265** - The verification gate asked for a capability nobody on the project has
+- **P266** - The narrator check, and a matcher that flagged its own romanisation
+- **P267** - Every vowel discrepancy closed, and a constructed sentence found
+- **P268** - A token whose letters are each legal but whose shape is not
+- **P269** - A scoping flag that does not scope
+- **P270** - Three probe bugs in two days, all from re-deriving the normaliser
+- **P271** - An adjudicated finding has nowhere to live
+- **P272** - Stage 3 is not reproducible at the issue level
+- **P273** - Four runs of the pass-B probe, and the first one lied
+- **P274** - A test case with two planted defects scores neither
+- **P275** - Four models, sixteen runs, and the answer was in the docstring
+- **P276** - The check for missing attributions had the defect a check already exists for
+- **P277** - TikTok captions are frozen after 7 days
+- **P278** - Dating the gate, and sweeping everything that predates it
+- **P279** - The first hadith in Bukhari, published as a clipped phrase
+- **P280** - Re-reading the disagreements under a new B, and a model that judges one language harder
+- **P281** - Set-Location moves PowerShell, not .NET
+- **P282** - Two gates that pass because what they check is not what matters
+- **P283** - Two naming schemes in one pipeline, and nothing maps them
+- **P284** - A Tajik vowel that only breaks sentence-initially
+- **P285** - `agreement: incomplete` means re-run, never adjudicate
+- **P286** - `-FitScenes` now refuses when clips would actually be dropped
+- **P287** - a fabricated book and chapter, clean through every check
+- **P288** - a documented switch that does nothing, and overwrites a published reel
+- **P289** - a row with three defects that passed every check
+- **P290** - a correction that wrote itself into a second, unrelated hadith
+- **P291** - A health check for a route that never existed
+- **P292** - five "narrator mismatches" that were four different things
+- **P292 (addendum 2)** - (addendum): the narrator map had no entry for two of the three
+- **P293** - when the generator will not animate a frame, move the camera instead
+- **P294** - words added INSIDE the quotation, and a gate that would have passed them
+- **P295** - the TTS instruction lever worked once and did not work twice
+- **P296** - two clauses missing in three languages, and an adjudication
+- **P297** - what was narrated and what the draft says were never compared
+- **P298** - the divine pronoun the restorer was right not to fix
+- **P299** - four verifiers agreed, and the one that disagreed was right
+- **P300** - a transfer reported success and left the previous version in place
+- **P301** - the licence certificate covered the platform, not the recording
+- **P302** - a comma list passed through Start-Process arrives as one string
+- **P303** - there is no invisible fix for a mispronunciation
+- **P304** - a detached helper inherits none of the render script's setup
+- **P305** - the caption body could only be built by the admin
+- **P306** - the mirror's id is not the collection's reference number
+- **P307** - an approved block that exists only in the conversation is lost
+- **P308** - the expanded honorific is outside the subtitle validator's reach
+- **P309** - a render driven through one bridge call dies with the call
+- **P310** - .NET file APIs ignore PowerShell's current location
+- **P306 (addendum 2)** - (addendum): the screening note was accurate about the wrong record
+- **P311** - "anywhere in the collection" cannot see a wrong number
+- **P312** - a source that paginates Arabic and English differently makes false mismatches
+- **P313** - FLUX writes PNG under a .jpg extension
+- **P314** - `ubuntu-latest` is not a version, and the runner moved under us
+- **P315** - the moral repeated the story's closing line, and no gate reads the seam
+- **P316** - the closing guillemet landed after our moral, not after his words
+- **P317** - post-telegram.py died on a cp1252 console before sending anything
+- **P318** - a publish timed out mid-upload, and retrying would have double-posted
+- **P319** - the check existed, so nobody noticed it was not a gate
+- **P320** - the gate looked forward and never behind
+- **P320 (addendum 2)** - (addendum): the new gate was unreachable for most of its own cases
+- **P321** - the open item named the row, and nothing read it at the moment
+- **P322** - the only source URL was a search query, so the row could never be checked
+- **P323** - the candidate's collection slug was never translated for the library
+- **P321 (addendum 2)** - (addendum): the cross-reference, built
+- **P324** - the worktree's line endings are not the file's identity
+- **P325** - the tool could not be aimed, so it was pointed at everything
+- **P326** - parsing the tool's report instead of asking the source of truth
+- **P275 (addendum 2)** - (addendum): the stale line manufactured the alarm
+- **P327** - the mitigation warned, and the fact was there to be fetched
+- **P322 (addendum 2)** - (addendum): the legacy row was checkable all along
+- **P327 (addendum 2)** - (addendum): five of the six refusals resolved, and my own
+- **P328** - the number was findable by the text all along
+- **P329** - the generator fills whatever you leave empty
+- **P330** - a gate skipped is a gate moved, not a gate removed
+- **P331** - "I'll come back when it finishes" is not a plan
+- **P332** - the audit passed because it was not looking at the stack
+- **P333** - `$args` is reserved, so the helper ran npx with nothing
+- **P334** - the hooks were written in a shape nothing runs
+- **P335** - 817 KB of lessons that nothing read
+
+<!-- pattern-index-stamp entries=272 patterns=265 frontier=335 sha1=5c7cf53946c5706c5d065c322f2b5b0c49fbcce2 -->

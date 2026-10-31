@@ -484,6 +484,12 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `stt-validate.py` — SRT vs source narration diff (Workflow F)
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
+- `build-pattern-index.py` — regenerates `PATTERN_INDEX.md` from
+  `fix_patterns.md` (P335). Run it after adding a pattern; `audit-docs.py`
+  fails the push until you do. `.claude/hooks/session-start.js` prints the
+  index into every new session (P334) - the patterns load themselves, nobody
+  has to remember. Before changing a script, read the patterns listed for it
+  under "By file".
 - `backfill-book.py` — fills `hadith_library.book` from the Tier 1 page
   (P287/P327). **FORMAT: the page's own English book title, VERBATIM** —
   `The Book of (The Wedlock)`, `The Book on Suckling`, `Prayer (Kitab

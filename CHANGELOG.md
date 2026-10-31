@@ -1,3 +1,40 @@
+## [2026-10-31c] - Playwright current, CI unpinned, and the patterns now load themselves
+
+### Fixed
+
+- **`@playwright/test` 1.60.0 -> 1.64.1, pinned exact; `ci.yml` unpinned to
+  `ubuntu-latest` (P333).** 30/30 E2E on 1.60.0 and on 1.64.1, `tsc --noEmit`
+  clean, and the acceptance test OPEN_ITEMS had written in advance - the
+  `ubuntu26.04-x64` dry-run - exits 0 with real linux64 download URLs. The
+  upgrade script hung for seven minutes first: its helper took a parameter
+  named `$args`, which PowerShell reserves, so `npx` ran with no arguments and
+  waited on stdin. The fix was then re-transferred to the same path and the
+  machine kept the old bytes - P300, recurring inside the fix for P333.
+- **The SessionStart hook never ran (P334).** `.claude/settings.json` gave every
+  hook as a bare string; the documented schema is an array of matcher groups.
+  It was also bash on Windows, truncated at 300 lines inside an 870-line
+  CLAUDE.md, and named `FIX_PATTERNS.md`. Proof: zero Stop-hook fingerprints in
+  three files the hook writes to. Rewritten to the schema with `$schema` for
+  editor validation; the non-settings keys moved to `.claude/project-rules.json`
+  with their staleness noted (all four `agents` commands were dead). The Stop
+  hook is deliberately left off - an untested writer on three constitution docs.
+- **PATTERN_INDEX.md, injected at session start (P335).** One line per pattern,
+  titles verbatim, plus which patterns touched which file. A stamp ties it to
+  fix_patterns.md and `audit-docs.py` fails the push when they disagree. A
+  keyword topic table was built first and removed: 113 of 269 titles fit no
+  topic, because they are sentences, not keywords.
+- **P332 described three checks; two shipped.** Its Status line and the
+  [2026-10-31b] entry below both still said three. Corrected.
+
+### Docs
+
+- `self_upskilling.md` gains an **Official sources** section - where to check
+  each tool, with the date and method of the last check. Anthropic's docs now
+  live at `platform.claude.com/docs` (`docs.anthropic.com` answers 302) and
+  Claude Code's at `code.claude.com/docs`.
+
+---
+
 ## [2026-10-31b] - the doc audit now reads the stack, and the watchlist has teeth
 
 ### Fixed
@@ -15,9 +52,9 @@
   logged retroactively against its own rule, and FLUX 3 shipping three days
   before the check that called FLUX 2 current. That silence cost fifteen stills
   generated on flux-2 and $2.24 rediscovering a Kling camera note that was
-  written in two places. Now three checks fail the push: stated dependency
-  versions and ci.yml job count against the repo, closed pattern ranges below
-  and an overdue or non-advancing `Next due` date. The escape is to run the
+  written in two places. Now two checks fail the push: stated dependency
+  versions and ci.yml job count against the repo, and an overdue or
+  non-advancing `Next due` date. The escape is to run the
   check and move the date, not a flag. A third check, for stale pattern ranges,
   was written three ways and removed: a regex over prose cannot tell *describes
   the file* from *cites the file*, and the wide version produced 28 findings of

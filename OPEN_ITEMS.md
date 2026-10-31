@@ -1399,17 +1399,13 @@ places for a verdict to be wrong.
 
 ## Tools
 
-- **`@playwright/test` is 1.60.0 and cannot run on Ubuntu 26. Deadline: GitHub
-  retiring the `ubuntu-24.04` image.** CI is pinned to `ubuntu-24.04` (P314), so
-  this is not urgent - and not optional. 1.61.0 is the first release that
-  supports Ubuntu 26, verified by reading its bundle: it carries both the apt
-  dependency list and a real chromium download for `ubuntu26.04-x64`, neither of
-  which exists in 1.60.0. 1.64.1 is current. Bumping it moves the Chromium the
-  30 E2E tests run against and needs a chromium download (revision 1248; this
-  machine has up to 1243), so it gets its own session and its own push, never a
-  ride on someone else's commit. Verify afterwards with:
-  `PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu26.04-x64 npx playwright install --with-deps chromium --dry-run`
-  which must exit 0 and print real download URLs.
+- **CLOSED 2026-10-31 (P333): `@playwright/test` 1.60.0 -> 1.64.1, pinned exact;
+  `ci.yml` unpinned to `ubuntu-latest`.** Done as this item asked - its own
+  session, its own push. Baseline 30/30 on 1.60.0, 30/30 on 1.64.1, `tsc` clean.
+  The acceptance command above was run as written and without `--with-deps`:
+  both exit 0 and print real `linux64` URLs. The predicted chromium revision
+  1248 is the one that downloaded. First CI run on the new label is the push
+  that carried this - if it is red, revert `runs-on` before anything else.
 - **Turbopack warns "Encountered unexpected file in NFT list
   ./app/api/telegram/post/route.ts".** Cosmetic: a build WARNING, not an error.
   The Vercel build succeeds and the route works in production (message_ids 168,
