@@ -592,3 +592,45 @@ stopped, rather than pretending the two ran in parallel.
 replaced after publication, on a citation defect nobody could see. #5185 is four
 legs that went out once. The difference is not luck: verify-matn-number.py, built
 during #3559, ran over this row before a word was generated.
+
+## R162-R165 - Jami at-Tirmidhi #1161 - 2026-10-31
+
+Four legs, four platforms each. The first Jami at-Tirmidhi set, produced across
+two days and a session that spent most of its length on the machinery behind it.
+
+**What the set was for.** "Whichever woman dies while her husband is pleased
+with her enters Paradise" is short enough to be misread as a whole account of a
+marriage. The blocks keep it to what it says - his contentment as one cause - and
+the UZ translation kept the hal clause ("while he is pleased") that a looser
+rendering drops.
+
+**What went wrong, in order of cost.**
+
+1. **The narrator, in one language of four.** Caught by ear in review: only UZ
+   said Umm Salamah. I first read the documented rule (narrator in H, R055) and
+   recommended removing it from UZ; the operator chose that, then reversed it
+   with a better rule - the same matn through a different companion is a
+   different record, so the narrator is never omitted and never generated.
+   Six TTS calls to re-voice EN/RU/TJ. The rule now has a caller (P337). The
+   caption table was also missing her, so three captions would have shown her
+   name in Latin.
+2. **The threshold clip, three times.** A forward drift into a blown-out doorway
+   produced a modern facade, then a door knob - $2.24 of re-rolls on a camera
+   rule already written in two places (P329).
+3. **Whisper, after the re-voice.** RU came back as "Ум соляма, добудет" and
+   "пророг"; EN as "Um Salama" with the last cue running 7.8 s past the voice.
+   Rendered under -NoReview because the pause cannot be answered from a
+   detached process; the validator named every one, the SRTs were fixed against
+   the drafts and re-burned from cache before the operator saw the reels (P330,
+   P211).
+4. **Volume.** EN and TJ heard slightly loud. Measured before re-calibrating:
+   the beds sat within 0.8 LU of each other and the voices differed by 5 dB, so
+   the fix is a per-reel trim, not a registry change (P338).
+
+**What is still wrong.** UZ runs 31.5 s against 21-23 s - the HARD RULE 6
+spread, the same structural cause as #527, published as is by the operator.
+Every bed in the registry is rights:unverified, Aswati included (P301).
+
+**What carries forward.** The narrator is said in every adults reel from now on,
+from the DB, refused at narration when missing. Kids lane: undecided.
+

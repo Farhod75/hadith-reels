@@ -182,6 +182,10 @@
 | R159 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | RU | Adults | bukhari-5185 | adults-ru-bukhari-5185-story.mp3 | adults-ru-bukhari-5185-moral.mp3 | adults-ru-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4 | adults-ru-bukhari-5185-bg-mixed.mp4 | vocal-nasheed-06.mp3 | YES | adults-ru-bukhari-5185-reel.mp4 | 38.1s | 6.7 MB | TG message_id 169. The costliest subtitle review of the set: two HIGH and three MEDIUM. The worst inverted the meaning outright - the draft read that straightened force breaks, instead of what is straightened BY force. Two participles had drifted to the feminine, which made the sentence read as being about a woman rather than about the rib. And the closing guillemet landed after OUR moral instead of after the Prophet's words, attributing our sentence to him; that is P316, and it is not the first time. |
 | R160 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | UZ | Adults | bukhari-5185 | adults-uz-bukhari-5185-story.mp3 | adults-uz-bukhari-5185-moral.mp3 | adults-uz-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4, b5185-almond.mp4 | adults-uz-bukhari-5185-bg-mixed.mp4 | vocal-nasheed-03.mp3 | NO (P078) | adults-uz-bukhari-5185-reel.mp4 | 49.2s | 8.3 MB | TG message_id 170. Longest leg of the set at 49.2s - Uzbek reported speech takes explicit tags, the known structural reason (HARD RULE 6). Needed a fifth clip; almond was repeated rather than generating a new scene. I spelled the honorific out here and was corrected: the glyph is correct for UZ and TJ exactly as for EN and RU, which the tracker already recorded at R041 and R044. I then had to correct myself a second time - restoring the glyph does NOT shorten the narration (48.17s vs 47.13s), because cleanForTTS expands it to the same words before the request. No subtitles per P078. |
 | R161 | 2026-10-29 | Sahih al-Bukhari #5185 | Abu Hurairah | Sahih | Family / Marriage | #marriage #family #kindness #respect #hadith | TJ | Adults | bukhari-5185 | adults-tj-bukhari-5185-story.mp3 | adults-tj-bukhari-5185-moral.mp3 | adults-tj-bukhari-5185-narration.mp3 | b5185-almond.mp4, b5185-sapling.mp4, b5185-crescent.mp4, b5185-garden.mp4, b5185-almond.mp4 | adults-tj-bukhari-5185-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | NO (P078) | adults-tj-bukhari-5185-reel.mp4 | 42.0s | 7.0 MB | CLOSES THE SET. TG message_id 171 - and getting that number took work: the post command timed out mid-upload on 7.0 MB, leaving it unknown whether the reel had posted. Retrying would have risked a second copy in the channel, so it was settled with a read-only probe instead (P318): exactly one new message existed. Before that, the post script died on a cp1252 console trying to print the Tajik first line (P317, fixed in this commit). Bed is light-of-my-heart-bg, unused on the previous three sets. No subtitles per P078. |
+| R162 | 2026-10-31 | Jami at-Tirmidhi #1161 | Umm Salamah | Hasan | Family / Marriage | #marriage #family #jannah #hadith | EN | Adults | tirmidhi-1161 | adults-en-tirmidhi-1161-story.mp3 | adults-en-tirmidhi-1161-moral.mp3 | adults-en-tirmidhi-1161-narration.mp3 | t1161-home.mp4, t1161-courtyard.mp4, t1161-threshold.mp4, t1161-garden.mp4 | adults-en-tirmidhi-1161-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | YES - hand-fixed after Whisper: 'Um Salama' -> 'Umm Salamah'; last two cues re-timed into the narration (P211 cache) | adults-en-tirmidhi-1161-reel.mp4 | 23.0s | 6.3 MB | TG message_id 172. S opens with the narrator from hadith_library (P337). Opens the set. Bed trimmed for this reel only: -NasheedGain 0.79 (P338) - the operator heard it loud; measured, the bed sat level with the others and the trim is a judgement about this reel, kept out of the registry. |
+| R163 | 2026-10-31 | Jami at-Tirmidhi #1161 | Umm Salamah | Hasan | Family / Marriage | #marriage #family #jannah #hadith | RU | Adults | tirmidhi-1161 | adults-ru-tirmidhi-1161-story.mp3 | adults-ru-tirmidhi-1161-moral.mp3 | adults-ru-tirmidhi-1161-narration.mp3 | t1161-home.mp4, t1161-courtyard.mp4, t1161-threshold.mp4, t1161-garden.mp4 | adults-ru-tirmidhi-1161-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES - hand-fixed after Whisper: 'Ум соляма, добудет' -> 'Умм Салама, да будет', 'пророг' -> 'Пророк' x2 (P211 cache) | adults-ru-tirmidhi-1161-reel.mp4 | 23.2s | 6.3 MB | TG message_id 173. S opens with the narrator from hadith_library (P337). The re-render burned Whisper's errors under -NoReview; the validator named all of them and the fixed SRT was re-burned from cache before anyone saw the reel (P330 held). |
+| R164 | 2026-10-31 | Jami at-Tirmidhi #1161 | Umm Salamah | Hasan | Family / Marriage | #marriage #family #jannah #hadith | UZ | Adults | tirmidhi-1161 | adults-uz-tirmidhi-1161-story.mp3 | adults-uz-tirmidhi-1161-moral.mp3 | adults-uz-tirmidhi-1161-narration.mp3 | t1161-home.mp4, t1161-courtyard.mp4, t1161-threshold.mp4, t1161-garden.mp4 | adults-uz-tirmidhi-1161-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | NO (P078) | adults-uz-tirmidhi-1161-reel.mp4 | 31.5s | 8.3 MB | TG message_id 174. S opens with the narrator from hadith_library (P337). Not re-narrated: its S already opened with the narrator. Runs 31.5s against 21-23s for the other three - HARD RULE 6 spread breach, published as is by the operator's decision. |
+| R165 | 2026-10-31 | Jami at-Tirmidhi #1161 | Umm Salamah | Hasan | Family / Marriage | #marriage #family #jannah #hadith | TJ | Adults | tirmidhi-1161 | adults-tj-tirmidhi-1161-story.mp3 | adults-tj-tirmidhi-1161-moral.mp3 | adults-tj-tirmidhi-1161-narration.mp3 | t1161-home.mp4, t1161-courtyard.mp4, t1161-threshold.mp4, t1161-garden.mp4 | adults-tj-tirmidhi-1161-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-tj-tirmidhi-1161-reel.mp4 | 21.3s | 5.9 MB | TG message_id 175. S opens with the narrator from hadith_library (P337). CLOSES THE SET. Bed moved from path-to-jannah-bg (source never recorded) to Gentle-Reflection at a measured 13.4 LU gap under the voice - between RU and UZ, which the operator called fine. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -194,6 +198,7 @@
 | Hadith | Languages Posted | Styles Posted | Reel IDs |
 |---|---|---|---|
 | Sahih al-Bukhari #5185 | EN, RU, UZ, TJ | Adults | R158-R161. Bukhari 5185 and 5186 are TWO SEPARATE SAYINGS at adjacent references, both on treating women well; 5185 is the rib hadith from Abu Hurairah, and a source that prints them merged is normal rather than a mismatch (P312). In the Book of Nikah it also sits beside a command about not harming one's neighbour, which is why the seerah block names that adjacency instead of inventing context (CLAUDE.md, BEFORE YOU SPEND rule 5). The neighbouring hadith's own reference number is deliberately NOT recorded here: it was not re-opened in this session, and P306 is what writing an unverified number looks like. |
+| Jami at-Tirmidhi #1161 | EN, RU, UZ, TJ | Adults | R162-R165. Narrated by Umm Salamah; the matn in hadith_library is the Prophet's words alone and the narrator is its own column. From this set on, the narrated story block OPENS with the narrator in a fixed form built from that column (P337) - do not omit, do not add. Same matn reaching us through a different companion would be a different record. |
 | Jami at-Tirmidhi #3373 | RU | Adults | R001 |
 | Sahih al-Bukhari #1894 | EN | Adults | R002 |
 | Jami at-Tirmidhi #1956 | UZ | Adults | R003 |
@@ -283,7 +288,7 @@
 | Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 | Gratitude / Contentment | 4 | R106-R109 | EN, RU, UZ, TJ |
 | Death / Afterlife | 4 | R114–R117 | EN, RU, UZ, TJ |
-| Family / Marriage | 8 | R118–R121, R158–R161 | EN, UZ, RU, TJ |
+| Family / Marriage | 12 | R118–R121, R158–R161, R162–R165 | EN, UZ, RU, TJ |
 | Quran / Tilawah | 4 | R122–R125 | EN, RU, UZ, TJ |
 | Dua / Divine attributes | 4 | R138–R141 | EN, RU, UZ, TJ |
 | Death / Remembrance | 4 | R142–R145 | EN, RU, UZ, TJ |
@@ -331,10 +336,10 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 6 | R135 | R004, R023, R095, R103, R128, R135 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
-| aswati-Peaceful-Contemplation.mp3 | 6 | R150 | R114, R120, R138, R143, R148, R150 |
-| aswati-Gentle-Reflection.mp3 | 5 | R156 | R115, R121, R139, R142, R156 |
-| aswati-Morning-Serenity.mp3 | 3 | R154 | R116, R124, R154 |
-| aswati-Heartfelt-Gratitude.mp3 | 3 | R152 | R117, R123, R152 |
+| aswati-Peaceful-Contemplation.mp3 | 7 | R163 | R114, R120, R138, R143, R148, R150, R163 |
+| aswati-Gentle-Reflection.mp3 | 6 | R165 | R115, R121, R139, R142, R156, R165 |
+| aswati-Morning-Serenity.mp3 | 4 | R162 | R116, R124, R154, R162 |
+| aswati-Heartfelt-Gratitude.mp3 | 4 | R164 | R117, R123, R152, R164 |
 | aswati-Rising-Hope.mp3 | 4 | R157 | R118, R125, R149, R157 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
 | aswati-Focused-Determination.mp3 | 3 | R155 | R122, R132, R155 |
@@ -353,6 +358,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| t1161-home, courtyard, threshold, garden | 1 set | 2026-10-31 (R162-R165) | R162-R165, all four clips on every leg, -FitScenes. The first Jami at-Tirmidhi scene set. The threshold clip was re-rolled twice for a modern door and a door knob the generator added (P329); the camera rule had been written down in two places before that. |
 | b5185-almond, sapling, crescent, garden | 1 set | 2026-10-29 (R158-R161) | R158-R161. EN and RU ran on four clips; almond was repeated as a fifth for UZ and TJ, whose narration runs longer (49.2s and 42.0s against 34.9s). All four clips are PNG written under a .jpg extension at the stills stage - see P313. |
 | b3559-blossom, meadow, orchard, canopy | 1 set | 2026-10-28 (R154-R157) | R154-R157 (full set, -FitScenes) |
 | b6570-lamp, ink, plain, kalima, garden | 1 set | 2026-10-27 (R150-R153) | R150-R153 (full set) |
@@ -467,13 +473,13 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 161 |
+| Total reels posted | 165 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 109 |
+| Adults reels | 113 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 41 |
+| Hadiths used (unique) | 42 |
 | Library rows | 71 (40 used, 31 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×75, Sahih Muslim ×28, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
 | Companions cited | 19 (Abdullah ibn Amr ×4, Uthman ibn Affan ×4, Abu Hurairah ×54, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4) |
@@ -513,6 +519,7 @@ Then update:
 
 | Date | Change | By |
 |---|---|---|
+| 2026-10-31 | R162-R165 - Jami at-Tirmidhi #1161 EN/RU/UZ/TJ adults, a wife whose husband is pleased with her. Third set in Family / Marriage and the first from Jami at-Tirmidhi. In review the operator heard the narrator in UZ only; the documented rule pointed the other way, and he set the stronger one: do not omit, do not add. The narrator is now said in every language from hadith_library.narrator, gated in narrate-reel.py (P337). Per-reel nasheed trim (P338). Patterns P329-P338 across the session. TG 172-175. | Farhod / Claude |
 | 2026-10-29 | R158-R161 - Sahih al-Bukhari #5185 EN/RU/UZ/TJ adults, treating women well. Second set in Family / Marriage, which had been covered only by R118-R121. Four patterns recorded: P315 (a moral that repeats the story's closing line, which no gate reads), P316 (the RU closing guillemet landing after our moral and attributing it to the Prophet), P317 (post-telegram.py dying on a cp1252 console before sending anything), P318 (a publish that times out mid-upload, and how to establish whether it landed without double-posting). | Farhod / Claude |
 | 2026-10-11 | R122–R125 — Sahih al-Bukhari #5027 EN/RU/UZ/TJ adults, learning the Quran and teaching it. Fills Quran / Tilawah, which had zero coverage. First set on Kling 3.0 (evaluated against 2.6 Pro at this boundary and adopted) and the first clips carrying real readable Arabic, composited onto a blank FLUX page. P214, P215, P216, P217. | Farhod / Claude |
 | 2026-05-16 | Initial creation, 5 reels logged retroactively + tonight's | Farhod / Claude session |
