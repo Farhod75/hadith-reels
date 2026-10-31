@@ -14192,7 +14192,11 @@ constitution docs is an unreviewed commit, not automation.
 and the schema matches the docs; firing is observable only from a NEW Claude
 Code session in this folder. Confirm with `/status` or `claude doctor`.
 
-**Status:** FIXED, firing to be confirmed in the next local session.
+**Status:** FIXED, and CONFIRMED 2026-10-31 in a local Claude Code session
+(terminal, this folder): `/hooks` listed `SessionStart - [Project] (all) 5
+hooks` beside 3 from a plugin, with "Exit code 0 - stdout shown to Claude".
+Asked for the pattern frontier "from context, without reading files", the
+session answered **P336** - the index had arrived by itself.
 
 ---
 
@@ -14367,6 +14371,18 @@ enforcement is the `**Tripwire:**` check itself.
 input and its JSON output checked; the firing is observable only from a new
 local Claude Code session in this folder.
 
-**Status:** FIXED, firing to be confirmed locally.
+**Status:** FIXED, and CONFIRMED 2026-10-31 in a local session in AUTO
+permission mode. Two layers showed up, in order:
+
+1. Asked to run `render-reel.ps1 ... -NoReview`, the model stopped BEFORE any
+   tool call, citing CLAUDE.md's tripwire entry. Good - but that is knowledge,
+   not the hook; PreToolUse never got a call to inspect.
+2. Asked to run the harmless `Write-Output "render-reel.ps1 -NoReview"`, the
+   call reached PreToolUse and Claude Code showed: "Hook
+   PreToolUse:PowerShell requires confirmation for this command: P330: ..."
+   with Yes/No. Auto mode's classifier did NOT override the hook's `ask`.
+
+Testing "does the model refuse" is not testing the gate. The model can be
+talked past; the hook cannot. Verify a gate with an action that reaches it.
 
 ---

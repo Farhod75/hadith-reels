@@ -1,3 +1,17 @@
+## [2026-10-31f] - both hooks confirmed firing in a local session
+
+### Verified
+
+- **SessionStart (P334):** a local Claude Code session answered the pattern
+  frontier, P336, from context alone. `/hooks` showed the 5 project handlers.
+- **PreToolUse tripwire (P336):** `Write-Output "render-reel.ps1 -NoReview"`
+  produced "Hook PreToolUse:PowerShell requires confirmation ... P330" in AUTO
+  permission mode - the classifier did not override the hook. The model had
+  already refused the real render from CLAUDE.md before any tool call; the
+  harmless command was needed to reach the hook at all.
+
+---
+
 ## [2026-10-31e] - tripwires: the lesson recognises its own recurrence
 
 ### Added
