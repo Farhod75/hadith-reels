@@ -733,7 +733,8 @@ npm run test:multilingual
    permitted, and when they are not), drawn from settings the
    matn implies — never from imagery it does not contain (P111 rule 14):
    `.\scripts\generate-image.ps1 -Name "<slug>-<scene>" -Count 3 -Prompt "..."`
-   review the stills, then
+   review the stills (MODE B, era, and for prayer/dua scenes the PRAYER
+   DIRECTION rule - never facing the sun or a door, P340), then
    `.\scripts\generate-scene.ps1 -Name "<slug>-<scene>" -Image "out\refs\<pick>.jpg" -Duration 10 -Prompt "<MOTION only>"`
 5. **Moving the clips is no longer required (P217).** `generate-scene.ps1`
    writes to `out\backgrounds\new\`; `render-reel.ps1 -Scenes` now resolves a

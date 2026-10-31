@@ -1,3 +1,16 @@
+## [2026-10-31j] - prayer direction in generated scenes is written down
+
+### Added
+
+- **PRAYER DIRECTION in animated-reel-scene-prompts.md (P340).** A figure in
+  salah/dua or an empty mat never faces the sun or a door; the sun goes behind
+  or to the side. Qibla bearings for the audience are recorded (UZ/TJ ~240°,
+  Moscow 176°, Kazan/Grozny ~195°) to explain why no compass direction is
+  encoded. The rule had lived only in chat memory since 2026-10-24. Workflow J
+  step 4 adds it to the still review.
+
+---
+
 ## [2026-10-31i] - a -NoReview render stops before burning HIGH subtitle findings
 
 ### Fixed

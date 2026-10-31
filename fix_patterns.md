@@ -14521,3 +14521,32 @@ already asks before any -NoReview render.
 
 ---
 
+## PATTERN 340: the qibla rule was remembered, not written
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** content (caught at the still)
+
+**What happened.** On 2026-10-24 the operator stated that a prayer mat must face
+a blank wall with the light from the side - nobody prays toward the sunrise or
+a door. That went into chat memory and nowhere in the repo. On abudawud-4811
+the finale moved to a silhouette in dua, and the four FLUX stills came back
+with the figure facing the sun in one (`dua-2`) and toward it in another
+(`dua-1`). The operator had to raise the rule again ("в прошлый раз я тебе
+говорил") and asked whether "west" is the answer for the audience.
+
+It is not, by itself: great-circle qibla bearings are ~240-244° from Tashkent,
+Samarkand and Dushanbe (WSW), but 176° from Moscow and ~195° from Kazan and
+Grozny (south). A frame has no compass anyway; what a viewer reads is the sun.
+
+**Fix.** animated-reel-scene-prompts.md §2 gains PRAYER DIRECTION: never toward
+the sun or a door, sun behind or to the side, indoors a blank wall; no compass
+bearing is encoded, with the reference bearings written down. CLAUDE.md
+Workflow J step 4 adds it to the still review. `dua-3` (sun behind the figure)
+was the pick.
+
+**Tripwire:** none - the rule is about pixels, not commands; its gate is the
+still review that already runs before every paid Kling call.
+
+**Status:** FIXED (documentation + review step).
+
+---
+

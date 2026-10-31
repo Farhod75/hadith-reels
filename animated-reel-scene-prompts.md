@@ -100,6 +100,34 @@ obviously call for figures, the default stands and nothing needs deciding. If
 the scholarly question feels open on a given hadith, that uncertainty is itself
 the answer for that one — as the MODE B line above already says.
 
+### PRAYER DIRECTION — the qibla in a frame (P340)
+
+Stated by the operator on 2026-10-24 and again on 2026-10-31; written here
+because it had lived only in chat memory. A frame has no compass, so the
+viewer reads direction from the light and from what the figure faces:
+
+- **Never toward the sunrise or the sun.** A figure in salah or dua, or an
+  empty prayer mat, must not face the rising sun — or the sun at all. Facing
+  the sun at sunrise is exactly what the prayer times are kept away from, and
+  a viewer reads it that way. Put the sun BEHIND the figure or to the SIDE.
+- **Never toward a door or a lit opening.** Indoors, a mat faces a blank wall
+  with the light coming from the side (the 2026-10-24 wording).
+- **Do not try to encode a compass bearing.** The qibla depends on where the
+  viewer stands. Reference bearings (great-circle, from true north):
+  Tashkent / Samarkand 240°, Dushanbe 244° — west-south-west, which is why
+  UZ/TJ viewers say "to the west"; Moscow 176° and Kazan / Grozny ~195° —
+  SOUTH; Medina (the 7th-century setting) 176°, south. "West" is right for
+  Central Asia and wrong for most Russian-speaking viewers, so the only rule
+  a frame can honour is the light rule above.
+- **Check it at the still, before the paid clip.** Look for where the sun
+  is and which way the figure or mat faces; add it to the still review
+  alongside MODE B. Ask FLUX for it positively ("the morning sun behind him",
+  "light from the side") — FLUX has no negative prompt.
+
+Worked case, abudawud-4811 (`ad4811-dua-3`): side-on silhouette on a mat, the
+morning sun behind him through the palms — he faces away from the sunrise.
+`dua-2` (facing straight into the sun) was rejected on this rule.
+
 ### ERA & SETTING (inferred per hadith — environment + clothing must match the period)
 
 A hadith may describe different historical eras, and the visuals should match whichever one

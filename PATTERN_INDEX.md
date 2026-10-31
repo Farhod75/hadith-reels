@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-269 patterns in 280 entries, frontier **P339**. The P-sequence is shared with
+270 patterns in 281 entries, frontier **P340**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -327,5 +327,6 @@ BEFORE changing it.
 - **P337** - the narrator was said in one language of four, and the rule pointed the other way
 - **P338** - the only volume knob was a calibration
 - **P339** - the warning listened for an exit code the validator never sent
+- **P340** - the qibla rule was remembered, not written
 
-<!-- pattern-index-stamp entries=280 patterns=269 frontier=339 sha1=0fc3669e0ff28b1de8966a5037110fbae276345a -->
+<!-- pattern-index-stamp entries=281 patterns=270 frontier=340 sha1=933f1b435dcd8d36d25f9e7c31af076da436cf4a -->
