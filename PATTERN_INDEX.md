@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-266 patterns in 276 entries, frontier **P336**. The P-sequence is shared with
+266 patterns in 277 entries, frontier **P336**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -322,5 +322,6 @@ BEFORE changing it.
 - **P335 (addendum 2)** - (addendum): the retrieval eval - measure before building a RAG
 - **P300 (addendum 2)** - (addendum): three more times in one morning, and the shape of it
 - **P336** - a lesson that cannot recognise its own recurrence
+- **P335 (addendum 3)** - (addendum): the gate printed the command instead of running it
 
-<!-- pattern-index-stamp entries=276 patterns=266 frontier=336 sha1=16f60cccafb51939548560430d8917843e87187d -->
+<!-- pattern-index-stamp entries=277 patterns=266 frontier=336 sha1=c69d6ef101e53e3b869de5219972a45ce4dfe47a -->

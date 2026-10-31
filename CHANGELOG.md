@@ -1,3 +1,15 @@
+## [2026-10-31g] - the pattern index rebuilds itself on commit
+
+### Added
+
+- **`.githooks/pre-commit` (P335 addendum).** When `fix_patterns.md` is in a
+  commit, the hook rebuilds `PATTERN_INDEX.md` and stages it. Before, the doc
+  audit failed the push and printed the command - a manual step on every new
+  pattern. Refuses a partly-staged `fix_patterns.md`. The commit carrying it
+  is the test: the index was not rebuilt by hand.
+
+---
+
 ## [2026-10-31f] - both hooks confirmed firing in a local session
 
 ### Verified

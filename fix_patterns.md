@@ -14386,3 +14386,23 @@ Testing "does the model refuse" is not testing the gate. The model can be
 talked past; the hook cannot. Verify a gate with an action that reaches it.
 
 ---
+
+## PATTERN 335: (addendum): the gate printed the command instead of running it
+
+**Date:** 2026-10-31
+
+The stamp check made a stale index fail the push and print
+`fix : python scripts/build-pattern-index.py`. That is enforcement, not
+automation: every new pattern would have cost a failed push and a manual
+step that a script can do with no judgement involved. `.githooks/pre-commit`
+now rebuilds PATTERN_INDEX.md and stages it whenever fix_patterns.md is in
+the commit. It refuses when fix_patterns.md is only partly staged - the
+generator reads the working tree, so the index would describe text that is
+not being committed. The push-time stamp check stays, for commits made with
+the hook bypassed.
+
+Tested by the commit that carried it: the index was not rebuilt by hand, and
+it arrived in the commit anyway.
+
+---
+

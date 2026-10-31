@@ -490,8 +490,9 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   (`render-reel.ps1 -NoReview`; a write keyed on `hadith_number` alone). A new
   pattern gets a `**Tripwire:**` line - a rule here, or "none" and why.
 - `build-pattern-index.py` — regenerates `PATTERN_INDEX.md` from
-  `fix_patterns.md` (P335). Run it after adding a pattern; `audit-docs.py`
-  fails the push until you do. `.claude/hooks/session-start.js` prints the
+  `fix_patterns.md` (P335). `.githooks/pre-commit` runs it and stages the
+  result whenever `fix_patterns.md` is committed; `audit-docs.py` fails the
+  push if the two still disagree. `.claude/hooks/session-start.js` prints the
   index into every new session (P334) - the patterns load themselves, nobody
   has to remember. Before changing a script, read the patterns listed for it
   under "By file".

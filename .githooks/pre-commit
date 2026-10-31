@@ -1,0 +1,39 @@
+#!/bin/sh
+# .githooks/pre-commit - hadith-reels
+#
+# Rebuilds PATTERN_INDEX.md and stages it whenever fix_patterns.md is part of
+# the commit (P335 addendum). Before this, audit-docs.py only FAILED the push
+# and printed the command to run - enforcement, not automation. A step a
+# script can do does not belong to a person.
+#
+# REQUIRES core.hooksPath=.githooks (same as pre-push, P119).
+
+STAGED=$(git diff --cached --name-only)
+echo "$STAGED" | grep -qx "fix_patterns.md" || exit 0
+
+# The generator reads the WORKING TREE. If fix_patterns.md is only partly
+# staged, the index would describe text that is not in this commit.
+if git diff --name-only | grep -qx "fix_patterns.md"; then
+  echo "pre-commit: fix_patterns.md has unstaged changes as well as staged ones."
+  echo "  PATTERN_INDEX.md is built from the working tree, so it would not match"
+  echo "  this commit. Stage the whole file, or stash the rest, and commit again."
+  exit 1
+fi
+
+PY_BIN=""
+for c in python python3 py; do
+  if command -v "$c" > /dev/null 2>&1; then PY_BIN="$c"; break; fi
+done
+if [ -z "$PY_BIN" ]; then
+  echo "pre-commit: no python on PATH - PATTERN_INDEX.md NOT rebuilt."
+  echo "  The pre-push doc audit will fail until it is."
+  exit 0
+fi
+
+"$PY_BIN" scripts/build-pattern-index.py || {
+  echo "pre-commit: PATTERN_INDEX.md rebuild FAILED - commit stopped"; exit 1; }
+git add PATTERN_INDEX.md
+"$PY_BIN" scripts/build-pattern-index.py --check > /dev/null || {
+  echo "pre-commit: PATTERN_INDEX.md is still stale after the rebuild"; exit 1; }
+echo "pre-commit: PATTERN_INDEX.md rebuilt and staged"
+exit 0
