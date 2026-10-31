@@ -357,6 +357,105 @@ def cadence_line(rows):
         newest, span, age, '' if age == 1 else 's')
 
 
+# ------------------------------------------------------- stack and cadence
+
+def _ci_job_count(text):
+    """Direct children of the `jobs:` block. A naive count of two-space keys
+    is WRONG and was nearly shipped as this check: it also matches `push:`,
+    `pull_request:` and `workflow_dispatch:` under `on:`, which is how a
+    one-job workflow reads as four."""
+    n, inside = 0, False
+    for ln in text.replace('\r\n', '\n').split('\n'):
+        if re.match(r'^jobs:\s*$', ln):
+            inside = True
+            continue
+        if not inside:
+            continue
+        if not ln.strip() or ln.lstrip().startswith('#'):
+            continue
+        if re.match(r'^\S', ln):          # back to column 0 - block ended
+            break
+        if re.match(r'^  [A-Za-z0-9_-]+:\s*$', ln):
+            n += 1
+    return n
+
+
+def check_stack_facts():
+    """P332: a doc may not state a dependency version or a job count that the
+    repo contradicts. Nothing here read package.json or ci.yml before, so
+    CLAUDE.md carried 'Next.js 14' against 16.2.6 and '5 jobs' against one,
+    under a passing audit, for an unknown length of time."""
+    text = read(os.path.join(ROOT, 'CLAUDE.md'))
+
+    pkg_path = os.path.join(ROOT, 'package.json')
+    if os.path.exists(pkg_path):
+        try:
+            pkg = json.loads(read(pkg_path))
+        except ValueError as e:
+            fail('package.json', 'is not valid JSON (%s)' % e)
+            pkg = None
+        if pkg is not None:
+            deps = dict(pkg.get('dependencies') or {})
+            deps.update(pkg.get('devDependencies') or {})
+            for dep, label in (('next', 'Next.js'), ('react', 'React')):
+                spec = deps.get(dep)
+                if not spec:
+                    continue
+                m = re.search(r'(\d+)', spec)
+                if not m:
+                    continue
+                real = m.group(1)
+                for stated in set(re.findall(re.escape(label) + r'\s+(\d+)', text)):
+                    if stated != real:
+                        fail('CLAUDE.md',
+                             '%s %s stated, package.json pins %s (major %s)'
+                             % (label, stated, spec, real))
+
+    ci = os.path.join(ROOT, '.github', 'workflows', 'ci.yml')
+    if os.path.exists(ci):
+        jobs = _ci_job_count(read(ci))
+        for stated in set(re.findall(r'ci\.yml[^\n]{0,80}?\((\d+)\s+jobs?\)', text)):
+            if int(stated) != jobs:
+                fail('CLAUDE.md', 'says ci.yml has %s jobs, it has %d'
+                     % (stated, jobs))
+
+
+def check_upskilling_due():
+    """P332: self_upskilling.md exists (P198) because nothing watched the tools
+    this project is built on. It carries its own cadence - 'Next due: <date>' -
+    and nothing enforced it. On 2026-10-31 it was two days overdue and silent,
+    while FLUX had been a major version behind since 2026-10-01 and the Kling
+    3.0 camera note sat unread through a whole scene set.
+
+    Overdue is a FAILURE, not a warning. The escape is to run the check and
+    move the date - which is the thing the file is for."""
+    path = os.path.join(ROOT, 'self_upskilling.md')
+    if not os.path.exists(path):
+        fail('self_upskilling.md', 'missing - the weekly tool watch has no file')
+        return
+    text = read(path)
+    due = re.search(r'\*\*Next due:\*\*\s*(\d{4})-(\d{2})-(\d{2})', text)
+    last = re.search(r'\*\*Last checked:\*\*\s*(\d{4})-(\d{2})-(\d{2})', text)
+    if not due:
+        fail('self_upskilling.md', 'has no "**Next due:** YYYY-MM-DD" line - '
+                                   'the cadence cannot be enforced')
+        return
+    d = datetime.date(*(int(x) for x in due.groups()))
+    today = datetime.date.today()
+    if today > d:
+        fail('self_upskilling.md',
+             'the weekly tool check is %d day(s) OVERDUE (due %s, today %s). '
+             'Run it, record what was found, and move both dates. FLUX was a '
+             'major version behind for a month under this silence.'
+             % ((today - d).days, d.isoformat(), today.isoformat()))
+    if last:
+        l = datetime.date(*(int(x) for x in last.groups()))
+        if d <= l:
+            fail('self_upskilling.md',
+                 'Next due %s is not after Last checked %s - the cadence line '
+                 'was edited without being advanced' % (d.isoformat(), l.isoformat()))
+
+
 # --------------------------------------------------------------------- main
 
 def main():
@@ -377,6 +476,8 @@ def main():
     check_retro(rows)
     frontier = check_pattern_refs()
     check_sibling_frontier(frontier)
+    check_stack_facts()
+    check_upskilling_due()
 
     if not args.quiet:
         print('doc audit: %d reels, pattern frontier P%03d%s'

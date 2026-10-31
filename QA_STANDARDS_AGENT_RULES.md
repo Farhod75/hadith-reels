@@ -15,7 +15,7 @@
 #   - Playwright best practices: https://playwright.dev/docs/best-practices
 #   - pytest best practices: https://docs.pytest.org/en/stable/explanation/goodpractices.html
 #   - OWASP LLM Top 10: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-#   - fix_patterns.md (this repo) — 43 patterns from real CI failures
+#   - fix_patterns.md (this repo) — 262 patterns from real CI failures and shipped defects (frontier P332; the P-sequence is shared with hadith-verifier, so the count is lower than the frontier)
 #   - github.com/Farhod75/engineering-standards (public standards repo)
 #   - github.com/Farhod75/ai-testing-enterprise (enterprise AI testing framework)
 #   - github.com/Farhod75/hadith-verifier (primary portfolio project)

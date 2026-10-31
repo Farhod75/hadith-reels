@@ -13992,3 +13992,112 @@ attention watching it.
 renders were polled to completion in one turn.
 
 ---
+
+## PATTERN 332: the audit passed because it was not looking at the stack
+
+**Found:** 2026-10-31, when the operator asked whether the CI failures and
+the Playwright lag were evidence that the documentation process was not
+making the project grow. They were.
+
+**Three wrong numbers under a green check.** CLAUDE.md said:
+
+    Next.js 14          package.json: 16.2.6
+    ci.yml - 5 jobs     ci.yml: ONE job
+    patterns P046-P119  frontier: P331
+
+`audit-docs.py` runs on every push and printed *"OK - every counted fact in
+the docs matches the repo"* over all three. It was not lying. It compares the
+docs against each other and against the asset registry, and it had never been
+given `package.json` or `ci.yml` to look at. `check_pattern_refs` fails only
+on a number ABOVE the frontier - invented patterns - so a CLOSED RANGE that
+claims to describe the whole file rots silently the moment the next pattern
+lands.
+
+**I nearly shipped the fix wrong.** Counting two-space keys in ci.yml gives
+four, because `push:`, `pull_request:` and `workflow_dispatch:` live under
+`on:` at the same indent. I reported "4 jobs" to the operator before parsing
+the `jobs:` block properly and finding ONE. A checker written from a regex
+that was never tested against the file is a second wrong number with a green
+tick on it.
+
+**The worse half: the watchlist had its own due date and nothing read it.**
+`self_upskilling.md` exists because of P198 - *"nothing in this project
+watches the tools it is built on"* - and carries a cadence in its own header.
+On 2026-10-31 it read **Next due: 2026-10-29**. Two days overdue, silent.
+
+Its Log records the same shape three times before:
+
+- a run *"4 days overdue"*;
+- an eval *"logged retroactively - the eval happened but neither this Log nor
+  the header date was updated, against this file's own rule that the date
+  CHECKED is the value"*;
+- **FLUX 3 shipping 2026-10-01, three days BEFORE the 2026-10-04 check that
+  declared FLUX 2 current** - *"the weekly check this file exists to institute
+  missed a major version that was already shipping, the same failure the
+  header describes, occurring inside the process meant to prevent it."*
+
+**What that silence cost on 2026-10-30/31.** Fifteen stills generated on
+`fal-ai/flux-2` while the file had recorded FLUX 3 as available since October
+1st. And the Kling 3.0 note - *"reads motion instructions more aggressively,
+phrase camera moves conservatively"* - sat in BOTH this file and the b5185
+registry entries, unread, while I moved the camera and paid $2.24 for two
+re-rolls to rediscover it (P329).
+
+**Fix.** TWO checks in `audit-docs.py`, both `fail()`, which the hook already
+turns into a blocked push:
+
+- `check_stack_facts` - a stated Next.js/React version must match
+  `package.json`; a stated ci.yml job count must match the `jobs:` block,
+  counted from inside the block rather than by indent.
+- `check_upskilling_due` - **an overdue `Next due:` date fails the push.** Also
+  fails if `Next due` is not after `Last checked`, which is the retroactive
+  edit the Log already caught once.
+
+**A third check was written, and removed, and that is part of the pattern.**
+`check_pattern_range` was meant to catch the stale "P046-P119". Three
+attempts:
+
+- wide, every `Pnnn-Pnnn` in every doc: **28 findings, 1 real**. The other 27
+  were CHANGELOG and OPEN_ITEMS entries naming the patterns a given commit
+  covered - correct permanently.
+- narrow, only ranges on a line naming `fix_patterns.md`: **2 findings, BOTH
+  false** - one a section's source attribution (`## Source: fix_patterns.md
+  P037-P043`), one an incident record (`P040-P059 (20 patterns) missing until
+  end of session`).
+- a stated COUNT instead would have failed too: that same incident line reads
+  "(20 patterns)" about patterns that were MISSING.
+
+A regex over prose cannot separate *describes the file* from *cites the file*.
+That is a judgement, and this script's own header forbids it in one sentence:
+*"checks only what is COUNTABLE, where wrong is wrong with no opinion
+involved."* I wrote a check the file's charter told me not to write, three
+times, producing five false positives while missing the real defect four lines
+above one of them - `QA_STANDARDS_AGENT_RULES.md` describing the pattern file
+as "43 patterns" when it holds 262. That one was corrected by hand.
+
+Shipping the wide version would have failed every push on accurate history,
+and the operator would have learned to look past the doc audit - which is
+precisely what the P321 addendum says a gate that blocks on history does. That
+addendum was written the previous day.
+
+**Why overdue is a failure and not a warning.** A warning is what this already
+had: a date, in a file, that a human or an assistant was supposed to notice.
+It was missed three times out of five recorded runs. The escape is not an
+override flag - it is to run the check and move the date, which is the thing
+the file exists for. P320 set the precedent: a red CI blocks the push, and the
+way out is to fix CI.
+
+**Lesson.** A process that depends on someone remembering is not a process,
+it is a hope with a filename. The project had the right design - a watchlist,
+a cadence, a log, a rule that the date CHECKED is the value - and executed it
+three times out of five, because nothing exited non-zero. Writing the rule
+down is step one; the step that makes it real is giving it a return code.
+
+**Related:** P198 (why the watchlist exists), P187 (why the doc audit exists),
+P246 (a cached frontier that went sixty patterns stale), P320 (a gate that
+blocks rather than warns), P326/P329 (the answer already in the repo, unread),
+P275 (a stale line manufactures investigations).
+
+**Status:** FIXED. The three facts corrected and the three checks live.
+
+---

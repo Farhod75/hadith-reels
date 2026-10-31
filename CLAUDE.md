@@ -8,7 +8,7 @@
 ## 🧑 WHO
 
 **Developer:** Farhod Elbekov — SDET / AI QA Engineer, Charlotte NC
-**Stack:** Next.js 14 + TypeScript + Supabase + Claude API + Vercel + multilingual TTS
+**Stack:** Next.js 16 + TypeScript + Supabase + Claude API + Vercel + multilingual TTS
 **Repo:** github.com/Farhod75/hadith-reels
 **Sister project to:** hadithverifier.com
 **Built as:** sadaqah jariyah — daily authentic hadith reels for social media
@@ -522,14 +522,14 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   - `agents/docs-agent.ts`, `log-agent.ts`, `fix-agent.ts`
 
 ### CI
-- `.github/workflows/ci.yml` — smart push gate (5 jobs)
+- `.github/workflows/ci.yml` — smart push gate (1 job)
 - `.githooks/pre-push` — local smart scanner. Requires `core.hooksPath=.githooks`.
 - HR was the FIRST project to implement this pattern. Idris adopted it later.
 
 ### Documentation
 - `AGENTS.md` — agent orchestration + session log
 - `CHANGELOG.md` — version history
-- `fix_patterns.md` — patterns P046–P119 (HR-specific). **P-numbers are ONE
+- `fix_patterns.md` — patterns P046 onward (HR-specific). **P-numbers are ONE
   GLOBAL SEQUENCE shared with HV** — the same P-number is the same fix in both
   repos. Never renumber per project. Verify the frontier in BOTH repos before
   assigning: `git grep -n "^\*\*ID:\*\* P1[01][0-9]" fix_patterns.md`

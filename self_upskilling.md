@@ -11,8 +11,13 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-10-22
-**Next due:** 2026-10-29
+**Last checked:** 2026-10-31
+**Next due:** 2026-11-07
+
+> **This date is now enforced.** `audit-docs.py` fails the push when it
+> passes (P332). Before that it was a line in a file that was missed three
+> times out of five recorded runs - including the run that declared FLUX 2
+> current three days after FLUX 3 shipped.
 
 ---
 
@@ -21,9 +26,10 @@
 | Tool | In use | Where it is set | Latest known | Status |
 |---|---|---|---|---|
 | ElevenLabs TTS | `eleven_v4` | `app/api/tts/route.ts` fallback | v4, v4 Turbo | CURRENT, re-confirmed 2026-10-22 BY PROBE — `eleven_v4` and `eleven_v4_turbo` both return audio; `eleven_v5` and `eleven_v5_turbo` both return `model_not_found`. No v5 exists (P193) |
-| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | **Kling 4.0 — playground only** | LATEST CALLABLE VERSION, re-confirmed 2026-10-22. 4.0 is live on fal but has NO API yet — see open evals |
+| Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | **Kling 4.0 — API NOW OPEN** | **BEHIND one major version, changed 2026-10-31.** fal has announced public API access to all customers; 30s native generation with audio, up to 15 references, 10 keyframes. The 2026-10-22 row said "coming soon" and that is no longer true. Endpoint id and per-second pricing still need reading off the model page before any eval — see open evals |
 | FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | **FLUX 3 Image, 2026-10-01** | **BEHIND one major version** — re-confirmed 2026-10-22: FLUX 3 is callable at `blackforestlabs/flux-3/text-to-image`, $0.048 per 1 MP image. See open evals |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
+| Playwright | `@playwright/test` **1.60.0** | `package.json` | **1.64** | **BEHIND four minor versions. 1.61 is the release that adds Ubuntu 26.04 support** — the version that would let `.github/workflows/ci.yml` drop its `ubuntu-24.04` pin (P314). **Added to this watchlist 2026-10-31, and the omission is the finding:** CI went red for 31 consecutive runs on this toolchain while the file that exists to watch the project's tools did not list it |
 | Whisper (ASR) | local `openai-whisper` | PATH | ElevenLabs **Scribe v2** | Scribe v2 PROBED 2026-10-15, verdict recorded below. Re-checked 2026-10-22: no Scribe v3 exists; latest is v2 plus a `scribe-v2-medical` variant. Nothing new to evaluate |
 
 ## How to check each, without trusting a release note
@@ -200,6 +206,7 @@
 
 | Date | Checked | Found |
 |---|---|---|
+| 2026-10-31 | Kling, FLUX, Playwright, ElevenLabs (not probed) | Ran **2 days overdue — and for the first time something said so**: `audit-docs.py` now fails the push on this file's own due date (P332). **Kling 4.0 API OPENED** since the 22nd, so the Kling row flips from current to behind. **Playwright found at 1.60.0 against 1.64, and was not on this watchlist at all** despite being the toolchain behind 31 red CI runs; 1.61 is what unpins ci.yml. FLUX 3 still outstanding since 2026-10-01 — fifteen stills were generated on flux-2 on 2026-10-30 because this file was not read. ElevenLabs not probed: the rule here is probe-don't-trust and that is a paid call, left for the operator. |
 | 2026-10-04 | ElevenLabs, Kling, FLUX, Anthropic guidance | v4 already adopted same day (P193). Kling 3.0 and FLUX 2 both behind, neither previously noticed. Anthropic positive-instruction guidance vs 20 NEVER rules. |
 | 2026-10-04 | FLUX 2 evaluated | ADOPTED. Rendered on the first call a shot v1.1 refused six times. Kling 3.0 still open. |
 | 2026-10-11 | Kling 3.0 | ADOPTED as `v3/pro`. Logged retroactively on 2026-10-15 — the eval happened but neither this Log nor the header date was updated, against this file's own rule that the date CHECKED is the value. |

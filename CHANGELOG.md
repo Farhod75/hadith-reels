@@ -1,3 +1,35 @@
+## [2026-10-31b] - the doc audit now reads the stack, and the watchlist has teeth
+
+### Fixed
+
+- **Three wrong numbers in CLAUDE.md under a passing doc audit, and a weekly
+  check that had been silently overdue (P332).** CLAUDE.md said "Next.js 14"
+  against 16.2.6, "ci.yml - 5 jobs" against ONE, and "patterns P046-P119"
+  against a P331 frontier, while `audit-docs.py` printed "every counted fact in
+  the docs matches the repo" on every push - it had never been given
+  `package.json` or `ci.yml` to read, and `check_pattern_refs` only fails on
+  numbers ABOVE the frontier, so a closed range rots silently. Worse,
+  `self_upskilling.md` - the file P198 created because nothing watched the
+  tools this project runs on - read "Next due: 2026-10-29" on 2026-10-31 and
+  said nothing; its own Log already recorded a run 4 days overdue, an eval
+  logged retroactively against its own rule, and FLUX 3 shipping three days
+  before the check that called FLUX 2 current. That silence cost fifteen stills
+  generated on flux-2 and $2.24 rediscovering a Kling camera note that was
+  written in two places. Now three checks fail the push: stated dependency
+  versions and ci.yml job count against the repo, closed pattern ranges below
+  and an overdue or non-advancing `Next due` date. The escape is to run the
+  check and move the date, not a flag. A third check, for stale pattern ranges,
+  was written three ways and removed: a regex over prose cannot tell *describes
+  the file* from *cites the file*, and the wide version produced 28 findings of
+  which one was real. `audit-docs.py`'s own header already said not to -
+  "checks only what is COUNTABLE, where wrong is wrong with no opinion
+  involved". The one real stale fact it was reaching for, QA_STANDARDS calling
+  the pattern file "43 patterns" when it holds 262, was corrected by hand.
+  **The overdue check immediately earned itself:** running the 2-days-late
+  tool review found Kling 4.0's API had opened since 2026-10-22, and found
+  Playwright at 1.60.0 against 1.64 — not on the watchlist at all, despite
+  being the toolchain behind 31 red CI runs. 1.61 is what unpins ci.yml.
+
 ## [2026-10-31] - the first Tirmidhi scene set, and three ways to lose an hour
 
 ### Added
