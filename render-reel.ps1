@@ -42,6 +42,7 @@ param(
   [Parameter(Mandatory)][ValidateSet('en','ru','ar','uz','tj')][string]$Lang,
   [Parameter(Mandatory)][string]$Slug,
   [string]$Nasheed,
+  [double]$NasheedGain = 1.0,   # P338: this reel only, on top of the bed's registry gain
   [string[]]$Scenes,     # ordered clip names (in normalized\) for an ANIMATED reel; omit = random 3
   [string]$Draft = 'draft.txt',   # source text for the subtitle validator
   [switch]$ForceNoSubs,
@@ -281,6 +282,18 @@ if ($nasheeds.Count -ge 1) {
       }
     }
   } catch { Write-Host "  could not read the bed gain from the registry - using 0.12" -ForegroundColor DarkGray }
+  # P338: a per-REEL trim. The registry gain calibrates a BED against the
+  # others (P251) and measured right on tirmidhi-1161 - the four beds landed
+  # within 0.8 LU of each other under the voice. The operator still heard EN
+  # as loud: a bright vocal bed competes with one voice more than another. That
+  # is a judgement about this reel, so it is made here, recorded in the sidecar,
+  # and never written back to the registry, where it would quietly make the
+  # bed wrong for every later reel.
+  if ($NasheedGain -ne 1.0) {
+    if ($NasheedGain -le 0 -or $NasheedGain -gt 2) { Die "-NasheedGain $NasheedGain is out of range (0 < g <= 2)" }
+    $nasheedVol = [math]::Round($nasheedVol * $NasheedGain, 4)
+    $gainNote  += ", reel trim x$NasheedGain -> vol $nasheedVol"
+  }
   # InvariantCulture: a comma-decimal locale would hand ffmpeg volume=0,2640
   # and the filter graph would not parse.
   $nasheedVolStr = $nasheedVol.ToString([System.Globalization.CultureInfo]::InvariantCulture)
@@ -864,6 +877,7 @@ if ($chosen) {
     $sidecar = [ordered]@{
       nasheed   = (Split-Path $chosen -Leaf)
       nasheedVol = $nasheedVol
+      nasheedGain = $NasheedGain
       scenes    = $Scenes
       fitScenes = [bool]$FitScenes
       style     = $Style

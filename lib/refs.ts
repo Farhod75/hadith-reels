@@ -16,7 +16,10 @@
 // collection or narrator appearing in the library should look wrong in the
 // caption, not disappear from it.
 
-export type Forms = { ru: string; uz: string; tj: string }
+// h: the honorific's form for a narrator - 'm' (default) анҳу / him, 'f' анҳо /
+// her, 'pair' анҳумо / them, for a companion whose father was a companion too.
+// Read by scripts/lib/narrator_leadin.py for the spoken lead-in (P337).
+export type Forms = { ru: string; uz: string; tj: string; h?: 'm' | 'f' | 'pair' }
 
 export const COLLECTIONS: Record<string, Forms> = {
   'Sahih al-Bukhari': { ru: 'Сахих аль-Бухари',  uz: 'Саҳиҳ ал-Бухорий',  tj: 'Саҳеҳи Бухорӣ' },
@@ -43,9 +46,9 @@ export const NARRATORS: Record<string, Forms> = {
   'Abu Said al-Khudri':    { ru: 'Абу Саид аль-Худри',     uz: 'Абу Саид ал-Худрий',    tj: 'Абӯсаиди Худрӣ' },
   'Abu Musa al-Ashari':    { ru: 'Абу Муса аль-Ашари',     uz: 'Абу Мусо ал-Ашарий',    tj: 'Абӯмусои Ашъарӣ' },
   'Abu Malik al-Ashari':   { ru: 'Абу Малик аль-Ашари',    uz: 'Абу Молик ал-Ашарий',   tj: 'Абӯмолики Ашъарӣ' },
-  'Aisha':                 { ru: 'Аиша',                   uz: 'Оиша',                  tj: 'Оиша' },
-  'Ibn Umar':              { ru: 'Ибн Умар',               uz: 'Ибн Умар',              tj: 'Ибни Умар' },
-  'Ibn Abbas':             { ru: 'Ибн Аббас',              uz: 'Ибн Аббос',             tj: 'Ибни Аббос' },
+  'Aisha':                 { ru: 'Аиша',                   uz: 'Оиша',                  tj: 'Оиша', h: 'f' },
+  'Ibn Umar':              { ru: 'Ибн Умар',               uz: 'Ибн Умар',              tj: 'Ибни Умар', h: 'pair' },
+  'Ibn Abbas':             { ru: 'Ибн Аббас',              uz: 'Ибн Аббос',             tj: 'Ибни Аббос', h: 'pair' },
   'Umar ibn al-Khattab':   { ru: 'Умар ибн аль-Хаттаб',    uz: 'Умар ибн Хаттоб',       tj: 'Умар ибни Хаттоб' },
   'Uthman ibn Affan':      { ru: 'Усман ибн Аффан',        uz: 'Усмон ибн Аффон',       tj: 'Усмон ибни Аффон' },
   'Jabir ibn Abdullah':    { ru: 'Джабир ибн Абдуллах',    uz: 'Жобир ибн Абдуллоҳ',    tj: 'Ҷобир ибни Абдуллоҳ' },
@@ -58,6 +61,7 @@ export const NARRATORS: Record<string, Forms> = {
   'Hudhayfah ibn al-Yaman': { ru: 'Хузайфа ибн аль-Яман', uz: 'Ҳузайфа ибн Яман', tj: 'Ҳузайфа ибни Яман' },
   'Abu Shuraih al-Adawi':  { ru: 'Абу Шурайх аль-Адави', uz: 'Абу Шурайҳ ал-Адавий', tj: 'Абӯшурайҳи Адавӣ' },
   "Mu'awiyah ibn Jahimah": { ru: 'Муавия ибн Джахима',     uz: 'Муовия ибн Жоҳима',     tj: 'Муовия ибни Ҷоҳима' },
+  'Umm Salamah':           { ru: 'Умм Салама',             uz: 'Умму Салама',           tj: 'Уммӣ Салама', h: 'f' },
 }
 
 /**

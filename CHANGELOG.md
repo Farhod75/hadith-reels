@@ -1,3 +1,19 @@
+## [2026-10-31h] - the narrator is said, from the DB, in every language; a per-reel nasheed trim
+
+### Fixed
+
+- **Narrator lead-in required in S, from `hadith_library.narrator` (P337).** On
+  tirmidhi-1161 only UZ named Umm Salamah. Rule now: do not omit, do not add.
+  `scripts/lib/narrator_leadin.py` builds the fixed lead-in per language from the
+  DB narrator and `lib/refs.ts` NARRATORS; `narrate-reel.py` refuses before any
+  TTS call. NARRATORS gains Umm Salamah (the RU/UZ/TJ captions would have shown
+  her name in Latin) and an honorific field. 7 offline tests.
+- **`render-reel.ps1 -NasheedGain` (P338).** Measured: the four 1161 beds sit
+  within 0.8 LU under the voice; the voices differ by 5 dB. A per-reel trim,
+  recorded in the sidecar, instead of re-calibrating a bed for every reel.
+
+---
+
 ## [2026-10-31g] - the pattern index rebuilds itself on commit
 
 ### Added

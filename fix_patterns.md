@@ -14406,3 +14406,81 @@ it arrived in the commit anyway.
 
 ---
 
+## PATTERN 337: the narrator was said in one language of four, and the rule pointed the other way
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** content (caught in review, unpublished)
+
+**What happened.** On the tirmidhi-1161 set the operator heard Umm Salamah named
+in the UZ reel only. The UZ draft opened S - the narrated block - with
+"Умму Салама розияллоҳу анҳодан ривоят қилинади:"; EN, RU and TJ began at "The
+Prophet ﷺ said". `hadith_library` keeps the matn in `text_arabic` and the
+narrator in its own column; a scan of all 72 rows in four languages found no
+narrator formula in any text, so the UZ lead-in was added at generation, and the
+other three followed the stored text.
+
+The documented rule (reel-creation-pipeline.md, since R055 RU) said the narrator
+belongs in H, not in the narrated span. Read literally, UZ was the defect. The
+operator's rule is the opposite and stronger: **do not omit and do not add**. The
+same matn reaches us through different companions, and each is a different
+record; this project has already met Abu Bakra (Nufay' ibn al-Harith) beside Abu
+Bakr as-Siddiq - one letter apart, two people. A reel that drops the narrator
+cannot be told apart from its sibling, and a generator that writes the name
+freely can write the wrong one.
+
+Also found: `lib/refs.ts` NARRATORS had no Umm Salamah, so every RU/UZ/TJ caption
+for this set would have carried "Umm Salamah" in Latin via the fallback.
+
+**Fix.** `scripts/lib/narrator_leadin.py`: a fixed lead-in per language, the
+name from `hadith_library.narrator` and its form from NARRATORS - the same table
+the caption line uses, so voice and caption cannot disagree. NARRATORS gains
+Umm Salamah and an honorific field (`h: 'f'` for Aisha and Umm Salamah, `'pair'`
+for Ibn Umar and Ibn Abbas - анҳумо). `narrate-reel.py` refuses, before any TTS
+call and on `--dry-run`, an S that does not open with the lead-in, a narrator
+missing from the table, or a row with no narrator. Seven offline tests in
+`scripts/lib`, run by pre-push. The R055 row in reel-creation-pipeline.md is
+rewritten. Published reels are not touched.
+
+Verified in order: with the code in and the drafts not yet changed, the EN
+dry-run was refused; after the three drafts were updated, all four passed.
+
+**Tripwire:** none - the gate is narrate-reel.py refusing the draft before money
+is spent; a PreToolUse rule would see the command, not the story block.
+
+**Status:** FIXED for the adults lane. Kids lane: not decided, not gated.
+
+---
+
+## PATTERN 338: the only volume knob was a calibration
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** process
+
+**What happened.** The operator heard the nasheed slightly loud in the EN and TJ
+reels of tirmidhi-1161. The first proposal was to lower those beds' `gain` in
+the registry. Measured first (narration at the mix's 1.4, bed at its mix volume
+over the same seconds, integrated LUFS):
+
+| lang | voice | bed under it | gap |
+|---|---|---|---|
+| EN | -20.3 | -31.5 | 11.2 LU |
+| RU | -21.5 | -32.3 | 10.8 LU (operator: fine) |
+| UZ | -16.3 | -32.1 | 15.8 LU (operator: fine) |
+| TJ | -19.1 | -31.6 | 12.5 LU |
+
+The beds land within 0.8 LU of each other: the registry calibration (P251)
+works. The voices differ by 5 dB. And EN's gap is wider than RU's while it
+sounded louder - a bright vocal bed competes with one voice more than another.
+Lowering the registry gain would have made Morning-Serenity the quietest bed in
+every future reel to fix one reel's ear.
+
+**Fix.** `render-reel.ps1 -NasheedGain <x>`: a per-reel trim on top of the
+bed's gain, range-checked, printed, and written to the render sidecar
+(`nasheedGain`). The registry stays a calibration. EN 1161 renders at 0.79
+(-2.1 dB); TJ moves to aswati-Gentle-Reflection, measured at a 13.4 LU gap -
+between RU and UZ, which the operator called fine.
+
+**Tripwire:** none - a missing control, not a recurring action.
+
+**Status:** FIXED.
+
+---
+

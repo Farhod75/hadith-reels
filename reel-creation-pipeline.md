@@ -292,7 +292,7 @@ second one) · Change log. Then one commit, `Doc=1`.
 | Allah absent from the moral | R054–R057, all four first drafts | Gratitude with no object; "tell yourself" instead of thanking Allah. |
 | Meaning drift the DB fix doesn't prevent | R052, R056, R057 | Corrected `text_uzbek`/`text_tajik` still produced «қаноат» in generation. The generator re-derives the shift from the concept. |
 | Escalation: "good" → "wins" | Every set before P133 | Fixed, but check the title anyway. |
-| Isnad verb in the story block | R055 RU | «Это передал…» belongs in H, not the narrated span. |
+| Narrator in the story block | R055 RU; tirmidhi-1161 | REVISED 2026-10-31 (P337): S OPENS with the fixed narrator lead-in built from `hadith_library.narrator` and `lib/refs.ts` NARRATORS - not omitted, not added, never free-form like «Это передал…» inside the quote. `narrate-reel.py` refuses an S without it. |
 | Singular verb for the Prophet ﷺ | R056 UZ, R057 TJ | «деди»→«дедилар», «гуфт»→«гуфтанд». |
 | Caption quote Latin against Cyrillic body | 8 occurrences | Pull `text_uzbek_cyrillic`; never transliterate by hand. |
 | Divine-name case (RU) | R039, R043 | Linter checks WHICH name, not its case. Still unfixed. |

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-266 patterns in 277 entries, frontier **P336**. The P-sequence is shared with
+268 patterns in 279 entries, frontier **P338**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -41,6 +41,7 @@ BEFORE changing it.
 - `check-draft-sync.py` (3) - P282, P294, P297
 - `generate-talking-clip.py` (3) - P137, P138, P164
 - `probe-passb.py` (3) - P221, P222, P275
+- `refs.ts` (3) - P253, P292, P337
 
 ---
 
@@ -323,5 +324,7 @@ BEFORE changing it.
 - **P300 (addendum 2)** - (addendum): three more times in one morning, and the shape of it
 - **P336** - a lesson that cannot recognise its own recurrence
 - **P335 (addendum 3)** - (addendum): the gate printed the command instead of running it
+- **P337** - the narrator was said in one language of four, and the rule pointed the other way
+- **P338** - the only volume knob was a calibration
 
-<!-- pattern-index-stamp entries=277 patterns=266 frontier=336 sha1=c69d6ef101e53e3b869de5219972a45ce4dfe47a -->
+<!-- pattern-index-stamp entries=279 patterns=268 frontier=338 sha1=1575795895377aad43257e56a06ba78beffd3b44 -->

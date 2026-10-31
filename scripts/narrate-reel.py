@@ -65,6 +65,29 @@ for k in ('S', 'M'):
     if not blocks.get(k):
         die('%s has no %s block' % (os.path.relpath(draft, ROOT), k))
 
+# P337: S opens with the narrator, from hadith_library, in the fixed form for
+# this language - not omitted, not added, never generated. Checked BEFORE the
+# dry-run exit and before any TTS call. Adults lane only: the kids story block
+# has its own shape and has not been decided.
+if a.style == 'adults':
+    import importlib.util
+    _spec = importlib.util.spec_from_file_location(
+        '_nl', os.path.join(ROOT, 'scripts', 'lib', 'narrator_leadin.py'))
+    _nl = importlib.util.module_from_spec(_spec)
+    _spec.loader.exec_module(_nl)
+    try:
+        _narrator = _nl.db_narrator(a.slug)
+    except Exception as exc:
+        die('cannot read the narrator for %s from hadith_library (%s) - P337 '
+            'needs it before narrating' % (a.slug, exc))
+    _problems = _nl.check_story(blocks['S'], _narrator, a.lang, _nl.load_narrators())
+    if _problems:
+        for _p in _problems:
+            print('  P337: ' + _p)
+        die('the S block does not open with the narrator from hadith_library '
+            '(%s). Nothing was sent and nothing was spent.' % _narrator)
+    print('narrator: %s - S opens with the P337 lead-in' % _narrator)
+
 work = os.path.join(ROOT, 'out', 'work', a.style, a.slug, a.lang)
 
 
