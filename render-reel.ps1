@@ -31,7 +31,9 @@
                 as ~0.01 similarity, which is the validator telling you the
                 draft was never re-synced after the last admin edit.
    -NoReview    (optional) skip the subtitle proofreading PAUSE. It does NOT
-                skip the validator, which still runs and prints (P188).
+                skip the validator, which runs --strict: a HIGH finding stops
+                the render before the burn (P339), unless
+                -AcceptSubtitleFindings.
    -Open        (optional) auto-play the finished reel
    -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
 ================================================================================
@@ -48,6 +50,7 @@ param(
   [switch]$ForceNoSubs,
   [switch]$FitScenes,     # trim each scene clip to narration/clips so ALL of them appear
   [switch]$NoReview,
+  [switch]$AcceptSubtitleFindings,   # P339: burn under -NoReview despite HIGH findings
   [switch]$Open,
   [switch]$ValidateOnly
 )
@@ -595,19 +598,25 @@ if ($useSubs) {
     # ForEach-Object did not, which made the RU/UZ/TJ lint findings unreadable.
     $prevConsoleEnc = [Console]::OutputEncoding
     [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-    & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" 2>&1 |
+    $sttStrict = if ($NoReview) { @('--strict') } else { @() }   # P339
+    & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" @sttStrict 2>&1 |
       ForEach-Object { Write-Host "   $_" }
     $sttRc = $LASTEXITCODE
     $env:PYTHONIOENCODING = $prevPyIO
     [Console]::OutputEncoding = $prevConsoleEnc
     $ErrorActionPreference = $prevEAP
-    if ($sttRc -ne 0) {
-      # Warn-only by design: the validator is a reader's aid, not a gate. The
-      # human at the checkpoint decides. Under -NoReview there is no human, so
-      # say loudly that something was found and nobody was asked.
-      if ($NoReview) {
-        Write-Host "`n  WARN  the validator reported findings and -NoReview skipped the gate." -ForegroundColor Yellow
-        Write-Host "        Those subtitles are about to be burned in unreviewed." -ForegroundColor Yellow
+    # P339: this block used to WARN when the validator exited non-zero - and
+    # stt-validate.py exited 0 whatever it found, so the warning never printed.
+    # On tirmidhi-1161 RU, "пророг" and "Ум соляма, добудет" were burned under
+    # -NoReview with the warning silent; they were caught only because the
+    # validator's output was read by hand. Under -NoReview the validator now runs
+    # --strict, and a HIGH finding - or a validator that could not run (P093) -
+    # stops the render HERE, before the burn.
+    if ($NoReview -and $sttRc -ne 0) {
+      if ($AcceptSubtitleFindings) {
+        Write-Host "`n  WARN  validator exit $sttRc - burning anyway (-AcceptSubtitleFindings)." -ForegroundColor Yellow
+      } else {
+        Die "the subtitle validator reported HIGH findings or could not run (exit $sttRc), and -NoReview means nobody reviews them. Nothing was burned. Fix $srt against $Draft and re-run - the SRT is cached on the narration (P211), so the fix survives - or run without -NoReview to review it, or pass -AcceptSubtitleFindings to burn anyway."
       }
     }
   }

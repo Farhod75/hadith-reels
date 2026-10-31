@@ -1,3 +1,16 @@
+## [2026-10-31i] - a -NoReview render stops before burning HIGH subtitle findings
+
+### Fixed
+
+- **The -NoReview warning could never fire (P339).** It listened for a non-zero
+  exit, and stt-validate.py exited 0 whatever it found. On 1161 that let
+  "пророг" and "Ум соляма" burn silently. `--strict` exits 1 on HIGH;
+  render-reel.ps1 passes it under -NoReview and stops before the burn, unless
+  `-AcceptSubtitleFindings`. CLAUDE.md Workflow F corrected (the render has
+  called the validator itself since P188).
+
+---
+
 ## [2026-10-31h] - the narrator is said, from the DB, in every language; a per-reel nasheed trim
 
 ### Fixed

@@ -473,6 +473,8 @@ def main():
     ap.add_argument('--lang', required=True,
                     choices=['en', 'ru', 'ar', 'uz', 'tj'])
     ap.add_argument('--narration', default=None, help='.mp3 for duration check')
+    ap.add_argument('--strict', action='store_true',
+                    help='exit 1 on any HIGH finding (render-reel.ps1 under -NoReview, P339)')
     args = ap.parse_args()
 
     width = 66
@@ -562,11 +564,17 @@ def main():
     print(f'   narration: {dur:.1f}s' if dur else '')
     if forms:
         print(f"  prophet symbol rendered as: {', '.join(sorted(forms))}")
-    print('  warn-only: nothing was blocked or changed. A clean run means')
+    if args.strict:
+        print('  strict: a HIGH finding exits 1 (P339) - render-reel.ps1 will not')
+        print('  burn these unreviewed. A clean run means these checks passed,')
+    else:
+        print('  warn-only: nothing was blocked or changed. A clean run means')
     print('  these checks passed, NOT that the subtitles are correct.')
     print('-' * width)
     print()
-    return 0
+    # P339: findings used to exit 0 unconditionally, and render-reel's
+    # -NoReview warning listened for a non-zero exit - so it never fired.
+    return 1 if (args.strict and counts['high']) else 0
 
 
 if __name__ == '__main__':

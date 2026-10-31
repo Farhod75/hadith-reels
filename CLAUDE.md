@@ -633,9 +633,13 @@ npm run test:multilingual
    correct — read it yourself. Human review is still the gate.
 
 ### Workflow F — Validate subtitles at the render gate
-1. `render-reel.ps1` pauses at "REVIEW SUBTITLES before they are burned"
-2. In a second terminal, run:
-   `python scripts\stt-validate.py --srt "<srt>" --source draft.txt --lang <lang> --narration "<mp3>"`
+1. `render-reel.ps1` runs `stt-validate.py` itself before the burn (P188),
+   then pauses at "REVIEW SUBTITLES before they are burned". Under
+   `-NoReview` there is no pause: the validator runs `--strict` and a HIGH
+   finding STOPS the render before the burn (P339) - fix the cached SRT
+   (P211) and re-run, or pass `-AcceptSubtitleFindings`
+2. To re-run it by hand:
+   `python scripts\stt-validate.py --srt "<srt>" --source <draft> --lang <lang> --narration "<mp3>"`
 3. `draft.txt` must hold the SAME language's S:/M: blocks as the SRT — a
    mismatch shows as ~0.01 similarity
 4. Fix every HIGH in VS Code, save, then press ENTER at the gate

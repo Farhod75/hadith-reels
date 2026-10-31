@@ -14484,3 +14484,40 @@ between RU and UZ, which the operator called fine.
 
 ---
 
+## PATTERN 339: the warning listened for an exit code the validator never sent
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** content (burned, caught by hand)
+
+**What happened.** Re-rendering tirmidhi-1161 under `-NoReview` burned Whisper's
+RU errors - "Ум соляма, добудет", "пророг" twice - and EN's "Um Salama" with a
+cue 7.8 s past the voice. render-reel.ps1 has a block for exactly this: when the
+validator exits non-zero under -NoReview, print "Those subtitles are about to be
+burned in unreviewed." It printed nothing. `stt-validate.py` returns 1 or 2 only
+when it cannot run; after ANY findings it returns 0. The block was dead from
+the day it was written. The errors were caught only because the validator's
+output was read by hand before the reels were shown - P330 was written the day
+before about the same flag, and recorded the risk without closing it.
+
+Same family as P247 (a check that reports to nobody) one level in: here the
+check reported, and the code meant to hear it was tuned to a signal that never
+comes.
+
+**Fix.** `stt-validate.py --strict`: exit 1 when any HIGH finding exists
+(default unchanged, warn-only, for the interactive path where a human reads
+it). render-reel.ps1 passes `--strict` under `-NoReview` and `Die`s before the
+burn on exit 1 or 2 - P093, a gate that cannot see its data must not pass.
+`-AcceptSubtitleFindings` burns anyway, by name. CLAUDE.md Workflow F also
+said to run the validator "in a second terminal" - stale since P188 made the
+render call it; corrected.
+
+Tested through the real path: a copy of the EN 1161 SRT with "Um Salama" put
+back, a -NoReview render refused before the burn and left the reel untouched,
+the SRT restored byte-for-byte.
+
+**Tripwire:** none - the gate is inside render-reel.ps1; P330's tripwire
+already asks before any -NoReview render.
+
+**Status:** FIXED.
+
+---
+

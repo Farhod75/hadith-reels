@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-268 patterns in 279 entries, frontier **P338**. The P-sequence is shared with
+269 patterns in 280 entries, frontier **P339**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -19,7 +19,7 @@ BEFORE changing it.
 
 - `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
-- `stt-validate.py` (10) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330
+- `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
 - `route.ts` (8) - P071, P095, P140, P188, P232, P246, P284, P303
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
@@ -326,5 +326,6 @@ BEFORE changing it.
 - **P335 (addendum 3)** - (addendum): the gate printed the command instead of running it
 - **P337** - the narrator was said in one language of four, and the rule pointed the other way
 - **P338** - the only volume knob was a calibration
+- **P339** - the warning listened for an exit code the validator never sent
 
-<!-- pattern-index-stamp entries=279 patterns=268 frontier=338 sha1=1575795895377aad43257e56a06ba78beffd3b44 -->
+<!-- pattern-index-stamp entries=280 patterns=269 frontier=339 sha1=0fc3669e0ff28b1de8966a5037110fbae276345a -->
