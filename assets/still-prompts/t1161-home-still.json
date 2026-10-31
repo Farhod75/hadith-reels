@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "t1161-home",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal. Interior of a simple 7th-century Arabian home at first light, mud-brick walls and a low wooden door standing open, a clay water jug and a folded woven mat on a swept earthen floor, a long shaft of soft golden dawn light falling through the doorway, fine dust suspended in the beam, quiet and warm. No people, no modern objects, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a18ef1-0fcb-7c90-8416-402a8a595706",
+  "submitted_utc": "2026-10-30T22:32:04.3983666Z",
+  "completed_utc": "2026-10-30T22:32:14.4984796Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\t1161-home-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b1/SBNb-bqhzG5BK1t46_QtY_vaNcqWPq.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\t1161-home-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b1/t1JEq4XmRvE46IQuSqZ0p_DJalOag9.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\t1161-home-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b1/6N4wvNj0iBxKRHLIqG-9A_kOLF0GD6.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1400524815
+}

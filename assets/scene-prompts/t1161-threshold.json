@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "submitted_utc": "2026-10-31T01:29:09.0246173Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "request_id": "01a18f93-2a50-7111-af30-3c4ca9878b6c",
+  "resolution": null,
+  "file": "out\\backgrounds\\new\\t1161-threshold.mp4",
+  "completed_utc": "2026-10-31T01:32:28.1316508Z",
+  "mode": "image-to-video",
+  "generate_audio": false,
+  "image": "out\\refs\\t1161-threshold-3.jpg",
+  "size_bytes": 6833601,
+  "name": "t1161-threshold",
+  "video_url": "https://v3b.fal.media/files/b/0ab086e9/F9C4rwkMEbhcKoYtXofoP_output.mp4",
+  "prompt": "locked static camera, absolutely no camera movement, no zoom, no drift forward. The door stays exactly where it is and does not swing. The open doorway stays pure featureless white light throughout - nothing appears inside it, no building, no window, no wall, no landscape, no object. Only the brightness breathes very slightly and the shadow on the earthen floor shifts a little. Quiet and luminous.",
+  "schema": 1
+}

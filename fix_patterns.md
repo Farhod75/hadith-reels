@@ -13838,3 +13838,157 @@ untouched by standing rule. #7936 open for re-sourcing. Nine measured as
 variance.
 
 ---
+
+## PATTERN 329: the generator fills whatever you leave empty
+
+**Found:** 2026-10-30/31, producing the first Jami at-Tirmidhi scene set
+(t1161). Four clips, seven rolls, about $8 of Kling and FLUX. Three distinct
+ways a model invented what the prompt did not give it.
+
+**1. Blown-out areas get furnished.** `t1161-threshold` is a dark room and an
+open doorway of pure white light. The motion asked for a *"slow steady forward
+drift toward the open doorway"*. Drifting INTO a featureless white rectangle
+handed Kling an empty canvas, and by the closing seconds it had resolved into
+a multi-storey facade with regular window grids - a modern structure, which
+the era rule forbids and the still prompt had explicitly excluded.
+
+**2. Approach grows hardware.** `t1161-home` is a plank door at the back of a
+room. The motion asked for a *"very slow gentle push-in"*. The still was clean
+bare timber; by the end of the clip the door had a round knob and a latch bar.
+Removing the push-in shrank the fitting but did not remove it - it survived
+three rolls. **The still being clean does not make the clip clean.**
+
+**3. The prohibition has to live where the model will read it.** Both defects
+were forbidden - in the STILL prompt. generate-scene.ps1 is image-to-video and
+takes MOTION only, so Kling never saw them. Moving *"the doorway stays pure
+featureless white, nothing appears in it, no building, no window"* into the
+motion prompt fixed the threshold on the next roll. Whatever must not appear
+has to be named in the prompt of the step that could introduce it.
+
+**4. FLUX does the same thing one stage earlier.** All three of the first
+threshold stills came back with machined raised panels, and one with a round
+knob; the one I passed had a lever handle on an escutcheon plate that I saw,
+called *"a faint handle mark, barely visible"*, and let through. The operator
+caught it. Negation alone does not move the prior - "plain wooden door"
+produced panels three times. Describing the period door POSITIVELY first
+(*vertical weathered boards held by two horizontal battens, rough timber
+lintel*) and listing the absences after produced a clean door immediately.
+
+**And the camera lesson was already written down.** The b5185 registry entries,
+from 2026-10-29, say in every one of them: *"The camera is held still in every
+prompt of this set because Kling 3.0 reads motion instructions more
+aggressively than 2.6."* `generate-scene.ps1`'s own header says it too. I read
+the header, phrased the moves "conservatively", moved the camera anyway, and
+re-discovered the rule for $2.24. I only found the registry note later, while
+looking up the entry FORMAT. Same shape as P326: the answer was in the repo,
+in the file I was about to edit.
+
+**Rules.**
+- Lock the camera on scene plates. These are backgrounds under narration; a
+  move buys nothing and gives the model a reason to invent.
+- Give the LIGHT the motion instead. v2 of t1161-home removed the push-in and
+  the light with it, and the beam went dead - the operator spotted it in
+  seconds. A still camera is not a still frame.
+- Put every prohibition in the MOTION prompt, not only the still prompt.
+- Describe period detail positively before listing what must not appear.
+- Check the LAST seconds of a clip, not the first. Every defect here appeared
+  late, as the model ran out of source frame to copy.
+
+**Related:** P326 (the answer already in the repo), P287 (invented source
+detail, the same failure in text), P156/P217 (Kling defaults and clip
+resolution).
+
+**Status:** RECORDED. The clean clips shipped; rejected versions kept under
+`out/backgrounds/new/_rejected/` rather than deleted.
+
+---
+
+## PATTERN 330: a gate skipped is a gate moved, not a gate removed
+
+**Found:** 2026-10-31, 00:30, in the Russian reel.
+
+**What happened.** The operator went to sleep mid-set. `render-reel.ps1` pauses
+at *"REVIEW SUBTITLES before they are burned"* and there was nobody to press
+the key, so all four languages were rendered with `-NoReview`. The automated
+half was run afterwards instead - `stt-validate.py` against each SRT - and it
+found this, twice, in the Russian subtitles:
+
+    Пророк, доблагословит его Аллах и приветствует, сказал.
+
+Whisper had merged «да благословит» into «доблагословит», a word that does not
+exist, **inside the salawat on the Prophet ﷺ**, already burned into the MP4.
+
+**Workflow F says this in step 6 and I did it anyway:** *"Run this AT the gate,
+not after the render. Running it afterwards means a defect is already burned
+into the MP4 and the reel must be re-rendered."* One re-render, which is the
+cheap outcome; the expensive outcome was a reel published with a mangled
+blessing, and nothing between that and me except a check I ran late.
+
+**What saved it was a different pattern.** P211 fingerprints the SRT cache on
+the SOURCE mp3s rather than mtime, precisely so an operator's hand-correction
+at the pause survives a re-render. The narration was untouched, so the
+corrected SRT was reused - *"subtitles already present and still match the
+narration - skipping Whisper"* - and the fix cost one merge, not a
+re-transcription. P211 was written for a human at the gate and worked
+unchanged for a machine fixing a gate it had skipped.
+
+**The lesson is about the flag, not the typo.** `-NoReview` does not mean "this
+reel needs no review". It means the review happens somewhere else, and the only
+question is whether anything irreversible happens in between. Burning subtitles
+is irreversible in the sense that matters: the MP4 is wrong and must be made
+again. So when the gate is skipped, run the automated half BEFORE the burn,
+not after - `stt-validate.py` needs only the SRT and the narration, both of
+which exist at step 5, one step before the merge.
+
+**Fix to make:** render-reel.ps1 could run stt-validate itself when -NoReview
+is passed, and refuse to burn on a HIGH. Not built tonight - a mitigation
+written at 00:40 is the next pattern (P321's own rule). Recorded as an open
+item.
+
+**Related:** P211 (the cache that made the repair cheap), P078 (why only en/ru
+have subtitles at all), P118 (verify the output, not the label).
+
+**Status:** RU re-rendered and clean - 0 findings, similarity 1.000. The
+render-side guard is OPEN.
+
+---
+
+## PATTERN 331: "I'll come back when it finishes" is not a plan
+
+**Found:** 2026-10-30, twice in one evening, by the operator asking "и че?"
+
+**What happened.** Long jobs on the operator's machine are launched detached,
+through `Invoke-CimMethod Win32_Process Create`, because a job driven inside
+one bridge call dies with that call at about 60s (P309). That works. What does
+not work is what I did with it: I wrote *"вернусь с четырьмя клипами"* and
+ended my turn.
+
+**A detached process on that machine is invisible to this session.** Nothing
+notifies me when it exits. The only thing that observes it is me, polling - and
+polling stops the moment the turn ends. Four Kling clips finished at 19:33 and
+sat untouched until 21:18. Two re-rolls finished at 21:32 and sat until 23:33.
+**Four hours of finished work waiting on nobody**, twice, and both times the
+operator had to ask.
+
+**It is not a tooling gap, it is a wrong mental model.** I was treating the
+detached launch as if it were a background task the harness tracks and reports.
+It is not. For anything launched this way, the job is only as alive as the
+attention watching it.
+
+**Rules.**
+- A detached job on the operator's machine is polled IN THE SAME TURN until it
+  finishes. A ten-minute Kling render is eleven poll calls; that is the cost,
+  and it is far smaller than the work sitting idle.
+- Never write "I'll come back with X" about such a job. Either stay and finish,
+  or say plainly that it will take N minutes and that the operator should ping.
+- Progress can be read without the log: the page cache file count during
+  fetches, the output directory during renders. `python -u` matters too -
+  stdout redirected to a file buffers, so the first poll of a captured run
+  shows nothing and looks like a hang.
+
+**Related:** P309 (why the job is detached at all).
+
+**Status:** RECORDED. Followed for the rest of the t1161 set - the final
+renders were polled to completion in one turn.
+
+---

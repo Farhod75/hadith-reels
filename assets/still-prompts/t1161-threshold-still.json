@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "t1161-threshold",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal. A rough plank door made of weathered vertical wooden boards held together by two horizontal wooden battens, standing half open in a thick mud-brick wall beneath a rough timber lintel, 7th-century Arabia. Brilliant soft white light floods through the gap and washes across the swept earthen floor toward the camera, the dim room falling away behind, reverent and luminous. The door is plain bare timber with no handle, no knob, no latch, no metal fittings, no visible hinges and no raised panels of any kind. No people, no figures, no text, no modern objects, no modern structures.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a18ef9-abce-7930-98a7-f3121a9b5037",
+  "submitted_utc": "2026-10-30T22:41:29.2178911Z",
+  "completed_utc": "2026-10-30T22:41:38.0205695Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\t1161-threshold-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082e9/sikSfKb7TTyDZ3X5eOfEv_BMFjf6oj.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\t1161-threshold-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082e9/RSAOFi9yA_z-olPF1UwH4_dIV7wb0A.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\t1161-threshold-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082e9/Fm5BBZJd08DZkxQBKEu8-_ca41ueMA.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 512322015
+}

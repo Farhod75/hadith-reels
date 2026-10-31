@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "generate_audio": false,
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "duration_sec": 10,
+  "prompt": "Locked static camera - the camera itself does not move at all, no zoom, no push-in, no drift. The LIGHT moves: the long shaft of golden dawn light sweeps slowly across the earthen floor and lengthens as the sun rises, its edge creeping visibly over the woven mat, and fine motes of dust drift and turn through the beam the whole time. The plank door is bare weathered timber with only its two horizontal wooden battens on it - no handle, no knob, no latch, no bolt, no ring, no metal of any kind appears on it at any moment. The jug and the mat do not move. Warm, calm, alive with light.",
+  "submitted_utc": "2026-10-31T04:05:01.0352318Z",
+  "file": "out\\backgrounds\\new\\t1161-home.mp4",
+  "completed_utc": "2026-10-31T04:13:52.1708452Z",
+  "image": "out\\refs\\t1161-home-3.jpg",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab08aac/8CNupsInzYfq20YWL1FYf_output.mp4",
+  "name": "t1161-home",
+  "size_bytes": 24914008,
+  "request_id": "01a19021-dd5a-7363-a1a6-b03abb700afa"
+}

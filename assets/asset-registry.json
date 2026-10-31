@@ -556,6 +556,42 @@
     }
   },
   "scenes": {
+    "t1161-home.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. FIRST Jami at-Tirmidhi set in the project - the clip-naming table listed `t` as 'no set yet'. Jami at-Tirmidhi #1161, Umm Salamah, hasan. Imagery rests only on words the matn contains: a woman (anonymous - 'whichever woman', which is why MODE B permits the figure), her husband (so a household is implied, not added), 'she entered' (a threshold), and al-jannah (a garden, the word's own meaning). Deliberately absent: any depiction of death, which the matn states and gives no imagery; rivers and palaces, which are Qur'anic Paradise imagery this matn does not contain; and the husband himself, since the matn names his contentment, not his presence. Camera locked in every clip - the b5185 registry notes already recorded on 2026-10-29 that Kling 3.0 reads motion aggressively, and the first roll of this set moved the camera anyway and had to be redone. Depicts: the interior of a simple 7th-century Arabian home at first light - open plank door, clay jug, folded woven mat, a shaft of dawn light across the earthen floor. Recorded motion: the light shaft and the dust in it; camera locked. THREE ROLLS. v1 pushed in and Kling grew a round knob and latch on the door. v2 removed the push-in and the light with it - the beam went dead and the operator spotted it at once. v3 keeps the camera locked and gives the LIGHT the motion; the beam is alive but fades rather than sweeps by the end, and the pale fitting at mid-door survived all three rolls. The still is clean - Kling adds it every time. Operator accepted it 2026-10-31 as a 10s plate under narration. Rejected versions kept at out/backgrounds/new/_rejected/.",
+      "prompt_sidecar": "assets/scene-prompts/t1161-home.json"
+    },
+    "t1161-courtyard.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. FIRST Jami at-Tirmidhi set in the project - the clip-naming table listed `t` as 'no set yet'. Jami at-Tirmidhi #1161, Umm Salamah, hasan. Imagery rests only on words the matn contains: a woman (anonymous - 'whichever woman', which is why MODE B permits the figure), her husband (so a household is implied, not added), 'she entered' (a threshold), and al-jannah (a garden, the word's own meaning). Deliberately absent: any depiction of death, which the matn states and gives no imagery; rivers and palaces, which are Qur'anic Paradise imagery this matn does not contain; and the husband himself, since the matn names his contentment, not his presence. Camera locked in every clip - the b5185 registry notes already recorded on 2026-10-29 that Kling 3.0 reads motion aggressively, and the first roll of this set moved the camera anyway and had to be redone. Depicts: a lone anonymous woman seen entirely from behind in a modest period robe and headscarf, pouring water from a clay jug into a basin in a walled courtyard, date palm shade on mud-brick. THE ONLY FIGURE CLIP IN THIS SET. Checked frame by frame as §2 requires: no face at any point, no second person, no warping of hands, jug or water stream. The figure is permitted because the matn's subject is anonymous; the operator was shown a no-figure alternative (hands only, grinding grain) and chose the figure on 2026-10-30. Recorded motion: cloth and falling water; camera locked. Clean on the first roll.",
+      "prompt_sidecar": "assets/scene-prompts/t1161-courtyard.json"
+    },
+    "t1161-threshold.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. FIRST Jami at-Tirmidhi set in the project - the clip-naming table listed `t` as 'no set yet'. Jami at-Tirmidhi #1161, Umm Salamah, hasan. Imagery rests only on words the matn contains: a woman (anonymous - 'whichever woman', which is why MODE B permits the figure), her husband (so a household is implied, not added), 'she entered' (a threshold), and al-jannah (a garden, the word's own meaning). Deliberately absent: any depiction of death, which the matn states and gives no imagery; rivers and palaces, which are Qur'anic Paradise imagery this matn does not contain; and the husband himself, since the matn names his contentment, not his presence. Camera locked in every clip - the b5185 registry notes already recorded on 2026-10-29 that Kling 3.0 reads motion aggressively, and the first roll of this set moved the camera anyway and had to be redone. Depicts: a plain plank door half open in a mud-brick wall under a rough timber lintel, white light through the gap washing across the floor - the matn's own verb, 'she entered'. TWO ROLLS. v1 asked for a slow forward drift INTO the blown-out doorway; Kling filled that empty white field with a multi-storey facade with window grids, a modern structure the era rule forbids. v2 locks the camera and states inside the MOTION prompt that the doorway stays featureless white with nothing appearing in it. Clean: no hardware on the door, no architecture in the light. The stills needed their own re-roll first - FLUX renders panelled doors with knobs unless the period door is described positively (vertical boards, two battens) before the absences are listed.",
+      "prompt_sidecar": "assets/scene-prompts/t1161-threshold.json"
+    },
+    "t1161-garden.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "MODE B. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. FIRST Jami at-Tirmidhi set in the project - the clip-naming table listed `t` as 'no set yet'. Jami at-Tirmidhi #1161, Umm Salamah, hasan. Imagery rests only on words the matn contains: a woman (anonymous - 'whichever woman', which is why MODE B permits the figure), her husband (so a household is implied, not added), 'she entered' (a threshold), and al-jannah (a garden, the word's own meaning). Deliberately absent: any depiction of death, which the matn states and gives no imagery; rivers and palaces, which are Qur'anic Paradise imagery this matn does not contain; and the husband himself, since the matn names his contentment, not his presence. Camera locked in every clip - the b5185 registry notes already recorded on 2026-10-29 that Kling 3.0 reads motion aggressively, and the first roll of this set moved the camera anyway and had to be redone. Depicts: a still green garden in soft diffuse light - date palms, leafy trees, clear water in a stone channel, grass and flowering shrubs, open luminous sky. This is al-jannah rendered as the word's own meaning and no further: no rivers beneath, no palaces, no gates. Recorded motion: breeze in the leaves and ripples on the water; camera locked. Clean on the first roll.",
+      "prompt_sidecar": "assets/scene-prompts/t1161-garden.json"
+    },
     "b1903-dates.mp4": {
       "classification": "scene",
       "lanes": [

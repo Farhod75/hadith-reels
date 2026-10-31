@@ -1,3 +1,30 @@
+## [2026-10-31] - the first Tirmidhi scene set, and three ways to lose an hour
+
+### Added
+
+- **Jami at-Tirmidhi #1161 produced in four languages - the FIRST `t` set.**
+  The clip-naming table had listed `t` as "no set yet". Four scenes
+  (`t1161-home`, `-courtyard`, `-threshold`, `-garden`), registered with
+  `verified: false` because P301's `verified` means a human watched it and the
+  operator had approved proceeding, not each clip. Reels: en 19.26s, ru 20.05s,
+  uz 31.49s, tj 18.38s. **Nothing published.**
+
+### Fixed
+
+- **Three patterns from one scene set (P329, P330, P331).** P329: the generator
+  furnishes whatever you leave empty - a forward drift into a blown-out doorway
+  came back with a modern multi-storey facade in it, a push-in grew a knob and
+  latch on a bare plank door, and both were forbidden only in the STILL prompt
+  where an image-to-video model never reads them. The camera rule was already in
+  the b5185 registry notes from the day before and I re-learned it for $2.24.
+  P330: rendering with `-NoReview` while the operator slept burned «доблагословит»
+  - a non-word - into the Russian salawat, twice; `stt-validate.py` caught it
+  after the burn instead of at the gate, exactly as Workflow F step 6 warns, and
+  P211's source-fingerprinted SRT cache made the repair one merge instead of a
+  re-transcription. P331: a detached job on the operator's machine is invisible
+  to this session, so "I'll come back when it finishes" left four finished Kling
+  clips sitting for four hours across two occasions until he asked.
+
 ## [2026-10-30] - a write tool that could not be aimed, and a question answered the hard way
 
 ### Fixed

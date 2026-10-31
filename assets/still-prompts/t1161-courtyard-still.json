@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "t1161-courtyard",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal. A lone anonymous woman seen entirely from behind in a modest flowing period robe and headscarf, standing in a small walled courtyard of a 7th-century Arabian house, pouring water from a clay jug into a basin, a date palm throwing soft shade on the mud-brick wall, warm mid-morning light. No face visible, no other person in frame, no modern structures, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a18ef1-70f4-79a0-a68e-2026b4e50f7b",
+  "submitted_utc": "2026-10-30T22:32:29.7919539Z",
+  "completed_utc": "2026-10-30T22:32:42.9756191Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\t1161-courtyard-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b3/S7m7tTMtCNxUwQi9KEq6p_NOFkh8em.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\t1161-courtyard-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b3/RaBYJlI4XTUK6hdE7XygK_ajFlRuDe.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\t1161-courtyard-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab082b3/odhjShVLcoaQyZ1uBy4mk_IKKqBxqK.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1768081451
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab083c2/GXPoUNJHuH_6A89GmL1vP_output.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "name": "t1161-courtyard",
+  "schema": 1,
+  "submitted_utc": "2026-10-30T23:09:15.0382556Z",
+  "completed_utc": "2026-10-30T23:17:56.5932676Z",
+  "size_bytes": 35494281,
+  "generate_audio": false,
+  "prompt": "gentle natural motion of the robe fabric and the thin stream of water falling into the basin; the figure stays turned away and still; barely perceptible slow push-in; calm",
+  "file": "out\\backgrounds\\new\\t1161-courtyard.mp4",
+  "request_id": "01a18f13-0f42-7040-ab12-5cc8a535db8c",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "image": "out\\refs\\t1161-courtyard-2.jpg",
+  "duration_sec": 10
+}

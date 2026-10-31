@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab0841f/xdllhASPtv0GrHKmK72_J_output.mp4",
+  "completed_utc": "2026-10-30T23:33:19.9681072Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "size_bytes": 37982075,
+  "request_id": "01a18f22-9005-76a1-a37c-0f3a07d5f191",
+  "file": "out\\backgrounds\\new\\t1161-garden.mp4",
+  "prompt": "gentle breeze moving the palm fronds and leaves, soft ripples on the water surface; very slow upward tilt; serene",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "image": "out\\refs\\t1161-garden-2.jpg",
+  "resolution": null,
+  "duration_sec": 10,
+  "name": "t1161-garden",
+  "generate_audio": false,
+  "schema": 1,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-10-30T23:26:10.9904871Z"
+}
