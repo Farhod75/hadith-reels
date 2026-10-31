@@ -14317,3 +14317,56 @@ anything transferred, check a marker that exists only in the new version, on
 the machine. The marker check caught all three; nothing ran stale twice.
 
 ---
+
+## PATTERN 336: a lesson that cannot recognise its own recurrence
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** process
+
+**What happened.** 265 patterns, and the same mistakes kept coming back:
+P300 three times in one morning, P329's camera rule written in two places and
+broken anyway, `_q6570.py` and `gen_reel.py` both looking up `hadith_library`
+by `hadith_number` alone weeks after P147. A pattern states its lesson
+abstractly - "a key that identifies nothing" - and the next action is
+concrete - `hadith_number=eq.6570`. Nothing connected the two at the moment it
+mattered.
+
+**Measured before building** (P335 addendum has the per-request numbers). On
+7 real recurrences and 58 real routine commands from this session:
+
+| layer | recurrences found | fired on routine work |
+|---|---|---|
+| BM25 over pattern bodies, z > 8 | 3/7 | 5/58 |
+| patterns citing a file the action names | 4/7, lists of 6-20 | - |
+| one rule per lesson (tripwire) | **7/7** | **0/58** |
+
+The rules were written after seeing the positives, so 7/7 shows each rule
+catches what it was written for - not how it does on the next new case.
+
+**Fix.** `.claude/tripwires.json`: per lesson, a regex for its recurrence, an
+optional guard (P147 is silent when the query also filters `collection`), a
+mode, and a REAL sample with its source. `.claude/hooks/tripwire.js` runs as
+PreToolUse on Bash, PowerShell, Write, Edit and MultiEdit; it scans every
+string in `tool_input`, so it does not depend on field names. `warn` puts
+the pattern beside the result; `ask` escalates to the operator before the
+action runs - P330 (`render-reel.ps1 -NoReview`) and P147 when the
+`hadith_number`-only key is used for a WRITE. Markdown and the tripwire files
+themselves are exempt: prose that quotes a command is not the command.
+
+`audit-docs.py` runs `tripwire.js --check`: every rule must fire on its sample,
+none may fire on `.claude/tripwire-routine.json` (59 real commands). A false
+positive is fixed by adding the real command to that file and narrowing the
+rule - never by deleting the command. And every pattern from P336 on must
+carry a `**Tripwire:**` line, so the question "what would its recurrence look
+like?" is asked when the lesson is fresh, not when it recurs.
+
+**Tripwire:** none - this is about the process of writing patterns, and its
+enforcement is the `**Tripwire:**` check itself.
+
+**Not yet verified:** that PreToolUse fires in a local session and what the
+`ask` prompt looks like there. The hook was run with real PreToolUse-shaped
+input and its JSON output checked; the firing is observable only from a new
+local Claude Code session in this folder.
+
+**Status:** FIXED, firing to be confirmed locally.
+
+---

@@ -1,0 +1,67 @@
+{
+ "_what": "One rule per lesson that recognises the lesson's RECURRENCE in an action (P336). mode warn = context beside the result; mode ask = the user is asked before the action runs. Every entry must fire on its sample and stay silent on .claude/tripwire-routine.json; audit-docs.py runs `node .claude/hooks/tripwire.js --check` and fails the push otherwise.",
+ "tripwires": [
+  {
+   "pattern": 333,
+   "mode": "warn",
+   "regex": "\\[string\\[\\]\\]\\s*\\$args\\b|param\\s*\\([^)]*\\$args\\b",
+   "why": "$args is a PowerShell automatic variable; a parameter with that name is not what a splat of @args passes, so the callee runs with no arguments.",
+   "sample": "function Run([string]$label, [string]$exe, [string[]]$args) {\n  $out = & $exe @args 2>&1",
+   "sample_source": "out/_pw_upgrade.ps1 v1 (real, 2026-10-31)"
+  },
+  {
+   "pattern": 147,
+   "mode": "warn",
+   "regex": "hadith_number['\\\"]?\\s*[:=,]\\s*['\\\"]?eq\\.|hadith_number=eq\\.",
+   "guard": "collection['\\\"]?\\s*[:=,]\\s*['\\\"]?eq\\.|collection=eq\\.",
+   "why": "hadith_number is not unique across collections (Bukhari #1469 and Tirmidhi #2616 each have two rows); a lookup on it alone can return the wrong hadith or several.",
+   "sample": "q = ('%s/rest/v1/hadith_library?hadith_number=eq.%s&select=*'",
+   "sample_source": "out/gen_reel.py:45 (real)"
+  },
+  {
+   "pattern": 147,
+   "mode": "ask",
+   "regex": "hadith_number['\\\"]?\\s*[:=,]\\s*['\\\"]?eq\\.|hadith_number=eq\\.",
+   "guard": "collection['\\\"]?\\s*[:=,]\\s*['\\\"]?eq\\.|collection=eq\\.",
+   "also": "(?:PATCH|DELETE|\\.update\\(|\\.delete\\(|\\.upsert\\(|method\\s*=\\s*['\\\"](?:PATCH|DELETE|POST))",
+   "why": "this WRITES to hadith_library keyed on hadith_number alone; that number is not unique across collections, so the write can land on another hadith.",
+   "sample": "req = urllib.request.Request(base + '/rest/v1/hadith_library?hadith_number=eq.6570', data=body, method='PATCH')",
+   "sample_source": "constructed from out/_q6570.py's lookup plus a PATCH - no real write of this shape was found"
+  },
+  {
+   "pattern": 78,
+   "mode": "warn",
+   "regex": "\\bwhisper\\b[^\\n]*--language\\s+(?:uz|tg)\\b",
+   "why": "Whisper transcribes UZ/TJ in Latin with q->k drift; its output is not a reliable check of Uzbek or Tajik narration.",
+   "sample": "whisper \"out\\work\\adults\\bukhari-6570\\uz\\adults-uz-bukhari-6570-moral.mp3\" --model small --language uz --output_format srt --output_dir \"out\\stt-6570\"",
+   "sample_source": "out/stt-run.ps1 (real)"
+  },
+  {
+   "pattern": 330,
+   "mode": "ask",
+   "flags": "i",
+   "regex": "render-reel\\.ps1[^\\n]*-NoReview\\b",
+   "why": "-NoReview skips the subtitle review gate; on 2026-10-30 it burned a merged word into the RU salawat twice. The gate moves to after the burn, it is not removed.",
+   "sample": ".\\render-reel.ps1 -Style adults -Lang ru -Slug tirmidhi-1161 -Scenes a.mp4,b.mp4,c.mp4,d.mp4 -FitScenes -NoReview",
+   "sample_source": "CLAUDE.md step 7 command, with the flags the t1161 set was actually rendered with"
+  },
+  {
+   "pattern": 302,
+   "mode": "warn",
+   "flags": "i",
+   "regex": "-File[^\\n]*-Scenes['\\\"]?\\s*,?\\s*['\\\"]?[^'\\\"\\s,]+,[^'\\\"\\s]+",
+   "why": "a comma list passed through -File / Start-Process arrives as ONE string, so -Scenes gets a single bogus path; declare the array inside a .ps1 wrapper.",
+   "sample": "Start-Process powershell -ArgumentList '-File','render-reel.ps1','-Scenes','a.mp4,b.mp4,c.mp4'",
+   "sample_source": "reconstructed from P302's description"
+  },
+  {
+   "pattern": 329,
+   "mode": "warn",
+   "flags": "i",
+   "regex": "generate-scene\\.ps1[^\\n]*-Prompt[^\\n]*\\b(?:push-?in|dolly|zoom|pan|orbit|tracking|crane)\\b",
+   "why": "camera movement in an image-to-video prompt makes the model invent what the still did not show (a modern facade, a door knob); prohibitions belong in the MOTION prompt.",
+   "sample": ".\\scripts\\generate-scene.ps1 -Name \"t1161-threshold\" -Image \"out\\refs\\threshold.jpg\" -Duration 10 -Prompt \"slow push-in toward the doorway, light moves across the floor\"",
+   "sample_source": "the t1161 threshold prompt shape (2026-10-30)"
+  }
+ ]
+}

@@ -484,6 +484,11 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `stt-validate.py` — SRT vs source narration diff (Workflow F)
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
+- `.claude/tripwires.json` + `.claude/hooks/tripwire.js` — PreToolUse
+  tripwires (P336): one rule per lesson recognising its recurrence in an action.
+  `warn` adds the pattern beside the result; `ask` stops for the operator
+  (`render-reel.ps1 -NoReview`; a write keyed on `hadith_number` alone). A new
+  pattern gets a `**Tripwire:**` line - a rule here, or "none" and why.
 - `build-pattern-index.py` — regenerates `PATTERN_INDEX.md` from
   `fix_patterns.md` (P335). Run it after adding a pattern; `audit-docs.py`
   fails the push until you do. `.claude/hooks/session-start.js` prints the

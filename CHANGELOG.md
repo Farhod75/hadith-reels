@@ -1,3 +1,20 @@
+## [2026-10-31e] - tripwires: the lesson recognises its own recurrence
+
+### Added
+
+- **PreToolUse tripwires (P336).** One rule per lesson in
+  `.claude/tripwires.json`, run by `.claude/hooks/tripwire.js` before Bash,
+  PowerShell, Write, Edit and MultiEdit. Seven to start: P333 (`$args`), P147
+  (`hadith_number` without `collection`; asks first on a write), P078
+  (`whisper --language uz|tg`), P330 (`render-reel.ps1 -NoReview`, asks first),
+  P302 (comma list through `-File`), P329 (camera words in a scene prompt).
+  Measured on real actions: 7/7 recurrences, 0/58 routine commands - against
+  3/7 for word search. `audit-docs.py` fails the push if a rule misses its
+  sample or fires on the routine set, and if a pattern from P336 on has no
+  `**Tripwire:**` line.
+
+---
+
 ## [2026-10-31d] - the session hook fits its cap, and a RAG measured before it was built
 
 ### Fixed

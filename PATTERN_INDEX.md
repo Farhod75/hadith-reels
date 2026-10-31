@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-265 patterns in 275 entries, frontier **P335**. The P-sequence is shared with
+266 patterns in 276 entries, frontier **P336**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -22,9 +22,9 @@ BEFORE changing it.
 - `stt-validate.py` (10) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330
 - `route.ts` (8) - P071, P095, P140, P188, P232, P246, P284, P303
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
+- `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
-- `audit-docs.py` (6) - P247, P248, P253, P332, P335, P334
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
 - `verify-candidates.py` (6) - P221, P235, P257, P264, P266, P299
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
@@ -321,5 +321,6 @@ BEFORE changing it.
 - **P334 (addendum 2)** - (addendum): the fix would have been truncated to its first 2,000 characters
 - **P335 (addendum 2)** - (addendum): the retrieval eval - measure before building a RAG
 - **P300 (addendum 2)** - (addendum): three more times in one morning, and the shape of it
+- **P336** - a lesson that cannot recognise its own recurrence
 
-<!-- pattern-index-stamp entries=275 patterns=265 frontier=335 sha1=cc2029ed42d15ced81c769d21870b1124d2b419e -->
+<!-- pattern-index-stamp entries=276 patterns=266 frontier=336 sha1=16f60cccafb51939548560430d8917843e87187d -->

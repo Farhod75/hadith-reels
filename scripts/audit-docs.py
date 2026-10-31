@@ -520,6 +520,55 @@ def check_session_hook_parts():
              'never reaches the session' % (need, ', '.join(map(str, missing))))
 
 
+def check_tripwires():
+    """Every tripwire fires on its own sample and stays silent on routine work.
+
+    The matcher lives in .claude/hooks/tripwire.js; this runs its --check
+    rather than re-implementing it (P270). Also: every tripwire names a pattern
+    that exists, and every pattern from P336 on declares a `**Tripwire:**`
+    line - a rule, or "none" with the reason - so the question is asked at the
+    moment the lesson is written (P336).
+    """
+    hook = os.path.join(ROOT, '.claude', 'hooks', 'tripwire.js')
+    trip = os.path.join(ROOT, '.claude', 'tripwires.json')
+    for p in (hook, trip):
+        if not os.path.exists(p):
+            fail('TRIPWIRE', '%s is missing' % os.path.relpath(p, ROOT))
+            return
+    try:
+        r = subprocess.run(['node', hook, '--check'], capture_output=True,
+                           text=True, cwd=ROOT, encoding='utf-8')
+    except FileNotFoundError:
+        warn('TRIPWIRE', 'node not on PATH - tripwires not checked')
+        return
+    if r.returncode != 0:
+        bad = [l for l in (r.stdout + r.stderr).splitlines()
+               if l.startswith('FAIL') or 'Error' in l]
+        for l in bad or ['tripwire.js --check exited %d' % r.returncode]:
+            fail('TRIPWIRE', l.strip())
+    with io.open(PATTERNS, encoding='utf-8') as f:
+        text = f.read().replace('\r\n', '\n')
+    heads = [(m.start(), int(m.group(1))) for m in
+             re.finditer(r'^##\s*PATTERN\s+(\d+)', text, re.M)]
+    nums = set(n for _, n in heads)
+    with io.open(trip, encoding='utf-8') as f:
+        for w in json.load(f)['tripwires']:
+            if w['pattern'] not in nums:
+                fail('TRIPWIRE', 'tripwire names P%d, which is not in fix_patterns.md'
+                     % w['pattern'])
+    seen = set()
+    for i, (pos, n) in enumerate(heads):
+        if n in seen:
+            continue                      # addenda inherit the first entry's line
+        seen.add(n)
+        if n < 336:
+            continue
+        end = heads[i + 1][0] if i + 1 < len(heads) else len(text)
+        if '**Tripwire:**' not in text[pos:end]:
+            fail('TRIPWIRE', 'P%d has no **Tripwire:** line - add a rule to '
+                 '.claude/tripwires.json, or write "none" and why' % n)
+
+
 def main():
     ap = argparse.ArgumentParser(description='Mechanical doc consistency checks.')
     ap.add_argument('--quiet', action='store_true', help='failures only')
@@ -542,6 +591,7 @@ def main():
     check_upskilling_due()
     check_pattern_index()
     check_session_hook_parts()
+    check_tripwires()
 
     if not args.quiet:
         print('doc audit: %d reels, pattern frontier P%03d%s'
