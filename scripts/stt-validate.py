@@ -13,7 +13,9 @@ Grounding case (R027, Abu Dawud #3641 RU): narration said "благородне�
 preposition plus a capitalised non-word that reads as a proper noun. Whole-text
 similarity rates that ~0.97 and passes it. Alignment flags it immediately.
 
-Warn-only. Never edits the SRT. The human gate in render-reel.ps1 still decides.
+Warn-only by default. Never edits the SRT. The human gate in render-reel.ps1
+still decides; under -NoReview --strict exits 1 on HIGH (P339). The narrator
+lead-in, the honorifics and the matn's quotation marks are HIGH (P342).
 
 USAGE
   python scripts/stt-validate.py --srt out\\work\\adults\\<slug>\\ru\\...-narration.srt \\
@@ -463,6 +465,143 @@ def check_prophet_symbol(cues):
     return out, forms
 
 
+# P342: the two defects that reached a burned subtitle twice and were caught
+# only by reading the SRT. Both are about WHO is speaking, which is why they
+# are HIGH where an ordinary near-miss is MEDIUM.
+#
+#   1. The narrator lead-in (P337) is a fixed formula built from
+#      hadith_library.narrator. Whisper broke it on consecutive sets:
+#      tirmidhi-1161 RU "Ум соляма, добудет доволен ею Аллах" and
+#      abudawud-4811 RU "Абхурайра, добудет доволен им Аллах". Each was
+#      reported MEDIUM (near_miss) and a -NoReview render would have burned it.
+#      The lead-in has no free wording, so anything but a verbatim match is a
+#      defect in the companion's name or in his honorific.
+#   2. The closing quotation mark of the matn. P316 (bukhari-5185 RU) and again
+#      abudawud-4811 RU: the » landed after OUR moral, putting "Благодари
+#      людей..." inside the Prophet's words. Alignment strips punctuation, so
+#      no check saw it at all.
+#
+# A missing pair of quotes is MEDIUM, not HIGH: Whisper usually drops them
+# (every 1161 SRT shipped without), and a subtitle with no quotes attributes
+# nothing wrongly. A pair that is THERE and encloses different words does.
+
+HONORIFICS = {
+    'ru': ['да будет доволен', 'да благословит его аллах и приветствует'],
+    'en': ['may allah be pleased with', 'peace be upon him'],
+}
+QUOTE_PAIRS = {'«': '»', '“': '”', '„': '“'}
+QUOTE_OPENERS = set(QUOTE_PAIRS) | {'"'}
+
+
+def parse_blocks(path):
+    """The draft's blocks as raw text, keyed S/M/H/C (P342 needs S verbatim)."""
+    with open(path, encoding='utf-8-sig') as fh:
+        text = fh.read()
+    blocks, current = {}, None
+    for raw in text.splitlines():
+        m = re.match(r'^\s*([SMHC])\s*:\s*(.*)$', raw)
+        if m:
+            current = m.group(1)
+            blocks.setdefault(current, []).append(m.group(2))
+        elif current:
+            blocks[current].append(raw)
+    return {k: ' '.join(v).strip() for k, v in blocks.items()}
+
+
+def quoted_spans(text):
+    """Return (spans, balanced). Straight double quotes pair in order."""
+    spans, i, n = [], 0, len(text)
+    while i < n:
+        ch = text[i]
+        if ch in QUOTE_PAIRS:
+            close = QUOTE_PAIRS[ch]
+            j = text.find(close, i + 1)
+            if j < 0:
+                return spans, False
+            spans.append(text[i + 1:j])
+            i = j + 1
+            continue
+        if ch == '"':
+            j = text.find('"', i + 1)
+            if j < 0:
+                return spans, False
+            spans.append(text[i + 1:j])
+            i = j + 1
+            continue
+        if ch in ('»', '”'):
+            return spans, False          # a closer with no opener
+        i += 1
+    return spans, True
+
+
+def check_leadin(cues, story, lang):
+    """P342.1: the narrator lead-in must reach the subtitle verbatim."""
+    if not story:
+        return []
+    cut = min([story.find(q) for q in QUOTE_OPENERS if q in story] or [-1])
+    if cut <= 0:
+        return []
+    want = tokens(expand_prophet(story[:cut], lang))
+    if len(want) < 3:
+        return []
+    got = tokens(' '.join(c['text'] for c in cues))[:len(want)]
+    if got == want:
+        return []
+    k = next((i for i, (a, b) in enumerate(zip(want, got)) if a != b),
+             min(len(want), len(got)))
+    lo = max(0, k - 2)
+    return [Finding(
+        'high', 'leadin_garbled',
+        'the narrator lead-in (P337) is a fixed formula from hadith_library and '
+        'must be subtitled verbatim - the companion\'s name or honorific is '
+        'wrong here (P342)',
+        cues[0]['index'], cues[0]['line_no'],
+        ' '.join(got[lo:k + 4]), ' '.join(want[lo:k + 4]))]
+
+
+def check_honorifics(cues, source, lang):
+    """P342.1: every honorific formula the narration says must be subtitled."""
+    out = []
+    srt = ' ' + ' '.join(tokens(' '.join(c['text'] for c in cues))) + ' '
+    src = ' ' + ' '.join(tokens(source)) + ' '
+    for f in HONORIFICS.get(lang, []):
+        need = src.count(' %s ' % f)
+        have = srt.count(' %s ' % f)
+        if have < need:
+            out.append(Finding(
+                'high', 'honorific_garbled',
+                'the narration says %r %d time(s); the subtitles carry it %d - '
+                'an honorific is misspelled or broken (P342)' % (f, need, have),
+                source_text=f))
+    return out
+
+
+def check_quote_boundary(cues, blocks, lang):
+    """P342.2: quotation marks in the subtitle enclose exactly the matn."""
+    narrated = ' '.join(blocks.get(k, '') for k in ('S', 'M'))
+    want_spans, _ = quoted_spans(narrated)
+    if not want_spans:
+        return []
+    joined = ' '.join(c['text'] for c in cues)
+    got_spans, balanced = quoted_spans(joined)
+    if not got_spans and balanced:
+        return [Finding(
+            'medium', 'quote_missing',
+            'the draft quotes the matn; the subtitles carry no quotation marks, '
+            'so a viewer cannot see where the Prophet\'s words end (P342)')]
+    want = [tokens(expand_prophet(s, lang)) for s in want_spans]
+    got = [tokens(expand_prophet(s, lang)) for s in got_spans]
+    if balanced and got == want:
+        return []
+    last = lambda spans: ' / '.join(' '.join(s[-4:]) for s in spans)
+    return [Finding(
+        'high', 'quote_boundary',
+        'the quotation marks enclose different words than the draft - the '
+        'closing mark must sit at the end of the matn, not after our moral '
+        '(P316, P342)' + ('' if balanced else '; the quotes are unbalanced'),
+        srt_text='... ' + last(got), source_text='... ' + last(want))]
+
+
 # --------------------------------------------------------------------- main
 
 def main():
@@ -501,6 +640,7 @@ def main():
 
     try:
         source, blocks = parse_source(args.source)
+        raw_blocks = parse_blocks(args.source)
     except FileNotFoundError:
         print(f'FAILED: no such file: {args.source}')
         return 2
@@ -526,6 +666,9 @@ def main():
     findings += check_script(cues, source)
     findings += check_homoglyphs(cues, script_of(source))
     findings += check_divine_pronoun_case(cues, source, args.lang)
+    findings += check_leadin(cues, raw_blocks.get('S', ''), args.lang)      # P342
+    findings += check_honorifics(cues, source, args.lang)                   # P342
+    findings += check_quote_boundary(cues, raw_blocks, args.lang)           # P342
     sym, forms = check_prophet_symbol(cues)
     findings += sym
 

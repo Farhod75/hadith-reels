@@ -14591,3 +14591,32 @@ the palms pinned in the motion prompt.
 
 ---
 
+## PATTERN 342: who is speaking was a MEDIUM
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** content gate
+
+**What happened.** Two sets in a row, Whisper broke the narrator lead-in in
+Russian - tirmidhi-1161 "Ум соляма, добудет доволен ею Аллах", abudawud-4811
+"Абхурайра, добудет доволен им Аллах" - and stt-validate.py rated each a
+near_miss, MEDIUM. Under -NoReview --strict (P339) only HIGH stops the burn, so
+the gate would have passed both; they were caught by reading the SRT. On 4811
+RU the closing » also landed after OUR moral, putting "Благодари людей..."
+inside the Prophet's words - P316 on bukhari-5185, recurring. The alignment
+strips punctuation before comparing, so nothing saw the quotation marks at all.
+
+**Fix.** Three checks, HIGH: `leadin_garbled` (the S block up to the opening
+quote is a fixed formula from hadith_library, P337, and must be subtitled
+verbatim), `honorific_garbled` (every "да будет доволен" / "да благословит его
+Аллах и приветствует" / "may Allah be pleased with" / "peace be upon him" the
+narration says must appear in the subtitles), and `quote_boundary` (quotation
+marks present in the SRT must enclose exactly the draft's quoted words). A
+SRT with no quotes is `quote_missing`, MEDIUM - Whisper usually drops them, and
+no quotes attributes nothing wrongly. Tests: the real 4811 and 1161 SRTs,
+before and after their hand fixes (scripts/lib/test_stt_validate.py).
+
+**Tripwire:** none - this is a gate inside render-reel.ps1, not a command.
+
+**Status:** FIXED.
+
+---
+

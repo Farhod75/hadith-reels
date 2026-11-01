@@ -1,3 +1,15 @@
+## [2026-10-31m] - the narrator lead-in and the matn's quotation marks are HIGH
+
+### Fixed
+
+- **P342.** stt-validate.py reported Whisper's "Абхурайра, добудет" (4811 RU)
+  and "Ум соляма, добудет" (1161 RU) as MEDIUM near-misses, which the -NoReview
+  gate lets through, and could not see a closing » moved past the moral (P316,
+  recurring on 4811 RU). New HIGH checks: `leadin_garbled`, `honorific_garbled`,
+  `quote_boundary`; `quote_missing` is MEDIUM. 8 tests on the real SRTs.
+
+---
+
 ## [2026-10-31l] - R166-R169, Sunan Abu Dawud #4811, four languages, set closed
 
 ### Content
