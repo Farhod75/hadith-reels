@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-scalesky",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, a large ornate antique brass balance scale floating in open luminous space high above a sea of soft white clouds, with no stand, no base and no ground - the scale hangs in the air from nothing visible. The left pan hangs LOW, clearly weighed down, touched by a soft warm golden glow; the right pan rides HIGH and empty; the beam is steeply tipped. Bright airy sky in pale blue and gold, gentle light from above, the sun itself not visible. No people, no hands, no text, no modern objects. Majestic, calm, vibrant.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198d2-79b5-7b63-9db7-b9282194cebb",
+  "submitted_utc": "2026-11-01T20:34:51.8532977Z",
+  "completed_utc": "2026-11-01T20:35:14.4665993Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-scalesky-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c373/ruT-f_7uOXWFXswURPglT_MVqsHix5.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-scalesky-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c373/gi3Rm4vxK8v3A8U_dgRT9_Le63bD2q.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-scalesky-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c373/7Kngs6i1J8czs1841fuUK_ZyCVBCs4.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1511246458
+}

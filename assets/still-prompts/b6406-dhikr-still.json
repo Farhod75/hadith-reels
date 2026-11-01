@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-dhikr",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, a bright clean room with whitewashed mud-brick walls and soft even daylight. Close shot of one anonymous RIGHT hand resting on the knee of a man seated cross-legged on a woven palm-fibre mat, counting dhikr on its fingers: the thumb tip touching the middle joint of the index finger, the other fingers relaxed. Exactly five fingers, natural proportions. Only the right hand, forearm and the knee in a plain white cotton garment are visible - no face, no head, no left hand. The camera looks across the hand toward a plain wall; no window, no door and no sun in frame. Warm, calm, vibrant colours, no modern objects, no prayer beads.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198cb-29e6-7550-b442-264dd4fba473",
+  "submitted_utc": "2026-11-01T20:26:53.4008511Z",
+  "completed_utc": "2026-11-01T20:27:02.6532019Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-dhikr-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c342/AlpJCPht4o7myYTLoMMkE_e4BDv9Io.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-dhikr-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c342/CCbx_sf0yQ2-uQs4c-549_1mplYgUj.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-dhikr-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c342/UlyMcwH4I_PxgpzUBTfma_ESKKp0k9.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1665435593
+}

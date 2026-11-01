@@ -1,3 +1,14 @@
+## [2026-11-01d] - R174-R177, Sahih al-Bukhari #6406, four languages, set closed
+
+### Content
+
+- Tracker rows R174-R177 (TG 184-187), duplicate index, new theme Dhikr / Tasbih,
+  nasheed usage, the b6406 clip set, stats 177/125/45, change log, retro.
+  Registry: b6406-feather, scalesky-r, valley, tasbih -> verified:true (the
+  operator watched all four reels).
+
+---
+
 ## [2026-11-01c] - Sahih al-Bukhari #6406 promoted; promote checks the narrator key
 
 ### Content

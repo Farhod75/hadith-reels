@@ -735,3 +735,55 @@ question).
 **The finding:** two sets running, the defect the operator caught was the one
 my check had no question for - first a gesture, now physics. The review needs to
 ask what the scene is doing, not only what it must not show.
+
+## R174-R177 - Sahih al-Bukhari #6406 - 2026-11-01
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (184-187), Instagram, YouTube Shorts, TikTok.
+
+The first hadith taken from a Dorar query through every stage of the sourcing
+pipeline - upload, translation, A/B (Sonnet 5 + GPT-6.1 Sol), the SQL gate,
+promote - and on to a published reel the same day.
+
+**Caught before publish, and who said it.**
+
+1. **Translations checked only by me** (operator: "Переводы где проверял?"). Read
+   against HadeethEnc then; the Uzbek "тарозуда" was wrong. Fixed before A/B.
+2. **Whether A/B was running at all** (operator asked). Stage 3 run with both
+   models; 4/4 pass/high.
+3. **An Arabic narrator in the library** (the P337 gate at the narrate dry run).
+   promote-candidates copied the Dorar adapter's 'أبو هريرة' where the library
+   and NARRATORS key in English. Fixed in the data and closed in promote: P344.
+4. **My Stage 4 script filtered on `id`** (PostgREST 400, nothing written). The
+   candidates table keys on `candidate_id`; I wrote the column from memory
+   instead of reading the row first. Same lesson as the guessed `al.pick()`.
+5. **The finger-counting dhikr stills read as a meditation mudra** (me, before
+   showing them). Replaced with prayer beads at the operator's word.
+6. **The scale clip levelled out from ~6 s** (me, the P343 action check). Played
+   in reverse it does the right thing: level, then the glowing left pan sinks.
+   Free, instead of a re-roll.
+7. **RU subtitles** (the P342 gate: 11 HIGH - lead-in, the two phrases, 'Причист').
+   Hand-fixed against the draft. EN had MEDIUM only (no quotation marks, 'him'),
+   fixed too.
+8. **The transliteration broken at its hyphens on screen** (me, frames of the
+   final RU). A line break inside the cue did nothing - render-reel's
+   Split-LongCues joins a cue's lines - so the cue was split at the pause.
+
+**Escaped to publish.** Nothing known.
+
+**Root causes.** promote's mapping trusted that the adapter's narrator had the
+library's shape (3). A column name written from memory (4). Nested quotation
+marks in a matn, which the narrated-quote check cannot pair (handled by dropping
+the inner pair from the narrated text only).
+
+**Prevention landed.** P344: promote skips a candidate whose narrator is not a
+NARRATORS key, visible in the dry run before the commit.
+
+**Prevention deferred.** render-reel's Split-LongCues discards intentional line
+breaks; a long transliteration still needs a hand split at a pause.
+
+**Operator corrections of the assistant: 2** (items 1 and 2).
+
+**The finding:** the gates did their job this set - P337 and P342 each stopped a
+real defect before anything was spent or burned. What the operator still had to
+catch was process: that the translations had not been checked against an
+outside source, and whether the A/B step was being run.

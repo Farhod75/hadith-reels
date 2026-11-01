@@ -1,0 +1,18 @@
+{
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "name": "b6406-tasbih",
+  "file": "out\\backgrounds\\new\\b6406-tasbih.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "mode": "image-to-video",
+  "schema": 1,
+  "size_bytes": 24323409,
+  "completed_utc": "2026-11-01T21:03:10.3523530Z",
+  "prompt": "Static locked-off camera, the framing never changes. The right hand slowly counts the prayer beads with the thumb: the thumb draws one bead down toward the palm, then the next, in a calm steady rhythm, and the string of beads moves with it. The hand, arm and body stay in place; the tassel sways slightly. Soft, bright, even daylight.",
+  "video_url": "https://v3b.fal.media/files/b/0ab0c41a/h6lkrLmquyhZxtwWdRnS-_output.mp4",
+  "duration_sec": 10,
+  "request_id": "01a198e6-65a1-7821-9859-bbd74777c418",
+  "submitted_utc": "2026-11-01T20:56:38.3935826Z",
+  "generate_audio": false,
+  "resolution": null,
+  "image": "out\\refs\\b6406-tasbih-2.jpg"
+}

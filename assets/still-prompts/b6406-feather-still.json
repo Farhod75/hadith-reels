@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-feather",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning in a green oasis. Close shot of one anonymous open RIGHT hand, palm up, and a single small soft white feather floating down through the air just above the palm, about to land on it. Only the right hand and forearm in a plain undyed period sleeve are visible - no faces, no heads, no second hand. Behind: softly blurred vivid green date palms and a deep blue sky with white clouds. Even daylight from above, the sun out of frame, vibrant saturated colours, light and airy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198ca-8a6c-7211-a333-346ea2947245",
+  "submitted_utc": "2026-11-01T20:26:11.4957949Z",
+  "completed_utc": "2026-11-01T20:26:23.5813761Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-feather-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c33e/dh9FemdnyoAtzPIYJsyw4_IjkEDRYI.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-feather-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c33e/LQojNIzCmrdy-MIQBt8Dx_L7W2mWdE.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-feather-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c33e/LTUI6NiK68pmSaxr9EUCY_T15W6X6R.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 237111635
+}

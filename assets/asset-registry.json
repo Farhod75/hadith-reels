@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -1488,6 +1488,42 @@
       "verified": true,
       "notes": "FLUX 2 still (serve-3) -> Kling 2.6 Pro i2v 10s. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: two hands tilt a clay jar and pour water from its mouth into another person's cupped hands - health spent serving someone (operator, 2026-11-01). Replaces b6412-health, which shipped to review with water running out of the BOTTOM of the jar (operator caught it; my clip check had looked for faces and hands only). serve-2 rejected by the operator: jar held oddly, two skin tones on the receiving hands. Checked every 0.5 s over the full clip: the stream leaves the mouth and lands in the palms; both edges clean, no faces.",
       "prompt_sidecar": "assets/scene-prompts/b6412-serve.json"
+    },
+    "b6406-feather.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (feather-2) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6406, Abu Hurairah, sahih - 'two words, light on the tongue, heavy on the Scale, beloved to the Most Merciful'. MODE B: no faces. Bright palette (operator 2026-10-31). Depicts: a small white feather drifts down and settles on an open right palm - 'light on the tongue'. Checked every 0.5 s: the feather falls DOWN and lands by ~5.5 s, the hand stays still, right hand, no face.",
+      "prompt_sidecar": "assets/scene-prompts/b6406-feather.json"
+    },
+    "b6406-scalesky-r.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (scalesky-2, operator: scale 'in space') -> Kling 3.0 Pro i2v 10s -> REVERSED (ffmpeg reverse, libx264 crf 16). Sahih al-Bukhari #6406, Abu Hurairah, sahih - 'two words, light on the tongue, heavy on the Scale, beloved to the Most Merciful'. MODE B: no faces. Bright palette (operator 2026-10-31). Depicts: a brass balance hanging over the clouds; the scale starts nearly level and the glowing LEFT pan sinks with the beam - 'heavy on the Scale'. The forward clip b6406-scalesky.mp4 levelled out from ~6 s (the opposite meaning, P343); it is not registered and must not be used. No people, no sun disc. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/b6406-scalesky.json"
+    },
+    "b6406-tasbih.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (tasbih-2) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6406, Abu Hurairah, sahih - 'two words, light on the tongue, heavy on the Scale, beloved to the Most Merciful'. MODE B: no faces. Bright palette (operator 2026-10-31). Depicts: a right hand counting wooden prayer beads with the thumb, seated on a woven mat in a white room - the dhikr itself. The finger-counting stills (b6406-dhikr-*) read as a meditation mudra and were rejected (as 4811's dua, P340 addendum). Checked every 0.5 s on a hand crop: thumb moves bead by bead, five fingers throughout, no face.",
+      "prompt_sidecar": "assets/scene-prompts/b6406-tasbih.json"
+    },
+    "b6406-valley.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (valley-2) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6406, Abu Hurairah, sahih - 'two words, light on the tongue, heavy on the Scale, beloved to the Most Merciful'. MODE B: no faces. Bright palette (operator 2026-10-31). Depicts: a bright green oasis valley with a stream, light beams through clouds - 'beloved to the Most Merciful' (finale). Sun disc never visible; no people. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/b6406-valley.json"
     }
   }
 }

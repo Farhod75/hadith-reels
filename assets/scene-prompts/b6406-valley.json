@@ -1,0 +1,18 @@
+{
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "name": "b6406-valley",
+  "file": "out\\backgrounds\\new\\b6406-valley.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "mode": "image-to-video",
+  "schema": 1,
+  "size_bytes": 30188505,
+  "completed_utc": "2026-11-01T21:09:33.3005322Z",
+  "prompt": "Static locked-off camera, the framing never changes. Soft beams of light shift slowly through the white clouds; the clouds drift gently across the blue sky; the stream flows and sparkles; the date palm fronds sway in a light breeze. The sun disc stays hidden behind the clouds. No people appear. Peaceful, luminous morning.",
+  "video_url": "https://v3b.fal.media/files/b/0ab0c440/j8H1Tr36XaiYBsaRp36dL_output.mp4",
+  "duration_sec": 10,
+  "request_id": "01a198ec-64fd-7333-a734-e031a4b1b734",
+  "submitted_utc": "2026-11-01T21:03:11.4357074Z",
+  "generate_audio": false,
+  "resolution": null,
+  "image": "out\\refs\\b6406-valley-2.jpg"
+}

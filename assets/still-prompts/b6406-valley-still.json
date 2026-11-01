@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-valley",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, a wide bright green oasis valley in Arabia in the morning: rows of tall date palms, a clear stream winding through fresh grass, golden sand hills on either side. Soft beams of light fall through white clouds in a vivid blue sky; the sun disc itself is NOT visible, hidden behind the clouds. No people, no animals, no buildings, no text. Vibrant saturated colours, peaceful and luminous, high detail.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198cb-6422-7f92-aa84-d28ef4062cab",
+  "submitted_utc": "2026-11-01T20:27:08.2398263Z",
+  "completed_utc": "2026-11-01T20:27:43.0668986Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-valley-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c346/b2LaXAMjEvyILBvDaWgop_LABQUlVb.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-valley-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c346/0--2d6NQzdsNQPCuigDoq_B4S98Isp.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-valley-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c346/cFD4xT9bZuq_8J9A0l1pX_KazlyQD7.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2048012928
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-scale",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, bright daylight in a sunlit stone courtyard with green date palms. A large old brass balance scale standing on a carved wooden base, no people and no hands. The left pan hangs LOW, clearly weighed down, and is touched by a soft warm golden glow; the right pan rides HIGH and empty. The beam is steeply tipped. Clean composition, the scale centred, a vivid blue sky behind. Even daylight, vibrant saturated colours, calm and solemn, no modern objects, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198ca-f8ca-7fd1-a90c-18d67712189d",
+  "submitted_utc": "2026-11-01T20:26:40.8336907Z",
+  "completed_utc": "2026-11-01T20:26:49.7165794Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-scale-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c340/yMEf3mAMr1NGFnWpJQCvj_bKgxT8sk.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-scale-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c340/9CV5LNb-VNrf9ConkMUhO_S2Lkveg4.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-scale-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c340/NL1o5aMOKRLRB28lmS4vd_6CtccV86.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 531996177
+}

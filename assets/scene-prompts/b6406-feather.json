@@ -1,0 +1,18 @@
+{
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "name": "b6406-feather",
+  "file": "out\\backgrounds\\new\\b6406-feather.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "mode": "image-to-video",
+  "schema": 1,
+  "size_bytes": 27483426,
+  "completed_utc": "2026-11-01T20:50:01.4798225Z",
+  "prompt": "Static locked-off camera, the framing never changes. The small white feather drifts slowly DOWN through the air, swaying gently from side to side, and settles softly onto the open palm. The right hand stays still, open and palm up. Palm fronds sway softly in the blurred background; white clouds drift slowly. Bright, airy daylight.",
+  "video_url": "https://v3b.fal.media/files/b/0ab0c3ca/yXWBsIBSxsD7SjJCDjh2J_output.mp4",
+  "duration_sec": 10,
+  "request_id": "01a198d9-990b-75b1-87ce-3b4d51a23986",
+  "submitted_utc": "2026-11-01T20:42:39.8226847Z",
+  "generate_audio": false,
+  "resolution": null,
+  "image": "out\\refs\\b6406-feather-2.jpg"
+}

@@ -1,0 +1,18 @@
+{
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "name": "b6406-scalesky",
+  "file": "out\\backgrounds\\new\\b6406-scalesky.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "mode": "image-to-video",
+  "schema": 1,
+  "size_bytes": 20503715,
+  "completed_utc": "2026-11-01T20:56:36.7469188Z",
+  "prompt": "Static locked-off camera, the framing never changes. The balance scale hangs still in the air. The LEFT pan, glowing softly golden, sinks slowly lower as if something heavy settles into it, the beam tipping further down on the left side with it, while the empty right pan rises; then both pans settle and sway only very slightly. The soft clouds below drift slowly. Calm, luminous light.",
+  "video_url": "https://v3b.fal.media/files/b/0ab0c3f2/Oz0Y-aiQpviObC6Hrn-Ic_output.mp4",
+  "duration_sec": 10,
+  "request_id": "01a198e0-6ab4-7873-b6b7-482edd8fc7b0",
+  "submitted_utc": "2026-11-01T20:50:06.4882115Z",
+  "generate_audio": false,
+  "resolution": null,
+  "image": "out\\refs\\b6406-scalesky-2.jpg"
+}

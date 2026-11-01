@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6406-tasbih",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, a bright clean room with whitewashed mud-brick walls and soft even daylight. Close shot of one anonymous RIGHT hand holding a string of wooden prayer beads (a misbaha of round brown beads with a small tassel): the beads loop over the fingers and the thumb is pulling one bead down. The hand rests on the thigh of a man sitting on his folded legs on a woven palm-fibre prayer mat, as in the sitting of prayer - not cross-legged. Exactly five fingers, natural proportions. Only the right hand, forearm and thigh in a plain white cotton garment are visible - no face, no head, no left hand, no feet. No window, no door and no sun in frame. Warm, calm, vibrant colours, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a198d2-dd66-7013-b118-f6df30bca374",
+  "submitted_utc": "2026-11-01T20:35:18.1231098Z",
+  "completed_utc": "2026-11-01T20:35:26.7646364Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6406-tasbih-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c374/Ss2lsz26HSRO4QWj4f5a-_LcvZRi8d.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6406-tasbih-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c374/jeiPE7XnsRfKx8npz1AzH_uHEDobGp.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6406-tasbih-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0c374/kI7heS0SYrz0UUL9EaPmT_Xj31zfQH.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1711950029
+}
