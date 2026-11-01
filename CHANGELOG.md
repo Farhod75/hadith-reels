@@ -1,3 +1,16 @@
+## [2026-11-01a] - a 'time' hashtag concept
+
+### Added
+
+- **lib/tags.ts: `time`** (time / время / вақт / вақт; aliases free-time, leisure).
+  Sahih al-Bukhari #6412 ("two blessings ... health and free time") carried the
+  library tag `death`, which the matn does not mention and which reached every
+  caption as #смерть / #death / #ўлим / #марг. The operator asked for #время;
+  there was no concept to map it to. The row's tags are now akhirah, blessings,
+  health, time (written by id, P290).
+
+---
+
 ## [2026-10-31m] - the narrator lead-in and the matn's quotation marks are HIGH
 
 ### Fixed

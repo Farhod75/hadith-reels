@@ -119,6 +119,7 @@ export const TAG_CANONICAL: Record<string, string> = {
   prophet: 'prophet',
   orphan: 'orphan', orphans: 'orphan',
   women: 'women',
+  time: 'time', 'free-time': 'time', leisure: 'time',   // 2026-11-01, bukhari-6412
 }
 
 // Canonical key -> the four forms. UZ and TJ are Cyrillic, matching the
@@ -183,6 +184,7 @@ export const TAG_FORMS: Record<string, TagForms> = {
   allah:        { en: 'allah',       ru: 'аллах',        uz: 'аллоҳ',        tj: 'аллоҳ' },
   wealth:       { en: 'wealth',      ru: 'богатство',    uz: 'бойлик',       tj: 'сарват' },
   health:       { en: 'health',      ru: 'здоровье',     uz: 'соғлик',       tj: 'саломатӣ' },
+  time:         { en: 'time',        ru: 'время',        uz: 'вақт',         tj: 'вақт' },
   heart:        { en: 'heart',       ru: 'сердце',       uz: 'қалб',         tj: 'дил' },
   hope:         { en: 'hope',        ru: 'надежда',      uz: 'умид',         tj: 'умед' },
   light:        { en: 'light',       ru: 'свет',         uz: 'нур',          tj: 'нур' },
