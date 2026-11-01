@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-273 patterns in 285 entries, frontier **P343**. The P-sequence is shared with
+274 patterns in 286 entries, frontier **P344**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -35,13 +35,13 @@ BEFORE changing it.
 - `.last-used.json` (4) - P159, P162, P201, P249
 - `derive-uzbek-latin.ts` (4) - P160, P268, P300, P325
 - `make-kids-reel.ps1` (4) - P124, P136, P158, P166
+- `refs.ts` (4) - P253, P292, P337, P344
 - `CLAUDE.md` (3) - P247, P253, P291
 - `asset-registry.json` (3) - P117, P123, P251
 - `candidate-translations.json` (3) - P219, P264, P266
 - `check-draft-sync.py` (3) - P282, P294, P297
 - `generate-talking-clip.py` (3) - P137, P138, P164
 - `probe-passb.py` (3) - P221, P222, P275
-- `refs.ts` (3) - P253, P292, P337
 
 ---
 
@@ -332,5 +332,6 @@ BEFORE changing it.
 - **P340 (addendum 2)** - (addendum): the gesture is content too
 - **P342** - who is speaking was a MEDIUM
 - **P343** - the clip check had no question for the action
+- **P344** - promote copied an Arabic narrator into a library keyed in English
 
-<!-- pattern-index-stamp entries=285 patterns=273 frontier=343 sha1=23ab8a94431bd1088f37976931bc6964df4b4e5a -->
+<!-- pattern-index-stamp entries=286 patterns=274 frontier=344 sha1=bdeeb35daaa7746dfcf97e8aba0d190d9cd5dd82 -->

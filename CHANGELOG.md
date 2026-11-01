@@ -1,3 +1,22 @@
+## [2026-11-01c] - Sahih al-Bukhari #6406 promoted; promote checks the narrator key
+
+### Content
+
+- **Bukhari #6406 promoted** (library id eb94dcdb): Stage 3 A/B 4/4 pass/high on
+  both passes, Stage 4 approved by the operator, tags dhikr, allah, reward.
+  Drafts out/draft-bukhari-6406-{en,ru,uz,tj}.txt written; lint 0 fail, narrate
+  dry run passes in all four.
+
+### Fixed
+
+- **P344.** The library row arrived with the narrator in Arabic (`أبو هريرة`,
+  from the Dorar adapter); NARRATORS is keyed in English, and the P337 gate
+  stopped the narrate dry run. Row and candidate set to `Abu Hurairah` by id.
+  `promote-candidates.py` now skips a candidate whose narrator is not a
+  NARRATORS key.
+
+---
+
 ## [2026-11-01b] - R170-R173, Sahih al-Bukhari #6412, four languages, set closed
 
 ### Content

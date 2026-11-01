@@ -24,6 +24,9 @@ import urllib.request
 import urllib.error
 
 _here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(_here, "lib"))
+from narrator_leadin import load_narrators  # noqa: E402  (P344)
+NARRATORS = load_narrators()
 
 
 # ── env loader (mirrors upload-candidates.py) ────────────────────────────────
@@ -276,6 +279,21 @@ def main():
         # while it is still theoretical.
         if str(num or "").startswith("auto-"):
             print(f"   ⏭  skip {coll} {num}: synthetic dedup number, not a citation")
+            skipped += 1
+            continue
+
+        # P344: the library and lib/refs.ts NARRATORS key narrators by their
+        # English name ('Abu Hurairah'); narrate-reel's P337 gate, the caption
+        # ref line (P150) and narrator_leadin all look the row up by that key.
+        # The Dorar adapter writes the Arabic name ('أبو هريرة'), and this
+        # mapping copied it through unchecked - #6406 reached the library that
+        # way on 2026-11-01 and was stopped only at the narrate dry run. Refuse
+        # here instead: fix the candidate's narrator to the NARRATORS key (or
+        # add the narrator to refs.ts with all forms) and re-run.
+        nar = c.get("narrator")
+        if nar not in NARRATORS:
+            print(f"   ⏭  skip {coll} {num}: narrator {nar!r} is not a lib/refs.ts NARRATORS key "
+                  f"- set the English key on the candidate first (P344)")
             skipped += 1
             continue
 

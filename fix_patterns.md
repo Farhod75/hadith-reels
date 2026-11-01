@@ -14644,3 +14644,27 @@ pattern can see.
 
 ---
 
+## PATTERN 344: promote copied an Arabic narrator into a library keyed in English
+
+**Date:** 2026-11-01  **Repo:** hadith-reels  **Severity:** data (caught by a gate)
+
+**What happened.** Sahih al-Bukhari #6406 was sourced from Dorar, whose adapter
+writes the narrator as Dorar gives it: `أبو هريرة`. Every other library row, and
+`lib/refs.ts` NARRATORS, key the narrator by its English name (`Abu Hurairah`).
+`promote-candidates.py` mapped `narrator` straight through, so the library row
+landed with the Arabic string. Nothing at Stage 4 or 5 looked at it. The P337
+gate in `narrate-reel.py --dry-run` stopped all four languages ("narrator
+'أبو هريرة' is not in lib/refs.ts NARRATORS"), before anything was spent.
+
+**Fix.** Data: library row eb94dcdb and candidate 291a3d8e set to
+`Abu Hurairah` (by id, P290). Code: `promote-candidates.py` loads NARRATORS via
+`narrator_leadin.load_narrators()` and skips any candidate whose narrator is not
+a key, with a message saying to set the English key first. A dry run now shows
+the skip before the human approves a commit.
+
+**Tripwire:** the skip line in promote's dry run; P337 at narrate stays as the
+second gate.
+
+**Status:** FIXED.
+
+---
