@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-rainbow",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal landscape: a green palm-filled valley in Arabia just after rain, a vivid full rainbow arching across a bright blue sky with white clouds, desert wildflowers blooming in yellow, purple and red across the foreground, a clear stream reflecting the sky. Brilliant sunlight, vibrant saturated colours, fresh and joyful. No people, no buildings, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1935f-41c0-72f3-8aeb-a3356827750c",
+    "submitted_utc":  "2026-10-31T19:10:55.8642532Z",
+    "completed_utc":  "2026-10-31T19:11:12.2349169Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-rainbow-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fbb/D5LNBUvdaoQrkNF3arCZY_yqCmxmuf.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-rainbow-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fba/_XIaCt5DX00LQ79XZbaHt_LGQJ88cu.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-rainbow-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fba/jj_OIKxosBbtw7kc57Dvy_yCoKPsB3.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  507062383
+}

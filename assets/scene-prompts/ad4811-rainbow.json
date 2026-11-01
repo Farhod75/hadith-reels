@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a377/KSQ3qt9G7FtxcypgKmMO__output.mp4",
+    "name":  "ad4811-rainbow",
+    "image":  "out\\refs\\ad4811-rainbow-2.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-rainbow.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T21:43:35.3482493Z",
+    "size_bytes":  37224857,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. Wildflowers sway gently in a light breeze, the stream flows and sparkles in the sun, white clouds drift slowly across the blue sky, palm fronds move softly, the rainbow stays steady. Bright, fresh and joyful.",
+    "request_id":  "01a193eb-047b-72c2-8d65-9e7d5e2ac671",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-10-31T20:18:37.5386896Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T21:54:25.6110212Z",
+    "mode":  "image-to-video"
+}

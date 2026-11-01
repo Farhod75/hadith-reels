@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-10-29",
+  "updated": "2026-10-31",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -1409,6 +1409,42 @@
       "verified": true,
       "notes": "MODE B, no figures. FLUX 2 still -> Kling 3.0 Pro i2v 10s, generate_audio false. Imagery drawn from the matn itself rather than borrowed: the hadith turns on a rib, on bending versus breaking, and on care rather than force. The camera is held still in every prompt of this set because Kling 3.0 reads motion instructions more aggressively than 2.6. Watched and approved by the operator 2026-10-29. Sahih al-Bukhari #5185. Depicts: a tended courtyard garden at first light, flower beds along both walls and a round bed in the centre, a stone path running into depth toward an arch, blossom overhead. Revised at the operator's request from an earlier version that had a vessel on the paving and too little depth. Recorded motion: branches swaying slightly, a few petals drifting. Probed 10.041667s / 1080x1920x24 / audio:0.",
       "prompt_sidecar": "assets/scene-prompts/b5185-garden.json"
+    },
+    "ad4811-water.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (waterright-4) -> Kling 3.0 Pro i2v 10s. Sunan Abu Dawud #4811, Abu Hurairah, sahih - 'whoever does not thank people does not thank Allah'. MODE B: hands, or one anonymous figure (the matn's subject is 'whoever', so MODE B permits it); no faces. Operator asked for bright, colourful frames (2026-10-31). Depicts: two right hands, one offering a clay cup of water to the other, a turquoise spring and date palms behind - the good a person does, which the hadith says must be thanked. The first round had left hands; the operator asked for right hands. Recorded motion: water ripples, fronds sway; camera locked, hands steady for the full 10 s.",
+      "prompt_sidecar": "assets/scene-prompts/ad4811-water.json"
+    },
+    "ad4811-heart.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (heartchest-2) -> Kling 3.0 Pro i2v 10s. Sunan Abu Dawud #4811, Abu Hurairah, sahih - 'whoever does not thank people does not thank Allah'. MODE B: hands, or one anonymous figure (the matn's subject is 'whoever', so MODE B permits it); no faces. Operator asked for bright, colourful frames (2026-10-31). Depicts: a right hand laid on the chest in thanks, golden-hour palms behind; framing cut at the neck. Whole-clip check: the neck enters the top-left corner, no chin or face at any frame. Round 1 (heart-1..3) rejected for a visible chin or broken anatomy.",
+      "prompt_sidecar": "assets/scene-prompts/ad4811-heart.json"
+    },
+    "ad4811-rainbow.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (rainbow-2) -> Kling 3.0 Pro i2v 10s; second generation - the first completed job's result fetch returned fal 500 three times. Sunan Abu Dawud #4811, Abu Hurairah, sahih - 'whoever does not thank people does not thank Allah'. MODE B: hands, or one anonymous figure (the matn's subject is 'whoever', so MODE B permits it); no faces. Operator asked for bright, colourful frames (2026-10-31). Depicts: a palm valley after rain, a rainbow, wildflowers and a stream; no people. NOT imagery the matn contains: an operator-approved symbolic scene for the favours of Allah, the second half of the matn ('does not thank Allah'). Known drift: the camera creeps and the rainbow fades in the last ~2 s; -FitScenes trims it.",
+      "prompt_sidecar": "assets/scene-prompts/ad4811-rainbow.json"
+    },
+    "ad4811-dua2.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (duaopen-2), sun removed with FLUX 3 Edit (blackforestlabs/flux-3/edit-image), then Kling 2.6 Pro i2v 10s. Sunan Abu Dawud #4811, Abu Hurairah, sahih - 'whoever does not thank people does not thank Allah'. MODE B: hands, or one anonymous figure (the matn's subject is 'whoever', so MODE B permits it); no faces. Operator asked for bright, colourful frames (2026-10-31). Depicts: a kneeling silhouette on a mat in an oasis, both palms open and upturned in dua - thanks to Allah, the finale. History: dua-3 on Kling 3.0 closed the palms into a pressed-palm gesture (not Islamic dua) for all 10 s; duaopen 1-4 put the sun in his hands; duabook drew faces and literal books. Sun must not be faced (P340). Whole-clip check every 0.5 s: palms stay apart and open, no face detail, no sun.",
+      "prompt_sidecar": "assets/scene-prompts/ad4811-dua2.json"
     }
   }
 }

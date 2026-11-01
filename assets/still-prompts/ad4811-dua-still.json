@@ -1,0 +1,42 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-dua",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal wide shot of a lush green oasis in 7th-century Arabia, warm golden morning sun low behind the scene, vivid saturated colours, bright and luminous. In the middle distance, small in the frame, the dark backlit silhouette of a man seen from the side, sitting on his knees on a simple woven palm-leaf prayer mat, both hands raised in supplication; a pure silhouette with no facial features visible. Foreground: blooming wildflowers in yellow, purple and red and a calm clear pool reflecting the sky. Tall green date palms frame the scene, bright blue sky with soft white clouds. No buildings, no other people, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  4,
+    "request_id":  "01a193f0-355e-73b3-a97d-f99d09226717",
+    "submitted_utc":  "2026-10-31T21:49:15.0855316Z",
+    "completed_utc":  "2026-10-31T21:49:27.7845775Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-dua-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a370/trX0uyIxFtydhit2C8giM_gBuGE5pW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-dua-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a370/ENUiVMFa1HvSdg02cvfDa_Gi04jR1W.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-dua-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a370/vougR8xFVq8zmKLKdpB9I_2JULmKYh.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  4,
+                         "file":  "out\\refs\\ad4811-dua-4.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a370/C4Q33RsWL-mFAPS1ESlrP_ysgmlwXt.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  512898395
+}

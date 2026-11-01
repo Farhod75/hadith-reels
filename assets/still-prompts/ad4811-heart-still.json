@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-heart",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, golden-hour sunlight. A single anonymous right hand pressed flat over the chest in a gesture of thanks, seen from the side; the frame ends below the chin - no face, no head in frame. Simple off-white period robe. Background softly blurred: a glowing orange and pink sky and green palms lit gold. Warm, vivid, bright and luminous, rich saturated colours, gentle and sincere, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1935e-da3c-78f0-99f1-66276c449d0c",
+    "submitted_utc":  "2026-10-31T19:10:29.3473079Z",
+    "completed_utc":  "2026-10-31T19:10:37.6139364Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-heart-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb7/fFNTdRpbVzzErm2oOj4A6_Pshiq4QC.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-heart-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb7/9XnZ5TOugAK8ELQvvMY5H_FFnoKqR0.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-heart-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb7/E08wgIGhybQiFZyEG0eNc_XgfaCYt9.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1519392458
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a36a/Qs2GHaShwMv5nzJWZwDYG_output.mp4",
+    "name":  "ad4811-bread3",
+    "image":  "out\\refs\\ad4811-breadtear-3.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-bread3.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T21:45:38.5528220Z",
+    "size_bytes":  10799357,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The hands stay where they are and hold the torn flatbread still. The only movement is the palm fronds swaying softly in a light breeze. The sky stays clear and empty. Calm, warm and bright.",
+    "request_id":  "01a193ec-e5ca-7151-8da5-973bfc61efc2",
+    "model":  "fal-ai/kling-video/v2.6/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T21:50:49.2145579Z",
+    "mode":  "image-to-video"
+}

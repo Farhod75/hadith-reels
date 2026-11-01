@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-water",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, brilliant midday in a lush oasis. Close shot of one anonymous hand offering a simple clay cup full of clear water to another open hand; the water surface sparkles in the sun. Only hands and forearms in plain period sleeves are visible - no faces, no heads in frame. Behind: a turquoise spring, vivid green date palms, a bright blue sky. Vibrant saturated colours, brilliant clear daylight, fresh and uplifting, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1935e-64c5-7c70-a5f2-defc532a15cc",
+    "submitted_utc":  "2026-10-31T19:09:59.2342462Z",
+    "completed_utc":  "2026-10-31T19:10:07.5652973Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-water-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb4/6k9tRkBtzhMEjpM-kJZ8X_xbtGKlVa.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-water-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb4/MBwFbVqnPyTKq0pjZ0JMk_dUm66OdM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-water-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09fb4/-dp8YvXb1l39uT73reUyj_fwr3wVWo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1531658345
+}

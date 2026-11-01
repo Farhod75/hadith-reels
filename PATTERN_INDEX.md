@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-271 patterns in 282 entries, frontier **P341**. The P-sequence is shared with
+271 patterns in 283 entries, frontier **P341**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -329,5 +329,6 @@ BEFORE changing it.
 - **P339** - the warning listened for an exit code the validator never sent
 - **P340** - the qibla rule was remembered, not written
 - **P341** - the strict flag was splatted one letter at a time
+- **P340 (addendum 2)** - (addendum): the gesture is content too
 
-<!-- pattern-index-stamp entries=282 patterns=271 frontier=341 sha1=b014a64f0a3cc7417b559630912878b248a5c29a -->
+<!-- pattern-index-stamp entries=283 patterns=271 frontier=341 sha1=2f4df7fa8545b6609556801b29dd36edef31d8ae -->

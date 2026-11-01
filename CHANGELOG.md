@@ -1,3 +1,17 @@
+## [2026-10-31l] - R166-R169, Sunan Abu Dawud #4811, four languages, set closed
+
+### Content
+
+- Tracker rows R166-R169 (TG 176-179), duplicate index, Gratitude / Contentment
+  now 8, nasheed usage, the ad4811 clip set, stats 169/117/43, change log, and
+  the step-17 retro. The four ad4811 clips flip to verified:true: the operator
+  watched all four reels before publishing (P301).
+- PRAYER DIRECTION gains "dua is open palms, never pressed palms" and a
+  corrected worked case (P340 addendum). self_upskilling.md records the first
+  production use of FLUX 3 (Edit).
+
+---
+
 ## [2026-10-31k] - the -NoReview subtitle gate receives --strict as one argument
 
 ### Fixed

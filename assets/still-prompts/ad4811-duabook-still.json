@@ -1,0 +1,42 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-duabook",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal wide shot of a lush green oasis in 7th-century Arabia under bright high midday daylight, clear blue sky with a few soft white clouds, vivid saturated colours. In the middle distance, small in the frame, a man in a dark robe and simple head cloth seen in strict side profile, sitting on his knees on a simple woven palm-leaf mat. His head is slightly bowed, looking down at his hands. Both forearms are raised in front of his chest with elbows close to his body, both palms open and facing upward, side by side, like holding an open book. His figure is dark against the bright green background so that no facial features are visible. The light is even and comes from high above; there is no glow, no flare and no light near his hands. Foreground: wildflowers in yellow, purple and red and a calm clear pool. Tall green date palms on both sides. No buildings, no other people, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  4,
+    "request_id":  "01a1943b-a046-7693-8792-0115cab67e94",
+    "submitted_utc":  "2026-10-31T23:11:37.5562470Z",
+    "completed_utc":  "2026-10-31T23:11:50.3287438Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-duabook-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a55e/Gn_QKa7_4ViCrQ-r31NaO_UjEGOwxG.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-duabook-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a55e/7zzyyqoQlh8-xYg5FLUYS_fbBZbIus.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-duabook-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a55e/jB1CCEnOc5VrPTuRXxifb_6i5FDLUj.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  4,
+                         "file":  "out\\refs\\ad4811-duabook-4.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a55e/shZnc1bsjmwQ8Cru0GjPv_j1ecX8e0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1501716116
+}

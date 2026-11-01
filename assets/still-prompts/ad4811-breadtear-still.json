@@ -1,0 +1,42 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-breadtear",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright sunny morning, side view of two people facing each other, only hands and forearms in frame - no faces, no heads, no bodies. The person on the left has just torn a warm round flatbread in two: his left hand holds one half close to him, and his RIGHT hand stretches forward offering the other half. The person on the right reaches out with his RIGHT hand, palm up, to take it. Exactly three hands visible: giver left, giver right, receiver right. Plain undyed period sleeves. Background: a sunlit mud-brick courtyard, a vivid deep-blue sky, bright green palm fronds. Vibrant saturated colours, crisp clear daylight, warm and joyful, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  4,
+    "request_id":  "01a19368-29bc-71a3-a0d7-e03407adf311",
+    "submitted_utc":  "2026-10-31T19:20:39.0611728Z",
+    "completed_utc":  "2026-10-31T19:20:51.8586031Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-breadtear-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff4/-BJa9RiY8_WsMoC-tDi47_gViAbYb2.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-breadtear-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff4/ebZEcZtCoKZ3x0HGVGhDg_tQLIXxHJ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-breadtear-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff4/Cfe6Brg-botFBI2IAaHj9_DHjkqj7a.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  4,
+                         "file":  "out\\refs\\ad4811-breadtear-4.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff4/LmfLBi3i1ZjjkdtuesVno_c9uYdzwN.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  63905118
+}

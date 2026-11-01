@@ -163,6 +163,14 @@ section says whether it works for us.
   Rule 2 tells it to explain the teaching instead of constructing an incident,
   which is close — but nothing in the prompt lets a field come back empty.
 
+- **FLUX 3 Edit — FIRST PRODUCTION USE 2026-10-31 (abudawud-4811).**
+  `blackforestlabs/flux-3/edit-image`, prompt + `image_urls` (a data URI is
+  accepted), one 765x1360 image back, $0.048 per 1 MP. Removed a sun from
+  between a figure's hands and redrew the palms behind it on the first call,
+  leaving everything else intact - where a local OpenCV fill had failed. The
+  input schema could not be read (robots), so only the two documented fields
+  were sent. Not yet a script: the call lives in `out/edit_4811_f3.ps1`.
+  Text-to-image stills still go through `fal-ai/flux-2` - see the next item.
 - **FLUX 3 Image — NOT EVALUATED, and we are a major version behind again.**
   `blackforestlabs/flux-3/text-to-image` is live on fal; stills still go through
   `fal-ai/flux-2`. The DATES are the finding: **FLUX 3 Image launched 2026-10-01,

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-heartchest",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, golden-hour sunlight. Tight close-up of a chest in a simple off-white linen period robe; a single RIGHT hand rests flat over the left side of the chest, over the heart, in a gesture of sincere thanks. The top edge of the frame is at mid-chest: no neck, no chin, no beard, no face anywhere in frame. Natural human proportions. Background softly blurred: a glowing orange and pink sky and green palms lit gold. Warm, vivid, bright and luminous, rich saturated colours, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a19369-a5f0-7d21-b9c5-bf08af236453",
+    "submitted_utc":  "2026-10-31T19:22:16.8436058Z",
+    "completed_utc":  "2026-10-31T19:22:29.2226579Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-heartchest-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ffe/i3uPDkXq7-NBpTplJyxH2_NYehOSSA.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-heartchest-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ffe/TXSE03HOwoyZmOX8smAjY_832rgL3V.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-heartchest-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ffe/6SEKxIbAeoFsP1pGfu_eM_5s3ewL9M.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  501993532
+}

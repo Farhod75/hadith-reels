@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a5d3/b7HM4BArwGSEzStM2uBXt_output.mp4",
+    "name":  "ad4811-dua2",
+    "image":  "out\\refs\\ad4811-duaf3-1.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-dua2.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T23:27:32.2694948Z",
+    "size_bytes":  17716212,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The kneeling man stays completely still: his two open palms stay apart and facing upward exactly as they are, his head does not turn. The only movement: palm fronds sway softly in a light breeze, the pool ripples gently, the wildflowers in the foreground sway, white clouds drift slowly. Peaceful, bright daylight.",
+    "request_id":  "01a1944a-2f6c-76d1-8144-1da4ba738cc2",
+    "model":  "fal-ai/kling-video/v2.6/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T23:37:21.0732762Z",
+    "mode":  "image-to-video"
+}

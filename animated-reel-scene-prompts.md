@@ -119,14 +119,23 @@ viewer reads direction from the light and from what the figure faces:
   SOUTH; Medina (the 7th-century setting) 176°, south. "West" is right for
   Central Asia and wrong for most Russian-speaking viewers, so the only rule
   a frame can honour is the light rule above.
+- **Dua is open palms, never pressed palms.** Both palms open and upturned,
+  side by side like a cup, at chest height. Palms pressed together is the
+  Christian/Hindu/Buddhist prayer gesture: on abudawud-4811 Kling 3.0 closed an
+  ambiguous side-on pair of hands into it and held it for all 10 s. Pick a
+  still where the two open palms read clearly, pin them in the motion prompt
+  ("his two open palms stay apart"), and animate a figure on Kling 2.6 Pro.
 - **Check it at the still, before the paid clip.** Look for where the sun
   is and which way the figure or mat faces; add it to the still review
   alongside MODE B. Ask FLUX for it positively ("the morning sun behind him",
   "light from the side") — FLUX has no negative prompt.
 
-Worked case, abudawud-4811 (`ad4811-dua-3`): side-on silhouette on a mat, the
-morning sun behind him through the palms — he faces away from the sunrise.
-`dua-2` (facing straight into the sun) was rejected on this rule.
+Worked case, abudawud-4811. `dua-2` (facing straight into the sun) was
+rejected on this rule. `dua-3` passed it and failed the gesture rule above.
+`duaopen-2` had the right hands but the sun between them - FLUX put it there
+because the prompt said "sun low between the palms". The sun was removed with
+FLUX 3 Edit (`blackforestlabs/flux-3/edit-image`); a local erase left a patch
+the operator called rubbed out. Shipped as `ad4811-dua2`.
 
 ### ERA & SETTING (inferred per hadith — environment + clothing must match the period)
 

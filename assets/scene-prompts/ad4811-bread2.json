@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a348/uui4if3zwL4kyQkKM2Sgg_output.mp4",
+    "name":  "ad4811-bread2",
+    "image":  "out\\refs\\ad4811-breadtear-3.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-bread2.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T21:39:12.1391744Z",
+    "size_bytes":  12985436,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The hands stay where they are and hold the warm torn flatbread still; a thin wisp of steam rises from the bread; palm fronds sway softly in a light breeze; sunlight shimmers gently on the mud-brick wall. Calm, warm and bright.",
+    "request_id":  "01a193e7-0031-7493-830c-5bc44ee1950b",
+    "model":  "fal-ai/kling-video/v2.6/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T21:43:31.0904338Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a3d1/L0HxvU4UTNXtjeIrANCAK_output.mp4",
+    "name":  "ad4811-dua",
+    "image":  "out\\refs\\ad4811-dua-3.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-dua.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T22:02:29.1085028Z",
+    "size_bytes":  32803543,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The kneeling silhouette on the mat stays completely still with hands raised. Wildflowers sway gently in a light breeze, palm fronds move softly, the pool ripples slightly, soft white clouds drift slowly, warm sunlight glows through the palms. Peaceful, bright and luminous.",
+    "request_id":  "01a193fc-513f-72e3-8796-332d4deb2c3c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T22:08:56.6556260Z",
+    "mode":  "image-to-video"
+}

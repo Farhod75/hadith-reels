@@ -14576,3 +14576,18 @@ prompt; the gate's own fail-safe caught it, and the re-render is the test.
 
 ---
 
+## PATTERN 340: (addendum): the gesture is content too
+
+**Date:** 2026-10-31. The worked case above named `dua-3` as the pick. It was
+animated on Kling 3.0, which closed the side-on hands into pressed palms - the
+Christian/Hindu/Buddhist prayer gesture - for all ten seconds; the operator
+called it a Buddhist gesture. The whole-clip check had sampled the frame for a
+face and for the sun, and passed it. The scene spec now carries "dua is open
+palms, never pressed palms", and the shipped finale (`ad4811-dua2`) came from
+`duaopen-2` with the sun removed by FLUX 3 Edit, animated on Kling 2.6 Pro with
+the palms pinned in the motion prompt.
+
+**Tripwire:** none - as above, the gate is the still and clip review.
+
+---
+

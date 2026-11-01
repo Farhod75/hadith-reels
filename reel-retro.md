@@ -634,3 +634,54 @@ Every bed in the registry is rights:unverified, Aswati included (P301).
 **What carries forward.** The narrator is said in every adults reel from now on,
 from the DB, refused at narration when missing. Kids lane: undecided.
 
+## R166-R169 - Sunan Abu Dawud #4811 - 2026-10-31
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (176-179), Instagram, YouTube Shorts, TikTok.
+
+**What the set was for.** "Whoever does not thank people does not thank Allah"
+has two halves, and the operator asked for scenes in colour, not the dark register
+most sets have used. The scenes follow the matn: water given, a hand on the
+chest, the favours of Allah, and - the operator's call - a figure in dua at the
+end, for the second half.
+
+**Caught before publish, and who said it.**
+
+1. **Left hands** in the water still (operator). Regenerated with right hands.
+2. **Steam reading as smoke** through the centre of bread2 (operator); the bread
+   scene was then dropped for the dua finale (operator).
+3. **The qibla rule, said twice** (operator): it was stated on 2026-10-24 and
+   lived only in chat memory. Written into the scene spec with the audience's
+   bearings (P340).
+4. **A Buddhist gesture** (operator). Kling 3.0 closed an ambiguous side-on pair
+   of hands into pressed palms for all ten seconds. My whole-clip check looked
+   for faces and the sun, not for the gesture.
+5. **The sun in his hands, then "rubbed out with an eraser"** (operator). The
+   prompt put the sun between the palms; a local OpenCV removal had no detail
+   to recover under the blown core. FLUX 3 Edit fixed it on one call.
+6. **"Why FLUX 2 and not 3?"** (operator). We are a major version behind, and the
+   edit was the first time FLUX 3 was used.
+7. **The -NoReview gate stopped EN and RU** (the gate, on my P339 fix): `--strict`
+   was splatted letter by letter. Failed safe; P341.
+8. **RU subtitles** (me, reading the SRT): "Абхурайра, добудет", and the closing
+   guillemet after our moral - P316 recurring. The validator rated the first
+   MEDIUM and did not see the second.
+
+**Escaped to publish.** Nothing known.
+
+**Root causes.** A rule kept in memory instead of the repo (3). A figure check
+that tests for what a frame must not contain, but not for what the gesture
+means (4). A fix verified by reading the code path instead of running it (7).
+A validator that compares words, not the boundary of the Prophet's speech (8).
+
+**Prevention landed.** P340 (prayer direction, now including the dua gesture);
+P341.
+
+**Prevention deferred.** Make an honorific near-miss ("добудет") and a moved
+quotation boundary HIGH in stt-validate.py - P316 has now recurred, and both were
+caught by hand. Evaluate FLUX 3 text-to-image for stills.
+
+**Operator corrections of the assistant: 6** (items 1-6).
+
+**The finding:** the operator's eye caught every visual defect this set; the
+gates caught none of them. A gesture is content, and a still review that only
+looks for faces will pass a frame that says the wrong thing.

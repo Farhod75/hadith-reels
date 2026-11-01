@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a0a8/ORyenk-HFqu874YknTWx7_output.mp4",
+    "name":  "ad4811-heart",
+    "image":  "out\\refs\\ad4811-heartchest-2.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-heart.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T19:44:23.9110664Z",
+    "size_bytes":  29882664,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes and stays cropped at the chest. The hand rests on the chest while the chest rises and falls slowly with one calm breath; the linen fabric stirs slightly in a gentle breeze; the blurred palms sway softly in warm golden light. Sincere and peaceful.",
+    "request_id":  "01a1937d-e53a-7763-809a-a2ce74bdc130",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T19:56:39.5390772Z",
+    "mode":  "image-to-video"
+}

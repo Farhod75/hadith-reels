@@ -1,0 +1,42 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-duaopen",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal wide shot of a lush green oasis in 7th-century Arabia, vivid saturated colours, bright and luminous. In the middle distance, small in the frame, the dark silhouette of a man seen from behind at a three-quarter angle, sitting on his knees on a simple woven prayer mat. He makes Islamic dua: both hands raised in front of his chest, palms OPEN and facing upward toward the sky, held side by side and slightly cupped as if receiving something; the two hands are clearly separate open palms, never pressed together. Pure silhouette with no facial features. The warm morning sun shines from the side, low between the palms to his left; he does not face the sun. Foreground: blooming wildflowers in yellow, purple and red and a calm clear pool. Tall green date palms, bright blue sky with soft white clouds. No buildings, no other people, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  4,
+    "request_id":  "01a19436-44b7-7ee2-82d0-cc43f2c692b1",
+    "submitted_utc":  "2026-10-31T23:05:45.7940202Z",
+    "completed_utc":  "2026-10-31T23:05:59.4375585Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-duaopen-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a53b/B-iJw2t2w-1KLw4n6bWlG_jlCOTHGk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-duaopen-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a53b/BrkWEPQqgkY4T6o2cDCiJ_2jiCpwvH.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-duaopen-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a53b/Tok4AzN6Yaw6nIrgGIveO_i7DCms0N.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  4,
+                         "file":  "out\\refs\\ad4811-duaopen-4.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0a53b/c5NEQocyqXSErVRXcNw77_R3ZHQ2uZ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  249419109
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a06b/Frh9TzVIwQss7QXJyHF56_output.mp4",
+    "name":  "ad4811-bread",
+    "image":  "out\\refs\\ad4811-breadtear-3.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-bread.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T19:33:32.1560416Z",
+    "size_bytes":  29725055,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The hand on the left slowly passes the torn piece of warm flatbread to the open hand on the right, which closes gently around it; a few crumbs fall; palm fronds sway softly in a light breeze under the bright blue sky. Warm, generous and calm.",
+    "request_id":  "01a19373-f31f-71c0-89c1-02af0cefd9c8",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T19:43:34.0364951Z",
+    "mode":  "image-to-video"
+}

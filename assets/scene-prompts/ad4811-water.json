@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0a05e/_ssef0_nAob-So2bQy8jS_output.mp4",
+    "name":  "ad4811-water",
+    "image":  "out\\refs\\ad4811-waterright-4.jpg",
+    "file":  "out\\backgrounds\\new\\ad4811-water.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-10-31T19:31:57.3385809Z",
+    "size_bytes":  33130248,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The two hands hold the cup steady; the water inside ripples gently and sparkles in the sunlight; palm fronds sway softly in a light breeze; the turquoise spring shimmers. Calm, bright and fresh.",
+    "request_id":  "01a19372-809e-70e3-adac-cd6b54582bce",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-10-31T19:44:21.8822400Z",
+    "mode":  "image-to-video"
+}

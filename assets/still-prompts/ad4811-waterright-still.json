@@ -1,0 +1,42 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "ad4811-waterright",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, brilliant midday in a lush oasis, side view of two people facing each other, only hands and forearms in frame - no faces, no heads. The person on the left offers a simple clay cup full of clear sparkling water with his RIGHT hand; the person on the right receives it with his RIGHT hand. Both are right hands, thumbs on top; no left hands visible. Plain period sleeves. Behind: a turquoise spring, vivid green date palms, a bright blue sky. Vibrant saturated colours, brilliant clear daylight, fresh and uplifting, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  4,
+    "request_id":  "01a19368-aa8b-7ac0-8444-c7c9449453f5",
+    "submitted_utc":  "2026-10-31T19:21:12.4856769Z",
+    "completed_utc":  "2026-10-31T19:21:29.0044007Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\ad4811-waterright-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff8/snnmxHHUfYyRfcRt9gLT1_hroGM7df.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\ad4811-waterright-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff8/LWyOaHbnHzkoCAchM66UP_0IQd1ewE.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\ad4811-waterright-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff8/7hhcfhebjrxi-HBzB7Ocw_WMRmxZj9.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  4,
+                         "file":  "out\\refs\\ad4811-waterright-4.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab09ff8/2E4UCMka8AugIZEmxZ5bh_wrimzJZV.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2054400477
+}
