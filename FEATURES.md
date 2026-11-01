@@ -100,7 +100,10 @@ published R027 subtitles, each carrying one Latin homoglyph introduced during
 hand-correction on a Latin keyboard layout. They render identically on screen
 and are invisible to human review by construction.
 
-**Limits:** warn-only, never edits. An inflection error on a word appearing
+**Limits:** never edits. Warn-only interactively; `--strict` (render-reel.ps1
+under -NoReview, P339) exits 1 on any HIGH. Since P342 the narrator lead-in,
+the honorific formulas and the matn's quotation marks are HIGH - Whisper's
+"добудет" for "да будет" was a MEDIUM near-miss on three sets running. An inflection error on a word appearing
 elsewhere in another form is not caught (`Знание` → `Знания` passed because
 `знания` occurs earlier). Does not judge translation accuracy — only fidelity to
 the source.

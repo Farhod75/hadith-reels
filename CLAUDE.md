@@ -647,7 +647,11 @@ npm run test:multilingual
    invisible on screen and the check exists because they shipped once
 6. **Run this AT the gate, not after the render.** Running it afterwards means a
    defect is already burned into the MP4 and the reel must be re-rendered.
-7. Warn-only. A clean run means these checks passed, not that the subtitles are
+7. Interactive runs are warn-only; under `-NoReview` the render runs it
+   `--strict` and any HIGH stops the burn (P339). HIGH includes the narrator
+   lead-in, the honorific formulas and the matn's quotation marks (P342) -
+   who is speaking is never a MEDIUM. A missing pair of quotes is MEDIUM.
+   A clean run means these checks passed, not that the subtitles are
    correct — read them
 
 ### Workflow G — Adding an asset to the library
@@ -734,7 +738,9 @@ npm run test:multilingual
    matn implies — never from imagery it does not contain (P111 rule 14):
    `.\scripts\generate-image.ps1 -Name "<slug>-<scene>" -Count 3 -Prompt "..."`
    review the stills (MODE B, era, and for prayer/dua scenes the PRAYER
-   DIRECTION rule - never facing the sun or a door, P340), then
+   DIRECTION rule - never facing the sun or a door, P340) AND the action
+   itself - where water comes from and lands, what a gesture means (P343),
+   then
    `.\scripts\generate-scene.ps1 -Name "<slug>-<scene>" -Image "out\refs\<pick>.jpg" -Duration 10 -Prompt "<MOTION only>"`
 5. **Moving the clips is no longer required (P217).** `generate-scene.ps1`
    writes to `out\backgrounds\new\`; `render-reel.ps1 -Scenes` now resolves a

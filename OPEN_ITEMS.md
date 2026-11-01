@@ -18,6 +18,61 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ---
 
+## Reconciled 2026-11-01
+
+Reconciled against `git log --since=2026-10-22` (60 commits) and `CHANGELOG.md`,
+not from memory. Newer than the 2026-10-22 section below; where they disagree,
+this one wins.
+
+**Shipped since 2026-10-22:** #2307 (R142-R145), #3540 (R146-R149), #6570
+(R150-R153), #3559 (R154-R157), #5185 (R158-R161), #1161 (R162-R165), #4811
+(R166-R169), #6412 (R170-R173). Patterns P289-P343.
+
+**Closed since 2026-10-22, from the list below:**
+
+- **Divine-pronoun casing check** - built, `423d543` (P298).
+- **"No pre-commit hook, deliberately"** - superseded 2026-10-31: `.githooks/
+  pre-commit` now rebuilds `PATTERN_INDEX.md` when `fix_patterns.md` is staged
+  (`2c2186e`). It runs nothing else; the suite still gates at push.
+- **FLUX a major version behind** - FLUX 3 (Edit) used in production for the
+  first time on #4811; text-to-image stills still on `fal-ai/flux-2` (see below).
+- **Kling 4.0 has no API** - it does now ($0.157/s 720p, `kling/v4/
+  image-to-video`, self_upskilling 2026-10-31); not evaluated.
+
+**Added 2026-10-31 / 2026-11-01, open:**
+
+- **Partial matns in the library.** Rows whose Arabic or translation is a
+  fragment of a longer hadith, found while choosing sets and NOT yet checked
+  against a Tier 1 page: Bukhari #6019 (neighbour + guest + speech - only the
+  neighbour clause stored; to be done later in full, all four languages, via
+  Stage 2/3), Bukhari #1419, Muslim #223 (only "purity is half of faith"; the
+  matn continues with al-hamdu lillah filling the Scale - needed for any tasbih
+  reel), Muslim #2588 (only "charity does not decrease wealth"; two more
+  clauses), Bukhari #10 (the muhajir clause missing). A library-wide check needs
+  the source page's matn element; the 2026-10-31 attempt counted page Urdu as
+  matn and its numbers were not reported.
+- **Russian matns are not audited for meaning.** #6412's row read "Две блага,
+  которыми пренебрегают" - wrong gender, and "neglect" for maghbun (loss).
+  Corrected 2026-11-01. `audit-library.py` checks script and form, not sense.
+  Library-wide RU-vs-Arabic pass: in progress 2026-11-01.
+- **Kids lane and the narrator lead-in (P337)** - undecided. The gate covers
+  the adults lane only.
+- **UZ/TJ have no subtitle gate** - by P078 they carry no subtitles, so P342
+  protects EN/RU only. The narration itself is checked against the draft.
+- **Tracker stats prose disagrees with itself** - the counted stats are gated by
+  `audit-docs.py`; the per-collection and per-companion prose is not and no
+  longer sums to the reel count.
+- **FLUX 3 text-to-image** - not evaluated for stills. FLUX 3 Edit
+  (`blackforestlabs/flux-3/edit-image`) works and lives only in
+  `out/edit_4811_f3.ps1`, not in `scripts/`.
+- **Kling 4.0** - API open, not evaluated.
+- **Next.js security release** (announced for November) and
+  **@anthropic-ai/sdk 0.95 -> 1.x** (major) - from the 2026-10-31 tool review.
+- **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
+  unregistered); `b6412-health` retired (water from the jar's bottom, P343).
+
+---
+
 ## Reconciled 2026-10-22
 
 This file was written 2026-10-18 and then went four days without an update while
