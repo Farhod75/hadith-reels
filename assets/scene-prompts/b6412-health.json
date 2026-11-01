@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0bb57/fGfs-nORDpwpeIDJutfj4_output.mp4",
+    "name":  "b6412-health",
+    "image":  "out\\refs\\b6412-health-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6412-health.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-01T14:42:53.0507203Z",
+    "size_bytes":  28882651,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The two hands hold the clay jar steady over the well; water keeps spilling from it in a sparkling stream; palm fronds sway softly in a light breeze. The hands stay in place. Bright, fresh daylight.",
+    "request_id":  "01a19790-34a8-7a33-9e97-af7df82d6934",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-01T14:55:23.3473089Z",
+    "mode":  "image-to-video"
+}

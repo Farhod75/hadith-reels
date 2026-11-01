@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-serve",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning. Side view of two anonymous people, only hands and forearms in plain undyed period sleeves visible - no faces, no heads. On the right, two strong hands tilt a full clay water jar; a clear stream of water pours out of the open MOUTH at the top rim of the jar. On the left, another person holds both hands cupped together, palms up, under the stream, and the water splashes and sparkles in the cupped palms. The body and base of the jar are whole and dry; water comes only from the open mouth. Behind: a sunlit mud-brick wall, vivid green date palms, a deep blue sky. Even daylight from above, vibrant saturated colours, warm and generous, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a197dd-bbd1-7f00-a30a-009dd59a9fcf",
+    "submitted_utc":  "2026-11-01T16:07:33.1533516Z",
+    "completed_utc":  "2026-11-01T16:07:41.7997827Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-serve-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd2e/-Y87Wf0onx4M454gWv4Ff_aIiwwQ0V.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-serve-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd2e/Ffl26-Upr-GHmDhaPedoD_6UzGeene.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-serve-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd2e/ZcE0umw4M4W6f3oXiWKWf_bwvC6e74.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  230909820
+}

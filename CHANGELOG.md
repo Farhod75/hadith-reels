@@ -1,3 +1,15 @@
+## [2026-11-01b] - R170-R173, Sahih al-Bukhari #6412, four languages, set closed
+
+### Content
+
+- Tracker rows R170-R173 (TG 180-183), duplicate index, new theme Blessings /
+  Time, nasheed usage, the b6412 clip set, stats 173/121/44, change log, retro.
+  Registry: b6412-serve, glass, scale, sapling-c -> verified:true (the operator
+  watched all four reels); b6412-health retired (lanes []).
+- P343: the clip check names the action, not only what the frame must not show.
+
+---
+
 ## [2026-11-01a] - a 'time' hashtag concept
 
 ### Added

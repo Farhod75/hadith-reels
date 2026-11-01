@@ -14620,3 +14620,27 @@ before and after their hand fixes (scripts/lib/test_stt_validate.py).
 
 ---
 
+## PATTERN 343: the clip check had no question for the action
+
+**Date:** 2026-11-01  **Repo:** hadith-reels  **Severity:** content (caught in review)
+
+**What happened.** bukhari-6412's health scene shipped to the operator's review
+with water running out of the BOTTOM of a clay jar, as if it leaked. The FLUX
+still (health-2) already showed it. My review sampled the clip at 1 fps for
+faces and hand count, saw the jar turn upright and the water stop, and reported
+it as "reads as lifting it out of the well". The operator: "вода как будто течёт
+снизу". It is the same shape as 4811's pressed palms (P340 addendum): the check
+asks what a frame must not contain, never what the scene is doing.
+
+**Fix.** The scene spec's frame-by-frame bullet gains "check the action, not
+only the frame": where the water leaves and lands, which way sand falls, what a
+gesture means. The replacement was prompted with the physics stated outright
+("water comes only from the open mouth") and checked every 0.5 s.
+
+**Tripwire:** none - a judgement in the still and clip review, which no command
+pattern can see.
+
+**Status:** FIXED (review step); recurrence is the measure.
+
+---
+

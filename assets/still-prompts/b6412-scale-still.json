@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-scale",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabian market in bright daylight. Close shot of a simple hand-held balance scale with two brass pans held by one anonymous right hand; one pan is heaped with glossy dates and the other holds a few small stone weights, the beam tipped unevenly. Only the hand and forearm in a plain period sleeve - no faces. Background softly blurred: colourful woven cloth awnings in red, ochre and indigo, baskets of spices and dates, a blue sky. Vibrant saturated colours, even daylight, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1951f-c982-7c01-bd83-2e08f7084629",
+    "submitted_utc":  "2026-11-01T03:20:50.7326538Z",
+    "completed_utc":  "2026-11-01T03:20:59.0026063Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-scale-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab35/1HDCyALaIszEfDakvzqmy_V2PRWUEy.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-scale-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab35/y-bzrZh34HPA5zfxDDTzV_VUNaX9Rh.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-scale-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab35/kqJpxCmUcWJHMxqZtEHVn_irl8HtIm.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1356317650
+}

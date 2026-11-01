@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-sapling",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright morning in a green oasis. Close shot of two anonymous hands pressing dark soil around a young date palm sapling just planted in the ground, a small clay water bowl beside it. Only hands and forearms in plain period sleeves - no faces, no heads. Behind: rows of tall green date palms, a clear irrigation channel with sparkling water, a vivid blue sky with white clouds. Even daylight from above, vibrant saturated colours, hopeful and fresh, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a19520-accd-7670-be26-3a0b1c3b6382",
+    "submitted_utc":  "2026-11-01T03:21:48.9043744Z",
+    "completed_utc":  "2026-11-01T03:21:57.1957277Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-sapling-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab3b/oGtIp8mz1WdkjkEAMten4_j4QsutnO.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-sapling-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab3b/ObGIJxf5mOg9MbmJ83Mdi_Tv7stpzy.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-sapling-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab3b/Q2f62UPfIBsur3FkkmOZ2_ZOo9glpH.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1526542463
+}

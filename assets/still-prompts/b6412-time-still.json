@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-time",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright afternoon. Looking down at warm golden sand in an oasis courtyard where the long crisp shadow of a date palm trunk and its fronds falls across the ground like the hand of a sundial; a few green leaves and small stones on the sand. The sun itself is out of frame, high behind the camera. Vivid blue sky visible at the top edge, green palms. No people, no modern objects. Vibrant saturated colours, calm and clear.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1951e-b236-7cb3-84ad-db652bd80cd0",
+    "submitted_utc":  "2026-11-01T03:19:39.2346787Z",
+    "completed_utc":  "2026-11-01T03:19:47.5154781Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-time-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab2e/han9Mtuu1gA_FzqL7DsuE_Ix9WjGyt.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-time-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab2e/i2k1cmCEs-I53xrOGheoG_Ti9mCxS4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-time-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab2e/jaKI7oEvdDh9snvzgliiM_gDLlLmgS.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1010358660
+}

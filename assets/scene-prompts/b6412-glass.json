@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0bba3/-uG32UaupQp-0dtrki2VI_output.mp4",
+    "name":  "b6412-glass",
+    "image":  "out\\refs\\b6412-glass-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6412-glass.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-01T14:55:27.7468014Z",
+    "size_bytes":  27746682,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. Golden sand flows steadily in a thin stream from the upper bulb of the hourglass into the lower bulb; the pile in the lower bulb slowly grows and the level in the upper bulb slowly drops. The hourglass does not move or turn. Palms in the blurred background sway gently.",
+    "request_id":  "01a1979b-b924-7273-97e2-86391863dacb",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-01T15:05:19.5505301Z",
+    "mode":  "image-to-video"
+}

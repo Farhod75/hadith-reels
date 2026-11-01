@@ -1445,6 +1445,49 @@
       "verified": true,
       "notes": "FLUX 2 still (duaopen-2), sun removed with FLUX 3 Edit (blackforestlabs/flux-3/edit-image), then Kling 2.6 Pro i2v 10s. Sunan Abu Dawud #4811, Abu Hurairah, sahih - 'whoever does not thank people does not thank Allah'. MODE B: hands, or one anonymous figure (the matn's subject is 'whoever', so MODE B permits it); no faces. Operator asked for bright, colourful frames (2026-10-31). Depicts: a kneeling silhouette on a mat in an oasis, both palms open and upturned in dua - thanks to Allah, the finale. History: dua-3 on Kling 3.0 closed the palms into a pressed-palm gesture (not Islamic dua) for all 10 s; duaopen 1-4 put the sun in his hands; duabook drew faces and literal books. Sun must not be faced (P340). Whole-clip check every 0.5 s: palms stay apart and open, no face detail, no sun.",
       "prompt_sidecar": "assets/scene-prompts/ad4811-dua2.json"
+    },
+    "b6412-health.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": false,
+      "notes": "FLUX 2 still (health-2) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: two hands holding a clay water jar over a stone well, water spilling - health, the first blessing. Recorded motion: the jar turns upright and the water stops, reading as lifting it out; 2 hands throughout, no faces. health-3 rejected for extra hands. RETIRED 2026-11-01 (P343): the water runs out of the BOTTOM of the jar; replaced by b6412-serve before publishing.",
+      "prompt_sidecar": "assets/scene-prompts/b6412-health.json"
+    },
+    "b6412-glass.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (glass-2) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: an hourglass on a stone ledge, oasis behind - free time, the second blessing. Operator's choice (2026-10-31): the sandglass is not attested in 7th-century Arabia, so it stands as a timeless symbolic object, no figure. Recorded motion: sand runs down, the lower pile grows over the full 10 s; the glass does not move. Round 1 (b6412-time, palm shadow) rejected: every variant drew the shadow of a human hand on the sand.",
+      "prompt_sidecar": "assets/scene-prompts/b6412-glass.json"
+    },
+    "b6412-scale.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (scale-1) -> Kling 3.0 Pro i2v 10s. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: one hand holding a balance, dates against stone weights, a bright souk behind - the matn's word maghbun is a trade word (short-changed in a sale; HadeethEnc #5449 sharh). Background market figures are blurred, no face resolves; one passer-by enters the right edge near the end, body only.",
+      "prompt_sidecar": "assets/scene-prompts/b6412-scale.json"
+    },
+    "b6412-sapling-c.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (sapling-3) -> Kling 3.0 Pro i2v 10s -> CROPPED 952x1692 at x=28,y=114 and scaled to 1080x1920 (lanczos, crf 16). The uncropped b6412-sapling.mp4 brought a man's face in at the right edge from about 1.5 s, repeatedly (MODE B violation); it is not registered and must not be used. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: two hands pressing soil around a date palm sapling by an irrigation channel - the moral's 'spend them on what benefits you'. Cropped clip checked at 2-4 fps over the full length: no face at any edge.",
+      "prompt_sidecar": "assets/scene-prompts/b6412-sapling.json"
+    },
+    "b6412-serve.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (serve-3) -> Kling 2.6 Pro i2v 10s. Sahih al-Bukhari #6412, Ibn Abbas, sahih - 'two blessings in which many people suffer loss: health and free time'. MODE B: hands only, no faces. Bright palette (operator 2026-10-31). Depicts: two hands tilt a clay jar and pour water from its mouth into another person's cupped hands - health spent serving someone (operator, 2026-11-01). Replaces b6412-health, which shipped to review with water running out of the BOTTOM of the jar (operator caught it; my clip check had looked for faces and hands only). serve-2 rejected by the operator: jar held oddly, two skin tones on the receiving hands. Checked every 0.5 s over the full clip: the stream leaves the mouth and lands in the palms; both edges clean, no faces.",
+      "prompt_sidecar": "assets/scene-prompts/b6412-serve.json"
     }
   }
 }

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0bc1e/5FPE4L1NOIOe0AiQkKyyY_output.mp4",
+    "name":  "b6412-sapling",
+    "image":  "out\\refs\\b6412-sapling-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6412-sapling.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-01T15:15:55.3697347Z",
+    "size_bytes":  36438310,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The two hands rest on the soil around the young date palm and stay in place; the sapling leaves stir in a light breeze; the water in the channel flows and sparkles; white clouds drift slowly. Bright, hopeful morning.",
+    "request_id":  "01a197ae-74d5-7451-a9fe-3e4ccaafe79f",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-01T15:26:37.6490584Z",
+    "mode":  "image-to-video"
+}

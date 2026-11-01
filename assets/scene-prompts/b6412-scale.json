@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0bbe2/bTA7PbBqYoDCk67ych0tm_output.mp4",
+    "name":  "b6412-scale",
+    "image":  "out\\refs\\b6412-scale-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6412-scale.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-01T15:05:20.8709247Z",
+    "size_bytes":  28608634,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The hand holds the balance still; the pans sway very slightly and settle; the coloured cloth awnings flutter gently in a light breeze. No people appear. Warm bright daylight.",
+    "request_id":  "01a197a4-c630-7c32-818d-4a395325d9d9",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-01T15:15:49.2370449Z",
+    "mode":  "image-to-video"
+}

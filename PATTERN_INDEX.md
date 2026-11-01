@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-272 patterns in 284 entries, frontier **P342**. The P-sequence is shared with
+273 patterns in 285 entries, frontier **P343**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -331,5 +331,6 @@ BEFORE changing it.
 - **P341** - the strict flag was splatted one letter at a time
 - **P340 (addendum 2)** - (addendum): the gesture is content too
 - **P342** - who is speaking was a MEDIUM
+- **P343** - the clip check had no question for the action
 
-<!-- pattern-index-stamp entries=284 patterns=272 frontier=342 sha1=7034e0824c135d3cd971a0a94d32b4595c880399 -->
+<!-- pattern-index-stamp entries=285 patterns=273 frontier=343 sha1=23ab8a94431bd1088f37976931bc6964df4b4e5a -->

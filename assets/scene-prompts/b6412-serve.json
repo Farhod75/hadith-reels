@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab0bd5e/XJcreReymeCl-gO8GDLSo_output.mp4",
+    "name":  "b6412-serve",
+    "image":  "out\\refs\\b6412-serve-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6412-serve.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-01T16:13:11.3544434Z",
+    "size_bytes":  17277521,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Static locked-off camera, the framing never changes. The water keeps pouring in one steady clear stream from the open mouth of the tilted jar into the cupped hands below, splashing and sparkling and running over the fingers. Both people hold their hands still; the jar stays tilted at the same angle. Palm fronds sway softly in the background. Bright, warm daylight.",
+    "request_id":  "01a197e2-e30c-7272-80a1-9800fb8728d1",
+    "model":  "fal-ai/kling-video/v2.6/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-01T16:17:33.9697162Z",
+    "mode":  "image-to-video"
+}

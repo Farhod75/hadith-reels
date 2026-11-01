@@ -95,6 +95,14 @@ nowhere:
   face. The negative prompt already carries `deformed hands` for this reason,
   and a re-roll is a paid call (~$0.70–0.90).
 
+- **Check the action, not only the frame (P343).** A clip can pass every
+  "must not contain" check - no face, no sun, the right number of hands - and
+  still show the wrong thing. Ask what the scene is DOING and whether it is
+  physically right: where the water leaves the jar and where it lands, which way
+  sand falls, whether a gesture means what we intend (P340 addendum). On
+  bukhari-6412 the water ran out of the bottom of a jar; the still already
+  showed it, and the clip was passed as "lifting it out of the well".
+
 This is a PERMISSION, not a classification step. If the hadith does not
 obviously call for figures, the default stands and nothing needs deciding. If
 the scholarly question feels open on a given hadith, that uncertainty is itself

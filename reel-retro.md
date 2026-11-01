@@ -685,3 +685,53 @@ caught by hand. Evaluate FLUX 3 text-to-image for stills.
 **The finding:** the operator's eye caught every visual defect this set; the
 gates caught none of them. A gesture is content, and a still review that only
 looks for faces will pass a frame that says the wrong thing.
+
+## R170-R173 - Sahih al-Bukhari #6412 - 2026-11-01
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (180-183), Instagram, YouTube Shorts, TikTok.
+
+Chosen and drafted unattended overnight on the operator's instruction, with the
+stills; voice and clips after his approval in the morning.
+
+**Caught before publish, and who said it.**
+
+1. **The DB row's Russian matn** (me, comparing the four languages): "Две блага,
+   которыми пренебрегают" - wrong gender, and "neglect" for maghbun, which the
+   other three render as loss. Corrected in the DB on the operator's word.
+2. **The time scene** (me): every palm-shadow variant drew the shadow of a human
+   hand on the sand. The operator chose an hourglass; I noted it is not attested
+   in the period and framed it as a timeless symbol.
+3. **A face at the right edge of the sapling clip** (me, a whole-clip edge scan
+   at 4 fps). Fixed free with a 12% crop instead of a $1.12 re-roll.
+4. **RU subtitles** (the P342 gate, its first live catch): "добудет доволен имя
+   Аллах" - HIGH, render stopped before the burn. "Добудет" for the third set
+   running.
+5. **Water out of the bottom of the jar** (operator). The still already showed
+   it; I reported the clip as "the jar turns upright, reads as lifting it out".
+   Replaced with water poured from the jar's mouth into another person's hands -
+   the operator's idea, which also gave the scene a meaning ("health spent
+   serving someone").
+6. **The 'death' hashtag** (me raised it; operator: "причём тут смерть?") - the
+   matn does not mention death. New `time` tag concept.
+7. **"ими" for one man** (operator asked) - explained: the dual covers Ibn Abbas
+   and his father; kept.
+
+**Escaped to publish.** Nothing known.
+
+**Root causes.** A clip review that checks what must not be in the frame - a
+face, the sun - and not whether the action in it is physically right (5); the
+same shape as the pressed palms on 4811. A library row whose Russian nobody had
+read against the Arabic (1).
+
+**Prevention landed.** P343: the scene spec's clip check now names the action
+itself. P342 worked as designed.
+
+**Prevention deferred.** Russian matn across the library is unaudited against the
+Arabic for meaning; audit-library.py checks script and form, not sense.
+
+**Operator corrections of the assistant: 2** (items 5 and 6's pushback; 7 was a
+question).
+
+**The finding:** two sets running, the defect the operator caught was the one
+my check had no question for - first a gesture, now physics. The review needs to
+ask what the scene is doing, not only what it must not show.

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-pour",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning. Close shot of two strong healthy anonymous hands tilting a full clay water jar sideways; a clear stream of water pours out of the open MOUTH at the top rim of the jar and falls into a wide clay bowl below, splashing and sparkling. The body and base of the jar are whole and dry, no water comes from anywhere but the open mouth. Only hands and forearms in plain undyed period sleeves are visible - no faces, no heads. Behind: a sunlit mud-brick wall, vivid green date palms, a deep blue sky. Even daylight from above, vibrant saturated colours, crisp and energetic, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a197d9-76ee-7390-8b95-d2c7f81c3f91",
+    "submitted_utc":  "2026-11-01T16:02:52.9801521Z",
+    "completed_utc":  "2026-11-01T16:03:39.0824118Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-pour-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd15/8OFinyBNsk7Pf3gg0ZEUY_XEkLIelm.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-pour-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd15/wQTC7sxKLsT9sET25sENZ_7N8Tw76D.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-pour-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0bd15/i1CI5awhc5hAkrNesssE6_orGxz1ci.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2016492632
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6412-glass",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal close shot of a simple antique wooden hourglass standing on a warm stone ledge, golden sand visibly running in a thin stream from the upper glass bulb into the lower one, the lower bulb about half full. Background softly blurred: a bright green oasis with date palms and a vivid blue sky. Clear even daylight from the side, the glass sparkling, vibrant saturated colours, calm and luminous. No people, no hands, no shadows of people, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a19528-f842-7a43-8029-91bd0f013818",
+    "submitted_utc":  "2026-11-01T03:30:52.1608356Z",
+    "completed_utc":  "2026-11-01T03:31:00.8247321Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6412-glass-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab71/bcKSva_kTOiKdWtBq9ClS_ItN6UuqB.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6412-glass-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab71/g_WZTLpLuFrNEhr4irlN__wmnfGAuG.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6412-glass-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab0ab71/xLlAynfJNSGRCC1ug7zFo_OP1ASxvh.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  396448116
+}

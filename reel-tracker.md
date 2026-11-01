@@ -190,6 +190,10 @@
 | R167 | 2026-10-31 | Sunan Abu Dawud #4811 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #thanks #character #hadith | RU | Adults | abudawud-4811 | adults-ru-abudawud-4811-story.mp3 | adults-ru-abudawud-4811-moral.mp3 | adults-ru-abudawud-4811-narration.mp3 | ad4811-water.mp4, ad4811-heart.mp4, ad4811-rainbow.mp4, ad4811-dua2.mp4 | adults-ru-abudawud-4811-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | YES - hand-fixed: 'Абхурайра, добудет' -> 'Абу Хурайра, да будет'; the closing » moved back from after our moral to the end of the matn (P316 again); orphan 0.6 s cue merged (P211 cache) | adults-ru-abudawud-4811-reel.mp4 | 20.0s | 8.6 MB | TG message_id 177. The validator rated 'добудет' MEDIUM - the same Whisper error as R163 - and did not see the guillemet at all; both were caught by reading the SRT, not by a gate. Trim x0.83 to ~10.8 LU, the gap the operator called fine on R163. |
 | R168 | 2026-10-31 | Sunan Abu Dawud #4811 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #thanks #character #hadith | UZ | Adults | abudawud-4811 | adults-uz-abudawud-4811-story.mp3 | adults-uz-abudawud-4811-moral.mp3 | adults-uz-abudawud-4811-narration.mp3 | ad4811-water.mp4, ad4811-heart.mp4, ad4811-rainbow.mp4, ad4811-dua2.mp4 | adults-uz-abudawud-4811-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-uz-abudawud-4811-reel.mp4 | 24.1s | 10.5 MB | TG message_id 178. Rendered clean on the first run; 15.7 LU gap kept (15.8 was called fine on R164). Longest leg; the set spreads 18.4-24.1 s. |
 | R169 | 2026-10-31 | Sunan Abu Dawud #4811 | Abu Hurairah | Sahih | Gratitude / Contentment | #gratitude #thanks #character #hadith | TJ | Adults | abudawud-4811 | adults-tj-abudawud-4811-story.mp3 | adults-tj-abudawud-4811-moral.mp3 | adults-tj-abudawud-4811-narration.mp3 | ad4811-water.mp4, ad4811-heart.mp4, ad4811-rainbow.mp4, ad4811-dua2.mp4 | adults-tj-abudawud-4811-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | NO (P078) | adults-tj-abudawud-4811-reel.mp4 | 20.2s | 9.0 MB | TG message_id 179. CLOSES THE SET. Trim x0.91 to ~13.4 LU, the gap the operator chose for TJ on R165. |
+| R170 | 2026-11-01 | Sahih al-Bukhari #6412 | Ibn Abbas | Sahih | Blessings / Time | #health #time #blessings #hadith | EN | Adults | bukhari-6412 | adults-en-bukhari-6412-story.mp3 | adults-en-bukhari-6412-moral.mp3 | adults-en-bukhari-6412-narration.mp3 | b6412-serve.mp4, b6412-glass.mp4, b6412-scale.mp4, b6412-sapling-c.mp4 | adults-en-bukhari-6412-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES - hand-fixed: the matn's quotation marks and colon restored (P211 cache) | adults-en-bukhari-6412-reel.mp4 | 19.8s | 7.1 MB | TG message_id 180. Opens the set. S opens with the narrator from hadith_library (P337), 'may Allah be pleased with them' - Ibn Abbas carries the dual honorific for himself and his father al-Abbas. Trim x0.85 to ~13.3 LU (P338). |
+| R171 | 2026-11-01 | Sahih al-Bukhari #6412 | Ibn Abbas | Sahih | Blessings / Time | #health #time #blessings #hadith | RU | Adults | bukhari-6412 | adults-ru-bukhari-6412-story.mp3 | adults-ru-bukhari-6412-moral.mp3 | adults-ru-bukhari-6412-narration.mp3 | b6412-serve.mp4, b6412-glass.mp4, b6412-scale.mp4, b6412-sapling-c.mp4 | adults-ru-bukhari-6412-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | YES - hand-fixed: 'добудет доволен имя Аллах' -> 'да будет доволен ими Аллах', 'Два благо' -> 'Два блага', quotation marks and colons restored (P211 cache) | adults-ru-bukhari-6412-reel.mp4 | 21.6s | 7.7 MB | TG message_id 181. The first render the P342 gate stopped: Whisper's 'добудет' for the third set running, now HIGH and refused before the burn. The DB row's Russian matn was corrected before narration (operator, 2026-11-01): 'Две блага, которыми пренебрегают' -> 'Два блага, в которых многие люди терпят убыток'. Gap 10.7 LU, untrimmed. |
+| R172 | 2026-11-01 | Sahih al-Bukhari #6412 | Ibn Abbas | Sahih | Blessings / Time | #health #time #blessings #hadith | UZ | Adults | bukhari-6412 | adults-uz-bukhari-6412-story.mp3 | adults-uz-bukhari-6412-moral.mp3 | adults-uz-bukhari-6412-narration.mp3 | b6412-serve.mp4, b6412-glass.mp4, b6412-scale.mp4, b6412-sapling-c.mp4 | adults-uz-bukhari-6412-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | NO (P078) | adults-uz-bukhari-6412-reel.mp4 | 23.9s | 8.5 MB | TG message_id 182. Longest leg; the set spreads 19.8-23.9 s. Trim x0.85 to ~15.7 LU. |
+| R173 | 2026-11-01 | Sahih al-Bukhari #6412 | Ibn Abbas | Sahih | Blessings / Time | #health #time #blessings #hadith | TJ | Adults | bukhari-6412 | adults-tj-bukhari-6412-story.mp3 | adults-tj-bukhari-6412-moral.mp3 | adults-tj-bukhari-6412-narration.mp3 | b6412-serve.mp4, b6412-glass.mp4, b6412-scale.mp4, b6412-sapling-c.mp4 | adults-tj-bukhari-6412-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | NO (P078) | adults-tj-bukhari-6412-reel.mp4 | 21.4s | 7.6 MB | TG message_id 183. CLOSES THE SET. Trim x0.94 to ~13.4 LU. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -204,6 +208,7 @@
 | Sahih al-Bukhari #5185 | EN, RU, UZ, TJ | Adults | R158-R161. Bukhari 5185 and 5186 are TWO SEPARATE SAYINGS at adjacent references, both on treating women well; 5185 is the rib hadith from Abu Hurairah, and a source that prints them merged is normal rather than a mismatch (P312). In the Book of Nikah it also sits beside a command about not harming one's neighbour, which is why the seerah block names that adjacency instead of inventing context (CLAUDE.md, BEFORE YOU SPEND rule 5). The neighbouring hadith's own reference number is deliberately NOT recorded here: it was not re-opened in this session, and P306 is what writing an unverified number looks like. |
 | Jami at-Tirmidhi #1161 | EN, RU, UZ, TJ | Adults | R162-R165. Narrated by Umm Salamah; the matn in hadith_library is the Prophet's words alone and the narrator is its own column. From this set on, the narrated story block OPENS with the narrator in a fixed form built from that column (P337) - do not omit, do not add. Same matn reaching us through a different companion would be a different record. |
 | Sunan Abu Dawud #4811 | EN, RU, UZ, TJ | Adults | R166-R169. Narrated by Abu Hurairah, sahih. The matn has two halves - thanks to people, thanks to Allah - and the scenes follow them: water given, a hand on the chest, the favours of Allah, a figure in dua at the end. A bread scene was generated three times and dropped by the operator for the dua finale. |
+| Sahih al-Bukhari #6412 | EN, RU, UZ, TJ | Adults | R170-R173. Narrated by Ibn Abbas, sahih, Book of Ar-Riqaq. The matn's maghbun is a trade word - short-changed in a sale (HadeethEnc #5449). The library row's Russian was ungrammatical and said 'neglect' instead of 'loss'; corrected in the DB on 2026-11-01, and its 'death' tag replaced with 'time'. |
 | Jami at-Tirmidhi #3373 | RU | Adults | R001 |
 | Sahih al-Bukhari #1894 | EN | Adults | R002 |
 | Jami at-Tirmidhi #1956 | UZ | Adults | R003 |
@@ -299,6 +304,7 @@
 | Death / Remembrance | 4 | R142–R145 | EN, RU, UZ, TJ |
 | Forgiveness / Repentance | 4 | R146–R149 | EN, RU, UZ, TJ |
 | Tawheed / Intercession | 4 | R150–R153 | EN, RU, UZ, TJ |
+| Blessings / Time | 4 | R170-R173 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -341,10 +347,10 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 6 | R135 | R004, R023, R095, R103, R128, R135 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
-| aswati-Peaceful-Contemplation.mp3 | 8 | R169 | R114, R120, R138, R143, R148, R150, R163, R169 |
-| aswati-Gentle-Reflection.mp3 | 7 | R168 | R115, R121, R139, R142, R156, R165, R168 |
-| aswati-Morning-Serenity.mp3 | 5 | R167 | R116, R124, R154, R162, R167 |
-| aswati-Heartfelt-Gratitude.mp3 | 5 | R166 | R117, R123, R152, R164, R166 |
+| aswati-Peaceful-Contemplation.mp3 | 9 | R170 | R114, R120, R138, R143, R148, R150, R163, R169, R170 |
+| aswati-Gentle-Reflection.mp3 | 8 | R171 | R115, R121, R139, R142, R156, R165, R168, R171 |
+| aswati-Morning-Serenity.mp3 | 6 | R172 | R116, R124, R154, R162, R167, R172 |
+| aswati-Heartfelt-Gratitude.mp3 | 6 | R173 | R117, R123, R152, R164, R166, R173 |
 | aswati-Rising-Hope.mp3 | 4 | R157 | R118, R125, R149, R157 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
 | aswati-Focused-Determination.mp3 | 3 | R155 | R122, R132, R155 |
@@ -363,6 +369,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| b6412-serve, glass, scale, sapling-c | 1 set | 2026-11-01 (R170-R173) | R170-R173, all four on every leg, -FitScenes. The hourglass is the operator's choice, a timeless symbol (not attested in 7th-century Arabia). b6412-health was replaced after review - its water ran out of the BOTTOM of the jar - and is retired in the registry. b6412-sapling brought a man's face in at the right edge; the shipped -c clip is a 12% crop. Round 1 of the time scene (palm shadows) drew a human hand's shadow in every variant. |
 | ad4811-water, heart, rainbow, dua2 | 1 set | 2026-10-31 (R166-R169) | R166-R169, all four on every leg, -FitScenes. The first set in the bright palette the operator asked for. Rainbow's first generation was lost to a fal 500 on fetch (three tries). The finale: dua-3 on Kling 3.0 pressed the palms together; three FLUX rounds; the sun removed from duaopen-2 with FLUX 3 Edit; Kling 2.6 Pro. Bread (bread, bread2, bread3) generated and unused. Scene spend about $10. |
 | t1161-home, courtyard, threshold, garden | 1 set | 2026-10-31 (R162-R165) | R162-R165, all four clips on every leg, -FitScenes. The first Jami at-Tirmidhi scene set. The threshold clip was re-rolled twice for a modern door and a door knob the generator added (P329); the camera rule had been written down in two places before that. |
 | b5185-almond, sapling, crescent, garden | 1 set | 2026-10-29 (R158-R161) | R158-R161. EN and RU ran on four clips; almond was repeated as a fifth for UZ and TJ, whose narration runs longer (49.2s and 42.0s against 34.9s). All four clips are PNG written under a .jpg extension at the stills stage - see P313. |
@@ -479,13 +486,13 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 169 |
+| Total reels posted | 173 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 117 |
+| Adults reels | 121 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 43 |
+| Hadiths used (unique) | 44 |
 | Library rows | 71 (40 used, 31 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×75, Sahih Muslim ×28, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
 | Companions cited | 19 (Abdullah ibn Amr ×4, Uthman ibn Affan ×4, Abu Hurairah ×54, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4) |
@@ -525,6 +532,7 @@ Then update:
 
 | Date | Change | By |
 |---|---|---|
+| 2026-11-01 | R170-R173 - Sahih al-Bukhari #6412 EN/RU/UZ/TJ adults, two blessings many people lose: health and free time. New theme Blessings / Time. P342 caught its first defect live (RU 'добудет'). DB: RU matn corrected, tag death -> time (new tags.ts concept). P343 (the clip check looked for faces, not for whether the water came from the right place). TG 180-183. | Farhod / Claude |
 | 2026-10-31 | R166-R169 - Sunan Abu Dawud #4811 EN/RU/UZ/TJ adults, whoever does not thank people does not thank Allah. Second set in Gratitude / Contentment and the first in the bright palette. P340 (prayer direction in a frame - the qibla rule had lived in chat memory), P341 (the --strict splat). First production use of FLUX 3 (Edit). TG 176-179. | Farhod / Claude |
 | 2026-10-31 | R162-R165 - Jami at-Tirmidhi #1161 EN/RU/UZ/TJ adults, a wife whose husband is pleased with her. Third set in Family / Marriage and the first from Jami at-Tirmidhi. In review the operator heard the narrator in UZ only; the documented rule pointed the other way, and he set the stronger one: do not omit, do not add. The narrator is now said in every language from hadith_library.narrator, gated in narrate-reel.py (P337). Per-reel nasheed trim (P338). Patterns P329-P338 across the session. TG 172-175. | Farhod / Claude |
 | 2026-10-29 | R158-R161 - Sahih al-Bukhari #5185 EN/RU/UZ/TJ adults, treating women well. Second set in Family / Marriage, which had been covered only by R118-R121. Four patterns recorded: P315 (a moral that repeats the story's closing line, which no gate reads), P316 (the RU closing guillemet landing after our moral and attributing it to the Prophet), P317 (post-telegram.py dying on a cp1252 console before sending anything), P318 (a publish that times out mid-upload, and how to establish whether it landed without double-posting). | Farhod / Claude |
