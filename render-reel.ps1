@@ -598,7 +598,12 @@ if ($useSubs) {
     # ForEach-Object did not, which made the RU/UZ/TJ lint findings unreadable.
     $prevConsoleEnc = [Console]::OutputEncoding
     [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-    $sttStrict = if ($NoReview) { @('--strict') } else { @() }   # P339
+    # P341: NOT `$x = if (..) { @('--strict') } else { @() }` - an if-block's output is
+    # unrolled, so a one-element array comes back as the STRING '--strict', and
+    # @sttStrict then splats it letter by letter: stt-validate.py received
+    # "- - s t r i c t" and exited 2. Typed [string[]] keeps it an array.
+    [string[]]$sttStrict = @()
+    if ($NoReview) { $sttStrict = @('--strict') }   # P339
     & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" @sttStrict 2>&1 |
       ForEach-Object { Write-Host "   $_" }
     $sttRc = $LASTEXITCODE

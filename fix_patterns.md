@@ -14550,3 +14550,29 @@ still review that already runs before every paid Kling call.
 
 ---
 
+## PATTERN 341: the strict flag was splatted one letter at a time
+
+**Date:** 2026-10-31  **Repo:** hadith-reels  **Severity:** pipeline (failed safe)
+
+**What happened.** The first -NoReview render after P339 (abudawud-4811 EN and RU)
+stopped at the subtitle gate with exit 2. The validator had not judged anything:
+argparse rejected "- - s t r i c t". render-reel.ps1 built the flag as
+`$sttStrict = if ($NoReview) { @('--strict') } else { @() }`. A PowerShell
+if-block's output is enumerated on assignment, so a one-element array comes back
+as the bare STRING '--strict'; splatting a string (`@sttStrict`) passes its
+characters. P339 was tested by reading the code path, not by running a
+-NoReview render through it.
+
+The gate failed SAFE, as designed (P093): a validator that cannot run stops the
+render before the burn. UZ and TJ (no subtitles, P078) rendered normally.
+
+**Fix.** `[string[]]$sttStrict = @()` then assign inside the if. Verified by the
+EN and RU re-render reaching the validator with `--strict` intact.
+
+**Tripwire:** none - the defect is in a script, not in a command typed at the
+prompt; the gate's own fail-safe caught it, and the re-render is the test.
+
+**Status:** FIXED.
+
+---
+

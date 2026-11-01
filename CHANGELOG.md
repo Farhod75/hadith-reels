@@ -1,3 +1,14 @@
+## [2026-10-31k] - the -NoReview subtitle gate receives --strict as one argument
+
+### Fixed
+
+- **P341.** render-reel.ps1 built `--strict` with `if { @('--strict') }`, which
+  PowerShell unrolls to a string and then splats letter by letter; stt-validate.py
+  rejected "- - s t r i c t" (exit 2) and the P339 gate stopped EN/RU of
+  abudawud-4811 before the burn - failing safe. Now a typed `[string[]]`.
+
+---
+
 ## [2026-10-31j] - prayer direction in generated scenes is written down
 
 ### Added
