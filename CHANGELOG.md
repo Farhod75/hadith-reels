@@ -1,3 +1,17 @@
+## [2026-11-02c] - before the still: references first, foreseeable defects in the prompt
+
+### Changed (process)
+
+- **P346.** animated-reel-scene-prompts.md: a "before the still" step - look up
+  reference images for every real object and describe it from them; write the
+  foreseeable defects into the prompt (right hand, five fingers, whose hands,
+  age, scale, physics). From muslim-223's four rounds of wudu stills.
+- **P347.** Commit messages from PowerShell go through a BOM-less file.
+- OPEN_ITEMS: repentance / forgiveness queue (Muslim #2747 next; #6306, #2749,
+  #2766, #6307 queued).
+
+---
+
 ## [2026-11-02b] - Muslim #223 matn completed; reel clip set registered
 
 ### Fixed (data)

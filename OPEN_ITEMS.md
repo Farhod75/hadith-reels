@@ -79,6 +79,19 @@ this one wins.
   collection at this number (en.tohed.com muslim/223): the P306/P319 gate stopped
   the render; the row was fixed, not the gate. matn_screened_at and
   matn_verified_at NULL - a human sets them. Reel rendered 2026-11-02.
+- **Repentance / forgiveness queue (operator 2026-11-02).** Recorded numbers:
+  #4251 (repentance) is the YouTube #1 at 7.2K, #4248 (same chapter) the #4 at
+  2.2K; the record (UZ #2654, 357K on Instagram) is a consequence hadith - the
+  shape that works is personal stakes with a named consequence. Next: Muslim
+  #2747 (Allah's joy at a servant's repentance, the lost camel). Queued, Dorar
+  sahih, numbers to pass the P306/P319 gate before use: Bukhari #6306 (sayyid
+  al-istighfar - Paradise for one who says it with certainty and dies that day;
+  long), Muslim #2749 (if you did not sin, Allah would bring people who sin and
+  seek forgiveness), Muslim #2766 (the killer of a hundred; long matn), Bukhari
+  #6307 (seeking forgiveness more than seventy times a day). Already shipped:
+  #4251, #4248, Muslim #2759, Tirmidhi #3540. Dorar dropped «التائب من الذنب
+  كمن لا ذنب له» (no primary-source sahih route). Query file:
+  `out/source-queries-tawba.txt`.
 - **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
   hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
   Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,

@@ -107,6 +107,18 @@ nowhere:
   fruit on a palm does not swing and turn in a breeze. Write into the motion
   prompt how much, for how long, and when the action stops.
 
+- **Before the still (P346).** Look the objects up before describing them: for
+  every real object in the scene (a kumgan, a lamp, a scale, a dish), find
+  reference images on the internet and describe its shape, proportions,
+  material and size against the hands and the other objects from them - not
+  from memory. Then write every defect we can foresee into the prompt rather
+  than catching it in review: whose hands and how many; the right hand for
+  giving, eating, drinking and pouring; five fingers on each hand; the age of
+  the hands; one pair per person, never interlaced; the scale between objects;
+  and the physics above (where it flows, how much, how long, when it stops).
+  The review still counts fingers on an enlarged crop. muslim-223's wudu took
+  four rounds of stills for want of this.
+
 This is a PERMISSION, not a classification step. If the hadith does not
 obviously call for figures, the default stands and nothing needs deciding. If
 the scholarly question feels open on a given hadith, that uncertainty is itself

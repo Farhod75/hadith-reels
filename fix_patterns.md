@@ -14709,3 +14709,53 @@ reports it as incomplete (P152) rather than as a verdict.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 346: the still was described from memory, and the defects we could foresee were left for review
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** content (caught in review; paid re-rolls)
+
+**What happened.** muslim-223's wudu scene took four rounds of stills and two
+Kling clips. Each round the operator caught something the prompt could have
+ruled out: a hand with the wrong number of fingers (not counted on an enlarged
+crop); the pourer's and the washer's hands tangled together; young hands on the
+washer, where the scene is an elder being helped; a tiny jug over a large basin
+("глазомер"); and the ewer itself drawn from memory as a generic jug, when the
+vessel used for wudu (kumgan / aftoba) has a known shape. The operator: look it
+up on the internet first and describe it from that. Described from museum
+catalogue entries and his Mughal aftaba references, kumgan-2 was accepted.
+
+**Fix.** The scene spec gains a "before the still" step: (1) for every real
+object in the scene, find reference images first and describe its shape,
+proportions, material and size against the hands and the other objects from
+them; (2) write every defect we can foresee into the prompt instead of catching
+it in review - whose hands, how many, the right hand for giving, eating,
+drinking and pouring, five fingers on each hand, the age of the hands, one pair
+per person and never interlaced, relative scale, and P343's physics (where it
+flows, how much, how long, when it stops). The still review still counts
+fingers on an enlarged crop.
+
+**Tripwire:** none - prompt writing and still review.
+
+**Status:** FIXED (spec); recurrence is the measure.
+
+---
+
+## PATTERN 347: the commit subject began with a byte-order mark
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** history (caught before push)
+
+**What happened.** The muslim-223 docs commit was made by piping a PowerShell
+here-string into `git commit -F -`. The pipe added a UTF-8 BOM, so the subject
+began with U+FEFF - invisible in most views, but it breaks anchored searches
+such as `git log --grep '^docs'` and conventional-commit parsing. Seen in the
+commit echo and amended before the push.
+
+**Fix.** From PowerShell, write the message to a file with
+`New-Object Text.UTF8Encoding($false)` and run `git commit -F <file>`; check
+that the first bytes of `git log -1 --format=%s` are the subject's own letters.
+
+**Tripwire:** none yet.
+
+**Status:** FIXED (practice).
+
+---
