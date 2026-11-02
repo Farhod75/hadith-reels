@@ -26,7 +26,7 @@ this one wins.
 
 **Shipped since 2026-10-22:** #2307 (R142-R145), #3540 (R146-R149), #6570
 (R150-R153), #3559 (R154-R157), #5185 (R158-R161), #1161 (R162-R165), #4811
-(R166-R169), #6412 (R170-R173). Patterns P289-P343.
+(R166-R169), #6412 (R170-R173), #6406 (R174-R177). Patterns P289-P344.
 
 **Closed since 2026-10-22, from the list below:**
 
@@ -54,7 +54,20 @@ this one wins.
 - **Russian matns are not audited for meaning.** #6412's row read "Две блага,
   которыми пренебрегают" - wrong gender, and "neglect" for maghbun (loss).
   Corrected 2026-11-01. `audit-library.py` checks script and form, not sense.
-  Library-wide RU-vs-Arabic pass: in progress 2026-11-01.
+  Library-wide RU-vs-Arabic pass run 2026-11-01 (72 rows, 8 findings). Fixed by
+  id the same day after A/B (Sonnet 5 + GPT-6.1 Sol, 16/16 pass,
+  `out/proposed-ru-fix-1101.json`) and the operator's Stage 4:
+  - #1419 (unpublished) RU, UZ, TJ - all three had added "the best charity"
+    from the question and dropped "fearing poverty and hoping for wealth"
+    (HadeethEnc 4252). UZ Latin re-derived. The stored matn is still the
+    partial one (see above).
+  - **Published, corrected after release - the posts keep the old text:**
+    #574 all four languages, the gloss "(Fajr and Asr)" removed from the
+    matn (it is the translator's note, cf. HadeethEnc 4198); #1773 RU grammar
+    ("искупление того", "принятому хаджу"); #6423 RU construction ("Ни один
+    раб не явится ... без того, чтобы Аллах не запретил").
+  - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
+    Musnad Ahmad #7936 (DO NOT PRODUCE, below).
 - **Kids lane and the narrator lead-in (P337)** - undecided. The gate covers
   the adults lane only.
 - **UZ/TJ have no subtitle gate** - by P078 they carry no subtitles, so P342

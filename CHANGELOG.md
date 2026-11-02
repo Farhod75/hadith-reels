@@ -1,3 +1,17 @@
+## [2026-11-01e] - library text fixes from the Russian-vs-Arabic pass
+
+### Fixed (data)
+
+- **hadith_library, by id (P290), after A/B 16/16 pass and the operator's Stage 4.**
+  #1419 RU/UZ/TJ (unpublished): the translations carried "the best charity" from
+  the question and dropped "fearing poverty and hoping for wealth". #574 all
+  four: the gloss "(Fajr and Asr)" removed from the matn. #1773 RU grammar.
+  #6423 RU construction. UZ Latin re-derived for #1419 and #574.
+  **#574, #1773 and #6423 are published: their posts keep the old text** (note
+  in OPEN_ITEMS).
+
+---
+
 ## [2026-11-01d] - R174-R177, Sahih al-Bukhari #6406, four languages, set closed
 
 ### Content
