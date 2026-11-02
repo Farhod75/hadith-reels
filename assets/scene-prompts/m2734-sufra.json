@@ -1,0 +1,18 @@
+{
+  "prompt": "Static locked-off top-down camera, the framing never changes. The two hands hold the small clay cup still over the woven mat; the bread, the dates, the milk and the jug stay in place. A light breeze stirs the loose fibres at the edge of the mat and a few grains of sand; the daylight shifts very gently. No faces appear. Bright, calm, warm.",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-02T03:40:15.0727655Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "completed_utc": "2026-11-02T03:48:48.5334552Z",
+  "resolution": null,
+  "size_bytes": 30860149,
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab0cd9b/UOsHfARmuQOo7BnV2snBg_output.mp4",
+  "file": "out\\backgrounds\\new\\m2734-sufra.mp4",
+  "image": "out\\refs\\m2734-sufra-1.jpg",
+  "schema": 1,
+  "generate_audio": false,
+  "name": "m2734-sufra",
+  "request_id": "01a19a57-e83c-7aa0-8cbc-0723009b9ef2"
+}

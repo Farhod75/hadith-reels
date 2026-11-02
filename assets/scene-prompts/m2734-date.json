@@ -1,0 +1,19 @@
+{
+  "submitted_utc": "2026-11-02T16:08:29.2296556Z",
+  "completed_utc": "2026-11-02T16:22:50.4082210Z",
+  "duration_sec": 10,
+  "size_bytes": 25890937,
+  "mode": "image-to-video",
+  "image": "out\\refs\\m2734-date-2.jpg",
+  "request_id": "01a19d04-efc6-71f3-bede-addb7f6aa0b7",
+  "generate_audio": false,
+  "file": "out\\backgrounds\\new\\m2734-date.mp4",
+  "name": "m2734-date",
+  "prompt": "Static locked-off camera, the framing never changes. The right hand slowly lifts the single date a little higher above the bowl over about two seconds, then holds it still for the rest of the shot. Nothing falls. The other dates in the bowl and the flat bread stay completely still. The date palms in the blurred background sway softly in a light breeze. Bright, warm daylight. No faces appear.",
+  "resumed_utc": "2026-11-02T15:46:49.582169Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "resolution": null,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0df47/2w99MKH8kF0TZvLn5uQwZ_output.mp4"
+}

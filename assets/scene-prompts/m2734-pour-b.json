@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "image": "out\\refs\\m2734-pour-1.jpg",
+  "model": "fal-ai/kling-video/v2.6/pro/image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab0ce1d/hID9v-deVHQtoW-WQLCOV_output.mp4",
+  "size_bytes": 13023880,
+  "generate_audio": false,
+  "name": "m2734-pour-b",
+  "completed_utc": "2026-11-02T04:10:29.4563408Z",
+  "submitted_utc": "2026-11-02T04:08:04.2421174Z",
+  "duration_sec": 10,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "request_id": "01a19a71-6104-78b0-a339-f96e79e54c24",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m2734-pour-b.mp4",
+  "prompt": "Static locked-off camera, the framing never changes. A short, modest pour from a small jug: a thin stream of water leaves the open mouth of the jug and falls into the clay cup for about three seconds, then the stream thins to a trickle and stops, and the hand slowly tilts the jug back upright and holds it still above the cup. Water comes only from the mouth of the jug. Palm fronds sway softly in the background. Bright, calm daylight.",
+  "mode": "image-to-video"
+}

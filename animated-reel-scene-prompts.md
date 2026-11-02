@@ -102,6 +102,10 @@ nowhere:
   sand falls, whether a gesture means what we intend (P340 addendum). On
   bukhari-6412 the water ran out of the bottom of a jar; the still already
   showed it, and the clip was passed as "lifting it out of the well".
+  Check the amount and the duration too (P343 addendum): a small jug cannot
+  pour for ten seconds, one piece of bread cannot shed crumbs for ten seconds,
+  fruit on a palm does not swing and turn in a breeze. Write into the motion
+  prompt how much, for how long, and when the action stops.
 
 This is a PERMISSION, not a classification step. If the hadith does not
 obviously call for figures, the default stands and nothing needs deciding. If

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2734-pour",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear daylight. Close shot of one anonymous RIGHT hand tilting a small clay jug: a clear steady stream of water flows out of the jug's open MOUTH (spout) down into a simple clay cup standing on a woven palm-leaf mat, sparkling, a few droplets. The water comes only from the mouth of the jug. Only the right hand and forearm in a plain undyed period sleeve - no face, no head, no left hand. Background softly blurred: green date palms and a blue sky. Vibrant fresh colours, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19a51-2b14-77f1-a9ee-3399e6fbe9be",
+  "submitted_utc": "2026-11-02T03:32:52.8243120Z",
+  "completed_utc": "2026-11-02T03:33:04.1676900Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2734-pour-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3e/6Pq8t7oUr07so_5LF2Czc_zkxZ3wvC.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2734-pour-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3e/VpEdyntmbXwiDhrnyfkIH_9MKf3tO5.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2734-pour-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3e/FeC0-MMR-IkqNRkSZv4iu_gKCz39Od.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1098570792
+}

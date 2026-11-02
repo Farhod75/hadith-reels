@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-274 patterns in 286 entries, frontier **P344**. The P-sequence is shared with
+274 patterns in 287 entries, frontier **P344**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -332,6 +332,7 @@ BEFORE changing it.
 - **P340 (addendum 2)** - (addendum): the gesture is content too
 - **P342** - who is speaking was a MEDIUM
 - **P343** - the clip check had no question for the action
+- **P343 (addendum 2)** - (addendum): how much, and for how long
 - **P344** - promote copied an Arabic narrator into a library keyed in English
 
-<!-- pattern-index-stamp entries=286 patterns=274 frontier=344 sha1=bdeeb35daaa7746dfcf97e8aba0d190d9cd5dd82 -->
+<!-- pattern-index-stamp entries=287 patterns=274 frontier=344 sha1=7f6b4d70f346380f399909758e3e6215e25a21db -->

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2734-date",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright warm daylight. Close shot of one anonymous RIGHT hand picking up a single glossy brown date from a wooden bowl full of dates, the date held lightly between the thumb and two fingers just above the bowl. A round golden flat bread lies beside the bowl on a woven palm-leaf mat. Only the right hand and forearm in a plain undyed period sleeve are visible - no face, no head, no left hand. Exactly five fingers, natural proportions. Nothing is falling, no crumbs. Background softly blurred: a sunlit mud-brick wall and green date palms. Vibrant warm colours, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19cd4-627b-7503-82a8-0618c5032ff7",
+  "submitted_utc": "2026-11-02T15:15:23.6069804Z",
+  "completed_utc": "2026-11-02T15:15:37.7558898Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2734-date-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ddb5/2fYE4OKOOl9xTMDeTmjdZ_vEwjhWOK.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2734-date-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ddb5/acZcpa3g3SVVhGhb0kZiU_nSfI74w5.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2734-date-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ddb5/TteCjTBxf6XT5MoT5xwVa_7WisJ3PD.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 435121656
+}

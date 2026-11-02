@@ -14644,6 +14644,23 @@ pattern can see.
 
 ---
 
+## PATTERN 343: (addendum): how much, and for how long
+
+**Date:** 2026-11-01. muslim-2734, three of four Kling clips, all caught by the
+operator watching them: crumbs fell from one torn piece of bread for the whole
+ten seconds, "like a horn of plenty", in large pieces; a small clay jug poured a
+steady stream for ten seconds, "like a tap"; date clusters swung and turned "as
+if someone were twisting them". Each passed the P343 question as written -
+the water left the jug's mouth, the crumbs fell down - because the check asked
+about direction, not about quantity, duration or the kind of motion. The scene
+spec now says: state in the prompt how much, for how long, and when the action
+stops, and judge the clip against what that object can physically do. All three
+re-rolled on Kling 2.6 Pro with the amount and the stop written into the prompt.
+
+**Tripwire:** none - the still and clip review.
+
+---
+
 ## PATTERN 344: promote copied an Arabic narrator into a library keyed in English
 
 **Date:** 2026-11-01  **Repo:** hadith-reels  **Severity:** data (caught by a gate)

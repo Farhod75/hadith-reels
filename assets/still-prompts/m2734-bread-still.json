@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2734-bread",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright warm daylight. Close shot of one anonymous RIGHT hand tearing a piece from a round golden flat bread over a woven palm-leaf mat, a few crumbs falling, a wooden bowl of dates beside it. Only the right hand and forearm in a plain undyed period sleeve are visible - no face, no head, no left hand. Exactly five fingers, natural proportions. Background softly blurred: a sunlit mud-brick wall and green date palms. Vibrant warm colours, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19a50-d37a-7920-9a86-e1d451f2ada2",
+  "submitted_utc": "2026-11-02T03:32:30.2915521Z",
+  "completed_utc": "2026-11-02T03:32:39.5749463Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2734-bread-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3b/SNLLoEaKv0pSJdeLooPRd_d800ZwkI.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2734-bread-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3b/I73Qtd1K4h08PzdjyKw0D_J89mVzOL.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2734-bread-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd3b/c52gmAkYrhvr4GCqu19YO_KgFKKx7U.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1289592822
+}

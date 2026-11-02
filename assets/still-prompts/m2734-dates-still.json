@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2734-dates",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, a bright green oasis in Arabia in the morning: heavy clusters of ripe golden-orange and red dates hanging from tall date palms in the foreground, more palms and a clear irrigation channel behind, a vivid blue sky with white clouds. Soft daylight from above; the sun itself is out of frame and no sun disc is visible. No people, no animals, no buildings, no text. Vibrant saturated colours, abundant and peaceful, high detail.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19a51-7c4e-76a1-bb0e-8745691297d2",
+  "submitted_utc": "2026-11-02T03:33:13.5174284Z",
+  "completed_utc": "2026-11-02T03:33:24.1579816Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2734-dates-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd40/pTJT_2oiqEPo3r-UbITdi_YM4BU7e9.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2734-dates-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd40/K7gpvKap-PRPysRuJRxFJ_21rUbuf7.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2734-dates-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd40/WyPDmnYJhI-a8SV6etIDC_pE2KzpBT.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2117723743
+}

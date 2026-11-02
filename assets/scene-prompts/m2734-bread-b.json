@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "image": "out\\refs\\m2734-bread-2.jpg",
+  "model": "fal-ai/kling-video/v2.6/pro/image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab0ce30/XY98rNPlGAFHqQNpaXPjT_output.mp4",
+  "size_bytes": 11241001,
+  "generate_audio": false,
+  "name": "m2734-bread-b",
+  "completed_utc": "2026-11-02T04:13:36.0713729Z",
+  "submitted_utc": "2026-11-02T04:10:37.6606069Z",
+  "duration_sec": 10,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "request_id": "01a19a73-b8dd-7042-aced-9d3511cf3573",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m2734-bread-b.mp4",
+  "prompt": "Static locked-off camera, the framing never changes. The right hand holds the torn piece of bread still. Only two or three tiny crumbs fall once, at the very beginning, onto the flat bread below; after that nothing more falls. The hand barely moves. The date palms in the blurred background sway softly. Bright, warm daylight. No faces appear.",
+  "mode": "image-to-video"
+}

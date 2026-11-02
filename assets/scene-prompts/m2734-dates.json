@@ -1,0 +1,18 @@
+{
+  "prompt": "Static locked-off camera, the framing never changes. The heavy clusters of ripe dates and the palm fronds sway gently in a light breeze; the water in the irrigation channel flows and sparkles; white clouds drift slowly across the blue sky. The sun disc is never visible. No people appear. Abundant, peaceful morning.",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-02T03:56:09.8893017Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "completed_utc": "2026-11-02T04:02:29.9887879Z",
+  "resolution": null,
+  "size_bytes": 37864851,
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab0cdee/ilkF0TH4NjwHykY4zApHI_output.mp4",
+  "file": "out\\backgrounds\\new\\m2734-dates.mp4",
+  "image": "out\\refs\\m2734-dates-1.jpg",
+  "schema": 1,
+  "generate_audio": false,
+  "name": "m2734-dates",
+  "request_id": "01a19a66-7b13-7013-bd79-1cc6fa0e2db1"
+}

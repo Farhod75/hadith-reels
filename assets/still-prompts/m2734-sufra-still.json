@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2734-sufra",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning. Top-down view of a simple meal laid on a woven palm-leaf mat on clean sand: round flat breads, a wooden bowl of glossy dates, a clay bowl of white milk, a small clay water jug and a clay cup. Two anonymous RIGHT hands in plain undyed period sleeves reach in from the bottom edge - no faces, no heads, no left hands. Soft even daylight, short gentle shadows, vibrant warm saturated colours, inviting and calm, no modern objects, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19a50-8b1e-7772-9874-1b08c967b20f",
+  "submitted_utc": "2026-11-02T03:32:10.5991868Z",
+  "completed_utc": "2026-11-02T03:32:22.2528436Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2734-sufra-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd39/feeR7qY2bqjB_sn1etPpC_HdGsNSS5.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2734-sufra-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd39/PvKPfJ3JKRPX32nDhEo8n_NMp1bK4s.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2734-sufra-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0cd39/oDOFMeyCoRD6k1eznus_5_MnCjx5OU.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1329165201
+}

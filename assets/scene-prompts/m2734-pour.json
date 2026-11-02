@@ -1,0 +1,18 @@
+{
+  "prompt": "Static locked-off camera, the framing never changes. Clear water keeps pouring in one steady stream out of the open MOUTH of the tilted clay jug, falling straight down into the clay cup below, which slowly fills and sparkles. The hand holds the jug still at the same angle. No water comes from any other part of the jug. Palm fronds sway softly in the background. Bright, fresh daylight.",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-02T03:52:50.6741138Z",
+  "model": "fal-ai/kling-video/v2.6/pro/image-to-video",
+  "completed_utc": "2026-11-02T03:56:02.5769123Z",
+  "resolution": null,
+  "size_bytes": 13058349,
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab0cdc6/iOMAg0IYoKsoPgOgE0GtK_output.mp4",
+  "file": "out\\backgrounds\\new\\m2734-pour.mp4",
+  "image": "out\\refs\\m2734-pour-1.jpg",
+  "schema": 1,
+  "generate_audio": false,
+  "name": "m2734-pour",
+  "request_id": "01a19a63-7114-7412-aacf-5505e8f2c488"
+}

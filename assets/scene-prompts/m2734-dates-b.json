@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "image": "out\\refs\\m2734-dates-1.jpg",
+  "model": "fal-ai/kling-video/v2.6/pro/image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab0ce45/7JApK5wgsBeGJg9QC6fZZ_output.mp4",
+  "size_bytes": 26106239,
+  "generate_audio": false,
+  "name": "m2734-dates-b",
+  "completed_utc": "2026-11-02T04:17:01.7648829Z",
+  "submitted_utc": "2026-11-02T04:13:38.2950698Z",
+  "duration_sec": 10,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "request_id": "01a19a76-7a9a-71c1-a305-c85d97b0bd08",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m2734-dates-b.mp4",
+  "prompt": "Static locked-off camera, the framing never changes. The heavy clusters of ripe dates hang still under their own weight and do not swing or turn. Only the tips of the palm fronds barely stir in a faint breeze. The water in the irrigation channel flows gently and sparkles; white clouds drift very slowly. No people appear. The sun disc is never visible. Calm, peaceful morning.",
+  "mode": "image-to-video"
+}

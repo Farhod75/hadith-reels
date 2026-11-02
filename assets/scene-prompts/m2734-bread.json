@@ -1,0 +1,18 @@
+{
+  "prompt": "Static locked-off camera, the framing never changes. The right hand lifts the torn piece of bread slightly and small crumbs fall DOWN onto the flat bread and the woven mat below; the hand stays in frame. The date palms in the blurred background sway softly in a light breeze. Bright, warm daylight. No faces appear.",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-02T03:48:55.723663Z",
+  "model": "fal-ai/kling-video/v2.6/pro/image-to-video",
+  "completed_utc": "2026-11-02T03:52:49.2323866Z",
+  "resolution": null,
+  "size_bytes": 11950819,
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab0cdb4/jKik2vkSr5gdqSqz4rKyM_output.mp4",
+  "file": "out\\backgrounds\\new\\m2734-bread.mp4",
+  "image": "out\\refs\\m2734-bread-2.jpg",
+  "schema": 1,
+  "generate_audio": false,
+  "name": "m2734-bread",
+  "request_id": "01a19a5f-db2c-7721-b0a2-ab2ce1c36b1a"
+}
