@@ -1,3 +1,15 @@
+## [2026-11-01f] - Muslim #2734 matn completed; Tirmidhi #2396 grade corrected
+
+### Fixed (data)
+
+- **Muslim #2734** (unpublished): the drink clause restored to the matn (HadeethEnc
+  5798); EN/RU/UZ/TJ re-translated, A/B 4/4 pass/high, operator Stage 4; UZ Latin
+  re-derived. Next reel.
+- **Tirmidhi #2396**: grade sahih -> hasan (Tirmidhi: hasan gharib; disputed - see
+  OPEN_ITEMS). By id (P290).
+
+---
+
 ## [2026-11-01e] - library text fixes from the Russian-vs-Arabic pass
 
 ### Fixed (data)

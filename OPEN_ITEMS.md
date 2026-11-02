@@ -68,6 +68,17 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Muslim #2734 - matn completed 2026-11-01** (operator chose it over Tirmidhi
+  #2396 for the next reel; rule restated: sahih and hasan only). The row stopped
+  after the food clause; the drink clause added from HadeethEnc 5798 (رواه مسلم |
+  صحيح). Re-translated (Sonnet 5, RU/UZ/TJ hand-edited against the Arabic and
+  HadeethEnc), A/B 4/4 pass/high on the edited text, Stage 4 by the operator,
+  written with --apply. matn_verified_at left NULL - a human sets it.
+- **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
+  hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
+  Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,
+  al-Bukhari, adh-Dhahabi, Ibn al-Qattan). The row is also partial (only the first
+  clause). Not chosen for production while its grade is disputed.
 - **Kids lane and the narrator lead-in (P337)** - undecided. The gate covers
   the adults lane only.
 - **UZ/TJ have no subtitle gate** - by P078 they carry no subtitles, so P342
