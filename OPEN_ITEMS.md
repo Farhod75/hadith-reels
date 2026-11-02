@@ -45,9 +45,7 @@ this one wins.
   fragment of a longer hadith, found while choosing sets and NOT yet checked
   against a Tier 1 page: Bukhari #6019 (neighbour + guest + speech - only the
   neighbour clause stored; to be done later in full, all four languages, via
-  Stage 2/3), Bukhari #1419, Muslim #223 (only "purity is half of faith"; the
-  matn continues with al-hamdu lillah filling the Scale - needed for any tasbih
-  reel), Muslim #2588 (only "charity does not decrease wealth"; two more
+  Stage 2/3), Bukhari #1419, Muslim #2588 (only "charity does not decrease wealth"; two more
   clauses), Bukhari #10 (the muhajir clause missing). A library-wide check needs
   the source page's matn element; the 2026-10-31 attempt counted page Urdu as
   matn and its numbers were not reported.
@@ -74,6 +72,13 @@ this one wins.
   صحيح). Re-translated (Sonnet 5, RU/UZ/TJ hand-edited against the Arabic and
   HadeethEnc), A/B 4/4 pass/high on the edited text, Stage 4 by the operator,
   written with --apply. matn_verified_at left NULL - a human sets it.
+- **Muslim #223 - matn completed 2026-11-02.** The row carried only the first
+  clause (الطهور شطر الإيمان); the full matn from HadeethEnc 65004 (رواه مسلم |
+  صحيح), the narrator's doubt -أَوْ تَمْلَأُ- kept and rendered "(or: fills)" in all
+  four (both A/B models failed its omission). Then فَبَايِعٌ -> فَبَائِعٌ to match the
+  collection at this number (en.tohed.com muslim/223): the P306/P319 gate stopped
+  the render; the row was fixed, not the gate. matn_screened_at and
+  matn_verified_at NULL - a human sets them. Reel rendered 2026-11-02.
 - **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
   hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
   Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,
@@ -479,7 +484,7 @@ P244: the fabrication is what made the truncation invisible.
 
 **PARTIAL EXTENT — need a Workflow L re-pull before production:**
 
-- `Sahih Muslim #223` — carries only الطهور شطر الإيمان. The hadith continues
+- `Sahih Muslim #223` — RESOLVED 2026-11-02 (full matn restored, see above). Was: carried only الطهور شطر الإيمان. The hadith continues
   through praise filling the scale, prayer as light, charity as proof, patience
   as brightness, the Qur'an as evidence for or against you. Yesterday's ZAD
   cross-check flagged #13 and #19 for partial extent and MISSED this one,

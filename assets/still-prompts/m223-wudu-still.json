@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-wudu",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning in a courtyard. Close shot of two anonymous hands held together over a simple clay basin, palms up, while a thin clear stream of water falls from the open mouth of a small clay jug held above them by another anonymous RIGHT hand; the water runs over the fingers into the basin. Only hands and forearms in plain undyed period sleeves are visible - no faces, no heads. Background softly blurred: a whitewashed mud-brick wall and green date palms. Even daylight, vibrant fresh colours, calm and clean, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d70-0569-7901-a255-dea004350d56",
+  "submitted_utc": "2026-11-02T18:05:25.7830359Z",
+  "completed_utc": "2026-11-02T18:05:35.7468509Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-wudu-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b1/mHzzh9XxMrNjgKO0uh0D8_T2UV0F8p.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-wudu-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b1/6FwOaaOUyhWrcVLmWe48N_NI0ANRiR.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-wudu-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b1/ygj9Bki4MfoM-x48ng5sV_3DEArY6f.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1436072183
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-wuduold",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright clear morning in a courtyard. Exactly three hands in the frame. From the bottom of the frame: the two hands of ONE elderly man, held together and cupped, palms up - thin, wrinkled, aged skin with visible veins and knuckles - both coming from the same person, in one plain undyed sleeve pair below. From the top right: one younger anonymous RIGHT hand tilting a small clay jug, a thin clear stream of water falling from the jug's open mouth into the old man's cupped palms and dripping down into a simple clay basin below. Each hand has exactly five fingers, natural proportions. No faces, no heads, no other people or hands. Background softly blurred: a whitewashed mud-brick wall and green date palms. Even daylight, vibrant warm colours, gentle and caring, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d79-4e9f-7ae3-98f5-24a922effd45",
+  "submitted_utc": "2026-11-02T18:15:34.4248663Z",
+  "completed_utc": "2026-11-02T18:16:58.1543921Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-wuduold-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1f5/Rr7Q1Gg3DPkROEgtE84KJ_GX4sec4p.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-wuduold-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1f5/1n3oLFkjP_QUy2D7_VbfY_x7Lb18cd.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-wuduold-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1f5/LYaQMaIqIdyO5z4qbVSoN_tb06wA0c.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2070914236
+}

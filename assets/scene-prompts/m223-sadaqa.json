@@ -1,0 +1,18 @@
+{
+  "generate_audio": false,
+  "video_url": "https://v3b.fal.media/files/b/0ab0e440/AgeF70ZjcjQZJdoohqdHH_output.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "completed_utc": "2026-11-02T19:55:20.9562632Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "submitted_utc": "2026-11-02T19:48:01.1290961Z",
+  "file": "out\\backgrounds\\new\\m223-sadaqa.mp4",
+  "image": "out\\refs\\m223-sadaqa-2.jpg",
+  "request_id": "01a19dcd-ee71-7691-9852-1e842453b7cb",
+  "prompt": "Static locked-off camera, the framing never changes. The giving right hand slowly lowers the single date it holds into the open palm beside the other dates, over about two seconds, then lifts slightly away and stays still. Nothing falls to the ground. The receiving palm stays open and steady in place. The hands do not change shape or number. No faces appear. Warm bright daylight.",
+  "name": "m223-sadaqa",
+  "size_bytes": 27257748,
+  "resolution": null,
+  "mode": "image-to-video",
+  "duration_sec": 10,
+  "schema": 1
+}

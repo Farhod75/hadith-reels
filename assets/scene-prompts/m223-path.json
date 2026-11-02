@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "generate_audio": false,
+  "image": "out\\refs\\m223-path-2.jpg",
+  "duration_sec": 10,
+  "completed_utc": "2026-11-02T19:41:50.6986904Z",
+  "prompt": "Static locked-off camera, the framing never changes. The palm fronds sway gently in a light morning breeze and the soft golden light shifts slightly on the sand; the footprints on the path stay exactly as they are. No people appear. The sun disc is never visible. Fresh, hopeful morning.",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m223-path.mp4",
+  "size_bytes": 26839333,
+  "request_id": "01a19dc0-88cf-76e2-a04f-fa61b6ba320a",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "submitted_utc": "2026-11-02T19:33:23.189726Z",
+  "resolution": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab0e3f1/0U81lJGziLaXK1zfi8sN-_output.mp4",
+  "name": "m223-path",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
+}

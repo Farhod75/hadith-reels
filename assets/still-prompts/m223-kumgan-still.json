@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-kumgan",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, bright clear morning in a sunlit courtyard. Exactly three hands in the frame. From the top right: one younger anonymous RIGHT hand holding by its large arched handle a traditional Central Asian copper kumgan (aftoba) ablution ewer about 40 cm tall - a wide rounded pear-shaped body on a raised foot, a tall narrow neck with a small domed lid, a long slender curved spout rising from the lower part of the body on the side opposite the handle, chased plant ornament on the copper. The ewer is TILTED forward so that a thin clear stream of water runs out of the tip of the long spout and falls into the cupped palms below. From the bottom left: the two hands of ONE elderly man, held together and cupped, palms up - thin, wrinkled, aged skin with visible veins on BOTH hands - from one plain undyed sleeve pair. Water drips from his palms into a wide shallow copper basin below, the basin narrower than the ewer is tall. Each hand has exactly five fingers, natural proportions. No faces, no heads, no other people or hands. Background softly blurred: a whitewashed mud-brick wall and green date palms. Even daylight, vibrant warm colours, gentle and caring.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19da6-5171-72a1-8295-9dc450dab7e5",
+  "submitted_utc": "2026-11-02T19:04:43.8908286Z",
+  "completed_utc": "2026-11-02T19:04:53.6381141Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-kumgan-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e315/OZZz-6oTRtYe6q9-mzB6Y_pkYMjzZ3.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-kumgan-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e315/ivRVtwo66QXxU77n_JmlF_EGWjELlC.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-kumgan-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e315/zc4FJYDl72ZRmDjHUgYRk_rBVeOSDe.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 49997110
+}

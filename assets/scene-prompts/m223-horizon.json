@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "mode": "image-to-video",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "schema": 1,
+  "submitted_utc": "2026-11-02T19:18:06.319074Z",
+  "prompt": "Static locked-off camera, the framing never changes. Thin white clouds drift slowly across the wide sky and the soft light in the sky grows gently brighter; the dunes stay still. The sun disc never appears. No people. Serene, spacious morning.",
+  "name": "m223-horizon",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab0e38d/0Z95Pwhhq0hko3J0j2YGD_output.mp4",
+  "generate_audio": false,
+  "completed_utc": "2026-11-02T19:25:01.4016421Z",
+  "size_bytes": 23267302,
+  "request_id": "01a19db2-8b63-7870-a905-7fc6631c4715",
+  "image": "out\\refs\\m223-horizon-1.jpg",
+  "file": "out\\backgrounds\\new\\m223-horizon.mp4"
+}

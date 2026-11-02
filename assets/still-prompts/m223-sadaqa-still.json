@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-sadaqa",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, 7th-century Arabia, bright warm daylight. Close shot of one anonymous RIGHT hand placing three glossy dates into another person's open, cupped right palm held out below it. Only the two hands and forearms in plain undyed period sleeves are visible - no faces, no heads. Exactly five fingers on each hand, the same natural skin tone. Background softly blurred: a sunlit mud-brick wall and green date palms. Vibrant warm colours, gentle and kind, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d70-9ad6-7d41-bff8-4e4306bd58a2",
+  "submitted_utc": "2026-11-02T18:06:04.7515140Z",
+  "completed_utc": "2026-11-02T18:06:13.3571520Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-sadaqa-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b5/2TXpaZk4CavXzpTRNbCI0_DAdnVXdA.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-sadaqa-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b5/ieYnzx9KQ7TXLHlAB9unT_AcZo6MSz.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-sadaqa-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b5/k9i9ITISF0dxpiaNqYqas_2ZcS3kPa.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 5991998
+}

@@ -1,3 +1,20 @@
+## [2026-11-02b] - Muslim #223 matn completed; reel clip set registered
+
+### Fixed (data)
+
+- **Muslim #223** (unpublished): the matn stopped after its first clause; restored in
+  full from HadeethEnc 65004 with the narrator's doubt kept. EN/RU/UZ/TJ re-translated,
+  A/B, operator Stage 4. One letter فَبَايِعٌ -> فَبَائِعٌ to match the collection at this
+  number after the P306/P319 gate stopped the render. By id (P290).
+
+### Added (assets)
+
+- m223-wudu-c8, horizon, lamp, sadaqa, path registered verified:false; scene 2 reuses
+  b6406-scalesky-r. m223-wudu-c8s (c8 slowed to 8.54 s) for the UZ reel, whose 50.5 s
+  narration needs 8.41 s per clip (P240).
+
+---
+
 ## [2026-11-02a] - pass B reachable again (certifi context)
 
 ### Fixed

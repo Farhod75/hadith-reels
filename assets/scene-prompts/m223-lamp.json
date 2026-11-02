@@ -1,0 +1,19 @@
+{
+  "generate_audio": false,
+  "file": "out\\backgrounds\\new\\m223-lamp.mp4",
+  "image": "out\\refs\\m223-lamp-2.jpg",
+  "duration_sec": 10,
+  "completed_utc": "2026-11-02T19:33:21.4286653Z",
+  "prompt": "Static locked-off camera, the framing never changes. The small flame of the clay oil lamp flickers gently and its warm glow moves softly on the whitewashed wall; the prayer mat and everything else stay completely still. No people appear. Quiet, peaceful, warm light.",
+  "schema": 1,
+  "size_bytes": 23783187,
+  "request_id": "01a19db8-ef73-7b73-a58b-398e30fb5dd1",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "submitted_utc": "2026-11-02T19:25:05.1438459Z",
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab0e3bf/l0c0_S2jae1djDAlXsQNM_output.mp4",
+  "resumed_utc": "2026-11-02T19:30:39.9219399Z",
+  "name": "m223-lamp",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
+}

@@ -1,0 +1,13 @@
+{
+  "generate_audio": false,
+  "image": "out\\refs\\m223-kumgan-2.jpg",
+  "mode": "image-to-video",
+  "name": "m223-wudu",
+  "prompt": "Static locked-off camera, the framing never changes. The right hand keeps the copper ewer tilted: a thin clear stream runs from the tip of its spout into the old man's cupped palms for about four seconds, then the hand slowly turns the ewer upright and the stream stops. Water drips from his palms into the copper basin below. The old man's cupped hands stay together and in place the whole time; the hands do not change shape or number. No faces appear. Bright, calm daylight.",
+  "submitted_utc": "2026-11-02T19:43:23.6564780Z",
+  "duration_sec": 10,
+  "request_id": "01a19dc9-b245-7c61-b118-e5e38ea13a73",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers"
+}

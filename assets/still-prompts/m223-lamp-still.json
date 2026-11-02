@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-lamp",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, a quiet bright room with whitewashed mud-brick walls in 7th-century Arabia. A simple woven prayer mat lies on a clean floor, seen from the side; beside it a small clay oil lamp burns with a soft warm flame, its glow on the wall. No people. No window, no door and no sun in frame. Warm, peaceful, luminous, softly lit, vibrant warm colours, no modern objects, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d70-6f1d-78f3-bb48-361f78f7e6e4",
+  "submitted_utc": "2026-11-02T18:05:53.5278495Z",
+  "completed_utc": "2026-11-02T18:06:02.4910715Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-lamp-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b4/pN85tc2iiSAwxn2_Z1bLZ_QPxOCNkS.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-lamp-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b4/4NNm_QcdnyEH4uqYzXjzx_P7WSZuS2.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-lamp-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b4/TEei-8zJaKeukdtNgXBu8_DYY3hohP.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 67432664
+}

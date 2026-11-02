@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-path",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, early morning in a green Arabian oasis: a sandy path winding away between tall date palms, a single line of fresh footprints in the sand leading forward along the path, soft golden morning light and long gentle shadows, a clear blue sky. The sun disc is not visible. No people, no animals, no text. Hopeful, fresh, vibrant colours, high detail.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d70-c4ea-7902-96c7-c15f6845b926",
+  "submitted_utc": "2026-11-02T18:06:15.5244761Z",
+  "completed_utc": "2026-11-02T18:06:24.0322142Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-path-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b6/5wr2-5ZnQh5oSTN26ncg0_PdJ7v7mm.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-path-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b6/nd1w0UMdkfBSNhzW-VZ-A_3RDPifJy.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-path-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b6/9yF3vczlyY6wKV90TcItf_4ZhnBEEQ.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 787856908
+}

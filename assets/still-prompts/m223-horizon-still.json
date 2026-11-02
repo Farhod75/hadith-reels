@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m223-horizon",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, a vast open landscape in Arabia at early morning: wide golden desert plains and gentle dunes below, a huge clear sky above filled with soft luminous light and thin white clouds, the space between earth and sky glowing gently. The sun disc is NOT visible - it is below the horizon or hidden. No people, no animals, no buildings, no text. Vibrant, spacious, serene, high detail.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19d70-41d1-7060-861a-047d81393800",
+  "submitted_utc": "2026-11-02T18:05:41.9317461Z",
+  "completed_utc": "2026-11-02T18:05:50.8171184Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m223-horizon-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b2/AtyZNVNd7H0UQai-Mg3Bg_NeSHdqem.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m223-horizon-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b2/oaSdcTI8HMAzz_GAWsG0s_IHqRkhHp.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m223-horizon-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e1b2/Fk0lLgOVqvMzGY2bBxg0u_00hoLjx3.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2045086312
+}
