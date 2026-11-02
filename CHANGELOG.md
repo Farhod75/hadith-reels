@@ -1,3 +1,13 @@
+## [2026-11-02a] - pass B reachable again (certifi context)
+
+### Fixed
+
+- **P345.** verify-candidates.py: pass B (OpenAI) failed with "certificate has expired"
+  - an expired certificate in the Windows store, which Python's default context
+  adds to OpenSSL's trust. The script now uses certifi's bundle when available.
+
+---
+
 ## [2026-11-01f] - Muslim #2734 matn completed; Tirmidhi #2396 grade corrected
 
 ### Fixed (data)

@@ -65,6 +65,20 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import ssl
+
+# P345: Python's default HTTPS context on Windows adds the Windows certificate
+# store to OpenSSL's, and on 2026-11-02 that store held an expired certificate
+# that OpenSSL chose for api.openai.com's chain - every pass B call failed with
+# CERTIFICATE_VERIFY_FAILED "certificate has expired", while PowerShell (which
+# uses the Windows chain builder) and the same Python with certifi's bundle
+# reached the server. Use certifi when it is installed; fall back to the
+# default context otherwise.
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except ImportError:  # pragma: no cover
+    _SSL_CTX = None
 
 # P264: where translate-candidates.py writes its proposals.
 PROPOSED_PATH = os.path.join('out', 'candidate-translations.json')
@@ -149,7 +163,7 @@ def sb_get(base, key, table, params):
     req = urllib.request.Request(url, headers={
         'apikey': key, 'Authorization': f'Bearer {key}',
         'Accept': 'application/json'})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
         return json.loads(r.read().decode('utf-8'))
 
 
@@ -159,7 +173,7 @@ def sb_patch(base, key, table, match, payload):
     req = urllib.request.Request(url, data=body, method='PATCH', headers={
         'apikey': key, 'Authorization': f'Bearer {key}',
         'Content-Type': 'application/json', 'Prefer': 'return=representation'})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
         return json.loads(r.read().decode('utf-8'))
 
 
@@ -208,7 +222,7 @@ def _post(req, timeout, label=''):
     and opposite problems."""
     for attempt in range(RETRY_ATTEMPTS):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CTX) as r:
                 return json.loads(r.read().decode('utf-8'))
         except Exception as exc:  # noqa: BLE001
             if isinstance(exc, urllib.error.HTTPError):

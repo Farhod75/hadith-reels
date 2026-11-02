@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-274 patterns in 287 entries, frontier **P344**. The P-sequence is shared with
+275 patterns in 288 entries, frontier **P345**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -24,9 +24,9 @@ BEFORE changing it.
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
+- `verify-candidates.py` (7) - P221, P235, P257, P264, P266, P299, P345
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
-- `verify-candidates.py` (6) - P221, P235, P257, P264, P266, P299
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
 - `fix_patterns.md` (5) - P209, P247, P256, P291, P332
 - `page.tsx` (5) - P071, P126, P150, P236, P305
@@ -334,5 +334,6 @@ BEFORE changing it.
 - **P343** - the clip check had no question for the action
 - **P343 (addendum 2)** - (addendum): how much, and for how long
 - **P344** - promote copied an Arabic narrator into a library keyed in English
+- **P345** - pass B died on an expired certificate in the Windows store
 
-<!-- pattern-index-stamp entries=287 patterns=274 frontier=344 sha1=7f6b4d70f346380f399909758e3e6215e25a21db -->
+<!-- pattern-index-stamp entries=288 patterns=275 frontier=345 sha1=82a9b4af9ef8092691f658c636e8a48ca0c0dc97 -->

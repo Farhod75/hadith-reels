@@ -14685,3 +14685,27 @@ second gate.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 345: pass B died on an expired certificate in the Windows store
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** gate outage (no content risk)
+
+**What happened.** Stage 3 for Muslim #223: every pass B call failed with
+`CERTIFICATE_VERIFY_FAILED: certificate has expired`. The row came out as
+"n/a ... B=error", so the A/B gate ran on one model. The same request from
+PowerShell reached api.openai.com (HTTP 401 without a key), and so did Python
+with certifi's bundle. Python's default context on Windows adds the Windows
+certificate store to OpenSSL's trust, and that store held an expired
+certificate that OpenSSL used for OpenAI's chain; the Windows chain builder
+routes around it, OpenSSL does not. Anthropic (pass A) was unaffected.
+
+**Fix.** `verify-candidates.py` builds one HTTPS context from certifi when it is
+installed and passes it to all three `urlopen` calls; without certifi it falls
+back to the default. The re-run reached B at once.
+
+**Tripwire:** a pass B `error` naming SSL in the A/B report - the gate already
+reports it as incomplete (P152) rather than as a verdict.
+
+**Status:** FIXED.
+
+---
