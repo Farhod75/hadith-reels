@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-tracks.mp4",
+  "image": "out\\refs\\m2747-tracks-1.jpg",
+  "size_bytes": 26669216,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:31:20.9926986Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0eae6/_fS_F_9LAPGyDveJcGLgG_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. A light steady wind blows a thin veil of fine sand off the dune ridge for the whole clip. The line of footprints stays clearly visible; only their edges soften very slightly. Nothing else moves. No animal and no people appear. Harsh bright light.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ed1-53a5-70c3-9467-76495d41f36f",
+  "completed_utc": "2026-11-03T00:38:35.1908192Z",
+  "name": "m2747-tracks"
+}

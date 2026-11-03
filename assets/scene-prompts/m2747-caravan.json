@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-caravan.mp4",
+  "image": "out\\refs\\m2747-caravan-1.jpg",
+  "size_bytes": 22845917,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:15:57.637964Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0ea86/KAXqOcHtzZeWJ4l6-unPd_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. The camel walks slowly from left to right at a calm walking pace with a natural four-legged camel gait, covering only about a third of the frame width over the ten seconds and staying fully in frame. The saddlebag tassels sway gently and the lead rope swings loosely with each step. The hump, the saddle, the bags and the water skin keep their shape, colour and number. The sand moves only under its feet. No people appear. Bright daylight.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ec3-3b76-7833-adbc-1952df5c0565",
+  "completed_utc": "2026-11-03T00:22:37.8757173Z",
+  "name": "m2747-caravan"
+}

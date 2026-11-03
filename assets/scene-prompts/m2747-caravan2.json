@@ -1,0 +1,18 @@
+{
+  "name": "m2747-caravan2",
+  "prompt": "Static locked-off camera, the framing never changes. The camel walks FORWARD in the direction its head is facing - toward the LEFT edge of the frame - at a slow calm walking pace with a natural four-legged camel gait, front legs leading. It never walks backward and never slides. Over the ten seconds it moves only about a quarter of the frame width to the left and stays fully in frame. The saddlebag tassels sway gently and the lead rope swings loosely with each step. The hump, the saddle, the bags and the water skin keep their shape, colour and number. The sand moves only under its feet. No people appear. Bright daylight.",
+  "size_bytes": 24759750,
+  "schema": 1,
+  "submitted_utc": "2026-11-03T01:01:59.4889684Z",
+  "mode": "image-to-video",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "completed_utc": "2026-11-03T01:08:38.8483890Z",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab0eb9a/xydlxPhkuy2Bak16gq-Wl_output.mp4",
+  "file": "out\\backgrounds\\new\\m2747-caravan2.mp4",
+  "resolution": null,
+  "image": "out\\refs\\m2747-caravan-1.jpg",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "request_id": "01a19eed-60e9-7f41-964e-6b087678f939",
+  "generate_audio": false
+}

@@ -14759,3 +14759,27 @@ that the first bytes of `git log -1 --format=%s` are the subject's own letters.
 **Status:** FIXED (practice).
 
 ---
+
+## PATTERN 348: the motion prompt named a direction the still did not face
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** content (caught in the 0.5 s review; one paid re-roll)
+
+**What happened.** muslim-2747's caravan still (caravan-1) shows the camel facing
+LEFT. The motion prompt said it "walks slowly from left to right". Kling obeyed
+both: 0-6 s the camel walked forward to the left, 6-10 s it slid backward to the
+right, legs still walking. The frame-by-frame check caught it by comparing the
+camel's position at 0, 3, 6 and 10 s; the 2 fps contact sheet alone looked like
+a camel walking.
+
+**Fix.** Name movement by the subject, not the screen: "walks FORWARD in the
+direction its head faces", and add the screen side only after reading it off
+the chosen still. Review: for anything that travels, compare its position at
+the start, middle and end against the way it faces. The re-roll (caravan2)
+walked forward the whole clip, though it covered only ~5% of the frame where a
+quarter was asked.
+
+**Tripwire:** none - prompt writing and clip review.
+
+**Status:** FIXED (practice); recurrence is the measure.
+
+---

@@ -1,3 +1,22 @@
+## [2026-11-02d] - Muslim #2747 reel set; motion direction named by the subject
+
+### Added
+
+- **Muslim #2747** (Anas, Allah's joy at a servant's repentance, the lost camel):
+  promoted to the library, six Kling 3.0 clips registered verified:false
+  (caravan2, escape, tracks, tree, return, halter) plus x1.12 copies for the UZ
+  reel (64.9 s narration, P240). Four reels rendered, operator lg.
+
+### Changed (process)
+
+- **P348.** A motion prompt names direction by the subject ("forward, the way
+  its head faces"), not by the screen; review compares a travelling subject's
+  position at start, middle and end.
+- Telegram: a caption over 1024 goes as a short video caption plus the full
+  text as a reply (OPEN_ITEMS).
+
+---
+
 ## [2026-11-02c] - before the still: references first, foreseeable defects in the prompt
 
 ### Changed (process)

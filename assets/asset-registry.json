@@ -1614,6 +1614,114 @@
       "verified": false,
       "notes": "m223-wudu-c8 slowed x1.075 (minterpolate blend) to 8.54 s for the UZ reel (50.48 s narration needs 8.413 s per clip; P240). FLUX 2 still (kumgan-2, operator's pick; ewer described from ICCU kumgan entries after the operator's correction) -> Kling 3.0 Pro i2v 10s -> first 8.0 s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a younger right hand pours from a copper kumgan (aftoba) into an old man's cupped palms over a copper basin - 'purity'. The stream leaves the spout tip, stops at ~7 s, the ewer is set upright by 8 s. A Kling 2.6 attempt reached COMPLETED but its result could not be fetched (504, 404). Earlier stills rejected by the operator: two washers' hands tangled; a tiny jug against a big basin.",
       "prompt_sidecar": "assets/scene-prompts/m223-wudu.json"
+    },
+    "m2747-caravan2.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (caravan-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the loaded camel walking in the desert - 'on his mount in a desolate land'. Walks FORWARD to the left (the way its head faces) but covers only ~5% of the frame - near walking in place. The first take (m2747-caravan) slid backward 6-10 s and is unregistered.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-caravan2.json"
+    },
+    "m2747-escape.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (escape2-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the camel trotting away up a dune, lead rope dragging, tracks in the foreground - 'it escaped from him'. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-escape.json"
+    },
+    "m2747-tracks.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (tracks-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: an empty dune with one line of camel tracks, sand blown off the ridge - 'he despaired of it'. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-tracks.json"
+    },
+    "m2747-tree.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (tree4-1; tree description word for word as return3-1, operator 19:04) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: a lone acacia; in its shade a folded cloak, a bowl, a staff leaning on the trunk - 'lay down in its shade'. Only leaves stir. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-tree.json"
+    },
+    "m2747-return.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (return3-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the same acacia, the camel standing beside the trunk, load intact - 'there it was, standing beside him'. Legs planted; it turns its head to the camera and keeps it there. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-return.json"
+    },
+    "m2747-halter.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (halter-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: one right hand (five fingers, checked on an enlarged crop) gripping the plaited lead rope - 'he took hold of its halter'. Over 0-3.5 s the grip moves up the rope, then holds still. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-halter.json"
+    },
+    "m2747-caravan2-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-caravan2 slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (caravan-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the loaded camel walking in the desert - 'on his mount in a desolate land'. Walks FORWARD to the left (the way its head faces) but covers only ~5% of the frame - near walking in place. The first take (m2747-caravan) slid backward 6-10 s and is unregistered.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-caravan2.json"
+    },
+    "m2747-escape-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-escape slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (escape2-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the camel trotting away up a dune, lead rope dragging, tracks in the foreground - 'it escaped from him'. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-escape.json"
+    },
+    "m2747-tracks-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-tracks slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (tracks-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: an empty dune with one line of camel tracks, sand blown off the ridge - 'he despaired of it'. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-tracks.json"
+    },
+    "m2747-tree-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-tree slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (tree4-1; tree description word for word as return3-1, operator 19:04) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: a lone acacia; in its shade a folded cloak, a bowl, a staff leaning on the trunk - 'lay down in its shade'. Only leaves stir. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-tree.json"
+    },
+    "m2747-return-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-return slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (return3-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: the same acacia, the camel standing beside the trunk, load intact - 'there it was, standing beside him'. Legs planted; it turns its head to the camera and keeps it there. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-return.json"
+    },
+    "m2747-halter-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "m2747-halter slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (halter-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: one right hand (five fingers, checked on an enlarged crop) gripping the plaited lead rope - 'he took hold of its halter'. Over 0-3.5 s the grip moves up the rope, then holds still. Checked every 0.5 s.",
+      "prompt_sidecar": "assets/scene-prompts/m2747-halter.json"
     }
   }
 }

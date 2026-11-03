@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-tree",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. A single lone desert acacia tree (Acacia tortilis, samur) on a flat sandy plain: a flat umbrella-shaped crown of tiny green leaves and thorny branches on a twisted grey trunk, casting a thin dappled shade. In the shade on the sand lie a plain wooden walking staff and an empty wooden bowl on a folded brown wool cloak. No person, no animal. Vast empty desert around, wide sky.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19ea8-8a64-7b50-bfe4-3800c93d64c1",
+  "submitted_utc": "2026-11-02T23:46:47.7100503Z",
+  "completed_utc": "2026-11-02T23:46:56.5673119Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-tree-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b1/VnHH1xw2xdYHf1tgvqmeT_psuZUTgk.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-tree-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b1/csDRxUZ9XBclBXJlFZTdC_FCVSNwzV.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 251635829
+}

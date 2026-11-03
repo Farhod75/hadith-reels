@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-return.mp4",
+  "image": "out\\refs\\m2747-return3-1.jpg",
+  "size_bytes": 32052859,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:48:00.1951775Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0eb45/AaxkjIAMF0qMzWce1FrUb_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. The camel stands still beside the trunk: it chews slowly and turns its head a little to the left and back, once, over the ten seconds. Its legs stay planted. The saddlebags and the water skin hang still; the lead rope hangs straight down and does not swing. The staff, the cloak and the bowl do not move. The acacia leaves stir slightly. No people appear.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ee0-92c0-73a2-83e1-8a2f90491e66",
+  "completed_utc": "2026-11-03T00:54:35.0748965Z",
+  "name": "m2747-return"
+}

@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-escape.mp4",
+  "image": "out\\refs\\m2747-escape2-2.jpg",
+  "size_bytes": 21859627,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:22:45.2356947Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0eaae/2URxps2OdtTjMDIftr-iv_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. The camel trots steadily away from the camera up the slope of the dune, growing smaller, and reaches the crest near the end of the ten seconds. Its lead rope drags on the sand behind it and the saddlebags sway with the trot. Natural four-legged gait, one hump. The tracks in the foreground stay exactly in place. No people appear. Bright daylight.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ec9-750a-7df1-9773-e524a93bb53f",
+  "completed_utc": "2026-11-03T00:31:17.3262313Z",
+  "name": "m2747-escape"
+}

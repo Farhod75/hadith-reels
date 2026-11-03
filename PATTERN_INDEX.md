@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-277 patterns in 290 entries, frontier **P347**. The P-sequence is shared with
+278 patterns in 291 entries, frontier **P348**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -337,5 +337,6 @@ BEFORE changing it.
 - **P345** - pass B died on an expired certificate in the Windows store
 - **P346** - the still was described from memory, and the defects we could foresee were left for review
 - **P347** - the commit subject began with a byte-order mark
+- **P348** - the motion prompt named a direction the still did not face
 
-<!-- pattern-index-stamp entries=290 patterns=277 frontier=347 sha1=49c11af9444bb346b8cfd889926ac364325f247e -->
+<!-- pattern-index-stamp entries=291 patterns=278 frontier=348 sha1=fb2e0124d5bd6afa94e5c3226c57b55b79dc6ec1 -->

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-tree4",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. On a flat sandy plain stands a single large lone desert acacia tree (Acacia tortilis, samur), about five metres tall, with ONE thick gnarled grey trunk - a single trunk, not two - leaning slightly to the left, its bark rough and peeling in strips, splitting into a few crooked branches above head height, and a very wide flat umbrella-shaped crown of tiny green leaves and thorny twigs, the crown much wider than the tree is tall. The light comes from high above, so the crown casts a wide dappled shadow on the sand directly beneath it. In that shadow at the foot of the trunk: a folded brown wool cloak lying on the sand, an empty wooden bowl beside it, and a plain straight wooden walking staff propped diagonally against the trunk: its upper end rests on the bark of the trunk, its lower end on the sand half a metre away - it is NOT standing upright on its own and NOT stuck in the sand. All of them fully in the shade. No person, no animal. Camera at a distance so the whole tree and its shadow are in frame, vast empty desert around, wide sky.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a19ebf-1cad-7b83-b1c5-a68b467ef72b",
+  "submitted_utc": "2026-11-03T00:11:25.3466634Z",
+  "completed_utc": "2026-11-03T00:11:36.8638213Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-tree4-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea45/W8eA5LtPknMyk3M-16Y7c_A94cxfIW.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-tree4-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea45/g1_1EDNd6XxE-FXD7ZU-4_gOcKvO3f.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2747-tree4-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea45/m2GFDCjTmqajzXLxGJHVC_gyxWXoQX.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1364416248
+}

@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-halter.mp4",
+  "image": "out\\refs\\m2747-halter-1.jpg",
+  "size_bytes": 30044652,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:54:37.5997527Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0eb72/aCmuPUUT2wswys34m9n9e_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. The right hand already holds the lead rope: over the first two seconds it tightens its grip a little and draws the rope a few centimetres upward, then holds completely still for the rest of the clip. The rope does not swing or twist. The hand keeps exactly five fingers and its shape. In the blurred background the neck of the camel breathes gently. Only this one hand; no face and no other hands appear.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ee6-a31a-7420-8a40-4b2c40e83179",
+  "completed_utc": "2026-11-03T01:01:54.1749018Z",
+  "name": "m2747-halter"
+}

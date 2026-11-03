@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-halter",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. Close-up: ONE adult man's RIGHT hand - sun-tanned, weathered skin, exactly five fingers, thumb wrapped over the rope - coming in from the lower right with the cuff of a plain cream wool sleeve, gripping a dark brown plaited goat-hair lead rope that hangs from a camel's halter. Only this one hand in the frame. Background softly blurred: the light-tan neck of the camel and the edge of a saddlebag striped red, black and cream with black tassels. No face, no other hands.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19ea8-e1c6-7283-894e-9745de89d477",
+  "submitted_utc": "2026-11-02T23:47:10.0886516Z",
+  "completed_utc": "2026-11-02T23:47:18.8420348Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-halter-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b3/_V5K9s5ZKoCorYS1i9lFi_ACdrynt8.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-halter-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b3/Kz5CyfclDO9MMqMVyyGcG_BDX43CUV.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1819641318
+}

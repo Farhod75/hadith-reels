@@ -92,6 +92,19 @@ this one wins.
   #4251, #4248, Muslim #2759, Tirmidhi #3540. Dorar dropped «التائب من الذنب
   كمن لا ذنب له» (no primary-source sahih route). Query file:
   `out/source-queries-tawba.txt`.
+- **Muslim #2747 - in the library 2026-11-02, reels rendered, operator lg 22:11.**
+  Dorar -> candidate c8d24303 -> library e7f5e920 (Book of Repentance), A/B 4/4
+  pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
+  request (A/B pass). Publish after #223, 7-10 days apart.
+- **Telegram: a caption over 1024 is split, never trimmed (operator 2026-11-02).**
+  #2747's four captions measured 1139-1172 with one tag; matn and Arabic are not
+  cut (P184). The video goes with a short caption (title, source, verify link,
+  tags: `out/caption-<n>-<lang>-tg-video.txt`) and the full caption follows as a
+  reply message (4096 limit). IG / YT / TikTok take the full caption.
+- **TODO after the current publications: TJ bed `aswati-Heartfelt-Gratitude`.**
+  Operator 2026-11-02 22:11: take it out of rotation, or use it for EN and RU only.
+  The muslim-2747 TJ reel uses it; decide and update pick-nasheed / the plan
+  once #2734, #223 and #2747 are out.
 - **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
   hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
   Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,

@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2747-tree.mp4",
+  "image": "out\\refs\\m2747-tree4-1.jpg",
+  "size_bytes": 35711754,
+  "generate_audio": false,
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-03T00:38:41.3650402Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "video_url": "https://v3b.fal.media/files/b/0ab0eb13/SjjNZndj7BA9ACfd3SqT0_output.mp4",
+  "schema": 1,
+  "prompt": "Static locked-off camera, the framing never changes. Only the small leaves at the edges of the acacia crown stir slightly in a light breeze, and the dappled shadow on the sand flickers gently. The trunk, the staff leaning on it, the folded cloak and the bowl do not move at all. Nothing appears or disappears. No people and no animals appear.",
+  "resolution": null,
+  "duration_sec": 10,
+  "request_id": "01a19ed8-0bc2-7481-b84d-aa9fcab3f930",
+  "completed_utc": "2026-11-03T00:47:58.4791837Z",
+  "name": "m2747-tree"
+}

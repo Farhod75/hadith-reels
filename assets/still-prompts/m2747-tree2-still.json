@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-tree2",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. A single large lone desert acacia tree (Acacia tortilis, samur) on a flat sandy plain, about five metres tall: a twisted grey trunk and a very wide flat umbrella-shaped crown of tiny green leaves and thorny branches, the crown wider than the tree is tall. The light comes from high above, so the tree casts a wide dappled shadow on the sand directly beneath the crown. INSIDE that shadow, close to the trunk, lie a folded brown wool cloak, a plain straight wooden walking staff and an empty wooden bowl - small next to the big tree, all three fully in the shade, none of them in the sunlight. No person, no animal. Camera at a distance so the whole tree and its shadow are in frame, vast empty desert around, wide sky.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19eb6-a884-7210-8ec2-ad9849a326f3",
+  "submitted_utc": "2026-11-03T00:02:12.9040667Z",
+  "completed_utc": "2026-11-03T00:02:22.2635775Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-tree2-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea0d/D5SP_w1-cyGvc7ZPByMFx_CBEJZxhY.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-tree2-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea0d/Zl0hogqdrIF6OgDUolTY4_U86C7VGt.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1084178839
+}

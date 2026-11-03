@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-tracks",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. An empty desert at midday: one line of camel footprints - wide oval two-toed pad prints - crosses a smooth dune and fades into the distance. No animal anywhere. A light wind lifts a thin veil of fine sand off the dune ridge. Vast empty horizon, harsh bright light, a feeling of being alone and lost.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19ea8-5f4c-7ac3-b9ca-2e4f9f7fdfeb",
+  "submitted_utc": "2026-11-02T23:46:36.6210949Z",
+  "completed_utc": "2026-11-02T23:46:45.4753214Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-tracks-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b0/P2c_vkcOv6QGbprtDXT--_xvzu94lj.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-tracks-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9b0/Sev8xYQRDok3G7nmjLnWZ_Si0gbIJS.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 887625028
+}

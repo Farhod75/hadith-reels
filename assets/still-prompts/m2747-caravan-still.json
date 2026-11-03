@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-caravan",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. Side view from mid-distance: a single light-tan Arabian dromedary camel - exactly one hump, one head, four legs, natural proportions - wearing a North Arabian riding saddle: two inverted-Y shaped frames of pale tamarisk wood, one in front of the hump and one behind it, their upper arms rising above the hump and joined by side bars, with wool pads on both sides of the hump; hanging from the frame arms a pair of handwoven wool saddlebags striped red, black and cream with long black tassels below the belly, and one brown goatskin water skin; a dark brown plaited goat-hair rope halter around the muzzle and behind the ears with a long lead rope. The saddle is EMPTY - no rider. The camel walks calmly from left to right across smooth rolling golden dunes, its long lead rope hanging loose from the halter. Long soft shadow on the sand. Wide open sky with thin clouds.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19ea7-e4e0-79c0-9dd3-e83b08177794",
+  "submitted_utc": "2026-11-02T23:46:04.4805973Z",
+  "completed_utc": "2026-11-02T23:46:18.7539959Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-caravan-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9ad/s-jGpI0XOGeThLyCgS31d_zT2OCAyq.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-caravan-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0e9ad/9zm9880L2yqpqbBJAkqt1_zpcUsm2s.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1368487307
+}

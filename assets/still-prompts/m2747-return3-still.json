@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2747-return3",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert in the 7th century, bright warm daylight, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no faces, no text, no buildings. On a flat sandy plain stands a single large lone desert acacia tree (Acacia tortilis, samur), about five metres tall, with ONE thick gnarled grey trunk - a single trunk, not two - leaning slightly to the left, its bark rough and peeling in strips, splitting into a few crooked branches above head height, and a very wide flat umbrella-shaped crown of tiny green leaves and thorny twigs, the crown much wider than the tree is tall. The light comes from high above, so the crown casts a wide dappled shadow on the sand directly beneath it. In that shadow at the foot of the trunk: a folded brown wool cloak lying on the sand, an empty wooden bowl beside it, and a plain straight wooden walking staff LEANING against the trunk at an angle (not stuck upright in the sand). All of them fully in the shade. Standing calmly in the shade right beside the trunk: a single light-tan Arabian dromedary camel - exactly one hump, one head, four legs, natural proportions - wearing a riding saddle on the hump: one short stout wooden post in front of the hump and one behind it, each only a hand-span tall, joined by side bars, with wool pads on both sides of the hump - NO tall forks, NO antler-like branches; hanging from the saddle a pair of handwoven wool saddlebags striped red, black and cream with long black tassels below the belly, and one brown goatskin water skin; a dark brown plaited goat-hair rope halter with a long lead rope. The saddle is EMPTY - no rider. All saddlebags and the water skin are still in place, full. The lead rope hangs straight down from the halter to the sand. Camera at a distance so the whole tree, the camel and the shadow are in frame. Peaceful, relieved mood.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a19ebd-08c8-7293-81ba-0141dcf167ac",
+  "submitted_utc": "2026-11-03T00:09:10.8408771Z",
+  "completed_utc": "2026-11-03T00:09:19.4528356Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2747-return3-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea37/frCLJo0xbpKQimQ-4y_4p_dQYAhHxR.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2747-return3-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab0ea37/jLuJupziUQSpKwrDplPOX_jMNSXyON.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 99460045
+}
