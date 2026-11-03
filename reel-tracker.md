@@ -361,7 +361,7 @@
 | aswati-Peaceful-Contemplation.mp3 | 11 | R178 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176, R178 |
 | aswati-Gentle-Reflection.mp3 | 10 | R179 | R115, R121, R139, R142, R156, R165, R168, R171, R174, R179 |
 | aswati-Morning-Serenity.mp3 | 8 | R180 | R116, R124, R154, R162, R167, R172, R177, R180 |
-| aswati-Heartfelt-Gratitude.mp3 | 8 | R181 | R117, R123, R152, R164, R166, R173, R175, R181 |
+| aswati-Heartfelt-Gratitude.mp3 | 8 | R181 | R117, R123, R152, R164, R166, R173, R175, R181. RETIRED 2026-11-02 (operator): `lanes: []`, out of rotation; file kept on disk (P141). |
 | aswati-Rising-Hope.mp3 | 4 | R157 | R118, R125, R149, R157 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
 | aswati-Focused-Determination.mp3 | 3 | R155 | R122, R132, R155 |

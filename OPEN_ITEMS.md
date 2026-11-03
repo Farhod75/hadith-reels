@@ -101,10 +101,10 @@ this one wins.
   cut (P184). The video goes with a short caption (title, source, verify link,
   tags: `out/caption-<n>-<lang>-tg-video.txt`) and the full caption follows as a
   reply message (4096 limit). IG / YT / TikTok take the full caption.
-- **TODO after the current publications: TJ bed `aswati-Heartfelt-Gratitude`.**
-  Operator 2026-11-02 22:11: take it out of rotation, or use it for EN and RU only.
-  The muslim-2747 TJ reel uses it; decide and update pick-nasheed / the plan
-  once #2734, #223 and #2747 are out.
+- **DONE 2026-11-02: `aswati-Heartfelt-Gratitude` out of rotation.** Operator chose
+  removal over EN/RU only: registry `lanes: []`, file kept (P141), pick-nasheed no
+  longer offers it. Already rendered with it: bukhari-2734 UZ and muslim-223 EN -
+  re-render with another bed before publishing, or publish as rendered (operator).
 - **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
   hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
   Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,

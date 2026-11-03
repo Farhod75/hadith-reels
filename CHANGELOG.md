@@ -1,3 +1,14 @@
+## [2026-11-02f] - aswati-Heartfelt-Gratitude out of rotation
+
+### Changed
+
+- **asset-registry.json:** `aswati-Heartfelt-Gratitude.mp3` -> `lanes: []` (operator
+  decision), retirement note at the head of `notes`. File stays in out/backgrounds/
+  (P141). pick-nasheed / the render gate no longer offer it; 14 adults beds remain.
+- **reel-tracker.md:** nasheed usage row marked RETIRED. **OPEN_ITEMS:** TODO closed.
+
+---
+
 ## [2026-11-02e] - R178-R181, Sahih Muslim #2747, four languages, set closed; Telegram reply
 
 ### Content
