@@ -14830,3 +14830,24 @@ log first.
 **Status:** FIXED (practice).
 
 ---
+
+## PATTERN 351: the pre-flight checklist ran a script that never existed
+
+**Date:** 2026-11-03  **Repo:** hadith-reels  **Severity:** process (a session-start step that cannot pass)
+
+**What happened.** CLAUDE.md's PRE-FLIGHT CHECKLIST step 5 says `npm run
+test:smoke`. Run at the start of the 2026-11-03 session it failed with npm's
+`Missing script: "test:smoke"`. `git log -S'test:smoke'` finds the string only
+in 63f6a5d, the commit that created CLAUDE.md: package.json has never had the
+script. The step has been unrunnable since the file existed, and nobody saw it
+fail because the step was read, not run - the same shape as step 4's health
+curl to a path that had never existed (P291).
+
+**Fix.** Step 5 now names what the pre-push hook actually runs:
+`python -m pytest scripts/lib -q` (90 passed) and `npx tsc --noEmit`.
+
+**Tripwire:** none - a checklist step is checked by running it.
+
+**Status:** FIXED.
+
+---

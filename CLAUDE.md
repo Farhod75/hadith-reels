@@ -573,8 +573,10 @@ git config core.hooksPath          # must print .githooks
 #    this step curled a path that had never existed and failed every session.
 curl -s https://hadithverifier.com/api/health | jq
 
-# 5. Run smoke test
-npm run test:smoke
+# 5. Run the suite the pre-push hook runs (P351). There is no test:smoke
+#    script and there never was - this step named one from the first commit.
+python -m pytest scripts/lib -q
+npx tsc --noEmit
 ```
 
 ---

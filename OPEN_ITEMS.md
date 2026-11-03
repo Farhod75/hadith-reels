@@ -92,10 +92,11 @@ this one wins.
   #4251, #4248, Muslim #2759, Tirmidhi #3540. Dorar dropped «التائب من الذنب
   كمن لا ذنب له» (no primary-source sahih route). Query file:
   `out/source-queries-tawba.txt`.
-- **Muslim #2747 - in the library 2026-11-02, reels rendered, operator lg 22:11.**
+- **Muslim #2747 - PUBLISHED 2026-11-02 (R178-R181, TG 188-195).**
   Dorar -> candidate c8d24303 -> library e7f5e920 (Book of Repentance), A/B 4/4
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
-  request (A/B pass). Publish after #223, 7-10 days apart.
+  request (A/B pass). Published the same day at the operator's request, ahead
+  of #2734 and #223.
 - **Telegram: a caption over 1024 is split, never trimmed (operator 2026-11-02).**
   #2747's four captions measured 1139-1172 with one tag; matn and Arabic are not
   cut (P184). The video goes with a short caption (title, source, verify link,

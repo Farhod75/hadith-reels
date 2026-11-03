@@ -1,3 +1,14 @@
+## [2026-11-03b] - pre-flight step 5 runs the real suite (P351)
+
+### Fixed (process)
+
+- **P351. CLAUDE.md:** pre-flight step 5 named `npm run test:smoke`, which package.json
+  has never had; it now runs `python -m pytest scripts/lib -q` and `npx tsc --noEmit`,
+  the pre-push hook's suite.
+- **OPEN_ITEMS:** #2747 marked published 2026-11-02 (the entry still said "publish after #223").
+
+---
+
 ## [2026-11-03a] - muslim-2734 UZ and muslim-223 EN re-bedded on aswati-Rising-Hope
 
 ### Content
