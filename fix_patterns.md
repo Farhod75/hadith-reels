@@ -14783,3 +14783,50 @@ quarter was asked.
 **Status:** FIXED (practice); recurrence is the measure.
 
 ---
+
+## PATTERN 349: a platform text retyped by hand carried two Cyrillic letters into the Arabic
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** content (published; caption edited after)
+
+**What happened.** For muslim-2747 the Telegram texts came from the caption files,
+but the YouTube and TikTok texts were written out in the reply by hand, each
+re-typing the matn and the Arabic line. The TikTok TJ block went out with
+"إذا هо бها" - Cyrillic о and б inside the Arabic - where every file has
+"إذا هو بها". Seen by me only after the operator had published.
+
+**Fix.** Every platform text is built from out/caption-<n>-<lang>.txt (and the
+-tg-video variant) by copying the file's blocks, never by retyping a block that a
+file already holds. Before handing a text over: the Arabic line is
+byte-identical to the caption file's, and contains no Latin or Cyrillic letter.
+
+**Tripwire:** none yet - a script that emits the four platform texts from the
+caption files would remove the hand step.
+
+**Status:** FIXED (practice).
+
+---
+
+## PATTERN 350: the publish died with the remote call that started it
+
+**Date:** 2026-11-02  **Repo:** hadith-reels  **Severity:** publish (one post incomplete)
+
+**What happened.** out/tg_2747.py posted eight Telegram messages from inside a
+remote PowerShell call whose reply limit is 60 s. The call timed out after RU's
+video; the process died with it, its output (the message ids) was lost, and a
+re-run would have double-posted. The finishing script was then launched with
+Start-Process and an absolute path containing spaces: the path split at the
+spaces and nothing started, with no error. It ran once given a path relative to
+-WorkingDirectory. RU's full text had to go as the next message instead of a
+reply, because the video's message id was gone.
+
+**Fix.** A publish (or any run over ~30 s) is started detached and writes a log
+as it goes - each message id the moment it exists - then polled. Start-Process
+gets the script as a path relative to -WorkingDirectory (or a quoted argument).
+A run that may have half-posted is never re-run blind: check the channel or the
+log first.
+
+**Tripwire:** none - the log is the evidence.
+
+**Status:** FIXED (practice).
+
+---

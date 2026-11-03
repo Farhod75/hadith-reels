@@ -198,6 +198,10 @@
 | R175 | 2026-11-01 | Sahih al-Bukhari #6406 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #allah #reward #hadith | RU | Adults | bukhari-6406 | adults-ru-bukhari-6406-story.mp3 | adults-ru-bukhari-6406-moral.mp3 | adults-ru-bukhari-6406-narration.mp3 | b6406-feather.mp4, b6406-scalesky-r.mp4, b6406-valley.mp4, b6406-tasbih.mp4 | adults-ru-bukhari-6406-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | YES - hand-fixed: 'Абхурайра, дабудет доволенным' -> the lead-in, 'милостьевым', the two phrases ('Субхан Аллахель, а вы им...'), 'Причист' x2, quotation marks and colons; cue 5 split at the narration's pause (P211 cache) | adults-ru-bukhari-6406-reel.mp4 | 29.2s | 5.6 MB | TG message_id 185. P339/P342 stopped the first render (11 HIGH). The wrapper broke the transliteration at its hyphens; a line break inside the cue does not survive render-reel's Split-LongCues (it joins a cue's lines), so the cue was split in two at the silence between the phrases. Trim x0.91 to ~10.8 LU (P338). |
 | R176 | 2026-11-01 | Sahih al-Bukhari #6406 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #allah #reward #hadith | UZ | Adults | bukhari-6406 | adults-uz-bukhari-6406-story.mp3 | adults-uz-bukhari-6406-moral.mp3 | adults-uz-bukhari-6406-narration.mp3 | b6406-feather.mp4, b6406-scalesky-r.mp4, b6406-valley.mp4, b6406-tasbih.mp4 | adults-uz-bukhari-6406-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | NO (P078) | adults-uz-bukhari-6406-reel.mp4 | 34.6s | 6.8 MB | TG message_id 186. Longest leg; the set spreads 26.4-34.6 s. Trim x0.91 to ~15.7 LU. |
 | R177 | 2026-11-01 | Sahih al-Bukhari #6406 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #allah #reward #hadith | TJ | Adults | bukhari-6406 | adults-tj-bukhari-6406-story.mp3 | adults-tj-bukhari-6406-moral.mp3 | adults-tj-bukhari-6406-narration.mp3 | b6406-feather.mp4, b6406-scalesky-r.mp4, b6406-valley.mp4, b6406-tasbih.mp4 | adults-tj-bukhari-6406-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | NO (P078) | adults-tj-bukhari-6406-reel.mp4 | 29.2s | 5.5 MB | TG message_id 187. CLOSES THE SET. Trim x0.85 to ~13.4 LU. |
+| R178 | 2026-11-02 | Sahih Muslim #2747 | Anas ibn Malik | Sahih | Repentance / Mercy | #tawbah #repentance #forgiveness #mercy | EN | Adults | muslim-2747 | adults-en-muslim-2747-story.mp3 | adults-en-muslim-2747-moral.mp3 | adults-en-muslim-2747-narration.mp3 | m2747-caravan2.mp4, m2747-escape.mp4, m2747-tracks.mp4, m2747-tree.mp4, m2747-return.mp4, m2747-halter.mp4 | adults-en-muslim-2747-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES - hand-fixed: quotation marks, colon, His/Him/You/Your for Allah, 'aired' -> 'erred', 'despaired [of]' (P211 cache) | adults-en-muslim-2747-reel.mp4 | 54.4s | 17.7 MB | TG 188 (video, short caption) + 189 (full text, reply) - message ids inferred from 190-195. Opens the set. The first reel whose caption could not fit Telegram's 1024: video + reply (OPEN_ITEMS). Trim x0.83. |
+| R179 | 2026-11-02 | Sahih Muslim #2747 | Anas ibn Malik | Sahih | Repentance / Mercy | #tawbah #repentance #forgiveness #mercy | RU | Adults | muslim-2747 | adults-ru-muslim-2747-story.mp3 | adults-ru-muslim-2747-moral.mp3 | adults-ru-muslim-2747-narration.mp3 | m2747-caravan2.mp4, m2747-escape.mp4, m2747-tracks.mp4, m2747-tree.mp4, m2747-return.mp4, m2747-halter.mp4 | adults-ru-muslim-2747-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | YES - hand-fixed: lead-in 'Она с ибн-Малик, добудет доволенным ... пророг' (P337 HIGH), quotation marks at the matn's ends, colons, 'Ты/Твой', 'ни ушёл, вернись' | adults-ru-muslim-2747-reel.mp4 | 50.2s | 16.2 MB | TG 190 (video) + 191 (full text as the NEXT message, not a reply - the first post run was cut off and 190's id was lost; P350). Trim x0.90. |
+| R180 | 2026-11-02 | Sahih Muslim #2747 | Anas ibn Malik | Sahih | Repentance / Mercy | #tawbah #repentance #forgiveness #mercy | UZ | Adults | muslim-2747 | adults-uz-muslim-2747-story.mp3 | adults-uz-muslim-2747-moral.mp3 | adults-uz-muslim-2747-narration.mp3 | m2747-caravan2-s.mp4, m2747-escape-s.mp4, m2747-tracks-s.mp4, m2747-tree-s.mp4, m2747-return-s.mp4, m2747-halter-s.mp4 | adults-uz-muslim-2747-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | NO (P078) | adults-uz-muslim-2747-reel.mp4 | 65.9s | 19.7 MB | TG 192 + 193 (reply). Longest leg: 64.9 s narration over six clips slowed x1.12 (P240). Trim x0.97. |
+| R181 | 2026-11-02 | Sahih Muslim #2747 | Anas ibn Malik | Sahih | Repentance / Mercy | #tawbah #repentance #forgiveness #mercy | TJ | Adults | muslim-2747 | adults-tj-muslim-2747-story.mp3 | adults-tj-muslim-2747-moral.mp3 | adults-tj-muslim-2747-narration.mp3 | m2747-caravan2.mp4, m2747-escape.mp4, m2747-tracks.mp4, m2747-tree.mp4, m2747-return.mp4, m2747-halter.mp4 | adults-tj-muslim-2747-bg-mixed.mp4 | aswati-Heartfelt-Gratitude.mp3 | NO (P078) | adults-tj-muslim-2747-reel.mp4 | 54.5s | 17.7 MB | TG 194 + 195 (reply). CLOSES THE SET. 'маркаб' -> 'шутур' at the operator's request. TikTok caption shipped with two Cyrillic letters inside the Arabic line (P349) - operator asked to edit it. The operator wants this bed out of the TJ rotation (OPEN_ITEMS). Trim x0.88. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -214,6 +218,7 @@
 | Sunan Abu Dawud #4811 | EN, RU, UZ, TJ | Adults | R166-R169. Narrated by Abu Hurairah, sahih. The matn has two halves - thanks to people, thanks to Allah - and the scenes follow them: water given, a hand on the chest, the favours of Allah, a figure in dua at the end. A bread scene was generated three times and dropped by the operator for the dua finale. |
 | Sahih al-Bukhari #6412 | EN, RU, UZ, TJ | Adults | R170-R173. Narrated by Ibn Abbas, sahih, Book of Ar-Riqaq. The matn's maghbun is a trade word - short-changed in a sale (HadeethEnc #5449). The library row's Russian was ungrammatical and said 'neglect' instead of 'loss'; corrected in the DB on 2026-11-01, and its 'death' tag replaced with 'time'. |
 | Sahih al-Bukhari #6406 | EN, RU, UZ, TJ | Adults | R174-R177. Narrated by Abu Hurairah, sahih, Book 80 Invocations (كتاب الدعوات), chapter on the virtue of tasbih (6405-6406). Sourced from Dorar through the candidate pipeline and promoted 2026-11-01 (library id eb94dcdb). #6682 and #7563 sit in hadith_candidates from the same Dorar query - check them against this row before treating either as a new hadith. |
+| Sahih Muslim #2747 | EN, RU, UZ, TJ | Adults | R178-R181. Narrated by Anas ibn Malik, sahih, The Book of Repentance (كتاب التوبة). The long narration (the man lies down in the shade; 'O Allah, You are my servant and I am Your Lord'). Bukhari #6309 is the short version from Anas and Muslim #2744 / #2746 the same parable via Ibn Mas'ud and al-Bara' - check against this row before treating any as new. Library id e7f5e920. |
 | Jami at-Tirmidhi #3373 | RU | Adults | R001 |
 | Sahih al-Bukhari #1894 | EN | Adults | R002 |
 | Jami at-Tirmidhi #1956 | UZ | Adults | R003 |
@@ -293,7 +298,7 @@
 | Prayer / Fajr & Asr | 4 | R062–R065 | EN, RU, UZ, TJ |
 | Prayer / Reckoning | 4 | R066–R069 | EN, RU, UZ, TJ |
 | Parents / Mother | 4 | R070–R073 | EN, RU, UZ, TJ |
-| Repentance / Mercy | 12 | R074–R077, R086–R089, R110–R113 | EN, RU, UZ, TJ |
+| Repentance / Mercy | 16 | R074–R077, R086–R089, R110–R113, R178–R181 | EN, RU, UZ, TJ |
 | Parents / Family | 4 | R078–R081 | EN, RU, UZ, TJ |
 | Speech / Manners | 4 | R082–R085 | EN, RU, UZ, TJ |
 | Character / Akhlaq | 4 | R154–R157 | EN, RU, UZ, TJ |
@@ -353,10 +358,10 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 6 | R135 | R004, R023, R095, R103, R128, R135 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
-| aswati-Peaceful-Contemplation.mp3 | 10 | R176 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176 |
-| aswati-Gentle-Reflection.mp3 | 9 | R174 | R115, R121, R139, R142, R156, R165, R168, R171, R174 |
-| aswati-Morning-Serenity.mp3 | 7 | R177 | R116, R124, R154, R162, R167, R172, R177 |
-| aswati-Heartfelt-Gratitude.mp3 | 7 | R175 | R117, R123, R152, R164, R166, R173, R175 |
+| aswati-Peaceful-Contemplation.mp3 | 11 | R178 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176, R178 |
+| aswati-Gentle-Reflection.mp3 | 10 | R179 | R115, R121, R139, R142, R156, R165, R168, R171, R174, R179 |
+| aswati-Morning-Serenity.mp3 | 8 | R180 | R116, R124, R154, R162, R167, R172, R177, R180 |
+| aswati-Heartfelt-Gratitude.mp3 | 8 | R181 | R117, R123, R152, R164, R166, R173, R175, R181 |
 | aswati-Rising-Hope.mp3 | 4 | R157 | R118, R125, R149, R157 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
 | aswati-Focused-Determination.mp3 | 3 | R155 | R122, R132, R155 |
@@ -375,6 +380,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| m2747-caravan2, escape, tracks, tree, return, halter | 1 set | 2026-11-02 (R178-R181) | R178-R181, all six on every leg in matn order, -FitScenes; UZ on x1.12 copies (-s). caravan2 is the re-roll: the first take slid backward 6-10 s because the motion prompt said left-to-right while the camel faced left (P348). The saddle has short posts after the first stills' Y-frames read as antlers; tree and return carry one tree description word for word (operator). |
 | b6406-feather, scalesky-r, valley, tasbih | 1 set | 2026-11-01 (R174-R177) | R174-R177, all four on every leg in matn order, -FitScenes. scalesky-r is the Kling clip REVERSED: forward, the beam levelled out from ~6 s - the opposite of 'heavy on the Scale' (P343) - and that file is unregistered. The scale is 'in space' at the operator's word (the courtyard stills were dropped). The finger-counting dhikr stills read as a meditation mudra (as 4811's dua did) and were replaced with prayer beads. |
 | b6412-serve, glass, scale, sapling-c | 1 set | 2026-11-01 (R170-R173) | R170-R173, all four on every leg, -FitScenes. The hourglass is the operator's choice, a timeless symbol (not attested in 7th-century Arabia). b6412-health was replaced after review - its water ran out of the BOTTOM of the jar - and is retired in the registry. b6412-sapling brought a man's face in at the right edge; the shipped -c clip is a 12% crop. Round 1 of the time scene (palm shadows) drew a human hand's shadow in every variant. |
 | ad4811-water, heart, rainbow, dua2 | 1 set | 2026-10-31 (R166-R169) | R166-R169, all four on every leg, -FitScenes. The first set in the bright palette the operator asked for. Rainbow's first generation was lost to a fal 500 on fetch (three tries). The finale: dua-3 on Kling 3.0 pressed the palms together; three FLUX rounds; the sun removed from duaopen-2 with FLUX 3 Edit; Kling 2.6 Pro. Bread (bread, bread2, bread3) generated and unused. Scene spend about $10. |
@@ -493,13 +499,13 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 177 |
+| Total reels posted | 181 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 125 |
+| Adults reels | 129 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 45 |
+| Hadiths used (unique) | 46 |
 | Library rows | 71 (40 used, 31 unused) |
 | Hadith collections used | 5 (Sahih al-Bukhari ×75, Sahih Muslim ×28, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
 | Companions cited | 19 (Abdullah ibn Amr ×4, Uthman ibn Affan ×4, Abu Hurairah ×54, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4) |
@@ -539,6 +545,7 @@ Then update:
 
 | Date | Change | By |
 |---|---|---|
+| 2026-11-02 | R178-R181 - Sahih Muslim #2747 EN/RU/UZ/TJ adults, Allah's joy at a servant's repentance (the lost camel). Repentance / Mercy, chosen on the analytics (repentance holds the YouTube #1). First set split on Telegram (video + full-text reply). P346-P350. TG 188-195. | Farhod / Claude |
 | 2026-11-01 | R174-R177 - Sahih al-Bukhari #6406 EN/RU/UZ/TJ adults, two words light on the tongue and heavy on the Scale. New theme Dhikr / Tasbih. First hadith from a Dorar query to a published reel in one day. P344 (promote copied an Arabic narrator; caught by P337 at the narrate dry run). TG 184-187. | Farhod / Claude |
 | 2026-11-01 | R170-R173 - Sahih al-Bukhari #6412 EN/RU/UZ/TJ adults, two blessings many people lose: health and free time. New theme Blessings / Time. P342 caught its first defect live (RU 'добудет'). DB: RU matn corrected, tag death -> time (new tags.ts concept). P343 (the clip check looked for faces, not for whether the water came from the right place). TG 180-183. | Farhod / Claude |
 | 2026-10-31 | R166-R169 - Sunan Abu Dawud #4811 EN/RU/UZ/TJ adults, whoever does not thank people does not thank Allah. Second set in Gratitude / Contentment and the first in the bright palette. P340 (prayer direction in a frame - the qibla rule had lived in chat memory), P341 (the --strict splat). First production use of FLUX 3 (Edit). TG 176-179. | Farhod / Claude |

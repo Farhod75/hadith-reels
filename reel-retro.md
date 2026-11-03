@@ -787,3 +787,58 @@ breaks; a long transliteration still needs a hand split at a pause.
 real defect before anything was spent or burned. What the operator still had to
 catch was process: that the translations had not been checked against an
 outside source, and whether the A/B step was being run.
+
+## R178-R181 - Sahih Muslim #2747 - 2026-11-02
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (188-195, video + full text), Instagram, YouTube Shorts, TikTok.
+
+Chosen for that day's post on the operator's reading of the analytics: repentance
+and forgiveness draw (Ibn Majah #4251 is the YouTube #1). Dorar query to
+published reel in one day, through candidate, translation, A/B, promote and the
+matn-vs-number gate.
+
+**Caught before publish, and who said it.**
+
+1. **TJ "маркаб"** (operator): a literal "mount" where the Tajik reader says
+   "шутур". Changed in the library, A/B re-run on TJ.
+2. **The saddle's Y-frames read as antlers** (me, the stills sheet), and did not
+   match caravan-1. Re-rolled with short posts.
+3. **The cloak and staff were not in the tree's shade, and the tree in the tree
+   and return stills were two different trees** (operator). One tree description
+   word for word in both prompts; picked the pair whose trunks matched.
+4. **The staff stood upright in the sand** (operator). Propped on the trunk.
+5. **The caravan camel slid backward from 6 s** (me, the 0.5 s review comparing
+   positions): my motion prompt named the screen direction against the way the
+   still faced. P348; one re-roll.
+6. **RU "отчаялся найти"** (A/B model A): a word the Arabic does not have.
+7. **RU lead-in garbled, EN "aired" for "erred"** (the P342 gate). Hand-fixed.
+8. **UZ 64.9 s against six 10 s clips** (P240 refused the render). Slowed copies.
+9. **Every caption over Telegram's 1024** (build-caption). Operator chose video +
+   full text as a reply; route.ts gained `replyTo`.
+
+**Escaped to publish.**
+
+- **TikTok TJ: two Cyrillic letters inside the Arabic line** ("هо бها"). I typed
+  the four TikTok texts by hand instead of copying them from the caption files.
+  Caught by me after the operator's "d"; he was asked to edit the caption. P349.
+- **RU on Telegram: the full text went as the next message, not a reply.** The
+  first post run sat inside a remote call that timed out after 60 s; the process
+  died after RU's video, and its message id was lost. P350.
+
+**Operator corrections of the assistant: 5.** Items 1, 3, 4; "for today" - I had
+queued #2747 after #223 although it was made for that day's post ("ты тормоз");
+and "you post Telegram, did you forget?" - I handed him the Telegram text to paste.
+
+**Root causes.** Text produced twice by hand where a file already held it (P349).
+A long-running publish started in the foreground of a call with a 60 s limit, then
+retried as Start-Process with an absolute path containing spaces, which never
+started (P350). The session's own decisions (post today, the bot posts Telegram)
+were not re-read before acting on the schedule.
+
+**Prevention landed.** P346 (references first, foreseeable defects in the still
+prompt), P348 (motion direction by the subject), P349, P350; the Telegram split
+is a recorded rule.
+
+**The finding:** the content gates held - every defect in the reel itself was
+caught before publish. What escaped was in the handoff to the platforms, the one
+stage still done by hand.

@@ -1,3 +1,25 @@
+## [2026-11-02e] - R178-R181, Sahih Muslim #2747, four languages, set closed; Telegram reply
+
+### Content
+
+- Tracker rows R178-R181 (TG 188-195), duplicate index, Repentance / Mercy 12 -> 16,
+  nasheed usage, the m2747 clip set, stats 181/129/46, change log, retro.
+  Registry: the six m2747 clips and their -s copies -> verified:true.
+
+### Changed
+
+- **route.ts:** `/api/telegram/post` text mode takes `replyTo` and sends it as
+  `reply_parameters.message_id` - a caption over 1024 is posted as the video with a
+  short caption, then the full text as a reply (out/tg_2747.py).
+
+### Fixed (process)
+
+- **P349.** Platform texts are copied from the caption files, never retyped.
+- **P350.** A publish is started detached with a log and polled; Start-Process
+  takes the script by a path relative to -WorkingDirectory.
+
+---
+
 ## [2026-11-02d] - Muslim #2747 reel set; motion direction named by the subject
 
 ### Added

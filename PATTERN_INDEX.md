@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-278 patterns in 291 entries, frontier **P348**. The P-sequence is shared with
+280 patterns in 293 entries, frontier **P350**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -338,5 +338,7 @@ BEFORE changing it.
 - **P346** - the still was described from memory, and the defects we could foresee were left for review
 - **P347** - the commit subject began with a byte-order mark
 - **P348** - the motion prompt named a direction the still did not face
+- **P349** - a platform text retyped by hand carried two Cyrillic letters into the Arabic
+- **P350** - the publish died with the remote call that started it
 
-<!-- pattern-index-stamp entries=291 patterns=278 frontier=348 sha1=fb2e0124d5bd6afa94e5c3226c57b55b79dc6ec1 -->
+<!-- pattern-index-stamp entries=293 patterns=280 frontier=350 sha1=4cf640e90934a25790b4e6542fed46d1ce438ae9 -->

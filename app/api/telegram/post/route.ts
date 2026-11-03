@@ -1,7 +1,7 @@
 // app/api/telegram/post/route.ts
 // POST: sends a hadith reel to the Telegram channel.
 //
-// Body: { caption, hadith?, generated?, lang?, style?, videoPath? }
+// Body: { caption, hadith?, generated?, lang?, style?, videoPath?, replyTo? }
 //
 //   without videoPath -> sendMessage, text only (the admin studio's button)
 //   with    videoPath -> sendVideo, the reel itself with the caption attached
@@ -38,7 +38,7 @@ const CAPTION_LIMIT = 1024
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}))
-    const { caption, hadith, videoPath } = body
+    const { caption, hadith, videoPath, replyTo } = body
 
     const botToken = process.env.TELEGRAM_ALERT_BOT_TOKEN
     const chatId   = process.env.TELEGRAM_CHANNEL_CHAT_ID ||
@@ -70,6 +70,9 @@ export async function POST(req: NextRequest) {
             chat_id: chatId,
             text: message.slice(0, MESSAGE_LIMIT),
             disable_web_page_preview: false,
+            // A caption too long for a video (1024) is posted as the video with a
+            // short caption, then the full text as a reply to it (operator 2026-11-02).
+            ...(replyTo ? { reply_parameters: { message_id: Number(replyTo) } } : {}),
           }),
         }
       )
