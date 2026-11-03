@@ -14871,8 +14871,13 @@ Prophet's lowercase "him" is not counted against it.
 `scripts/lib/test_stt_divine_pronoun.py` pins the severity and both
 non-findings.
 
-**Not changed.** quote_missing stays MEDIUM - same shape, left for the
-operator (OPEN_ITEMS).
+**Then, at the operator's word (2026-11-03 18:41):** quote_missing is HIGH
+too - the same shape. Whisper never emits quotation marks, so every EN/RU
+render now stops until the matn is quoted in the SRT; that hand-fix was already
+done on every set (P342), now it cannot be skipped. This reverses P342's call
+("no quotes attributes nothing wrongly"): the viewer still cannot see where the
+Prophet's words end. test_stt_validate.py's two P342 assertions were updated -
+the pre-push hook refused the first push while they still expected MEDIUM.
 
 **Tripwire:** `scripts/lib/test_stt_divine_pronoun.py`.
 

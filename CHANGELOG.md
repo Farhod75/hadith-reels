@@ -1,3 +1,13 @@
+## [2026-11-03d] - quote_missing is HIGH (P352, operator)
+
+### Changed
+
+- **stt-validate.py:** quote_missing MEDIUM -> HIGH. Every EN/RU render under
+  -NoReview stops until the SRT quotes the matn. Two tests added to
+  scripts/lib/test_stt_divine_pronoun.py. OPEN_ITEMS item closed.
+
+---
+
 ## [2026-11-03c] - R182-R185, Sahih Muslim #2749, four languages, set closed; divine pronoun is HIGH (P352)
 
 ### Content

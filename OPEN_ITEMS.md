@@ -102,9 +102,8 @@ this one wins.
   P306/P319 gate MATCH ("ولجاء" at this number; HadeethEnc 5454 has "وجاء").
   matn_verified_at NULL - a human sets it. Muslim #2748 is the same meaning from
   Abu Ayyub (duplicate index).
-- **quote_missing is still MEDIUM (P352 deferred).** #2749's first EN render
-  burned without quotation marks for the same reason it burned "By him": under
-  -NoReview a MEDIUM is never read. Operator to decide whether it becomes HIGH.
+- **DONE 2026-11-03: quote_missing is HIGH (P352, operator).** Every EN/RU render
+  stops until the SRT quotes the matn - Whisper never emits quotation marks.
 - **Scene plans: four NEW stills, one cover per language (operator 2026-11-03).**
   Reuse a registered clip for a slot only when he says so.
 - **Telegram: a caption over 1024 is split, never trimmed (operator 2026-11-02).**

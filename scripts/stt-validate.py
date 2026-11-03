@@ -588,8 +588,10 @@ def check_quote_boundary(cues, blocks, lang):
     joined = ' '.join(c['text'] for c in cues)
     got_spans, balanced = quoted_spans(joined)
     if not got_spans and balanced:
+        # HIGH since P352 (operator 2026-11-03): under -NoReview a MEDIUM is never
+        # read, and #2749's first EN render burned without quotation marks.
         return [Finding(
-            'medium', 'quote_missing',
+            'high', 'quote_missing',
             'the draft quotes the matn; the subtitles carry no quotation marks, '
             'so a viewer cannot see where the Prophet\'s words end (P342)')]
     want = [tokens(expand_prophet(s, lang)) for s in want_spans]

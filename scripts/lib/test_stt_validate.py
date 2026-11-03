@@ -98,9 +98,10 @@ def test_4811_ru_fixed_is_clean(tmp_path):
     assert got == set()
 
 
-def test_4811_en_whisper_missing_quotes_is_medium_only(tmp_path):
+def test_4811_en_whisper_missing_quotes_is_high_only(tmp_path):
+    # P352 (operator 2026-11-03): quote_missing is HIGH - it was MEDIUM under P342.
     got, _ = run(tmp_path, DRAFT_4811_EN, EN_4811_WHISPER, 'en')
-    assert got == {('medium', 'quote_missing')}
+    assert got == {('high', 'quote_missing')}
 
 
 def test_4811_en_fixed_is_clean(tmp_path):
@@ -108,9 +109,11 @@ def test_4811_en_fixed_is_clean(tmp_path):
     assert got == set()
 
 
-def test_1161_ru_shipped_is_not_high(tmp_path):
+def test_1161_ru_shipped_only_lacks_quotes(tmp_path):
+    # The shipped 1161 RU SRT carried no quotation marks. Under P342 that was a
+    # MEDIUM and the file passed; under P352 it is the one HIGH, and nothing else.
     got, _ = run(tmp_path, DRAFT_1161_RU, RU_1161_SHIPPED, 'ru')
-    assert not [g for g in got if g[0] == 'high']
+    assert [g for g in got if g[0] == 'high'] == [('high', 'quote_missing')]
 
 
 def test_1161_ru_whisper_leadin_is_high(tmp_path):
