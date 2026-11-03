@@ -14851,3 +14851,31 @@ curl to a path that had never existed (P291).
 **Status:** FIXED.
 
 ---
+
+## PATTERN 352: a lowercase pronoun for Allah burned because its check was a warning
+
+**Date:** 2026-11-03  **Repo:** hadith-reels  **Severity:** integrity (caught before publish)
+
+**What happened.** Muslim #2749's first EN render burned "By him in Whose Hand
+is my soul" - Whisper lowercases every "him", and the pronoun here is Allah's.
+stt-validate's divine_pronoun_case check (P298) found it and said so, as
+MEDIUM. render-reel runs the validator with --strict under -NoReview, and
+--strict stops only on HIGH (P339). Nobody reads a MEDIUM when nobody reviews,
+so the reel was built with it. The same run burned the subtitles without
+quotation marks (quote_missing, also MEDIUM). Caught by reading the render log
+before the reels were shown; the SRT was hand-fixed and EN re-rendered.
+
+**Fix.** divine_pronoun_case is HIGH. The check counts capitalised pronouns in
+the source against the SRT, so it fires only when a capital was lost, and the
+Prophet's lowercase "him" is not counted against it.
+`scripts/lib/test_stt_divine_pronoun.py` pins the severity and both
+non-findings.
+
+**Not changed.** quote_missing stays MEDIUM - same shape, left for the
+operator (OPEN_ITEMS).
+
+**Tripwire:** `scripts/lib/test_stt_divine_pronoun.py`.
+
+**Status:** FIXED.
+
+---

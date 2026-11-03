@@ -1,3 +1,24 @@
+## [2026-11-03c] - R182-R185, Sahih Muslim #2749, four languages, set closed; divine pronoun is HIGH (P352)
+
+### Content
+
+- Tracker rows R182-R185 (TG 196-199), duplicate index (with Muslim #2748, Abu
+  Ayyub), Repentance / Mercy 16 -> 20, nasheed usage, the m2749 clip set, stats
+  185/133/47, change log, retro. Registry: the m2749 clips and their -s copies ->
+  verified:true. Scene and still prompt sidecars for m2749.
+
+### Fixed
+
+- **P352. stt-validate.py:** divine_pronoun_case is HIGH (was MEDIUM), so
+  --strict stops a render whose subtitles lowercase a pronoun for Allah.
+  New test: scripts/lib/test_stt_divine_pronoun.py.
+
+### Open
+
+- quote_missing stays MEDIUM; scene plans take four new stills (OPEN_ITEMS).
+
+---
+
 ## [2026-11-03b] - pre-flight step 5 runs the real suite (P351)
 
 ### Fixed (process)

@@ -1,0 +1,18 @@
+{
+  "request_id": "01a1a276-24ad-7311-bc64-38c3ce256cdb",
+  "generate_audio": false,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "mode": "image-to-video",
+  "name": "m2749-bloom",
+  "file": "out\\backgrounds\\new\\m2749-bloom.mp4",
+  "image": "out\\refs\\m2749-bloom-2.jpg",
+  "prompt": "Static locked-off camera, the framing never changes. A light breeze for the whole clip: the green grass and the purple, yellow and white wildflowers sway gently. The clear stream flows steadily from the palm grove TOWARD the camera, sparkling in the sunlight, its water level constant. The white clouds drift slowly to the right across the blue sky. The rainbow stays in place and keeps the same faint brightness. The palm trees sway only slightly. No people, no animals, no birds appear.",
+  "duration_sec": 10,
+  "size_bytes": 36491300,
+  "completed_utc": "2026-11-03T17:38:13.8200478Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab102cc/jQ04m6QroLf4jBix9JCQZ_output.mp4",
+  "resolution": null,
+  "submitted_utc": "2026-11-03T17:30:13.6595542Z",
+  "schema": 1
+}

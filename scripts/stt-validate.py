@@ -301,7 +301,10 @@ def check_divine_pronoun_case(cues, source, lang):
     least one was flattened, and it points at the cues holding the lowercase
     form so a human can look.
 
-    WARN only. A false positive costs one glance at one cue.
+    HIGH since P352 (was WARN). Under -NoReview nobody reads a MEDIUM, and
+    Muslim #2749's first EN render burned 'By him in Whose Hand is my soul'.
+    A false positive costs one hand-fixed cue; a miss puts a lowercase
+    pronoun for Allah on four platforms.
     """
     forms = DIVINE_PRONOUNS.get(lang)
     if not forms:
@@ -320,7 +323,7 @@ def check_divine_pronoun_case(cues, source, lang):
                 if re.search(r'(?<!\w)%s(?!\w)' % re.escape(lower), c['text'])]
         where = ', '.join(str(c['index']) for c in hits[:6]) or 'not located'
         out.append(Finding(
-            'medium', 'divine_pronoun_case',
+            'high', 'divine_pronoun_case',
             'the source capitalises %r %d time(s); the subtitles do so %d. '
             'Lowercase %r appears in cue(s) %s - check whether one of them '
             'refers to Allah (P282/P298). A pronoun for the Prophet (saw) is '

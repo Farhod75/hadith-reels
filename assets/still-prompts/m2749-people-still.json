@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-people",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert region in the 7th century, bright warm morning light, vibrant natural colours, high detail. The sun disc is NOT visible. No faces, no text, no modern objects. Wide view from far BEHIND: a loose group of about twelve travellers on foot, small figures seen only from the back, walking AWAY from the camera across a wide sunlit desert plain toward low hills on the horizon. Each wears 7th-century Arabian dress: a long plain wrapper and a cloak of undyed cream, white or light-brown wool or linen, and a simple white or cream cloth turban; a few carry a plain wooden staff; leather sandals. Every figure has two arms and two legs with natural proportions, at different distances, some side by side. Morning sunlight comes from the LEFT, long soft shadows fall to the right; nobody walks toward the sun. No faces, no animals, no weapons.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a25c-76ff-7a41-9bdc-51f45a8cf2c9",
+  "submitted_utc": "2026-11-03T17:02:10.4616880Z",
+  "completed_utc": "2026-11-03T17:02:19.1698351Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-people-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f5/t9ToSzmEZe8Sdv2e1Ubx7_XEJzHS5I.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-people-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f5/U-ay5eJy_milH6dUeQiCF_B9OuwjGO.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1226469957
+}

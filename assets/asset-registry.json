@@ -7,7 +7,7 @@
     "gain": "OPTIONAL, audio only. Per-bed multiplier applied to the mix level (adults: 0.12, P171). Absent means 1.0. The mix is one level for every bed but the masters are not one loudness: measured 2026-10-16, the eight Aswati tracks run -13.35 to -20.22 LUFS against light-of-my-heart-bg at -13.38, the bed 0.12 was tuned on. gain = 10^((-13.38 - LUFS)/20), so every bed lands at the same perceived level. Re-measure if a file is replaced.",
     "notes": "why it is classified this way, or why it was retired"
   },
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "audio": {
     "light-of-my-heart-bg.mp3": {
       "classification": "vocal+daf",
@@ -1720,6 +1720,85 @@
       "verified": true,
       "notes": "m2747-halter slowed x1.12 (minterpolate blend) for the UZ reel (64.9 s narration needs 10.98 s per clip; P240). FLUX 2 still (halter-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2747, Anas ibn Malik, sahih - 'Allah is more joyful at the repentance of His servant than one of you whose mount, carrying his food and drink, escaped in the desert; he despaired, lay down in the shade of a tree, and there it was standing beside him'. MODE B: no people, no faces - the man is shown only through his things and once his right hand. Bright palette. Saddle from AramcoWorld's North Arabian saddle (P346); short posts after the first Y-frames read as antlers. Depicts: one right hand (five fingers, checked on an enlarged crop) gripping the plaited lead rope - 'he took hold of its halter'. Over 0-3.5 s the grip moves up the rope, then holds still. Checked every 0.5 s.",
       "prompt_sidecar": "assets/scene-prompts/m2747-halter.json"
+    },
+    "m2749-footprints-a.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (footprints-1) -> Kling 3.0 Pro i2v 10s, then the first 3.5 s slowed x3 (minterpolate blend) -> 10.3 s, out/slow_2749.ps1. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). Depicts: one line of footprints up a sunlit dune, wind blowing sand over the crest to the right - 'Allah would take you away'. Kling's wind died at ~3 s, so only the windy start is used (operator 13:17).",
+      "prompt_sidecar": "assets/scene-prompts/m2749-footprints.json"
+    },
+    "m2749-footprints.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": true,
+      "notes": "RAW Kling take, NOT for use - lanes:[] (P141). The wind dies at ~3 s and the prints stay unfilled; superseded by m2749-footprints-a.mp4 (its first 3.5 s slowed x3). Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
+      "prompt_sidecar": "assets/scene-prompts/m2749-footprints.json"
+    },
+    "m2749-people.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (people-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). Depicts: about twelve travellers in 7th-c. dress walking AWAY across a sunlit plain, leaving footprints - 'and bring a people'. Feet checked on an enlarged crop: heels and heel straps toward the camera. people-1 rejected (sandals toes-to-camera, a pink bag).",
+      "prompt_sidecar": "assets/scene-prompts/m2749-people.json"
+    },
+    "m2749-dua.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (dua2-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). Depicts: one man from behind kneeling on a plain palm-fibre mat, two cupped hands palms-up together at the chest, facing a blank mud-brick wall (no door, no sun - P340) - 'then seek forgiveness'. Hands checked on crops at 1/4/7/9.5 s: open, never pressed or spread. First still pair rejected (hands shoulder-wide palms forward = takbir; patterned fringed rug).",
+      "prompt_sidecar": "assets/scene-prompts/m2749-dua.json"
+    },
+    "m2749-bloom.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (bloom-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). Depicts: the desert in bloom after rain - green grass, purple/yellow/white wildflowers, a stream toward the camera, date palms, rose hills, a faint rainbow - 'and He would forgive them'. Made brighter at the operator's request (the other three are desert). bloom-1 rejected (glass-bead bubbles in the stream); greening-1/2 (grey storm sky) dropped.",
+      "prompt_sidecar": "assets/scene-prompts/m2749-bloom.json"
+    },
+    "m2749-footprints-a-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): the raw take's first 3.5 s slowed x3.15 (not a second interpolation of footprints-a) -> ~11.0 s, out/slow_2749b.ps1. UZ narration 40.07 s needs 10.27 s per clip. Same content as m2749-footprints-a.mp4. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
+      "prompt_sidecar": "assets/scene-prompts/m2749-footprints.json"
+    },
+    "m2749-people-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2749-people.mp4 slowed x1.06 -> 10.58 s, out/slow_2749b.ps1. Same content. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
+      "prompt_sidecar": "assets/scene-prompts/m2749-people.json"
+    },
+    "m2749-dua-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2749-dua.mp4 slowed x1.06 -> 10.58 s, out/slow_2749b.ps1. Same content. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
+      "prompt_sidecar": "assets/scene-prompts/m2749-dua.json"
+    },
+    "m2749-bloom-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2749-bloom.mp4 slowed x1.06 -> 10.58 s, out/slow_2749b.ps1. Same content. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
+      "prompt_sidecar": "assets/scene-prompts/m2749-bloom.json"
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-dua2",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert region in the 7th century, bright warm morning light, vibrant natural colours, high detail. The sun disc is NOT visible. No faces, no text, no modern objects. Seen from directly BEHIND and slightly to the right, at medium distance: ONE adult man sitting on his heels (kneeling, sitting back on his feet) on a small plain rectangular mat woven from natural dried palm-leaf fibre - undyed straw colour, simple plain weave, NO pattern, NO fringe, NO border - on the swept earth floor of a plain sunlit mud-brick courtyard. He wears a plain cream wool cloak and a simple white cloth turban; his face is not visible. He is making dua: BOTH hands held together in front of his chest, side by side with only a small gap between them, palms open and turned UP to the sky, slightly cupped like a bowl, fingers relaxed; elbows lowered and close to his body. The hands are NOT spread apart to the sides, NOT at shoulder width, NOT raised above the head, NOT pressed together, NOT interlaced; seen from behind, only the fingertips of the two cupped hands show just past his right shoulder. In front of him is a plain, solid mud-brick wall with NO door, NO window and NO opening. Soft morning sunlight falls from the RIGHT side; he does not face the sun. The shadow of a date-palm frond lies across the wall. Calm, bright, peaceful.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a26a-5124-75b0-a6e2-98afb9277171",
+  "submitted_utc": "2026-11-03T17:17:17.6224177Z",
+  "completed_utc": "2026-11-03T17:17:27.0743838Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-dua2-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab10250/CVNSF7mOi3C8QtXq7XOQV_BuAzj64i.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-dua2-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab10250/lYyMcMrvNzNOF3OIGoBEq_nrjInUoI.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 321292991
+}

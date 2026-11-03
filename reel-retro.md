@@ -842,3 +842,63 @@ is a recorded rule.
 **The finding:** the content gates held - every defect in the reel itself was
 caught before publish. What escaped was in the handoff to the platforms, the one
 stage still done by hand.
+
+---
+
+## R182-R185 - Sahih Muslim #2749 - 2026-11-03
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (196-199, one message each: every caption 641-735 chars, under 1024), Instagram, YouTube Shorts, TikTok.
+
+The second hadith from the repentance queue, chosen at the operator's request to
+start the next reel "by theme". Dorar query to published reel in one day:
+candidate, translation, A/B, Stage 4, promote, matn-vs-number gate. The session
+opened with the full pre-flight read, which found P351.
+
+**Caught before publish, and who said it.**
+
+1. **Pre-flight step 5 ran `npm run test:smoke`, a script that never existed**
+   (me, running the step instead of reading it). P351.
+2. **RU "удалил бы вас", TJ "Савганд ба Он ки"** (me, against the Arabic) -
+   "убрал", "Он Зоте, ки" before A/B; A/B 4/4 pass/high.
+3. **Tag `istighfar` is not in lib/tags.ts** (me, before promote) - the push gate
+   would have refused the library. `sins` instead.
+4. **"ولجاء" (Dorar) against "وجاء" (HadeethEnc)** - the matn-vs-number gate and
+   the tohed page settled it: "ولجاء" sits at this number.
+5. **dua still: hands shoulder-wide, palms forward - the takbir, not dua - on a
+   patterned fringed rug** (me, the stills sheet). Re-rolled.
+6. **people-1: sandals toes-to-camera on figures walking away; a pink bag**
+   (me). people-2; the clip's feet checked on a crop.
+7. **The fourth scene was a reused clip** (operator: "where is the fourth still?
+   so each language gets its own cover"). A new still - and made bright and
+   colourful at his request, because the other three were desert.
+8. **Kling's wind died at ~3 s on footprints** (me, the frame strip). Operator:
+   keep only the windy start - first 3.5 s slowed x3.
+9. **UZ 40.07 s against four 10 s clips** (P240, planned before the render).
+10. **RU subtitles: lead-in and honorific garbled** (P339 stopped the render).
+11. **EN burned "By him in Whose Hand"** - a lowercase pronoun for Allah - with
+    no quotation marks (me, reading the render log before reporting). The check
+    rated it MEDIUM, and under -NoReview a MEDIUM burns. Hand-fixed and
+    re-rendered before anything was shown. P352.
+
+**Escaped to publish.** Nothing known.
+
+**Operator corrections of the assistant: 1.** Item 7: the scene plan reused a
+clip for the fourth slot, although four stills - one cover per language - had
+been discussed.
+
+**Root causes.** A check that knew about the defect (P298) was wired WARN-only
+from the days a human always reviewed the subtitles; -NoReview removed the
+human and left the warning with nobody to read it. And a standing need stated
+in conversation (a cover per language) was not carried into the scene plan.
+
+**Prevention landed.** P351 (pre-flight step 5 runs the real suite). P352
+(divine_pronoun_case is HIGH; a test pins it).
+
+**Prevention deferred.** `quote_missing` is still MEDIUM, and the first EN
+render burned without quotation marks too - the same shape as P352, left for
+the operator to decide. Scene plans: four NEW stills unless the operator says
+otherwise.
+
+**The finding:** a warning is only as good as the reader it assumes. When a
+gate's reader goes away (-NoReview), every warning it raises about integrity
+has to be promoted to a stop, or it becomes a burn.

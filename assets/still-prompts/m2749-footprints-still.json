@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-footprints",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert region in the 7th century, bright warm morning light, vibrant natural colours, high detail. The sun disc is NOT visible. No faces, no text, no modern objects. A smooth sunlit golden sand dune with a sharp curved crest under a clear blue sky. Across the near slope runs ONE line of human footprints, oval sandal prints one after another, leading up toward the crest. A steady wind blows a thin, LOW veil of fine sand along the surface from left to right - grains streaming just above the sand and spilling over the crest - already softening and partly filling the edges of the prints. Crisp small wind ripples on the sand. No person anywhere, no animal, no plants.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a25c-44df-77b1-883f-e58d78118fa5",
+  "submitted_utc": "2026-11-03T17:01:57.3431741Z",
+  "completed_utc": "2026-11-03T17:02:06.4534994Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-footprints-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f4/mhgUym5iMiZxWgJVeIbVb_6tEhe39Y.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-footprints-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f4/KlY7Nt4gHt_LUjlhNwgnP_6CwUBIZh.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2095780348
+}

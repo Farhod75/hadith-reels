@@ -84,7 +84,7 @@ this one wins.
   2.2K; the record (UZ #2654, 357K on Instagram) is a consequence hadith - the
   shape that works is personal stakes with a named consequence. Next: Muslim
   #2747 (Allah's joy at a servant's repentance, the lost camel). Queued, Dorar
-  sahih, numbers to pass the P306/P319 gate before use: Bukhari #6306 (sayyid
+  sahih, numbers to pass the P306/P319 gate before use (#2749 SHIPPED 2026-11-03, R182-R185): Bukhari #6306 (sayyid
   al-istighfar - Paradise for one who says it with certainty and dies that day;
   long), Muslim #2749 (if you did not sin, Allah would bring people who sin and
   seek forgiveness), Muslim #2766 (the killer of a hundred; long matn), Bukhari
@@ -97,6 +97,16 @@ this one wins.
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
   request (A/B pass). Published the same day at the operator's request, ahead
   of #2734 and #223.
+- **Muslim #2749 - PUBLISHED 2026-11-03 (R182-R185, TG 196-199).** Dorar ->
+  candidate 2c978c61 -> library a783064f (Book of Repentance), A/B 4/4 pass/high,
+  P306/P319 gate MATCH ("ولجاء" at this number; HadeethEnc 5454 has "وجاء").
+  matn_verified_at NULL - a human sets it. Muslim #2748 is the same meaning from
+  Abu Ayyub (duplicate index).
+- **quote_missing is still MEDIUM (P352 deferred).** #2749's first EN render
+  burned without quotation marks for the same reason it burned "By him": under
+  -NoReview a MEDIUM is never read. Operator to decide whether it becomes HIGH.
+- **Scene plans: four NEW stills, one cover per language (operator 2026-11-03).**
+  Reuse a registered clip for a slot only when he says so.
 - **Telegram: a caption over 1024 is split, never trimmed (operator 2026-11-02).**
   #2747's four captions measured 1139-1172 with one tag; matn and Arabic are not
   cut (P184). The video goes with a short caption (title, source, verify link,

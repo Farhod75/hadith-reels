@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-bloom",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian peninsula in the 7th century, brilliant sunny morning light, rich vivid saturated colours, high detail. The sun disc is NOT visible. No people, no animals, no buildings, no text. The desert in full bloom after the rains: a wide valley carpeted in lush fresh green grass and dense drifts of small purple and violet wildflowers with patches of bright yellow and white wild blossoms, glistening with raindrops in the foreground. A small clear stream of rainwater winds through the flowers, sparkling in the sun. In the middle distance a grove of green date palms, behind it soft golden sand dunes and low rose-coloured rocky hills. Deep blue sky with bright white fluffy clouds and a soft rainbow arcing over the far hills. Joyful, hopeful, radiant.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a26f-893b-7cc0-b9ca-f0836d61873c",
+  "submitted_utc": "2026-11-03T17:23:00.1414788Z",
+  "completed_utc": "2026-11-03T17:23:13.3618368Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-bloom-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab10272/mtLs99-WfXYeV2RyDW-CV_4NOA75wK.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-bloom-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab10272/pgRVefHNQGG1P6avk7xXK_OD0gDezL.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1912575807
+}

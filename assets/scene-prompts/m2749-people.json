@@ -1,0 +1,18 @@
+{
+  "prompt": "Camera follows slowly behind at walking pace, keeping the same distance. The travellers walk steadily AWAY from the camera toward the hills on the horizon at a calm walking pace, a natural human gait, left and right legs alternating; each staff touches the sand with each step; cloaks and turban tails sway slightly. Nobody turns around, nobody stops, no faces are seen, no one is added or removed, every figure keeps two arms and two legs. Their shadows move with them.",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-03T17:37:38.4545831Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab102c8/7Cs8LRZmBw2bsmXR0d7wd_output.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "submitted_utc": "2026-11-03T17:29:16.799101Z",
+  "image": "out\\refs\\m2749-people-2.jpg",
+  "generate_audio": false,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "file": "out\\backgrounds\\new\\m2749-people.mp4",
+  "size_bytes": 32624266,
+  "name": "m2749-people",
+  "request_id": "01a1a275-46f6-7b33-9f7d-71eb6c66eb4d",
+  "duration_sec": 10
+}

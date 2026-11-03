@@ -1,0 +1,18 @@
+{
+  "prompt": "Very slow gentle push-in toward the crest, nothing else about the framing changes. A steady wind blows from left to right for the whole clip: a thin, low veil of fine sand streams along the surface of the slope and spills over the crest to the right, the plume above the crest drifting to the right. Fine grains slowly drift into the footprints so their edges soften and the nearest prints become a little shallower by the end; the line of prints stays visible. No person, no animal and nothing else appears. The sky stays clear.",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-03T17:29:11.9139994Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab10296/wAJwIvZe7-esjK7MM4xHc_output.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "submitted_utc": "2026-11-03T17:21:50.9433603Z",
+  "image": "out\\refs\\m2749-footprints-1.jpg",
+  "generate_audio": false,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "file": "out\\backgrounds\\new\\m2749-footprints.mp4",
+  "size_bytes": 32155762,
+  "name": "m2749-footprints",
+  "request_id": "01a1a26e-78ee-7c52-87e3-dbf54bf72eab",
+  "duration_sec": 10
+}

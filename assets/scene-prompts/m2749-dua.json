@@ -1,0 +1,18 @@
+{
+  "prompt": "Static locked-off camera with a very slow gentle push-in. The man stays kneeling and still in dua for the whole clip: his two cupped hands stay together in front of his chest, palms up, and do not move apart, rise or drop; only a slight breathing movement of the shoulders. He does not turn his head; his face is never shown. The shadow of the palm frond sways very gently on the wall. Nothing else moves, no one else appears.",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-03T17:42:50.3630733Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab102e7/RWHKcClPoTqCcRjoUwtex_output.mp4",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "schema": 1,
+  "submitted_utc": "2026-11-03T17:37:39.8314832Z",
+  "image": "out\\refs\\m2749-dua2-1.jpg",
+  "generate_audio": false,
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "file": "out\\backgrounds\\new\\m2749-dua.mp4",
+  "size_bytes": 38118242,
+  "name": "m2749-dua",
+  "request_id": "01a1a27c-f3e7-77b2-9ba3-5fa258db2400",
+  "duration_sec": 10
+}

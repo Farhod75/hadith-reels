@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-greening",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert region in the 7th century, bright fresh morning light, vibrant natural colours, high detail. The sun disc is NOT visible. No people, no animals, no buildings, no text. A wide open desert plain just after a winter rain: the reddish-gold sand is wet and darker, and fresh low green grass and tiny new sprouts spread in soft patches across it, thickest in the foreground and thinning toward the horizon. A few shallow rainwater puddles in the foreground reflect the bright sky. The last light rain is still falling thinly in the distance under grey-white clouds that are breaking apart into clear blue sky above. Low rocky hills on the horizon. Calm, hopeful mood.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a26e-75df-7521-bf41-21542c2ec495",
+  "submitted_utc": "2026-11-03T17:21:49.6629020Z",
+  "completed_utc": "2026-11-03T17:21:58.5203658Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-greening-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1026b/UnRsmMRhSEh1y-Ga1iHX3_vGR3nzn5.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-greening-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1026b/tS2Jyhr-8Z2sVAyYI4Pwl_VPmKLnhR.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 958965395
+}

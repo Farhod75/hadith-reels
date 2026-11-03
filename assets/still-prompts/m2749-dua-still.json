@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2749-dua",
+  "model": "fal-ai/flux-2",
+  "prompt": "Cinematic vertical 9:16 photoreal, Arabian desert region in the 7th century, bright warm morning light, vibrant natural colours, high detail. The sun disc is NOT visible. No faces, no text, no modern objects. Seen from directly BEHIND at medium distance: ONE adult man sitting on his heels on a small rectangular woven palm-fibre prayer mat, on the swept earth floor of a plain sunlit mud-brick courtyard. He wears a plain cream wool cloak and a simple white cloth turban; his face is not visible. Both hands are raised in supplication in front of his chest at shoulder height, palms open and turned up to the sky, side by side with a small gap - only the edges of the two open hands show past his shoulders; the hands are never pressed together and never interlaced. In front of him is a plain, solid mud-brick wall with NO door, NO window and NO opening. Soft morning sunlight falls from the RIGHT side; he does not face the sun. The shadow of a date-palm frond lies across the wall. Calm, bright, peaceful.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 2,
+  "request_id": "01a1a25c-a027-76a2-963c-00f70fc72d3f",
+  "submitted_utc": "2026-11-03T17:02:21.0360924Z",
+  "completed_utc": "2026-11-03T17:02:29.6444350Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2749-dua-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f6/IdrB1wCkJU6KiCfGfxYUl_aODb8cNP.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2749-dua-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab101f6/iiaGQB9KEdHmaYZRJol1t_zal17FIV.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 945452440
+}
