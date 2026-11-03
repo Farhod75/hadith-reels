@@ -103,8 +103,9 @@ this one wins.
   reply message (4096 limit). IG / YT / TikTok take the full caption.
 - **DONE 2026-11-02: `aswati-Heartfelt-Gratitude` out of rotation.** Operator chose
   removal over EN/RU only: registry `lanes: []`, file kept (P141), pick-nasheed no
-  longer offers it. Already rendered with it: bukhari-2734 UZ and muslim-223 EN -
-  re-render with another bed before publishing, or publish as rendered (operator).
+  longer offers it. The two unpublished reels that carried it - muslim-2734 UZ and
+  muslim-223 EN - re-rendered 2026-11-03 on `aswati-Rising-Hope` (trims 0.95 / 0.83,
+  out/r_rebed.ps1), operator approved. Old renders kept as `-reel-hg.mp4`.
 - **Tirmidhi #2396 - grade corrected sahih -> hasan 2026-11-01.** Tirmidhi:
   hasan gharib from this route; al-Albani hasan (Silsila Sahiha 1220); Zubair Ali
   Zai da'if; Dorar returned only criticism of the narrator Sa'd ibn Sinan (Ahmad,

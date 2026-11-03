@@ -1,3 +1,15 @@
+## [2026-11-03a] - muslim-2734 UZ and muslim-223 EN re-bedded on aswati-Rising-Hope
+
+### Content
+
+- Both unpublished reels carried the retired `aswati-Heartfelt-Gratitude`; re-rendered on
+  `aswati-Rising-Hope` (pick-nasheed's first pick Victory-March is noted as fighting a gentle
+  hadith; path-to-jannah carries daf). Trims computed before the render from the bed's loudness
+  at vol 0.12 x gain (method reproduces the 2734 EN 0.85): UZ 0.95, EN 0.83. 2734 UZ measured
+  after: gap 15.7 = target. Operator approved 2026-11-03.
+
+---
+
 ## [2026-11-02f] - aswati-Heartfelt-Gratitude out of rotation
 
 ### Changed
