@@ -88,11 +88,12 @@ test.describe('UI — Page loads', () => {
     ).toBeVisible()
   })
 
-  test('should show AR language button', async ({ page }) => {
+  // P360: the AR toggle showed English text and read it in English - AR is out of
+  // scope (P118). Pinned absent so it does not come back with a language refactor.
+  test('should NOT show an AR language button', async ({ page }) => {
     await gotoAndWait(page)
-    await expect(
-      page.locator('header button').filter({ hasText: /AR/ }).first()
-    ).toBeVisible()
+    await expect(page.locator('header button').filter({ hasText: /\bAR\b/ })).toHaveCount(0)
+    await expect(page.locator('header button').filter({ hasText: /RU/ }).first()).toBeVisible()
   })
 
   test('should show RU language button', async ({ page }) => {

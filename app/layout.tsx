@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 export const metadata: Metadata = {
   title: 'Hadith Reels — Authentic Islamic Short Reels',
   description:
-    'Watch authentic sahih hadith stories as short animated reels. Adults and Kids versions. Arabic, Uzbek, Russian, English narration. Powered by verified Islamic sources.',
+    'Watch authentic sahih hadith stories as short animated reels. Adults and Kids versions. English, Russian, Uzbek and Tajik narration, with the Arabic matn. Powered by verified Islamic sources.',
   keywords: [
     'hadith reels', 'islamic videos', 'authentic hadith', 'sahih hadith',
     'islamic short videos', 'hadith stories', 'uzbek hadith', 'arabic hadith',

@@ -1,3 +1,16 @@
+## [2026-11-04i] - public site: AR toggle removed (P360, operator)
+
+### Fixed
+
+- **app/page.tsx:** the AR language button showed the English translation and Listen read it
+  in English - there is no Arabic translation to show and AR is out of scope (P118). Removed
+  from the toggle and from the `Lang` type; header "EN · UZ · RU · TJ". The Arabic matn stays
+  on every card.
+- **app/layout.tsx:** metadata said "Arabic ... narration"; now English, Russian, Uzbek, Tajik.
+- **tests/hadith-reels.spec.ts:** "should show AR language button" -> "should NOT show".
+
+---
+
 ## [2026-11-04h] - verify-candidates: the paid report survives an interrupted batch (P359, Sol R4 part)
 
 ### Changed

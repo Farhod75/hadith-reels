@@ -15132,3 +15132,28 @@ and hashes.
 **Status:** PARTLY FIXED.
 
 ---
+
+## PATTERN 360: the public site's AR toggle showed English and read it in English
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** content (public site, operator-reported)
+
+**What happened.** The operator switched hadithreels.com to AR and got the
+English translation, and "Listen" read it in English. `app/api/reels/route.ts`
+has no Arabic translation column to choose - for `ar` it falls through to
+`text_english` - and `/api/tts` maps `ar` to a placeholder English voice that
+its own comment says must never be treated as configured. AR has been out of
+scope since P118 (no Arabic output the operator can review), but the public
+site still offered it, and its header listed AR among the narrated languages;
+the page metadata promised "Arabic narration".
+
+**Fix.** AR removed from the public language toggle and from the `Lang` type,
+so it cannot be re-added by one line; the header reads EN · UZ · RU · TJ; the
+metadata names the four narrated languages and the Arabic matn. The Arabic
+matn is still shown on every card - that was never what the toggle did.
+
+**Tripwire:** `tests/hadith-reels.spec.ts` "should NOT show an AR language
+button" (was "should show AR language button").
+
+**Status:** FIXED.
+
+---

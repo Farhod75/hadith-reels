@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type Lang  = 'en' | 'uz' | 'ar' | 'ru' | 'tj'
+// P360: no 'ar'. AR is out of scope (P118) - nothing in the library is an Arabic
+// translation to show, so the AR toggle displayed the ENGLISH text and Listen read it
+// in English (the AR voice is a placeholder English voice). The Arabic matn is on
+// every card regardless.
+type Lang  = 'en' | 'uz' | 'ru' | 'tj'
 type Grade = 'sahih' | 'hasan' | 'all'
 type Tab   = 'browse' | 'watch'
 
@@ -44,7 +48,6 @@ const GRADE_COLORS: Record<string, string> = {
 const LANGS: { code: Lang; flag: string; label: string }[] = [
   { code: 'en', flag: '🇬🇧', label: 'EN' },
   { code: 'uz', flag: '🇺🇿', label: 'UZ' },
-  { code: 'ar', flag: '🇸🇦', label: 'AR' },
   { code: 'ru', flag: '🇷🇺', label: 'RU' },
   { code: 'tj', flag: '🇹🇯', label: 'TJ' },
 ]
@@ -80,8 +83,7 @@ function TTSButton({ text, lang }: { text: string; lang: Lang }) {
     } catch {
       // Browser fallback
       const utt  = new SpeechSynthesisUtterance(text.slice(0, 300))
-      utt.lang   = lang === 'ar' ? 'ar-SA'
-                 : lang === 'ru' || lang === 'tj' ? 'ru-RU'
+      utt.lang   = lang === 'ru' || lang === 'tj' ? 'ru-RU'
                  : lang === 'uz' ? 'ru-RU'
                  : 'en-US'
       window.speechSynthesis.speak(utt)
@@ -313,7 +315,7 @@ export default function HadithReelsPage() {
           <div className="flex-1 min-w-0">
             <h1 className="text-lg font-bold text-gray-900">Hadith Reels</h1>
             <p className="text-xs text-gray-500 truncate">
-              Authentic hadith · EN · UZ · AR · RU · TJ
+              Authentic hadith · EN · UZ · RU · TJ
             </p>
           </div>
 
