@@ -28,6 +28,7 @@ sys.path.insert(0, _here)
 from source_dorar import search_dorar, fetch_dorar  # noqa: E402
 from dedup import find_duplicates, normalize_arabic  # noqa: E402
 from source_sunnah import build_source_url  # noqa: E402
+from narrator_ar import to_english  # noqa: E402  (P344: Dorar narrator -> NARRATORS key)
 
 
 def load_env(path=".env.local") -> dict:
@@ -113,7 +114,7 @@ def to_row(cand: dict, dd: dict) -> dict:
     return {
         "collection": cand["collection"],
         "hadith_number": number,
-        "narrator": cand.get("narrator"),
+        "narrator": to_english(cand.get("narrator")),
         "grade": cand["grade"],
         "grading_source": cand["grading_source"],
         "grade_confirmed": cand.get("grade_confirmed", True),
@@ -182,7 +183,7 @@ def json_to_row(c: dict, now_iso: str):
     meta = {}
     row = {
         "text_arabic":     ar,
-        "narrator":        c.get("narrator"),
+        "narrator":        to_english(c.get("narrator")),
         "collection":      coll,
         "hadith_number":   num,
         "grade":           c.get("grade"),

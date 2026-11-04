@@ -14684,6 +14684,14 @@ second gate.
 
 **Status:** FIXED.
 
+**Follow-up 2026-11-03.** The refusal was the safety net, but every Dorar
+candidate still needed a hand patch to pass it (out/w46_narr<n>.py). upload-candidates.py
+now writes the English key through scripts/lib/narrator_ar.py: exact match after
+normalisation (harakat, hamza forms, alif maqsura, "abd allah", a trailing radiya allahu
+anhu), no fuzzy matching; an unmapped name stays Arabic and promote still refuses it.
+Checked: Bukhari #6307 from Dorar now arrives as "Abu Hurairah". 5 tests, one of them
+that every mapped value is a lib/refs.ts NARRATORS key.
+
 ---
 
 ## PATTERN 345: pass B died on an expired certificate in the Windows store

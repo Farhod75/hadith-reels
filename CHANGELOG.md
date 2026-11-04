@@ -1,3 +1,14 @@
+## [2026-11-03k] - Dorar narrator names arrive as NARRATORS keys (P344 follow-up, 6 of 7)
+
+### Changed
+
+- **upload-candidates.py + scripts/lib/narrator_ar.py:** the Arabic narrator Dorar returns is
+  written as its English lib/refs.ts NARRATORS key (exact match after normalisation; an
+  unmapped name stays Arabic, promote still refuses it). Ends the per-candidate hand patch
+  (out/w46_narr<n>.py). Bukhari #6307 checked. 5 tests. fix_patterns P344, CLAUDE.md.
+
+---
+
 ## [2026-11-03j] - scripts/approve-candidate.py (per-set scripts into scripts/, 5 of 7)
 
 ### Added

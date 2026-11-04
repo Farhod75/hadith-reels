@@ -527,7 +527,9 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   keeps a HadeethEnc *thematic category* («الرقائق والمواعظ») out of a column
   that means kitab. Dry run by default; `--row` to scope (P325).
 - `translate-candidates.py` — Stage 2 of the sourcing pipeline (Workflow I)
-- `source-candidates.py`, `upload-candidates.py`, `promote-candidates.py` — Stages 0/1/5
+- `source-candidates.py`, `upload-candidates.py`, `promote-candidates.py` — Stages 0/1/5.
+  upload-candidates writes the narrator as its lib/refs.ts NARRATORS key via
+  `scripts/lib/narrator_ar.py` (P344 follow-up); an unmapped Arabic name is left as is.
 - `approve-candidate.py` — Stage 4, recorded: writes the operator's decision onto ONE candidate
   by id, with his words in `review_reason`. Refuses a wrong number, a row that is not
   'verified' (for an approval) and any row already approved, rejected or promoted.
