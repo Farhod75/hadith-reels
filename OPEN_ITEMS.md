@@ -34,9 +34,9 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   Fix: lib/admin-session.ts - signed HttpOnly SameSite=Strict cookie from a correct
   password, checked first in telegram/post, tts, generate-reel, generate-video,
   render-reel. `next dev` on localhost passes (the pipeline scripts), never Vercel.
-  **Operator, one line:** `.github/workflows/ci.yml` is protected from remote writes.
-  In the "Run E2E tests" step, add `tests/admin-session.spec.ts` after
-  `tests/hadith-reels.spec.ts` so the unit tests run in CI.
+  CI runs admin-session.spec.ts and tts-route.spec.ts since 2026-11-04 (the
+  operator added them to ci.yml by hand - .github/workflows/ is protected from
+  remote writes).
 - **DONE 2026-11-04: R1 - a failed ffmpeg stage could hand the next stage yesterday's file (P355).**
   Narration concat, each clip normalize and the background concat now delete their
   output first and stop on a non-zero exit. scripts/lib/test_render_reel_stages.py.

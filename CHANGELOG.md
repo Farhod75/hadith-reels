@@ -1,3 +1,13 @@
+## [2026-11-04f] - CI runs the guard and TTS unit tests
+
+### Changed
+
+- **.github/workflows/ci.yml (operator's edit):** the E2E step also runs
+  `tests/admin-session.spec.ts` (P353) and `tests/tts-route.spec.ts` (P354) - unit only, no
+  network, no keys.
+
+---
+
 ## [2026-11-04e] - verify-candidates: no partial "verified", no false WRITTEN (P357, Sol R11)
 
 ### Fixed

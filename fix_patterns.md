@@ -14928,8 +14928,8 @@ skip against localhost, where the dev exception would let them really post.
 or publishes: what happens when this is called with curl? And a belief like
 "not deployed" is a premise - check it against Vercel before relying on it.
 
-**Tripwire:** `tests/admin-session.spec.ts` (unit; CI line pending, see
-OPEN_ITEMS) and the four 401 probes in `tests/hadith-reels.spec.ts` against the deployed URL.
+**Tripwire:** `tests/admin-session.spec.ts` (unit, in CI since 2026-11-04)
+and the four 401 probes in `tests/hadith-reels.spec.ts` against the deployed URL.
 
 **Status:** FIXED.
 
