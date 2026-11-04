@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-283 patterns in 296 entries, frontier **P353**. The P-sequence is shared with
+284 patterns in 297 entries, frontier **P354**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -20,7 +20,7 @@ BEFORE changing it.
 - `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
-- `route.ts` (9) - P071, P095, P140, P188, P232, P246, P284, P303, P353
+- `route.ts` (10) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
@@ -343,5 +343,6 @@ BEFORE changing it.
 - **P351** - the pre-flight checklist ran a script that never existed
 - **P352** - a lowercase pronoun for Allah burned because its check was a warning
 - **P353** - the admin password guarded the page, not the routes behind it
+- **P354** - the narration stopped at character 1000 and its record said it had not
 
-<!-- pattern-index-stamp entries=296 patterns=283 frontier=353 sha1=896b58f5f3008438f5196e3d65e5d32ea16cefa5 -->
+<!-- pattern-index-stamp entries=297 patterns=284 frontier=354 sha1=590727ab0ebcc448086e6632de764a2925c969a1 -->

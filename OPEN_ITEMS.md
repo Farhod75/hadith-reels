@@ -50,10 +50,12 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   already known (matn_verified_at). Also: translate-candidates' review digest
   hashes candidate_id + proposed text, not the source Arabic.
 - **R6 - Next 16.2.6 in an advisory range.** Already closed: 16.4.5 on 2026-11-03.
-- **R8 - /api/tts builds write paths from request fields.** Open; dev-only writes.
-- **R9 - /api/tts silently cuts the text at 1000 characters.** Open; latent - the
-  longest of 112 narrated blocks on disk is 640 with the honorific expanded. The
-  admin page also slices TTS text to 800 before sending.
+- **DONE 2026-11-04: R8 - /api/tts builds write paths from request fields (P354).**
+  lang, style, section allowlisted, slug `^[a-z0-9][a-z0-9-]*$`, and the resolved
+  directory must sit inside out/work. Refused with 400 before any provider call.
+- **DONE 2026-11-04: R9 - /api/tts silently cut the text at 1000 characters (P354).**
+  Now 413 with the length, nothing narrated; the admin page's own silent cut at
+  800 removed. Latent only: the longest of 112 narrated blocks on disk was 640.
 - **R10 - promotion is three separate writes.** Open. Needs a DB function (RPC).
 - **R11 - verify-candidates: a missing language reads as pass; a failed write exits 0.** Open.
 - **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.

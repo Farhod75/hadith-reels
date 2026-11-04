@@ -14934,3 +14934,38 @@ OPEN_ITEMS) and the four 401 probes in `tests/hadith-reels.spec.ts` against the 
 **Status:** FIXED.
 
 ---
+
+## PATTERN 354: the narration stopped at character 1000 and its record said it had not
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** integrity (latent - no reel affected)
+
+**What happened.** Sol 6.1 (R9) read `cleanForTTS` in `app/api/tts/route.ts`:
+it ended in `.slice(0, 1000)`. A block longer than that was narrated up to
+character 1000 and stopped, and the route answered 200. The `.txt` sidecar
+written beside the mp3 (P246) holds the raw, UNCUT text, so the archive said
+the whole block had been spoken, and `narrate-reel.py`'s sidecar-matches-draft
+check agreed with it. The admin page cut the text again, to 800, before
+sending. UZ and TJ have no subtitle gate (P078) that might have heard the gap.
+Nothing shipped short: the longest of 112 narrated blocks on disk measures 640
+characters with the honorific expanded. The same review (R8) found that
+`style`, `slug` and `section` went straight into a dev-mode write path - a
+`style` of `../../../outside` resolved outside the repo.
+
+**Fix.** The limit stays at 1000, measured after expansion (what the voice
+receives); over it is a 413 that names the length, and nothing is narrated. The
+admin page sends the whole text and shows the route's reason. lang, style and
+section are allowlisted, the slug must be lowercase letters, digits and
+hyphens, and the resolved directory must sit inside out/work - all checked
+before the provider call.
+
+**Lesson.** A truncation that returns success is a fabrication of the record:
+the sidecar was right about what was asked and wrong about what was spoken.
+Refuse, or split; never quietly do less.
+
+**Tripwire:** `tests/tts-route.spec.ts` (the handler called directly, no
+network: 413 above the limit including after expansion, 400 for each
+path-shaped field).
+
+**Status:** FIXED.
+
+---

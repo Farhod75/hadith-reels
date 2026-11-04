@@ -1,3 +1,23 @@
+## [2026-11-04b] - /api/tts refuses instead of truncating; write paths contained (P354, Sol R8/R9)
+
+### Fixed
+
+- **app/api/tts/route.ts:** no more `.slice(0, 1000)` - a block over 1000 characters (after
+  the honorific expansion) is a 413 naming the length, and nothing is narrated. lang, style,
+  section allowlisted, slug `^[a-z0-9][a-z0-9-]*$`, resolved directory must be inside
+  out/work; 400 before the provider call. The sidecar can no longer claim words the voice
+  never received.
+- **app/admin/page.tsx:** the TTS text is no longer cut to 800 before sending; the route's
+  reason is shown on failure.
+
+### Tests
+
+- **tests/tts-route.spec.ts (new):** the handler called directly with no key and no network -
+  413 above the limit and after expansion, 1000 exactly passes, 400 for five path-shaped or
+  unknown fields, uz_cyrillic/uz_latin still accepted.
+
+---
+
 ## [2026-11-04a] - API routes that publish or spend require an admin session (P353, Sol R7)
 
 ### Security

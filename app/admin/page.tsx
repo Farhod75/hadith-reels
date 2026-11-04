@@ -114,9 +114,15 @@ function AudioSection({ text, lang, style, mascot, slug, section, label, onAudio
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 800), lang, style, mascot: mascotGender(mascot), slug, section }),
+        body: JSON.stringify({ text, lang, style, mascot: mascotGender(mascot), slug, section }),
       })
-      if (!res.ok) throw new Error(`TTS ${res.status}`)
+      // P354: the text used to be cut to 800 characters here, silently, on top of the
+      // route's own cut at 1000. The route now refuses an over-long block and says why;
+      // show that reason instead of a bare status.
+      if (!res.ok) {
+        const why = await res.json().catch(() => null)
+        throw new Error(why?.error ? `TTS ${res.status}: ${why.error}` : `TTS ${res.status}`)
+      }
       const blob = await res.blob()
       const url  = URL.createObjectURL(blob)
       // release the previous blob so repeated re-narrations don't leak

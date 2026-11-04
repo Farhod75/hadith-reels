@@ -143,9 +143,25 @@ function cleanForTTS(text: string, lang: string): string {
     .replace(/ﷲ/g, lang === 'ar' ? 'الله' : 'Аллоҳ')
     .replace(/\*\*/g, '')
     .replace(/\*/g, '')
-    .slice(0, 1000)
     .trim()
 }
+
+// P354 (Sol R9): this used to end in .slice(0, 1000). A longer block was narrated
+// up to character 1000 and stopped, with HTTP 200 - while the .txt sidecar below
+// saved the WHOLE text, so the record said the full block had been spoken and
+// narrate-reel.py's sidecar check agreed with it. The limit stays where it was
+// (measured after the honorific expansion, which is what the provider receives);
+// crossing it is now a refusal that names the length, and nothing is narrated.
+// No reel has hit it: the longest of 112 narrated blocks on disk was 640.
+const TTS_TEXT_LIMIT = 1000
+
+// P354 (Sol R8): style, slug, section and lang become a path under out/work in
+// dev. Each is checked against what the pipeline actually sends, so a request
+// cannot name a file outside the work tree.
+const STYLES   = new Set(['adults', 'kids'])
+const SECTIONS = new Set(['story', 'moral'])
+const LANGS    = new Set(['en', 'ru', 'uz', 'tj', 'ar'])
+const SAFE_SLUG = /^[a-z0-9][a-z0-9-]{0,80}$/
 
 export async function POST(req: NextRequest) {
   // P353: refuse before reading the body, a file or a key.
@@ -176,7 +192,23 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanText = cleanForTTS(text, lang)
-    const langKey = lang.replace('_cyrillic', '').replace('_latin', '')
+    const langKey = String(lang).replace('_cyrillic', '').replace('_latin', '')
+
+    if (!LANGS.has(langKey) || !STYLES.has(style)) {
+      return NextResponse.json(
+        { error: `unsupported lang/style: ${JSON.stringify(lang)} / ${JSON.stringify(style)}` },
+        { status: 400 })
+    }
+    if ((slug || section) && !(SAFE_SLUG.test(slug) && SECTIONS.has(section))) {
+      return NextResponse.json(
+        { error: `slug must be lowercase letters, digits and hyphens, section story or moral; got ${JSON.stringify(slug)} / ${JSON.stringify(section)}` },
+        { status: 400 })
+    }
+    if (cleanText.length > TTS_TEXT_LIMIT) {
+      return NextResponse.json(
+        { error: `text is ${cleanText.length} characters as sent to the voice (limit ${TTS_TEXT_LIMIT}). Nothing was narrated - shorten or split the block.` },
+        { status: 413 })
+    }
 
     const apiKey = process.env.ELEVENLABS_API_KEY
     if (!apiKey) {
@@ -244,7 +276,9 @@ export async function POST(req: NextRequest) {
     let savedPath = ''
     if (process.env.NODE_ENV !== 'production' && slug && section) {
       try {
-        const dir = path.join(process.cwd(), 'out', 'work', style, slug, langKey)
+        const workRoot = path.resolve(/*turbopackIgnore: true*/ process.cwd(), 'out', 'work')
+        const dir = path.resolve(workRoot, style, slug, langKey)
+        if (!dir.startsWith(workRoot + path.sep)) throw new Error(`refused: ${dir} is outside out/work`)
         await mkdir(dir, { recursive: true })
         const filename = `${style}-${langKey}-${slug}-${section}.mp3`
         await writeFile(path.join(dir, filename), Buffer.from(audioBuffer))
