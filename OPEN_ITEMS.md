@@ -142,9 +142,14 @@ this one wins.
   app/api/generate-reel/route.ts and scripts/translate-tajik.ts use the SDK; neither sends
   temperature/top_p/top_k or Text Completions. The Python scripts call the API over raw
   HTTP with their own anthropic-version and are not affected.
-- **HV (hadith-verifier) is on next 14.2.5** (summer 2024) and public at
-  hadithverifier.com; the 14.x line has security backports up to 14.2.35. Operator
-  approved the patch-level upgrade 2026-11-03.
+- **DONE 2026-11-03: HV next 14.2.5 -> 14.2.35** (HV e813e1b) + npm audit fix (no --force):
+  production audit 6 (5 high, 1 critical) -> 2 (1 high, 1 critical).
+- **HV -> Next 16 migration (open).** The two advisories left - next itself (critical among
+  them: RSC deserialization DoS, rewrites request smuggling, image-optimizer DoS) and its
+  bundled postcss - are fixed only in Next 15/16; npm offers only --force to next@16.4.5.
+  A major migration (React 18 -> 19, App Router changes) with its own test pass, not a
+  dependency bump. HV has no middleware and runs on Vercel, which narrows but does not
+  close the exposure.
 - **Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
   the whole project into the server output. Harmless locally (HR is not deployed).
 - **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
