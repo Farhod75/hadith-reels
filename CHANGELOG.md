@@ -1,3 +1,26 @@
+## [2026-11-04d] - render-reel: the subtitle check can no longer be skipped (P356, Sol R2)
+
+### Fixed
+
+- **render-reel.ps1:** a missing draft stops an EN/RU render at pre-flight (was: validator
+  skipped with a warning); `-Draft` defaults to the set's `out\draft-<slug>-<lang>.txt`
+  when it exists; `-AcceptSubtitleFindings` accepts findings only - a validator that could
+  not run always stops; after the review pause the saved SRT is validated again (strict)
+  and a remaining HIGH asks the operator (fix + ENTER, or BURN).
+- **scripts/stt-validate.py:** `--strict` exits 3 on HIGH findings (was 1, which is also
+  Python's exit code for a crash).
+
+### Tests
+
+- **scripts/lib/test_render_reel_subs.py (new)** - the four closed paths, read from the script.
+- **scripts/lib/test_stt_validate.py** - strict exits 3; 0 without --strict; 2 for a missing draft.
+
+### Docs
+
+- CLAUDE.md Workflow F, FEATURES.md stt-validate limits, render-reel.ps1 header.
+
+---
+
 ## [2026-11-04c] - render-reel: a failed ffmpeg stage stops the render (P355, Sol R1)
 
 ### Fixed

@@ -14999,3 +14999,41 @@ before it is written. Both fail on the pre-fix script.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 356: three ways past the subtitle check, each one a fallback nobody chose
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** integrity (latent - no known bad reel)
+
+**What happened.** Sol 6.1 (R2) traced render-reel.ps1's subtitle gate and
+found three exits around it:
+1. No draft file -> the validator printed a yellow "[skip]" and the burn went
+   ahead, under -NoReview too. The default `-Draft` was `draft.txt` in the
+   repo root, which make-drafts.py does not write.
+2. Under -NoReview, `-AcceptSubtitleFindings` overrode ANY non-zero exit.
+   stt-validate --strict exited 1 for HIGH findings - and Python exits 1 on
+   an uncaught exception, so "found something" and "checked nothing" were the
+   same number, and the switch accepted both.
+3. Interactive runs validated BEFORE the review pause and burned whatever was
+   saved DURING it. An edit that broke a cue, dropped a quotation mark or
+   lowercased a pronoun for Allah was never checked.
+
+**Fix.** (1) The set's own `out\draft-<slug>-<lang>.txt` is the default when
+it exists; a missing draft stops an EN/RU render at pre-flight. (2)
+stt-validate --strict exits 3 for HIGH findings (2 stays bad input); the
+renderer stops on any other non-zero exit before the switch is consulted. (3)
+After ENTER at the pause, the saved SRT is structure-checked and validated
+again, strict; with HIGH findings left it asks - fix and ENTER, or type BURN.
+The validator call is one function, so the two runs cannot drift.
+
+**Lesson.** A gate's fallbacks are part of the gate. "Skip with a warning"
+and "accept any failure" read as convenience when written and become the
+path every rushed run takes. Ask of each: what does this let through?
+
+**Tripwire:** `scripts/lib/test_render_reel_subs.py` (reads the script: no
+skip path, failure checked before acceptance, re-check after the pause, exit
+code 3 agreed with the validator) and `test_stt_validate.py`'s exit-code
+tests (3 for findings, 0 without --strict, 2 for a missing draft).
+
+**Status:** FIXED (not yet exercised by a real render).
+
+---

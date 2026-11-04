@@ -26,14 +26,19 @@
  PARAMS:
    -Nasheed     (optional) specific nasheed filename in out\backgrounds\; else random
    -ForceNoSubs (optional) skip subtitles even for en/ru/ar
-   -Draft       (optional) source text for the subtitle validator (default draft.txt)
+   -Draft       (optional) source text for the subtitle validator. Default: the
+                set's own out\draft-<slug>-<lang>.txt when it exists, else
+                draft.txt. With subtitles (EN/RU) a missing draft STOPS the
+                render (P356) - nothing else checks what gets burned.
                 It MUST hold this language's S:/M: blocks — a mismatch shows
                 as ~0.01 similarity, which is the validator telling you the
                 draft was never re-synced after the last admin edit.
    -NoReview    (optional) skip the subtitle proofreading PAUSE. It does NOT
                 skip the validator, which runs --strict: a HIGH finding stops
                 the render before the burn (P339), unless
-                -AcceptSubtitleFindings.
+                -AcceptSubtitleFindings - which accepts FINDINGS only; a
+                validator that could not run always stops (P356). With the
+                pause, the saved SRT is validated again before the burn.
    -Open        (optional) auto-play the finished reel
    -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
 ================================================================================
@@ -185,6 +190,13 @@ $normDir = "out\backgrounds\new\normalized"
 # subtitles routing per P078: Latin transliteration breaks UZ/TJ -> skip
 $subLangs = @('en','ru','ar')
 $useSubs  = ($subLangs -contains $Lang) -and (-not $ForceNoSubs)
+# P356: make-drafts.py writes out\draft-<slug>-<lang>.txt and render-set.py passes
+# it. A hand-run render that forgot -Draft fell back to draft.txt in the repo root -
+# usually another set's text, or nothing. Prefer the set's own draft when it exists.
+if (-not $PSBoundParameters.ContainsKey('Draft')) {
+  $setDraft = "out\draft-$Slug-$Lang.txt"
+  if (Test-Path -LiteralPath $setDraft) { $Draft = $setDraft }
+}
 
 Say "================================================================"
 Say " Render: $base   (subtitles: $(if($useSubs){'YES'}else{'NO (P078 / forced)'}))"
@@ -405,6 +417,11 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
     if ($draftRc -ne 0) {
       Die "$Draft is not in sync with the row being rendered (P282) - see above. Re-sync it before TTS: the subtitle validator's authority rests entirely on this file."
     }
+  } elseif ($useSubs) {
+    # P356 (Sol R2): this used to be a NOTE, and the subtitle validator further down
+    # then skipped itself for the same reason - so a render with no draft burned
+    # subtitles that no check had read, under -NoReview included.
+    Die "$Draft not found. $Lang subtitles are checked against this language's S:/M: blocks, and without them nothing checks what gets burned (P356). Pass -Draft out\draft-$Slug-$Lang.txt (make-drafts.py writes it), or -ForceNoSubs for a reel without subtitles."
   } else {
     Say "  NOTE  $Draft not found - draft sync check skipped (P282)."
   }
@@ -585,49 +602,51 @@ if ($useSubs) {
 # It reads no network and costs nothing, so it runs unconditionally whenever
 # there are subtitles — including under -NoReview, where there is no human
 # about to look and the automated check matters MORE, not less.
+# P356 (Sol R2): the call lives in a function so the SAME check runs twice - here,
+# and again on the SRT the operator saved at the review pause below. Exit codes
+# (stt-validate.py): 0 clean, 3 HIGH findings under --strict, anything else = the
+# validator did not run properly. Only 3 may be overridden.
+function Invoke-SttValidate([switch]$Strict) {
+  $prevEAP = $ErrorActionPreference
+  $ErrorActionPreference = 'Continue'
+  $prevPyIO = $env:PYTHONIOENCODING
+  $env:PYTHONIOENCODING = 'utf-8'      # P100: Cyrillic through a CP1252 console
+  # P252: PYTHONIOENCODING fixes the CHILD's encoder. This fixes the PARENT's
+  # DECODER. PowerShell decodes a piped child's bytes using
+  # [Console]::OutputEncoding - CP437 on PS 5.1 - so a correctly-UTF-8 child
+  # whose output is PIPED still arrives mangled.
+  $prevConsoleEnc = [Console]::OutputEncoding
+  [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+  # P341: NOT `$x = if (..) { @('--strict') } else { @() }` - an if-block's output is
+  # unrolled, so a one-element array comes back as the STRING '--strict', and
+  # @sttStrict then splats it letter by letter: stt-validate.py received
+  # "- - s t r i c t" and exited 2. Typed [string[]] keeps it an array.
+  [string[]]$sttStrict = @()
+  if ($Strict) { $sttStrict = @('--strict') }   # P339
+  & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" @sttStrict 2>&1 |
+    ForEach-Object { Write-Host "   $_" }
+  $rc = $LASTEXITCODE
+  $env:PYTHONIOENCODING = $prevPyIO
+  [Console]::OutputEncoding = $prevConsoleEnc
+  $ErrorActionPreference = $prevEAP
+  return $rc
+}
+
 if ($useSubs) {
-  if (-not (Test-Path $Draft)) {
-    Write-Host "`n  [skip] subtitle validator: no $Draft to compare against." -ForegroundColor DarkYellow
-    Write-Host "         Pass -Draft <file> holding this language's S:/M: blocks." -ForegroundColor DarkYellow
-  } else {
-    Say "`n[2b/5] Validating subtitles against $Draft..."
-    $prevEAP = $ErrorActionPreference
-    $ErrorActionPreference = 'Continue'
-    $prevPyIO = $env:PYTHONIOENCODING
-    $env:PYTHONIOENCODING = 'utf-8'      # P100: Cyrillic through a CP1252 console
-    # P252: PYTHONIOENCODING fixes the CHILD's encoder. This fixes the PARENT's
-    # DECODER. PowerShell decodes a piped child's bytes using
-    # [Console]::OutputEncoding - CP437 on PS 5.1 - so a correctly-UTF-8 child
-    # whose output is PIPED still arrives mangled. restore-srt-casing.py prints
-    # straight to the console and reads fine; everything piped through
-    # ForEach-Object did not, which made the RU/UZ/TJ lint findings unreadable.
-    $prevConsoleEnc = [Console]::OutputEncoding
-    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-    # P341: NOT `$x = if (..) { @('--strict') } else { @() }` - an if-block's output is
-    # unrolled, so a one-element array comes back as the STRING '--strict', and
-    # @sttStrict then splats it letter by letter: stt-validate.py received
-    # "- - s t r i c t" and exited 2. Typed [string[]] keeps it an array.
-    [string[]]$sttStrict = @()
-    if ($NoReview) { $sttStrict = @('--strict') }   # P339
-    & python "scripts\stt-validate.py" --srt "$srt" --source "$Draft" --lang $Lang --narration "$narr" @sttStrict 2>&1 |
-      ForEach-Object { Write-Host "   $_" }
-    $sttRc = $LASTEXITCODE
-    $env:PYTHONIOENCODING = $prevPyIO
-    [Console]::OutputEncoding = $prevConsoleEnc
-    $ErrorActionPreference = $prevEAP
-    # P339: this block used to WARN when the validator exited non-zero - and
-    # stt-validate.py exited 0 whatever it found, so the warning never printed.
-    # On tirmidhi-1161 RU, "пророг" and "Ум соляма, добудет" were burned under
-    # -NoReview with the warning silent; they were caught only because the
-    # validator's output was read by hand. Under -NoReview the validator now runs
-    # --strict, and a HIGH finding - or a validator that could not run (P093) -
-    # stops the render HERE, before the burn.
-    if ($NoReview -and $sttRc -ne 0) {
-      if ($AcceptSubtitleFindings) {
-        Write-Host "`n  WARN  validator exit $sttRc - burning anyway (-AcceptSubtitleFindings)." -ForegroundColor Yellow
-      } else {
-        Die "the subtitle validator reported HIGH findings or could not run (exit $sttRc), and -NoReview means nobody reviews them. Nothing was burned. Fix $srt against $Draft and re-run - the SRT is cached on the narration (P211), so the fix survives - or run without -NoReview to review it, or pass -AcceptSubtitleFindings to burn anyway."
-      }
+  Say "`n[2b/5] Validating subtitles against $Draft..."
+  $sttRc = Invoke-SttValidate -Strict:$NoReview
+  # P339: under -NoReview the validator runs --strict and a HIGH finding stops the
+  # render HERE, before the burn. P356: a validator that could not run (bad draft,
+  # unreadable SRT, a crash) stops it in EVERY mode, and -AcceptSubtitleFindings
+  # no longer covers that case - it accepts findings, not the absence of a check.
+  if ($sttRc -ne 0 -and $sttRc -ne 3) {
+    Die "the subtitle validator did not run properly (exit $sttRc) - see above. This is not a finding and cannot be accepted: fix the cause (P356)."
+  }
+  if ($NoReview -and $sttRc -eq 3) {
+    if ($AcceptSubtitleFindings) {
+      Write-Host "`n  WARN  HIGH subtitle findings - burning anyway (-AcceptSubtitleFindings)." -ForegroundColor Yellow
+    } else {
+      Die "the subtitle validator reported HIGH findings, and -NoReview means nobody reviews them. Nothing was burned. Fix $srt against $Draft and re-run - the SRT is cached on the narration (P211), so the fix survives - or run without -NoReview to review it, or pass -AcceptSubtitleFindings to burn anyway."
     }
   }
 }
@@ -645,12 +664,24 @@ if ($useSubs -and -not $NoReview) {
     Write-Host "   (open it in your editor, fix any errors, save)" -ForegroundColor DarkGray
   }
   Write-Host "--------------------------------------------------------------" -ForegroundColor Yellow
-  $ans = Read-Host "Press ENTER to burn these subtitles, or type S to skip subtitles for this reel"
-  if ($ans -match '^[Ss]') {
-    $useSubs = $false
-    Write-Host "  -> subtitles will be SKIPPED for this reel." -ForegroundColor DarkGray
-  } else {
-    Ok "subtitles approved"
+  # P356 (Sol R2): the validator ran BEFORE this pause, and the burn used whatever
+  # was saved during it - an edit that broke a cue, dropped a quote or lowercased a
+  # pronoun was never checked. The saved file is validated again (strict) before it
+  # is accepted. The operator is here, so a HIGH finding asks rather than stops.
+  while ($true) {
+    $ans = Read-Host "Press ENTER to burn these subtitles, or type S to skip subtitles for this reel"
+    if ($ans -match '^[Ss]') {
+      $useSubs = $false
+      Write-Host "  -> subtitles will be SKIPPED for this reel." -ForegroundColor DarkGray
+      break
+    }
+    Assert-ValidSrt $srt
+    Say "`n  Re-checking the saved subtitles..."
+    $sttRc = Invoke-SttValidate -Strict
+    if ($sttRc -eq 0) { Ok "subtitles approved (re-checked after review)"; break }
+    if ($sttRc -ne 3) { Die "the subtitle validator did not run properly on the saved SRT (exit $sttRc) - see above (P356)." }
+    $force = Read-Host "HIGH findings remain in the saved SRT (above). Fix and press ENTER to re-check, or type BURN to burn as is"
+    if ($force -ceq 'BURN') { Write-Host "  -> burning with HIGH findings, operator's call." -ForegroundColor Yellow; break }
   }
 }
 

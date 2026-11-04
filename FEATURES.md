@@ -164,7 +164,8 @@ hand-correction on a Latin keyboard layout. They render identically on screen
 and are invisible to human review by construction.
 
 **Limits:** never edits. Warn-only interactively; `--strict` (render-reel.ps1
-under -NoReview, P339) exits 1 on any HIGH. Since P342 the narrator lead-in,
+under -NoReview, P339) exits 3 on any HIGH (P356: 3, so a crash's exit 1 is never
+accepted as a finding). Since P342 the narrator lead-in,
 the honorific formulas and the matn's quotation marks are HIGH - Whisper's
 "добудет" for "да будет" was a MEDIUM near-miss on three sets running. An inflection error on a word appearing
 elsewhere in another form is not caught (`Знание` → `Знания` passed because

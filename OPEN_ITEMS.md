@@ -40,9 +40,12 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
 - **DONE 2026-11-04: R1 - a failed ffmpeg stage could hand the next stage yesterday's file (P355).**
   Narration concat, each clip normalize and the background concat now delete their
   output first and stop on a non-zero exit. scripts/lib/test_render_reel_stages.py.
-- **R2 - subtitle validation can be skipped.** Open. No draft -> skipped with a
-  warning; -AcceptSubtitleFindings also overrides "could not run"; the SRT edited
-  at the review pause is never re-validated.
+- **DONE 2026-11-04: R2 - subtitle validation could be skipped (P356).** A missing
+  draft stops an EN/RU render (and the set's out\draft-<slug>-<lang>.txt is the
+  default); stt-validate --strict exits 3 for findings so -AcceptSubtitleFindings
+  can no longer accept a crash; the SRT saved at the review pause is re-validated.
+  Not yet exercised by a real render - the first interactive EN/RU render after
+  this will be the first run of the re-check prompt.
 - **R3 - renders overwrite earlier outputs; the sidecar is thin.** Open. Records
   `$Scenes`, not the random pick; no hashes; a failed sidecar write only warns.
 - **R4 - paid verification evidence lives in gitignored out/.** Open (the 208-call

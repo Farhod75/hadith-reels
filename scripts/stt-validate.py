@@ -14,7 +14,7 @@ preposition plus a capitalised non-word that reads as a proper noun. Whole-text
 similarity rates that ~0.97 and passes it. Alignment flags it immediately.
 
 Warn-only by default. Never edits the SRT. The human gate in render-reel.ps1
-still decides; under -NoReview --strict exits 1 on HIGH (P339). The narrator
+still decides; under -NoReview --strict exits 3 on HIGH (P339, P356). The narrator
 lead-in, the honorifics and the matn's quotation marks are HIGH (P342).
 
 USAGE
@@ -618,7 +618,8 @@ def main():
                     choices=['en', 'ru', 'ar', 'uz', 'tj'])
     ap.add_argument('--narration', default=None, help='.mp3 for duration check')
     ap.add_argument('--strict', action='store_true',
-                    help='exit 1 on any HIGH finding (render-reel.ps1 under -NoReview, P339)')
+                    help='exit 3 on any HIGH finding (render-reel.ps1 under -NoReview, P339; '
+                         '3, not 1, so a crash is never read as an acceptable finding - P356)')
     args = ap.parse_args()
 
     width = 66
@@ -722,7 +723,12 @@ def main():
     print()
     # P339: findings used to exit 0 unconditionally, and render-reel's
     # -NoReview warning listened for a non-zero exit - so it never fired.
-    return 1 if (args.strict and counts['high']) else 0
+    # P356: 3, not 1. Python exits 1 on an uncaught exception, so "1" meant both
+    # "HIGH findings" and "crashed before checking anything", and
+    # -AcceptSubtitleFindings accepted either. 3 is findings and only findings;
+    # 2 is bad input; anything else is the validator failing.
+    EXIT_HIGH_FINDINGS = 3
+    return EXIT_HIGH_FINDINGS if (args.strict and counts['high']) else 0
 
 
 if __name__ == '__main__':

@@ -128,10 +128,29 @@ def test_no_leadin_in_draft_skips_the_check(tmp_path):
     assert ('high', 'leadin_garbled') not in got
 
 
-def test_strict_exits_1_end_to_end(tmp_path):
+def _cli(*args):
+    return subprocess.run([sys.executable, SCRIPT, *map(str, args)], capture_output=True,
+                          text=True, encoding='utf-8',
+                          env=dict(os.environ, PYTHONIOENCODING='utf-8'))
+
+
+def test_strict_exits_3_end_to_end(tmp_path):
+    # P356: 3, not 1 - Python's own exit code for a crash is 1, and render-reel
+    # lets -AcceptSubtitleFindings override findings but never a failed run.
     _, (d, s) = run(tmp_path, DRAFT_4811_RU, RU_4811_WHISPER, 'ru')
-    r = subprocess.run([sys.executable, SCRIPT, '--srt', str(s), '--source', str(d),
-                        '--lang', 'ru', '--strict'], capture_output=True, text=True,
-                       encoding='utf-8', env=dict(os.environ, PYTHONIOENCODING='utf-8'))
-    assert r.returncode == 1, r.stdout
+    r = _cli('--srt', s, '--source', d, '--lang', 'ru', '--strict')
+    assert r.returncode == 3, r.stdout
     assert 'leadin_garbled' in r.stdout and 'quote_boundary' in r.stdout
+
+
+def test_same_findings_without_strict_exit_0(tmp_path):
+    _, (d, s) = run(tmp_path, DRAFT_4811_RU, RU_4811_WHISPER, 'ru')
+    assert _cli('--srt', s, '--source', d, '--lang', 'ru').returncode == 0
+
+
+def test_a_missing_draft_is_not_a_finding(tmp_path):
+    # P356: a run that could not check anything must never look like findings,
+    # or -AcceptSubtitleFindings would accept the absence of a check.
+    _, (d, s) = run(tmp_path, DRAFT_4811_RU, RU_4811_WHISPER, 'ru')
+    r = _cli('--srt', s, '--source', tmp_path / 'no-such-draft.txt', '--lang', 'ru', '--strict')
+    assert r.returncode == 2, r.stdout
