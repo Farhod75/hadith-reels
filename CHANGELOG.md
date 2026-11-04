@@ -1,3 +1,14 @@
+## [2026-11-03n] - telegram/post: the build no longer traces the whole project
+
+### Fixed
+
+- **app/api/telegram/post/route.ts:** `path.resolve(/*turbopackIgnore: true*/ root, videoPath)`.
+  The runtime path made Next trace the entire project into the server output (a build
+  warning since 16.4.5). Behaviour unchanged - same resolve, same inside-the-project check.
+  next build clean.
+
+---
+
 ## [2026-11-03m] - @anthropic-ai/sdk 1.4.0
 
 ### Changed

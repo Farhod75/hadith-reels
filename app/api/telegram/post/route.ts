@@ -92,7 +92,10 @@ export async function POST(req: NextRequest) {
 
     // ── the reel ─────────────────────────────────────────────────────────────
     const root = process.cwd()
-    const abs = path.resolve(root, videoPath)
+    // The path is runtime data, so the bundler cannot trace it - without this comment Next
+    // traces the WHOLE project into the server output (build warning, 2026-11-03). Behaviour is
+    // unchanged: the resolve and the inside-the-project check below are the same.
+    const abs = path.resolve(/*turbopackIgnore: true*/ root, videoPath)
     if (abs !== root && !abs.startsWith(root + path.sep)) {
       return NextResponse.json(
         { error: 'videoPath must be inside the project directory' },

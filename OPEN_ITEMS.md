@@ -158,7 +158,7 @@ this one wins.
   Dorar narrators arriving as NARRATORS keys (narrator_ar.py). Each checked against the
   set it replaces (muslim-2749 / 2747 numbers, ids and drafts reproduced exactly). Still by
   hand, on purpose: the SRT fix (the review IS the point), stills and motion prompts.
-- **Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
+- **DONE 2026-11-03 (turbopackIgnore on the path.resolve; build clean): Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
   the whole project into the server output. Harmless locally (HR is not deployed).
 - **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
   unregistered); `b6412-health` retired (water from the jar's bottom, P343).
