@@ -62,7 +62,14 @@ function isLocalHost() {
   return ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)
 }
 
-function TTSButton({ text, lang }: { text: string; lang: Lang }) {
+// P362: stored narration - each published set's story.mp3 (narrator + matn, in the
+// voice chosen for that language), copied to Supabase Storage by
+// scripts/publish-narration.py. index.json maps library id -> lang -> file.
+const NARRATION_BASE =
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/narration`
+type NarrationIndex = Record<string, Partial<Record<Lang, { path: string }>>>
+
+function TTSButton({ text, lang, audioUrl }: { text: string; lang: Lang; audioUrl?: string }) {
   const [playing, setPlaying] = useState(false)
   const [loading, setLoading] = useState(false)
   const [local, setLocal]     = useState(false)
@@ -74,6 +81,14 @@ function TTSButton({ text, lang }: { text: string; lang: Lang }) {
       audioRef.current?.pause()
       window.speechSynthesis?.cancel()
       setPlaying(false)
+      return
+    }
+    if (audioUrl) {
+      // the recorded narration: same file everywhere, no per-click cost
+      const audio = new Audio(audioUrl)
+      audioRef.current = audio
+      audio.onended = () => setPlaying(false)
+      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
       return
     }
     setLoading(true)
@@ -105,7 +120,7 @@ function TTSButton({ text, lang }: { text: string; lang: Lang }) {
     }
   }
 
-  if (!local) return null
+  if (!audioUrl && !local) return null
   return (
     <button onClick={toggle}
       className="text-xs px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 hover:bg-indigo-100 transition-colors flex items-center gap-1.5">
@@ -115,7 +130,7 @@ function TTSButton({ text, lang }: { text: string; lang: Lang }) {
 }
 
 // ─── Hadith Card ──────────────────────────────────────────────────────────────
-function HadithCard({ hadith, lang }: { hadith: Hadith; lang: Lang }) {
+function HadithCard({ hadith, lang, audioUrl }: { hadith: Hadith; lang: Lang; audioUrl?: string }) {
   const [copied, setCopied] = useState(false)
   const display = hadith.text_display || hadith.text_english
 
@@ -154,7 +169,7 @@ function HadithCard({ hadith, lang }: { hadith: Hadith; lang: Lang }) {
 
       {/* Actions */}
       <div className="flex gap-2 flex-wrap items-center">
-        <TTSButton text={display} lang={lang} />
+        <TTSButton text={display} lang={lang} audioUrl={audioUrl} />
         <button
           onClick={() => { navigator.clipboard.writeText(display); setCopied(true); setTimeout(() => setCopied(false), 2000) }}
           className="text-xs px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors">
@@ -255,6 +270,14 @@ function WatchTab({ lang }: { lang: Lang }) {
 export default function HadithReelsPage() {
   const [tab, setTab]               = useState<Tab>('browse')
   const [lang, setLang]             = useState<Lang>('en')
+  const [narration, setNarration]   = useState<NarrationIndex>({})
+  useEffect(() => {
+    // P362: absent or unreadable index -> no stored audio, nothing breaks
+    fetch(`${NARRATION_BASE}/index.json`, { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => { if (j?.items) setNarration(j.items) })
+      .catch(() => {})
+  }, [])
   const [filterGrade, setFilterGrade] = useState<Grade>('all')
   const [hadiths, setHadiths]       = useState<Hadith[]>([])
   const [loading, setLoading]       = useState(true)
@@ -454,7 +477,9 @@ export default function HadithReelsPage() {
             {!loading && !error && filtered.length > 0 && (
               <div className="space-y-3">
                 {filtered.map(h => (
-                  <HadithCard key={h.id} hadith={h} lang={lang} />
+                  <HadithCard key={h.id} hadith={h} lang={lang}
+                    audioUrl={narration[h.id]?.[lang]?.path
+                      ? `${NARRATION_BASE}/${narration[h.id]?.[lang]?.path}` : undefined} />
                 ))}
                 {!searchQuery.trim() && hadiths.length < stats.total && (
                   <button

@@ -540,6 +540,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   library row read live -> the four `draft.txt` files (P337 lead-in, quoted matn, P342 inner
   quotes dropped) and `out/caption-<n>.json` for build-caption. Lints and dry-runs narration.
   Dry run unless `--write`; never overwrites a draft without `--force`.
+- `publish-narration.py` — copies each set's story.mp3 (narrator + matn, recorded on/after
+  2026-10-04, the .txt containing the row's translation) to the public Supabase bucket
+  `narration` and rewrites its index.json; the public library's Listen plays it (P362).
+  Dry run unless `--commit`; unchanged files skipped. **Run at every set close.**
 - `tidy-out.py` — keeps out/ in the P106 layout (work/ = sets not yet published, published/ =
   archive with each set's loose files in `_files/`, out/_archive/ for one-offs). Dry run unless
   `--apply`; writes an undo script. Run at every set close.

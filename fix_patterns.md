@@ -15187,3 +15187,34 @@ grep the public page for what it still promises.
 **Status:** FIXED (Listen: interim).
 
 ---
+
+## PATTERN 362: the public Listen button paid per click for audio we already had
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** cost + quality (public site)
+
+**What happened.** The library card's Listen called `/api/tts` - ElevenLabs,
+billed to the operator, on every anonymous click - until P353 closed that
+route; it then fell to the browser's speech engine (robotic, Russian for
+Uzbek). Meanwhile every published set already held the exact clip a listener
+wants: `story.mp3`, the narrator and the matn in the voice chosen for that
+language, with the narrated text beside it (P246). The operator's question was
+the fix: "we already have the narration - store it and bind it to Listen?"
+
+**Fix.** `scripts/publish-narration.py` matches each story.mp3 to its library
+row (collection + number), keeps it only if recorded on/after 2026-10-04
+(eleven_v4 and the current voices) and if its .txt contains the row's stored
+translation (>= 90% of its characters - a generated story about a hadith is
+not the hadith), and uploads the newest take per row and language to the
+public bucket `narration` under a content address, with an index.json. The
+page loads the index once and Listen plays the stored file; with none, it is
+hidden on the deployed site (P361) and uses `/api/tts` only on localhost. CSP
+media-src gained the Supabase origin. First run: 55 clips, 14 rows.
+
+**Tripwire:** `scripts/lib/test_publish_narration.py` (a story is not the
+hadith; pre-cutoff takes skipped; newest take wins; unchanged audio not
+re-uploaded).
+
+**Status:** FIXED for rows with a published set; the rest await a priced
+narration run (OPEN_ITEMS).
+
+---

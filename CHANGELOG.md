@@ -1,3 +1,20 @@
+## [2026-11-04k] - Listen on the public site plays the reels' own narration (P362)
+
+### Added
+
+- **scripts/publish-narration.py:** each set's story.mp3 (current voices, matn verified in the
+  narrated text) -> public Supabase bucket `narration` + index.json. Dry run unless --commit.
+  First run: 55 clips for 14 library rows.
+- **app/page.tsx:** Listen plays the stored clip for the card's language; without one it is
+  hidden on the deployed site and uses /api/tts only on localhost.
+- **next.config.js:** CSP media-src allows the Supabase origin.
+
+### Tests
+
+- **scripts/lib/test_publish_narration.py (new, 6).**
+
+---
+
 ## [2026-11-04j] - public page copy, Listen on the deployed site, admin Logout (P361, operator)
 
 ### Changed

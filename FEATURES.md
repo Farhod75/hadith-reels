@@ -1,3 +1,11 @@
+### Stored narration for the public Listen button (`scripts/publish-narration.py`)
+
+Each set's `story.mp3` - narrator and matn, in that language's current voice - goes to the
+public Supabase bucket `narration` as `<library_id>/<lang>-<sha8>.mp3`, listed in
+`index.json`. The library page plays it; no per-click TTS cost, no browser voice. A take is
+used only if recorded on/after 2026-10-04 and its narrated text contains the row's stored
+translation (>= 90%), so a story about a hadith is never played as the hadith (P362).
+
 ### Admin session (`lib/admin-session.ts`, `/api/admin/verify`, `/api/admin/logout`)
 
 The admin password sets a signed HttpOnly cookie (12 h) that every route which
