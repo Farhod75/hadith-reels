@@ -1,3 +1,9 @@
+### Admin session (`lib/admin-session.ts`, `/api/admin/verify`, `/api/admin/logout`)
+
+The admin password sets a signed HttpOnly cookie (12 h) that every route which
+publishes or spends checks first (P353); **Logout** in the Admin Studio header ends it
+(P361). `next dev` on localhost needs no session, so the pipeline scripts run as before.
+
 ### Talking-mascot kids lane (fal VEED Fabric 1.0)
 **Status:** PoC proven (2026-06-13); `render-reel.ps1` integration pending.
 

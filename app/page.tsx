@@ -53,10 +53,21 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
 ]
 
 // ─── TTS Button ───────────────────────────────────────────────────────────────
+// P361: on the deployed site /api/tts needs an admin session (P353) and has no
+// voice key, so "Listen" fell back to the browser's own robotic voice - Russian
+// for Uzbek. Until a hadith has stored narration it offers no Listen there at
+// all; on localhost (the operator's dev server) it narrates as before.
+function isLocalHost() {
+  if (typeof window === 'undefined') return false
+  return ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)
+}
+
 function TTSButton({ text, lang }: { text: string; lang: Lang }) {
   const [playing, setPlaying] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [local, setLocal]     = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  useEffect(() => { setLocal(isLocalHost()) }, [])
 
   async function toggle() {
     if (playing) {
@@ -94,6 +105,7 @@ function TTSButton({ text, lang }: { text: string; lang: Lang }) {
     }
   }
 
+  if (!local) return null
   return (
     <button onClick={toggle}
       className="text-xs px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 hover:bg-indigo-100 transition-colors flex items-center gap-1.5">
@@ -207,11 +219,14 @@ function WatchTab({ lang }: { lang: Lang }) {
 
       {/* What to expect */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {/* P361: these four described the first plan for the channel - a dark style,
+            a Ramadan series that was never made, five languages including Arabic.
+            They now say what the reels actually are. */}
         {[
-          { icon: '📖', title: 'Adults series', desc: 'Deep, scholarly hadiths with Seerah stories. Dark elegant style.' },
-          { icon: '🌟', title: 'Kids series', desc: 'Simple language, fun animations. Perfect for children 6-14.' },
-          { icon: '🕌', title: 'Ramadan special', desc: '30 days, 30 hadiths. Full month of authentic daily content.' },
-          { icon: '🌍', title: '5 languages', desc: 'Arabic, Uzbek, Russian, English, Tajik narration.' },
+          { icon: '📖', title: 'Adults series', desc: 'One authentic hadith per reel, its narrator named, over bright scenes with no faces.' },
+          { icon: '🐑', title: 'Kids series', desc: 'The same hadiths in simple words, told by our lamb friends.' },
+          { icon: '🌍', title: '4 languages', desc: 'English, Russian, Uzbek and Tajik narration, with the Arabic matn.' },
+          { icon: '✅', title: 'Checked at the source', desc: 'Every matn is matched to a Tier 1 collection before it is narrated.' },
         ].map(item => (
           <div key={item.title} className="bg-white rounded-xl border border-gray-200 p-4">
             <div className="text-2xl mb-2">{item.icon}</div>

@@ -80,6 +80,12 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   still score what is there); each write must update exactly one row; any failed
   write -> exit 1 and no WRITTEN footer. scripts/lib/test_verify_candidates.py.
 - **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.
+- **Public site Listen (operator 2026-11-04, open).** Hidden on the deployed site since
+  P361 - it had fallen back to the browser's robotic voice once the ElevenLabs key left
+  Vercel. Plan agreed: put each published set's story.mp3 (narrator + matn, current
+  voices) in Supabase Storage and play it from the card; narrate the remaining library
+  rows once, after a priced "yes" from the operator. RAG was asked about and is not the
+  tool for this - it retrieves text, it does not play audio.
 - **Not a finding, worth recording:** HR IS deployed - hadith-reels.vercel.app and
   www.hadithreels.com - with SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY and
   ADMIN_PASSWORD set. Earlier notes here said "HR is not deployed"; they were wrong.

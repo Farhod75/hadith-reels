@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-290 patterns in 303 entries, frontier **P360**. The P-sequence is shared with
+291 patterns in 304 entries, frontier **P361**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -351,5 +351,6 @@ BEFORE changing it.
 - **P358** - the render record named the scenes that were asked for, not the ones drawn
 - **P359** - the paid verification report was written once, at the end
 - **P360** - the public site's AR toggle showed English and read it in English
+- **P361** - the public page described a channel that was planned, not the one that exists
 
-<!-- pattern-index-stamp entries=303 patterns=290 frontier=360 sha1=2a17769d1acc4f329768a219da71f6282a923898 -->
+<!-- pattern-index-stamp entries=304 patterns=291 frontier=361 sha1=a692223ef65d0df372669fafeae1a5530f5c5698 -->

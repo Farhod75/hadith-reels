@@ -15157,3 +15157,33 @@ button" (was "should show AR language button").
 **Status:** FIXED.
 
 ---
+
+## PATTERN 361: the public page described a channel that was planned, not the one that exists
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** content (public site, operator-reported)
+
+**What happened.** The operator, reviewing hadithreels.com after P360, asked
+what the four tiles under "Watch our reels" were connected to. Nothing: they
+were text from the first version - "Dark elegant style" (the adults lane has
+used bright, faceless scenes for months), a "Ramadan special, 30 days, 30
+hadiths" that was never made, and "5 languages ... Arabic" (AR has been out
+since P118). He also found "Listen" robotic on the site: since the ElevenLabs
+key was removed from Vercel (P353 stop-gap), the button fell through to the
+browser's speech engine - Russian for Uzbek. And the admin session P353
+introduced had no way to end it.
+
+**Fix.** The tiles say what the reels are: one narrated hadith per reel over
+bright faceless scenes; the kids lane; four languages with the Arabic matn; the
+Tier 1 check. Listen is not offered on the deployed site until a hadith has
+stored narration (OPEN_ITEMS: stored story.mp3 per set); on localhost it works
+as before. Admin Studio has a Logout button and `/api/admin/logout` clears the
+HttpOnly cookie, which page script cannot.
+
+**Lesson.** Public copy is a claim like any other. When the product changes,
+grep the public page for what it still promises.
+
+**Tripwire:** none - copy is checked by reading it.
+
+**Status:** FIXED (Listen: interim).
+
+---

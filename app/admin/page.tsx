@@ -258,6 +258,11 @@ export default function AdminPage() {
     } catch { setAuthError('Connection error') }
   }
 
+  async function handleLogout() {
+    try { await fetch('/api/admin/logout', { method: 'POST' }) } catch { /* the reset below still happens */ }
+    setAuthed(false); setPassword('')
+  }
+
   // ── Fetch hadiths ──────────────────────────────────────────────────────────
   async function fetchHadiths() {
     setLoading(true)
@@ -485,6 +490,11 @@ export default function AdminPage() {
             <p className="text-xs text-slate-400">Create · Preview · Publish</p>
           </div>
           <a href="/" className="ml-auto text-xs text-slate-400 hover:text-white">← Public site</a>
+          {/* P361: the session cookie (P353) outlives the tab; this ends it. */}
+          <button onClick={handleLogout} data-test="admin-logout"
+            className="text-xs px-3 py-1.5 rounded-lg border border-slate-600 text-slate-300 hover:text-white hover:border-slate-400">
+            Logout
+          </button>
         </div>
       </header>
 

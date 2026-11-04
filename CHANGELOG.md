@@ -1,3 +1,19 @@
+## [2026-11-04j] - public page copy, Listen on the deployed site, admin Logout (P361, operator)
+
+### Changed
+
+- **app/page.tsx:** the four "Watch our reels" tiles now describe the real channel (Ramadan
+  series, "dark style" and "5 languages ... Arabic" removed). "Listen" is not shown on the
+  deployed site until stored narration exists - it had fallen back to the browser voice; on
+  localhost it narrates as before.
+
+### Added
+
+- **Admin Studio Logout** and `app/api/admin/logout/route.ts` (clears the HttpOnly session
+  cookie from P353).
+
+---
+
 ## [2026-11-04i] - public site: AR toggle removed (P360, operator)
 
 ### Fixed
