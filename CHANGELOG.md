@@ -1,3 +1,19 @@
+## [2026-11-04g] - render-reel: a complete render record, required (P358, Sol R3 part)
+
+### Changed
+
+- **render-reel.ps1:** the `-render.json` sidecar records the scenes actually drawn (was the
+  `-Scenes` parameter, empty for a random render), SHA-256 of reel / narration / draft / SRT /
+  nasheed, the ffmpeg version, -NoReview and -AcceptSubtitleFindings. A sidecar that cannot be
+  written fails the run (was a warning). The final-merge check uses the run's start time
+  instead of "newer than five minutes". mix-gap.py's three fields unchanged.
+
+### Tests
+
+- **scripts/lib/test_render_reel_sidecar.py (new).**
+
+---
+
 ## [2026-11-04f] - CI runs the guard and TTS unit tests
 
 ### Changed

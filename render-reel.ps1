@@ -61,6 +61,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# P358 (Sol R3): the run's identity for "was this file written by THIS run" - see
+# the final-merge check and the sidecar.
+$runStart = Get-Date
 # Native tools (ffmpeg/whisper) write normal output to stderr; PowerShell can mistake that
 # for a terminating error. Helper runs a native command and only fails on a real exit code.
 function Run($exe, [string[]]$cmdArgs) {
@@ -909,15 +912,29 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y",
 # as confirmation. Three checks now: the exit code, the file, and its age.
 if ($rc -ne 0) { Die "final merge failed (ffmpeg exit $rc)" }
 if (-not (Test-Path $reel)) { Die "final merge failed ($reel not created)" }
-$reelAgeMin = [int]((Get-Date) - (Get-Item $reel).LastWriteTime).TotalMinutes
-if ($reelAgeMin -gt 5) {
-  Die "final merge wrote nothing - $reel is $reelAgeMin min old. ffmpeg returned 0 but produced no new file."
+# P358 (Sol R3): "newer than five minutes" stood in for "written by this run". A
+# re-run within five minutes of a previous one passed it with the old file. The
+# run's own start time is the identity.
+if ((Get-Item $reel).LastWriteTime -lt $runStart.AddSeconds(-2)) {
+  Die "final merge wrote nothing - $reel predates this run ($((Get-Item $reel).LastWriteTime)). ffmpeg returned 0 but produced no new file."
 }
 
 # --- STEP 7b: record what was actually rendered (P249) -----------------------
 # Everything below describes a file that now exists and was written by THIS
 # run: the merge returned 0, the reel is on disk, and it is newer than five
 # minutes (P154's three checks, immediately above).
+# P358 (Sol R3): it now says WHICH inputs - the scenes actually drawn (the
+# random pick used to be recorded as the empty -Scenes), and a SHA-256 of the
+# draft, subtitles, narration, nasheed and the reel itself - so a published reel
+# can be traced to the exact text it was checked against. A sidecar that cannot
+# be written fails the run: mix-gap and the set close read it, and a reel
+# without its record is not ready to publish.
+function Get-Sha256Or([string]$path) {
+  if ($path -and (Test-Path -LiteralPath $path)) {
+    return (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLower()
+  }
+  return $null
+}
 
 if ($chosen) {
   # P201: the tracker has a Nasheed column per reel and the asset-reuse audit
@@ -931,13 +948,27 @@ if ($chosen) {
       nasheed   = (Split-Path $chosen -Leaf)
       nasheedVol = $nasheedVol
       nasheedGain = $NasheedGain
-      scenes    = $Scenes
+      scenes    = @($picked | ForEach-Object { $_.Name })
+      scenesRequested = $Scenes
       fitScenes = [bool]$FitScenes
+      subtitles = [bool]$useSubs
+      acceptedSubtitleFindings = [bool]$AcceptSubtitleFindings
+      noReview  = [bool]$NoReview
+      sha256    = [ordered]@{
+        reel      = Get-Sha256Or $reel
+        narration = Get-Sha256Or $narr
+        draft     = Get-Sha256Or $Draft
+        srt       = $(if ($useSubs) { Get-Sha256Or $srt } else { $null })
+        nasheed   = Get-Sha256Or $chosen
+      }
+      draft     = $Draft
+      ffmpeg    = ((& ffmpeg -hide_banner -version 2>$null) | Select-Object -First 1)
       style     = $Style
       lang      = $Lang
       slug      = $Slug
       rendered  = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
-    } | ConvertTo-Json
+      runStart  = $runStart.ToString('yyyy-MM-dd HH:mm:ss')
+    } | ConvertTo-Json -Depth 4
     # P228: WriteAllText is a .NET call, and .NET resolves a RELATIVE path
     # against [Environment]::CurrentDirectory - which PowerShell does NOT
     # update on Set-Location. PS cwd was the repo root while .NET cwd was
@@ -950,7 +981,7 @@ if ($chosen) {
       (New-Object System.Text.UTF8Encoding($false)))
     Write-Host "  recorded: $base-render.json" -ForegroundColor DarkGray
   } catch {
-    Write-Host "  could not write $base-render.json: $($_.Exception.Message)" -ForegroundColor Yellow
+    Die "could not write $base-render.json: $($_.Exception.Message). The reel exists but has no record of its inputs - not ready to publish (P358). Re-run."
   }
 
   # The lane's last-used bed, for the avoid-a-repeat rule. Only when the picker

@@ -46,8 +46,13 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   can no longer accept a crash; the SRT saved at the review pause is re-validated.
   Not yet exercised by a real render - the first interactive EN/RU render after
   this will be the first run of the re-check prompt.
-- **R3 - renders overwrite earlier outputs; the sidecar is thin.** Open. Records
-  `$Scenes`, not the random pick; no hashes; a failed sidecar write only warns.
+- **PARTLY DONE 2026-11-04: R3 - the render record (P358).** The sidecar now records
+  the scenes actually drawn, SHA-256 of reel / narration / draft / SRT / nasheed,
+  ffmpeg version and whether findings were accepted; a sidecar that cannot be
+  written fails the run; "reel newer than 5 min" became "reel newer than this
+  run's start". **Still open:** fixed output paths (a re-render replaces the
+  previous reel of an unpublished set - published sets are safe since tidy-out
+  moves them to out/published/), and a lock against two renders of one reel.
 - **R4 - paid verification evidence lives in gitignored out/.** Open (the 208-call
   report lost on 2026-10-26 is the incident).
 - **R5 - approval stamps are not bound to the revision they approved.** Open,

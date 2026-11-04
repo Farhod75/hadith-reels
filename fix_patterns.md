@@ -15070,3 +15070,35 @@ no network; five of its seven tests fail on the pre-fix script.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 358: the render record named the scenes that were asked for, not the ones drawn
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** provenance (latent)
+
+**What happened.** Sol 6.1 (R3) read the `-render.json` sidecar that
+render-reel.ps1 writes beside each reel (P201/P249). It stored `$Scenes` - the
+parameter - so a random-scene render recorded no scenes at all. It held no
+hashes, so nothing tied a published reel to the draft its subtitles were
+checked against or to the narration in it. A sidecar that failed to write was a
+yellow warning; mix-gap.py and the set close then had nothing to read. And
+"was the reel written by this run" was answered by "is it under five minutes
+old" - a re-run inside five minutes of the last one passed with the old file.
+
+**Fix.** The sidecar records the scenes actually drawn (and the requested list
+separately), SHA-256 of reel, narration, draft, SRT and nasheed, the ffmpeg
+version, and whether -NoReview / -AcceptSubtitleFindings were in force. Failing
+to write it fails the run. The final-merge check compares the reel's write time
+with the run's own start time. The three fields mix-gap.py reads keep their
+names.
+
+**Still open (OPEN_ITEMS R3):** output paths are fixed per slug and language,
+so re-rendering an unpublished set replaces its previous reel; no lock against
+two renders of one reel. Published sets are not exposed - tidy-out.py moves
+them out of out/work/.
+
+**Tripwire:** `scripts/lib/test_render_reel_sidecar.py` (reads the script; four
+of its five tests fail on the pre-fix version).
+
+**Status:** PARTLY FIXED.
+
+---
