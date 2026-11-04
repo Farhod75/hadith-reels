@@ -577,6 +577,11 @@ FP16 warning goes to stderr and would otherwise terminate the script).
 Order, fields and traps for all four platforms: see **Publishing — all four
 platforms** below. YT "Made for kids" = **No** on this lane.
 
+**Telegram is posted by the agent, after the operator's go:**
+`python scripts/tg-post-set.py --number <n> --slug <slug>` (dry run - shows split or not per
+language), then the same with `--post`, started detached (P350). The ids land in
+`out/tg-<n>.json`; a re-run skips what is already up.
+
 ---
 
 ### Step 17 - Retro

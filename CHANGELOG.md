@@ -1,3 +1,15 @@
+## [2026-11-03g] - scripts/tg-post-set.py (per-set scripts into scripts/, 2 of 7)
+
+### Added
+
+- **scripts/tg-post-set.py:** posts a set to Telegram - dry run by default, the over-1024
+  split (video + full-text reply), ids written to out/tg-<n>.json as they arrive and a
+  recorded language refused (P350). Replaces out/tg_<n>.py. scripts/lib/test_tg_post_set.py
+  (5). CLAUDE.md, FEATURES.md, reel-creation-pipeline.md Step 16. #2734 and #223 dry runs:
+  every caption under 1024, one message each.
+
+---
+
 ## [2026-11-03f] - scripts/mix-gap.py (per-set scripts into scripts/, 1 of 7)
 
 ### Added

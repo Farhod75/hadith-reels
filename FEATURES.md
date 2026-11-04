@@ -72,6 +72,17 @@ real Finding that sorts and counts.
 - Replaces `out/mix_gap<n>.py` and `out/w43_gap_rh.py`; on muslim-2749 it reproduces their
   numbers exactly (13.3 / 10.7 / 15.8 / 13.4 after, UZ 0.94 before). 4 tests.
 
+### Telegram set publisher (`scripts/tg-post-set.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2, 2 of 7).
+
+- One call per set, languages in order. Caption <= 1024: one video message. Over: the video
+  with `out/caption-<n>-<lang>-tg-video.txt` (or a short caption derived from the full one:
+  title, source and verify lines, four hashtags), then the full text as a reply.
+- Dry run by default. Message ids are written to `out/tg-<n>.json` as they arrive; recorded
+  languages are skipped, `--redo <lang>` re-posts one on purpose. Stops at the first failure.
+- Replaces `out/tg_<n>.py`. Checked: #2747 plans four splits from its tg-video files; #2749,
+  seeded with its real ids 196-199, posts nothing under `--post`. 5 tests.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

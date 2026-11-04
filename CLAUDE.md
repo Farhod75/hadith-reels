@@ -486,6 +486,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   the P338 target. `--bed <file>` before the render (registry gain x render-reel's base),
   no `--bed` after it (reads each render sidecar, never a log). Read-only; the base and
   narration volumes are parsed from `render-reel.ps1`.
+- `tg-post-set.py` — posts a rendered set to Telegram through the dev server's
+  `/api/telegram/post`. Dry run by default; `--post` sends. Over 1024 -> video with a short
+  caption + the full text as a reply. Every message id lands in `out/tg-<n>.json` the moment
+  it exists, and a language already recorded there is refused (P350). Run it detached.
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
 - `.claude/tripwires.json` + `.claude/hooks/tripwire.js` — PreToolUse
