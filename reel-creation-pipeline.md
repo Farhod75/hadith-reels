@@ -46,6 +46,17 @@ out/
 ├── published/ archive — same shape as work/
 └── _legacy/ tests and dead-convention files
 
+Re-applied 2026-11-03 (operator): work/ had drifted to ~50 sets and out/ to 944 loose
+files. `python scripts/tidy-out.py` (dry run, plan in out/_tidy_plan.csv; `--apply` moves and
+writes out/_tidy_undo.ps1 - nothing is deleted) now does it at every set close:
+- a published set's work/{style}/{slug} -> published/{style}/{slug}, its loose files into
+  that folder's `_files/`; a set not yet published keeps its work/ folder, and its live files
+  (captions, drafts, set/render/tg/clips JSON) stay at the top of out/ where the tools read them;
+- one-off scripts, logs and commit messages -> out/_archive/{scripts,logs,commit-msgs,misc}/;
+- files meant for the operator -> out/deliverables/.
+Still at the top, against P106's data/: candidates*.json, candidate-translations.json and the
+reports - the scripts write them there. Moving them is a code change, not a tidy.
+
 assets/mascot/
 ├── lamb-boy-mosque-night-v3.png    4K, moonlit courtyard, Uzbek tyubeteika
 ├── lamb-girl-garden-day-v2.png     4K, sunny garden, khan-atlas ikat

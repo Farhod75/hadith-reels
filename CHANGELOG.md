@@ -1,3 +1,19 @@
+## [2026-11-03o] - out/ back to the P106 layout; scripts/tidy-out.py
+
+### Changed
+
+- **out/ (local, gitignored):** 944 loose files -> 45; 48 published sets moved from work/ to
+  published/{style}/{slug}/ with their loose files in `_files/`; work/ keeps the four sets not
+  yet published (muslim-2734, muslim-223, bayhaqi-1120, bayhaqi-2318). Undo: out/_tidy_undo.ps1.
+  Checked after: tg-post-set and mix-gap on the unpublished sets, audit-assets, audit-docs.
+
+### Added
+
+- **scripts/tidy-out.py:** the same sort, re-runnable at every set close. Pipeline
+  Folder layout section and CLAUDE.md updated.
+
+---
+
 ## [2026-11-03n] - telegram/post: the build no longer traces the whole project
 
 ### Fixed
