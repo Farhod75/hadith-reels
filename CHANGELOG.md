@@ -1,3 +1,14 @@
+## [2026-11-04l] - public site fully in EN / RU / UZ / TJ (P363, operator)
+
+### Changed
+
+- **lib/ui-strings.ts (new), app/page.tsx:** every label on the page follows the language
+  toggle; collection and narrator names (lib/refs.ts) and tags (lib/tags.ts, de-duplicated)
+  too. The choice is remembered per browser; `<html lang>` follows it. UZ/TJ strings reviewed
+  by the operator.
+
+---
+
 ## [2026-11-04k] - Listen on the public site plays the reels' own narration (P362)
 
 ### Added

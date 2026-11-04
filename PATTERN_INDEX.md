@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-292 patterns in 305 entries, frontier **P362**. The P-sequence is shared with
+293 patterns in 306 entries, frontier **P363**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -353,5 +353,6 @@ BEFORE changing it.
 - **P360** - the public site's AR toggle showed English and read it in English
 - **P361** - the public page described a channel that was planned, not the one that exists
 - **P362** - the public Listen button paid per click for audio we already had
+- **P363** - the language toggle translated the hadith and nothing around it
 
-<!-- pattern-index-stamp entries=305 patterns=292 frontier=362 sha1=3a8b399011e04894f6b68e347a797f9810062089 -->
+<!-- pattern-index-stamp entries=306 patterns=293 frontier=363 sha1=444b05a941072a108ea78516eb97017e13319e34 -->

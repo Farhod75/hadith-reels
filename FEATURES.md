@@ -1,3 +1,10 @@
+### Public site in four languages (`lib/ui-strings.ts`)
+
+The EN / RU / UZ / TJ toggle changes the whole page, not only the hadith text: tabs, search,
+grades, buttons, the Watch tab and the footer come from `lib/ui-strings.ts`; collection and
+narrator names from `lib/refs.ts`, tags from `lib/tags.ts` (the forms the captions use). The
+choice is remembered per browser and sets `<html lang>`. UZ is Cyrillic (P169) (P363).
+
 ### Stored narration for the public Listen button (`scripts/publish-narration.py`)
 
 Each set's `story.mp3` - narrator and matn, in that language's current voice - goes to the

@@ -15218,3 +15218,31 @@ re-uploaded).
 narration run (OPEN_ITEMS).
 
 ---
+
+## PATTERN 363: the language toggle translated the hadith and nothing around it
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** content (public site, operator-reported)
+
+**What happened.** On hadithreels.com, choosing RU, UZ or TJ swapped the
+hadith's translation and left everything else English: the tabs, the search
+box, "Grade", the buttons (Listen, Copy, Source, Verify), the counts, the
+Watch tab and the footer. Collection and narrator names stayed in English too,
+although lib/refs.ts has had their RU / UZ / TJ forms for the captions since
+the caption builder, and tags stayed English although lib/tags.ts carries all
+four forms. A Russian-speaking visitor got a Russian sentence inside an
+English page.
+
+**Fix.** `lib/ui-strings.ts` holds the page's own words in the four toggle
+languages (Russian count forms 1 / 2-4 / 5+ handled); the page reads every
+label from it; names come from lib/refs.ts and tags from lib/tags.ts, with
+duplicates collapsed (wife, husband -> one "брак"). The choice is saved in the
+browser when the viewer clicks, and `<html lang>` follows it. Saving it in an
+effect instead was tried and lost the choice on reload: React's development
+double-run wrote the initial 'en' over the restored value.
+
+**Tripwire:** none yet - the strings were reviewed by the operator (UZ/TJ);
+English remains the tested default.
+
+**Status:** FIXED.
+
+---

@@ -1,6 +1,9 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { UI } from '@/lib/ui-strings'
+import { TAG_CANONICAL, TAG_FORMS } from '@/lib/tags'
+import { COLLECTIONS, NARRATORS } from '@/lib/refs'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 // P360: no 'ar'. AR is out of scope (P118) - nothing in the library is an Arabic
@@ -51,6 +54,18 @@ const LANGS: { code: Lang; flag: string; label: string }[] = [
   { code: 'ru', flag: '🇷🇺', label: 'RU' },
   { code: 'tj', flag: '🇹🇯', label: 'TJ' },
 ]
+
+// P363: names and tags in the chosen language. English is the stored form;
+// lib/refs.ts and lib/tags.ts carry the RU / UZ / TJ forms the captions already
+// use. Anything without a form stays as stored rather than being guessed.
+function localName(table: Record<string, { ru: string; uz: string; tj: string }>, name: string, lang: Lang) {
+  return lang === 'en' ? name : (table[name]?.[lang] ?? name)
+}
+function localTag(tag: string, lang: Lang) {
+  if (lang === 'en') return tag          // the stored tags ARE English; keep their detail
+  const canon = TAG_CANONICAL[tag] ?? tag
+  return TAG_FORMS[canon]?.[lang] ?? tag
+}
 
 // ─── TTS Button ───────────────────────────────────────────────────────────────
 // P361: on the deployed site /api/tts needs an admin session (P353) and has no
@@ -124,7 +139,7 @@ function TTSButton({ text, lang, audioUrl }: { text: string; lang: Lang; audioUr
   return (
     <button onClick={toggle}
       className="text-xs px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 hover:bg-indigo-100 transition-colors flex items-center gap-1.5">
-      {loading ? '⌛' : playing ? '⏸ Pause' : '▶ Listen'}
+      {loading ? '⌛' : playing ? UI[lang].pause : UI[lang].listen}
     </button>
   )
 }
@@ -149,17 +164,18 @@ function HadithCard({ hadith, lang, audioUrl }: { hadith: Hadith; lang: Lang; au
       {/* Meta */}
       <div className="flex items-center gap-2 flex-wrap mb-3">
         <span className={`text-xs px-2 py-0.5 rounded-full font-medium border ${GRADE_COLORS[hadith.grade] ?? 'bg-gray-100 text-gray-500 border-gray-200'}`}>
-          {hadith.grade}
+          {UI[lang].gradeLabel[hadith.grade as 'sahih' | 'hasan'] ?? hadith.grade}
         </span>
-        <span className="text-xs text-gray-400">{hadith.collection}</span>
+        <span className="text-xs text-gray-400">{localName(COLLECTIONS, hadith.collection, lang)}</span>
         {hadith.hadith_number && <span className="text-xs text-gray-400">#{hadith.hadith_number}</span>}
-        <span className="text-xs text-gray-400 ml-auto">{hadith.narrator}</span>
+        <span className="text-xs text-gray-400 ml-auto">{localName(NARRATORS, hadith.narrator, lang)}</span>
       </div>
 
       {/* Tags */}
       {hadith.tags && hadith.tags.length > 0 && (
         <div className="flex gap-1 flex-wrap mb-3">
-          {hadith.tags.slice(0, 5).map(tag => (
+          {/* several English tags share one RU/UZ/TJ form (wife, husband -> marriage) */}
+          {Array.from(new Set(hadith.tags.map(tag => localTag(tag, lang)))).slice(0, 5).map(tag => (
             <span key={tag} className="text-xs px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full">
               #{tag}
             </span>
@@ -173,17 +189,17 @@ function HadithCard({ hadith, lang, audioUrl }: { hadith: Hadith; lang: Lang; au
         <button
           onClick={() => { navigator.clipboard.writeText(display); setCopied(true); setTimeout(() => setCopied(false), 2000) }}
           className="text-xs px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors">
-          {copied ? '✓ Copied' : 'Copy'}
+          {copied ? UI[lang].copied : UI[lang].copy}
         </button>
         {hadith.source_url && (
           <a href={hadith.source_url} target="_blank" rel="noopener noreferrer"
             className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors">
-            Source ↗
+            {UI[lang].source}
           </a>
         )}
         <a href="https://hadithverifier.com" target="_blank" rel="noopener noreferrer"
           className="text-xs px-3 py-1.5 rounded-lg border border-amber-200 text-amber-700 hover:bg-amber-50 transition-colors ml-auto">
-          🔍 Verify
+          {UI[lang].verify}
         </a>
       </div>
     </div>
@@ -207,10 +223,9 @@ function WatchTab({ lang }: { lang: Lang }) {
       {/* Coming soon card */}
       <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-2xl p-8 text-center text-white">
         <div className="text-5xl mb-4">🎬</div>
-        <h2 className="text-xl font-bold mb-2">Watch our reels</h2>
+        <h2 className="text-xl font-bold mb-2">{UI[lang].watchTitle}</h2>
         <p className="text-indigo-200 text-sm mb-6 max-w-sm mx-auto">
-          Authentic hadith reels with verified Islamic sources — new reels added regularly.
-          Follow us on your favourite platform.
+          {UI[lang].watchDesc}
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
           <a href={socialUrl('youtube', lang)} target="_blank" rel="noopener noreferrer"
@@ -237,12 +252,7 @@ function WatchTab({ lang }: { lang: Lang }) {
         {/* P361: these four described the first plan for the channel - a dark style,
             a Ramadan series that was never made, five languages including Arabic.
             They now say what the reels actually are. */}
-        {[
-          { icon: '📖', title: 'Adults series', desc: 'One authentic hadith per reel, its narrator named, over bright scenes with no faces.' },
-          { icon: '🐑', title: 'Kids series', desc: 'The same hadiths in simple words, told by our lamb friends.' },
-          { icon: '🌍', title: '4 languages', desc: 'English, Russian, Uzbek and Tajik narration, with the Arabic matn.' },
-          { icon: '✅', title: 'Checked at the source', desc: 'Every matn is matched to a Tier 1 collection before it is narrated.' },
-        ].map(item => (
+        {(['📖', '🐑', '🌍', '✅'] as const).map((icon, i) => ({ icon, ...UI[lang].tiles[i] })).map(item => (
           <div key={item.title} className="bg-white rounded-xl border border-gray-200 p-4">
             <div className="text-2xl mb-2">{item.icon}</div>
             <div className="text-sm font-semibold text-gray-900 mb-1">{item.title}</div>
@@ -254,8 +264,7 @@ function WatchTab({ lang }: { lang: Lang }) {
       {/* Verify reminder */}
       <div className="bg-amber-50 rounded-xl border border-amber-200 p-4 text-center">
         <p className="text-sm text-amber-800">
-          All our reels use only <strong>sahih and hasan</strong> authenticated hadiths.
-          Verify any hadith at{' '}
+          {UI[lang].reelsOnlyPre}<strong>{UI[lang].reelsOnlyStrong}</strong>{UI[lang].reelsOnlyPost}
           <a href="https://hadithverifier.com" target="_blank" rel="noopener noreferrer"
             className="underline font-medium hover:text-amber-900">
             hadithverifier.com
@@ -270,6 +279,21 @@ function WatchTab({ lang }: { lang: Lang }) {
 export default function HadithReelsPage() {
   const [tab, setTab]               = useState<Tab>('browse')
   const [lang, setLang]             = useState<Lang>('en')
+  // P363: remember the viewer's language (a per-browser convenience only) and tell
+  // the browser which language the page is in, for screen readers and translators.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('hr-lang') as Lang | null
+      if (saved && LANGS.some(l => l.code === saved)) setLang(saved)
+    } catch { /* storage unavailable: stay on English */ }
+  }, [])
+  // Saved where the viewer chooses (not in an effect): under React's dev double-run an
+  // effect saving `lang` wrote the initial 'en' over the restored choice.
+  function chooseLang(code: Lang) {
+    setLang(code)
+    try { localStorage.setItem('hr-lang', code) } catch { /* ignore */ }
+  }
+  useEffect(() => { document.documentElement.lang = UI[lang].htmlLang }, [lang])
   const [narration, setNarration]   = useState<NarrationIndex>({})
   useEffect(() => {
     // P362: absent or unreadable index -> no stored audio, nothing breaks
@@ -308,7 +332,7 @@ export default function HadithReelsPage() {
       if (data.error) throw new Error(data.error)
       setHadiths((data.reels || []) as Hadith[])
     } catch (e: any) {
-      setError(e.message || 'Search failed')
+      setError(e.message || UI[lang].searchFailed)
     } finally {
       setLoading(false)
     }
@@ -330,7 +354,7 @@ export default function HadithReelsPage() {
         sahih: data.sahih ?? list.filter(h => h.grade === 'sahih').length,
       })
     } catch (e: any) {
-      setError(e.message || 'Failed to load')
+      setError(e.message || UI[lang].loadFailed)
     } finally {
       setLoading(false)
       setLoadingMore(false)
@@ -353,7 +377,7 @@ export default function HadithReelsPage() {
           <div className="flex-1 min-w-0">
             <h1 className="text-lg font-bold text-gray-900">Hadith Reels</h1>
             <p className="text-xs text-gray-500 truncate">
-              Authentic hadith · EN · UZ · RU · TJ
+              {UI[lang].subtitle}
             </p>
           </div>
 
@@ -361,18 +385,18 @@ export default function HadithReelsPage() {
           <div className="hidden sm:flex gap-4 text-center flex-shrink-0">
             <div>
               <div className="text-base font-bold text-gray-900">{stats.total}</div>
-              <div className="text-xs text-gray-500">Hadiths</div>
+              <div className="text-xs text-gray-500">{UI[lang].hadiths}</div>
             </div>
             <div>
               <div className="text-base font-bold text-green-600">{stats.sahih}</div>
-              <div className="text-xs text-gray-500">Sahih</div>
+              <div className="text-xs text-gray-500">{UI[lang].sahihStat}</div>
             </div>
           </div>
 
           {/* Lang switcher */}
           <div className="flex gap-1 flex-shrink-0">
             {LANGS.map(({ code, flag, label }) => (
-              <button key={code} onClick={() => setLang(code)}
+              <button key={code} onClick={() => chooseLang(code)}
                 className={`text-xs px-1.5 py-1 rounded-lg border transition-colors ${
                   lang === code
                     ? 'bg-indigo-600 text-white border-indigo-600'
@@ -387,7 +411,7 @@ export default function HadithReelsPage() {
 
       {/* ── HV CROSS-LINK ───────────────────────────────────────────────────── */}
       <div className="bg-amber-900/10 text-amber-800 text-xs text-center py-1.5 px-4 border-b border-amber-200/60">
-        🔍 Verify any hadith before sharing at{' '}
+        🔍 {UI[lang].verifyBanner}{' '}
         <a href="https://hadithverifier.com" target="_blank" rel="noopener noreferrer"
           className="underline font-semibold hover:text-amber-900">
           hadithverifier.com
@@ -398,8 +422,8 @@ export default function HadithReelsPage() {
       <div className="max-w-3xl mx-auto px-4">
         <div className="flex border-b border-gray-200">
           {([
-            { key: 'browse', label: '📚 Hadith library' },
-            { key: 'watch',  label: '🎬 Watch reels'    },
+            { key: 'browse', label: UI[lang].tabLibrary },
+            { key: 'watch',  label: UI[lang].tabWatch   },
           ] as { key: Tab; label: string }[]).map(({ key, label }) => (
             <button key={key} onClick={() => setTab(key)}
               className={`px-5 py-3 text-sm border-b-2 -mb-px transition-colors ${
@@ -425,11 +449,11 @@ export default function HadithReelsPage() {
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search hadiths, tags, narrators..."
+                                placeholder={UI[lang].searchPlaceholder}
                 className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
               />
               <div className="flex gap-2 items-center flex-wrap">
-                <span className="text-xs text-gray-500">Grade:</span>
+                <span className="text-xs text-gray-500">{UI[lang].grade}</span>
                 {(['all', 'sahih', 'hasan'] as Grade[]).map(g => (
                   <button key={g} onClick={() => setFilterGrade(g)}
                     className={`text-xs px-2.5 py-1 rounded-lg border transition-colors ${
@@ -437,11 +461,11 @@ export default function HadithReelsPage() {
                         ? 'bg-indigo-600 text-white border-indigo-600'
                         : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                     }`}>
-                    {g}
+                    {UI[lang].gradeLabel[g]}
                   </button>
                 ))}
                 <span className="text-xs text-gray-400 ml-auto">
-                  {filtered.length} hadiths
+                  {UI[lang].count(filtered.length)}
                 </span>
               </div>
             </div>
@@ -450,7 +474,7 @@ export default function HadithReelsPage() {
             {loading && (
               <div className="text-center py-16">
                 <div className="text-3xl mb-3 animate-pulse">📚</div>
-                <p className="text-sm text-gray-500">Loading authenticated hadiths...</p>
+                <p className="text-sm text-gray-500">{UI[lang].loading}</p>
               </div>
             )}
 
@@ -460,7 +484,7 @@ export default function HadithReelsPage() {
                 <p className="text-sm text-red-700 mb-2">{error}</p>
                 <button onClick={() => fetchHadiths(0, true)}
                   className="text-xs px-3 py-1.5 rounded-lg bg-red-100 text-red-700 hover:bg-red-200">
-                  Retry
+                  {UI[lang].retry}
                 </button>
               </div>
             )}
@@ -469,7 +493,7 @@ export default function HadithReelsPage() {
             {!loading && !error && filtered.length === 0 && (
               <div className="text-center py-16 text-gray-400">
                 <div className="text-3xl mb-3">🔍</div>
-                <p className="text-sm">No hadiths found. Try a different search or grade.</p>
+                <p className="text-sm">{UI[lang].empty}</p>
               </div>
             )}
 
@@ -487,7 +511,7 @@ export default function HadithReelsPage() {
                     disabled={loadingMore}
                     className="w-full py-3 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
                   >
-                    {loadingMore ? 'Loading…' : `Load more (${hadiths.length} of ${stats.total})`}
+                    {loadingMore ? UI[lang].loadingMore : UI[lang].loadMore(hadiths.length, stats.total)}
                   </button>
                 )}
               </div>
@@ -500,10 +524,10 @@ export default function HadithReelsPage() {
 
         {/* Footer */}
         <div className="text-center text-xs text-gray-400 pt-4 pb-8 border-t border-gray-100">
-          All hadiths are sahih or hasan — authenticated from major collections.{' '}
+          {UI[lang].footer}{' '}
           <a href="https://hadithverifier.com" target="_blank" rel="noopener noreferrer"
             className="text-amber-600 underline hover:text-amber-700">
-            Verify at hadithverifier.com →
+            {UI[lang].footerLink}
           </a>
         </div>
 
