@@ -1,3 +1,14 @@
+## [2026-11-03e] - Next.js 16.4.5 (November 3 security release); npm audit fix
+
+### Security
+
+- **package.json:** next and eslint-config-next 16.2.6 -> 16.4.5, the 2026-11-03 scheduled
+  security release (seven medium advisories; 16.2.x has no backport). npm audit fix
+  without --force: production audit 12 (11 high) -> 0. 16 moderate remain in eslint dev
+  dependencies. tsc, next build and scripts/lib (95) green.
+
+---
+
 ## [2026-11-03d] - quote_missing is HIGH (P352, operator)
 
 ### Changed

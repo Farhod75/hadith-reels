@@ -132,8 +132,21 @@ this one wins.
   (`blackforestlabs/flux-3/edit-image`) works and lives only in
   `out/edit_4811_f3.ps1`, not in `scripts/`.
 - **Kling 4.0** - API open, not evaluated.
-- **Next.js security release** (announced for November) and
-  **@anthropic-ai/sdk 0.95 -> 1.x** (major) - from the 2026-10-31 tool review.
+- **DONE 2026-11-03: Next.js November security release.** HR next 16.2.6 -> 16.4.5
+  (published 2026-11-03, seven medium advisories; no 16.2.x backport), eslint-config-next
+  the same; npm audit fix (no --force) -> prod audit 0 vulnerabilities (was 12: remotion's
+  zod, postcss, ws, fast-uri, extract-zip, browserslist). 16 moderate remain in eslint
+  dev deps (minimatch), fix needs --force - left. tsc, build, 95 tests green. The local
+  dev server (3002) must be restarted to run on 16.4.5.
+- **@anthropic-ai/sdk 0.95 -> 1.x** (major, API version 2026-10-21): next. Only
+  app/api/generate-reel/route.ts and scripts/translate-tajik.ts use the SDK; neither sends
+  temperature/top_p/top_k or Text Completions. The Python scripts call the API over raw
+  HTTP with their own anthropic-version and are not affected.
+- **HV (hadith-verifier) is on next 14.2.5** (summer 2024) and public at
+  hadithverifier.com; the 14.x line has security backports up to 14.2.35. Operator
+  approved the patch-level upgrade 2026-11-03.
+- **Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
+  the whole project into the server output. Harmless locally (HR is not deployed).
 - **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
   unregistered); `b6412-health` retired (water from the jar's bottom, P343).
 
