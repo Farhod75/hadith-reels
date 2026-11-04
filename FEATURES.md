@@ -83,6 +83,17 @@ real Finding that sorts and counts.
 - Replaces `out/tg_<n>.py`. Checked: #2747 plans four splits from its tg-video files; #2749,
   seeded with its real ids 196-199, posts nothing under `--post`. 5 tests.
 
+### Clip registration (`scripts/register-clips.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2, 3 of 7).
+
+- `--spec`: one JSON per set (`common` text + per-clip file, sidecar, note, lanes) -> registry
+  entries, verified:false (P121). `--verify <prefix>`: the set-close step, verified:true.
+- Detects the registry's exact format (indent, ensure_ascii, CRLF, trailing newline) and
+  refuses to write if it cannot reproduce it; refuses clashes and missing files; runs
+  audit-assets.py --audit after a commit. Replaces out/w<nn>_reg<n>.py. 5 tests. Checked on the
+  live registry: re-registering m2749 is refused, `--verify m223-` lists the six #223 clips
+  that close with that set, nothing written.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

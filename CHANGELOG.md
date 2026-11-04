@@ -1,3 +1,14 @@
+## [2026-11-03h] - scripts/register-clips.py (per-set scripts into scripts/, 3 of 7)
+
+### Added
+
+- **scripts/register-clips.py:** registers a set's clips from out/clips-<n>.json and marks
+  them verified at set close (--verify <prefix>). Dry run unless --commit; byte-exact
+  round-trip of the registry or nothing is written. Replaces out/w<nn>_reg<n>.py.
+  scripts/lib/test_register_clips.py (5). CLAUDE.md, FEATURES.md.
+
+---
+
 ## [2026-11-03g] - scripts/tg-post-set.py (per-set scripts into scripts/, 2 of 7)
 
 ### Added

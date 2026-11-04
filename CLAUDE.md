@@ -490,6 +490,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   `/api/telegram/post`. Dry run by default; `--post` sends. Over 1024 -> video with a short
   caption + the full text as a reply. Every message id lands in `out/tg-<n>.json` the moment
   it exists, and a language already recorded there is refused (P350). Run it detached.
+- `register-clips.py` — `--spec out/clips-<n>.json` adds a set's scene clips to the registry
+  (verified:false, lanes default adults, a raw take may go in with `lanes: []`, P141);
+  `--verify <prefix>` marks them verified at set close. Dry run unless `--commit`; refuses a
+  clash, a clip missing from out/backgrounds/new/, or a registry that will not round-trip.
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
 - `.claude/tripwires.json` + `.claude/hooks/tripwire.js` — PreToolUse
