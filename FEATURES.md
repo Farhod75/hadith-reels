@@ -106,6 +106,15 @@ real Finding that sorts and counts.
   string. It calls render-reel through `-Command` with `@(...)`; a probe confirmed 3 clips,
   the gain, the switches and the exit code arrive. 6 tests. Replaces out/r<n>.ps1.
 
+### Stage 4 recorder (`scripts/approve-candidate.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2, 5 of 7).
+
+- `--id <candidate_id> --number <n> --note "<operator's words>" [--action reject] [--commit]`.
+  Writes status, reviewed_by, reviewed_at, review_action, review_reason - the old per-set
+  scripts wrote the status alone, so the decision's wording lived only in a script comment.
+- Checked read-only on the live table: #2749 (promoted) refused; Bukhari #3435 refused -
+  status needs_human, A/B disagree. 5 tests. Replaces out/approve_<n>.py.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

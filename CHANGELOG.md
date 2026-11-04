@@ -1,3 +1,13 @@
+## [2026-11-03j] - scripts/approve-candidate.py (per-set scripts into scripts/, 5 of 7)
+
+### Added
+
+- **scripts/approve-candidate.py:** records the operator's Stage 4 decision on one candidate,
+  by id and number, with his words in review_reason (G1: the script never decides).
+  Replaces out/approve_<n>.py. scripts/lib/test_approve_candidate.py (5). CLAUDE.md, FEATURES.md.
+
+---
+
 ## [2026-11-03i] - scripts/render-set.py (per-set scripts into scripts/, 4 of 7)
 
 ### Added

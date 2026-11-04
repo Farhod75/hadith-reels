@@ -528,6 +528,9 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   that means kitab. Dry run by default; `--row` to scope (P325).
 - `translate-candidates.py` — Stage 2 of the sourcing pipeline (Workflow I)
 - `source-candidates.py`, `upload-candidates.py`, `promote-candidates.py` — Stages 0/1/5
+- `approve-candidate.py` — Stage 4, recorded: writes the operator's decision onto ONE candidate
+  by id, with his words in `review_reason`. Refuses a wrong number, a row that is not
+  'verified' (for an approval) and any row already approved, rejected or promoted.
 - `scripts/lib/` — sourcing modules + 49 offline pytest tests (no network)
 - `scripts/lib/uzbek-translit.ts` — Cyrillic↔Latin, tested for okina vs tutuq.
   **Do not port to Python.** A second implementation drifts, and okina rules are
