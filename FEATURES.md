@@ -115,6 +115,16 @@ real Finding that sorts and counts.
 - Checked read-only on the live table: #2749 (promoted) refused; Bukhari #3435 refused -
   status needs_human, A/B disagree. 5 tests. Replaces out/approve_<n>.py.
 
+### Drafts and captions from one set file (`scripts/make-drafts.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2, 7 of 7).
+
+- Our words once per language in `out/set-<n>.json`; the matn and narrator from the library row;
+  out come the four drafts and the caption blocks, linted, with a narration dry run.
+- Checked against what shipped: rebuilt from their own M/H/C lines, the muslim-2749 AND
+  muslim-2747 drafts come out byte-identical in all four languages (2747 includes the inner
+  quotes P342 drops), and caption-2749.json is identical. 6 tests. Replaces out/drafts_<n>.py
+  and the hand-written caption JSON.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

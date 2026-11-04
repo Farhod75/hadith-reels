@@ -530,6 +530,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `source-candidates.py`, `upload-candidates.py`, `promote-candidates.py` — Stages 0/1/5.
   upload-candidates writes the narrator as its lib/refs.ts NARRATORS key via
   `scripts/lib/narrator_ar.py` (P344 follow-up); an unmapped Arabic name is left as is.
+- `make-drafts.py` — `out/set-<n>.json` (title, moral, H per language, written once) + the
+  library row read live -> the four `draft.txt` files (P337 lead-in, quoted matn, P342 inner
+  quotes dropped) and `out/caption-<n>.json` for build-caption. Lints and dry-runs narration.
+  Dry run unless `--write`; never overwrites a draft without `--force`.
 - `approve-candidate.py` — Stage 4, recorded: writes the operator's decision onto ONE candidate
   by id, with his words in `review_reason`. Refuses a wrong number, a row that is not
   'verified' (for an approval) and any row already approved, rejected or promoted.

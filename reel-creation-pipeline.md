@@ -367,6 +367,10 @@ Generate → defect review → matn from the DB → `draft.txt` → lint → cap
 script check → narration → listen. Same order, same gates, same recurring
 defects. **Read the kids checklist above; it is not repeated here.**
 
+Adults drafts come from one file: write title, moral and H per language in
+`out/set-<n>.json`, then `python scripts/make-drafts.py --set out/set-<n>.json --write` builds
+the four `draft.txt` (S from the DB) and `out/caption-<n>.json`.
+
 Two differences only:
 
 - **Voices** are the adults slots: EN James · RU Marat · UZ Opa Johann ·

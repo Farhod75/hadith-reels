@@ -1,3 +1,14 @@
+## [2026-11-03l] - scripts/make-drafts.py (per-set scripts into scripts/, 7 of 7)
+
+### Added
+
+- **scripts/make-drafts.py:** out/set-<n>.json + the library row -> four draft.txt and
+  out/caption-<n>.json; lint and narration dry run. Byte-identical to the shipped muslim-2749
+  and muslim-2747 drafts. scripts/lib/test_make_drafts.py (6). CLAUDE.md, FEATURES.md,
+  pipeline (adults drafts), OPEN_ITEMS item 2 closed.
+
+---
+
 ## [2026-11-03k] - Dorar narrator names arrive as NARRATORS keys (P344 follow-up, 6 of 7)
 
 ### Changed

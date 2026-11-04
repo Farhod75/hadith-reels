@@ -150,6 +150,11 @@ this one wins.
   A major migration (React 18 -> 19, App Router changes) with its own test pass, not a
   dependency bump. HV has no middleware and runs on Vercel, which narrows but does not
   close the exposure.
+- **DONE 2026-11-03: per-set out/ scripts moved into scripts/ (operator's item 2).** mix-gap.py,
+  tg-post-set.py, register-clips.py, render-set.py, approve-candidate.py, make-drafts.py, and
+  Dorar narrators arriving as NARRATORS keys (narrator_ar.py). Each checked against the
+  set it replaces (muslim-2749 / 2747 numbers, ids and drafts reproduced exactly). Still by
+  hand, on purpose: the SRT fix (the review IS the point), stills and motion prompts.
 - **Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
   the whole project into the server output. Harmless locally (HR is not deployed).
 - **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
