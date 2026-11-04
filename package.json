@@ -12,7 +12,7 @@
     "remotion:kids": "npx remotion render remotion/index.tsx KidsReel out/kids.mp4"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.95.2",
+    "@anthropic-ai/sdk": "^1.4.0",
     "@fal-ai/client": "^1.10.1",
     "@remotion/bundler": "^4.0.460",
     "@remotion/player": "^4.0.459",

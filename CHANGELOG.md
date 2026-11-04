@@ -1,3 +1,14 @@
+## [2026-11-03m] - @anthropic-ai/sdk 1.4.0
+
+### Changed
+
+- **package.json:** @anthropic-ai/sdk ^0.95.2 -> ^1.4.0 (major; API version 2026-10-21).
+  The two callers (app/api/generate-reel, scripts/translate-tajik.ts) send none of the
+  removed parameters; tsc, build and a live one-message probe green. The Python scripts
+  call the API over raw HTTP and are unaffected.
+
+---
+
 ## [2026-11-03l] - scripts/make-drafts.py (per-set scripts into scripts/, 7 of 7)
 
 ### Added

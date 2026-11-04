@@ -138,7 +138,10 @@ this one wins.
   zod, postcss, ws, fast-uri, extract-zip, browserslist). 16 moderate remain in eslint
   dev deps (minimatch), fix needs --force - left. tsc, build, 95 tests green. The local
   dev server (3002) must be restarted to run on 16.4.5.
-- **@anthropic-ai/sdk 0.95 -> 1.x** (major, API version 2026-10-21): next. Only
+- **DONE 2026-11-03: @anthropic-ai/sdk 0.95.2 -> 1.4.0** (API version 2026-10-21). tsc and build
+  green; a one-message probe through 1.4.0 (new Anthropic({ apiKey }), content found by type)
+  returned "OK". .env.local holds ANTHROPIC_API_KEY only, so 1.x's both-credentials TypeError
+  cannot fire. Was: Only
   app/api/generate-reel/route.ts and scripts/translate-tajik.ts use the SDK; neither sends
   temperature/top_p/top_k or Text Completions. The Python scripts call the API over raw
   HTTP with their own anthropic-version and are not affected.
