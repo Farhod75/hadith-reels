@@ -12,6 +12,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { requireAdmin } from '@/lib/admin-session'
 
 type VoiceSet = {
   adults: string
@@ -147,6 +148,10 @@ function cleanForTTS(text: string, lang: string): string {
 }
 
 export async function POST(req: NextRequest) {
+  // P353: refuse before reading the body, a file or a key.
+  const denied = requireAdmin(req)
+  if (denied) return denied
+
   try {
     // P163: no default for `mascot`. P103 defaulted it to 'girl' so a payload
     // missing the field fell back to shipped voices rather than switching

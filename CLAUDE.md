@@ -477,6 +477,12 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   tree at `out/work/{style}/{slug}/{lang}/` (P106)
 - `app/api/render-video/route.ts` — FFmpeg pipeline
 - `lib/tts-router.ts` — language → voice provider selection
+- `lib/admin-session.ts` — **every route that publishes or spends calls `requireAdmin()`
+  first** (P353). A correct admin password sets a signed HttpOnly cookie; without it the
+  route answers 401. `next dev` on localhost passes without one, so the pipeline scripts
+  keep working; Vercel and `next start` never do. A new side-effecting route that does
+  not call it is the P353 defect again. HR IS deployed (hadith-reels.vercel.app,
+  www.hadithreels.com).
 - `lib/ffmpeg-pipeline.ts` — server-side video composition
 
 ### Agents (Python, `scripts/`)

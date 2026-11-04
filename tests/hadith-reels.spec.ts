@@ -237,19 +237,28 @@ test.describe('API — smoke tests', () => {
     expect(Array.isArray(body.reels)).toBe(true)
   })
 
-  test('POST /api/tts without text returns 400', async ({ request }) => {
-    const res = await request.post(`${BASE_URL}/api/tts`, {
-      data: { lang: 'en' }
+  // P353: these two used to expect 400 for a missing field. Against the deployed
+  // site that 400 was the proof of the defect - the route had already accepted an
+  // unauthenticated request and was only rejecting its body. A side-effecting
+  // route now refuses before it reads anything. Sent with a VALID body so a
+  // missing guard cannot hide behind a validation 400; every one of them is safe
+  // to send to production because nothing behind the guard runs.
+  for (const [route, data] of [
+    ['/api/tts',            { text: 'probe', lang: 'en' }],
+    ['/api/generate-reel',  { hadith_text: 'probe', lang: 'en' }],
+    ['/api/telegram/post',  { caption: 'probe' }],
+    ['/api/generate-video', { scene: 'intro' }],
+  ] as const) {
+    test(`POST ${route} without an admin session is refused (401)`, async ({ request }) => {
+      // `next dev` on localhost is allowed through on purpose (the pipeline
+      // scripts call it without a browser), so against a local server this
+      // request would really post and really spend. Never send it there.
+      test.skip(/\/\/(localhost|127\.0\.0\.1|\[::1\])[:/]/.test(BASE_URL + '/'),
+        'local dev server lets requests through; run against a deployed URL')
+      const res = await request.post(`${BASE_URL}${route}`, { data })
+      expect(res.status()).toBe(401)
     })
-    expect(res.status()).toBe(400)
-  })
-
-  test('POST /api/generate-reel without hadith_text returns 400', async ({ request }) => {
-    const res = await request.post(`${BASE_URL}/api/generate-reel`, {
-      data: { lang: 'en' }
-    })
-    expect(res.status()).toBe(400)
-  })
+  }
 
   // ── ADMIN STUDIO ────────────────────────────────────────────────────────────
 // P126 part B: the admin studio — picker, generation, editing, TTS, caption,

@@ -14892,3 +14892,45 @@ the pre-push hook refused the first push while they still expected MEDIUM.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 353: the admin password guarded the page, not the routes behind it
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** security (live; closed the same night)
+
+**What happened.** The Sol 6.1 audit (R7) read `app/api/admin/verify/route.ts`:
+a correct password returned `{ok:true}` and set nothing. The admin page kept
+an in-memory `authed` flag; the routes it calls - `/api/telegram/post`,
+`/api/tts`, `/api/generate-reel`, `/api/generate-video`, `/api/render-reel` -
+checked nothing. HR is deployed (hadith-reels.vercel.app, www.hadithreels.com),
+and an empty POST to the production telegram route answered "caption required":
+the bot token was configured there, so one request with a caption from anyone
+who found the URL would have posted to the public channel. ElevenLabs was
+configured too. Every earlier note said "HR is not deployed", which is why no
+one had looked at the routes as internet-facing.
+
+**Fix.** Stop-gap first, that night: the Telegram, ElevenLabs and OpenAI keys
+removed from Vercel and the site redeployed; re-probed on both domains - 503
+"not configured". Then `lib/admin-session.ts`: a correct password sets a signed
+(HMAC-SHA256), HttpOnly, SameSite=Strict, 12-hour cookie, and `requireAdmin()`
+runs FIRST in all five routes - before the body, a file or a key is read. A
+cross-origin browser request is refused (403) everywhere. `next dev` on a
+localhost Host passes without a cookie, because tg-post-set.py and
+narrate-reel.py call the dev server with no browser; it never passes on Vercel,
+on a LAN address, or under `next start`. The password compare is constant-time.
+
+**Why the tests changed meaning.** hadith-reels.spec.ts expected 400 from
+`/api/tts` and `/api/generate-reel` with a missing field. Against production
+that 400 WAS the defect: the route had accepted an anonymous request and
+rejected only its body. They now send a valid body and expect 401, and they
+skip against localhost, where the dev exception would let them really post.
+
+**Lesson.** A UI gate is not an access control. Ask of every route that spends
+or publishes: what happens when this is called with curl? And a belief like
+"not deployed" is a premise - check it against Vercel before relying on it.
+
+**Tripwire:** `tests/admin-session.spec.ts` (unit; CI line pending, see
+OPEN_ITEMS) and the four 401 probes in `tests/hadith-reels.spec.ts` against the deployed URL.
+
+**Status:** FIXED.
+
+---

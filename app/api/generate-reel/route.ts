@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { writeFile } from 'fs/promises'
 import path from 'path'
+import { requireAdmin } from '@/lib/admin-session'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
@@ -70,6 +71,10 @@ function getAudienceInstruction(style: string): string {
 
 // ─── Main handler ─────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+  // P353: refuse before reading the body, a file or a key.
+  const denied = requireAdmin(req)
+  if (denied) return denied
+
   try {
     const body = await req.json().catch(() => ({}))
     const {

@@ -18,6 +18,52 @@ carried over. Assume it is still incomplete. Add to it rather than trusting it.
 
 ---
 
+## Sol 6.1 technical audit, 2026-11-03/04 - every finding checked against HEAD
+
+The operator ran the Sol 6.1 audit on `out/deliverables/sol-audit-2026-11-03.zip`
+(snapshot 57eedca). Each finding was re-read against the code at fa359d3 before
+it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
+
+- **DONE 2026-11-04: R7 - the side-effecting API routes took requests from anyone (P353).**
+  `/api/admin/verify` set nothing, so the admin password guarded the page and not
+  one route behind it. Confirmed LIVE: an empty POST to the production
+  `/api/telegram/post` answered "caption required" - the bot token was configured
+  on Vercel and the next request with a caption would have posted to the channel.
+  Stop-gap the same night: TELEGRAM_*, ELEVENLABS_*, OPENAI_API_KEY removed from
+  Vercel (FAL_KEY was never there) and redeployed; re-probed: 503 on both domains.
+  Fix: lib/admin-session.ts - signed HttpOnly SameSite=Strict cookie from a correct
+  password, checked first in telegram/post, tts, generate-reel, generate-video,
+  render-reel. `next dev` on localhost passes (the pipeline scripts), never Vercel.
+  **Operator, one line:** `.github/workflows/ci.yml` is protected from remote writes.
+  In the "Run E2E tests" step, add `tests/admin-session.spec.ts` after
+  `tests/hadith-reels.spec.ts` so the unit tests run in CI.
+- **R1 - an ffmpeg stage that fails can hand the next stage yesterday's file.** Open.
+  render-reel.ps1 Step 4 / Step 6 check `Test-Path`, not the exit code.
+- **R2 - subtitle validation can be skipped.** Open. No draft -> skipped with a
+  warning; -AcceptSubtitleFindings also overrides "could not run"; the SRT edited
+  at the review pause is never re-validated.
+- **R3 - renders overwrite earlier outputs; the sidecar is thin.** Open. Records
+  `$Scenes`, not the random pick; no hashes; a failed sidecar write only warns.
+- **R4 - paid verification evidence lives in gitignored out/.** Open (the 208-call
+  report lost on 2026-10-26 is the incident).
+- **R5 - approval stamps are not bound to the revision they approved.** Open,
+  already known (matn_verified_at). Also: translate-candidates' review digest
+  hashes candidate_id + proposed text, not the source Arabic.
+- **R6 - Next 16.2.6 in an advisory range.** Already closed: 16.4.5 on 2026-11-03.
+- **R8 - /api/tts builds write paths from request fields.** Open; dev-only writes.
+- **R9 - /api/tts silently cuts the text at 1000 characters.** Open; latent - the
+  longest of 112 narrated blocks on disk is 640 with the honorific expanded. The
+  admin page also slices TTS text to 800 before sending.
+- **R10 - promotion is three separate writes.** Open. Needs a DB function (RPC).
+- **R11 - verify-candidates: a missing language reads as pass; a failed write exits 0.** Open.
+- **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.
+- **Not a finding, worth recording:** HR IS deployed - hadith-reels.vercel.app and
+  www.hadithreels.com - with SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY and
+  ADMIN_PASSWORD set. Earlier notes here said "HR is not deployed"; they were wrong.
+  `/api/admin/verify` has no rate limit, so the admin password must be a long one.
+
+---
+
 ## Reconciled 2026-11-01
 
 Reconciled against `git log --since=2026-10-22` (60 commits) and `CHANGELOG.md`,
@@ -159,7 +205,7 @@ this one wins.
   set it replaces (muslim-2749 / 2747 numbers, ids and drafts reproduced exactly). Still by
   hand, on purpose: the SRT fix (the review IS the point), stills and motion prompts.
 - **DONE 2026-11-03 (turbopackIgnore on the path.resolve; build clean): Build warning, telegram/post route:** `path.resolve(root, videoPath)` makes Next trace
-  the whole project into the server output. Harmless locally (HR is not deployed).
+  the whole project into the server output. ("HR is not deployed" was wrong - see the Sol audit section, 2026-11-04.)
 - **Unused paid clips:** `ad4811-bread`, `-bread2`, `-bread3` (bread3 is clean,
   unregistered); `b6412-health` retired (water from the jar's bottom, P343).
 

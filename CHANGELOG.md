@@ -1,3 +1,33 @@
+## [2026-11-04a] - API routes that publish or spend require an admin session (P353, Sol R7)
+
+### Security
+
+- **lib/admin-session.ts (new):** a correct admin password sets a signed HttpOnly,
+  SameSite=Strict, 12-hour cookie; `requireAdmin()` runs first in `/api/telegram/post`,
+  `/api/tts`, `/api/generate-reel`, `/api/generate-video` and `/api/render-reel`.
+  401 without a session, 403 for a cross-origin browser request. `next dev` on localhost
+  still passes without a cookie (tg-post-set.py, narrate-reel.py); Vercel never does.
+- **app/api/admin/verify/route.ts:** sets the cookie; constant-time password compare.
+- **Vercel (stop-gap, 2026-11-04 00:20):** TELEGRAM_*, ELEVENLABS_*, OPENAI_API_KEY removed
+  from the hadith-reels project and redeployed. Before it, an anonymous POST with a caption
+  would have posted to the channel.
+
+### Tests
+
+- **tests/admin-session.spec.ts (new, unit):** token issue/expiry/tamper, password change,
+  cookie, cross-origin, the dev exception and where it must not apply. 9/9 locally. Not yet
+  in CI: `.github/workflows/` is protected from remote writes, so the one-line addition
+  is the operator's (OPEN_ITEMS).
+- **tests/hadith-reels.spec.ts:** the two "missing field returns 400" API tests became four
+  "no session returns 401" probes with a valid body; skipped against localhost.
+
+### Docs
+
+- OPEN_ITEMS: new section - every Sol 6.1 finding checked against HEAD; R7 closed.
+  "HR is not deployed" corrected. CLAUDE.md Core files.
+
+---
+
 ## [2026-11-03o] - out/ back to the P106 layout; scripts/tidy-out.py
 
 ### Changed

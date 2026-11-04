@@ -3,6 +3,7 @@
 // Uses direct REST API — no SDK import issues in CI
 
 import { NextRequest, NextResponse } from 'next/server'
+import { requireAdmin } from '@/lib/admin-session'
 
 const SCENE_PROMPTS: Record<string, string> = {
   intro: `Cinematic Islamic mosque interior at golden hour, soft rays of light streaming through ornate arched windows, intricate geometric tile patterns on walls, hanging lanterns glowing warm amber, slow gentle camera drift upward, no people, peaceful sacred atmosphere, vertical 9:16, photorealistic, 4K, cinematic`,
@@ -14,6 +15,10 @@ const SCENE_PROMPTS: Record<string, string> = {
 }
 
 export async function POST(req: NextRequest) {
+  // P353: refuse before reading the body, a file or a key.
+  const denied = requireAdmin(req)
+  if (denied) return denied
+
   try {
     const { scene = 'intro', style = 'adults' } = await req.json()
 

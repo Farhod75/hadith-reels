@@ -10,8 +10,13 @@
 // The route is kept for future cloud rendering (Lambda/AWS Batch)
 
 import { NextRequest, NextResponse } from 'next/server'
+import { requireAdmin } from '@/lib/admin-session'
 
 export async function POST(req: NextRequest) {
+  // P353: refuse before reading the body, a file or a key.
+  const denied = requireAdmin(req)
+  if (denied) return denied
+
   // Detect if running on Vercel/serverless
   const isVercel = !!process.env.VERCEL || !!process.env.VERCEL_URL
 

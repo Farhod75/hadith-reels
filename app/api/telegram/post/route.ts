@@ -24,6 +24,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import path from 'path'
+import { requireAdmin } from '@/lib/admin-session'
 
 // This route reads the rendered .mp4 off disk and streams it to Telegram, so it
 // needs the Node runtime and must never be pre-rendered. Declared rather than
@@ -36,6 +37,10 @@ const MESSAGE_LIMIT = 4096
 const CAPTION_LIMIT = 1024
 
 export async function POST(req: NextRequest) {
+  // P353: refuse before reading the body, a file or a key.
+  const denied = requireAdmin(req)
+  if (denied) return denied
+
   try {
     const body = await req.json().catch(() => ({}))
     const { caption, hadith, videoPath, replyTo } = body
