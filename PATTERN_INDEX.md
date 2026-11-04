@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-295 patterns in 308 entries, frontier **P365**. The P-sequence is shared with
+297 patterns in 310 entries, frontier **P367**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -21,11 +21,11 @@ BEFORE changing it.
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `route.ts` (11) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
+- `fix_patterns.md` (8) - P209, P247, P256, P291, P332, P364, P365, P366
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
-- `fix_patterns.md` (7) - P209, P247, P256, P291, P332, P364, P365
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
@@ -356,5 +356,7 @@ BEFORE changing it.
 - **P363** - the language toggle translated the hadith and nothing around it
 - **P364** - the HV admin queue was a public API with the service-role key behind it
 - **P365** - the HV E2E gate pointed at a server nobody started
+- **P366** - the public HV Listen route spent our ElevenLabs credit for anyone
+- **P367** - CLAUDE.md described a repo that was planned, not the one that exists
 
-<!-- pattern-index-stamp entries=308 patterns=295 frontier=365 sha1=711eb1b3fb0456df54d2e449d1cce798c598c8cc -->
+<!-- pattern-index-stamp entries=310 patterns=297 frontier=367 sha1=7685dc284e61e9aa6ea3d21452f26abf4a75fe74 -->

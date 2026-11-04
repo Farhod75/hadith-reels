@@ -15292,3 +15292,55 @@ server's lifecycle.
 **Status:** FIXED in HV.
 
 ---
+
+## PATTERN 366: the public HV Listen route spent our ElevenLabs credit for anyone
+
+**Date:** 2026-11-04  **Repo:** hadith-verifier  **Severity:** cost (public paid route)
+
+**HV instance; recorded here so the number is not reused.** Full entry:
+`hadith-verifier/fix_patterns.md` P366. HV `/api/tts` serves the public Listen
+buttons, so it cannot sit behind the P364 admin session. It now refuses
+cross-origin browser requests (403), limits each caller to 30 calls per 10 minutes
+per instance (429; TTSPlayer falls back to the browser voice), and ignores a
+`voiceId` in the body (the voice comes from `lang` only). A global quota needs
+shared storage - open.
+
+**Tripwire:** none.
+
+**Status:** FIXED in HV (per-instance brake); global quota OPEN.
+
+---
+
+## PATTERN 367: CLAUDE.md described a repo that was planned, not the one that exists
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** docs (session orientation)
+
+**What happened.** A review of the original development plans against the code
+found CLAUDE.md - the file every session reads FIRST - naming files and tools
+that were never built: `app/api/verify-hadith`, `app/api/render-video`,
+`lib/tts-router.ts`, `lib/ffmpeg-pipeline.ts`, four components, a
+`tests/playwright/` suite of four specs, six `agents/*.ts`, a log-agent and a
+docs-agent in CI, `npm run test:multilingual`, `npm test`, `caption-sync.spec.ts`,
+`lib/languages.ts`, `lib/i18n/`, and `QA_STANDARDS.md` in the pre-flight `cat`.
+It also said the offline suite had 49 tests (161 on 2026-11-04) and that P079 was
+STILL OPEN (fixed long ago - the admin fields are textareas). Checked one by one
+with Test-Path, the CI file and `pytest --collect-only` before editing.
+
+**Why it matters.** CLAUDE.md's own rule is that a copy read carefully produces
+confident wrong answers; this was the original, and it was wrong in the sections
+a new session uses to find its way (STACK & FILES, CI, Workflows A-D). A session
+told to "check lib/tts-router.ts" or "run npm test" either wastes a turn or
+reports a missing file as a defect.
+
+**Fix.** STACK & FILES, Components, Tests, CI and Workflows A-D rewritten from
+the repo as it is; counts that drift now say how to count instead of a number;
+the two plan items HARD RULES 1 and 5 describe (call hadithverifier.com before
+TTS; the source end card) are marked NOT BUILT where the file lists them.
+
+**Tripwire:** none - audit-docs.py does not read CLAUDE.md's file lists. A check
+that every backticked repo path in STACK & FILES exists would catch the next one;
+recorded as an idea, not built.
+
+**Status:** FIXED.
+
+---

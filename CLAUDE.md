@@ -1,7 +1,7 @@
 # CLAUDE.md
 # Project constitution for hadith-reels
 # Auto-loaded by Claude Code on every session
-# Last updated: 2026-10-08
+# Last updated: 2026-11-04
 
 ---
 
@@ -425,7 +425,8 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 ### 4. CI Smart Push Gate (HR pattern — applies to all projects)
 - TypeScript check on every push.
 - **Python check (P119)** — `ast.parse` on each changed `.py`, then the offline
-  `scripts/lib` pytest suite (49 tests, no network).
+  `scripts/lib` pytest suite (no network; 161 tests on 2026-11-04 - count with
+  `python -m pytest scripts/lib -q --collect-only`, never from this line).
 - **PowerShell check (P123)** — `PSParser::Tokenize` on each changed `.ps1`.
   Parses without executing. `render-reel.ps1` IS the render pipeline and the
   asset gate; before this it was checked only by `tsc`.
@@ -438,9 +439,11 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   deliberately broken file BEFORE committing. That manual proof is the only
   verification this file gets.
 - Playwright tests block deploy if red.
-- log-agent generates `bug-queue.json` artifact after every run.
-- docs-agent auto-commits CHANGELOG.md on every push.
-- language-agent (multilingual) runs manual dispatch only — expensive.
+- **CI is ONE job (P367, checked 2026-11-04):** npm ci, `tsc --noEmit`, `next build`,
+  then `tests/hadith-reels.spec.ts`, `tests/admin-session.spec.ts` and
+  `tests/tts-route.spec.ts`. No pytest in CI (Sol R12, open). There is no log-agent,
+  docs-agent or language-agent - an earlier version of this file listed them; they
+  were planned and never built.
 
 ### 5. Source Authority
 - Tier 1 only for reels: Sunnah.com, Dorar.net, HadeethEnc.com
@@ -471,12 +474,28 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 ## 🧰 STACK & FILES
 
 ### Core
-- `app/api/generate-reel/route.ts` — main orchestrator
-- `app/api/verify-hadith/route.ts` — proxies to hadithverifier.com
-- `app/api/tts/route.ts` — TTS routing; writes narration straight into the work
-  tree at `out/work/{style}/{slug}/{lang}/` (P106)
-- `app/api/render-video/route.ts` — FFmpeg pipeline
-- `lib/tts-router.ts` — language → voice provider selection
+**Checked against the repo 2026-11-04 (P367).** This list used to name files that
+never existed (`verify-hadith`, `render-video`, `lib/tts-router.ts`,
+`lib/ffmpeg-pipeline.ts`, four components, `tests/playwright/`, `agents/*.ts`).
+If you add or remove a route or module, change this list in the same commit.
+- `app/page.tsx` — the public site (library, Watch tab, language toggle - P363)
+- `app/admin/page.tsx` — the admin: generate blocks, TTS per section, captions
+- `app/api/generate-reel/route.ts` — generates title/story/moral/H blocks (Claude)
+- `app/api/tts/route.ts` — ElevenLabs narration; writes straight into the work
+  tree at `out/work/{style}/{slug}/{lang}/` (P106); 413 over 1000 chars (P354)
+- `app/api/generate-video/route.ts`, `app/api/render-reel/route.ts` — admin-side
+  video helpers. Production rendering is `render-reel.ps1` / `render-set.py` on the
+  operator's machine, not these routes.
+- `app/api/telegram/post/route.ts` — posts to the channel (used by tg-post-set.py)
+- `app/api/reels/route.ts`, `app/api/search/route.ts` — public read routes
+- `app/api/admin/verify`, `app/api/admin/logout` — the admin session (P353, P361)
+- `lib/voices.ts` — language/lane -> ElevenLabs voice. `lib/caption.ts` — caption
+  body (shared by the admin and build-caption.ts). `lib/tags.ts`, `lib/refs.ts`,
+  `lib/ui-strings.ts`, `lib/themes.ts`, `lib/mascots.ts`, `lib/supabase.ts`.
+- **NOT BUILT** (plan items, reviewed 2026-11-04): a route that calls
+  hadithverifier.com before TTS (HARD RULE 1 states it; authenticity is enforced
+  today by the library's grade column, the sourcing pipeline and the matn-vs-number
+  gate), and the source-attribution end card (HARD RULE 5).
 - `lib/admin-session.ts` — **every route that publishes or spends calls `requireAdmin()`
   first** (P353). A correct admin password sets a signed HttpOnly cookie; without it the
   route answers 401. `next dev` on localhost passes without one, so the pipeline scripts
@@ -550,26 +569,23 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 - `approve-candidate.py` — Stage 4, recorded: writes the operator's decision onto ONE candidate
   by id, with his words in `review_reason`. Refuses a wrong number, a row that is not
   'verified' (for an approval) and any row already approved, rejected or promoted.
-- `scripts/lib/` — sourcing modules + 49 offline pytest tests (no network)
+- `scripts/lib/` — sourcing modules + the offline pytest suite (no network)
 - `scripts/lib/uzbek-translit.ts` — Cyrillic↔Latin, tested for okina vs tutuq.
   **Do not port to Python.** A second implementation drifts, and okina rules are
   exactly where drift corrupts silently.
 
 ### Components
-- `components/ReelPreview.tsx` — live preview before publish
-- `components/HadithEditor.tsx` — manual fine-tuning
-- `components/LanguageSelector.tsx`
-- `components/PublishPanel.tsx` — IG/TikTok/YouTube buttons
+- `components/ReelCard.tsx`, `TTSPlayer.tsx`, `AudienceToggle.tsx`,
+  `ThemePicker.tsx`, `VoicePicker.tsx`
 
 ### Tests
-- `tests/playwright/` — Playwright E2E
-  - `authenticity-gate.spec.ts` — blocks weak hadiths
-  - `tts-router.spec.ts` — routing per language
-  - `multilingual-parity.spec.ts` — 4 languages produce same verdict
-  - `video-render.spec.ts` — output duration, file size
-- Multi-agent suite:
-  - `agents/base-agent.ts`, `language-agent.ts`, `verify-agent.ts`
-  - `agents/docs-agent.ts`, `log-agent.ts`, `fix-agent.ts`
+- `tests/hadith-reels.spec.ts` — public page and API E2E
+- `tests/admin-session.spec.ts` — the admin guard (P353), unit
+- `tests/tts-route.spec.ts` — /api/tts checks (P354), unit
+- `scripts/lib/test_*.py` — the offline pytest suite (render stages, subtitles,
+  sidecar, verify-candidates, publish-narration, sourcing modules)
+- Agent skills: `.claude/skills/` (reel-producing, stt-validating, tts-validating).
+  There is no `agents/` folder of TypeScript agents.
 
 ### CI
 - `.github/workflows/ci.yml` — smart push gate (1 job)
@@ -583,7 +599,8 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   GLOBAL SEQUENCE shared with HV** — the same P-number is the same fix in both
   repos. Never renumber per project. Verify the frontier in BOTH repos before
   assigning: `git grep -n "^\*\*ID:\*\* P1[01][0-9]" fix_patterns.md`
-- `QA_STANDARDS.md` — copied from engineering-standards repo
+- `QA_STANDARDS_AGENT_RULES.md` — verification discipline (Section 10). There is
+  no `QA_STANDARDS.md` in this repo.
 - `sourcing-pipeline-design.md` — content sourcing / library-population pipeline.
   Written 2026-06-14 and NOT updated since; read it as a proposal to validate,
   not a current spec.
@@ -595,7 +612,7 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 
 ```bash
 # 1. Read constitution
-cat CLAUDE.md QA_STANDARDS.md fix_patterns.md AGENTS.md
+cat CLAUDE.md QA_STANDARDS_AGENT_RULES.md AGENTS.md   # fix_patterns: tail only
 
 # 2. Check repo state
 git status
@@ -623,35 +640,35 @@ npx tsc --noEmit
 
 ### Workflow A — Fix a TTS bug
 1. Identify language affected
-2. Check `lib/tts-router.ts` — is correct provider selected?
+2. Check `lib/voices.ts` — is the correct voice ID selected? (verify the ID)
 3. Search fix_patterns.md for P0XX matching symptom
 4. Add Playwright test reproducing the bug
 5. Apply fix
-6. Run `npm test`
+6. Run `npx tsc --noEmit` and the relevant spec (`npx playwright test tests/tts-route.spec.ts`)
 7. Update fix_patterns.md if novel pattern
 8. Commit: `fix(tts): description [P0XX]`
 
 ### Workflow B — Add a new language
-1. Add to `lib/languages.ts` config
-2. Decide TTS voice (ElevenLabs voice ID — verify the ID, not the label)
-3. Add translation to `lib/i18n/<lang>.json`
-4. Add to multilingual parity test
-5. Manually verify Arabic transliteration if non-Latin script
-6. Update `language-agent.ts` to include new language project
+(P367: the old steps named `lib/languages.ts`, `lib/i18n/` and a language-agent,
+none of which exist.)
+1. `lib/voices.ts` — the voice (ElevenLabs voice ID - verify the ID, not the label)
+2. `lib/ui-strings.ts` — the public page's words; `lib/caption.ts` CAPTION_L10N
+3. `lib/tags.ts` / `lib/refs.ts` — tag, collection and narrator names
+4. The DB column for the language, and the render/narrate scripts' language lists
+5. Manually verify transliteration if non-Latin script
 
 ### Workflow C — Multilingual audit
-```bash
-# Trigger language-agent suite (manual dispatch only)
-npm run test:multilingual
-# OR via GitHub Actions: workflow_dispatch with run_multiagent=true
-```
+There is no automated multilingual suite (P367: `npm run test:multilingual` never
+existed). The checks that exist: `audit-library.py` (per-language row integrity)
+and reading the four languages side by side against the Arabic (Workflow I, 3a).
 
 ### Workflow D — Pre-publish verification
 1. authenticity-gate must pass (Sahih/Hasan only)
 2. TTS audio generated for all 4 languages
 3. Video file: 15-60s, <50MB
-4. Captions synced (verified by `caption-sync.spec.ts`)
-5. Source attribution overlay present in last 3s
+4. Subtitles: stt-validate at the render gate (Workflow F) - there is no
+   caption-sync.spec.ts
+5. Source attribution end card - NOT BUILT (HARD RULE 5; plan item)
 
 ### Workflow E — Lint generated reel text before TTS
 1. Generate story/moral/seerah in the admin
@@ -900,9 +917,10 @@ fabrication pressure. Ask what remains sayable that is not checkable against the
 **Symptom:** Cached AUTHENTIC verdict served after hadithverifier flagged the hadith
 **Fix:** Cache TTL 24h max. Invalidate on webhook from HV admin queue.
 
-### P079: admin story field not editable — STILL OPEN
-Generated titles cannot be corrected in place. Workaround: fix in the caption.
-Bit the TJ #527 reel, where the generated title was ungrammatical.
+### P079: admin story field not editable — FIXED
+The admin's title, story, moral and seerah are editable textareas (CHANGELOG
+"P079"; `data-test="title-edit"` / `"story-edit"` in app/admin/page.tsx). This
+entry said STILL OPEN until 2026-11-04 (P367).
 
 ---
 

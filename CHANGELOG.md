@@ -1,3 +1,18 @@
+## [2026-11-04n] - CLAUDE.md matches the repo (P367); HV public TTS route hardened (P366)
+
+### Fixed
+
+- **P367. CLAUDE.md:** STACK & FILES, Components, Tests, CI and Workflows A-D
+  rewritten from the repo as it is - the file named routes, libs, components, a
+  Playwright suite, TypeScript agents, CI agents and npm scripts that were never
+  built, said the offline suite had 49 tests (161) and that P079 was open (fixed).
+  The two unbuilt HARD RULE items (HV call before TTS, source end card) are marked.
+- **P366 (hadith-verifier 9f19c4f).** HV `/api/tts`: cross-origin 403, 30 calls per
+  caller per 10 min per instance (429), voice from `lang` only. Recorded here for
+  the global sequence.
+
+---
+
 ## [2026-11-04m] - R186-R189, Sahih al-Bukhari #38, four languages, set closed; HV admin queue (P364, P365)
 
 ### Content
