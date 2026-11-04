@@ -494,6 +494,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   (verified:false, lanes default adults, a raw take may go in with `lanes: []`, P141);
   `--verify <prefix>` marks them verified at set close. Dry run unless `--commit`; refuses a
   clash, a clip missing from out/backgrounds/new/, or a registry that will not round-trip.
+- `render-set.py` — renders a set from `out/render-<slug>.json` (scenes, optional slow copies,
+  bed and gain per language, gain may be `auto` via mix-gap). Before anything renders it
+  checks P240 per language and picks the normal or `-s` clips, or stops; with `--render` it
+  runs render-reel.ps1 -FitScenes -NoReview per language and ends with mix-gap's check.
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
 - `.claude/tripwires.json` + `.claude/hooks/tripwire.js` — PreToolUse

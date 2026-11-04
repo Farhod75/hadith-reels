@@ -1,3 +1,14 @@
+## [2026-11-03i] - scripts/render-set.py (per-set scripts into scripts/, 4 of 7)
+
+### Added
+
+- **scripts/render-set.py:** renders a set from out/render-<slug>.json - P240 clip choice per
+  language before anything renders, gain fixed or auto (mix-gap), render-reel.ps1 via
+  `pwsh -Command` with a real array for -Scenes, then mix-gap's check. Replaces out/r<n>.ps1.
+  scripts/lib/test_render_set.py (6). CLAUDE.md, FEATURES.md, pipeline Step 14.
+
+---
+
 ## [2026-11-03h] - scripts/register-clips.py (per-set scripts into scripts/, 3 of 7)
 
 ### Added

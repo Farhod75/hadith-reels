@@ -94,6 +94,18 @@ real Finding that sorts and counts.
   live registry: re-registering m2749 is refused, `--verify m223-` lists the six #223 clips
   that close with that set, nothing written.
 
+### Set renderer (`scripts/render-set.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2, 4 of 7).
+
+- One plan file per set; per language: P240 clip choice (normal or `-s` copies, or stop before
+  rendering with the length needed), gain fixed or `auto` (mix-gap), then render-reel.ps1 and
+  mix-gap's after-render check. A gate stopping one language does not stop the others.
+- Dry run on muslim-2749 reproduces the hand plan exactly: EN/RU/TJ normal clips, UZ the
+  `-s` copies, gains 0.98 / 0.98 / 0.94 / 0.91.
+- Caught while building: under `pwsh -File` a comma list reaches `[string[]]$Scenes` as one
+  string. It calls render-reel through `-Command` with `@(...)`; a probe confirmed 3 clips,
+  the gain, the switches and the exit code arrive. 6 tests. Replaces out/r<n>.ps1.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed
