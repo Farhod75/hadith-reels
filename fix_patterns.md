@@ -14969,3 +14969,33 @@ path-shaped field).
 **Status:** FIXED.
 
 ---
+
+## PATTERN 355: a failed render stage passed because yesterday's file was still there
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** integrity (latent - no known bad reel)
+
+**What happened.** Sol 6.1 (R1) read render-reel.ps1's intermediate stages:
+the narration concat (Step 4), each clip's normalize and the background concat
+(Step 6) assigned ffmpeg's exit code to `$rc` and then checked only
+`Test-Path` on the output. Those outputs live in the set's work folder and
+survive between runs. ffmpeg can exit non-zero without touching an existing
+output (Sol reproduced it), so a failed stage found the previous run's file,
+reported OK, and the final merge - which does check its exit code and its
+file's age (P154) - built a new reel around stale narration or background.
+P154 had fixed exactly this for the final merge and not for the stages above it.
+
+**Fix.** Each intermediate output is deleted before its ffmpeg call, and the
+stage stops on `$rc -ne 0` as well as on a missing file. A file that exists
+after the call can now only be this run's.
+
+**Lesson.** When a check is fixed for one stage, grep for the same shape in
+every stage. P154 wrote this lesson down for the final merge; the four calls
+above it kept the old check for two months.
+
+**Tripwire:** `scripts/lib/test_render_reel_stages.py` reads the script: every
+ffmpeg call has its exit code checked, every intermediate output is deleted
+before it is written. Both fail on the pre-fix script.
+
+**Status:** FIXED.
+
+---

@@ -1,3 +1,18 @@
+## [2026-11-04c] - render-reel: a failed ffmpeg stage stops the render (P355, Sol R1)
+
+### Fixed
+
+- **render-reel.ps1:** the narration concat, each clip normalize and the background concat
+  delete their previous output first and stop on a non-zero ffmpeg exit. Before, they checked
+  only that the file existed, and the file from the last run always did.
+
+### Tests
+
+- **scripts/lib/test_render_reel_stages.py (new):** every ffmpeg call's exit code is checked
+  and every intermediate output is removed before it is written. Fails on the old script.
+
+---
+
 ## [2026-11-04b] - /api/tts refuses instead of truncating; write paths contained (P354, Sol R8/R9)
 
 ### Fixed

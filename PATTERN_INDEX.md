@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-284 patterns in 297 entries, frontier **P354**. The P-sequence is shared with
+285 patterns in 298 entries, frontier **P355**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -344,5 +344,6 @@ BEFORE changing it.
 - **P352** - a lowercase pronoun for Allah burned because its check was a warning
 - **P353** - the admin password guarded the page, not the routes behind it
 - **P354** - the narration stopped at character 1000 and its record said it had not
+- **P355** - a failed render stage passed because yesterday's file was still there
 
-<!-- pattern-index-stamp entries=297 patterns=284 frontier=354 sha1=590727ab0ebcc448086e6632de764a2925c969a1 -->
+<!-- pattern-index-stamp entries=298 patterns=285 frontier=355 sha1=2323fd688ff0e301d5aa90c888740b493fad0ff3 -->

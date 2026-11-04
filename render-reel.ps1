@@ -460,6 +460,11 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
 
 # --- STEP 4: concat story + moral (0.5s pause, P135) into one narration ------
 Say "`n[1/5] Step 4 - concatenating story + moral narration..."
+# P355 (Sol R1): remove the previous run's file first. ffmpeg can exit non-zero
+# without touching an existing output, and the check below used to be Test-Path
+# alone - so a failed concat handed every later step YESTERDAY's narration, and
+# the final merge built a fresh-looking reel around it.
+Remove-Item $narr -Force -ErrorAction SilentlyContinue
 $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$story,"-i",$moral,
   # P135: pad was 1s, but ElevenLabs leaves trailing silence on the story MP3,
   # so the perceived gap ran to ~2s. 0.5 here reads as ~1.5s in the finished
@@ -467,7 +472,7 @@ $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-i",$story,"-i",$m
   # (silenceremove) — deferred, since that needs testing across languages.
   "-filter_complex","[0:a]apad=pad_dur=0.5[a0];[a0][1:a]concat=n=2:v=0:a=1[out]",
   "-map","[out]",$narr)
-if (-not (Test-Path $narr)) { Die "narration concat failed ($narr not created)" }
+if ($rc -ne 0 -or -not (Test-Path $narr)) { Die "narration concat failed (ffmpeg exit $rc; $narr)" }
 Ok "$narr ($([math]::Round((Get-Item $narr).Length/1KB)) KB)"
 
 # --- STEP 5: subtitles (conditional by language) -----------------------------
@@ -794,22 +799,25 @@ if ($animated) {
       "-c:v","libx264","-pix_fmt","yuv420p","-r","30","-an")
     if ($fitDur) { $ffArgs += @("-t","$fitDur") }
     $ffArgs += $tmp
+    Remove-Item $tmp -Force -ErrorAction SilentlyContinue   # P355: never reuse a stale temp
     $rc = Run "ffmpeg" $ffArgs
-    if (-not (Test-Path $tmp)) { Die "failed to normalize $($c.Name)" }
+    if ($rc -ne 0 -or -not (Test-Path $tmp)) { Die "failed to normalize $($c.Name) (ffmpeg exit $rc)" }
     $tmps += $tmp
   }
   $tmps | ForEach-Object { "file '$((Resolve-Path $_).Path -replace '\\','/')'" } |
     Out-File -Encoding ASCII -FilePath $concatList
   # all temps now identical -> safe -c copy concat
+  Remove-Item $bgMixed -Force -ErrorAction SilentlyContinue   # P355
   $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-f","concat","-safe","0","-i",$concatList,"-c","copy",$bgMixed)
   $tmps | ForEach-Object { Remove-Item $_ -ErrorAction SilentlyContinue }
 } else {
   $picked | ForEach-Object { "file '$($_.FullName -replace '\\','/')'" } |
     Out-File -Encoding ASCII -FilePath $concatList
+  Remove-Item $bgMixed -Force -ErrorAction SilentlyContinue   # P355
   $rc = Run "ffmpeg" @("-hide_banner","-loglevel","error","-y","-f","concat","-safe","0","-i",$concatList,"-c","copy",$bgMixed)
 }
 Remove-Item $concatList -ErrorAction SilentlyContinue
-if (-not (Test-Path $bgMixed)) { Die "background concat failed ($bgMixed not created)" }
+if ($rc -ne 0 -or -not (Test-Path $bgMixed)) { Die "background concat failed (ffmpeg exit $rc; $bgMixed)" }
 Ok "$bgMixed"
 
 # --- STEP 7: final merge (7A with subs / 7B without) -------------------------

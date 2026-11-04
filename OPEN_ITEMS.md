@@ -37,8 +37,9 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   **Operator, one line:** `.github/workflows/ci.yml` is protected from remote writes.
   In the "Run E2E tests" step, add `tests/admin-session.spec.ts` after
   `tests/hadith-reels.spec.ts` so the unit tests run in CI.
-- **R1 - an ffmpeg stage that fails can hand the next stage yesterday's file.** Open.
-  render-reel.ps1 Step 4 / Step 6 check `Test-Path`, not the exit code.
+- **DONE 2026-11-04: R1 - a failed ffmpeg stage could hand the next stage yesterday's file (P355).**
+  Narration concat, each clip normalize and the background concat now delete their
+  output first and stop on a non-zero exit. scripts/lib/test_render_reel_stages.py.
 - **R2 - subtitle validation can be skipped.** Open. No draft -> skipped with a
   warning; -AcceptSubtitleFindings also overrides "could not run"; the SRT edited
   at the review pause is never re-validated.
