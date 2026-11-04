@@ -482,6 +482,10 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
 ### Agents (Python, `scripts/`)
 - `lint-content.py` — pre-TTS checks on GENERATED reel text (Workflow E)
 - `stt-validate.py` — SRT vs source narration diff (Workflow F)
+- `mix-gap.py` — nasheed-under-voice gap per language and the `-NasheedGain` that puts it on
+  the P338 target. `--bed <file>` before the render (registry gain x render-reel's base),
+  no `--bed` after it (reads each render sidecar, never a log). Read-only; the base and
+  narration volumes are parsed from `render-reel.ps1`.
 - `audit-assets.py` + `assets/asset-registry.json` — lane gate, BLOCKS renders (Workflow G)
 - `audit-library.py` — per-language integrity checks on the DB rows (Workflow H)
 - `.claude/tripwires.json` + `.claude/hooks/tripwire.js` — PreToolUse

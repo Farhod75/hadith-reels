@@ -62,6 +62,16 @@ neither was caught by anything automated. The missing-label case was already
 detected but printed only as a quiet `note:` above "no findings" — it is now a
 real Finding that sorts and counts.
 
+### Nasheed level (`scripts/mix-gap.py`)
+**Status:** shipped 2026-11-03 (OPEN_ITEMS item 2 - per-set scripts into `scripts/`).
+
+- Gap = narration LUFS (story + moral at the mix's narration volume) minus bed LUFS over the
+  same seconds at its mix volume. Per-language targets from P338.
+- Before the render (`--bed`): the `-NasheedGain` to render with. After it: re-measured from
+  each `adults-<lang>-<slug>-render.json`, with the gain it was rendered at.
+- Replaces `out/mix_gap<n>.py` and `out/w43_gap_rh.py`; on muslim-2749 it reproduces their
+  numbers exactly (13.3 / 10.7 / 15.8 / 13.4 after, UZ 0.94 before). 4 tests.
+
 ### Subtitle validator (`scripts/stt-validate.py`)
 
 Diffs a Whisper-generated `.srt` against the narration text it was transcribed

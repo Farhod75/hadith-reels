@@ -1,3 +1,15 @@
+## [2026-11-03f] - scripts/mix-gap.py (per-set scripts into scripts/, 1 of 7)
+
+### Added
+
+- **scripts/mix-gap.py:** the nasheed-under-voice gap and the -NasheedGain for the P338
+  target, before the render (--bed) or after it (render sidecars). Replaces
+  out/mix_gap<n>.py and out/w43_gap_rh.py; reproduces their muslim-2749 numbers exactly.
+  Base and narration volumes parsed from render-reel.ps1. scripts/lib/test_mix_gap.py (4).
+  CLAUDE.md agents list, FEATURES.md, reel-creation-pipeline.md Step 14.
+
+---
+
 ## [2026-11-03e] - Next.js 16.4.5 (November 3 security release); npm audit fix
 
 ### Security

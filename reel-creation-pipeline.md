@@ -537,6 +537,12 @@ true once it has actually been watched.
 `-Scenes` is **ordered** — the list is the visual arc, so the order is an
 editorial decision, not a formality.
 
+**Nasheed level (P338).** Before the render, per language:
+`python scripts/mix-gap.py --slug <slug> --lang <lang> --bed <file>` prints the
+`-NasheedGain` that lands the gap on the target (EN 13.3, RU 10.8, UZ 15.7, TJ 13.4 LU).
+After it, `python scripts/mix-gap.py --slug <slug>` re-measures every language from the
+render sidecars - a set is done when each gap is within 0.2 LU.
+
 Omitting `-Scenes` falls back to picking 3 clips at random. That path still
 exists and is not used; every shipped animated reel names its clips.
 
