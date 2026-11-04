@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab1261a/PVdZFY7nZJR07Gi_GXyes_output.mp4",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "mode": "image-to-video",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "prompt": "The single small flame at the tip of the clay lamp flickers softly, warm light and shadows breathe gently on the mud-brick wall, the blue sky in the doorway slowly brightens toward dawn. The lamp, the dates and the cup stay still. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image: same shapes, same number of items, nothing added or removed. No people, no hands, no text.",
+  "file": "out\\backgrounds\\new\\b38-suhoor.mp4",
+  "size_bytes": 31535231,
+  "name": "b38-suhoor",
+  "duration_sec": 10,
+  "schema": 1,
+  "generate_audio": false,
+  "request_id": "01a1a7da-46f0-7312-ba55-d83bcdbc6df4",
+  "submitted_utc": "2026-11-04T18:37:42.5167906Z",
+  "completed_utc": "2026-11-04T18:44:29.5833249Z",
+  "image": "out\\refs\\b38-suhoor-b-1.jpg"
+}

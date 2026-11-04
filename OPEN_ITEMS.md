@@ -80,7 +80,16 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   still score what is there); each write must update exactly one row; any failed
   write -> exit 1 and no WRITTEN footer. scripts/lib/test_verify_candidates.py.
 - **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.
-- **Public site Listen - stored narration (P362, 2026-11-04).** 14 rows x 4 languages
+- **DONE 2026-11-04: HV admin queue was public (P364, hadith-verifier e7a5832).** Found by
+  the plan review, not Sol: HV `/api/queue` answered GET/PATCH/DELETE to anyone through
+  the service-role key (anonymous GET on production: 200, ~152 KB). HR's P353 guard
+  ported (cookie `hv_admin`); production re-probed: 401. CI #217 asserts the 401 on
+  every push. **Operator step open:** add `ADMIN_PASSWORD` to the HV Vercel project and
+  redeploy - until then sign-in answers 503 and the queue stays closed (safe).
+  P365 (same day): HV pre-push E2E started no server - fixed, 15/15.
+- **HV `/api/tts` is callable by anyone (paid ElevenLabs).** Open. It serves the public
+  Listen buttons, so a session gate is the wrong fix - needs a rate limit and a length cap.
+- **Public site Listen - stored narration (P362, 2026-11-04).** 15 rows x 4 languages (59 clips after #38)
   (55 clips) published from existing story.mp3 by scripts/publish-narration.py into the
   public Supabase bucket `narration`; Listen plays them on the deployed site. **Open:**
   the other ~61 rows (~245 clips, ~33k characters of matn plus lead-ins) need narrating
@@ -173,6 +182,10 @@ this one wins.
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
   request (A/B pass). Published the same day at the operator's request, ahead
   of #2734 and #223.
+- **Bukhari #38 - PUBLISHED 2026-11-04 (R186-R189, TG 200-203).** First set from the
+  library triage (out/_triage.json: 75 rows, 27 READY, 11 BLOCKED; skipped: Ibn Majah
+  #4250 disputed grade, Tirmidhi #1987 fragment, Tirmidhi #2616 too long for a reel).
+  RU matn corrected first (A/B 4/4). Next from the triage: full-hadith rows only.
 - **Muslim #2749 - PUBLISHED 2026-11-03 (R182-R185, TG 196-199).** Dorar ->
   candidate 2c978c61 -> library a783064f (Book of Repentance), A/B 4/4 pass/high,
   P306/P319 gate MATCH ("ولجاء" at this number; HadeethEnc 5454 has "وجاء").

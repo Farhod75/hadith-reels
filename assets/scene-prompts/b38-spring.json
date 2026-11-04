@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab1266c/rviFBmSyObl5cq4iqRX6n_output.mp4",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "mode": "image-to-video",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "prompt": "Clear water flows steadily over the smooth stones with sparkling highlights, light rays shimmer through the palm fronds, wildflowers along the banks sway gently in a soft breeze. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image: same shapes, same number of items, nothing added or removed. No people, no hands, no text.",
+  "file": "out\\backgrounds\\new\\b38-spring.mp4",
+  "size_bytes": 37955681,
+  "name": "b38-spring",
+  "duration_sec": 10,
+  "schema": 1,
+  "generate_audio": false,
+  "request_id": "01a1a7e6-9991-7a91-b73f-126f107adbc6",
+  "submitted_utc": "2026-11-04T18:51:10.1077027Z",
+  "completed_utc": "2026-11-04T19:03:13.1558573Z",
+  "image": "out\\refs\\b38-spring-1.jpg"
+}

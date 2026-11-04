@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b38-crescent",
+  "model": "fal-ai/flux-2",
+  "prompt": "A very thin young crescent moon low above the western horizon just after sunset over a desert oasis; the lit edge of the crescent faces DOWN toward the sun that has just set below the horizon, the rest of the lunar disk faintly visible by earthshine; sky graded from warm peach and rose near the horizon to soft lavender and deep blue above, one bright evening star; silhouettes of tall date palms at the bottom; calm, hopeful. Vertical 9:16 photoreal cinematic, bright and colourful, 7th-century Arabia, no people, no hands, no faces, no text, no letters, no modern objects, no buildings with domes or minarets.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a7bd-d2cc-7bc0-97f8-a7370df52db5",
+  "submitted_utc": "2026-11-04T18:06:37.1170555Z",
+  "completed_utc": "2026-11-04T18:06:50.6763493Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b38-crescent-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12539/S4-1S09owpotWWLEwUvRh_GiwgUTMW.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b38-crescent-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12539/O7BAGfZyebY5RSmVrugCa_yOFG2LnH.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b38-crescent-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12539/1detFfUxhNK8-2jY0I3Bf_ks5LDQ17.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1346653424
+}

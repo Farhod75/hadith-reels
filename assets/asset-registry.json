@@ -1799,6 +1799,42 @@
       "verified": true,
       "notes": "UZ copy (P240): m2749-bloom.mp4 slowed x1.06 -> 10.58 s, out/slow_2749b.ps1. Same content. Sahih Muslim #2749, Abu Hurairah, sahih - 'if you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness from Allah, and He would forgive them'. MODE B: figures from behind or at distance, no faces. Bright palette. Stills described from references (P346). ",
       "prompt_sidecar": "assets/scene-prompts/m2749-bloom.json"
+    },
+    "b38-crescent.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (crescent-3) -> Kling 3.0 Pro i2v 10s. Thin young crescent after sunset, lit edge facing down toward the set sun, earthshine, palms; clouds drift, stars appear. Sahih al-Bukhari #38, Abu Hurairah, sahih - fasting Ramadan out of faith and hoping for reward. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (EarthSky young-moon orientation; Early Islamic terracotta oil lamps, 7th-9th c.).",
+      "prompt_sidecar": "assets/scene-prompts/b38-crescent.json"
+    },
+    "b38-suhoor.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (suhoor-b-1, re-generated after the first lamp came out as a teapot) -> Kling 3.0 Pro i2v 10s. Low teardrop terracotta oil lamp, one flame at the nozzle, dates, clay cup, blue pre-dawn doorway. Sahih al-Bukhari #38, Abu Hurairah, sahih - fasting Ramadan out of faith and hoping for reward. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (EarthSky young-moon orientation; Early Islamic terracotta oil lamps, 7th-9th c.).",
+      "prompt_sidecar": "assets/scene-prompts/b38-suhoor.json"
+    },
+    "b38-iftar.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (iftar-2) -> Kling 3.0 Pro i2v 10s. Exactly three dates on a palm-leaf plate, clay cup, sun setting behind palms; count stays three. Sahih al-Bukhari #38, Abu Hurairah, sahih - fasting Ramadan out of faith and hoping for reward. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (EarthSky young-moon orientation; Early Islamic terracotta oil lamps, 7th-9th c.).",
+      "prompt_sidecar": "assets/scene-prompts/b38-iftar.json"
+    },
+    "b38-spring.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (spring-1) -> Kling 3.0 Pro i2v 10s. Clear spring over stones in an oasis at sunrise, wildflowers; image of sins washed away. Sahih al-Bukhari #38, Abu Hurairah, sahih - fasting Ramadan out of faith and hoping for reward. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (EarthSky young-moon orientation; Early Islamic terracotta oil lamps, 7th-9th c.).",
+      "prompt_sidecar": "assets/scene-prompts/b38-spring.json"
     }
   }
 }

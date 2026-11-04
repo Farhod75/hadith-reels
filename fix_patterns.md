@@ -15246,3 +15246,49 @@ English remains the tested default.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 364: the HV admin queue was a public API with the service-role key behind it
+
+**Date:** 2026-11-04  **Repo:** hadith-verifier  **Severity:** security (production data, anonymous read/write)
+
+**HV instance; recorded here so the number is not reused** (one global
+P-sequence, HR holds the frontier). Full entry: `hadith-verifier/fix_patterns.md`
+P364, commit `e7a5832`.
+
+Found 2026-11-04 by the review of the original plans: HV `/api/queue` answered
+GET, PATCH and DELETE to anyone through `SUPABASE_SERVICE_ROLE_KEY`; an anonymous
+GET on production returned the flagged posts (~152 KB). This repo's P353 guard
+(`lib/admin-session.ts`) was ported with its own cookie, `hv_admin`, so a session
+on one site is never a session on the other. The HV tests had pinned the hole as
+the contract ("returns 200 and array", run by CI against production); they now
+assert 401 for an anonymous caller on a deployed BASE_URL.
+
+**Tripwire:** none here - the defect and its check live in HV.
+
+**Status:** FIXED in HV (`e7a5832`, CI #217 green; anonymous GET on production -> 401 verified 2026-11-04). Sign-in needs `ADMIN_PASSWORD` in the HV Vercel project.
+
+---
+
+## PATTERN 365: the HV E2E gate pointed at a server nobody started
+
+**Date:** 2026-11-04  **Repo:** hadith-verifier  **Severity:** tooling (pre-push gate)
+
+**HV instance; recorded here so the number is not reused.** Full entry:
+`hadith-verifier/fix_patterns.md` P365, commit `f4d7624`.
+
+The HV pre-push E2E branch ran `hadith-verifier.spec.ts` against :3011 after the
+API branch had killed its mock server there (and a UI-only push started none),
+so all 15 tests failed on ERR_CONNECTION_REFUSED and blocked the P364 push. The
+branch now starts, waits for and kills its own `MOCK_CLAUDE=1 next dev -p 3011`.
+Proof run: the P364 re-push, 15/15 E2E passed.
+
+Checked here: HR's hook does not share this shape - `.githooks/pre-push` (E2E
+block) starts `next dev -p 3002` when nothing answers on :3002 and kills it
+after. The rule both now follow: a stage that depends on a server owns that
+server's lifecycle.
+
+**Tripwire:** none.
+
+**Status:** FIXED in HV.
+
+---

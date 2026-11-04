@@ -902,3 +902,49 @@ otherwise.
 **The finding:** a warning is only as good as the reader it assumes. When a
 gate's reader goes away (-NoReview), every warning it raises about integrity
 has to be promoted to a stop, or it becomes a burn.
+
+## R186-R189 - Sahih al-Bukhari #38 - 2026-11-04
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (200-203, one message each: every caption 513-559 chars, under 1024). Instagram, YouTube Shorts and TikTok by the operator.
+
+The first set from the library-wide triage (operator: reels for every library
+hadith, one or two at a time, full hadiths only - long ones live on the site).
+Fasting / Ramadan had one reel since May.
+
+**Caught before publish, and who said it.**
+
+1. **RU matn ended differently from the Arabic** (me, against the Arabic): the
+   row was corrected to «...тому простятся его прежние грехи» before any draft;
+   A/B on the proposal 4/4 pass/high.
+2. **H block cited "the scholars explain"** - lint unnamed-authority FAIL (P111).
+   Replaced with named sources: Ibn Hajar, Fath al-Bari (checked against a page
+   quoting it) and the HadeethEnc commentary. An an-Nawawi attribution was dropped
+   because it could not be checked.
+3. **suhoor stills drew a teapot-like lamp** (operator). Re-written from
+   documented early Islamic clay lamps and re-generated; the operator asked that
+   every still and Kling prompt start from an internet reference.
+4. **EN and RU subtitles: 'Ramaban', a garbled RU lead-in, no quotation marks,
+   lowercase pronouns for Allah** - P339 stopped both renders under -NoReview,
+   which is the gate working as built (P342/P352). Fixed in the cached SRTs
+   (P211), strict re-validation 0 findings, re-rendered; UZ and TJ rendered
+   first time.
+
+**Escaped to publish.** Nothing known.
+
+**Operator corrections of the assistant: 1.** Item 3: the lamp was described from
+memory; a reference was needed first.
+
+**Root causes.** A prompt for a period object written from the model's idea of
+it, not from a source - the same shape as an unsourced claim in a caption.
+
+**Prevention landed.** Stills and Kling prompts start from an internet reference
+(standing rule, operator 2026-11-04). The strict subtitle gate stopped what it
+was built to stop.
+
+**Prevention deferred.** render-set renders all four languages in one pass; a
+strict stop on EN or RU still lets UZ/TJ finish, which is fine, but nothing
+re-runs the stopped legs - that is a manual second pass (`--langs en ru`).
+
+**The finding:** the gates that were promoted to stops this week (P339, P352)
+now catch Whisper's errors as a matter of routine. The work at the gate has
+moved from noticing to fixing.

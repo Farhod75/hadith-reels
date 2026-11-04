@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-293 patterns in 306 entries, frontier **P363**. The P-sequence is shared with
+295 patterns in 308 entries, frontier **P365**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -25,10 +25,10 @@ BEFORE changing it.
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
+- `fix_patterns.md` (7) - P209, P247, P256, P291, P332, P364, P365
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
-- `fix_patterns.md` (5) - P209, P247, P256, P291, P332
 - `page.tsx` (5) - P071, P126, P150, P236, P305
 - `reel-creation-pipeline.md` (5) - P193, P253, P283, P301, P307
 - `restore-srt-casing.py` (5) - P200, P243, P246, P252, P298
@@ -354,5 +354,7 @@ BEFORE changing it.
 - **P361** - the public page described a channel that was planned, not the one that exists
 - **P362** - the public Listen button paid per click for audio we already had
 - **P363** - the language toggle translated the hadith and nothing around it
+- **P364** - the HV admin queue was a public API with the service-role key behind it
+- **P365** - the HV E2E gate pointed at a server nobody started
 
-<!-- pattern-index-stamp entries=306 patterns=293 frontier=363 sha1=444b05a941072a108ea78516eb97017e13319e34 -->
+<!-- pattern-index-stamp entries=308 patterns=295 frontier=365 sha1=711eb1b3fb0456df54d2e449d1cce798c598c8cc -->

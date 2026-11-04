@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab12641/Ya9YjBfcwoeUENl5DrP4z_output.mp4",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "resolution": null,
+  "mode": "image-to-video",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "prompt": "The sun sinks slowly toward the horizon behind the palm grove, the sky glows warmer, palm fronds sway gently. Exactly three dates remain on the plate the whole time. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image: same shapes, same number of items, nothing added or removed. No people, no hands, no text.",
+  "file": "out\\backgrounds\\new\\b38-iftar.mp4",
+  "size_bytes": 30822954,
+  "name": "b38-iftar",
+  "duration_sec": 10,
+  "schema": 1,
+  "generate_audio": false,
+  "request_id": "01a1a7e0-81b2-7352-a604-d26ecc74b2ac",
+  "submitted_utc": "2026-11-04T18:44:30.773704Z",
+  "completed_utc": "2026-11-04T18:51:08.7493248Z",
+  "image": "out\\refs\\b38-iftar-2.jpg"
+}

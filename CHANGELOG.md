@@ -1,3 +1,21 @@
+## [2026-11-04m] - R186-R189, Sahih al-Bukhari #38, four languages, set closed; HV admin queue (P364, P365)
+
+### Content
+
+- Tracker rows R186-R189 (TG 200-203), duplicate index, Fasting / Ramadan 1 -> 5,
+  nasheed usage, the b38 clip set, stats 189/137/48, change log, retro. Registry:
+  the four b38 clips -> verified:true. Scene and still prompt sidecars for b38.
+  publish-narration: #38 in four languages (59 clips in the public index).
+
+### Recorded
+
+- **fix_patterns P364, P365** - HV instances, numbered here so the global sequence
+  stays single. hadith-verifier e7a5832 (the admin queue answered anyone through
+  the service-role key; now requireAdmin, CI asserts 401 on production) and f4d7624
+  (its pre-push E2E pointed at a server nobody started).
+
+---
+
 ## [2026-11-04l] - public site fully in EN / RU / UZ / TJ (P363, operator)
 
 ### Changed

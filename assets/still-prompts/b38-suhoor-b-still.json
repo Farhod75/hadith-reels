@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b38-suhoor-b",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, pre-dawn suhoor in a simple 7th-century mud-brick room. In the foreground, seen from a high three-quarter angle, a small PALM-SIZED early Islamic terracotta oil lamp, about 10 cm long, 7 cm wide and only 4 cm high: a LOW, FLAT, closed teardrop-shaped body seen from above, pointed toward the front nozzle; a large round filling hole with a raised rim in the middle of the top; a raised ridge running from the filling hole along a short channel to the small wick-hole at the pointed tip; fine geometric relief patterns on the shoulders; a small conical knob handle at the rounded back; warm orange-buff fired clay. ONE small steady flame burns at the wick-hole at the very tip. NOT a jug, NOT a teapot, NOT a pitcher, no tall neck, no kettle spout, no glass. The lamp rests on a woven palm-fibre mat beside a woven palm-leaf plate with a few dark dates and a plain earthenware cup of water. Through an open wooden doorway behind, a bright deep-blue sky with the first thin band of dawn light on the horizon. Warm lamplight mixing with blue light, rich colour, not dark. No people, no hands, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a7c2-f342-7e90-b828-498dd8c41d99",
+  "submitted_utc": "2026-11-04T18:12:12.5325204Z",
+  "completed_utc": "2026-11-04T18:12:27.3147818Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b38-suhoor-b-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1255a/QBu0fXXN7ZvCns7lL5fIx_HC1ALoSx.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b38-suhoor-b-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1255a/KxCGi4tn9yWSYf4ggyWdF_6YsfDg1V.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b38-suhoor-b-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1255a/5_7NuCTI9hvOcAecV5WHl_NojLU4Pi.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 556295493
+}
