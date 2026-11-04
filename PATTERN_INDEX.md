@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-286 patterns in 299 entries, frontier **P356**. The P-sequence is shared with
+287 patterns in 300 entries, frontier **P357**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -21,10 +21,10 @@ BEFORE changing it.
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
 - `route.ts` (10) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354
+- `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
-- `verify-candidates.py` (7) - P221, P235, P257, P264, P266, P299, P345
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
 - `verify-matn-source.py` (6) - P142, P244, P260, P261, P266, P311
@@ -346,5 +346,6 @@ BEFORE changing it.
 - **P354** - the narration stopped at character 1000 and its record said it had not
 - **P355** - a failed render stage passed because yesterday's file was still there
 - **P356** - three ways past the subtitle check, each one a fallback nobody chose
+- **P357** - Stage 3 called a one-language row verified, and called a lost write WRITTEN
 
-<!-- pattern-index-stamp entries=299 patterns=286 frontier=356 sha1=7b1310d710aafd8170f401b6048defff3e9be760 -->
+<!-- pattern-index-stamp entries=300 patterns=287 frontier=357 sha1=c45eb869ee8082ea799932bb86b1542fcf22712a -->

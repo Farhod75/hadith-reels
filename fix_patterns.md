@@ -15037,3 +15037,36 @@ tests (3 for findings, 0 without --strict, 2 for a missing draft).
 **Status:** FIXED (not yet exercised by a real render).
 
 ---
+
+## PATTERN 357: Stage 3 called a one-language row verified, and called a lost write WRITTEN
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** integrity (latent - Stage 4 is still a human)
+
+**What happened.** Sol 6.1 (R11), reproduced here with every call mocked:
+1. `verify-candidates.py` skipped an empty language with `continue`, and
+   `roll_up()` judged only the languages that were checked. A candidate with
+   English alone rolled up to 'pass' and was written as status 'verified' -
+   eligible for Stage 4 with three languages never read by either model.
+2. A failed database write printed "WRITE FAILED" and the run went on; the
+   footer still said "WRITTEN" and the script returned 0. A PATCH whose filter
+   matched no row (or two) came back as a list nobody looked at, and also
+   printed "written".
+
+**Fix.** In candidate mode a missing language is recorded as 'missing', which
+rolls up to 'incomplete' (a real fail or disagreement still outranks it), and
+nothing is stored for the language that was not checked. `--from-json` (a
+proposal may fix one language on purpose, as the RU pass of 2026-11-01 did)
+and `--library` (report-only) still score what is there. Every write goes
+through `write_candidate()`, which raises unless exactly one row came back;
+failures are collected, the footer names them, and the exit code is 1. A
+verdict of fail or disagree is not an error and does not change the exit code.
+
+**Lesson.** "Checked everything that was there" is not "checked the row".
+And a footer is a claim: print WRITTEN only when the writes say so.
+
+**Tripwire:** `scripts/lib/test_verify_candidates.py` - main() end to end with
+no network; five of its seven tests fail on the pre-fix script.
+
+**Status:** FIXED.
+
+---

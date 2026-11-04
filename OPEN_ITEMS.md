@@ -61,7 +61,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   Now 413 with the length, nothing narrated; the admin page's own silent cut at
   800 removed. Latent only: the longest of 112 narrated blocks on disk was 640.
 - **R10 - promotion is three separate writes.** Open. Needs a DB function (RPC).
-- **R11 - verify-candidates: a missing language reads as pass; a failed write exits 0.** Open.
+- **DONE 2026-11-04: R11 - verify-candidates: a missing language read as pass; a failed write exited 0 (P357).**
+  A candidate missing a language rolls up 'incomplete' (--from-json and --library
+  still score what is there); each write must update exactly one row; any failed
+  write -> exit 1 and no WRITTEN footer. scripts/lib/test_verify_candidates.py.
 - **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.
 - **Not a finding, worth recording:** HR IS deployed - hadith-reels.vercel.app and
   www.hadithreels.com - with SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY and

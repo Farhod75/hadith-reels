@@ -1,3 +1,19 @@
+## [2026-11-04e] - verify-candidates: no partial "verified", no false WRITTEN (P357, Sol R11)
+
+### Fixed
+
+- **scripts/verify-candidates.py:** a candidate missing any of the four languages rolls up
+  'incomplete' instead of 'pass' (`--from-json` / `--library` unchanged: they score what is
+  there); `write_candidate()` requires exactly one updated row; failed writes are counted,
+  named in the footer, and exit 1 - WRITTEN is printed only when every write landed.
+
+### Tests
+
+- **scripts/lib/test_verify_candidates.py (new):** main() with Supabase and both models
+  mocked, in a temp dir - 7 tests, 5 fail on the old script.
+
+---
+
 ## [2026-11-04d] - render-reel: the subtitle check can no longer be skipped (P356, Sol R2)
 
 ### Fixed

@@ -322,9 +322,23 @@ def roll_up(per_lang):
         return 'disagree'
     if 'fail' in vals:
         return 'fail'
-    if 'incomplete' in vals:
+    if 'incomplete' in vals or 'missing' in vals:
         return 'incomplete'
     return 'pass'
+
+
+def write_candidate(base, key, table, candidate_id, payload, patch=None):
+    """P357: write one candidate's verdict and PROVE it landed on exactly one row.
+
+    sb_patch asks for the updated rows back (return=representation). A filter that
+    matched nothing used to come back as [] and print 'written'; so would a filter
+    that matched two. Raises on anything but exactly one row.
+    """
+    rows = (patch or sb_patch)(base, key, table, {'candidate_id': f'eq.{candidate_id}'}, payload)
+    n = len(rows) if isinstance(rows, list) else -1
+    if n != 1:
+        raise RuntimeError(f'expected 1 row updated for candidate {candidate_id}, got {n}')
+    return rows[0]
 
 
 # ---------------------------------------------------------------- main
@@ -430,6 +444,8 @@ def main():
     print('=' * w)
 
     results, tally = [], {'pass': 0, 'fail': 0, 'disagree': 0, 'incomplete': 0}
+    write_failures = []   # P357: a failed write used to print and be forgotten
+    require_all = not (args.from_json or args.library)   # P357: candidates need all four
 
     for row in rows:
         ref = f'{row.get("collection")} #{row.get("hadith_number")}'
@@ -444,7 +460,19 @@ def main():
         for lang, (col, lang_name) in FIELDS.items():
             text = (row.get(col) or '').strip()
             if not text:
-                print(f'    {lang}: empty, skipping')
+                # P357 (Sol R11): this used to `continue` for every mode, and
+                # roll_up() saw only the languages that WERE checked - so a
+                # CANDIDATE with English alone rolled up to 'pass' and was written
+                # as status 'verified'. A candidate needs all four (Workflow K
+                # step 1), so a missing one makes the row incomplete. --from-json
+                # scores a proposal that may fix one language on purpose (the RU
+                # pass of 2026-11-01), and --library writes nothing, so those two
+                # still score what is there and say what was not.
+                if require_all:
+                    print(f'    n/a {lang}: EMPTY - no {lang_name} translation to verify')
+                    per_lang[lang] = {'a': None, 'b': None, 'agreement': 'missing'}
+                else:
+                    print(f'    {lang}: empty, not scored')
                 continue
 
             try:
@@ -471,7 +499,7 @@ def main():
             # missed the one dict that prints the value. .get() keeps a
             # display string from ever ending a paid run again.
             mark = {'pass': 'OK ', 'fail': 'FAIL', 'disagree': '>>>',
-                    'incomplete': 'n/a'}.get(agr, f'?{agr[:2]}')
+                    'incomplete': 'n/a', 'missing': 'n/a'}.get(agr, f'?{agr[:2]}')
             print(f'    {mark} {lang}: A={a.get("verdict")}/{a.get("confidence")}'
                   f'  B={b.get("verdict")}/{b.get("confidence")}')
             for who, res in (('A', a), ('B', b)):
@@ -498,8 +526,10 @@ def main():
 
         if args.commit:
             payload = {
-                'verify_a': {k: v['a'] for k, v in per_lang.items()},
-                'verify_b': {k: v['b'] for k, v in per_lang.items()},
+                # a missing language has no pass to record; it shows as
+                # verify_agreement 'incomplete' instead (P357)
+                'verify_a': {k: v['a'] for k, v in per_lang.items() if v['a'] is not None},
+                'verify_b': {k: v['b'] for k, v in per_lang.items() if v['b'] is not None},
                 'verify_agreement': overall,
                 'status': status,
                 'updated_at': now_iso(),
@@ -519,11 +549,11 @@ def main():
                       f'by hand after reading)')
             else:
                 try:
-                    sb_patch(base, sb_key, table,
-                             {'candidate_id': f'eq.{row["candidate_id"]}'}, payload)
+                    write_candidate(base, sb_key, table, row['candidate_id'], payload)
                     print(f'    -> written, status={status}')
                 except Exception as e:  # noqa: BLE001
                     print(f'    -> WRITE FAILED: {e}')
+                    write_failures.append(ref)
 
     os.makedirs('out', exist_ok=True)
     with open(OUT_PATH, 'w', encoding='utf-8') as fh:
@@ -546,13 +576,20 @@ def main():
               're-run them; do not send them to Stage 4.')
     print('    near 0% over a real batch = the passes are correlated and the')
     print('    second is buying nothing. very high = mistuned, Stage 4 drowns.')
-    if args.commit:
+    # P357 (Sol R11): this printed WRITTEN and returned 0 even when every write
+    # had failed. The verdicts are the report; whether they were SAVED is the
+    # exit code. A verdict of fail/disagree is not an error - a lost write is.
+    if args.commit and write_failures:
+        print(f'  WRITE FAILED for {len(write_failures)} row(s): '
+              + ', '.join(write_failures))
+        print('  Their verdicts are in the report file only. Re-run them.')
+    elif args.commit:
         print("  WRITTEN. 'pass' means ELIGIBLE FOR HUMAN REVIEW, never insert.")
     else:
         print('  DRY RUN - nothing written.')
     print('  Stage 4 is the human gate and it is not optional (G1).')
     print('-' * w)
-    return 0
+    return 1 if write_failures else 0
 
 
 if __name__ == '__main__':
