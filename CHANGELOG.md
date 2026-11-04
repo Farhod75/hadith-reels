@@ -1,3 +1,25 @@
+## [2026-11-04h] - verify-candidates: the paid report survives an interrupted batch (P359, Sol R4 part)
+
+### Changed
+
+- **scripts/verify-candidates.py:** the report is saved after every row (atomic), plus a
+  per-run copy in `out/verify-runs/` that later runs do not overwrite; each entry carries
+  model ids, check time and SHA-256 of the Arabic and every translation it was shown.
+- **scripts/stt-validate.py:** the --strict banner said "exits 1"; it exits 3 since P356.
+
+### Verified
+
+- muslim-2734 EN re-rendered with its recorded inputs after P355/P356/P358: reel, narration
+  and SRT byte-identical to the approved ones; draft default and strict validator exercised;
+  the new sidecar written.
+
+### Tests
+
+- **scripts/lib/test_verify_candidates.py:** +2 (interrupted batch keeps paid rows; per-run
+  report with models and hashes).
+
+---
+
 ## [2026-11-04g] - render-reel: a complete render record, required (P358, Sol R3 part)
 
 ### Changed

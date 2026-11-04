@@ -57,6 +57,7 @@ Requires ANTHROPIC_API_KEY and OPENAI_API_KEY in .env.local.
 
 import argparse
 import datetime as dt
+import hashlib
 import http.client
 import json
 import os
@@ -91,6 +92,28 @@ ANTHROPIC_VERSION = '2023-06-01'
 OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
 
 OUT_PATH = os.path.join('out', 'candidate-verdicts.json')
+# P359 (Sol R4): every run also keeps its own copy here, written after EACH row.
+# On 2026-10-26 roughly 208 paid calls ended in one report written at the end of
+# the batch, into a container that was then lost; only a prose summary survived.
+RUNS_DIR = os.path.join('out', 'verify-runs')
+
+
+def _input_sha256(row):
+    """What the two passes were shown, so a verdict can be tied to exact text."""
+    h = {'text_arabic': hashlib.sha256((row.get('text_arabic') or '').encode('utf-8')).hexdigest()}
+    for _lang, (col, _name) in FIELDS.items():
+        h[col] = hashlib.sha256((row.get(col) or '').encode('utf-8')).hexdigest()
+    return h
+
+
+def save_report(results, paths):
+    """Write the report to every path, each atomically (tmp + replace)."""
+    for path in paths:
+        os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+        tmp = path + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as fh:
+            json.dump(results, fh, ensure_ascii=False, indent=2)
+        os.replace(tmp, path)
 
 URL_KEYS = ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL')
 SERVICE_KEYS = ('SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SERVICE_KEY',
@@ -445,6 +468,8 @@ def main():
 
     results, tally = [], {'pass': 0, 'fail': 0, 'disagree': 0, 'incomplete': 0}
     write_failures = []   # P357: a failed write used to print and be forgotten
+    run_stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    report_paths = [OUT_PATH, os.path.join(RUNS_DIR, f'candidate-verdicts-{run_stamp}.json')]
     require_all = not (args.from_json or args.library)   # P357: candidates need all four
 
     for row in rows:
@@ -522,7 +547,11 @@ def main():
         print(f'    -> {overall}  (status would be {status})')
 
         results.append({'candidate_id': row.get('candidate_id'), 'ref': ref,
-                        'agreement': overall, 'per_language': per_lang})
+                        'agreement': overall, 'per_language': per_lang,
+                        'models': {'a': MODEL_A, 'b': MODEL_B},
+                        'input_sha256': _input_sha256(row),
+                        'checked_at': now_iso()})
+        save_report(results, report_paths)   # P359: checkpoint after every row
 
         if args.commit:
             payload = {
@@ -555,9 +584,7 @@ def main():
                     print(f'    -> WRITE FAILED: {e}')
                     write_failures.append(ref)
 
-    os.makedirs('out', exist_ok=True)
-    with open(OUT_PATH, 'w', encoding='utf-8') as fh:
-        json.dump(results, fh, ensure_ascii=False, indent=2)
+    save_report(results, report_paths)   # also when there were no rows
 
     # P152: the calibration rate measures the two passes against EACH OTHER, so
     # rows nobody checked cannot be in the denominator. Counting transport
@@ -568,7 +595,7 @@ def main():
     print('\n' + '-' * w)
     print(f'  pass {tally["pass"]}   fail {tally["fail"]}   '
           f'disagree {tally["disagree"]}   incomplete {tally["incomplete"]}'
-          f'   -> {OUT_PATH}')
+          f'   -> {OUT_PATH}  (run copy: {report_paths[1]})')
     print(f'  disagreement rate: {tally["disagree"] / n:.0%} '
           f'of {adjudicated} adjudicated  (D5 calibration)')
     if tally['incomplete']:

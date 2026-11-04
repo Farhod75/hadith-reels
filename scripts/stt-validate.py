@@ -714,7 +714,7 @@ def main():
     if forms:
         print(f"  prophet symbol rendered as: {', '.join(sorted(forms))}")
     if args.strict:
-        print('  strict: a HIGH finding exits 1 (P339) - render-reel.ps1 will not')
+        print('  strict: a HIGH finding exits 3 (P339, P356) - render-reel.ps1 will not')
         print('  burn these unreviewed. A clean run means these checks passed,')
     else:
         print('  warn-only: nothing was blocked or changed. A clean run means')

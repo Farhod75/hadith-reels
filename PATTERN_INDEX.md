@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-288 patterns in 301 entries, frontier **P358**. The P-sequence is shared with
+289 patterns in 302 entries, frontier **P359**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -348,5 +348,6 @@ BEFORE changing it.
 - **P356** - three ways past the subtitle check, each one a fallback nobody chose
 - **P357** - Stage 3 called a one-language row verified, and called a lost write WRITTEN
 - **P358** - the render record named the scenes that were asked for, not the ones drawn
+- **P359** - the paid verification report was written once, at the end
 
-<!-- pattern-index-stamp entries=301 patterns=288 frontier=358 sha1=c8d715e1b622442de862abdcfec920838b73dd93 -->
+<!-- pattern-index-stamp entries=302 patterns=289 frontier=359 sha1=dc2f9e1913122583b72b6768925a2e946e5273d4 -->

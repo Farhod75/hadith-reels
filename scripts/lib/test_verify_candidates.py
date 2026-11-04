@@ -93,3 +93,34 @@ def test_from_json_still_scores_a_one_language_proposal(harness, tmp_path):
         report = json.load(fh)
     assert report[0]['agreement'] == 'pass'
     assert harness.writes == []
+
+
+def test_each_run_keeps_its_own_report_with_models_and_input_hashes(harness):
+    import glob
+    import json
+    harness([dict(FULL)], argv=())
+    runs = glob.glob(os.path.join('out', 'verify-runs', 'candidate-verdicts-*.json'))
+    assert len(runs) == 1
+    with open(runs[0], encoding='utf-8') as fh:
+        entry = json.load(fh)[0]
+    assert entry['models'] == {'a': vc.MODEL_A, 'b': vc.MODEL_B}
+    assert set(entry['input_sha256']) == {'text_arabic', 'text_english', 'text_russian',
+                                          'text_uzbek_cyrillic', 'text_tajik'}
+
+
+def test_an_interrupted_batch_keeps_the_rows_already_paid_for(harness, monkeypatch):
+    # P359 (Sol R4): the report used to be written once, after the whole batch.
+    import json
+    calls = {'n': 0}
+
+    def a_then_interrupt(*a):
+        calls['n'] += 1
+        if calls['n'] > 4:            # row 1 = four languages; row 2 is cut off
+            raise KeyboardInterrupt
+        return dict(PASS)
+    monkeypatch.setattr(vc, 'pass_a', a_then_interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        harness([dict(FULL), dict(FULL, candidate_id='c-2', hadith_number='2')], argv=())
+    with open(os.path.join('out', 'candidate-verdicts.json'), encoding='utf-8') as fh:
+        saved = json.load(fh)
+    assert [r['ref'] for r in saved] == ['Sahih Muslim #1']

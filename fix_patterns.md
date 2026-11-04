@@ -15102,3 +15102,33 @@ of its five tests fail on the pre-fix version).
 **Status:** PARTLY FIXED.
 
 ---
+
+## PATTERN 359: the paid verification report was written once, at the end
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** cost / evidence (incident 2026-10-26)
+
+**What happened.** verify-candidates.py collected every verdict in memory and
+wrote `out/candidate-verdicts.json` once, after the whole batch, over the
+previous run's file. On 2026-10-26 a sweep of about 208 paid model calls ended
+in a container that was then lost, and only a prose summary of it survived
+(CLAUDE.md "BEFORE YOU SPEND"). Sol 6.1 (R4) named it: the only copy of paid
+evidence was a file written last and overwritten next.
+
+**Fix.** The report is saved after every row, atomically (tmp + replace), to
+`out/candidate-verdicts.json` and to a per-run copy
+`out/verify-runs/candidate-verdicts-<UTC stamp>.json` that no later run
+touches. Each entry records both model ids, the time it was checked, and a
+SHA-256 of the Arabic and each translation the passes were shown - so a
+verdict can be matched to the exact text, and a changed text shows as a
+different hash.
+
+**Still open (OPEN_ITEMS R4):** the copies live on local disk; out/ is
+gitignored. Where durable evidence should live is the operator's decision.
+
+**Tripwire:** `scripts/lib/test_verify_candidates.py` - an interrupted batch
+keeps the rows already paid for; each run leaves its own report with models
+and hashes.
+
+**Status:** PARTLY FIXED.
+
+---

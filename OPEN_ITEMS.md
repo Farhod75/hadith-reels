@@ -53,8 +53,17 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   run's start". **Still open:** fixed output paths (a re-render replaces the
   previous reel of an unpublished set - published sets are safe since tidy-out
   moves them to out/published/), and a lock against two renders of one reel.
-- **R4 - paid verification evidence lives in gitignored out/.** Open (the 208-call
-  report lost on 2026-10-26 is the incident).
+- **PARTLY DONE 2026-11-04: R4 - paid verification evidence (P359).** verify-candidates
+  writes its report after EVERY row (atomic), keeps a per-run copy in
+  out/verify-runs/ that the next run cannot overwrite, and records both model ids
+  and a SHA-256 of each text it was shown. **Still open:** it is still local disk
+  (out/ is gitignored) - durable storage (DB table or a tracked folder) is the
+  operator's call; translate-candidates' proposals are not covered.
+- **Real render after P355/P356/P358, 2026-11-04 01:10.** muslim-2734 EN re-rendered
+  with its recorded inputs under -NoReview: the reel came out byte-identical to the
+  approved one (narration and SRT too); the draft default picked
+  out/draft-muslim-2734-en.txt; the validator ran strict, 0 findings; the new
+  sidecar was written. Not exercised: the interactive re-check prompt (P356 part 3).
 - **R5 - approval stamps are not bound to the revision they approved.** Open,
   already known (matn_verified_at). Also: translate-candidates' review digest
   hashes candidate_id + proposed text, not the source Arabic.
