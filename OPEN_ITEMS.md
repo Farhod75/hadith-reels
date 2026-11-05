@@ -200,6 +200,9 @@ this one wins.
 - **DONE 2026-11-05: published fields corrected (P368, P371).** YouTube: " #Shorts" removed
   from the 8 titles by the operator. TikTok: no change needed - the no-Arabic rule was
   withdrawn (P371) after the operator showed the Arabic rendering correctly.
+- **Bukhari #6675 - PUBLISHED 2026-11-05 (R194-R197, TG 208-211).** Third set from the
+  triage. Same subject as #2654 (al-kaba'ir), 37 days later; the deliberate call the
+  item below asks for has no record of being put to the operator before A/B (retro). Listen published.
 - **Bukhari #5984 - PUBLISHED 2026-11-04 (R190-R193, TG 204-207).** Second set from the
   triage. A/B disagree on 'ties of kinship' settled from Muslim #2556 (operator approved).
   Next candidate checked (page + gate MATCH, no spend): Bukhari #6675 (four major sins) -
@@ -1240,7 +1243,8 @@ number so nothing flags the pair, and NO automated check covers it — a
 similarity check was written and removed on 2026-10-09 because the pair scores
 0.16 against a library-wide maximum of 0.29 (P205). The mechanism is now a row
 in the tracker's duplicate-check index. This item stays open only as a pointer
-to that row.
+to that row. **Shipped 2026-11-05 (R194-R197)**; no record of the call being put to
+the operator first - see the #6675 retro.
 
 ---
 

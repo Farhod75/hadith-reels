@@ -214,6 +214,10 @@
 | R191 | 2026-11-04 | Sahih al-Bukhari #5984 | Jubayr ibn Mut'im | Sahih | Family / Kinship | #kinship #family #jannah #kindness | RU | Adults | bukhari-5984 | adults-ru-bukhari-5984-story.mp3 | adults-ru-bukhari-5984-moral.mp3 | adults-ru-bukhari-5984-narration.mp3 | b5984-lane.mp4, b5984-door.mp4, b5984-meal.mp4, b5984-garden.mp4 | adults-ru-bukhari-5984-bg-mixed.mp4 | vocal-nasheed-06.mp3 | YES - hand-fixed: lead-in 'Джубайр ибн Мутим, да будет доволен им Аллах' (Whisper: 'Джубайер Ибан Мутим, добудет'), 'сказал:', quotation marks, em dash, 'сегодня: позвони' (P339 stopped the first render) | adults-ru-bukhari-5984-reel.mp4 | 23.5s | 9.4 MB | TG 205, one message (439 chars). Bed gain x1.97 (a quiet track; mix-gap on target). Re-rendered once for the subtitles. |
 | R192 | 2026-11-04 | Sahih al-Bukhari #5984 | Jubayr ibn Mut'im | Sahih | Family / Kinship | #kinship #family #jannah #kindness | UZ | Adults | bukhari-5984 | adults-uz-bukhari-5984-story.mp3 | adults-uz-bukhari-5984-moral.mp3 | adults-uz-bukhari-5984-narration.mp3 | b5984-lane.mp4, b5984-door.mp4, b5984-meal.mp4, b5984-garden.mp4 | adults-uz-bukhari-5984-bg-mixed.mp4 | vocal-nasheed-03.mp3 | NO (P078) | adults-uz-bukhari-5984-reel.mp4 | 27.1s | 10.7 MB | TG 206, one message (452 chars). Trim x0.93. |
 | R193 | 2026-11-04 | Sahih al-Bukhari #5984 | Jubayr ibn Mut'im | Sahih | Family / Kinship | #kinship #family #jannah #kindness | TJ | Adults | bukhari-5984 | adults-tj-bukhari-5984-story.mp3 | adults-tj-bukhari-5984-moral.mp3 | adults-tj-bukhari-5984-narration.mp3 | b5984-lane.mp4, b5984-door.mp4, b5984-meal.mp4, b5984-garden.mp4 | adults-tj-bukhari-5984-bg-mixed.mp4 | aswati-Gentle-Reflection.mp3 | NO (P078) | adults-tj-bukhari-5984-reel.mp4 | 24.6s | 9.6 MB | TG 207, one message (456 chars). Closes the set. Trim x1.04. |
+| R194 | 2026-11-05 | Sahih al-Bukhari #6675 | Abdullah ibn Amr | Sahih | Major Sins / Al-Kaba'ir | #shirk #parents #sins #majorsins | EN | Adults | bukhari-6675 | adults-en-bukhari-6675-story.mp3 | adults-en-bukhari-6675-moral.mp3 | adults-en-bukhari-6675-narration.mp3 | b6675-dawn.mp4, b6675-staff.mp4, b6675-well-b.mp4, b6675-scale.mp4 | adults-en-bukhari-6675-bg-mixed.mp4 | aswati-Focused-Determination.mp3 | YES - hand-fixed: 'honour' (Whisper: 'Honor', capitalised mid-sentence), the honorific in parentheses, 'said:', quotation marks around the matn (P339 stopped the first render) | adults-en-bukhari-6675-reel.mp4 | 33.4s | 8.1 MB | TG 208, one video message (608 chars). Opens the set. Trim x0.86. Re-rendered once for the subtitles. |
+| R195 | 2026-11-05 | Sahih al-Bukhari #6675 | Abdullah ibn Amr | Sahih | Major Sins / Al-Kaba'ir | #shirk #parents #sins #majorsins | RU | Adults | bukhari-6675 | adults-ru-bukhari-6675-story.mp3 | adults-ru-bukhari-6675-moral.mp3 | adults-ru-bukhari-6675-narration.mp3 | b6675-dawn.mp4, b6675-staff.mp4, b6675-well-b.mp4, b6675-scale.mp4 | adults-ru-bukhari-6675-bg-mixed.mp4 | path-to-jannah-bg.mp3 | YES - hand-fixed: lead-in 'Абдуллах ибн Амр, да будет доволен им Аллах' (Whisper: 'Абдулах Ибан Амар, добудет'), 'сотоварищей' (Whisper: 'со товарищей'), 'лживая клятва' (Whisper: 'лживое клятва'), 'сказал:', quotation marks (P339 stopped the first render) | adults-ru-bukhari-6675-reel.mp4 | 32.9s | 7.6 MB | TG 209, one message (657 chars). Trim x0.94. Re-rendered once for the subtitles. |
+| R196 | 2026-11-05 | Sahih al-Bukhari #6675 | Abdullah ibn Amr | Sahih | Major Sins / Al-Kaba'ir | #shirk #parents #sins #majorsins | UZ | Adults | bukhari-6675 | adults-uz-bukhari-6675-story.mp3 | adults-uz-bukhari-6675-moral.mp3 | adults-uz-bukhari-6675-narration.mp3 | b6675-dawn-s.mp4, b6675-staff-s.mp4, b6675-well-b-s.mp4, b6675-scale-s.mp4 | adults-uz-bukhari-6675-bg-mixed.mp4 | vocal-nasheed-07.mp3 | NO (P078) | adults-uz-bukhari-6675-reel.mp4 | 41.0s | 9.6 MB | TG 210, one message (682 chars). Longest leg: 40.1 s narration needs 10.28 s per clip, so the four clips slowed x1.06 (-s, P240). Bed gain x1.60 (mix-gap on target). |
+| R197 | 2026-11-05 | Sahih al-Bukhari #6675 | Abdullah ibn Amr | Sahih | Major Sins / Al-Kaba'ir | #shirk #parents #sins #majorsins | TJ | Adults | bukhari-6675 | adults-tj-bukhari-6675-story.mp3 | adults-tj-bukhari-6675-moral.mp3 | adults-tj-bukhari-6675-narration.mp3 | b6675-dawn.mp4, b6675-staff.mp4, b6675-well-b.mp4, b6675-scale.mp4 | adults-tj-bukhari-6675-bg-mixed.mp4 | aswati-Rising-Hope.mp3 | NO (P078) | adults-tj-bukhari-6675-reel.mp4 | 34.9s | 8.5 MB | TG 211, one message (688 chars). Closes the set. Trim x0.91. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -262,7 +266,7 @@
 | Jami at-Tirmidhi #1899 | — | — | REVIEWED 2026-10-09, row is CLEAN and available to produce. audit-library flags tj-no-diacritics on it, which is a HEURISTIC FALSE POSITIVE: the Tajik is correct and the sentence simply contains none of ӣүҳқғҷ — «хушнудии Парвардигор дар хушнудии падар аст» uses the izofat form of хушнудӣ correctly, and падар/хашм/аст are Tajik, not Russian. The real defect was elsewhere: text_english and text_russian rendered الوالد as “parent” / «родителя» while the Arabic, Uzbek and Tajik all say FATHER. EN and RU corrected to father / отца so all five columns agree with the matn. |
 | Jami at-Tirmidhi #2616 | — | — | TWO ROWS under this number, each holding a DIFFERENT CLAUSE of Mu'adh's long narration — one is «charity extinguishes sin as water extinguishes fire», the other «the head of the matter is Islam, its pillar is the prayer». Found 2026-10-09 by the new duplicate-number check, not by reading. Producing one makes the other read as already done. Decide which clause the set is about BEFORE selecting. |
 | Sahih al-Bukhari #1469 | — | — | TWO ROWS under this number, each a different clause of the patience narration — «no one has been given a gift better and more comprehensive than patience» and «whoever tries to be patient, Allah will grant him patience». Same exposure as #2616. Found 2026-10-09. |
-| Sahih al-Bukhari #6675 (cited as #6871 until 2026-10-30, P328) | — | — | DO NOT PRODUCE after #2654 without deciding deliberately. Different NUMBER, same subject (al-kaba'ir, the major sins): #2654 is the long «shall I not inform you of the greatest of the major sins» narration, #6675 the short list. The duplicate index keys on the number, so nothing flags the pair. NO AUTOMATED CHECK COVERS THIS — a similarity check was written on 2026-10-09 and removed: the two score 0.16 on matn overlap, and the highest score anywhere in the library is 0.29, so no threshold separates them (P205). This row is the mechanism. |
+| Sahih al-Bukhari #6675 | EN, RU, UZ, TJ | Adults | R194-R197. Narrated by Abdullah ibn Amr, sahih, the Book of Oaths and Vows. 'The major sins are: associating partners with Allah, disobedience to parents, killing a soul, and the false oath.' SAME SUBJECT as #2654 (R094-R097, Abu Bakra, the long 'shall I not inform you of the greatest of the major sins'): different number, so the index does not flag the pair and NO automated check covers it (a similarity check scored the pair 0.16 and was removed, P205). Cited as #6871 until 2026-10-30 (P328). Shipped 2026-11-05, 37 days after #2654. H cites #6920 for the definition of al-yamin al-ghamus. Library id 6f794f00. |
 | Sahih al-Bukhari #2654 | EN, RU, UZ, TJ | Adults | R094, R095, R096, R097 |
 | Sahih al-Bukhari #6857 | EN, RU, UZ, TJ | Adults | R098, R099, R100, R101 |
 | Sahih Muslim #2628 | EN, RU, UZ, TJ | Adults | R102, R103, R104, R105 |
@@ -320,6 +324,7 @@
 | Kindness / Charity | 4 | R090–R093 | EN, RU, UZ, TJ |
 | Major Sins / Accountability | 4 | R094–R097 | EN, RU, UZ, TJ |
 | Major Sins / Al-Mubiqat | 4 | R098–R101 | EN, RU, UZ, TJ |
+| Major Sins / Al-Kaba'ir | 4 | R194-R197 | EN, RU, UZ, TJ |
 | Character / Companionship | 4 | R102–R105 | EN, RU, UZ, TJ |
 | Gratitude / Contentment | 8 | R106-R109, R166-R169 | EN, RU, UZ, TJ |
 | Death / Afterlife | 4 | R114–R117 | EN, RU, UZ, TJ |
@@ -367,20 +372,20 @@
 | vocal-nasheed-03.mp3 | 12 | R192 | R029, R035, R043, R058, R070, R081, R089, R092, R099, R140, R160, R192 |
 | vocal-nasheed-05.mp3 | 12 | R153 | R032, R036, R045, R059, R069, R082, R093, R098, R109, R131, R145, R153 |
 | vocal-nasheed-06.mp3 | 12 | R191 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137, R159, R191 |
-| vocal-nasheed-07.mp3 | 11 | R158 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136, R158 |
+| vocal-nasheed-07.mp3 | 12 | R196 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136, R158, R196 |
 | light-of-my-heart-bg.mp3 | 11 | R161 | R010, R013, R024, R038, R078, R091, R094, R104, R106, R134, R161 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
 | mubarak-bg.mp3 | 2 | R011 | R005, R011 |
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
-| path-to-jannah-bg.mp3 | 7 | R189 | R004, R023, R095, R103, R128, R135, R189 |
+| path-to-jannah-bg.mp3 | 8 | R195 | R004, R023, R095, R103, R128, R135, R189, R195 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
 | aswati-Peaceful-Contemplation.mp3 | 12 | R184 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176, R178, R184 |
 | aswati-Gentle-Reflection.mp3 | 12 | R193 | R115, R121, R139, R142, R156, R165, R168, R171, R174, R179, R182, R193 |
 | aswati-Morning-Serenity.mp3 | 10 | R190 | R116, R124, R154, R162, R167, R172, R177, R180, R185, R190 |
 | aswati-Heartfelt-Gratitude.mp3 | 8 | R181 | R117, R123, R152, R164, R166, R173, R175, R181. RETIRED 2026-11-02 (operator): `lanes: []`, out of rotation; file kept on disk (P141). |
-| aswati-Rising-Hope.mp3 | 6 | R188 | R118, R125, R149, R157, R183, R188 |
+| aswati-Rising-Hope.mp3 | 7 | R197 | R118, R125, R149, R157, R183, R188, R197 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
-| aswati-Focused-Determination.mp3 | 4 | R187 | R122, R132, R155, R187 |
+| aswati-Focused-Determination.mp3 | 5 | R194 | R122, R132, R155, R187, R194 |
 | aswati-Victory-March.mp3 | 3 | R186 | R141, R151, R186 |
 | vocal-hamd-kids-01.mp3 | 0 | — | RETIRED 2026-09-10, `lanes: []`. Never shipped. Three strikes: crossed lanes onto R029 adults; pulled from R081 as flippant; drawn again for R083 and sounds like 2x playback. Since P168 the picker reads the registry, so it is no longer drawn at all. |
 
@@ -396,6 +401,7 @@ three sets.
 
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
+| b6675-dawn, staff, well-b, scale | 1 set | 2026-11-05 (R194-R197) | R194-R197, all four on every leg in matn order, -FitScenes; UZ on x1.06 copies (-s, P240). Stills from references (Hughes 'Houses'; peopleofmadina.com; Bukhari 5638 for the wooden bowl; Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale). The well still took four rounds (operator): the rope read as a noose, then the water spilled, then the rope hung free of the bucket - well-d-2 has it knotted to the handle. Kling's first well take let the knot drift off the handle under the push-in; well-b is a static-camera re-run (the first take is not registered). |
 | b5984-lane, door, meal, garden | 1 set | 2026-11-04 (R190-R193) | R190-R193, all four on every leg in matn order, -FitScenes. Stills from references (Hughes 'Houses'; the Prophetic homes - mud brick, palm-trunk roofs, hair-cloth door curtains, palm-trunk enclosures; Bukhari 5638 for the wooden drinking bowl). door-1 the operator's pick; meal re-generated (meal-b-2) because the first cups read as soup pots - he wanted small piala-like bowls. Kling moved the lane camera further than asked; kept. |
 | b38-crescent, suhoor, iftar, spring | 1 set | 2026-11-04 (R186-R189) | R186-R189, all four on every leg in matn order, -FitScenes. Four NEW stills, one cover per language. Prompts written from internet references, not from memory (operator). suhoor re-generated: the first stills drew a teapot-like lamp; the second describes an early Islamic clay oil lamp from documented finds (teardrop body, filling hole, conical knob handle). |
 | m2747-caravan2, escape, tracks, tree, return, halter | 1 set | 2026-11-02 (R178-R181) | R178-R181, all six on every leg in matn order, -FitScenes; UZ on x1.12 copies (-s). caravan2 is the re-roll: the first take slid backward 6-10 s because the motion prompt said left-to-right while the camel faced left (P348). The saddle has short posts after the first stills' Y-frames read as antlers; tree and return carry one tree description word for word (operator). |
@@ -518,16 +524,16 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 193 |
+| Total reels posted | 197 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 141 |
+| Adults reels | 145 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 49 |
+| Hadiths used (unique) | 50 |
 | Library rows | 71 (40 used, 31 unused) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×83, Sahih Muslim ×32, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
-| Companions cited | 20 (Abdullah ibn Amr ×4, Uthman ibn Affan ×4, Abu Hurairah ×62, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4, Jubayr ibn Mut'im ×4) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×87, Sahih Muslim ×32, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
+| Companions cited | 20 (Abdullah ibn Amr ×8, Uthman ibn Affan ×4, Abu Hurairah ×62, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×8, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4, Jubayr ibn Mut'im ×4) |
 
 **157 reels from 40 hadiths.** Forty of 71 library rows have been used;
 31 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
@@ -568,6 +574,7 @@ Then update:
 | 2026-11-03 | R182-R185 - Sahih Muslim #2749 EN/RU/UZ/TJ adults, 'if you did not sin, Allah would bring a people who sin and seek forgiveness'. Repentance / Mercy, the second from the repentance queue. Dorar query to published in one day. Every caption under 1024 - one Telegram message each. P351, P352. TG 196-199. | Farhod / Claude |
 | 2026-11-04 | R186-R189 - Sahih al-Bukhari #38 EN/RU/UZ/TJ adults, 'whoever fasts Ramadan out of faith and hoping for reward'. Fasting / Ramadan, which had one reel (R002, May). The first set made from the library-wide triage (full hadith only; long hadiths go to the site). RU matn corrected in the DB first. Stills from internet references. Every caption under 1024 - one Telegram message each. TG 200-203. | Farhod / Claude |
 | 2026-11-04 | R190-R193 - Sahih al-Bukhari #5984 EN/RU/UZ/TJ adults, 'the one who severs ties of kinship will not enter Paradise'. New theme Family / Kinship. A/B disagreed on 'ties of kinship' (the Arabic says only «قاطع»); settled from Muslim #2556 and approved by the operator. H names Sufyan's gloss and Shaykh Abdul Sattar al-Hammad (Hidayat al-Qari). First set posted to Instagram and Facebook together from Meta Business Suite. TG 204-207. | Farhod / Claude |
+| 2026-11-05 | R194-R197 - Sahih al-Bukhari #6675 EN/RU/UZ/TJ adults, 'the major sins: associating partners with Allah, disobedience to parents, killing a soul, and the false oath'. New theme Major Sins / Al-Kaba'ir - the third Major Sins set, after #2654 and #6857. H cites #6920 for al-yamin al-ghamus and Shaykh Abdul Sattar al-Hammad (Hidayat al-Qari). A/B 4/4. UZ on -s clips (P240). Listen published for all four. TG 208-211. | Farhod / Claude |
 | 2026-11-01 | R174-R177 - Sahih al-Bukhari #6406 EN/RU/UZ/TJ adults, two words light on the tongue and heavy on the Scale. New theme Dhikr / Tasbih. First hadith from a Dorar query to a published reel in one day. P344 (promote copied an Arabic narrator; caught by P337 at the narrate dry run). TG 184-187. | Farhod / Claude |
 | 2026-11-01 | R170-R173 - Sahih al-Bukhari #6412 EN/RU/UZ/TJ adults, two blessings many people lose: health and free time. New theme Blessings / Time. P342 caught its first defect live (RU 'добудет'). DB: RU matn corrected, tag death -> time (new tags.ts concept). P343 (the clip check looked for faces, not for whether the water came from the right place). TG 180-183. | Farhod / Claude |
 | 2026-10-31 | R166-R169 - Sunan Abu Dawud #4811 EN/RU/UZ/TJ adults, whoever does not thank people does not thank Allah. Second set in Gratitude / Contentment and the first in the bright palette. P340 (prayer direction in a frame - the qibla rule had lived in chat memory), P341 (the --strict splat). First production use of FLUX 3 (Edit). TG 176-179. | Farhod / Claude |

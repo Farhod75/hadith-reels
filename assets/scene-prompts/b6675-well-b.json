@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14566/0ZWyo1geQHUYyMFfGFgwU_output.mp4",
+    "name":  "b6675-well-b",
+    "image":  "out\\refs\\b6675-well-d-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6675-well-b.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-05T16:53:47.3367175Z",
+    "size_bytes":  27589415,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The rope is firmly knotted to the bucket handle and stays connected the whole time; the rope, the knot, the handle and the bucket do not move at all. Only the water surface in the bucket shimmers softly and the palm leaves sway gently in the background. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1aca1-7dbb-7cb1-9662-a175e1fdd208",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-05T17:03:35.7397459Z",
+    "mode":  "image-to-video"
+}

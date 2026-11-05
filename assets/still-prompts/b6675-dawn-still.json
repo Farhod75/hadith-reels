@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-dawn",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, sunrise over vast golden Arabian sand dunes, a clear wide sky turning from deep blue to warm gold, the first rays of the sun just above the horizon, soft long shadows across smooth dune ridges, one lone acacia tree in the middle distance. Bright, calm, open. No people, no animals, no buildings, no text.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac1b-681a-7b23-8413-17cf8a0b6910",
+  "submitted_utc": "2026-11-05T14:27:19.3445386Z",
+  "completed_utc": "2026-11-05T14:27:28.1995073Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-dawn-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d4/T3pVhwMoVJeBaNN6VsWj9_GGyMIOQe.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-dawn-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d4/RSBRuOtCiYlM-srgY5f1s_7ZVXHS4a.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-dawn-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d4/9Xl41nV3_n3PKsZlYch2x_JN6lxvw2.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 81149615
+}

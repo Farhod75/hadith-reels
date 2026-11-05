@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-well",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an old round stone-lined well in a desert oasis at sunrise, a thick palm-fibre rope over a simple wooden frame, a leather bucket resting on the well's rim with clear water spilling over its edge, date palms and green shrubs behind, bright blue sky with soft golden light. No people, no hands, no animals, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac1b-e101-7c41-a361-b84442f4ed4e",
+  "submitted_utc": "2026-11-05T14:27:50.4746451Z",
+  "completed_utc": "2026-11-05T14:27:59.2156710Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-well-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d7/lF_Beswvl31BvBswG2tHi_M5QJScI0.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-well-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d7/OZCc_ZdD8r5K4XDtBYJEp_w4HHiyyJ.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-well-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d7/Un8WNe8E49p0Yhb8M_6b-_IGapR0cK.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 168476371
+}

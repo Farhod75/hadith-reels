@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1450f/wIIDC3AWeW3CHKWsHGQme_output.mp4",
+    "name":  "b6675-scale",
+    "image":  "out\\refs\\b6675-scale-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6675-scale.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-05T16:37:52.9422793Z",
+    "size_bytes":  33774977,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft light glints slowly on the metal, faint dust motes drift in the air. The scale pans stay perfectly level and still. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1ac92-ee82-7210-805f-02211afd3829",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-05T16:48:52.6560217Z",
+    "mode":  "image-to-video"
+}

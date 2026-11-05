@@ -1,3 +1,15 @@
+## [2026-11-05e] - R194-R197, Sahih al-Bukhari #6675, four languages, set closed
+
+### Content
+
+- Tracker rows R194-R197 (TG 208-211), duplicate index (#6675 produced; the #2654
+  pairing kept in the row), new theme Major Sins / Al-Kaba'ir, nasheed usage, the
+  b6675 clip set, stats 197/145/50, change log, retro. Registry: the four b6675
+  clips and their UZ -s copies (P240) -> verified:true. Scene and still prompt
+  sidecars for b6675. publish-narration: #6675 in four languages.
+
+---
+
 ## [2026-11-05d] - TikTok keeps the Arabic matn (P371)
 
 ### Changed

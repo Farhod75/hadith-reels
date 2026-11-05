@@ -1871,6 +1871,78 @@
       "verified": true,
       "notes": "FLUX 2 still (garden-2) -> Kling 3.0 Pro i2v 10s. Bright garden, stream and waterfall, fruit trees - the Paradise the matn names. Sahih al-Bukhari #5984, Jubayr ibn Mutim, sahih - the one who severs ties of kinship will not enter Paradise. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com, the Prophetic homes; Sahih al-Bukhari 5638, the wooden drinking bowl).",
       "prompt_sidecar": "assets/scene-prompts/b5984-garden.json"
+    },
+    "b6675-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (dawn-2) -> Kling 3.0 Pro i2v 10s. Sunrise over golden Arabian dunes, one lone acacia; light brightens, slow push-in. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-dawn.json"
+    },
+    "b6675-staff.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (staff-1) -> Kling 3.0 Pro i2v 10s. Mud-brick doorway with a dark hair-cloth curtain tied back, an elder's staff leaning on the wall, folded blanket and wooden bowl on a palm mat - the parents' home. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-staff.json"
+    },
+    "b6675-well-b.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (well-d-2, re-generated: operator wanted calm water, no spilling, the rope tied to the bucket) -> Kling 3.0 Pro i2v 10s, static camera (first run b6675-well rejected: the knot came off the handle). Wooden well frame with pulley, full bucket knotted to the rope, palms behind. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-well-b.json"
+    },
+    "b6675-scale.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (scale-1) -> Kling 3.0 Pro i2v 10s. Brass balance scale, dates in baskets, clay jars, leather purse, silver and gold coins - the trade where a false oath is sworn. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-scale.json"
+    },
+    "b6675-dawn-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): b6675-dawn.mp4 slowed x1.06 -> 10.58 s, out/_msg/slow_6675.ps1. Same content. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-dawn.json"
+    },
+    "b6675-staff-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): b6675-staff.mp4 slowed x1.06 -> 10.58 s, out/_msg/slow_6675.ps1. Same content. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-staff.json"
+    },
+    "b6675-well-b-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): b6675-well-b.mp4 slowed x1.06 -> 10.58 s, out/_msg/slow_6675.ps1. Same content. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-well-b.json"
+    },
+    "b6675-scale-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): b6675-scale.mp4 slowed x1.06 -> 10.58 s, out/_msg/slow_6675.ps1. Same content. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
+      "prompt_sidecar": "assets/scene-prompts/b6675-scale.json"
     }
   }
 }

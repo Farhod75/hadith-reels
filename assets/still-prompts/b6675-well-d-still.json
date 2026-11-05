@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-well-d",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an old round stone-lined well in a desert oasis at sunrise. Over the well, two upright wooden posts carry a horizontal beam with a simple wooden PULLEY WHEEL. A WOODEN bucket bound with dark bands, with a curved rope handle across its top, rests upright on the well's dry stone rim, filled to just below the brim with calm clear water. The palm-fibre rope comes down from the pulley in one straight taut line and is TIED to the middle of the bucket's handle - one continuous rope from pulley to bucket. NO loops, NO nooses, NO hanging rings, NO loose ends; no water spilling, the rim and stones dry. Date palms and green shrubs behind, bright blue sky, soft golden light. No people, no hands, no animals, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac54-cff6-7100-95f9-fafcc72bb064",
+  "submitted_utc": "2026-11-05T15:30:01.2555829Z",
+  "completed_utc": "2026-11-05T15:30:10.5537930Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-well-d-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1434c/GpyO3BM0RxooPicgC8pS2_kc23sO6j.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-well-d-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1434c/5JbmDKhKyYsiVUbvlzQng_1Tsy39EP.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-well-d-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1434c/XhRkb_520hh3JkUBv2_yk_JTsIgtQt.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1197192862
+}

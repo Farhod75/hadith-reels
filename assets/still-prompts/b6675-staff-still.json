@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-staff",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, the doorway of a 7th-century mud-brick house in an Arabian oasis, a dark woven hair-cloth curtain tied back. Just inside the threshold, a worn wooden walking staff leans against the wall beside a low woven palm-fibre mat with a folded plain wool blanket and one small wooden drinking bowl of water set within reach. Warm bright morning light falling across the mat. No people, no hands, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac1b-97ac-7193-934e-7f1e0a2ba9fd",
+  "submitted_utc": "2026-11-05T14:27:31.7214560Z",
+  "completed_utc": "2026-11-05T14:27:48.6908659Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-staff-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d6/HBm5Jm1l_svm-y-8uq8Hr_13tvYwLT.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-staff-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d6/h-Z4y4uTJ5f8xDbUkOi6Y_1sMwUbiT.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-staff-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d6/wnCDAgy8zC63txpB32ajb_F447XesD.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2094921969
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14443/C7sGrN9DXbl6n-NdbLEZZ_output.mp4",
+    "name":  "b6675-dawn",
+    "image":  "out\\refs\\b6675-dawn-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6675-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-05T16:04:52.3087098Z",
+    "size_bytes":  29387520,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft dawn light slowly brightens across the sky, thin clouds drift gently, a light breeze moves the grass. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1ac74-b554-7ce2-bce0-d1d454d6da49",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-05T16:15:08.1198687Z",
+    "mode":  "image-to-video"
+}

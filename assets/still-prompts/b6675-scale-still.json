@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-scale",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a 7th-century Arabian market stall in morning light: on a woven palm mat stands a simple bronze balance scale with two round hanging pans held perfectly level on a straight beam; beside it a small closed leather purse and a few coins - one small gold coin in the Byzantine solidus style and three thin wide silver coins in the Sasanian drachm style, all plain and worn, no readable inscriptions. Clay jars and palm-leaf baskets of dates softly blurred behind. Bright warm light. No people, no hands, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac1c-0dd0-7402-a926-cba7f690fe49",
+  "submitted_utc": "2026-11-05T14:28:01.9419950Z",
+  "completed_utc": "2026-11-05T14:28:10.5129571Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-scale-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d8/OpAERUQWd4HgYsZbgOxHZ_E6a6m1xM.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-scale-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d8/WPTaTMAlV7T0sX748m44D_byPgqyJW.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-scale-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab141d8/onZ9eyv53ZBWJFaxhyKea_p9rZdWyG.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 341506259
+}

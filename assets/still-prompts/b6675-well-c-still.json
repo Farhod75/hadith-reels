@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6675-well-c",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an old round stone-lined well in a desert oasis at sunrise. Over the well, two upright wooden posts carry a horizontal beam with a simple wooden PULLEY WHEEL; a palm-fibre rope runs over the pulley and straight down into the well, taut and straight, with NO loops, NO knots and NO hanging ring anywhere. A simple WOODEN bucket bound with dark bands rests upright and still on the well's dry stone rim, filled to just below the brim with calm clear water - NO water spilling, NO drips, NO splashes, the rim and stones around it dry. Date palms and green shrubs behind, bright blue sky, soft golden light. No people, no hands, no animals, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1ac49-6268-7453-bd56-3373445f0621",
+  "submitted_utc": "2026-11-05T15:17:31.9583062Z",
+  "completed_utc": "2026-11-05T15:17:41.8841070Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6675-well-c-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab14302/R7nBRsPL4KMfW60gdURn-_JO3RK01L.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6675-well-c-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab14302/OCD1I1SjZtMLfAIignxEV_5xx2VBbM.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6675-well-c-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab14302/X191jkVGD3H4MIUVL8pZk_H037j34L.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 875932773
+}

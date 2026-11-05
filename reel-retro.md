@@ -989,3 +989,55 @@ very quiet track; worth a loudness note in the registry if it recurs.
 
 **The finding:** two models disagreeing was the useful output. The answer was
 in the next hadith over, not in either model.
+
+## R194-R197 - Sahih al-Bukhari #6675 - 2026-11-05
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (208-211, one message each: 608-688 chars), Instagram and Facebook together from Meta Business Suite, YouTube Shorts, TikTok. Listen on hadithreels.com published for all four (publish-narration).
+
+Third set from the library triage. Page check (en.tohed.com, bukhari/6675): one
+hadith at the number, matn-vs-number gate MATCH. A/B 4/4.
+
+**Caught before publish, and who said it.**
+
+1. **The well still, four rounds** (operator): the first rope read as a noose;
+   then the bucket spilled; then the rope hung beside the bucket instead of
+   holding it. well-d-2 has the rope knotted to the handle.
+2. **Kling undid the knot** (operator): under the slow push-in the knot drifted
+   off the handle within the first second. Re-run with a static camera and the
+   knot named in the prompt; checked frame by frame, once a second (me).
+3. **UZ narration 40.1 s on 10.04 s clips** (render-set stopped it): x1.06
+   copies, as for #2749 (P240).
+4. **EN and RU subtitles** - 'Honor' capitalised mid-sentence, no quotation
+   marks; RU 'Абдулах Ибан Амар, добудет', 'со товарищей', 'лживое клятва'
+   (P339 stopped both renders). Fixed in the cached SRTs, re-rendered.
+5. **The top-ranked bed was 'Victory March'** (me): first by usage count, wrong
+   in tone for a hadith about the major sins. Four lower-use beds chosen instead.
+
+**Escaped to publish.** One field, by me: the TJ YouTube description I typed
+for the operator had '#парents' (Cyrillic letters inside 'parents'). Flagged
+with the next message; platform-texts.py had it right - the error was in my
+retyping, not the generator.
+
+**Not settled before production.** The tracker and OPEN_ITEMS said #6675 must
+not follow #2654 (same subject, al-kaba'ir) without a deliberate call. The
+overlap was written into OPEN_ITEMS at the #5984 close, but I find no record
+that it was put to the operator as a decision before the paid A/B. 37 days and 96 reels separate
+the two sets, and the operator approved every gate after - but the call was not
+made as the row asked.
+
+**Operator corrections of the assistant: 2.** Items 1 and 2.
+
+**Root causes.** A rope and a bucket are two objects to an image model, and a
+camera move is licence to separate them: the attachment has to be stated, and
+the camera held still, when the attachment is the point. The TJ slip: copying a
+generated field by hand instead of from the file.
+
+**Prevention landed.** None new.
+
+**Prevention deferred.** The 'deliberate call' rows (#6675/#2654, the Tawheed
+cluster) live in prose; nothing surfaces them when a set is picked.
+Candidate: the triage reads the duplicate index and prints the row next to the
+candidate.
+
+**The finding:** the gates caught everything that reached them. What slipped -
+a pairing rule and a retyped hashtag - lived outside any gate.

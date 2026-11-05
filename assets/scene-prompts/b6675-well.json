@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab144d4/VVedOZCh-bGEpqxTa_0b8_output.mp4",
+    "name":  "b6675-well",
+    "image":  "out\\refs\\b6675-well-d-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6675-well.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-05T16:27:05.7910489Z",
+    "size_bytes":  37432451,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Gentle light ripples on the calm water surface in the bucket, a soft breeze, leaves sway slightly in the background. The rope stays taut and attached to the bucket, the bucket does not swing, no water spills. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1ac89-0e9c-7ee0-939f-7dce09655577",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-05T16:37:51.4674019Z",
+    "mode":  "image-to-video"
+}
