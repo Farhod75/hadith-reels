@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5984-lane",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, early morning in a small 7th-century Arabian oasis village like early Madinah. A narrow sandy footpath winds between two low single-storey houses with walls of sun-dried mud brick and flat roofs of date-palm trunks and palm leaves plastered with mud, roof edges low enough to touch. The path is worn smooth by footsteps and leads from one doorway to the other; each doorway is covered by a plain dark woven camel-hair curtain. Date palms behind, bright clear blue sky, warm golden low sun, long soft shadows. No people, no animals, no text, no modern objects, no glass windows.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a8d7-e208-75e2-88f3-69558bfba7d7",
+  "submitted_utc": "2026-11-04T23:14:41.6875217Z",
+  "completed_utc": "2026-11-04T23:14:56.7088213Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5984-lane-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c71/A1fj1zVWBBb7PU6t4RAEX_aNt4hFHt.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5984-lane-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c71/e3VS25RwBdVOcB0aKu2D2_PKzcvENF.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5984-lane-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c71/T0RMM1tj-EhqffwdIrukz_2DacchvU.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1208436428
+}

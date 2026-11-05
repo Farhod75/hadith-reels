@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5984-meal-b",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an open-air family enclosure beside a mud-brick house, its fence made of upright date-palm trunks, open to a bright blue sky. In the centre on a large round woven palm-leaf mat: one large shared round wooden bowl of tharid - pieces of torn flat bread soaked in meat broth with a little meat on top - a small basket of fresh dark dates, and a stack of round flat breads. Around the big bowl, in a circle, six SMALL shallow handleless WOODEN drinking bowls, each only palm-sized like a small tea bowl (piala), wide and low, about 10 cm across and 5 cm high, plain dark-brown wood, some holding water. NOT pots, NOT jugs, NOT mugs, no handles, no clay pots. Soft afternoon sunlight, palm-leaf shadows, warm colours. No people, no hands, no text, no modern objects, no cutlery.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a92c-15ce-7393-a5eb-c1077fb9cf60",
+  "submitted_utc": "2026-11-05T00:46:39.9045007Z",
+  "completed_utc": "2026-11-05T00:46:55.1221232Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5984-meal-b-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12e99/ktcVasGmeUzw5W5WrXdja_DEqui6WN.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5984-meal-b-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12e99/R_OFAYrn3pC7Ba6phc_qg_PTo16Vye.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5984-meal-b-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12e99/OuRLFDVRsjj4p2-4ZJg12_AzdZUZlw.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1373079059
+}

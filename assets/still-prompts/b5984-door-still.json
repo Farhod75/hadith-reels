@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5984-door",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, close view of the doorway of a 7th-century mud-brick house in an Arabian oasis: a dark woven camel-hair curtain is drawn aside and tied back, revealing a warm sunlit interior. On a woven palm-fibre mat just inside the threshold sit a wooden bowl of dark dates and a plain earthenware water jug with two simple clay cups, set out for a visitor. Bright morning light falling across the threshold, rich warm colours, clean and inviting. No people, no hands, no text, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a8d8-37d2-7403-998b-bbe910e95f6a",
+  "submitted_utc": "2026-11-04T23:15:04.4325044Z",
+  "completed_utc": "2026-11-04T23:15:19.8738751Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5984-door-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c73/3d-i6Wr0B354YLefGsS40_NrOQyrhq.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5984-door-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c73/thd9WMCXzBcz4v6qJytUR_WfogLA1t.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5984-door-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c73/MId839R-ZCM_U3duv1nVH_Tc0RRTwt.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1188577964
+}

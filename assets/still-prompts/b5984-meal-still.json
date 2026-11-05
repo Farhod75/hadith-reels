@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5984-meal",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an open-air family enclosure beside a mud-brick house, its fence made of upright date-palm trunks, open to a bright blue sky. In the centre on a large woven palm-leaf mat: one large shared round wooden bowl (qasah) of tharid, torn flat bread soaked in meat broth, a basket of fresh dates, a few rounds of flat bread, and several plain clay cups arranged in a circle around the bowl as if many relatives will sit together. Soft afternoon sunlight, palm-leaf shadows, warm colours. No people, no hands, no text, no modern objects, no cutlery.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a8d8-8b63-7421-88d3-e90b3052c633",
+  "submitted_utc": "2026-11-04T23:15:25.7248397Z",
+  "completed_utc": "2026-11-04T23:15:40.0281106Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5984-meal-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c75/a89pLC-jntXwdi9Rwf2YF_yzNbvfcw.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5984-meal-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c75/-YpM1L19dBp9VDpHn-0pn_Dua2k6vN.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5984-meal-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c75/heRpS4f609fuc7ichcUIN_q7VsHJsT.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 891642514
+}

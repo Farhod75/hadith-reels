@@ -184,6 +184,10 @@ this one wins.
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
   request (A/B pass). Published the same day at the operator's request, ahead
   of #2734 and #223.
+- **Bukhari #5984 - PUBLISHED 2026-11-04 (R190-R193, TG 204-207).** Second set from the
+  triage. A/B disagree on 'ties of kinship' settled from Muslim #2556 (operator approved).
+  Next candidate checked (page + gate MATCH, no spend): Bukhari #6675 (four major sins) -
+  overlaps the shipped #2654 / #6857 theme.
 - **Bukhari #38 - PUBLISHED 2026-11-04 (R186-R189, TG 200-203).** First set from the
   library triage (out/_triage.json: 75 rows, 27 READY, 11 BLOCKED; skipped: Ibn Majah
   #4250 disputed grade, Tirmidhi #1987 fragment, Tirmidhi #2616 too long for a reel).

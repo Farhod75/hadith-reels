@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab1313f/Q9J-c8Qz6qKDKMK3HfqNb_output.mp4",
+  "submitted_utc": "2026-11-05T02:36:12.7573083Z",
+  "size_bytes": 38759102,
+  "prompt": "Clear water flows steadily along the stream with sparkling highlights, the distant waterfall pours softly, leaves and fruit sway gently in a warm breeze, golden light rays shimmer through the trees, flowers on the banks nod lightly. Camera almost static, a very slow gentle push-in. Keep every element exactly as in the image, nothing added or removed. No people, no animals, no buildings, no text.",
+  "completed_utc": "2026-11-05T02:40:11.8187879Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\b5984-garden.mp4",
+  "schema": 1,
+  "duration_sec": 10,
+  "request_id": "01a1a990-5c51-73f3-b822-86bb5f8111ae",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "resolution": null,
+  "name": "b5984-garden",
+  "generate_audio": false,
+  "image": "out\\refs\\b5984-garden-2.jpg"
+}

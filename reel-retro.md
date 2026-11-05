@@ -948,3 +948,44 @@ re-runs the stopped legs - that is a manual second pass (`--langs en ru`).
 **The finding:** the gates that were promoted to stops this week (P339, P352)
 now catch Whisper's errors as a matter of routine. The work at the gate has
 moved from noticing to fixing.
+
+## R190-R193 - Sahih al-Bukhari #5984 - 2026-11-04
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (204-207, one message each: 397-456 chars), Instagram and Facebook together from Meta Business Suite, YouTube Shorts, TikTok. #38 (R186-R189) went to Facebook the same evening - the first two sets on the new page.
+
+Second set from the library triage, chosen because Family / Kinship had no reel.
+Page check (en.tohed.com, bukhari/5984): one hadith at the number, matn-vs-number
+gate MATCH.
+
+**Caught before publish, and who said it.**
+
+1. **A/B disagreed on all three non-English legs** (the gate): pass A said
+   'ties of kinship' is not in «قاطع». Settled from the source, not by preferring
+   a model: Muslim #2556 has Sufyan's gloss «يعني قاطع رحم» and a narration with
+   «قاطع رحم». Text kept; the operator approved; the H block names both.
+2. **"Will not enter Paradise" needed its scholarly reading** (me): the H block
+   quotes Shaykh Abdul Sattar al-Hammad (Hidayat al-Qari) - holding it lawful
+   vs. knowing it is forbidden - read on the page before it was written.
+3. **First morals restated the matn** (me, P315 shape) - rewritten to one action.
+4. **door-1 over my door-3; meal cups read as soup pots** (operator). Meal
+   re-generated from a reference (Bukhari 5638, the wooden drinking bowl) with
+   small piala-like bowls.
+5. **EN and RU subtitles** - 'Jubeir', 'Джубайер Ибан ... добудет', no quotation
+   marks, and an EN last cue stretched to 32.0 s on a 22.7 s narration (P339
+   stopped both renders). Fixed in the cached SRTs, strict re-check 0, re-rendered.
+
+**Escaped to publish.** Nothing known.
+
+**Operator corrections of the assistant: 2.** Item 4 (door pick, cup shape).
+
+**Root causes.** "Cups" in a prompt is read by the model as whatever vessel it
+likes; the size and shape have to be stated, from a reference, the way the lamp
+was for #38.
+
+**Prevention landed.** None new - the existing gates (A/B, P339) did their work.
+
+**Prevention deferred.** The RU bed ran at x1.97 to reach the mix target - a
+very quiet track; worth a loudness note in the registry if it recurs.
+
+**The finding:** two models disagreeing was the useful output. The answer was
+in the next hadith over, not in either model.

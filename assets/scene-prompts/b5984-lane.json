@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab130ef/l-uZPdgW8P1miiownSSAj_output.mp4",
+  "submitted_utc": "2026-11-05T02:21:18.5260152Z",
+  "size_bytes": 38042305,
+  "prompt": "Palm fronds sway gently in a light breeze, the dark curtains in both doorways ripple softly, fine sand drifts lightly along the worn path, long morning shadows stay calm. Camera almost static, a very slow gentle push-in along the path. Keep every object exactly as in the image: same houses, same curtains, nothing added or removed. No people, no animals, no hands, no text.",
+  "completed_utc": "2026-11-05T02:26:48.3645787Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\b5984-lane.mp4",
+  "schema": 1,
+  "duration_sec": 10,
+  "request_id": "01a1a982-b5dc-7d33-abc7-71fbf34223f0",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "resolution": null,
+  "name": "b5984-lane",
+  "generate_audio": false,
+  "image": "out\\refs\\b5984-lane-1.jpg"
+}

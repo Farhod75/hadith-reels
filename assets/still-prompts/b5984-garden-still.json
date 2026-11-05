@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5984-garden",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a vast luminous garden of extraordinary beauty: clear rivers flowing beneath tall fruit trees heavy with fruit, soft green meadows with white and golden flowers, gentle waterfalls in the distance, warm golden light through leaves, bright saturated colours, peaceful and abundant. No people, no buildings, no text, no animals.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1a8d8-ce96-7550-971d-a990845a5347",
+  "submitted_utc": "2026-11-04T23:15:43.1489363Z",
+  "completed_utc": "2026-11-04T23:16:00.6813366Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5984-garden-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c77/4knN92Slhkl_iCMVWmTjJ_PEidUHjJ.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5984-garden-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c77/6wkTPqx7onb1kaDBkwmsL_2IJ018Mm.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5984-garden-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab12c77/mqdLWrmbPX8FEPpRSlXGu_7JoUtzGk.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 983159644
+}

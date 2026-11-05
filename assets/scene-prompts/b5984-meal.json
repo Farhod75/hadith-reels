@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab13127/LA6-ggJb5UpGg3dGCgDVb_output.mp4",
+  "submitted_utc": "2026-11-05T02:31:43.5443197Z",
+  "size_bytes": 35596219,
+  "prompt": "Thin wisps of steam rise slowly from the large shared bowl, palm-leaf shadows drift softly across the mat, the water in the small wooden bowls catches gentle glints of light. The bowls, bread and dates stay still. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image: same shapes, same number of bowls, nothing added or removed. No people, no hands, no text.",
+  "completed_utc": "2026-11-05T02:36:06.0098688Z",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\b5984-meal.mp4",
+  "schema": 1,
+  "duration_sec": 10,
+  "request_id": "01a1a98c-40da-7a61-a4e4-5aa19f9f2d6e",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "mode": "image-to-video",
+  "resolution": null,
+  "name": "b5984-meal",
+  "generate_audio": false,
+  "image": "out\\refs\\b5984-meal-b-2.jpg"
+}

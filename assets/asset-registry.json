@@ -1835,6 +1835,42 @@
       "verified": true,
       "notes": "FLUX 2 still (spring-1) -> Kling 3.0 Pro i2v 10s. Clear spring over stones in an oasis at sunrise, wildflowers; image of sins washed away. Sahih al-Bukhari #38, Abu Hurairah, sahih - fasting Ramadan out of faith and hoping for reward. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (EarthSky young-moon orientation; Early Islamic terracotta oil lamps, 7th-9th c.).",
       "prompt_sidecar": "assets/scene-prompts/b38-spring.json"
+    },
+    "b5984-lane.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (lane-1) -> Kling 3.0 Pro i2v 10s. Sandy footpath between two low mud-brick houses with palm-leaf roofs, dark hair-cloth curtains in both doorways; curtains ripple, palms sway, camera moves along the path. Sahih al-Bukhari #5984, Jubayr ibn Mutim, sahih - the one who severs ties of kinship will not enter Paradise. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com, the Prophetic homes; Sahih al-Bukhari 5638, the wooden drinking bowl).",
+      "prompt_sidecar": "assets/scene-prompts/b5984-lane.json"
+    },
+    "b5984-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (door-1, operator's pick) -> Kling 3.0 Pro i2v 10s. Doorway with the dark curtain tied back, dates, clay jug and two cups set on a palm mat for a visitor; dust motes in the light. Sahih al-Bukhari #5984, Jubayr ibn Mutim, sahih - the one who severs ties of kinship will not enter Paradise. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com, the Prophetic homes; Sahih al-Bukhari 5638, the wooden drinking bowl).",
+      "prompt_sidecar": "assets/scene-prompts/b5984-door.json"
+    },
+    "b5984-meal.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (meal-b-2, re-generated: operator wanted small piala-like bowls, not pots) -> Kling 3.0 Pro i2v 10s. Palm-trunk enclosure, tharid in a shared wooden bowl, small wooden drinking bowls in a circle. Sahih al-Bukhari #5984, Jubayr ibn Mutim, sahih - the one who severs ties of kinship will not enter Paradise. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com, the Prophetic homes; Sahih al-Bukhari 5638, the wooden drinking bowl).",
+      "prompt_sidecar": "assets/scene-prompts/b5984-meal.json"
+    },
+    "b5984-garden.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (garden-2) -> Kling 3.0 Pro i2v 10s. Bright garden, stream and waterfall, fruit trees - the Paradise the matn names. Sahih al-Bukhari #5984, Jubayr ibn Mutim, sahih - the one who severs ties of kinship will not enter Paradise. MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com, the Prophetic homes; Sahih al-Bukhari 5638, the wooden drinking bowl).",
+      "prompt_sidecar": "assets/scene-prompts/b5984-garden.json"
     }
   }
 }

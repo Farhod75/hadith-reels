@@ -1,3 +1,15 @@
+## [2026-11-04o] - R190-R193, Sahih al-Bukhari #5984, four languages, set closed
+
+### Content
+
+- Tracker rows R190-R193 (TG 204-207), duplicate index (with the Muslim #2556 gloss
+  and the ZAD look-alike), new theme Family / Kinship, nasheed usage, the b5984 clip
+  set, stats 193/141/49, change log, retro. Registry: the four b5984 clips ->
+  verified:true. Scene and still prompt sidecars for b5984. publish-narration: #5984
+  in four languages.
+
+---
+
 ## [2026-11-04n] - CLAUDE.md matches the repo (P367); HV public TTS route hardened (P366)
 
 ### Fixed
