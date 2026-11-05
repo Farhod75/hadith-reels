@@ -12,7 +12,8 @@ index the page reads (P362).
     python scripts/publish-narration.py --commit     # upload + rewrite the index
 
 What counts as usable, per library row and language:
-  - out/work/** or out/published/** has adults-<lang>-<slug>-story.mp3 AND its .txt
+  - out/work/**, out/published/** or out/library-narration/** (P370) has
+    adults-<lang>-<slug>-story.mp3 AND its .txt
     (the exact text that was narrated, P246);
   - recorded on/after --since (default 2026-10-04: eleven_v4 and the current voice
     matrix - older takes used retired voices);
@@ -189,7 +190,9 @@ def main():
                    % (base, ','.join(COLS.values())), key)
     rows = json.loads(body.decode('utf-8'))
     since = dt.datetime.strptime(args.since, '%Y-%m-%d').timestamp()
-    best = find_takes(rows, [os.path.join('out', 'work'), os.path.join('out', 'published')],
+    # P370: out/library-narration/ holds narrate-library.py's takes for rows with no reel.
+    best = find_takes(rows, [os.path.join('out', 'work'), os.path.join('out', 'published'),
+                             os.path.join('out', 'library-narration')],
                       since, args.min_cover)
     index = read_index(base, key)
     uploads, new_index = plan(best, index)

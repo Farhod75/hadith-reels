@@ -15408,3 +15408,39 @@ in both repos. The failed CI run was re-run through the API.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 370: Listen existed only for hadiths that had become reels
+
+**Date:** 2026-11-05  **Repo:** hadith-reels  **Severity:** feature gap (public site)
+
+**What happened.** After P353 closed the per-click paid route and P362 published
+the reels' own narration, the deployed library played Listen only for rows with a
+reel recorded after 2026-10-04: 15 of 75 rows (63 clips after #5984). Every other
+hadith on hadithreels.com had no Listen at all. The operator asked for Listen to
+work across the library (2026-11-05).
+
+**Fix.** `scripts/narrate-library.py` plans and, with `--narrate --max-chars N`,
+records the S block a reel of that row would narrate - the P337 lead-in and the
+quoted matn, built the way make-drafts.py builds it - through the dev server's
+/api/tts, so the voices and cleanForTTS are the reels' own. Takes go to
+out/library-narration/<slug>/<lang>/, which publish-narration.py now also reads.
+Dry run by default; the spend cap is mandatory; three failures stop it.
+
+Rows it must not read aloud are skipped with the reason printed: already
+published, weak grade, empty text, a collection+number shared by two rows
+(publish-narration matches by that key), no NARRATORS lead-in, over the 1000-char
+TTS limit, a reel in production, and every (row, language) in
+`scripts/narration-exclusions.json` - the triage's gate mismatches, partial matns,
+disputed grades, and the two rows found on 2026-11-05 with wrong translations
+(#1510 UZ/TJ, #1521 EN/UZ/TJ). A row is fixed first, then its entry removed in the
+same commit. 7 tests in scripts/lib/test_narrate_library.py.
+
+**Dry run, 2026-11-05:** 160 takes over 42 rows, 37,319 characters (EN 9,480,
+RU 8,956, UZ 9,624, TJ 9,259). Skipped: 63 already published, 57 excluded, 16 on
+duplicate numbers (#1469 x2, #2616 x2), 4 with no lead-in (Itban ibn Malik).
+
+**Tripwire:** none.
+
+**Status:** BUILT; the paid run waits for the operator's yes on the character count.
+
+---

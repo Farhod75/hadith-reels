@@ -98,6 +98,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   once - paid ElevenLabs, waiting on the operator's priced "yes". Re-run
   publish-narration.py at every set close (CLAUDE.md). RAG was asked about and is not
   the tool for this - it retrieves text, it does not play audio.
+  **2026-11-05 (P370): the tool is built** - `narrate-library.py`, dry run: 160 takes over
+  42 rows, 37,319 characters; 57 (row, language) pairs held back by
+  scripts/narration-exclusions.json until their text is fixed. Waits for the operator's
+  yes on that count; then `--narrate --max-chars 38000` and `publish-narration.py --commit`.
 - **Not a finding, worth recording:** HR IS deployed - hadith-reels.vercel.app and
   www.hadithreels.com - with SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY and
   ADMIN_PASSWORD set. Earlier notes here said "HR is not deployed"; they were wrong.

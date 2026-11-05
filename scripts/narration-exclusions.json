@@ -1,0 +1,22 @@
+{
+  "_doc": "P370: (row, language) pairs narrate-library.py must NOT read aloud until the row's text is fixed. Remove an entry in the same commit that fixes the row. Ids are hadith_library.id.",
+  "exclude": [
+    {"id": "f9401679-728a-4352-9196-7557bb955f33", "ref": "Sahih Muslim #1510", "langs": ["uz", "tj"],
+     "reason": "UZ/TJ translate 'la yajzi' with jazo/chazo, which reads as PUNISHMENT (OPEN_ITEMS 2026-11-05)"},
+    {"id": "9f2f905f-0f67-476e-bda0-56eb4dc82a2f", "ref": "Sahih al-Bukhari #1521", "langs": ["en", "uz", "tj"],
+     "reason": "UZ/TJ leave rafas/fusuq untranslated; EN carries sunnah.com's bracketed additions (OPEN_ITEMS 2026-11-05)"},
+    {"id": "ce411224-c8ef-4dff-a733-53e19c8256b5", "ref": "Musnad Ahmad #6626", "reason": "matn-vs-number gate MISMATCH (triage 2026-11-04)"},
+    {"id": "859b2de3-f291-45f1-8e6a-0bec2f027952", "ref": "Sahih Muslim #2588", "reason": "partial matn - one of three clauses (triage 2026-11-04)"},
+    {"id": "0258a8cd-29e9-4a43-a1fb-9a3957a8fed8", "ref": "Sahih al-Bukhari #6019", "reason": "partial matn - neighbour clause only (triage 2026-11-04)"},
+    {"id": "13321ac7-753b-4d17-bbed-6516d261b8a3", "ref": "Sahih al-Bukhari #10", "reason": "partial matn - muhajir clause missing (triage 2026-11-04)"},
+    {"id": "694115bc-c7b3-44d9-9d90-ee3a461d2c7d", "ref": "Sahih al-Bukhari #6009", "reason": "matn-vs-number gate MISMATCH (triage 2026-11-04)"},
+    {"id": "3960acde-7b6d-4cb3-8a17-44a1cdd4dff6", "ref": "Sahih al-Bukhari #5971", "reason": "matn-vs-number gate MISMATCH (triage 2026-11-04)"},
+    {"id": "da85eede-346e-4661-9e17-0220a0486a3f", "ref": "Musnad Ahmad #7936", "reason": "number wrong, re-source from scratch; gate MISMATCH (triage 2026-11-04)"},
+    {"id": "e70e6a3a-6f53-453e-b8b5-02c21816a44c", "ref": "Sahih al-Bukhari #1419", "reason": "partial matn (triage 2026-11-04)"},
+    {"id": "d54f5e52-0b59-466e-870c-069cc4a7906c", "ref": "Sunan an-Nasai #3104", "reason": "matn-vs-number gate MISMATCH (triage 2026-11-04)"},
+    {"id": "80d4f0c4-8a74-4d4c-9dc1-482b8c92400f", "ref": "Jami at-Tirmidhi #2396", "reason": "grade disputed - hasan gharib; Zubair Ali Zai da'if (triage 2026-11-04)"},
+    {"id": "b91dc905-ff3d-4140-9d65-49d45e7148cb", "ref": "Sahih Muslim #2699", "reason": "matn-vs-number gate MISMATCH (triage 2026-11-04)"},
+    {"id": "8cf484b6-cc65-4491-b68a-4098761f51be", "ref": "Sunan Ibn Majah #4250", "reason": "grade disputed - many weak verdicts on Dorar (2026-11-04)"},
+    {"id": "c8ffd22e-5402-461e-8735-65599694f597", "ref": "Jami at-Tirmidhi #1987", "reason": "fragment - missing the third clause (2026-11-04)"}
+  ]
+}

@@ -1,3 +1,18 @@
+## [2026-11-05c] - narrate-library.py: Listen for every library hadith, not only reels (P370)
+
+### Added
+
+- **scripts/narrate-library.py** - narrates the reel S block (lead-in + quoted matn) for
+  rows with no published narration, into out/library-narration/; dry run by default,
+  spend cap required. **scripts/narration-exclusions.json** - rows not to read aloud
+  until fixed. 7 tests.
+
+### Changed
+
+- **publish-narration.py** also reads out/library-narration/.
+
+---
+
 ## [2026-11-05b] - flaky admin-session tamper test (P369); library rows #1510 and #1521 need translation work
 
 ### Fixed

@@ -567,6 +567,10 @@ If you add or remove a route or module, change this list in the same commit.
   2026-10-04, the .txt containing the row's translation) to the public Supabase bucket
   `narration` and rewrites its index.json; the public library's Listen plays it (P362).
   Dry run unless `--commit`; unchanged files skipped. **Run at every set close.**
+- `narrate-library.py` — Listen for rows with no reel (P370): records the reel S block
+  (lead-in + quoted matn) via /api/tts into out/library-narration/, which
+  publish-narration.py reads. Dry run unless `--narrate --max-chars N` (paid). Rows in
+  `scripts/narration-exclusions.json` are never read aloud - fix the row, then remove it.
 - `tidy-out.py` — keeps out/ in the P106 layout (work/ = sets not yet published, published/ =
   archive with each set's loose files in `_files/`, out/_archive/ for one-offs). Dry run unless
   `--apply`; writes an undo script. Run at every set close.
