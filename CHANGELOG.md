@@ -1,3 +1,19 @@
+## [2026-11-05f] - sourcing: Bukhari #6307 verified; Tirmidhi #3462 and Ahmad #22079 not admitted; #1151 overlaps #1894
+
+### Content
+
+- **OPEN_ITEMS:** Workflow L run on three queries from two posts the operator sent.
+  Bukhari #6307 (more than seventy times a day) -> candidate, translated, TJ
+  corrected by the operator, A/B 4/4, status verified; Stage 4 is his. Tirmidhi
+  #3462 and Musnad Ahmad #22079 not admitted - Dorar's own notes recorded (a lone
+  narrator; a broken chain) so they are not re-queried. #31's narrator mismatch read
+  on the page: benign.
+- **reel-tracker duplicate index:** Muslim #1151 overlaps Bukhari #1894 (R002) -
+  the musk clause, 'fasting is for Me', the tenfold reward; hold #1151 for Ramadan
+  and decide it against R002.
+
+---
+
 ## [2026-11-05e] - R194-R197, Sahih al-Bukhari #6675, four languages, set closed
 
 ### Content

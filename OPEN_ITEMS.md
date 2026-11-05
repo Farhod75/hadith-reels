@@ -170,6 +170,22 @@ this one wins.
   collection at this number (en.tohed.com muslim/223): the P306/P319 gate stopped
   the render; the row was fixed, not the gate. matn_screened_at and
   matn_verified_at NULL - a human sets them. Reel rendered 2026-11-02.
+- **Dhikr / repentance sourcing, 2026-11-05 (operator sent two posts; Workflow L).**
+  `out/source-queries-dhikr.txt`, three queries, one row passed:
+  - **Bukhari #6307 - candidate fe8df70a, status verified.** «واللهِ إنِّي لَأستَغفِرُ
+    اللهَ وأتوبُ إليه في اليَومِ أكثَرَ مِن سَبعينَ مَرَّةً». Translated from the Arabic,
+    TJ «Ба Худо савганд» -> «Ба Аллоҳ савганд» (operator), signed, applied, Uzbek
+    Latin derived; audit-library 0 high / 0 warn; A/B 4/4 pass/high. NEXT: Stage 4
+    (approve-candidate.py) - the operator's decision.
+  - **Tirmidhi #3462 (Ibrahim's salam, the soil and plants of Paradise) - NOT
+    admitted.** Dorar: «تفرّد به عبد الرحمن بن إسحاق أبو شيبة عن القاسم» (the
+    same narrator stands in the chain of the post the operator sent); «له شاهد»
+    noted, but no sahih/hasan grade from a primary source passed the gate.
+  - **Musnad Ahmad #22079 (Muadh: no deed saves from Allah's punishment more than
+    dhikr) - NOT admitted.** Dorar: «في إسناده انقطاع» and «روى أحمد منه هذه القطعة
+    الأخيرة بإسناد منقطع» - the 'not even jihad' addition included.
+  Do not re-query these two expecting a different result; a different narration
+  of the same meaning would need its own query.
 - **Repentance / forgiveness queue (operator 2026-11-02).** Recorded numbers:
   #4251 (repentance) is the YouTube #1 at 7.2K, #4248 (same chapter) the #4 at
   2.2K; the record (UZ #2654, 357K on Instagram) is a consequence hadith - the
@@ -493,6 +509,9 @@ together and dropping `قال الله عز وجل`). All re-screened, all
 verify-before-write gap (P264), and `audit-diacritics.py` now compares the
 narrator against the mirror. No narrator misattribution found library-wide.
 
+- **#31 READ 2026-11-05: benign.** en.tohed.com bukhari/31: 'Narrated Al-Ahnaf bin
+  Qais: ... Abu Bakra met me ... I have heard Allah's Apostle saying' - Abu Bakra is
+  the companion, al-Ahnaf the man he told. The library row is right. Four remain.
 - **5 narrator mismatches need a HUMAN READING, not a fix:** #31 (Abu Bakra vs
   Al-Ahnaf bin Qais - companion vs immediate narrator, almost certainly fine),
   #1987 (narrated from both Muadh and Abu Dharr), #6018 and #2616 (both
