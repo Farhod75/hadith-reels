@@ -822,10 +822,12 @@ P301, which is why it was edited rather than left to be ignored a third time.
 
 ### 4. TikTok — TikTok Studio, desktop
 
-One description field, and it is NOT the Telegram caption:
+One description field: the Telegram caption, unchanged (`out/platform-<n>.md`).
 
-- **Leave the Arabic matn out.** TikTok's renderer handles RTL inconsistently
-  inside mixed-script text, and the Arabic is already carried on the other three.
+- **The Arabic matn stays - rule changed 2026-11-05 (P371).** The 2026-10-05 note
+  said TikTok rendered RTL inconsistently inside mixed-script text; the operator
+  checked the #38 caption in TikTok Studio on 2026-11-05 and the Arabic line shows
+  correctly, so the matn goes in like on the other platforms.
 - **Front-load the first line.** TikTok collapses the caption after roughly one
   line, so the hadith's point goes first and the quoted matn follows it.
 
@@ -844,9 +846,8 @@ the bottom of the Details page.
 - **YouTube** — no `#` anywhere in the TITLE. YouTube turns it into a hashtag
   link, so "Sahih Muslim #2759" becomes a tag. Write the number bare in the
   title; the `#` is fine in the description.
-- **TikTok** — leave the Arabic matn out. TikTok's caption renderer handles RTL
-  inconsistently inside mixed-script text. The Arabic is already carried on the
-  other three platforms. Front-load the first line too: TikTok collapses the
+- **TikTok** — (2026-10-05, WITHDRAWN 2026-11-05, P371: the Arabic matn now stays
+  in.) Front-load the first line: TikTok collapses the
   caption after roughly one line, so the hadith's point goes first and the
   quoted matn follows.
 - **Instagram** — set the cover frame BY HAND. Reels whose first frame is dark
@@ -977,3 +978,4 @@ Seven of the eight aswati beds name an uploader rather than a composer.
 | 2026-09-10 | Step 4 and step 11 corrected: -Mascot is mandatory with five values (P157), -Resolution defaults to 480p (P164), and the nasheed picker is lane-filtered with no-repeat memory so naming a bed is now an override, not the rule (P159). Lint check count is printed, not hardcoded (P161). |
 | 2026-10-16 | Publishing procedure for all four platforms written down for the first time, as its own section: order, the fields each platform needs, the YT/TikTok/IG metadata shape, and the per-platform traps moved out of the kids Step 6 so both lanes read the same copy. Records that none of it is automated and why - the Telegram route is sendMessage, no tokens are in either .env.local, and IG is blocked behind the Facebook appeal. |
 | 2026-11-04 | Publishing: Facebook added (Instagram + Facebook as one Meta Business Suite reel, with its Share-step settings); Telegram marked automated (tg-post-set.py); TikTok "Reuse of content" OFF; `platform-texts.py` generates every platform field (P368, after '#Shorts' went into YouTube titles and the Arabic into TikTok captions on R186-R193). |
+| 2026-11-05 | TikTok keeps the Arabic matn: the 2026-10-05 no-Arabic rule withdrawn after the operator checked the #38 caption in TikTok Studio (P371); platform-texts.py follows. |

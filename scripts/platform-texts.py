@@ -17,7 +17,9 @@ sets: '#' in the YouTube titles ("#Shorts"), and the Arabic matn in the TikTok
 captions. The rules now live in code, and scripts/lib/test_platform_texts.py
 pins them:
   - YouTube TITLE: no '#' at all; the number goes in bare.
-  - TikTok: no Arabic script anywhere; the title (the hadith's point) first.
+  - TikTok: the Telegram caption, Arabic included (operator 2026-11-05, P371: the
+    Studio editor and the app show the matn correctly; the 2026-10-05 no-Arabic rule
+    is withdrawn). The title (the hadith's point) stays first.
   - Instagram: the Telegram caption unchanged (Facebook gets the same body).
   - Tags (YouTube / Facebook): comma-separated words, never '#'.
 """
@@ -95,8 +97,8 @@ def build(caption, lang):
     yt_desc_parts = [p['matn'], p['moral'], p['ref'] + '\n' + p['verify'], '#Shorts ' + p['tags']]
     yt_desc = '\n\n'.join(x for x in yt_desc_parts if x.strip())
     fb_desc = '\n'.join(p['body']).strip()
-    tiktok = '\n'.join(l for l in p['lines'] if not ARABIC.search(l))
-    tiktok = re.sub(r'\n{3,}', '\n\n', tiktok).strip()
+    # P371: the Arabic stays (operator 2026-11-05); the caption goes in unchanged.
+    tiktok = caption.strip()
     return {
         'instagram': caption.strip(),
         'facebook_title': yt_title,

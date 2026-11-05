@@ -15444,3 +15444,29 @@ duplicate numbers (#1469 x2, #2616 x2), 4 with no lead-in (Itban ibn Malik).
 **Status:** BUILT; the paid run waits for the operator's yes on the character count.
 
 ---
+
+## PATTERN 371: a platform rule outlived the problem it was written for
+
+**Date:** 2026-11-05  **Repo:** hadith-reels  **Severity:** process (publishing)
+
+**What happened.** P368 put the 2026-10-05 rule "TikTok: leave the Arabic matn out"
+into code. The next morning the operator, correcting the #38 TikTok captions as
+P368 asked, sent a screenshot of the TikTok Studio caption with the Arabic line
+rendering correctly and asked why it should go. The rule recorded a rendering
+defect seen once a month earlier; nobody had re-checked it, and P368 enforced it
+without asking whether it still held.
+
+**Fix.** platform-texts.py gives TikTok the Telegram caption unchanged (Arabic
+included); the test now pins that; the pipeline's two TikTok notes are marked
+withdrawn with the date and reason. The eight #38/#5984 TikTok captions need no
+correction - OPEN_ITEMS updated.
+
+**Lesson:** a rule about a third-party platform's behaviour is an observation with
+a date, not a law. Write the date and what was seen next to it, and re-check before
+enforcing it in code.
+
+**Tripwire:** none.
+
+**Status:** FIXED.
+
+---

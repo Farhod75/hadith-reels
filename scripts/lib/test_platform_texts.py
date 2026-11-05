@@ -52,12 +52,13 @@ def test_youtube_title_has_no_hash_and_a_bare_number():
     assert pt.build(RU, 'ru')['youtube_title'].endswith('| Сахих аль-Бухари 5984')
 
 
-def test_tiktok_carries_no_arabic_and_opens_with_the_title():
+def test_tiktok_is_the_caption_with_the_arabic_and_opens_with_the_title():
+    # P371: the no-Arabic rule was withdrawn on 2026-11-05 (the operator's screenshot).
     for cap, lang in ((EN, 'en'), (RU, 'ru')):
         tk = pt.build(cap, lang)['tiktok']
-        assert not pt.ARABIC.search(tk)
+        assert tk == cap.strip()
+        assert pt.ARABIC.search(tk)
         assert tk.split('\n')[0] == cap.split('\n')[0]
-        assert '\n\n\n' not in tk
 
 
 def test_instagram_is_the_telegram_caption_unchanged():

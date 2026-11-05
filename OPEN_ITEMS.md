@@ -197,10 +197,9 @@ this one wins.
   - **Bukhari #1521** (9f2f905f, Hajj mabrur): UZ/TJ leave «рафас ва фусуқ» as bare
     Arabic terms a viewer will not understand; EN is sunnah.com's text with bracketed
     additions ("(after Hajj free from all sins)", "with his wife"). Same path.
-- **OPERATOR: correct 16 published fields (P368).** YouTube: drop " #Shorts" from the
-  titles of the 8 #38 and #5984 Shorts (Studio -> Content -> title). TikTok: the 8
-  captions carry the Arabic matn - remove it only if TikTok lets a posted caption be
-  edited; otherwise leave. Texts: out/platform-38.md, out/platform-5984.md.
+- **DONE 2026-11-05: published fields corrected (P368, P371).** YouTube: " #Shorts" removed
+  from the 8 titles by the operator. TikTok: no change needed - the no-Arabic rule was
+  withdrawn (P371) after the operator showed the Arabic rendering correctly.
 - **Bukhari #5984 - PUBLISHED 2026-11-04 (R190-R193, TG 204-207).** Second set from the
   triage. A/B disagree on 'ties of kinship' settled from Muslim #2556 (operator approved).
   Next candidate checked (page + gate MATCH, no spend): Bukhari #6675 (four major sins) -

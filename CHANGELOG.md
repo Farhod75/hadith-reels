@@ -1,3 +1,13 @@
+## [2026-11-05d] - TikTok keeps the Arabic matn (P371)
+
+### Changed
+
+- **platform-texts.py, reel-creation-pipeline.md:** TikTok gets the Telegram caption
+  unchanged, Arabic included. The 2026-10-05 no-Arabic rule withdrawn after the
+  operator checked the #38 caption in TikTok Studio.
+
+---
+
 ## [2026-11-05c] - narrate-library.py: Listen for every library hadith, not only reels (P370)
 
 ### Added
