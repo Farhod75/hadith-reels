@@ -1,3 +1,25 @@
+## [2026-11-05a] - platform-texts.py generates every publishing field; Facebook in the pipeline (P368)
+
+### Added
+
+- **scripts/platform-texts.py** - out/platform-<n>.md with the Instagram/Facebook,
+  YouTube and TikTok fields per language, built from the Telegram captions:
+  no `#` in YouTube titles, no Arabic in TikTok, tags as plain words.
+  scripts/lib/test_platform_texts.py (7 tests).
+
+### Changed
+
+- **reel-creation-pipeline.md Publishing:** Facebook added (Instagram + Facebook as
+  one Meta Business Suite reel, with the Share-step settings), Telegram marked
+  automated, TikTok "Reuse of content" OFF, Step 16 points at platform-texts.py.
+
+### Fixed
+
+- **P368.** R186-R193 went out with "#Shorts" in the YouTube titles and the Arabic
+  in the TikTok captions - texts composed in chat against rules already written.
+
+---
+
 ## [2026-11-04o] - R190-R193, Sahih al-Bukhari #5984, four languages, set closed
 
 ### Content

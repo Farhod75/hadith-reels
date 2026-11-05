@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-297 patterns in 310 entries, frontier **P367**. The P-sequence is shared with
+298 patterns in 311 entries, frontier **P368**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -358,5 +358,6 @@ BEFORE changing it.
 - **P365** - the HV E2E gate pointed at a server nobody started
 - **P366** - the public HV Listen route spent our ElevenLabs credit for anyone
 - **P367** - CLAUDE.md described a repo that was planned, not the one that exists
+- **P368** - publishing texts written from memory broke the rules written beside them
 
-<!-- pattern-index-stamp entries=310 patterns=297 frontier=367 sha1=7685dc284e61e9aa6ea3d21452f26abf4a75fe74 -->
+<!-- pattern-index-stamp entries=311 patterns=298 frontier=368 sha1=b60634b563ba3306c597a51ea2886a4d66859e52 -->

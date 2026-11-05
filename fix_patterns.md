@@ -15344,3 +15344,40 @@ recorded as an idea, not built.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 368: publishing texts written from memory broke the rules written beside them
+
+**Date:** 2026-11-04  **Repo:** hadith-reels  **Severity:** content (published metadata)
+
+**What happened.** For R186-R193 (Bukhari #38 and #5984) the assistant composed
+the Instagram, Facebook, YouTube and TikTok fields by hand in chat, from memory of
+earlier sets, and never opened reel-creation-pipeline.md "Publishing". Two rules
+written there were broken on both sets, eight uploads each:
+- **YouTube titles ended "#Shorts".** The section says no `#` anywhere in a title
+  (2026-10-05: YouTube turns it into a hashtag link).
+- **TikTok captions carried the Arabic matn.** The section says leave it out
+  (TikTok renders RTL inside mixed-script text inconsistently).
+Found the same night, by reading the section to add Facebook to it. The
+operator's standing rule - check the docs before assuming - covered exactly this.
+
+**Fix.** `scripts/platform-texts.py --number <n>` builds every field from the
+Telegram captions into `out/platform-<n>.md`: Facebook title, the Instagram
+caption unchanged, YouTube title (no `#`, number bare) and description (matn,
+moral, reference, verify, `#Shorts` + tags), comma-separated tags without `#` or
+the language marker, and the TikTok caption with every Arabic-script line removed
+and the title first. `scripts/lib/test_platform_texts.py` (7 tests) pins each
+rule. The pipeline's Publishing section now names the script as the only source
+of those texts, and adds Facebook.
+
+**Operator step open:** the eight YouTube titles can be edited in Studio (drop
+" #Shorts"); the eight TikTok captions only if TikTok allows editing a posted
+caption - otherwise leave them. Corrected texts: `out/platform-38.md`,
+`out/platform-5984.md`.
+
+**Tripwire:** none - the generator is the check. A text composed in chat instead
+of taken from out/platform-<n>.md is the recurrence; the pipeline says so at
+Step 16.
+
+**Status:** FIXED (generator + tests); 16 published fields to correct by hand.
+
+---

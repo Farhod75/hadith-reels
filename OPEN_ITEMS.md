@@ -184,6 +184,10 @@ this one wins.
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
   request (A/B pass). Published the same day at the operator's request, ahead
   of #2734 and #223.
+- **OPERATOR: correct 16 published fields (P368).** YouTube: drop " #Shorts" from the
+  titles of the 8 #38 and #5984 Shorts (Studio -> Content -> title). TikTok: the 8
+  captions carry the Arabic matn - remove it only if TikTok lets a posted caption be
+  edited; otherwise leave. Texts: out/platform-38.md, out/platform-5984.md.
 - **Bukhari #5984 - PUBLISHED 2026-11-04 (R190-R193, TG 204-207).** Second set from the
   triage. A/B disagree on 'ties of kinship' settled from Muslim #2556 (operator approved).
   Next candidate checked (page + gate MATCH, no spend): Bukhari #6675 (four major sins) -

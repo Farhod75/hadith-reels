@@ -559,6 +559,10 @@ If you add or remove a route or module, change this list in the same commit.
   library row read live -> the four `draft.txt` files (P337 lead-in, quoted matn, P342 inner
   quotes dropped) and `out/caption-<n>.json` for build-caption. Lints and dry-runs narration.
   Dry run unless `--write`; never overwrites a draft without `--force`.
+- `platform-texts.py` — `--number <n>` -> `out/platform-<n>.md`: every Instagram/
+  Facebook, YouTube and TikTok field per language, from the Telegram captions (P368).
+  **Paste from it; never compose these texts in chat** - that is how '#Shorts' reached
+  YouTube titles and the Arabic reached TikTok on R186-R193.
 - `publish-narration.py` — copies each set's story.mp3 (narrator + matn, recorded on/after
   2026-10-04, the .txt containing the row's translation) to the public Supabase bucket
   `narration` and rewrites its index.json; the public library's Listen plays it (P362).
