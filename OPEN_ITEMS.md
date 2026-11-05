@@ -184,6 +184,15 @@ this one wins.
   pass/high, P306/P319 gate MATCH. TJ "маркаб" -> "шутур" at the operator's
   request (A/B pass). Published the same day at the operator's request, ahead
   of #2734 and #223.
+- **Library rows that need translation work before a reel (found 2026-11-05, free review
+  against the Arabic; page + matn gate MATCH for both):**
+  - **Muslim #1510** (f9401679, a son cannot repay his father...): UZ «Фарзанд отасига
+    жазо бера олмайди» and TJ «Фарзанд ба падар ҷазо дода наметавонад» use «жазо/ҷазо»,
+    which reads as PUNISHMENT in Uzbek and Tajik; «لا يجزي» here means "cannot repay".
+    EN/RU are right. Needs a corrected proposal + A/B (paid) + operator approval.
+  - **Bukhari #1521** (9f2f905f, Hajj mabrur): UZ/TJ leave «рафас ва фусуқ» as bare
+    Arabic terms a viewer will not understand; EN is sunnah.com's text with bracketed
+    additions ("(after Hajj free from all sins)", "with his wife"). Same path.
 - **OPERATOR: correct 16 published fields (P368).** YouTube: drop " #Shorts" from the
   titles of the 8 #38 and #5984 Shorts (Studio -> Content -> title). TikTok: the 8
   captions carry the Arabic matn - remove it only if TikTok lets a posted caption be

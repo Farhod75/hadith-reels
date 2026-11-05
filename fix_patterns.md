@@ -15381,3 +15381,30 @@ Step 16.
 **Status:** FIXED (generator + tests); 16 published fields to correct by hand.
 
 ---
+
+## PATTERN 369: a tamper test that sometimes did not tamper
+
+**Date:** 2026-11-05  **Repo:** hadith-reels + hadith-verifier  **Severity:** tooling (red CI on a correct guard)
+
+**What happened.** CI went red on 52e5b2f, a docs-and-registry commit: one test,
+`admin-session.spec.ts` "tampering with the expiry or the signature is refused",
+failed twice (with its retry). The guard was right; the test was not. It built the
+"tampered" signature as `sig.slice(0, -1) + 'A'` - and when the real signature
+already ended in 'A' (one run in 64; the token embeds the current time, so it
+changes every run) that is the ORIGINAL token, which correctly verifies. The same
+line was ported into hadith-verifier `tests/api.spec.ts` with P364.
+
+**Proof.** A script looped issueSessionToken until the signature ended in 'A':
+the old "tampered" token verified (true), the new one did not (false).
+
+**Fix.** Replace the last character with a different one ('B' when it is 'A'),
+in both repos. The failed CI run was re-run through the API.
+
+**Lesson:** a negative test has to guarantee the input is actually negative.
+"Change one character" is only a change if the new character differs.
+
+**Tripwire:** none.
+
+**Status:** FIXED.
+
+---

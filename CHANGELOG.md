@@ -1,3 +1,18 @@
+## [2026-11-05b] - flaky admin-session tamper test (P369); library rows #1510 and #1521 need translation work
+
+### Fixed
+
+- **P369. tests/admin-session.spec.ts** (and hadith-verifier tests/api.spec.ts): the
+  tamper case re-created the original token one run in 64; CI went red on 52e5b2f.
+
+### Recorded
+
+- OPEN_ITEMS: Muslim #1510 UZ/TJ translate «لا يجزي» as «жазо» (punishment);
+  Bukhari #1521 UZ/TJ leave «رفث» / «فسق» as bare transliterations, EN carries
+  sunnah.com's bracketed additions. Both blocked from production until re-translated.
+
+---
+
 ## [2026-11-05a] - platform-texts.py generates every publishing field; Facebook in the pipeline (P368)
 
 ### Added
