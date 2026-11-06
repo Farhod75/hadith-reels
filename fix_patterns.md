@@ -15499,3 +15499,28 @@ a pairing rule from a passing mention.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 373: the tidy step archived the set being prepared
+
+**Date:** 2026-11-06  **Repo:** hadith-reels  **Severity:** process (tooling)
+
+**What happened.** The #2734 set close ran `tidy-out.py --apply` while #2581 was
+between its drafts and its narration. tidy-out knows a set is current only by its
+`out/work/<style>/<slug>/` folder, and that folder appears when narration is first
+recorded. So set-2581.json, caption-2581.json and the four drafts went to
+out/_archive/misc as "not read by any tool"; narrate-reel.py then refused all four
+languages ("no draft"). Nothing was lost - the files were found and moved back.
+
+**Fix.** `in_preparation()`: a `set-<n>.json` at the top of out/ for a number the
+tracker has not published marks that number as a set in production, alongside the
+work/ folders. Pinned by scripts/lib/test_tidy_out.py (3 tests, the #2581 case among
+them). A dry run now lists the six #2581 files as "unpublished set 2581 - stays".
+
+**Lesson:** "in production" starts at the first file a set writes, not at the first
+folder a later stage creates.
+
+**Tripwire:** narrate-reel.py's "no draft" abort caught it before any spend.
+
+**Status:** FIXED.
+
+---

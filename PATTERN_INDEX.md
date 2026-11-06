@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-302 patterns in 315 entries, frontier **P372**. The P-sequence is shared with
+303 patterns in 316 entries, frontier **P373**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -363,5 +363,6 @@ BEFORE changing it.
 - **P370** - Listen existed only for hadiths that had become reels
 - **P371** - a platform rule outlived the problem it was written for
 - **P372** - the rule about a hadith lived in a file nobody read at selection time
+- **P373** - the tidy step archived the set being prepared
 
-<!-- pattern-index-stamp entries=315 patterns=302 frontier=372 sha1=bd9dc5d97b7dda6e10cec33f416c1879c50a6d55 -->
+<!-- pattern-index-stamp entries=316 patterns=303 frontier=373 sha1=4e68866491def197d229165b25a52432644cd539 -->

@@ -5,7 +5,8 @@
 # DRY RUN by default: writes out/_tidy_plan.csv (from,to,reason) and prints counts. --apply moves, and
 # writes out/_tidy_undo.ps1 that moves every file back. Nothing is deleted. Subfolders are not touched.
 #
-# Stays at the top of out/ (tools read these paths): the files of the sets NOT yet published
+# Stays at the top of out/ (tools read these paths): the files of the sets NOT yet published -
+# a work/ folder, or (P373) a set-<n>.json for a number the tracker has not published
 # (2734, 223), and the global working files the scripts name (candidate/candidates JSON, reports,
 # source-queries/refs, translations JSON, probe reports).
 # Everything else goes under out/_archive/:
@@ -34,6 +35,19 @@ LOG = {'.log', '.err', '.out'}
 def published_numbers():
     t = io.open(os.path.join(REPO, 'reel-tracker.md'), encoding='utf-8-sig').read()
     return set(re.findall(r'^\| R\d+ \| [\d-]+ \| [^|#]*#(\d+) \|', t, re.M))
+
+
+def in_preparation(top_names, known):
+    """P373: numbers of sets being prepared - a set-<n>.json at the top of out/ for a
+    number the tracker has not published. Such a set has drafts and a caption JSON
+    but no work/ folder until its narration is recorded, and P373 archived exactly
+    those files as 'not read by any tool'. Pure."""
+    out = set()
+    for name in top_names:
+        m = re.match(r'^set-(\d+)\.json$', name)
+        if m and m.group(1) not in known:
+            out.add(m.group(1))
+    return out
 
 
 def set_number(name, known):
@@ -111,6 +125,7 @@ def main():
             m = re.search(r'(\d+)$', s)
             if m and m.group(1) not in known and not s.endswith('-9999'):
                 UNPUBLISHED.add(m.group(1))
+    UNPUBLISHED.update(in_preparation(os.listdir(OUT), known))   # P373
     rows, counts = [], {}
     work_moves = plan_work_moves(known)
     for name in sorted(os.listdir(OUT)):

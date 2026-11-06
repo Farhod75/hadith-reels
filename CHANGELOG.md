@@ -1,3 +1,14 @@
+## [2026-11-06c] - tidy-out keeps a set being prepared (P373)
+
+### Fixed
+
+- **scripts/tidy-out.py:** a set-<n>.json for an unpublished number now marks that set
+  as in production, so its drafts and caption JSON stay at the top of out/. The #2734
+  close had archived #2581's set file, caption JSON and drafts as "not read by any tool"
+  (moved back). scripts/lib/test_tidy_out.py, 3 tests.
+
+---
+
 ## [2026-11-06b] - R202-R205, Sahih Muslim #2734, four languages, set closed
 
 ### Content
