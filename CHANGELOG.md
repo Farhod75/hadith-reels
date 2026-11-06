@@ -1,3 +1,14 @@
+## [2026-11-06a] - library: six hadiths added (#6405, #6114, #105, #2581, #2589, #91)
+
+### Content
+
+- Workflows L -> I -> K -> Stage 4 -> promote for six rows sourced from Dorar on
+  2026-11-05; per-row tags and book set after a --no-tags promote (promote-candidates
+  applies one tag list to a whole batch); P319 MATCH on all six. #6724 verified after a
+  neutral rewording, awaiting approval. Library 76 -> 82. OPEN_ITEMS has the detail.
+
+---
+
 ## [2026-11-05j] - OPEN_ITEMS: library refill, Dorar dry run (11 rows, nothing committed)
 
 ### Content
