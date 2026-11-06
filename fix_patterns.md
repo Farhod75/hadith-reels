@@ -15470,3 +15470,32 @@ enforcing it in code.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 372: the rule about a hadith lived in a file nobody read at selection time
+
+**Date:** 2026-11-05  **Repo:** hadith-reels  **Severity:** process (content selection)
+
+**What happened.** Bukhari #6675 was produced and published (R194-R197) although
+reel-tracker.md's duplicate-check index and OPEN_ITEMS.md both said it must not
+follow #2654 (same subject, al-kaba'ir) without a deliberate call. The overlap had
+even been written into OPEN_ITEMS at the #5984 close. The set was chosen from a
+"ready" list in chat; nothing put those two lines in front of the choice, and the
+call was never put to the operator. The same evening the candidate list for the
+next set was checked by hand against the docs and found #1151 overlapping
+Bukhari #1894 (R002) and #31's narrator question still open.
+
+**Fix.** `list-library.py --notes`: under each unused row, every line of
+reel-tracker.md and OPEN_ITEMS.md that mentions its number (`#<n>`, not `#<n>0`),
+capped at six per file with a count of the rest. Pure function `notes_for()`,
+pinned by scripts/lib/test_list_library.py (5 tests, including the #6675/#2654
+rule found from either side). The pipeline's adults Steps 1-8 now start with it.
+
+**Lesson:** a rule recorded about a specific item has to surface where that item
+is chosen, or it is only a record of what we knew.
+
+**Tripwire:** none - the notes are for a human to read; a number match cannot tell
+a pairing rule from a passing mention.
+
+**Status:** FIXED.
+
+---

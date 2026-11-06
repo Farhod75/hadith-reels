@@ -374,6 +374,11 @@ second one) · Change log. Then one commit, `Doc=1`.
 
 ### Steps 1–8 — identical to the kids lane
 
+**Choosing the hadith (P372):** `python scripts/list-library.py --notes` lists the unused
+rows with every line of reel-tracker.md and OPEN_ITEMS.md that mentions each number -
+pairing rules, open defects, narrator questions. Read those lines before naming the
+next set; a rule that says "decide deliberately" is a question for the operator.
+
 Generate → defect review → matn from the DB → `draft.txt` → lint → caption
 script check → narration → listen. Same order, same gates, same recurring
 defects. **Read the kids checklist above; it is not repeated here.**
@@ -979,3 +984,4 @@ Seven of the eight aswati beds name an uploader rather than a composer.
 | 2026-10-16 | Publishing procedure for all four platforms written down for the first time, as its own section: order, the fields each platform needs, the YT/TikTok/IG metadata shape, and the per-platform traps moved out of the kids Step 6 so both lanes read the same copy. Records that none of it is automated and why - the Telegram route is sendMessage, no tokens are in either .env.local, and IG is blocked behind the Facebook appeal. |
 | 2026-11-04 | Publishing: Facebook added (Instagram + Facebook as one Meta Business Suite reel, with its Share-step settings); Telegram marked automated (tg-post-set.py); TikTok "Reuse of content" OFF; `platform-texts.py` generates every platform field (P368, after '#Shorts' went into YouTube titles and the Arabic into TikTok captions on R186-R193). |
 | 2026-11-05 | TikTok keeps the Arabic matn: the 2026-10-05 no-Arabic rule withdrawn after the operator checked the #38 caption in TikTok Studio (P371); platform-texts.py follows. |
+| 2026-11-05 | Choosing the hadith: `list-library.py --notes` puts what the docs say about each unused number beside it (P372). |

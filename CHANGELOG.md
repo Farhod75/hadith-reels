@@ -1,3 +1,15 @@
+## [2026-11-05i] - list-library.py --notes: what the docs say about each candidate (P372)
+
+### Added
+
+- **scripts/list-library.py --notes:** under each unused library row, every line of
+  reel-tracker.md and OPEN_ITEMS.md that mentions its number. The #6675/#2654 pairing
+  rule sat in both files and was missed when the set was chosen (retro R194-R197).
+  scripts/lib/test_list_library.py, 5 tests. Pipeline (adults Steps 1-8) and CLAUDE.md
+  point to it.
+
+---
+
 ## [2026-11-05h] - NARRATORS: Itban ibn Malik
 
 ### Fixed

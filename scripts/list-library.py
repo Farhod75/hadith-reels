@@ -6,6 +6,7 @@ list-library.py - what is in hadith_library, and what has not shipped yet.
   python scripts/list-library.py              # unused rows only
   python scripts/list-library.py --all        # used and unused
   python scripts/list-library.py --tag parents
+  python scripts/list-library.py --notes       # + what the docs already say per row (P372)
 
 "Used" means the hadith number appears in reel-tracker.md's Active reels
 table, which is the same source the duplicate-check index is built from.
@@ -51,6 +52,42 @@ def used_numbers():
     return used
 
 
+# P372: the docs to search for what is already known about a hadith number. A
+# pairing rule ("#6675 must not follow #2654"), a translation defect, a narrator
+# question - each lived in one of these files and was missed at selection time.
+NOTE_FILES = ('reel-tracker.md', 'OPEN_ITEMS.md')
+NOTE_CAP = 6
+
+
+def notes_for(number, texts, cap=NOTE_CAP):
+    """Lines in the docs that mention '#<number>' (not '#<number>0'). Pure.
+
+    texts: {file name: file text}. Returns [(file, line number, snippet)],
+    at most `cap` per file, plus a ('file', 0, '... N more') marker when cut."""
+    pat = re.compile(r'#%s(?!\d)' % re.escape(str(number)))
+    out = []
+    for name, text in texts.items():
+        hits = [(i, l) for i, l in enumerate(text.splitlines(), 1) if pat.search(l)]
+        for i, l in hits[:cap]:
+            m = pat.search(l)
+            start = max(0, m.start() - 60)
+            snippet = re.sub(r'\s+', ' ', l[start:start + 170]).strip()
+            out.append((name, i, ('…' if start else '') + snippet))
+        if len(hits) > cap:
+            out.append((name, 0, '... %d more' % (len(hits) - cap)))
+    return out
+
+
+def load_note_texts():
+    texts = {}
+    for name in NOTE_FILES:
+        try:
+            texts[name] = io.open(os.path.join(ROOT, name), encoding='utf-8-sig').read()
+        except (IOError, OSError):
+            print('WARN: no %s - its notes are not shown' % name)
+    return texts
+
+
 def first(row, *names):
     for n in names:
         v = row.get(n)
@@ -71,6 +108,10 @@ def main():
                     help='only rows whose English matn is at least this long')
     ap.add_argument('--sort', choices=['collection', 'length'],
                     default='collection', help='ordering (default collection)')
+    ap.add_argument('--notes', action='store_true',
+                    help='P372: under each row, every line of reel-tracker.md and '
+                         'OPEN_ITEMS.md that mentions its number - read them before '
+                         'choosing it')
     # P235: the same read, one stage earlier. P233 (an addition in all four
     # languages) and P234 (an interpolation sitting in the one language nobody
     # had checked) were both found by reading four languages of one row side by
@@ -138,6 +179,7 @@ def main():
         return 0
 
     used = used_numbers()
+    note_texts = load_note_texts() if args.notes else {}
     out = []
     for r in rows:
         num = str(first(r, 'hadith_number', 'number'))
@@ -186,6 +228,13 @@ def main():
                    if c in r and not r.get(c)]
         if missing:
             print('   ⚠ empty: %s' % ', '.join(missing))
+        if args.notes:
+            notes = notes_for(num, note_texts)
+            if not notes:
+                print('   docs: nothing recorded for #%s' % num)
+            for name, line, snip in notes:
+                where = '%s:%d' % (name, line) if line else name
+                print('   docs %s  %s' % (where, snip))
         print()
 
     return 0

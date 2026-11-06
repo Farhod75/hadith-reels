@@ -571,6 +571,9 @@ If you add or remove a route or module, change this list in the same commit.
   (lead-in + quoted matn) via /api/tts into out/library-narration/, which
   publish-narration.py reads. Dry run unless `--narrate --max-chars N` (paid). Rows in
   `scripts/narration-exclusions.json` are never read aloud - fix the row, then remove it.
+- `list-library.py` — unused library rows; `--notes` adds every line of reel-tracker.md and
+  OPEN_ITEMS.md that mentions each number (P372) - run it before choosing a set;
+  `--row N` (`--candidates`) is the four-language side-by-side read.
 - `tidy-out.py` — keeps out/ in the P106 layout (work/ = sets not yet published, published/ =
   archive with each set's loose files in `_files/`, out/_archive/ for one-offs). Dry run unless
   `--apply`; writes an undo script. Run at every set close.
