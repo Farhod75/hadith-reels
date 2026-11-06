@@ -172,11 +172,11 @@ this one wins.
   matn_verified_at NULL - a human sets them. Reel rendered 2026-11-02.
 - **Dhikr / repentance sourcing, 2026-11-05 (operator sent two posts; Workflow L).**
   `out/source-queries-dhikr.txt`, three queries, one row passed:
-  - **Bukhari #6307 - candidate fe8df70a, status verified.** «واللهِ إنِّي لَأستَغفِرُ
+  - **Bukhari #6307 - PUBLISHED 2026-11-05 (R198-R201, TG 212-215); library 9860e161.** «واللهِ إنِّي لَأستَغفِرُ
     اللهَ وأتوبُ إليه في اليَومِ أكثَرَ مِن سَبعينَ مَرَّةً». Translated from the Arabic,
     TJ «Ба Худо савганд» -> «Ба Аллоҳ савганд» (operator), signed, applied, Uzbek
-    Latin derived; audit-library 0 high / 0 warn; A/B 4/4 pass/high. NEXT: Stage 4
-    (approve-candidate.py) - the operator's decision.
+    Latin derived; audit-library 0 high / 0 warn; A/B 4/4 pass/high; approved by the
+    operator; promoted; book set from the page (كتاب الدعوات).
   - **Tirmidhi #3462 (Ibrahim's salam, the soil and plants of Paradise) - NOT
     admitted.** Dorar: «تفرّد به عبد الرحمن بن إسحاق أبو شيبة عن القاسم» (the
     same narrator stands in the chain of the post the operator sent); «له شاهد»

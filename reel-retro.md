@@ -1041,3 +1041,52 @@ candidate.
 
 **The finding:** the gates caught everything that reached them. What slipped -
 a pairing rule and a retyped hashtag - lived outside any gate.
+
+## R198-R201 - Sahih al-Bukhari #6307 - 2026-11-05
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (212-215, one message each: 544-602 chars), Instagram and Facebook together from Meta Business Suite, YouTube Shorts, TikTok. Listen published.
+
+From request to published in one evening. The operator sent two posts (Tirmidhi
+#3462, Musnad Ahmad #22079) and asked what the library has on repentance and
+dhikr. Neither post's hadith passed the Dorar gate (a lone narrator; a broken
+chain) - recorded in OPEN_ITEMS. #6307 came from the repentance queue the same
+query run: candidate -> our translation from the Arabic -> A/B 4/4 -> operator
+approval -> library -> P319 MATCH -> set.
+
+**Caught before publish, and who said it.**
+
+1. **TJ 'Ба Худо савганд'** for واللهِ (me, at the side-by-side read; operator
+   approved 'Ба Аллоҳ').
+2. **'istighfar' is not in the tag vocabulary** (me, against lib/tags.ts) -
+   dropped before the promote.
+3. **The book column** - promote leaves it empty; set from the page header
+   (صحيح البخاري / كتاب الدعوات), not from memory.
+4. **The H block** - written from al-Hammad's commentary on the page; his
+   'tark al-awla' point left out as too fine for a reel.
+5. **EN and RU subtitles** - no quotation marks; RU 'Абуху Райра, добудет
+   доволенным', 'по истине' (P339 stopped both). Fixed in the cached SRTs; the
+   EN/RU re-render was queued to start when the UZ/TJ render finished.
+
+**Escaped to publish.** Nothing known. The platform texts were pasted from
+platform-6307.md, not retyped (the #6675 '#парents' lesson).
+
+**Process slips (mine).** Workflow K step 2 (audit-library before A/B) was run
+after the A/B dry run, not before - clean, but out of order. The A/B ran twice
+because --commit re-scores; the cost was stated to the operator after the fact.
+The translation step was first described as free; it calls the model, and the
+operator was asked before it ran.
+
+**Operator corrections of the assistant: 0 on this set.** Item 1 was my
+proposal, his approval. His standing instruction from the #6675 close - check
+the documents every time - is what this set was run against.
+
+**Root causes.** Steps I knew from earlier sets I ran from memory of the order,
+not from the workflow text; the slips were exactly where the order differs from
+what I remembered.
+
+**Prevention landed.** Reading the workflow section before each stage
+(Workflows L, I, K, J were read this set before running).
+
+**The finding:** a request that arrived as two social-media posts ended as a
+reel of a different, sound hadith on the same subject - the gate turned "is this
+real?" into "here is the real one".

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14f3b/fZ48it6-j4q2BRXeY81xS_output.mp4",
+    "name":  "b6307-dawn",
+    "image":  "out\\refs\\b6307-dawn-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6307-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-05T23:52:49.6395881Z",
+    "size_bytes":  36768701,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft mist drifts slowly between the palm trees, the pink and gold sky gradually brightens, palm fronds sway gently in a light breeze. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no animals, no text.",
+    "request_id":  "01a1ae21-22a4-7521-8a9c-5414555b4b91",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T00:03:32.6031174Z",
+    "mode":  "image-to-video"
+}

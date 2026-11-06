@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6307-night",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, blue hour just after sunset over a 7th-century Arabian oasis: silhouettes of tall date palms and low flat-roofed mud-brick houses against a deep luminous blue sky with the first bright stars appearing, a soft warm glow along the horizon. Calm and peaceful. No moon, no people, no lamps, no minarets, no domes, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ae09-c952-7b62-91cc-73a998a82126",
+    "submitted_utc":  "2026-11-05T23:27:19.3036775Z",
+    "completed_utc":  "2026-11-05T23:27:31.5807033Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6307-night-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e7c/M4WsxUXjyZvi3knSGfBvR_cmefj6Yz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6307-night-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e7c/9MXXHFYUcK9EKCIZVk5cg_43OIknnL.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6307-night-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e7c/XAHjb-aACf6TvuKlBKjqT_BUJZ32h5.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1702369630
+}

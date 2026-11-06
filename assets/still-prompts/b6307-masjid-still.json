@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6307-masjid",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a very simple 7th-century Arabian mosque with no decoration at all: rows of rough unworked date-palm trunks used as pillars holding a low flat roof of palm leaves laid over palm trunks and beaten clay, walls of sun-dried mud brick on a low stone base, plain sand floor. The roof covers only part of the enclosure and opens onto a bright sunlit open courtyard; warm sunlight falls in thin beams through small gaps in the palm-leaf roof. Empty, quiet, bright. No people, no mihrab, no niche, no minaret, no dome, no carpets, no lamps, no calligraphy, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ae07-0efa-7223-8037-d25fe8fc8e42",
+    "submitted_utc":  "2026-11-05T23:24:20.5254161Z",
+    "completed_utc":  "2026-11-05T23:24:53.4564344Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6307-masjid-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e6d/o9bI2yel1V70qS0UG0HKx_8OmphHe3.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6307-masjid-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e6d/LbRThaKoOD4VUiUMSVr_U_EUEVkWSW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6307-masjid-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab14e6d/3uCyfR4CwYgEavXVK8r08_VXm3sejX.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  756383085
+}

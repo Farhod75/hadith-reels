@@ -1,3 +1,14 @@
+## [2026-11-05g] - R198-R201, Sahih al-Bukhari #6307, four languages, set closed
+
+### Content
+
+- Tracker rows R198-R201 (TG 212-215), duplicate index (#6307; Tirmidhi #3259 noted),
+  Repentance / Mercy 20 -> 24, nasheed usage, the b6307 clip set, stats 201/149/51,
+  change log, retro. Registry: the four b6307 clips -> verified:true. Scene and
+  still prompt sidecars for b6307. publish-narration: #6307 in four languages.
+
+---
+
 ## [2026-11-05f] - sourcing: Bukhari #6307 verified; Tirmidhi #3462 and Ahmad #22079 not admitted; #1151 overlaps #1894
 
 ### Content

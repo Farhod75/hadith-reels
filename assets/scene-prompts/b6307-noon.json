@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14fb2/vpQE8XE38D4BfKyrPC3wd_output.mp4",
+    "name":  "b6307-noon",
+    "image":  "out\\refs\\b6307-noon-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6307-noon.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T00:12:55.5464053Z",
+    "size_bytes":  39577957,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Clear water flows steadily along the channel with sparkling highlights, palm fronds sway gently overhead, their dappled shadows move softly on the sandy path and the mud wall. Camera almost static, a very slow gentle push-in along the path. Keep every object exactly as in the image, nothing added or removed. No people, no animals, no text.",
+    "request_id":  "01a1ae33-894e-7983-be4c-5ae72917c673",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T00:22:49.7868571Z",
+    "mode":  "image-to-video"
+}

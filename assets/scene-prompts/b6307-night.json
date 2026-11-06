@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14fda/0nRtWLY1fvSO8hBVo8NTb_output.mp4",
+    "name":  "b6307-night",
+    "image":  "out\\refs\\b6307-night-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6307-night.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T00:22:51.4347439Z",
+    "size_bytes":  16953751,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The stars slowly brighten and gently twinkle in the deepening blue sky, the warm glow on the horizon slowly fades, palm fronds sway very slightly. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No moon, no people, no lights, no text.",
+    "request_id":  "01a1ae3c-a106-7aa3-b466-b92b2de3ca3c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T00:26:53.5627339Z",
+    "mode":  "image-to-video"
+}

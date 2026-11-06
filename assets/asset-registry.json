@@ -1943,6 +1943,42 @@
       "verified": true,
       "notes": "UZ copy (P240): b6675-scale.mp4 slowed x1.06 -> 10.58 s, out/_msg/slow_6675.ps1. Same content. Sahih al-Bukhari #6675, Abdullah ibn Amr, sahih - the major sins: associating partners with Allah, disobeying parents, killing a soul, and the false oath (al-yamin al-ghamus). MODE B, no people, no hands, 7th-century Arabia, bright. Stills researched against references (Hughes, Dictionary of Islam 'Houses'; peopleofmadina.com; Sahih al-Bukhari 5638, the wooden drinking bowl; University of Edinburgh catalogue, Byzantine solidus and Sasanian drachma; Posen Library, balance scale).",
       "prompt_sidecar": "assets/scene-prompts/b6675-scale.json"
+    },
+    "b6307-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (dawn-1) -> Kling 3.0 Pro i2v 10s. Dawn over a date-palm oasis, mist between the palms, low mud-brick houses with palm-frond roofs, a dark ridge on the horizon. Sahih al-Bukhari #6307, Abu Hurairah, sahih - 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' MODE B, no people, 7th-century Arabia, bright; the four clips run dawn to night (the chapter: seeking forgiveness by day and by night). Stills from references: Sahih al-Bukhari 446 (the mosque of adobe, roof of palm leaves, pillars of palm trunks); Madain Project, Masjid an-Nabawi at the time of the Prophet (half roofed, low palm-leaf roof, mud brick on a stone base, no mihrab).",
+      "prompt_sidecar": "assets/scene-prompts/b6307-dawn.json"
+    },
+    "b6307-masjid.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (masjid-3) -> Kling 3.0 Pro i2v 10s, static camera. A plain early mosque: rows of palm-trunk pillars, palm-leaf roof with gaps, mud-brick walls on a stone base, sand floor, sunlit courtyard; no mihrab, no lamps, no carpets. Sahih al-Bukhari #6307, Abu Hurairah, sahih - 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' MODE B, no people, 7th-century Arabia, bright; the four clips run dawn to night (the chapter: seeking forgiveness by day and by night). Stills from references: Sahih al-Bukhari 446 (the mosque of adobe, roof of palm leaves, pillars of palm trunks); Madain Project, Masjid an-Nabawi at the time of the Prophet (half roofed, low palm-leaf roof, mud brick on a stone base, no mihrab).",
+      "prompt_sidecar": "assets/scene-prompts/b6307-masjid.json"
+    },
+    "b6307-noon.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (noon-2) -> Kling 3.0 Pro i2v 10s. Midday path in a palm grove beside a mud-brick wall and a flowing irrigation channel. Sahih al-Bukhari #6307, Abu Hurairah, sahih - 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' MODE B, no people, 7th-century Arabia, bright; the four clips run dawn to night (the chapter: seeking forgiveness by day and by night). Stills from references: Sahih al-Bukhari 446 (the mosque of adobe, roof of palm leaves, pillars of palm trunks); Madain Project, Masjid an-Nabawi at the time of the Prophet (half roofed, low palm-leaf roof, mud brick on a stone base, no mihrab).",
+      "prompt_sidecar": "assets/scene-prompts/b6307-noon.json"
+    },
+    "b6307-night.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (night-3) -> Kling 3.0 Pro i2v 10s. Blue hour over the oasis, palm and house silhouettes, first stars; no moon. Sahih al-Bukhari #6307, Abu Hurairah, sahih - 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' MODE B, no people, 7th-century Arabia, bright; the four clips run dawn to night (the chapter: seeking forgiveness by day and by night). Stills from references: Sahih al-Bukhari 446 (the mosque of adobe, roof of palm leaves, pillars of palm trunks); Madain Project, Masjid an-Nabawi at the time of the Prophet (half roofed, low palm-leaf roof, mud brick on a stone base, no mihrab).",
+      "prompt_sidecar": "assets/scene-prompts/b6307-night.json"
     }
   }
 }

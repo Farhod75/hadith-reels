@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab14f7b/eLAVZ7K6jTA5eyUt1cfOH_output.mp4",
+    "name":  "b6307-masjid",
+    "image":  "out\\refs\\b6307-masjid-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6307-masjid.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T00:03:39.5993543Z",
+    "size_bytes":  27151433,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Thin beams of sunlight shift slowly across the sand floor through the gaps in the palm-leaf roof, fine dust motes float in the light, the bright courtyard beyond stays calm. The palm-trunk pillars and the roof stay perfectly still. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no text.",
+    "request_id":  "01a1ae2b-0d99-7be3-a784-1e42898adc5f",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T00:12:53.4017632Z",
+    "mode":  "image-to-video"
+}
