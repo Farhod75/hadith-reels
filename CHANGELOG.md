@@ -1,3 +1,14 @@
+## [2026-11-05h] - NARRATORS: Itban ibn Malik
+
+### Fixed
+
+- **lib/refs.ts NARRATORS:** 'Itban ibn Malik' added (RU Итбан ибн Малик, UZ Итбон ибн
+  Молик, TJ Итбон ибни Молик). The library row Bukhari #6423 carries that narrator and
+  was the only row whose narrator had no entry (checked against every row in
+  hadith_library), so the P337 lead-in and narrate-library.py skipped it.
+
+---
+
 ## [2026-11-05g] - R198-R201, Sahih al-Bukhari #6307, four languages, set closed
 
 ### Content
