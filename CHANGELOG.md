@@ -1,3 +1,13 @@
+## [2026-11-05j] - OPEN_ITEMS: library refill, Dorar dry run (11 rows, nothing committed)
+
+### Content
+
+- Nine queries, eleven rows passed the gate (sayyid al-istighfar, tasbih and tahlil 100
+  times, the tale-bearer, suspicion, anger, the bankrupt, backbiting, pride). Recorded
+  for the operator's decision; Shaddad ibn Aws flagged as missing from NARRATORS.
+
+---
+
 ## [2026-11-05i] - list-library.py --notes: what the docs say about each candidate (P372)
 
 ### Added

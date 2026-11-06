@@ -170,6 +170,16 @@ this one wins.
   collection at this number (en.tohed.com muslim/223): the P306/P319 gate stopped
   the render; the row was fixed, not the gate. matn_screened_at and
   matn_verified_at NULL - a human sets them. Reel rendered 2026-11-02.
+- **Library refill - Dorar DRY RUN 2026-11-05 night, awaiting the operator.** 76 rows,
+  ~3 sets ready (Muslim #2734 and #223 rendered; Bukhari #31). Queries in
+  `out/source-queries-1106.txt` (repentance and everyday-sin consequence hadiths, the
+  shape the analytics favour). 11 rows passed the gate, nothing committed:
+  Bukhari #6323 (sayyid al-istighfar, Shaddad ibn Aws - NOT in NARRATORS yet),
+  Bukhari #6405 (SubhanAllah wa bihamdihi 100 times), Muslim #2691 (tahlil 100 times),
+  Muslim #105 (the tale-bearer), Bukhari #6724 / Tirmidhi #1988 (suspicion - pick one),
+  Bukhari #6114 / Muslim #2609 (the strong one controls anger - pick one), Muslim
+  #2581 (the bankrupt), Muslim #2589 (backbiting), Muslim #91 (an atom of pride).
+  Next, with his approval: `--commit` into candidates, then Workflows I and K (paid).
 - **Dhikr / repentance sourcing, 2026-11-05 (operator sent two posts; Workflow L).**
   `out/source-queries-dhikr.txt`, three queries, one row passed:
   - **Bukhari #6307 - PUBLISHED 2026-11-05 (R198-R201, TG 212-215); library 9860e161.** «واللهِ إنِّي لَأستَغفِرُ
