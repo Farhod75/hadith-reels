@@ -1090,3 +1090,25 @@ what I remembered.
 **The finding:** a request that arrived as two social-media posts ended as a
 reel of a different, sound hadith on the same subject - the gate turned "is this
 real?" into "here is the real one".
+
+## R202-R205 - Sahih Muslim #2734 - 2026-11-06
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (216-219, one message each: 488-530 chars), Instagram and Facebook from Meta Business Suite, YouTube Shorts, TikTok.
+
+A set rendered on 2026-11-02/04 and held while #2747, #38, #5984, #6675 and #6307
+went out first. The operator re-watched the four reels before the post.
+
+**Caught before publish (earlier, recorded at the time).** The matn row stopped
+after the food clause; the drink clause was restored from HadeethEnc 5798 and the
+row re-translated and A/B'd before production (2026-11-01). The UZ bed was retired
+and re-bedded on 2026-11-03. EN re-rendered on 2026-11-04 from its recorded inputs
+after the P355/P356/P358 render changes - byte-identical.
+
+**At publish.** A rendered set four days old was checked for the things that can
+go stale: the TG dry run (captions present, chars under the limit), the reels
+re-sent to the operator. Nothing had changed.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a held set needs one re-watch and a dry run, not a re-render;
+its render sidecars (render.json per language) carried everything the close needed.

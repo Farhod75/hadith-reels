@@ -1528,7 +1528,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (sufra-1, operator's pick) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2734, Anas ibn Malik, sahih - 'Allah is pleased with a servant who eats a meal and praises Him for it, or drinks a drink and praises Him for it'. MODE B: no faces. Bright palette. Right hands for eating and drinking. Depicts: top-down, a simple meal on a palm-leaf mat (bread, dates, milk, jug); two hands hold a small clay cup. Checked every 0.5 s: no face.",
       "prompt_sidecar": "assets/scene-prompts/m2734-sufra.json"
     },
@@ -1537,7 +1537,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (date-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #2734, Anas ibn Malik, sahih - 'Allah is pleased with a servant who eats a meal and praises Him for it, or drinks a drink and praises Him for it'. MODE B: no faces. Bright palette. Right hands for eating and drinking. Depicts: the right hand takes one date from the bowl, lifts it and holds it. Replaces the bread scene (crumbs fell for 10 s twice; the Ken Burns still froze crumbs mid-air). A Kling 2.6 attempt reached COMPLETED but its result could not be fetched (504, 404). Checked every 0.5 s: nothing falls, bowl and bread still, no face.",
       "prompt_sidecar": "assets/scene-prompts/m2734-date.json"
     },
@@ -1546,7 +1546,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (pour-1) -> Kling 2.6 Pro i2v 10s (pour-b) -> first 5.6 s, slowed x1.35 (minterpolate blend) to 7.5 s. Sahih Muslim #2734, Anas ibn Malik, sahih - 'Allah is pleased with a servant who eats a meal and praises Him for it, or drinks a drink and praises Him for it'. MODE B: no faces. Bright palette. Right hands for eating and drinking. Depicts: a short pour from the jug's mouth into a clay cup, thinning and stopping at the end. pour-b's tail (6 s on) morphs the jug and is cut. The first clip (m2734-pour) poured for 10 s 'like a tap' (operator) and is unregistered. Checked every 0.5 s: water only from the mouth, lands in the cup.",
       "prompt_sidecar": "assets/scene-prompts/m2734-pour-b.json"
     },
@@ -1555,7 +1555,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (dates-1, operator's pick) -> Kling 2.6 Pro i2v 10s. Sahih Muslim #2734, Anas ibn Malik, sahih - 'Allah is pleased with a servant who eats a meal and praises Him for it, or drinks a drink and praises Him for it'. MODE B: no faces. Bright palette. Right hands for eating and drinking. Depicts: date clusters on palms over an irrigation channel - the provision (finale). The first clip's clusters swung and turned (operator); this one measured a steady drift (3.6 -> 10.3 mean abs diff), no swing. No people, no sun disc.",
       "prompt_sidecar": "assets/scene-prompts/m2734-dates-b.json"
     },

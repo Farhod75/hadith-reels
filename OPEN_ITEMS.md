@@ -157,6 +157,7 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Muslim #2734 - PUBLISHED 2026-11-06 (R202-R205, TG 216-219).** History below.
 - **Muslim #2734 - matn completed 2026-11-01** (operator chose it over Tirmidhi
   #2396 for the next reel; rule restated: sahih and hasan only). The row stopped
   after the food clause; the drink clause added from HadeethEnc 5798 (رواه مسلم |
@@ -179,7 +180,7 @@ this one wins.
   RU parenthetical on #2589, TJ «Мардеро» on #91), signed, applied, Latin derived,
   audit 0/0, A/B 4/4, approved, promoted --no-tags, then tags (lib/tags.ts) and book
   (en.tohed.com page header) set per row; P319 MATCH on all six.
-  - **Bukhari #6724 (suspicion) - verified, NOT yet approved.** A/B disagreed (pass A:
+  - **Bukhari #6724 (suspicion) - APPROVED 2026-11-06 ("1да") and promoted (9b90e5b4), P319 MATCH.** A/B disagreed (pass A:
     «тайн» / «айбҳо» added to لا تحسسوا ولا تجسسوا); operator chose neutral wording in
     all four languages («Do not pry, do not spy»); re-run 4/4. Stage 4 is his.
   - **Deferred:** Bukhari #6323 (sayyid al-istighfar: UZ/TJ left the dua transliterated,
