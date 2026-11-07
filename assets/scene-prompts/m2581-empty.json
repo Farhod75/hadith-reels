@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab16d8f/ULpI3khuP7o-adMeKykKe_output.mp4",
+    "name":  "m2581-empty",
+    "image":  "out\\refs\\m2581-empty-1.jpg",
+    "file":  "out\\backgrounds\\new\\m2581-empty.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T21:26:15.9663225Z",
+    "size_bytes":  25893867,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft morning light slowly shifts across the empty open chest and the woven mat, fine dust motes float in the light. The chest, the purse and the mat stay perfectly still. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no coins, no text.",
+    "request_id":  "01a1b2c1-5067-7370-abd7-addc2ca94258",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T21:37:30.4720988Z",
+    "mode":  "image-to-video"
+}

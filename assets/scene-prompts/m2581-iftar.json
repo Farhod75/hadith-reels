@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab16e16/zxefmW98Rz23cHw5mNqte_output.mp4",
+    "name":  "m2581-iftar",
+    "image":  "out\\refs\\m2581-iftar-1.jpg",
+    "file":  "out\\backgrounds\\new\\m2581-iftar.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T21:49:41.7324939Z",
+    "size_bytes":  33463794,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The sunset sky slowly deepens in colour, palm fronds sway gently in a light breeze, a faint ripple moves on the surface in the cup. The dates, the plate, the cup and the mat stay perfectly still. Camera almost static, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no moon, no text.",
+    "request_id":  "01a1b2d6-c3a5-78a1-b997-c70bb995c47f",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T21:59:35.3603477Z",
+    "mode":  "image-to-video"
+}

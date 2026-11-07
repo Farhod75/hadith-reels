@@ -1,3 +1,17 @@
+## [2026-11-06d] - R206-R209, Sahih Muslim #2581, four languages, set closed
+
+### Content
+
+- Tracker rows R206-R209 (TG 220-227, video + full-text reply), duplicate index (#2581),
+  Major Sins / Accountability 4 -> 8, nasheed usage, the m2581 clip set (six clips, UZ on
+  x1.15 -s copies), stats 209/157/52, change log, retro. Registry: the twelve m2581 clips
+  verified. publish-narration: #2581 uploaded in four languages (75 clips in the index).
+  Scene and still prompt sidecars for m2581 committed.
+- TikTok TJ went out with a Cyrillic letter inside the Arabic matn (my chat block, not the
+  file); corrected by the operator the same evening. Retro entry.
+
+---
+
 ## [2026-11-06c] - tidy-out keeps a set being prepared (P373)
 
 ### Fixed

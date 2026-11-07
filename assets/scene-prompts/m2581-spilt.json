@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab16e99/qSnqPoGPpicJFiyLs3Zp3_output.mp4",
+    "name":  "m2581-spilt",
+    "image":  "out\\refs\\m2581-spilt-2.jpg",
+    "file":  "out\\backgrounds\\new\\m2581-spilt.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T22:10:11.2008794Z",
+    "size_bytes":  25563734,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "A light breeze moves a few fine grains of sand along the path, the shadow of the wall lengthens very slowly. The broken jar, the coins, the dates and the purse stay perfectly still. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1b2e9-8642-7452-8103-9e0dc6418b87",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T22:20:15.7396193Z",
+    "mode":  "image-to-video"
+}

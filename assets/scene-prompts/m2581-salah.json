@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab16dd2/6eUIQh0BWP3w7jeopFoou_output.mp4",
+    "name":  "m2581-salah",
+    "image":  "out\\refs\\m2581-salah-2.jpg",
+    "file":  "out\\backgrounds\\new\\m2581-salah.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T21:37:42.4779547Z",
+    "size_bytes":  25967663,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "A beam of warm sunlight from the side opening moves very slowly across the sand floor and the edge of the mat, fine dust motes float in the light. The mat stays perfectly still and in place. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1b2cb-c9d6-7963-b548-705a2eaafbfc",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T21:49:39.8823427Z",
+    "mode":  "image-to-video"
+}

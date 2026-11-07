@@ -1979,6 +1979,114 @@
       "verified": true,
       "notes": "FLUX 2 still (night-3) -> Kling 3.0 Pro i2v 10s. Blue hour over the oasis, palm and house silhouettes, first stars; no moon. Sahih al-Bukhari #6307, Abu Hurairah, sahih - 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' MODE B, no people, 7th-century Arabia, bright; the four clips run dawn to night (the chapter: seeking forgiveness by day and by night). Stills from references: Sahih al-Bukhari 446 (the mosque of adobe, roof of palm leaves, pillars of palm trunks); Madain Project, Masjid an-Nabawi at the time of the Prophet (half roofed, low palm-leaf roof, mud brick on a stone base, no mihrab).",
       "prompt_sidecar": "assets/scene-prompts/b6307-night.json"
+    },
+    "m2581-empty.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (empty-1) -> Kling 3.0 Pro i2v 10s. an open wooden chest standing empty, an empty leather pouch on a palm mat, bare mud-brick shelves - 'the bankrupt among us has no dirham and no goods'. Picked over -2/-3: their purses have a modern metal clasp, -3 has coins on the floor. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-empty.json"
+    },
+    "m2581-salah.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (salah-2) -> Kling 3.0 Pro i2v 10s. a small woven prayer mat facing a blank mud-brick wall, light from a side opening (qibla rule). Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-salah.json"
+    },
+    "m2581-iftar.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (iftar-1) -> Kling 3.0 Pro i2v 10s. three dates and a clay cup on a palm mat on a rooftop at sunset. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-iftar.json"
+    },
+    "m2581-zakat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (zakat-3) -> Kling 3.0 Pro i2v 10s. a wooden bowl of barley, a basket of dates and a cloth bundle at a doorway with a tied-back hair-cloth curtain. Picked over -1/-2: their bowls carry measuring-scale marks. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-zakat.json"
+    },
+    "m2581-spilt.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (spilt-2) -> Kling 3.0 Pro i2v 10s. a broken clay jar, scattered silver coins and dates, an emptied leather purse on a path by a mud wall - wealth taken, harm done; no blood, no weapons. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-spilt.json"
+    },
+    "m2581-road.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (road-2) -> Kling 3.0 Pro i2v 10s. an empty desert track to the horizon at sunset, footprints fading into the distance. No moon. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-road.json"
+    },
+    "m2581-empty-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-empty.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-empty.json"
+    },
+    "m2581-salah-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-salah.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-salah.json"
+    },
+    "m2581-iftar-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-iftar.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-iftar.json"
+    },
+    "m2581-zakat-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-zakat.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-zakat.json"
+    },
+    "m2581-spilt-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-spilt.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-spilt.json"
+    },
+    "m2581-road-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "UZ copy (P240): m2581-road.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
+      "prompt_sidecar": "assets/scene-prompts/m2581-road.json"
     }
   }
 }

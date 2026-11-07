@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-spilt",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a sandy path beside a mud-brick wall in clear daylight: a broken clay water jar lying in pieces, a few thin worn silver coins and some dates scattered in the sand, an empty torn leather purse lying nearby. Still and sober, not dark. No people, no hands, no blood, no weapons, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2ba-f3c7-7aa3-9484-f9c0d31edb1e",
+    "submitted_utc":  "2026-11-06T21:19:18.8722138Z",
+    "completed_utc":  "2026-11-06T21:19:27.1565738Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-spilt-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d3c/GsiKLtf-jrID_Hv_16kiO_ZfKelNOb.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-spilt-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d3c/xquMvvtLkarfM0xgUI5V3_XVrxIEx0.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-spilt-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d3c/LGZi-4-Xe03dgAOmuu_ZC_VTbiQgoT.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  503131043
+}

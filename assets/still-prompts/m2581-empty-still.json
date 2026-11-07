@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-empty",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a plain 7th-century Arabian storeroom of sun-dried mud brick in soft bright morning light: an old open wooden chest standing completely empty, beside it a small flat empty leather purse lying open on a woven palm mat, bare mud-brick shelves, a little sand on the floor. Quiet, simple, bright. No people, no hands, no coins, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2b4-a2d1-7eb0-8f62-588911c1cc8e",
+    "submitted_utc":  "2026-11-06T21:12:23.1616526Z",
+    "completed_utc":  "2026-11-06T21:12:33.5464592Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-empty-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d13/wJRVAfBIh64gInjgGenLL_qMcnKocc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-empty-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d13/R8-9-zrz3Vxwa9rkYyVUX_t6sxeYWw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-empty-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d13/kCcSRrd0L6gXW4c033pt-_1lfwOQ5K.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1610374606
+}

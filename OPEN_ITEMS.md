@@ -157,6 +157,13 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Muslim #2581 - PUBLISHED 2026-11-06 (R206-R209, TG 220-227); library 9c2f2409.** The
+  bankrupt. Near subject in the library: #2589 (backbiting) and #105 (the tale-bearer).
+- **YouTube covers for UZ and TJ - from the next set (a script to build).** Operator
+  2026-11-06: desktop Studio offers only three frames or an uploaded file; four identical
+  covers read as one video in search. A distinct cover per UZ/TJ leg - another scene from
+  the set and the title in that language; EN/RU need none (burned-in subtitles tell them
+  apart). Uploaded through "Upload file".
 - **Muslim #2734 - PUBLISHED 2026-11-06 (R202-R205, TG 216-219).** History below.
 - **Muslim #2734 - matn completed 2026-11-01** (operator chose it over Tirmidhi
   #2396 for the next reel; rule restated: sahih and hasan only). The row stopped

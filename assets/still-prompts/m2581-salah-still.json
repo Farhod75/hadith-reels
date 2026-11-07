@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-salah",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a small woven palm-fibre prayer mat laid on a sand floor, facing a plain blank wall of sun-dried mud brick; warm sunlight falls from the left side through a small opening in the side wall. Calm, clean, bright. No people, no hands, no mihrab, no niche, no lamps, no calligraphy, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2b7-b254-7150-a4f1-583d6fde52ba",
+    "submitted_utc":  "2026-11-06T21:15:45.3457973Z",
+    "completed_utc":  "2026-11-06T21:15:53.8458599Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-salah-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d27/xpKpMSxEYg4zJGvTILNAO_bdpolRmw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-salah-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d27/12GmbYXjLFJA4PBQmy7cq_3CFWnIy2.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-salah-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d27/JRpB7Nf6gPzwDHm0P-WCu_GK00FfwJ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  30583149
+}

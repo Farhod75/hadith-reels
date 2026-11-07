@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-iftar",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, sunset on the flat roof of a 7th-century mud-brick house in an Arabian oasis: on a woven palm mat, three fresh dates on a small wooden plate and a simple clay cup of clear water, the sky glowing orange and pink above tall date palms. Warm and peaceful. No people, no hands, no moon, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2b9-6188-7050-b2aa-145cb279ba1f",
+    "submitted_utc":  "2026-11-06T21:17:35.5637437Z",
+    "completed_utc":  "2026-11-06T21:17:44.3149020Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-iftar-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d32/G2vJnrzIIbbxra2gxxtXY_0Fp5ER8y.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-iftar-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d32/Q3zNSPxzGm7wMmv-BdZLU_DSQPodnZ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-iftar-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d32/3fO8iDtdMOICZdgHL2mCQ_SvrJ6Irw.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  632623135
+}

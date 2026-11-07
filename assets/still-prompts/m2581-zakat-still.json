@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-zakat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the threshold of a 7th-century mud-brick house in bright morning light: a round wooden measuring bowl filled with barley, a small palm-leaf basket of dates and a closed plain cloth bundle, set down neatly beside the open doorway with a dark hair-cloth curtain tied back. Warm, generous, bright. No people, no hands, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2ba-1415-77d0-86ed-5402e8d2a9a3",
+    "submitted_utc":  "2026-11-06T21:18:21.6101952Z",
+    "completed_utc":  "2026-11-06T21:18:33.9327398Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-zakat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d37/hVk4LaONQhkwsvzH1RVwD_dN5BipJr.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-zakat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d37/jD5-VW6tiELO5jPE0S_yH_gKEqi7Dl.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-zakat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d37/WtvqhceWi4a5WoS9gmMyP_JUOssFmF.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2135116116
+}

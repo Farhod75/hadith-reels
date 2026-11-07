@@ -1112,3 +1112,37 @@ re-sent to the operator. Nothing had changed.
 
 **The finding:** a held set needs one re-watch and a dry run, not a re-render;
 its render sidecars (render.json per language) carried everything the close needed.
+
+## R206-R209 - Sahih Muslim #2581 - 2026-11-06
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (220-227: captions 1196-1267 chars, so each leg is a video plus a full-text reply), Instagram and Facebook from Meta Business Suite, YouTube Shorts, TikTok.
+
+Produced end to end while the operator was away ("доделай до конца"): stills picks, beds and the EN/RU subtitle fixes were Claude's; every paid step and the publish waited for his go.
+
+**Caught before publish**
+
+1. **tidy-out archived this set's drafts** during the #2734 close - set-2581.json, the caption JSON and the drafts were "not read by any tool". Moved back; P373 makes a set-<n>.json for an unpublished number mark the set as in production.
+2. **UZ bed refused by the gain gate** - vocal-nasheed-04 needed x2.19 against the cap of 2; re-bedded on path-to-jannah-bg (x1.04).
+3. **UZ narration (67 s) outran the six clips** - x1.15 slowed copies (-s, P240), registered from a separate spec.
+4. **EN/RU subtitles** - P339 stopped both first renders: EN 'zaqa' -> 'zakah', the honorific, 'said:', quotes, last cue clamped to 58.9 s; RU lead-in, 'дирхема', 'воскресения', 'оклеветав', 'долга', quotes. Fixed in the cached SRTs, re-rendered.
+5. **«муфлис» in UZ/TJ** - the operator asked whether it was checked; his explanation and HadeethEnc TJ («муфлис (фақир)») confirm it. Kept.
+
+**Escaped to publish**
+
+- **TikTok TJ: a Cyrillic «х» inside the Arabic matn** (`хَسَناتِه` for `حَسَناتِه`). platform-2581.md was correct; the letter changed in my chat block when I reproduced it. Caught by me after sending, flagged at once; the operator replaced the Arabic paragraph from a block that was compared with the file (cmp) before it was sent. Integrity of the Arabic text, so corrected in place.
+
+**Root causes**
+
+- A platform block passes through the model on its way to the chat. "Copied from the file" was true of the source, not of the output - a mixed-script paragraph is where a letter of the neighbouring script slips in.
+
+**Prevention landed**
+
+- From this set: a block with Arabic is compared with the file (written out and cmp'd) before it is sent, as the corrected paragraph was.
+
+**Prevention deferred**
+
+- A per-language YouTube cover (a script, next set): the operator wants a distinct cover for the UZ and TJ legs - a different scene and the title in that language - so the four legs do not look like one video in search. EN/RU are told apart by their burned-in subtitles.
+
+**Operator corrections of the assistant: 1.** I said the Shorts cover changes little because the Shorts feed shows none; he pointed out that search, the home page and the channel page do show it, and four identical covers read as one video - a viewer opens one and never learns the hadith is there in his friend's language. He was right.
+
+**The finding:** the gate that copies text from a file ends at the file; the last hop - from the model to the chat - needs its own check, and Arabic beside Cyrillic is where it fails.

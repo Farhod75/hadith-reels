@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2581-road",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a long empty desert track leading straight to the horizon at sunset, a single line of footprints in the sand fading into the distance, a few date palms at the side, a wide golden sky. Calm and solemn. No people, no animals, no buildings, no moon, no text.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b2bc-1dcf-7e60-84e8-9e7b939c0bfd",
+    "submitted_utc":  "2026-11-06T21:20:35.1709090Z",
+    "completed_utc":  "2026-11-06T21:20:43.4373684Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2581-road-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d44/5lQ9DMw7RThKT12CE9pJz_0DX0w1KA.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2581-road-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d44/EtG5yqGHkSZXp3DcSIdRR_xnkz9GOn.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2581-road-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab16d44/0zBjFZHqy9RX3W0DFVbbb_JSfNVtZn.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1170274103
+}

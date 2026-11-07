@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab16e50/RBtEVaf9FnisaAd6mAgxj_output.mp4",
+    "name":  "m2581-zakat",
+    "image":  "out\\refs\\m2581-zakat-3.jpg",
+    "file":  "out\\backgrounds\\new\\m2581-zakat.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-06T21:59:37.2563446Z",
+    "size_bytes":  29139973,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The dark curtains in the doorway stir slightly in a soft breeze, warm sunlight shifts slowly across the threshold. The bowl of barley, the basket of dates and the cloth bundle stay perfectly still. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1b2df-d9ff-71d3-8bdc-53fdffd85239",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-06T22:10:09.3557944Z",
+    "mode":  "image-to-video"
+}
