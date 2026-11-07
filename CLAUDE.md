@@ -563,6 +563,11 @@ If you add or remove a route or module, change this list in the same commit.
   Facebook, YouTube and TikTok field per language, from the Telegram captions (P368).
   **Paste from it; never compose these texts in chat** - that is how '#Shorts' reached
   YouTube titles and the Arabic reached TikTok on R186-R193.
+  It refuses to write a word that mixes Cyrillic, Arabic and Latin letters (P375).
+  **After sending a block to the chat:** save the message as sent (from the session
+  transcript) and run `platform-texts.py --number <n> --check-sent <file>` - every ```
+  block must be a block of platform-<n>.md (NFC). A block is retyped by the model on its
+  way to the chat; on #2581 one Cyrillic letter changed inside the TikTok TJ Arabic.
 - `make-covers.py` — `--number <n>` -> `out/cover-<n>-uz.jpg` and `-tj.jpg`: a YouTube cover
   per UZ/TJ leg, each on a different scene of the set, title in that language (P374). Run it
   before platform-texts.py, which names the file in the YouTube block. Free.

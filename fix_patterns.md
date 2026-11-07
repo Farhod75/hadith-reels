@@ -15557,3 +15557,34 @@ them; the operator looks at the channel the way a viewer finds it.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 375: a letter changed between the platform file and the chat
+
+**Date:** 2026-11-06  **Repo:** hadith-reels  **Severity:** content integrity (Arabic matn)
+
+**What happened.** The #2581 TikTok TJ caption went out with `хَسَناتِه` - a Cyrillic
+«х» (U+0445) in place of the Arabic «ح» (U+062D) - inside the matn. out/platform-2581.md
+was right. The block reaches the operator by being written out again by the model in a
+chat message, and in a paragraph where Arabic follows Cyrillic, one letter crossed over.
+I noticed it after sending; the operator replaced the paragraph that evening. P368 made
+the file the source, but nothing checked the last hop from the file to the chat.
+
+**Fix.** platform-texts.py:
+- `mixed_script_words()` - a word mixing Cyrillic, Arabic and Latin letters stops the
+  write. The three such words seen so far were all defects (this one, the Persian
+  letter in a Tajik word on #6724, '#парents' in a retyped YouTube block).
+- `--check-sent <file>` with `blocks_not_in()` - every ``` block of a message as sent must
+  be a block of platform-<n>.md, compared in NFC. NFC because the chat also reorders
+  shadda and fatha (every #2581 TikTok block did), which is the same text on screen.
+Run on the eight #2581 messages from the session transcript: seven match, the TJ TikTok
+block is the one reported, with the mixed word named. Tests: four in
+scripts/lib/test_platform_texts.py.
+
+**Lesson:** a copy made by retyping is a new text; check the copy, not the source.
+
+**Tripwire:** `--check-sent` after each block is sent. It cannot run before - the
+message is written as it is sent - so it shortens the time a slip stays up.
+
+**Status:** FIXED (check after send); the cause, retyping, remains.
+
+---

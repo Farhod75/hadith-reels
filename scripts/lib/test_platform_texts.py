@@ -103,3 +103,31 @@ def test_a_cover_is_named_in_its_language_youtube_block_only():
     assert 'Upload file): `out\\cover-5984-ru.jpg`' in yt
     assert 'cover' not in tiktok
     assert 'cover' not in pt.render_md('5984', res)
+
+
+def test_mixed_script_words_catches_the_three_defects_seen():
+    # P375: the #2581 TikTok TJ slip, the #6724 Persian letter, the '#парents' retype.
+    assert pt.mixed_script_words('وهذا مِن хَسَناتِه،') == [('хَسَناتِه،', ['arabic', 'cyrillic'])]
+    assert pt.mixed_script_words('#парents') == [('#парents', ['cyrillic', 'latin'])]
+    assert pt.mixed_script_words('Мардگон') == [('Мардگон', ['arabic', 'cyrillic'])]
+
+
+def test_mixed_script_words_passes_the_real_captions():
+    assert pt.mixed_script_words(EN) == []
+    assert pt.mixed_script_words(RU) == []
+    assert pt.mixed_script_words('Сахих Муслим (Sahih Muslim) №2581, #хадис #kindness') == []
+
+
+def test_a_sent_block_must_match_a_platform_block_byte_for_byte():
+    md = pt.render_md('5984', [('en', pt.build(EN, 'en')), ('ru', pt.build(RU, 'ru'))])
+    good = [b for b in pt.fenced_blocks(md) if 'Paradise' in b][0]
+    assert pt.blocks_not_in('text\n```\n%s\n```\nmore' % good, md) == []
+    bad = good.replace('Paradise', 'Paradice')
+    assert pt.blocks_not_in('```\n%s\n```' % bad, md) == [bad]
+    assert pt.blocks_not_in('```\r\n%s\r\n```' % good.replace('\n', '\r\n'), md) == []
+
+
+def test_shadda_and_fatha_in_either_order_are_the_same_block():
+    # P375: the chat wrote every #2581 TikTok block with fatha before shadda; NFC agrees.
+    md = '```\nإنَّ\n```'
+    assert pt.blocks_not_in('```\nإن\u064e\u0651\n```', md) == []

@@ -29,6 +29,7 @@ import io
 import os
 import re
 import sys
+import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -110,6 +111,50 @@ def build(caption, lang):
     }
 
 
+def _script(ch):
+    o = ord(ch)
+    if 0x0400 <= o <= 0x052F:
+        return 'cyrillic'
+    if 0x0600 <= o <= 0x06FF or 0x0750 <= o <= 0x077F or 0xFB50 <= o <= 0xFEFF:
+        return 'arabic'
+    if ch.isalpha() and o < 0x0250:
+        return 'latin'
+    return None
+
+
+def mixed_script_words(text):
+    """[(word, scripts)] - words that mix Cyrillic, Arabic and Latin letters (P375).
+
+    Each one seen so far was a defect: a Cyrillic 'х' inside an Arabic word on the #2581
+    TikTok TJ caption, a Persian letter inside a Tajik word (#6724), '#парents' in a
+    retyped YouTube block. A word is a run between whitespace; punctuation, digits and
+    the Arabic marks that are not letters do not count. Pure."""
+    out = []
+    for word in text.split():
+        scripts = sorted({s for s in map(_script, word) if s})
+        if len(scripts) > 1:
+            out.append((word, scripts))
+    return out
+
+
+def fenced_blocks(text):
+    """The contents of the ``` blocks of a markdown text, line endings normalised and in NFC:
+    an Arabic shadda written before or after its fatha is the same letter on screen, and
+    the chat reorders them (every #2581 TikTok block did). Pure."""
+    text = unicodedata.normalize('NFC', text.replace('\r\n', '\n'))
+    return [b.strip('\n') for b in re.findall(r'```[^\n]*\n(.*?)```', text, re.S)]
+
+
+def blocks_not_in(sent, platform_md):
+    """The fenced blocks of `sent` that are not, byte for byte, a block of platform_md.
+
+    P375: the text in out/platform-<n>.md is right, but a block reaches the chat by being
+    written out again by the model, and a letter can change on the way. Run this on the
+    message as sent. Pure."""
+    known = set(fenced_blocks(platform_md))
+    return [b for b in fenced_blocks(sent) if b not in known]
+
+
 def render_md(number, results, covers=None):
     """covers {lang: path} - the YouTube cover make-covers.py wrote (P374), named in that
     language's YouTube block."""
@@ -138,7 +183,30 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--number', required=True)
     ap.add_argument('--langs', nargs='*', choices=LANGS, default=list(LANGS))
+    ap.add_argument('--check-sent', metavar='FILE',
+                    help='P375: a message as sent to the chat; every ``` block in it must be a '
+                         'block of out/platform-<n>.md, byte for byte. Writes nothing.')
     a = ap.parse_args(argv)
+    if a.check_sent:
+        src = os.path.join(REPO, 'out', 'platform-%s.md' % a.number)
+        if not os.path.isfile(src):
+            hits = glob.glob(os.path.join(REPO, 'out', 'published', '**', 'platform-%s.md' % a.number),
+                             recursive=True)
+            src = hits[0] if hits else None
+        if not src:
+            print('MISSING platform-%s.md' % a.number)
+            return 1
+        sent = io.open(a.check_sent, encoding='utf-8').read()
+        n = len(fenced_blocks(sent))
+        bad = blocks_not_in(sent, io.open(src, encoding='utf-8').read())
+        for b in bad:
+            print('NOT IN platform-%s.md:\n%s\n' % (a.number, b))
+        mixed = mixed_script_words(sent)
+        for word, scripts in mixed:
+            print('MIXED SCRIPT  %s  (%s)' % (word, ' + '.join(scripts)))
+        print('%s - %d block(s) checked, %d differ, %d mixed-script word(s)'
+              % ('FAILED' if bad or mixed else 'OK', n, len(bad), len(mixed)))
+        return 1 if bad or mixed else 0
     results = []
     for lang in a.langs:
         path = find_caption(a.number, lang)
@@ -152,6 +220,12 @@ def main(argv=None):
         if os.path.isfile(os.path.join(REPO, c)):
             covers[lang] = c.replace(os.sep, '\\')
     md = render_md(a.number, results, covers)
+    bad = mixed_script_words(md)
+    if bad:
+        for word, scripts in bad:
+            print('MIXED SCRIPT  %s  (%s)' % (word, ' + '.join(scripts)))
+        print('FAILED - fix the caption (build-caption.ts input), then run again. Nothing written.')
+        return 1
     dest = os.path.join(REPO, 'out', 'platform-%s.md' % a.number)
     io.open(dest, 'w', encoding='utf-8', newline='\n').write(md)
     print('wrote %s (%d language(s))' % (dest, len(results)))

@@ -1,3 +1,15 @@
+## [2026-11-06f] - platform blocks checked as sent (P375)
+
+### Changed
+
+- **scripts/platform-texts.py:** refuses to write a word that mixes Cyrillic, Arabic and
+  Latin letters; `--check-sent <file>` compares every ``` block of a sent chat message with
+  out/platform-<n>.md (NFC). Caught the #2581 TikTok TJ slip when run on the session
+  transcript. Four tests.
+- CLAUDE.md tool list and reel-creation-pipeline.md Step 16.
+
+---
+
 ## [2026-11-06e] - YouTube covers for the UZ and TJ legs (P374)
 
 ### Added

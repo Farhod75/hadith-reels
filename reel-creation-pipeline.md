@@ -601,7 +601,10 @@ Order, fields and traps for every platform: see **Publishing** below. YT "Made
 for kids" = **No** on this lane. **Generate the texts, never compose them (P368):**
 `python scripts/platform-texts.py --number <n>` writes `out/platform-<n>.md` - the
 Instagram/Facebook, YouTube and TikTok fields for every language, built from the
-Telegram captions under the rules in that section.
+Telegram captions under the rules in that section. It stops on a word that mixes
+scripts (P375). Each block sent to the chat is checked afterwards with
+`--check-sent <message file>` against the same file: the chat copy is written out again
+by the model, and on #2581 a Cyrillic letter landed inside the TikTok TJ Arabic.
 
 **YouTube covers for UZ and TJ (P374):** `python scripts/make-covers.py --number <n>`
 before platform-texts writes `out/cover-<n>-uz.jpg` and `out/cover-<n>-tj.jpg` - a
