@@ -216,9 +216,11 @@ def main(argv=None):
         results.append((lang, build(io.open(path, encoding='utf-8').read(), lang)))
     covers = {}
     for lang, _ in results:
-        c = os.path.join('out', 'cover-%s-%s.jpg' % (a.number, lang))
-        if os.path.isfile(os.path.join(REPO, c)):
-            covers[lang] = c.replace(os.sep, '\\')
+        name = 'cover-%s-%s.jpg' % (a.number, lang)
+        hits = sorted(glob.glob(os.path.join(REPO, 'out', 'work', '**', name), recursive=True))
+        hits += [p for p in [os.path.join(REPO, 'out', name)] if os.path.isfile(p)]
+        if hits:                                    # the reel folder first (P376), then out/
+            covers[lang] = os.path.relpath(hits[0], REPO).replace(os.sep, '\\')
     md = render_md(a.number, results, covers)
     bad = mixed_script_words(md)
     if bad:

@@ -81,3 +81,10 @@ def test_a_leg_on_slowed_copies_gets_its_own_file_of_the_same_scene():
 def test_a_leg_whose_list_differs_in_length_keeps_the_base_clip():
     base = ['a.mp4', 'b.mp4', 'c.mp4']
     assert mc.same_position(base, {'uz': 'b.mp4'}, {'uz': ['x.mp4']}) == {'uz': 'b.mp4'}
+
+
+def test_the_cover_goes_beside_its_reel():
+    # P376 (operator 2026-11-07): the cover lives in that language's reel folder
+    leg = os.path.join('out', 'work', 'adults', 'muslim-223', 'uz')
+    assert mc.cover_dest('223', 'uz', {'uz': leg}) == os.path.join(leg, 'cover-223-uz.jpg')
+    assert mc.cover_dest('223', 'tj', {}) == os.path.join(mc.OUT, 'cover-223-tj.jpg')

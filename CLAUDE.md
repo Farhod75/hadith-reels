@@ -568,8 +568,9 @@ If you add or remove a route or module, change this list in the same commit.
   transcript) and run `platform-texts.py --number <n> --check-sent <file>` - every ```
   block must be a block of platform-<n>.md (NFC). A block is retyped by the model on its
   way to the chat; on #2581 one Cyrillic letter changed inside the TikTok TJ Arabic.
-- `make-covers.py` — `--number <n>` -> `out/cover-<n>-uz.jpg` and `-tj.jpg`: a YouTube cover
-  per UZ/TJ leg, each on a different scene of the set, title in that language (P374). Run it
+- `make-covers.py` — `--number <n>` -> `cover-<n>-uz.jpg` and `-tj.jpg` in each language's reel
+  folder (P376): a YouTube cover per UZ/TJ leg, each on a different scene of the set, title in
+  that language (P374). Run it
   before platform-texts.py, which names the file in the YouTube block. Free.
 - `publish-narration.py` — copies each set's story.mp3 (narrator + matn, recorded on/after
   2026-10-04, the .txt containing the row's translation) to the public Supabase bucket

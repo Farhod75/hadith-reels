@@ -15588,3 +15588,24 @@ message is written as it is sent - so it shortens the time a slip stays up.
 **Status:** FIXED (check after send); the cause, retyping, remains.
 
 ---
+
+## PATTERN 376: the covers lay apart from the reels they belong to
+
+**Date:** 2026-11-07  **Repo:** hadith-reels  **Severity:** process (file layout)
+
+**What happened.** make-covers.py (P374) wrote `out/cover-<n>-<lang>.jpg` at the top of
+out/, while each reel lives in `out/work/adults/<slug>/<lang>/`. Uploading #223 to YouTube,
+the operator asked for the covers to sit in the reel folder of their language and number,
+where he picks the reel up.
+
+**Fix.** make-covers.py writes the cover beside that language's reel (the folder of its
+render sidecar); the top of out/ only when a set has no render folder yet.
+platform-texts.py looks in the reel folders first and names that path in the YouTube block.
+At set close the cover moves with its folder into out/published/. Test:
+test_the_cover_goes_beside_its_reel. #223's two covers were moved by hand the same day.
+
+**Tripwire:** none - the place is decided inside make-covers.py; the test pins it.
+
+**Status:** FIXED.
+
+---

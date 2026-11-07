@@ -1,3 +1,14 @@
+## [2026-11-07] - covers beside their reels (P376)
+
+### Changed
+
+- **scripts/make-covers.py:** writes cover-<n>-<lang>.jpg into that language's reel folder
+  (out/work/adults/<slug>/<lang>/) - operator's request while publishing #223.
+- **scripts/platform-texts.py:** finds the cover in the reel folders first.
+- reel-creation-pipeline.md Step 16 and YouTube fields, CLAUDE.md tool line. #223 covers moved.
+
+---
+
 ## [2026-11-06f] - platform blocks checked as sent (P375)
 
 ### Changed

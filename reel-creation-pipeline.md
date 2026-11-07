@@ -607,7 +607,8 @@ scripts (P375). Each block sent to the chat is checked afterwards with
 by the model, and on #2581 a Cyrillic letter landed inside the TikTok TJ Arabic.
 
 **YouTube covers for UZ and TJ (P374):** `python scripts/make-covers.py --number <n>`
-before platform-texts writes `out/cover-<n>-uz.jpg` and `out/cover-<n>-tj.jpg` - a
+before platform-texts writes `cover-<n>-uz.jpg` and `cover-<n>-tj.jpg` into each language's
+reel folder (`out/work/adults/<slug>/<lang>/`, beside the reel - P376) - a
 different scene of the set for each, the title in that language, the language name
 above it. Free (one ffmpeg frame + Pillow). platform-texts then names the file in that
 language's YouTube block; upload it at Details -> Thumbnail -> **Upload file**. EN and RU
@@ -810,7 +811,7 @@ Brand Account under elfarhod@gmail.com. Create -> Upload. Three separate fields:
 ```
 
 - **Tags** - comma separated, under **SHOW MORE** at the bottom of the Details page.
-- **Thumbnail (UZ, TJ)** - **Upload file** -> `out/cover-<n>-<lang>.jpg` (make-covers.py,
+- **Thumbnail (UZ, TJ)** - **Upload file** -> `out/work/adults/<slug>/<lang>/cover-<n>-<lang>.jpg` (make-covers.py,
   P374). Desktop Studio offers only three frames of its own choosing; search, the home
   page and the channel page show the cover, and four identical covers read as one video.
 

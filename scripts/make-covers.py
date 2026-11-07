@@ -18,8 +18,10 @@ reel actually shows - the UZ leg's slowed -s copies included), else from out/cli
 The title comes from out/set-<n>.json, else from the first line of out/caption-<n>-<lang>.txt,
 which also gives the source line. All are found at the top of out/, under out/work/** or under
 out/published/** (after tidy-out). Grabs one frame from each chosen clip
-(out/backgrounds/new or normalized, 1080x1920) with ffmpeg and writes
-out/cover-<n>-<lang>.jpg (1080x1920, under 2 MB). Free: no API is called.
+(out/backgrounds/new or normalized, 1080x1920) with ffmpeg and writes cover-<n>-<lang>.jpg
+(1080x1920, under 2 MB) into that language's reel folder, beside the reel it belongs to
+(out/work/adults/<slug>/<lang>/, P376); the top of out/ only when there is no render folder yet.
+Free: no API is called.
 
 The text sits in the middle band (y 560-1360) so a crop to 3:2 or 1:1 keeps it. A title with
 a character the font cannot draw stops the run (no tofu boxes on a cover).
@@ -120,15 +122,23 @@ def find_one(name):
     return hits[0] if hits else None
 
 
-def render_sidecars(number):
-    """{lang: scenes} from adults-<lang>-<slug>-render.json files of this set."""
-    out = {}
+def render_sidecars(number, with_dirs=False):
+    """{lang: scenes} from adults-<lang>-<slug>-render.json files of this set; with_dirs also
+    returns {lang: the folder of that leg's reel} (P376)."""
+    out, dirs = {}, {}
     for root in ('work', 'published'):
         for p in glob.glob(os.path.join(OUT, root, '**', '*-%s-render.json' % number), recursive=True):
             m = re.match(r'^[a-z]+-([a-z]{2})-[a-z-]+-%s-render\.json$' % number, os.path.basename(p))
             if m and m.group(1) not in out:
                 out[m.group(1)] = json.load(io.open(p, encoding='utf-8-sig')).get('scenes') or []
-    return out
+                dirs[m.group(1)] = os.path.dirname(p)
+    return (out, dirs) if with_dirs else out
+
+
+def cover_dest(number, lang, leg_dirs):
+    """Where the cover goes: beside that language's reel (operator 2026-11-07, P376), or the
+    top of out/ when the set has no render folder yet. Pure."""
+    return os.path.join(leg_dirs.get(lang) or OUT, 'cover-%s-%s.jpg' % (number, lang))
 
 
 def title_for(number, lang, st):
@@ -259,7 +269,7 @@ def main(argv=None):
 
     set_path = find_one('set-%s.json' % a.number)
     st = json.load(io.open(set_path, encoding='utf-8')) if set_path else None
-    by_lang = render_sidecars(a.number)
+    by_lang, leg_dirs = render_sidecars(a.number, with_dirs=True)
     clips_path = find_one('clips-%s.json' % a.number)
     if clips_path:
         base = [c['file'] for c in json.load(io.open(clips_path, encoding='utf-8'))['clips']]
@@ -281,10 +291,10 @@ def main(argv=None):
             return 1
         frame = os.path.join(tmp, '%s.png' % lang)
         grab_frame(clip, a.at, frame)
-        dest = os.path.join(OUT, 'cover-%s-%s.jpg' % (a.number, lang))
+        dest = cover_dest(a.number, lang, leg_dirs)
         lines, size = compose(frame, title, LABEL[lang], source_line(a.number, lang), dest)
-        print('%s  %-28s <- %s @%.1fs  (%d line(s), %dpx, %d KB)' % (
-            lang.upper(), os.path.basename(dest), picks[lang], a.at, len(lines), size,
+        print('%s  %-50s <- %s @%.1fs  (%d line(s), %dpx, %d KB)' % (
+            lang.upper(), os.path.relpath(dest, REPO), picks[lang], a.at, len(lines), size,
             os.path.getsize(dest) // 1024))
     print('Upload in YouTube Studio: Details -> Thumbnail -> Upload file.')
     return 0
