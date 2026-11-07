@@ -157,6 +157,8 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Muslim #223 - PUBLISHED 2026-11-07 (R210-R213, TG 228-231).** Matn history below
+  (completed 2026-11-02). m223-sadaqa shows a hand - do not reuse that clip.
 - **Muslim #2581 - PUBLISHED 2026-11-06 (R206-R209, TG 220-227); library 9c2f2409.** The
   bankrupt. Near subject in the library: #2589 (backbiting) and #105 (the tale-bearer).
 - **YouTube covers for UZ and TJ - BUILT 2026-11-06 (P374), in use from the next set.**

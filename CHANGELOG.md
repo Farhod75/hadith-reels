@@ -1,3 +1,15 @@
+## [2026-11-07b] - R210-R213, Sahih Muslim #223, four languages, set closed
+
+### Content
+
+- Tracker rows R210-R213 (TG 228-231), duplicate index (#223), new theme Purity / Worship,
+  nasheed usage, the m223 clip set, stats 213/161/52, Muslim x44, companions 21 (Abu Malik
+  al-Ash'ari), change log, retro. Registry: m223 clips verified; publish-narration run.
+- m223-sadaqa shows a hand (MODE B) - published as is, noted in OPEN_ITEMS; the TJ cover uses
+  m223-path instead.
+
+---
+
 ## [2026-11-07] - covers beside their reels (P376)
 
 ### Changed

@@ -1564,7 +1564,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (kumgan-2, operator's pick; ewer described from ICCU kumgan entries after the operator's correction) -> Kling 3.0 Pro i2v 10s -> first 8.0 s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a younger right hand pours from a copper kumgan (aftoba) into an old man's cupped palms over a copper basin - 'purity'. The stream leaves the spout tip, stops at ~7 s, the ewer is set upright by 8 s. A Kling 2.6 attempt reached COMPLETED but its result could not be fetched (504, 404). Earlier stills rejected by the operator: two washers' hands tangled; a tiny jug against a big basin.",
       "prompt_sidecar": "assets/scene-prompts/m223-wudu.json"
     },
@@ -1573,7 +1573,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (horizon-1) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a vast desert under a wide luminous sky - 'fill what is between the heavens and the earth'. Clouds drift, light brightens; no sun disc, no people. Checked every 0.5 s.",
       "prompt_sidecar": "assets/scene-prompts/m223-horizon.json"
     },
@@ -1582,7 +1582,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (lamp-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a prayer mat in a whitewashed room with a small clay oil lamp BESIDE it (not in front - no prayer facing a flame) - 'prayer is light'. Only the flame and its glow move. No door, window or sun. Checked every 0.5 s.",
       "prompt_sidecar": "assets/scene-prompts/m223-lamp.json"
     },
@@ -1591,7 +1591,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (sadaqa-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a right hand places a date into an open palm holding other dates - 'charity is proof'. Nothing falls; the receiving palm stays open. Checked every 0.5 s.",
       "prompt_sidecar": "assets/scene-prompts/m223-sadaqa.json"
     },
@@ -1600,7 +1600,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (path-2) -> Kling 3.0 Pro i2v 10s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a sandy path between date palms with one line of footprints in morning light - 'every person sets out in the morning'. No people, no sun disc; footprints stay. Checked every 0.5 s.",
       "prompt_sidecar": "assets/scene-prompts/m223-path.json"
     },
@@ -1609,7 +1609,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "m223-wudu-c8 slowed x1.075 (minterpolate blend) to 8.54 s for the UZ reel (50.48 s narration needs 8.413 s per clip; P240). FLUX 2 still (kumgan-2, operator's pick; ewer described from ICCU kumgan entries after the operator's correction) -> Kling 3.0 Pro i2v 10s -> first 8.0 s. Sahih Muslim #223, Abu Malik al-Ashari, sahih - 'Purity is half of faith ... prayer is light, charity is proof, patience is radiance ... every person sets out in the morning and sells his soul, either freeing it or destroying it'. MODE B: no faces. Bright palette. Depicts: a younger right hand pours from a copper kumgan (aftoba) into an old man's cupped palms over a copper basin - 'purity'. The stream leaves the spout tip, stops at ~7 s, the ewer is set upright by 8 s. A Kling 2.6 attempt reached COMPLETED but its result could not be fetched (504, 404). Earlier stills rejected by the operator: two washers' hands tangled; a tiny jug against a big basin.",
       "prompt_sidecar": "assets/scene-prompts/m223-wudu.json"
     },

@@ -1146,3 +1146,33 @@ Produced end to end while the operator was away ("доделай до конца
 **Operator corrections of the assistant: 1.** I said the Shorts cover changes little because the Shorts feed shows none; he pointed out that search, the home page and the channel page do show it, and four identical covers read as one video - a viewer opens one and never learns the hadith is there in his friend's language. He was right.
 
 **The finding:** the gate that copies text from a file ends at the file; the last hop - from the model to the chat - needs its own check, and Arabic beside Cyrillic is where it fails.
+
+## R210-R213 - Sahih Muslim #223 - 2026-11-07
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (228-231, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok.
+
+Rendered 2026-11-02/03 and held until the operator said «публикуй #223» on 2026-11-07.
+
+**Caught before publish**
+
+1. **EN/RU subtitles** read against the drafts on 2026-11-06: they match.
+2. **TJ YouTube cover:** make-covers.py's default scene for TJ was m223-sadaqa, which shows a hand; re-made on m223-path (`--scene tj=path`).
+3. **An ambiguous «да»** at 01:27 and 12:09 followed messages that asked about a paid translation run and the publication together. I took them for the reversible one and asked for «публикуй #223» before posting; the operator wrote it at 12:11.
+4. **The Telegram run did not start** the first time: `Start-Process -File` with an absolute path containing spaces. Nothing was posted; re-run with -WorkingDirectory and a relative path.
+
+**Escaped to publish**
+
+- **m223-sadaqa shows a hand** in all four reels (MODE B: no people). Presentation, not integrity - fixed forward, not republished. The scene was accepted at render on 2026-11-02.
+
+**Prevention landed**
+
+- Every platform block checked as sent with `platform-texts.py --check-sent` (P375): 15 of 15 matched the file.
+- P376: covers go beside their reels (the operator's request during this set).
+
+**Prevention deferred**
+
+- make-covers.py cannot see a hand in a frame; the operator's eye on the cover remains the check.
+
+**Operator corrections of the assistant: 0.** One request (P376).
+
+**The finding:** the check after sending (P375) costs seconds per block and caught nothing this time - which is what it should do on a good day.
