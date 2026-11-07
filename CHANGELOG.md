@@ -1,3 +1,23 @@
+## [2026-11-06e] - YouTube covers for the UZ and TJ legs (P374)
+
+### Added
+
+- **scripts/make-covers.py:** `--number <n>` writes out/cover-<n>-uz.jpg and -tj.jpg - a
+  different scene of the set per language, the title in that language, the language name
+  and the source line; 1080x1920 JPEG under 2 MB; stops on a character the font cannot
+  draw. Scenes from each leg's render sidecar (or clips-<n>.json); title from set-<n>.json
+  or the caption, so older sets such as #223 work too. Free. scripts/lib/test_make_covers.py
+  (11 tests).
+
+### Changed
+
+- **scripts/platform-texts.py:** names the cover in that language's YouTube block.
+- **scripts/tidy-out.py:** keeps cover-<n>-<lang>.jpg and platform-<n>.md with an
+  unpublished set; files them with a published one.
+- reel-creation-pipeline.md Step 16 and the YouTube fields; CLAUDE.md tool list.
+
+---
+
 ## [2026-11-06d] - R206-R209, Sahih Muslim #2581, four languages, set closed
 
 ### Content

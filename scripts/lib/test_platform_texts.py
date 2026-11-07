@@ -90,3 +90,16 @@ def test_tags_are_plain_words_without_hash_or_language_marker():
 def test_reference_parse_handles_hash_and_numero():
     assert pt.collection_and_number('\U0001F4D6 Sahih al-Bukhari #38, Abu Hurairah') == ('Sahih al-Bukhari', '38')
     assert pt.collection_and_number('\U0001F4D6 Сахих Муслим (Sahih Muslim) №2749, X') == ('Сахих Муслим', '2749')
+
+
+def test_a_cover_is_named_in_its_language_youtube_block_only():
+    # P374: make-covers.py writes out/cover-<n>-<lang>.jpg for UZ/TJ; the YouTube block
+    # of that language says which file to upload, the other languages say nothing.
+    res = [('en', pt.build(EN, 'en')), ('ru', pt.build(RU, 'ru'))]
+    md = pt.render_md('5984', res, {'ru': 'out\\cover-5984-ru.jpg'})
+    en_part, ru_part = md.split('## RU')
+    assert 'cover-5984' not in en_part
+    yt, tiktok = ru_part.split('### TikTok')
+    assert 'Upload file): `out\\cover-5984-ru.jpg`' in yt
+    assert 'cover' not in tiktok
+    assert 'cover' not in pt.render_md('5984', res)

@@ -15524,3 +15524,36 @@ folder a later stage creates.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 374: four legs of one hadith looked like one video on YouTube
+
+**Date:** 2026-11-06  **Repo:** hadith-reels  **Severity:** process (publishing)
+
+**What happened.** Publishing #2581 on YouTube, the operator found that desktop
+Studio offers three frames of its own choosing for the cover, or "Upload file". I
+said the cover matters little because the Shorts feed shows none. He corrected it:
+search, the home page and the channel page do show it, and when the EN, RU, UZ and
+TJ legs come up together with the same picture, a viewer opens one and never learns
+the hadith is there in the language of the friend he would send it to. EN and RU are
+told apart by their burned-in subtitles; UZ and TJ are not.
+
+**Fix.** `scripts/make-covers.py --number <n>`: for UZ and TJ (the default) one frame
+from a DIFFERENT clip of the set each (read from each leg's render sidecar, so a UZ leg
+on slowed -s copies gets its own file; else out/clips-<n>.json) (spread across the set, never the opening clip
+while others remain; `--scene lang=name` overrides), the title in that language, the
+language name above it and the collection and number below, in the middle band so a
+crop keeps it; 1080x1920 JPEG under 2 MB. A title the font cannot draw stops the run.
+platform-texts.py names the cover in that language's YouTube block; tidy-out.py keeps
+`cover-<n>-<lang>.jpg` and `platform-<n>.md` with an unpublished set and files them
+with a published one (platform-<n>.md was not on that list either). Tests:
+scripts/lib/test_make_covers.py (11), one each in test_platform_texts.py and
+test_tidy_out.py.
+
+**Lesson:** "the feed shows no cover" was true of one surface and taken for all of
+them; the operator looks at the channel the way a viewer finds it.
+
+**Tripwire:** none automatic - the cover line in platform-<n>.md is the prompt.
+
+**Status:** FIXED.
+
+---

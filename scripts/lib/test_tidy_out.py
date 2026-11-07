@@ -33,3 +33,18 @@ def test_the_drafts_of_a_set_in_preparation_stay():
             assert dest is None, (name, dest, why)
     finally:
         to.UNPUBLISHED.clear()
+
+
+def test_covers_and_platform_texts_stay_with_an_unpublished_set_and_move_with_a_published_one():
+    # P374: cover-<n>-<lang>.jpg and platform-<n>.md belong to the set - they stay at the
+    # top of out/ until it is published (not 'deliverables', not 'not read by any tool').
+    to.UNPUBLISHED.clear()
+    to.UNPUBLISHED.add('223')
+    try:
+        for name in ('cover-223-uz.jpg', 'cover-223-tj.jpg', 'platform-223.md'):
+            dest, why = to.classify(name, known={'2581'})
+            assert dest is None, (name, dest, why)
+        dest, _ = to.classify('cover-2581-uz.jpg', known={'2581'})
+        assert dest.replace('\\', '/') == '_archive/sets/2581'
+    finally:
+        to.UNPUBLISHED.clear()

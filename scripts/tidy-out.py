@@ -27,7 +27,8 @@ KEEP_EXACT = {'candidate-translations.json', 'candidate-translations.reviewed.js
               'source-refs.txt', 'tajik-translations.json', 'uzbek-scripts.json', 'model-probe.json',
               'model-probe.txt', 'last-parse-failure.txt', '_tidy_plan.csv', '_tidy_undo.ps1'}
 LIVE_SET_FILE = re.compile(r'^(caption-(\d+)(-[a-z]{2})?(-tg-video)?\.(txt|json)|draft-[a-z-]+?-(\d+)-[a-z]{2}\.txt|'
-                           r'set-(\d+)\.json|tg-(\d+)\.(json|log)|clips-(\d+)\.json|render-[a-z-]+?-(\d+)\.(json|log))$')
+                           r'set-(\d+)\.json|tg-(\d+)\.(json|log)|clips-(\d+)\.json|render-[a-z-]+?-(\d+)\.(json|log)|'
+                           r'platform-(\d+)\.md|cover-(\d+)-[a-z]{2}\.jpg)$')   # P374: covers + platform texts
 SCRIPT = {'.py', '.ps1', '.js', '.sh', '.sql', '.ts', '.bak'}
 LOG = {'.log', '.err', '.out'}
 

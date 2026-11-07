@@ -563,6 +563,9 @@ If you add or remove a route or module, change this list in the same commit.
   Facebook, YouTube and TikTok field per language, from the Telegram captions (P368).
   **Paste from it; never compose these texts in chat** - that is how '#Shorts' reached
   YouTube titles and the Arabic reached TikTok on R186-R193.
+- `make-covers.py` — `--number <n>` -> `out/cover-<n>-uz.jpg` and `-tj.jpg`: a YouTube cover
+  per UZ/TJ leg, each on a different scene of the set, title in that language (P374). Run it
+  before platform-texts.py, which names the file in the YouTube block. Free.
 - `publish-narration.py` — copies each set's story.mp3 (narrator + matn, recorded on/after
   2026-10-04, the .txt containing the row's translation) to the public Supabase bucket
   `narration` and rewrites its index.json; the public library's Listen plays it (P362).

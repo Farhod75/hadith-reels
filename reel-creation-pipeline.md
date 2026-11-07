@@ -603,6 +603,14 @@ for kids" = **No** on this lane. **Generate the texts, never compose them (P368)
 Instagram/Facebook, YouTube and TikTok fields for every language, built from the
 Telegram captions under the rules in that section.
 
+**YouTube covers for UZ and TJ (P374):** `python scripts/make-covers.py --number <n>`
+before platform-texts writes `out/cover-<n>-uz.jpg` and `out/cover-<n>-tj.jpg` - a
+different scene of the set for each, the title in that language, the language name
+above it. Free (one ffmpeg frame + Pillow). platform-texts then names the file in that
+language's YouTube block; upload it at Details -> Thumbnail -> **Upload file**. EN and RU
+get none: their burned-in subtitles already tell them apart. `--scene uz=<clip>` to
+choose another scene.
+
 **Telegram is posted by the agent, after the operator's go:**
 `python scripts/tg-post-set.py --number <n> --slug <slug>` (dry run - shows split or not per
 language), then the same with `--post`, started detached (P350). The ids land in
@@ -799,6 +807,9 @@ Brand Account under elfarhod@gmail.com. Create -> Upload. Three separate fields:
 ```
 
 - **Tags** - comma separated, under **SHOW MORE** at the bottom of the Details page.
+- **Thumbnail (UZ, TJ)** - **Upload file** -> `out/cover-<n>-<lang>.jpg` (make-covers.py,
+  P374). Desktop Studio offers only three frames of its own choosing; search, the home
+  page and the channel page show the cover, and four identical covers read as one video.
 
 Then Audience -> **No, not made for kids** on the adults lane -> Next through ->
 Visibility -> **Public** -> Publish. A vertical reel under 60s is picked up as a
@@ -985,3 +996,4 @@ Seven of the eight aswati beds name an uploader rather than a composer.
 | 2026-11-04 | Publishing: Facebook added (Instagram + Facebook as one Meta Business Suite reel, with its Share-step settings); Telegram marked automated (tg-post-set.py); TikTok "Reuse of content" OFF; `platform-texts.py` generates every platform field (P368, after '#Shorts' went into YouTube titles and the Arabic into TikTok captions on R186-R193). |
 | 2026-11-05 | TikTok keeps the Arabic matn: the 2026-10-05 no-Arabic rule withdrawn after the operator checked the #38 caption in TikTok Studio (P371); platform-texts.py follows. |
 | 2026-11-05 | Choosing the hadith: `list-library.py --notes` puts what the docs say about each unused number beside it (P372). |
+| 2026-11-06 | YouTube covers for the UZ and TJ legs: `make-covers.py` (P374), named in platform-<n>.md, uploaded with Upload file. |
