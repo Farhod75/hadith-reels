@@ -44,3 +44,22 @@ def test_render_command_passes_scenes_as_a_powershell_array():
     assert cmd[:3] == ["pwsh", "-NoProfile", "-Command"]
     assert "-Scenes @('a-s.mp4','b-s.mp4')" in cmd[3]
     assert "-NasheedGain 0.94" in cmd[3] and cmd[3].endswith("exit $LASTEXITCODE")
+
+
+class _R:
+    def __init__(self, code, out):
+        self.returncode, self.stdout = code, out
+
+
+def test_asset_gate_reports_a_claimed_bed_once():
+    # #6114 RU: the plan named a Content-ID-claimed bed; render-set only found out mid-set (P377)
+    calls = []
+
+    def run(cmd, **kw):
+        calls.append(cmd[3])
+        if cmd[3] == 'claimed.mp3':
+            return _R(1, 'BLOCKED: claimed.mp3 - Content ID has CLAIMED this audio.\n')
+        return _R(0, 'OK\n')
+    got = rs.asset_gate(['ok.mp3', 'claimed.mp3', 'ok.mp3', 'a.mp4'], run=run)
+    assert calls == ['ok.mp3', 'claimed.mp3', 'a.mp4']
+    assert got == [('claimed.mp3', 'BLOCKED: claimed.mp3 - Content ID has CLAIMED this audio.')]

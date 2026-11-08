@@ -558,7 +558,7 @@ true once it has actually been watched.
 editorial decision, not a formality.
 
 **Whole set in one run:** `python scripts/render-set.py --plan out/render-<slug>.json` (dry run:
-per-language clip choice and gain), then `--render`, started detached (P350).
+per-language clip choice and gain, and every bed and clip through the asset gate - P377), then `--render`, started detached (P350).
 
 **Nasheed level (P338).** Before the render, per language:
 `python scripts/mix-gap.py --slug <slug> --lang <lang> --bed <file>` prints the

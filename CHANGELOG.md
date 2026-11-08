@@ -1,3 +1,13 @@
+## [2026-11-07c] - render-set checks the asset gate before rendering (P377)
+
+### Changed
+
+- **scripts/render-set.py:** `asset_gate()` runs audit-assets.py --check on every bed and scene
+  clip of the plan before the first render, dry run included. #6114 RU had been planned on a
+  Content-ID-claimed bed and was refused only by render-reel.ps1, mid-set. Test added (7 pass).
+
+---
+
 ## [2026-11-07b] - R210-R213, Sahih Muslim #223, four languages, set closed
 
 ### Content

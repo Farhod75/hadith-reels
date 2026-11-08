@@ -15609,3 +15609,29 @@ test_the_cover_goes_beside_its_reel. #223's two covers were moved by hand the sa
 **Status:** FIXED.
 
 ---
+
+## PATTERN 377: a Content-ID-claimed bed reached the render; one language failed mid-set
+
+**Date:** 2026-11-07  **Repo:** hadith-reels  **Severity:** process (rights gate reached late)
+
+**What happened.** For #6114 I picked the four beds from the registry's lanes and the
+recent-use history, and did not read `rights.content_id`. RU got aswati-Steady-Motivation,
+which Content ID claimed on #3540 (blocked worldwide) and which the registry records as
+claimed. render-set.py's dry run checked clip length and mix gain but not the asset gate,
+so the plan passed; render-reel.ps1's gate then refused RU after EN had been attempted,
+and the set needed a second run. Nothing was published; no money was lost beyond time.
+
+**Fix.** render-set.py `asset_gate()`: before the first render (dry run included) every
+bed of the selected languages and every scene clip goes through `audit-assets.py --check
+<file> --lane adults` - the same gate render-reel.ps1 runs, so the two cannot disagree.
+A refused file stops the plan with the gate's reason. Checked on the #6114 plan with the
+claimed bed put back: STOP (asset gate, P377). Test: test_asset_gate_reports_a_claimed_bed_once.
+
+**Lesson:** a choice made from a list must be checked by the gate that will judge it, at
+the moment of choosing - not at the moment of use.
+
+**Tripwire:** render-set.py dry run prints `STOP (asset gate, P377)` and renders nothing.
+
+**Status:** FIXED.
+
+---

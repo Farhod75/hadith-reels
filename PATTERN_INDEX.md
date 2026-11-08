@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-306 patterns in 319 entries, frontier **P376**. The P-sequence is shared with
+307 patterns in 320 entries, frontier **P377**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -367,5 +367,6 @@ BEFORE changing it.
 - **P374** - four legs of one hadith looked like one video on YouTube
 - **P375** - a letter changed between the platform file and the chat
 - **P376** - the covers lay apart from the reels they belong to
+- **P377** - a Content-ID-claimed bed reached the render; one language failed mid-set
 
-<!-- pattern-index-stamp entries=319 patterns=306 frontier=376 sha1=a71f6dcedce9de17435cdba9178043a5828f731c -->
+<!-- pattern-index-stamp entries=320 patterns=307 frontier=377 sha1=a41eb34de6a6ee747968db69dd905f10644f53d1 -->

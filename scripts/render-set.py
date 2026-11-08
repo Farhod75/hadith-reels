@@ -101,6 +101,21 @@ def build_render_command(slug, lang, bed, gain, scenes, repo=REPO):
     return ['pwsh', '-NoProfile', '-Command', script]
 
 
+def asset_gate(names, lane='adults', run=subprocess.run):
+    """[(name, reason)] for every file the render gate would refuse (P377): audit-assets.py
+    --check is the gate render-reel.ps1 runs, so the plan is checked by the same rule before
+    the first render instead of failing one language in the middle of the set."""
+    blocked = []
+    for name in dict.fromkeys(names):
+        r = run([sys.executable, os.path.join(HERE, 'audit-assets.py'), '--check', name, '--lane', lane],
+                capture_output=True, text=True, encoding='utf-8', errors='replace', cwd=REPO,
+                env=dict(os.environ, PYTHONIOENCODING='utf-8'))
+        if r.returncode:
+            line = next((l for l in r.stdout.splitlines() if 'BLOCKED' in l), r.stdout.strip()[:200])
+            blocked.append((name, line.strip()))
+    return blocked
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description='Render a reel set from a plan (dry run unless --render).')
     ap.add_argument('--plan', required=True)
@@ -121,6 +136,10 @@ def main(argv=None):
 
     print('render-set %s - %s' % (slug, 'RENDER' if args.render else 'DRY RUN'))
     jobs, bad = [], 0
+    gated = asset_gate([plan['langs'][l]['bed'] for l in langs] + plan['scenes'] + plan.get('scenes_slow', []))
+    for name, why in gated:
+        print('  STOP (asset gate, P377): %s' % why[:300])
+    bad += len(gated)
     for lang in langs:
         cfg = plan['langs'][lang]
         nar, src = narration_seconds(ff, slug, lang)
