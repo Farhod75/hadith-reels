@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-308 patterns in 321 entries, frontier **P378**. The P-sequence is shared with
+310 patterns in 323 entries, frontier **P380**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -369,5 +369,7 @@ BEFORE changing it.
 - **P376** - the covers lay apart from the reels they belong to
 - **P377** - a Content-ID-claimed bed reached the render; one language failed mid-set
 - **P378** - tidy-out at one set's close archived the next set's running Kling job files
+- **P379** - HV Next 14 -> 16.4.5 - a BOM in tsconfig.json, a test that read the first div, and a "baseline" from a stale server
+- **P380** - two Vercel projects for one repo - `vercel link` in an unlinked folder created a second
 
-<!-- pattern-index-stamp entries=321 patterns=308 frontier=378 sha1=0edf6399898393b4247994f5b0d9fdb3ff1d06c9 -->
+<!-- pattern-index-stamp entries=323 patterns=310 frontier=380 sha1=4cdf74ae9896e3bf4baac0c70742a52568510700 -->

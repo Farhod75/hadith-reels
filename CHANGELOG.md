@@ -1,3 +1,16 @@
+## [2026-11-08d] - hadith-verifier on Next.js 16.4.5 (P379); one Vercel project (P380)
+
+### Changed
+
+- **hadith-verifier:** next 14.2.35 -> 16.4.5, react/react-dom 19.2.4, @next/third-parties 16.4.5,
+  @types/react 19 (bd19198, merged to main, live on hadithverifier.com). tsconfig.json BOM removed;
+  RTL test targets the app root. A/B with MOCK_CLAUDE=1 on a production server: identical 14 failures
+  on main and on the branch (P379).
+- **Vercel:** project hadith-verifier (created by a CLI link on 2026-04-13) disconnected from Git;
+  the HV folder linked to hadith-verifier-vp57, which owns hadithverifier.com (P380).
+
+---
+
 ## [2026-11-08c] - tidy-out keeps the files of a set in work (P378)
 
 ### Fixed

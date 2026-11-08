@@ -294,9 +294,19 @@ this one wins.
   (`blackforestlabs/flux-3/edit-image`) works and lives only in
   `out/edit_4811_f3.ps1`, not in `scripts/`.
 - **Kling 4.0** - API open, not evaluated.
-- **OPEN 2026-11-08: hadith-verifier (HV) is on Next.js 14.2.35** - outside both supported lines; the
-  2026-11-03 security release patched only 16.4.5 and 15.5.29. HV is the public site. Decision for
-  the operator: move HV to 15.5.29 (smaller jump) or 16.4.5 (same as HR). Found by the weekly tool check.
+- **DONE 2026-11-08: HV on Next.js 16.4.5** (P379, bd19198). Found on the way, all pre-existing:
+  - **OPEN - HV admin queue gets no new rows since 2026-05-11.** /api/analyze inserts a `references`
+    field; flagged_posts has `sources`, not `references`. supabase-js returns the error instead of
+    throwing, so the try/catch never sees it. Fix: map to `sources` and check `{ error }`, with a test
+    that the row lands. 2689 rows, newest 2026-05-11.
+  - **OPEN - Google Analytics absent from HV since 2026-05-01** (dc67176 rewrote app/layout.tsx without
+    <GoogleAnalytics>); the CSP in next.config.js would also block googletagmanager. The 4 GA tests fail
+    on main for this reason.
+  - **OPEN - stale HV tests:** api.spec "GET /api/queue local dev server: 200" and severity.spec queue
+    test predate P364 (401 without a session); language-speech "400 when voiceId missing" predates P061.
+  - **OPEN - HV `next dev` on Next 16 reloads the page in a loop** (235 GET / in minutes, 2026-11-08);
+    production build unaffected. Browser extensions (Katalon, Tricentis Tosca) add attributes to <html>
+    and cause a hydration warning; `suppressHydrationWarning` on <html> would silence it.
 - **OPEN 2026-11-08: Playwright 1.65.0 (2026-11-05)** - HR pins 1.64.1. Upgrade at a quiet moment and
   re-run the suite (1.65 changes TypeScript class-field initialisation). Node 22 everywhere, so its Node
   20 drop does not apply.

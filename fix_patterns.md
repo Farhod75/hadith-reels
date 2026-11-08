@@ -15658,3 +15658,58 @@ scratch files as live.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 379: HV Next 14 -> 16.4.5 - a BOM in tsconfig.json, a test that read the first div, and a "baseline" from a stale server
+
+**Date:** 2026-11-08  **Repo:** hadith-verifier  **Severity:** process (upgrade verification)
+
+**What happened.** Moving HV from Next.js 14.2.35 (outside both supported lines; the 2026-11-03
+security release patched only 16.4.5 and 15.5.29) to 16.4.5 and React 19.2.4:
+1. `next build` failed: tsconfig.json began with a UTF-8 BOM (left by a PowerShell rewrite in April),
+   which Turbopack refuses ("tsconfig is not parseable"), so every `@/` import failed to resolve.
+   `next dev` rewrote the file without the BOM; the build then passed.
+2. The RTL test read `page.locator('div').first()`. Next 16 renders a hidden `<div>` first in `<body>`,
+   so the test read the wrong element. The app was right; the test now targets `div.min-h-screen`.
+3. The first full runs (before and after) went to the live server on :3001 WITHOUT `MOCK_CLAUDE=1`,
+   which HV CLAUDE.md documents - real Anthropic and ElevenLabs calls (estimated a few dollars), and
+   the "before" run passed 241/241 against a stale `next dev` left running since 2026-11-04, so it was
+   not main at all.
+
+**Fix / how it was verified.** A/B on a production server (`next start -p 3011`, `MOCK_CLAUDE=1`, TTS
+tests excluded): main 250 passed / 14 failed, branch 250 / 14 - the same 14 tests, none caused by the
+upgrade. Then a local production run with real keys (analyze, Arabic RTL, search) and the admin queue
+signed in with a throwaway local password. Merged bd19198; hadithverifier.com serves the Turbopack build,
+/api/health and /api/search answer.
+
+**Lesson:** read the repo's test instructions before the first run (mock flag, port); compare against a
+server you started yourself; a file another tool rewrote may carry a BOM.
+
+**Tripwire:** HV build fails on "tsconfig is not parseable"; a test suite that is not run with
+MOCK_CLAUDE=1 locally.
+
+**Status:** FIXED
+
+---
+
+## PATTERN 380: two Vercel projects for one repo - `vercel link` in an unlinked folder created a second
+
+**Date:** 2026-11-08 (origin 2026-04-13)  **Repo:** hadith-verifier  **Severity:** infra
+
+**What happened.** HV deployed from the GitHub-imported project **hadith-verifier-vp57** (hadithverifier.com).
+On 2026-04-13 18:53 a `vercel` CLI command run in the unlinked hadith-verifier folder (env pull / link,
+from the assistant's instructions) created a NEW project named after the folder, **hadith-verifier**,
+and wrote `.vercel/project.json` pointing at it. Every push since built twice; CLI env commands went to
+the wrong project (likely why "vercel pull did not bring the keys" on 2026-04-16).
+
+**Fix.** The operator disconnected Git from project **hadith-verifier** (kept, not deleted). The folder
+was re-linked: `vercel link --yes --project hadith-verifier-vp57` (.env.local checked byte for byte -
+untouched; the duplicate `.vercel` line the CLI appended to .gitignore was reverted).
+
+**Lesson:** before any `vercel` CLI command in a repo, check `.vercel/project.json` names the project
+that owns the domain; link with `--project`, never by accepting the folder-name default.
+
+**Tripwire:** `.vercel/project.json` projectName != hadith-verifier-vp57.
+
+**Status:** FIXED
+
+---
