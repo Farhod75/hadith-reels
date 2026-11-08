@@ -11,8 +11,8 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-10-31
-**Next due:** 2026-11-07
+**Last checked:** 2026-11-08
+**Next due:** 2026-11-15
 
 > **This date is now enforced.** `audit-docs.py` fails the push when it
 > passes (P332). Before that it was a line in a file that was missed three
@@ -29,7 +29,7 @@
 | Kling video | `fal-ai/kling-video/v3/pro` | `scripts/generate-scene.ps1` | **Kling 4.0 — API NOW OPEN** | **BEHIND one major version, changed 2026-10-31.** fal has announced public API access to all customers; 30s native generation with audio, up to 15 references, 10 keyframes. The 2026-10-22 row said "coming soon" and that is no longer true. Re-fetched 2026-10-31 (run d): model page shows an API tab, endpoint id `kling/v4/image-to-video`, $0.157/s at 720p and $0.235/s at 1080p, 3-30s clips; eval still open — see open evals |
 | FLUX stills | `fal-ai/flux-2` | `scripts/generate-image.ps1` | **FLUX 3 Image, 2026-10-01** | **BEHIND one major version** — re-confirmed 2026-10-22: FLUX 3 is callable at `blackforestlabs/flux-3/text-to-image`, $0.048 per 1 MP image. See open evals |
 | Claude (generation) | `claude-sonnet-5` | `app/api/generate-reel/route.ts` | — | check model list quarterly |
-| Playwright | `@playwright/test` **1.64.1** (pinned exact) | `package.json` | **1.64** | **CURRENT since 2026-10-31 (P333); ci.yml unpinned to `ubuntu-latest`.** Was BEHIND four minor versions. 1.61 is the release that adds Ubuntu 26.04 support** — the version that would let `.github/workflows/ci.yml` drop its `ubuntu-24.04` pin (P314). **Added to this watchlist 2026-10-31, and the omission is the finding:** CI went red for 31 consecutive runs on this toolchain while the file that exists to watch the project's tools did not list it |
+| Playwright | `@playwright/test` **1.64.1** (pinned exact) | `package.json` | **1.65.0 (2026-11-05)** | **BEHIND one minor since 2026-11-05.** 1.65 adds Bun runner support, a failures reporter, an exclusive test lock; drops Node.js 20 testing (we run Node 22 locally and in ci.yml - no blocker) and changes TypeScript class-field initialisation (re-run the suite after upgrading). Not upgraded unattended. Previous: **CURRENT since 2026-10-31 (P333); ci.yml unpinned to `ubuntu-latest`.** Was BEHIND four minor versions. 1.61 is the release that adds Ubuntu 26.04 support** — the version that would let `.github/workflows/ci.yml` drop its `ubuntu-24.04` pin (P314). **Added to this watchlist 2026-10-31, and the omission is the finding:** CI went red for 31 consecutive runs on this toolchain while the file that exists to watch the project's tools did not list it |
 | Whisper (ASR) | local `openai-whisper` | PATH | ElevenLabs **Scribe v2** | Scribe v2 PROBED 2026-10-15, verdict recorded below. Re-checked 2026-10-22: no Scribe v3 exists; latest is v2 plus a `scribe-v2-medical` variant. Nothing new to evaluate |
 
 ## Official sources
@@ -41,17 +41,17 @@ section says whether it works for us.
 
 | Tool | Where to look | Last fetched | What it showed |
 |---|---|---|---|
-| Claude API / models | https://platform.claude.com/docs/en/release-notes/overview | 2026-10-31 (d) | Newest entry 2026-10-30: fast mode deprecated for `claude-opus-4-8`, removal 2026-11-30. No new model ids. Does not touch `claude-sonnet-5`. `docs.anthropic.com/en/release-notes` answers **302** to `platform.claude.com` - old links in this repo still work, but cite the new domain |
+| Claude API / models | https://platform.claude.com/docs/en/release-notes/overview | 2026-11-08 | Entries since 10-30: Console IP allowlist (11-05), text watermark on Mythos 5 / Opus 4.7 / Sonnet 4.6 (11-03), message threads beta (11-02). No new model ids, deprecations, Batches or price changes. Fetched as overview.md (the HTML page is not reachable from the assistant) |
 | Claude Code | https://code.claude.com/docs/en/hooks , https://code.claude.com/docs/en/settings | 2026-10-31 | Hook schema (event -> array of matcher groups); SessionStart stdout enters context; unknown/invalid entries are skipped (P334). Installed CLI here: 2.1.223 |
 | Claude Code settings schema | https://json.schemastore.org/claude-code-settings.json | referenced 2026-10-31 | Named by the settings docs as the published schema; `.claude/settings.json` now points `$schema` at it so VS Code validates |
 | Prompt practice (GenAI) | https://claude.com/blog/best-practices-for-prompt-engineering | earlier - see Practice section | Already used for the Practice section below |
-| Playwright | https://playwright.dev/docs/release-notes | 2026-10-31 (d) | 1.64 still latest (re-fetched; 1.64 adds WebMCP, video fps/VP9, `--shuffle`). 1.61 adds Ubuntu 26.04; 1.62 drops Debian 11; 1.63 drops Ubuntu 20.04; 1.64 changes hidden-iframe visibility and `screen` emulation |
+| Playwright | https://playwright.dev/docs/release-notes | 2026-11-08 (via releasebot.io) | **1.65.0 released 2026-11-05** - see the version row. playwright.dev not reachable from the assistant this run |
 | GitHub runner images | https://github.com/actions/runner-images/releases , https://github.blog/changelog/2026-06-11-new-runner-images-in-public-preview/ | 2026-10-31 (d) | Newest releases 2026-10-26/28 image updates incl. Ubuntu 26.04/24.04/22.04. An `ubuntu-latest` -> 26.04 in November 2026 announcement was reported in a truncated part of the page - NOT verified verbatim. Migration tracked in actions/runner-images#14748 (P314) |
-| Supabase | https://supabase.com/changelog | 2026-10-31 (d) | Newest: Postgres tz fix (Oct 30), Knowledge Base public beta (Oct 23), .NET SDK OpenTelemetry (Oct 14). Nothing affecting supabase-js usage here |
-| fal (Kling, FLUX hosting) | https://blog.fal.ai/ and the model page per endpoint | 2026-10-31 (d) | Blog newest: EAGLE-4 (Oct 20), H3 Max (Sep 17, Aug 27) - nothing on Kling/FLUX. Kling v4 model page: API tab, `kling/v4/image-to-video`, $0.157/s 720p, $0.235/s 1080p |
+| Supabase | https://supabase.com/changelog | 2026-11-08 | Nothing since Oct 23 (Knowledge Base public beta). Nothing affecting supabase-js |
+| fal (Kling, FLUX hosting) | https://blog.fal.ai/ and the model page per endpoint | 2026-11-08 (model list) | fal.ai/models?keywords=kling: Kling 4.0 (`kling/v4/image-to-video`, 3-30 s) is still the newest Kling; FLUX 3 / FLUX 3 Max endpoints listed (video, image edit). No newer versions |
 | Black Forest Labs (FLUX) | https://bfl.ai/models/flux-3-video | earlier | FLUX 3 - see Open evaluations |
 | ElevenLabs | https://elevenlabs.io/docs/api-reference/speech-to-text/convert | earlier | **Changelog index not fetched** (blocked here). Probe with a call, per the rule below - that is the operator's paid call |
-| Next.js | https://nextjs.org/blog | 2026-10-31 (d) | Latest announced release 16.4 (2026-10-06); npm shows 16.4.3. **"Upcoming Next.js November Security Release" posted 2026-10-27** - we pin 16.2.6 |
+| Next.js | https://nextjs.org/blog | 2026-11-08 | November 2026 security release published **2026-11-03**: patched 16.4.5 and 15.5.29 only, no 16.2.x backport (cache-components disclosure, Edge cookie header, image SVG bypass, compressed-response framing). **HR already on 16.4.5 (fc1881c, 2026-11-03). HV (hadith-verifier) is on Next 14.2.35 - outside both supported lines** - recorded in OPEN_ITEMS for the operator |
 
 ## How to check each, without trusting a release note
 
@@ -235,6 +235,7 @@ section says whether it works for us.
 
 | Date | Checked | Found |
 |---|---|---|
+| 2026-11-08 | Claude API, Next.js, Playwright, Supabase, fal (Kling/FLUX); ElevenLabs not probed (paid call) | Ran 1 day overdue - audit-docs failed the push on it (P332 working). **Playwright 1.65.0 shipped 2026-11-05** (we pin 1.64.1; Node 22 so its Node 20 drop does not bite) - not upgraded unattended. **Next.js security release 2026-11-03: HR already patched (16.4.5); HV still on Next 14.2.35, an unsupported line** - OPEN_ITEMS. Claude: no new model ids. Kling 4.0 and FLUX 3 evals still open. |
 | 2026-10-31d | npm (package.json vs `npm view`), Playwright, Claude API, Next.js, Supabase, runner images, fal/Kling | Scheduled weekly run; header dates already 2026-10-31/2026-11-07 from run c, left unchanged. **npm behind:** next 16.2.6 vs 16.4.3 (Next.js November security release announced 2026-10-27); react/react-dom 19.2.4 vs 19.3.1; typescript 5.9.3 vs 7.0.2 (major); @supabase/supabase-js 2.105.4 vs 2.118.0; @anthropic-ai/sdk 0.95.2 vs 1.3.0 (major); remotion 4.0.460 vs 4.0.539. Current: @playwright/test 1.64.1, @fal-ai/client 1.10.1. Kling 4.0 endpoint id and pricing now read off the model page. Next.js blog fetched for the first time. **Not verified:** ElevenLabs (paid probe), BFL/FLUX page, Claude Code release notes, Whisper/Scribe, `ubuntu-latest` -> 26.04 announcement (seen only in a truncated summary). |
 | 2026-10-31c | Playwright (upgraded), Claude Code hooks, sources | Playwright 1.64.1 installed and CI unpinned (P333). Reading the Claude Code hooks reference to wire the index found that **this repo's hooks had never run** (P334). Official sources section added; two URLs marked unverified rather than listed as checked. |
 | 2026-10-31 | Kling, FLUX, Playwright, ElevenLabs (not probed) | Ran **2 days overdue — and for the first time something said so**: `audit-docs.py` now fails the push on this file's own due date (P332). **Kling 4.0 API OPENED** since the 22nd, so the Kling row flips from current to behind. **Playwright found at 1.60.0 against 1.64, and was not on this watchlist at all** despite being the toolchain behind 31 red CI runs; 1.61 is what unpins ci.yml. FLUX 3 still outstanding since 2026-10-01 — fifteen stills were generated on flux-2 on 2026-10-30 because this file was not read. ElevenLabs not probed: the rule here is probe-don't-trust and that is a paid call, left for the operator. |

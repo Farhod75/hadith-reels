@@ -292,6 +292,12 @@ this one wins.
   (`blackforestlabs/flux-3/edit-image`) works and lives only in
   `out/edit_4811_f3.ps1`, not in `scripts/`.
 - **Kling 4.0** - API open, not evaluated.
+- **OPEN 2026-11-08: hadith-verifier (HV) is on Next.js 14.2.35** - outside both supported lines; the
+  2026-11-03 security release patched only 16.4.5 and 15.5.29. HV is the public site. Decision for
+  the operator: move HV to 15.5.29 (smaller jump) or 16.4.5 (same as HR). Found by the weekly tool check.
+- **OPEN 2026-11-08: Playwright 1.65.0 (2026-11-05)** - HR pins 1.64.1. Upgrade at a quiet moment and
+  re-run the suite (1.65 changes TypeScript class-field initialisation). Node 22 everywhere, so its Node
+  20 drop does not apply.
 - **DONE 2026-11-03: Next.js November security release.** HR next 16.2.6 -> 16.4.5
   (published 2026-11-03, seven medium advisories; no 16.2.x backport), eslint-config-next
   the same; npm audit fix (no --force) -> prod audit 0 vulnerabilities (was 12: remotion's
