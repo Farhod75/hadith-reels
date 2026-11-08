@@ -1,3 +1,31 @@
+## [2026-11-08h] - render-set dry run checks the bed gain against render-reel's range (P384)
+
+### Fixed
+
+- **scripts/render-set.py:** a gain outside render-reel.ps1's 0 < g <= 2 (read from the script)
+  stops the dry run with the dB shortfall and the plan line, instead of failing that language
+  mid-set. #6405 UZ asked for x2.14; the plan now says 2.0. Four tests added.
+- **#6405 EN/RU subtitles:** Whisper's "Subhan Allahi wa bihamdi" / "вобихамдеги", "Абхурайра" and
+  the RU quote marks corrected against the drafts (timings kept, P211 cache).
+
+---
+
+## [2026-11-08g] - HV tests follow the server they run against; no hydration warning from extensions (P383)
+
+### Fixed
+
+- **hadith-verifier tests:** new tests/fixtures/server-mode.ts - one BASE_URL default that follows
+  MOCK_CLAUDE (3011/3001) and `isLocalNextDev()` (reads the HMR client from `/`). The api.spec and
+  severity.spec queue tests use it, so a `next start` on localhost gets the 401 tests, not a false
+  failure. language-speech: the stale "400 when voiceId missing" (it made a real ElevenLabs call)
+  replaced by "400 when text is empty after sanitization".
+- **hadith-verifier app/layout.tsx:** `suppressHydrationWarning` on <html>/<body> (Katalon/Tosca
+  extensions write attributes there).
+- **hadith-verifier next.config.js:** duplicate CSP `media-src` removed (console error on every page).
+- Dev reload loop: not reproduced in a clean browser; recorded in P383.
+
+---
+
 ## [2026-11-08f] - Google Analytics back on hadithverifier.com (P382)
 
 ### Fixed

@@ -15762,3 +15762,73 @@ checked against every third-party script the page loads.
 **Status:** FIXED
 
 ---
+
+## PATTERN 383: four HV tests assumed one server; the hydration warning came from browser extensions
+
+**Date:** 2026-11-08  **Repo:** hadith-verifier (full entry: hadith-verifier/fix_patterns.md P383)  **Severity:** LOW (tests and dev only, no user impact)
+
+**What happened.** Found while upgrading HV to Next 16 (P379):
+- api.spec "GET /api/queue local dev server: 200" and the severity.spec queue suite decided "localhost
+  = `next dev`". P364 lets the queue through without a session only under `next dev`; a production
+  build served on localhost (`next start`) answers 401 like the deployed site, so those tests failed
+  there and the 401 tests were skipped.
+- The specs build URLs from their own BASE_URL default (3001; severity.spec 3000), while
+  playwright.config.ts serves the MOCK_CLAUDE=1 run on 3011. A mock run without BASE_URL set hit the
+  wrong port.
+- language-speech "returns 400 when voiceId missing" predates P061: the route takes {text, lang} and
+  picks the voice itself (P366), so {text} is a valid request - the test expected 400 and instead made
+  a real ElevenLabs call.
+- The hydration warning in the operator's browser: Katalon / Tricentis Tosca extensions write
+  attributes onto <html>/<body> before React hydrates.
+- next.config.js carried `media-src` twice; the browser ignored the second ("Ignoring duplicate
+  Content-Security-Policy directive") - console error on every page.
+
+**Fix.**
+- tests/fixtures/server-mode.ts: one BASE_URL default that follows MOCK_CLAUDE (3011 / 3001), and
+  `isLocalNextDev()`, which reads `/` and looks for the dev-only HMR client chunk. It is read from the
+  page, not from the queue, so a dev server that wrongly starts refusing the queue still fails the
+  200 test instead of being taken for a production server.
+- api.spec, severity.spec: queue tests use `isLocalNextDev()`; language-speech.spec imports BASE_URL.
+- language-speech: the voiceId test replaced by "400 when text is empty after sanitization"
+  (link + bullet + hadith number only) - refused before ElevenLabs is reached.
+- app/layout.tsx: `suppressHydrationWarning` on <html> and <body> (their own attributes only; the
+  app tree is still checked).
+- next.config.js: the duplicate `media-src 'self' blob:` removed; the effective directive (with
+  cdn.islamic.network) is unchanged.
+
+**Dev reload loop (235 GET / on 2026-11-08):** not reproduced. A clean Playwright browser on
+`next dev` :3011 stayed on one navigation for 42 s, HMR connected, one Fast Refresh. It was seen only
+in the operator's browser with the extensions above; production is unaffected.
+
+**Lesson:** "localhost" says where a server is, not how it was started - ask the server. And a test
+that still passes by calling a paid API has stopped testing what its name says.
+
+**Tripwire:** a queue test skipped on every local run; an HV spec with its own `localhost:300x`
+default; a TTS validation test that reaches ElevenLabs.
+
+**Status:** FIXED
+
+---
+
+## PATTERN 384: the dry run printed a gain render-reel.ps1 refuses; UZ failed mid-set
+
+**Date:** 2026-11-08  **Repo:** hadith-reels  **Severity:** process (one language re-run)
+
+**What happened.** #6405's plan has gain "auto" for every language. For UZ, mix-gap.py asked
+for x2.14 to bring vocal-nasheed-06 to the P338 gap. render-reel.ps1 accepts 0 < g <= 2 and
+stopped UZ ("-NasheedGain 2.14 is out of range") after EN and RU had run. The dry run had
+printed "x2.14" and neither the script nor I flagged it.
+
+**Fix.** render-set.py `read_gain_max()` reads the cap from render-reel.ps1's own check, and
+`gain_problem()` stops the dry run for any gain outside it - auto or fixed - saying how many dB
+short the cap leaves the bed and offering the plan line. #6405 UZ: `"gain": 2.0` in the plan
+(0.6 dB under the target). Four tests in scripts/lib/test_render_set.py.
+
+**Lesson:** a dry run that prints a number another script will reject has not checked it -
+the planner must apply the same limits as the step it plans for (as P377 did for the asset gate).
+
+**Tripwire:** "out of range (0 < g <= 2)" in out/render-<slug>.log.
+
+**Status:** FIXED
+
+---

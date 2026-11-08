@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-312 patterns in 325 entries, frontier **P382**. The P-sequence is shared with
+314 patterns in 327 entries, frontier **P384**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -373,5 +373,7 @@ BEFORE changing it.
 - **P380** - two Vercel projects for one repo - `vercel link` in an unlinked folder created a second
 - **P381** - the admin queue received nothing for six months - a column that does not exist, an error nobody read
 - **P382** - hadithverifier.com had no analytics for six months - a layout rewrite dropped GA4
+- **P383** - four HV tests assumed one server; the hydration warning came from browser extensions
+- **P384** - the dry run printed a gain render-reel.ps1 refuses; UZ failed mid-set
 
-<!-- pattern-index-stamp entries=325 patterns=312 frontier=382 sha1=12dd5d4eda395d4c3cf3c8ae217737686d076ea0 -->
+<!-- pattern-index-stamp entries=327 patterns=314 frontier=384 sha1=30d8841b6b439df32962440d10a7b726f7593aad -->

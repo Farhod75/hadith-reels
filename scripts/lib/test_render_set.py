@@ -63,3 +63,23 @@ def test_asset_gate_reports_a_claimed_bed_once():
     got = rs.asset_gate(['ok.mp3', 'claimed.mp3', 'ok.mp3', 'a.mp4'], run=run)
     assert calls == ['ok.mp3', 'claimed.mp3', 'a.mp4']
     assert got == [('claimed.mp3', 'BLOCKED: claimed.mp3 - Content ID has CLAIMED this audio.')]
+
+
+def test_reads_render_reels_gain_cap():
+    # P384: bukhari-6405 UZ asked for 2.14 and render-reel.ps1 refused it mid-set
+    text = io.open(os.path.join(os.path.dirname(SCRIPTS), "render-reel.ps1"), encoding="utf-8-sig").read()
+    assert rs.read_gain_max(text) == 2.0
+
+
+def test_gain_inside_the_range_passes():
+    assert rs.gain_problem(0.6, 2.0) is None
+    assert rs.gain_problem(2.0, 2.0) is None
+
+
+def test_gain_above_the_cap_stops_with_the_shortfall():
+    why = rs.gain_problem(2.14, 2.0)
+    assert why and '"gain": 2.00' in why and '0.6 dB' in why
+
+
+def test_gain_not_above_zero_stops():
+    assert rs.gain_problem(0.0, 2.0)

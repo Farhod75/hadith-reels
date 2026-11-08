@@ -302,11 +302,13 @@ this one wins.
   - **FIXED 2026-11-08 (P382) - Google Analytics was absent from HV since 2026-05-01** (dc67176 rewrote app/layout.tsx without
     <GoogleAnalytics>); the CSP in next.config.js would also block googletagmanager. The 4 GA tests fail
     on main for this reason.
-  - **OPEN - stale HV tests:** api.spec "GET /api/queue local dev server: 200" and severity.spec queue
-    test predate P364 (401 without a session); language-speech "400 when voiceId missing" predates P061.
-  - **OPEN - HV `next dev` on Next 16 reloads the page in a loop** (235 GET / in minutes, 2026-11-08);
-    production build unaffected. Browser extensions (Katalon, Tricentis Tosca) add attributes to <html>
-    and cause a hydration warning; `suppressHydrationWarning` on <html> would silence it.
+  - **FIXED 2026-11-08 (P383) - stale HV tests:** the queue tests now ask the server whether it is
+    `next dev` (tests/fixtures/server-mode.ts) instead of assuming it from "localhost"; one BASE_URL
+    default for all three specs; the voiceId TTS test (real ElevenLabs call) replaced.
+  - **FIXED 2026-11-08 (P383) - hydration warning:** `suppressHydrationWarning` on <html>/<body>.
+    Duplicate CSP `media-src` removed too.
+  - **WATCH - HV `next dev` reload loop** (235 GET /, 2026-11-08, operator's browser): not reproduced
+    in a clean browser (one navigation in 42 s). If it comes back, note the browser and extensions.
 - **OPEN 2026-11-08: Playwright 1.65.0 (2026-11-05)** - HR pins 1.64.1. Upgrade at a quiet moment and
   re-run the suite (1.65 changes TypeScript class-field initialisation). Node 22 everywhere, so its Node
   20 drop does not apply.

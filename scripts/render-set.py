@@ -17,6 +17,9 @@ Per language, before anything renders:
     `scenes`, or `scenes_slow` when a normal clip is too short; if neither covers the narration
     it stops BEFORE the first render and says how long the clips must be.
   - gain "auto" asks mix-gap.py for the -NasheedGain that lands the P338 target.
+  - P384: the gain must be inside render-reel.ps1's own range (0 < g <= 2, read from the script).
+    A bed too quiet for the target stops the dry run, with the dB the cap would leave it short,
+    instead of failing that language in the middle of the render.
 Then (only with --render) it runs render-reel.ps1 -Style adults -FitScenes -NoReview per
 language, logs to out/render-<slug>.log, and finishes with mix-gap.py's after-render check.
 A render stopped by a gate (P339 subtitles, P319 matn) is reported and the set continues with
@@ -29,6 +32,7 @@ import argparse
 import importlib.util
 import io
 import json
+import math
 import os
 import re
 import subprocess
@@ -49,6 +53,25 @@ def read_tail_pad(render_reel_text):
     if not m:
         raise ValueError('no $tailPad in render-reel.ps1')
     return float(m.group(1))
+
+
+def read_gain_max(render_reel_text):
+    """The upper bound render-reel.ps1 enforces on -NasheedGain (P384)."""
+    m = re.search(r'\$NasheedGain\s+-le\s+0\s+-or\s+\$NasheedGain\s+-gt\s+([0-9.]+)', render_reel_text)
+    if not m:
+        raise ValueError('no -NasheedGain range check in render-reel.ps1')
+    return float(m.group(1))
+
+
+def gain_problem(gain, gain_max):
+    """None when render-reel.ps1 accepts the gain, else the reason (P384)."""
+    if gain <= 0:
+        return 'gain %.2f is not above 0' % gain
+    if gain > gain_max:
+        return ('gain %.2f is above render-reel\'s %.2f - the bed is too quiet for the P338 target; '
+                'pick a louder bed, or set "gain": %.2f in the plan (%.1f dB under the target)'
+                % (gain, gain_max, gain_max, 20 * math.log10(gain / gain_max)))
+    return None
 
 
 def choose_scenes(narration, tail_pad, std, slow):
@@ -128,6 +151,7 @@ def main(argv=None):
     langs = [l for l in (args.langs or LANGS) if l in plan['langs']]
     rr = io.open(os.path.join(REPO, 'render-reel.ps1'), encoding='utf-8-sig').read()
     tail_pad = read_tail_pad(rr)
+    gain_max = read_gain_max(rr)
     ff = mg.ffmpeg_bin()
     std = clip_seconds(ff, plan['scenes'])
     slow = clip_seconds(ff, plan['scenes_slow']) if plan.get('scenes_slow') else []
@@ -159,6 +183,9 @@ def main(argv=None):
             if r.returncode or not rows:
                 print('  %s  STOP: mix-gap failed: %s' % (lang, (r.stdout + r.stderr).strip()[-300:])); bad += 1; continue
             gain = rows[0]['nasheed_gain']
+        why = gain_problem(float(gain), gain_max)
+        if why:
+            print('  %s  STOP (P384): bed %s - %s' % (lang, cfg['bed'], why)); bad += 1; continue
         print('  %s  narration %.2fs (%s) -> %.2fs per clip, %s | bed %s x%.2f'
               % (lang, nar, src, need, which, cfg['bed'], float(gain)))
         jobs.append((lang, scenes, cfg['bed'], float(gain)))
