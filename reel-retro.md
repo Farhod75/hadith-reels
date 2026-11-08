@@ -1176,3 +1176,37 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 0.** One request (P376).
 
 **The finding:** the check after sending (P375) costs seconds per block and caught nothing this time - which is what it should do on a good day.
+
+## R214-R217 - Sahih al-Bukhari #6114 - 2026-11-08
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (232-235, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok.
+
+**Caught before publish**
+
+1. **RU bed Content-ID claimed.** I picked aswati-Steady-Motivation from the lanes and the recent-use history without reading `rights.content_id`; it blocked #3540 worldwide. render-set's dry run passed; render-reel's gate refused RU mid-set. Re-rendered on vocal-nasheed-05.
+2. **EN subtitles:** Whisper wrote «Hurayra» against the draft's «Hurairah», and the Prophet's words had no quotation marks - P339 stopped the burn. SRT text fixed, timings kept.
+3. **RU subtitles:** Whisper garbled the opening («Абуху Райра, добудет доволенным»), wrote «селен» for «силён», and invented two cues in the silence after the narration («Редактор субтитров И. Бойкова», «Корректор А. Егорова»). Caught by the gate (srt_exceeds_audio, unknown_word, honorific_garbled); fixed by hand.
+4. **A night scene** in the approved plan (scene 3) - changed to daylight before FLUX, per the operator's bright-scenes rule.
+5. **well-1:** a pale shape at top left looked like a figure at thumbnail size; checked at full size - a stone post.
+
+**Escaped to publish**
+
+- None found.
+
+**Root causes**
+
+- Choosing from a list without the gate that will judge the choice (the bed).
+- Whisper on short Russian narration: the opening name and the silence after the last word are where it fails.
+
+**Prevention landed**
+
+- P377: render-set.py runs every bed and clip through `audit-assets.py --check` before the first render, dry run included.
+- Every platform block checked as sent (P375): 28 of 28 matched.
+
+**Prevention deferred**
+
+- The SRT fixes are still by hand; a draft-aligned subtitle text (keep Whisper's timings, take the words from the draft) would remove the class.
+
+**Operator corrections of the assistant: 1.** «кафи дарё» -> «кафи баҳр» on the next set (#6405, TJ): «дарё» reads as a river.
+
+**The finding:** a gate that exists only at the point of use turns a planning slip into a mid-run failure; the same check, run while planning, costs nothing.

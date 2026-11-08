@@ -1,3 +1,13 @@
+## [2026-11-08b] - R214-R217, Sahih al-Bukhari #6114, four languages, set closed
+
+### Content
+
+- Tracker rows R214-R217 (TG 232-235), duplicate index (#6114), Character / Akhlaq now 8, nasheed usage,
+  the b6114 clip set, stats 217/165/52, Bukhari x95, Abu Hurairah x74, change log, retro. Registry: b6114
+  clips verified; publish-narration run (4 uploaded). Platform blocks checked as sent: 28 of 28.
+
+---
+
 ## [2026-11-08] - NARRATORS: Shaddad ibn Aws
 
 ### Content
