@@ -1,3 +1,13 @@
+## [2026-11-08f] - Google Analytics back on hadithverifier.com (P382)
+
+### Fixed
+
+- **hadith-verifier app/layout.tsx + next.config.js:** GA4 G-32J9GLEBKS restored (dropped by dc67176 on
+  2026-05-01) and allowed by the CSP; tests/analytics.spec.ts type fix. 38 analytics/accessibility
+  tests pass on a production build.
+
+---
+
 ## [2026-11-08e] - HV admin queue saves again (P381)
 
 ### Fixed

@@ -15738,3 +15738,27 @@ newest fabricated analysis.
 **Status:** FIXED (live check: the first real fabricated analysis after deploy must appear in the queue)
 
 ---
+
+## PATTERN 382: hadithverifier.com had no analytics for six months - a layout rewrite dropped GA4
+
+**Date:** 2026-11-08  **Repo:** hadith-verifier  **Severity:** MEDIUM (lost data, no user impact)
+
+**What happened.** GA4 (G-32J9GLEBKS) was added to app/layout.tsx in e80ccb6 (April). On 2026-05-01
+dc67176 rewrote the layout for OG tags and security headers and left `<GoogleAnalytics>` out; the same
+commit added a Content-Security-Policy whose script-src/connect-src would have blocked googletagmanager
+and google-analytics anyway. The four GA tests in tests/analytics.spec.ts failed from then on and were
+read as noise; the live page carried no GA id (checked 2026-11-08).
+
+**Fix.** `<GoogleAnalytics gaId="G-32J9GLEBKS" />` back in the layout; CSP: script-src, img-src and
+connect-src allow www.googletagmanager.com and the google-analytics hosts. tests/analytics.spec.ts:
+`dataLayer?: Object[]` to match @next/third-parties' own global declaration (TS2687 broke the build).
+Production build + analytics and accessibility specs on a local production server: 38 passed.
+
+**Lesson:** a test that fails for months is a finding, not noise - and a security header must be
+checked against every third-party script the page loads.
+
+**Tripwire:** tests/analytics.spec.ts red; hadithverifier.com HTML without G-32J9GLEBKS.
+
+**Status:** FIXED
+
+---

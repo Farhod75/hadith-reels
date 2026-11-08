@@ -299,7 +299,7 @@ this one wins.
     field; flagged_posts has `sources`, not `references`. supabase-js returns the error instead of
     throwing, so the try/catch never sees it. Fix: map to `sources` and check `{ error }`, with a test
     that the row lands. 2689 rows, newest 2026-05-11.
-  - **OPEN - Google Analytics absent from HV since 2026-05-01** (dc67176 rewrote app/layout.tsx without
+  - **FIXED 2026-11-08 (P382) - Google Analytics was absent from HV since 2026-05-01** (dc67176 rewrote app/layout.tsx without
     <GoogleAnalytics>); the CSP in next.config.js would also block googletagmanager. The 4 GA tests fail
     on main for this reason.
   - **OPEN - stale HV tests:** api.spec "GET /api/queue local dev server: 200" and severity.spec queue
