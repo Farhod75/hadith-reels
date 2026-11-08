@@ -68,7 +68,10 @@ def classify(name, known):
     if num and num not in UNPUBLISHED:
         return os.path.join('_archive', 'sets', num), 'published set %s' % num
     if num in UNPUBLISHED:
-        return os.path.join('_archive', 'sets', num), 'unpublished set %s, one-off' % num
+        # P378: a set in work still runs its one-offs (a Kling runner, its logs). Archiving them
+        # mid-run moved #6405's runner and logs while Kling was writing. They go with the set's
+        # files when the tracker publishes it.
+        return None, 'unpublished set %s, in work - stays' % num
     if name.startswith('fb-') or ext in ('.zip', '.mp4', '.jpg', '.png'):
         return 'deliverables', 'for the operator'
     if name.startswith('commit_msg') or name.startswith('msg_') or re.match(r'^_?commit_?msg', name):

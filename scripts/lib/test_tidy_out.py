@@ -48,3 +48,16 @@ def test_covers_and_platform_texts_stay_with_an_unpublished_set_and_move_with_a_
         assert dest.replace('\\', '/') == '_archive/sets/2581'
     finally:
         to.UNPUBLISHED.clear()
+
+
+def test_one_offs_of_a_set_in_work_stay_until_it_is_published():
+    # P378: tidy-out at #6114's close archived #6405's Kling runner and its open logs
+    to.UNPUBLISHED.clear()
+    to.UNPUBLISHED.add('6405')
+    try:
+        assert to.classify('run-b6405-kling.ps1', set())[0] is None
+        assert to.classify('b6405-foam-kling.log', set())[0] is None
+        assert to.classify('kling-6405-draft.md', set())[0] is None
+        assert to.classify('run-b6114-kling.ps1', {'6114'})[0] == os.path.join('_archive', 'sets', '6114')
+    finally:
+        to.UNPUBLISHED.clear()

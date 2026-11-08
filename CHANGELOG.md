@@ -1,3 +1,13 @@
+## [2026-11-08c] - tidy-out keeps the files of a set in work (P378)
+
+### Fixed
+
+- **scripts/tidy-out.py:** one-off files of a set not yet published (its runners, logs, drafts of
+  prompts) stay at the top of out/ instead of going to _archive. The #6114 close had moved #6405's
+  running Kling runner and logs. Test added.
+
+---
+
 ## [2026-11-08b] - R214-R217, Sahih al-Bukhari #6114, four languages, set closed
 
 ### Content

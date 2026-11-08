@@ -15635,3 +15635,26 @@ the moment of choosing - not at the moment of use.
 **Status:** FIXED.
 
 ---
+
+## PATTERN 378: tidy-out at one set's close archived the next set's running Kling job files
+
+**Date:** 2026-11-08  **Repo:** hadith-reels  **Severity:** process (files of a running job moved)
+
+**What happened.** Closing #6114, `tidy-out.py --apply` classified #6405's one-offs -
+run-b6405-kling.ps1, run-b6405-stills.ps1, kling-6405-draft.md, verify-6405.log and the Kling
+logs - as "unpublished set 6405, one-off" and moved them to out/_archive/sets/6405 while the
+Kling run was writing its logs (one move failed: file in use). The job itself was unaffected
+(PowerShell had parsed the runner), but the next step reads those logs.
+
+**Fix.** classify(): a file whose number belongs to a set still in work stays at the top of
+out/ until the tracker publishes that set; then it goes with the set's files as before. Moved
+the four files back by hand. Test: test_one_offs_of_a_set_in_work_stay_until_it_is_published.
+
+**Lesson:** "in work" means in use - a tidy that runs between sets must treat the next set's
+scratch files as live.
+
+**Tripwire:** tidy-out.py prints `unpublished set <n>, in work - stays` for them.
+
+**Status:** FIXED.
+
+---
