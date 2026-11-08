@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6114-ring",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an empty round sand wrestling ground at the edge of an old mud-brick town in bright morning sun, deep footprints and scuffed marks in golden sand, palm trees and clear blue sky behind. Warm, vivid, calm. No people, no hands, no animals, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b7b9-1e7d-74c0-892a-f2364e9a8d3b",
+    "submitted_utc":  "2026-11-07T20:35:22.9355208Z",
+    "completed_utc":  "2026-11-07T20:35:41.4796674Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6114-ring-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18df5/_-B6JMG3EtgrDVXal57lr_9lNVqFvK.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6114-ring-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18df5/PSj1o_a7GCTf1fydmJNiU_XbCW4HWw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6114-ring-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18df5/YCc8CAnF6rpw-uko7SBh4_MvquE698.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2121709843
+}

@@ -196,6 +196,10 @@ this one wins.
     EN clause order swapped, Shaddad ibn Aws not in NARRATORS, long); Muslim #2691 (long,
     its last clause repeats #6405). Not chosen: Tirmidhi #1988, Muslim #2609 (same
     hadiths as #6724 and #6114) - all still at 'deduped' in hadith_candidates.
+  - **Bukhari #6405 TJ corrected 2026-11-07** (operator: «кафи дарё» -> «кафи баҳр»; زبد البحر is the
+    sea - in Tajik «дарё» reads as a river). Signed file, translate-candidates --library --apply
+    --commit; Stage 3 dry run A/B 4/4 pass. matn_verified_at stays NULL (a human sets it). #6405
+    is the next set: texts, drafts and scene plan approved 2026-11-07.
 - **Dhikr / repentance sourcing, 2026-11-05 (operator sent two posts; Workflow L).**
   `out/source-queries-dhikr.txt`, three queries, one row passed:
   - **Bukhari #6307 - PUBLISHED 2026-11-05 (R198-R201, TG 212-215); library 9860e161.** «واللهِ إنِّي لَأستَغفِرُ

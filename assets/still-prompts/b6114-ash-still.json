@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6114-ash",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a stone hearth in a sunlit mud-brick courtyard in bright afternoon light: the embers cooled to soft grey ash with one thin last wisp of smoke, the clay pot set aside, quiet, no steam, a palm-leaf shadow across the stones. Calm and bright, not dark. No people, no hands, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b7ba-67dd-7b90-bb5c-a7c5534ea5ac",
+    "submitted_utc":  "2026-11-07T20:36:49.1629178Z",
+    "completed_utc":  "2026-11-07T20:37:25.9040629Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6114-ash-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e00/rbYr9sVSE0UonQGSBmkeE_1yFvHsao.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6114-ash-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e00/isaRRAX9jgvsNA95YVNQE_RAsHub70.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6114-ash-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e00/E8cnnw9eoKUUIL7BVkuhP_fOMVsBlV.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1382062005
+}

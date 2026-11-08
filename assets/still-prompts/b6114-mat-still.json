@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6114-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a quiet sunlit room in an old mud-brick house in the morning, a simple prayer mat on the floor facing a plain blank lime-washed wall, warm sunlight from a side window falling across it, a clay water jug beside. Bright and serene. No people, no hands, no moon, no calligraphy, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b7bb-ed6e-7703-8ca3-25e94fe9ac38",
+    "submitted_utc":  "2026-11-07T20:38:28.9088760Z",
+    "completed_utc":  "2026-11-07T20:38:37.1658991Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6114-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e07/ZjJh5c8uiL_a7eBEc84vw_AmgcNIZX.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6114-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e07/9jv-iwnv-0xnTSrJqO-ZD_BpgTNd9r.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6114-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab18e07/JufuzUuynofrlXTmL4t3N_Ad8d1km0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1245344931
+}

@@ -2087,6 +2087,51 @@
       "verified": true,
       "notes": "UZ copy (P240): m2581-road.mp4 slowed x1.15 -> ~11.5 s, out/_msg/slow_2581.ps1. Same content. Sahih Muslim #2581, Abu Hurairah, sahih - 'Do you know who the bankrupt one is?' The one who comes on the Day of Resurrection with prayer, fasting and zakah, having reviled, slandered, taken wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. MODE B, no people, no hands, 7th-century Arabia, bright; no fire, no depiction of the Day. Stills from references: Sahih al-Bukhari 381 (the khumra), Sahih al-Bukhari 1510 (a sa' of food), Hughes 'Houses' and peopleofmadina.com (mud brick, hair-cloth curtain). Picks by Claude (operator: 'finish it to the end').",
       "prompt_sidecar": "assets/scene-prompts/m2581-road.json"
+    },
+    "b6114-ring.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (ring-2) -> Kling 3.0 Pro i2v 10s. an empty sand wrestling ground at the edge of a mud-brick town in morning sun, footprints and scuffed marks - 'not the one who overcomes in wrestling'. Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6114-ring.json"
+    },
+    "b6114-pot.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (pot-3) -> Kling 3.0 Pro i2v 10s. a clay pot boiling hard on red embers, steam rushing - anger rising. Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6114-pot.json"
+    },
+    "b6114-ash.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (ash-1) -> Kling 3.0 Pro i2v 10s. the hearth cooled to grey ash, the pot set aside, a last wisp of smoke - anger subsiding. Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6114-ash.json"
+    },
+    "b6114-well.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (well-1) -> Kling 3.0 Pro i2v 10s. still water in a stone well mirroring sky and palm frond - self-control. Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6114-well.json"
+    },
+    "b6114-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (mat-3) -> Kling 3.0 Pro i2v 10s. a prayer mat facing a blank lime-washed wall, sunlight from a side window (qibla rule). Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6114-mat.json"
     }
   }
 }

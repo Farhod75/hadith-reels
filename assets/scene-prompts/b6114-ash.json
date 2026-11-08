@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab191c7/WBCWzb6VpIYzTngP9f9Vn_output.mp4",
+    "name":  "b6114-ash",
+    "image":  "out\\refs\\b6114-ash-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6114-ash.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-07T23:14:25.3257235Z",
+    "size_bytes":  22994527,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The last thin wisp of smoke rises slowly from the grey ash and fades away, the palm-leaf shadow sways gently across the stones. The pot and the hearth stay perfectly still. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no text.",
+    "request_id":  "01a1b84a-b173-7770-99c1-afcfe7bb2402",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-07T23:34:31.0784879Z",
+    "mode":  "image-to-video"
+}
