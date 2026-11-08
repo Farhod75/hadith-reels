@@ -1,3 +1,14 @@
+## [2026-11-08e] - HV admin queue saves again (P381)
+
+### Fixed
+
+- **hadith-verifier app/api/analyze + lib/queue-row.ts:** since 2026-05-11 every flagged_posts insert
+  failed silently (`references` is not a column; supabase-js returns the error, the route never read
+  it). The row now goes in `sources`, `{ error }` is logged, and three unit tests hold the row to the
+  table's columns. Full entry: hadith-verifier/fix_patterns.md P381.
+
+---
+
 ## [2026-11-08d] - hadith-verifier on Next.js 16.4.5 (P379); one Vercel project (P380)
 
 ### Changed

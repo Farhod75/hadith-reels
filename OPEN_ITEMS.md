@@ -295,7 +295,7 @@ this one wins.
   `out/edit_4811_f3.ps1`, not in `scripts/`.
 - **Kling 4.0** - API open, not evaluated.
 - **DONE 2026-11-08: HV on Next.js 16.4.5** (P379, bd19198). Found on the way, all pre-existing:
-  - **OPEN - HV admin queue gets no new rows since 2026-05-11.** /api/analyze inserts a `references`
+  - **FIXED 2026-11-08 (P381) - HV admin queue got no new rows since 2026-05-11.** Live check pending: the first real fabricated analysis must appear. /api/analyze inserts a `references`
     field; flagged_posts has `sources`, not `references`. supabase-js returns the error instead of
     throwing, so the try/catch never sees it. Fix: map to `sources` and check `{ error }`, with a test
     that the row lands. 2689 rows, newest 2026-05-11.
