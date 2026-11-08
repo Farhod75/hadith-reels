@@ -15713,3 +15713,28 @@ that owns the domain; link with `--project`, never by accepting the folder-name 
 **Status:** FIXED
 
 ---
+
+## PATTERN 381: the admin queue received nothing for six months - a column that does not exist, an error nobody read
+
+**Date:** 2026-11-08  **Repo:** hadith-verifier  **Severity:** HIGH (silent data loss)
+
+**What happened.** /api/analyze saves every fabricated or weak verdict to flagged_posts for the admin
+queue. Since 2026-05-11 the insert carried a `references` field; the table has `sources`, not
+`references`, so PostgREST refused every insert. supabase-js returns that error in `{ error }`, it does
+not throw, and the route only wrapped the call in try/catch - nothing was logged, nothing failed, and
+the queue's newest row stayed 2026-05-11 (2689 rows). Found while checking the queue during the Next 16
+upgrade (P379): the operator's own fabricated-hadith analysis did not appear.
+
+**Fix.** lib/queue-row.ts builds the row in one place (`references` -> `sources`, `analysis` now saved
+too) and lists the table's columns as read from the live table; the route reads `{ error }` and logs it.
+Tests in tests/api.spec.ts: every key the route sends is a column; references land in sources; an
+image submission gets its placeholder.
+
+**Lesson:** a Supabase write is not done until its `{ error }` is read; try/catch alone proves nothing.
+
+**Tripwire:** `Queue save error (non-fatal):` in the Vercel logs; the queue's newest row older than the
+newest fabricated analysis.
+
+**Status:** FIXED (live check: the first real fabricated analysis after deploy must appear in the queue)
+
+---
