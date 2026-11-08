@@ -193,7 +193,7 @@ this one wins.
     «тайн» / «айбҳо» added to لا تحسسوا ولا تجسسوا); operator chose neutral wording in
     all four languages («Do not pry, do not spy»); re-run 4/4. Stage 4 is his.
   - **Deferred:** Bukhari #6323 (sayyid al-istighfar: UZ/TJ left the dua transliterated,
-    EN clause order swapped, Shaddad ibn Aws not in NARRATORS, long); Muslim #2691 (long,
+    EN clause order swapped, long; Shaddad ibn Aws added to NARRATORS 2026-11-08); Muslim #2691 (long,
     its last clause repeats #6405). Not chosen: Tirmidhi #1988, Muslim #2609 (same
     hadiths as #6724 and #6114) - all still at 'deduped' in hadith_candidates.
   - **Bukhari #6405 TJ corrected 2026-11-07** (operator: «кафи дарё» -> «кафи баҳр»; زبد البحر is the

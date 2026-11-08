@@ -1,3 +1,13 @@
+## [2026-11-08] - NARRATORS: Shaddad ibn Aws
+
+### Content
+
+- **lib/refs.ts NARRATORS:** 'Shaddad ibn Aws' added (RU Шаддад ибн Аус, UZ Шаддод ибн Авс - both as
+  HadeethEnc #5503 writes them; TJ Шаддод ибни Авс by the file's izafet rule). Unblocks Bukhari #6323
+  (sayyid al-istighfar) at promotion; its other deferral reasons stand (OPEN_ITEMS).
+
+---
+
 ## [2026-11-07c] - render-set checks the asset gate before rendering (P377)
 
 ### Changed
