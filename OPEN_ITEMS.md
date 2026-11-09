@@ -421,6 +421,20 @@ v3/pro is still current; FLUX remains a major version behind; and HV `/api/healt
 ---
 
 ## Production queue
+**MUSLIM #2564 — NEXT SET, 2026-11-09 (operator «да»).** Library row
+`8eeb6788`, Abu Hurairah, sahih. `text_arabic` matches sunnah.com/muslim:2564c
+(book 45, hadith 42) letter for letter; chapter باب تحريم ظلم المسلم
+… confirmed there. Operator-approved library fix through sign → apply (no SQL
+patch): UZ «қалб ва амалларингизга» → «қалбларингизга ва амалларингизга»
+(قُلُوبِكُمْ plural), TJ «сурати шумо» → «суратҳои шумо» (صُوَرِكُمْ
+plural); Uzbek Latin re-derived. **Stage 3 after the fix: 8/8 pass, A and B
+high in all four languages** (run copy `out/verify-runs/candidate-verdicts-20261109T191451Z.json`).
+`matn_verified_at` stays NULL (P265). Drafts: `out/set-2564.json` →
+`make-drafts.py --write --force`, lint 0 fail in all four (1 warn: book-claim,
+the book and chapter are the verified ones above). H cites the HadeethEnc.com
+explanation (hadith 4555) by name, paraphrased, not quoted. Next: EN narration,
+scene prompts and stills - each paid step on the operator's approval.
+
 **A/B RUN OVER THE REMAINING SHIPPED-UNVERIFIED ROWS, 2026-10-26 — 1 FAIL, 8
 DISAGREE, AND THE REPORT FILE IS GONE.** Stage 3 was run over 26 `hadith_library`
 rows carrying `matn_verified_at IS NULL` that the 2026-10-17 sweep had not
