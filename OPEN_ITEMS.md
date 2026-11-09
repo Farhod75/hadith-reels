@@ -1607,6 +1607,29 @@ source calm beds or listen to the three and record what they actually are.
 ---
 
 ## Ideas, scoped but not scheduled
+**PARKED - verified-reel catalog + annual awards for OTHER authors - operator idea, 2026-11-08.**
+Collect hadith/Islamic short videos by other creators on hadithreels.com and run a yearly
+contest by nomination (best reel per language UZ/TJ/RU/EN/AR, kids, presentation of the
+hadith, visuals without people, audience choice). Entry condition: the hadith passes
+hadithverifier.com - the angle no existing Islamic video app has (Mahfil, Islamly, QTok host
+"halal" content but verify nothing; all small).
+- Not an own video platform: authors keep the video on YT/IG/TikTok, we list links -> near-zero
+  hosting. Own app only if the catalog + contest prove an audience.
+- Money: tech ~$0-20/month on the current stack; prizes optional (e.g. 5 x $100) - from a
+  sponsor (Islamic bank, halal brand, publisher, Arabic school), donations or a grant. NOT from
+  entry fees: a prize pool funded by the entrants is maysir in many scholars' view - ask a
+  scholar first. US contest rules (official rules; paid entry -> lottery law) - check with a
+  lawyer before launch.
+- Real cost is operator time: ~5-10 h/week in contest season (outreach, review, jury, disputes,
+  responsibility for others' content).
+- Why parked: HR, seerah audiobooks, Al-Mudarris and HV already take the time; an awards run
+  needs an audience to attract entrants.
+- Zero-cost step that can start any time: monthly "hadith of the month from another author" -
+  verify through HV, feature with the author's permission and a credit. Builds the contacts and
+  tests interest; it is what grows into the awards.
+- Revisit when: the seerah audiobooks and Al-Mudarris are launched, OR the channels grow
+  markedly, OR a sponsor offers the prizes.
+
 **Use LATER SEGMENTS of a nasheed as separate beds — operator idea, 2026-10-16.**
 Every reel starts the bed at 0:00, so only the first 20-70s of each file is ever
 heard. Measured durations, all 17 adults-eligible beds (ffprobe, same session):
