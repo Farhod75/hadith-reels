@@ -402,6 +402,14 @@ def cmd_names(tracker):
 
 
 def main():
+    # P392: a registry note carrying a character the console code page cannot print (Cyrillic, an
+    # arrow) crashed --check with UnicodeEncodeError, and render-reel.ps1 read the crash as the
+    # clip being REJECTED. Printing must never decide a gate: unprintable characters become "?".
+    try:
+        sys.stdout.reconfigure(errors="replace")
+        sys.stderr.reconfigure(errors="replace")
+    except AttributeError:
+        pass
     ap = argparse.ArgumentParser(
         description='Enforce the asset registry.')
     ap.add_argument('--registry', default=REGISTRY)

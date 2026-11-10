@@ -1,3 +1,17 @@
+## [2026-11-10j] - #2588 clips registered; the asset gate no longer dies on a Cyrillic note (P392)
+
+### Fixed
+
+- **audit-assets.py:** stdout/stderr `errors="replace"` - a note the cp1252 console could not print crashed
+  `--check`, and render-reel.ps1 read the crash as the clip being rejected.
+
+### Added
+
+- **Registry:** m2588-caravan / share / horse / rise and their x0.55 slow copies (`-s`), for #2588's 31 s EN
+  narration (rise carries the third clause and the moral, 17.5 s).
+
+---
+
 ## [2026-11-10i] - matn corrections from two Tier-1 sources; 4 more pages (P391)
 
 ### Changed

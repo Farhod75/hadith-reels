@@ -2230,6 +2230,78 @@
       "verified": true,
       "notes": "FLUX 2 still (bread-1) -> Kling 3.0 Pro i2v 10s. a basket of flatbread and dates with a clay jug left quietly beside a closed wooden door at sunrise - deeds done quietly. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
       "prompt_sidecar": "assets/scene-prompts/m2564-bread.json"
+    },
+    "m2588-caravan.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (caravan-2) -> Kling 3.0 Pro i2v 10s. a camel caravan with dyed saddlebags and brocade bales crossing the desert - wealth (lead-in). Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-caravan.json"
+    },
+    "m2588-share.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (share-1) -> Kling 3.0 Pro i2v 10s. an open saddlebag spilling dates and bread onto a mat at a tent, the caravan's bales behind - 'charity does not decrease wealth'. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-share.json"
+    },
+    "m2588-horse.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (horse-1) -> Kling 3.0 Pro i2v 10s. a grey Arabian horse in silver harness with red tassels in a palm garden - 'nothing but honour'. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-horse.json"
+    },
+    "m2588-rise.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (rise-2) -> Kling 3.0 Pro i2v 10s. the sun rising over a dune above a low black tent - 'Allah raises him' and the moral. Small green lens flare right of the sun. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-rise.json"
+    },
+    "m2588-caravan-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "slow copy (P240): m2588-caravan.mp4 slowed x0.55 (setpts + minterpolate blend) -> ~18.3 s, out/run-m2588-slow.ps1. Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-caravan.json"
+    },
+    "m2588-share-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "slow copy (P240): m2588-share.mp4 slowed x0.55 (setpts + minterpolate blend) -> ~18.3 s, out/run-m2588-slow.ps1. Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-share.json"
+    },
+    "m2588-horse-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "slow copy (P240): m2588-horse.mp4 slowed x0.55 (setpts + minterpolate blend) -> ~18.3 s, out/run-m2588-slow.ps1. Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-horse.json"
+    },
+    "m2588-rise-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "slow copy (P240): m2588-rise.mp4 slowed x0.55 (setpts + minterpolate blend) -> ~18.3 s, out/run-m2588-slow.ps1. Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
+      "prompt_sidecar": "assets/scene-prompts/m2588-rise.json"
     }
   }
 }

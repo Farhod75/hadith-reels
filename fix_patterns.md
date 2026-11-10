@@ -15997,3 +15997,23 @@ that is checkable, and keep the first one for what only that person can judge.
 **Status:** FIXED
 
 ---
+
+## PATTERN 392: a print crashed the asset gate, and the renderer read the crash as REJECTED
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** pipeline stop (no content risk)
+
+**What happened.** The #2588 EN render refused all four (registered) slow clips: "scene clip rejected by the asset
+registry (P121)". The registry was right; `audit-assets.py --check` crashed with UnicodeEncodeError while printing
+the clip's note, which carried a Cyrillic word ("operator 'да'") the Windows console code page (cp1252) cannot
+print. render-reel.ps1 treats any non-zero exit as a rejection.
+
+**Fix.** `main()` reconfigures stdout/stderr with `errors="replace"`: an unprintable character prints as "?" and
+can no longer decide a gate. The eight 2588 notes were also rewritten in ASCII ("operator: yes").
+
+**Lesson:** a gate's verdict must come from its check, never from whether its log line could be printed.
+
+**Tripwire:** a gate script printing free text before it returns its verdict, without an encoding guard.
+
+**Status:** FIXED
+
+---

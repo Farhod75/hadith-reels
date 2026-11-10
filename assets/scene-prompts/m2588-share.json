@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-10T21:42:11.0229267Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "schema": 1,
+  "resolution": null,
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab1f4dc/aZAlFB_X-1Fh3sdSlR0ly_output.mp4",
+  "generate_audio": false,
+  "size_bytes": 37508790,
+  "duration_sec": 10,
+  "name": "m2588-share",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2588-share.mp4",
+  "request_id": "01a1c769-5326-7601-8fee-75890b6b14bd",
+  "image": "out\\refs\\m2588-share-1.jpg",
+  "completed_utc": "2026-11-10T21:46:23.5084704Z",
+  "prompt": "Palm fronds sway gently in a light breeze, warm sunlight moves softly over the dates, the round flatbread and the water jug, the tent fabric stirs very slightly. The saddlebag, the dates, the bread and the bales stay perfectly still and in place. Static camera, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no animals, no text."
+}

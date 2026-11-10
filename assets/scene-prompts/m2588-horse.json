@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-10T21:46:25.5232497Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "schema": 1,
+  "resolution": null,
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab1f4f6/GJWJ_XIm2lOz-9tzeRJml_output.mp4",
+  "generate_audio": false,
+  "size_bytes": 34676110,
+  "duration_sec": 10,
+  "name": "m2588-horse",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2588-horse.mp4",
+  "request_id": "01a1c76d-3541-7142-9564-4f777aacd003",
+  "image": "out\\refs\\m2588-horse-1.jpg",
+  "completed_utc": "2026-11-10T21:50:36.6807785Z",
+  "prompt": "The grey Arabian horse stands calm and noble, it breathes slowly, its mane and the red tassels of the harness stir gently in a light breeze, the silver ornaments glint in the sun, palm fronds sway behind. The horse stays standing in place. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No rider, no people, no hands, no text."
+}

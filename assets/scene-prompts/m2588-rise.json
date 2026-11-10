@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-10T21:50:37.6693721Z",
+  "negative_prompt": "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+  "schema": 1,
+  "resolution": null,
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab1f512/uWPssfetYlywR_opJgJRm_output.mp4",
+  "generate_audio": false,
+  "size_bytes": 24991513,
+  "duration_sec": 10,
+  "name": "m2588-rise",
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "file": "out\\backgrounds\\new\\m2588-rise.mp4",
+  "request_id": "01a1c771-0e2a-71b3-ad94-f1261166ce2c",
+  "image": "out\\refs\\m2588-rise-2.jpg",
+  "completed_utc": "2026-11-10T21:55:17.7676116Z",
+  "prompt": "The sun slowly rises over the dune ridge, golden light spreads and climbs across the slope and the sky brightens, the simple black tent below stays still in the valley, fine sand drifts softly in a light breeze. Static camera, a very slow gentle tilt upward toward the light. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no moon, no text."
+}
