@@ -15924,6 +15924,9 @@ Anthropic whether the model exists, and the id lives in one file. HR had no heal
 now reports whether the library answers (the public HR site makes no Claude call). Both are meant for an
 external uptime monitor, so an outage is seen within minutes instead of by accident.
 
-**Status:** FIXED on branch, not deployed (waiting for the operator)
+**Tripwire:** none in this repo - the recurrence is a model id written outside HV `lib/models.ts`, and HV's
+P388 entry carries it. HR's public site makes no Claude call.
+
+**Status:** FIXED
 
 ---
