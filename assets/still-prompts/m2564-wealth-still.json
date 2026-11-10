@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2564-wealth",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a sunlit room of an old Arabian mud-brick house, an open carved wooden chest on a woven palm-leaf mat, filled with old silver and gold coins, beside it a folded fine robe of plain undyed linen with a woven border, morning sunlight through a small window falling across the coins. Rich but quiet. No mirror, no jewellery on display stands. No people, no hands, no animals, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1c245-1233-7e73-81aa-274fe48a979f",
+    "submitted_utc":  "2026-11-09T21:44:28.2584462Z",
+    "completed_utc":  "2026-11-09T21:44:41.2808311Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2564-wealth-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d314/DVhUH5aJdeU7XZ2rslDJB_DygwkQke.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2564-wealth-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d314/8YKYygr1e-5-t59DhGlM3_6ODytDBr.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2564-wealth-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d314/zJPAw-2iWa5k5MplWGKwJ_kGhkm8Pw.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1982721643
+}

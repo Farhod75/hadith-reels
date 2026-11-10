@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6405-smooth",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a wide smooth wet beach just after a wave has withdrawn, a few faint footprints half washed away by the water, the wet sand shining like a mirror and reflecting the blue sky and white clouds, bright midday. No people, no hands, no animals, no boats, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b98d-ac33-7992-b885-dbc1928ba92a",
+    "submitted_utc":  "2026-11-08T05:07:11.9477971Z",
+    "completed_utc":  "2026-11-08T05:07:20.3112818Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6405-smooth-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f3/eRWsPOEol_tyU08iFpi4-_c4MZ71I5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6405-smooth-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f3/yqkTWztL_lFiarSAFkNoR_SxwgjOIQ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6405-smooth-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f3/rOnYnDB7rzxGvgX6iEbEp_kCDfWnh9.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1869952147
+}

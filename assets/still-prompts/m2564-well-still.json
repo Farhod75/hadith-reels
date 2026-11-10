@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2564-well",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an old stone-lined desert well in a palm grove of Arabia under bright midday sun, a wooden beam frame with a rope over a wooden pulley above the well, a leather bucket resting on the stone rim, a stitched goatskin waterskin lying beside it, a long stone trough next to the well filled with clear water, palm shadows on the sand. Bright and fresh. No people, no hands, no animals, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1c246-5330-7002-8c74-c4ebefd94d87",
+    "submitted_utc":  "2026-11-09T21:45:51.0893386Z",
+    "completed_utc":  "2026-11-09T21:45:59.3019593Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2564-well-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31b/qx3p1GmYacdR2d_GSctRv_S6IryNci.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2564-well-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31b/EQdGD7jli4619XYhEd2Am_GY74nGLq.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2564-well-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31b/mx2qLcuDhc16KDEYv0ADi_OYEBq5sm.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  931909462
+}

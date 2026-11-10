@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6405-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a sunlit early-morning courtyard of an old mud-brick house, a simple woven palm-leaf prayer mat on the swept sand floor facing a plain blank mud-brick wall, soft warm sunlight from the side, the shadow of a palm tree across the wall. Bright and serene. No moon, no calligraphy, no prayer beads. No people, no hands, no animals, no boats, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b98e-51bc-7550-a623-2ed958b71e87",
+    "submitted_utc":  "2026-11-08T05:07:54.3383899Z",
+    "completed_utc":  "2026-11-08T05:08:02.6643299Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6405-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f8/PYnhsNT-URCh3kQfEXVQ2_t4Gw4hvN.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6405-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f8/vlet2sps4r2OsnZV-Tw0I_7l6geG0C.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6405-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199f8/EuETy94FcuNXAVOQp0PIt_akTiam0E.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  746526437
+}

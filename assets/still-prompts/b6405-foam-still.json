@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6405-foam",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, waves breaking on a wide sandy shore of the Red Sea coast of Arabia in bright morning sun, thick white sea foam spreading across the turquoise water and over the golden sand, clear blue sky. Vivid, fresh, calm. No people, no hands, no animals, no boats, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b98b-75fb-7f21-b0c1-97141b3ace3d",
+    "submitted_utc":  "2026-11-08T05:04:45.7976500Z",
+    "completed_utc":  "2026-11-08T05:04:55.4657820Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6405-foam-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199e5/jFZXRKrl1SPTd74AssliU_jQvUbDrT.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6405-foam-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199e5/fIvpKXz47_Du2PFbRY5Pc_8Cce1fDR.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6405-foam-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199e5/nAVwdMlhNvc1sZxmEOs4t_47t8hcJK.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1148621713
+}

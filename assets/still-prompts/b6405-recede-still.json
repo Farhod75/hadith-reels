@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6405-recede",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, close low view of a thin sheet of sea water sliding back down wet golden sand in bright sunlight, the white foam bubbles melting away and vanishing, sunlight glistening on the wet sand. Bright and clean. No footprints. No people, no hands, no animals, no boats, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1b98c-aaa1-7fa2-a7c3-09055d9c70b5",
+    "submitted_utc":  "2026-11-08T05:06:06.0384029Z",
+    "completed_utc":  "2026-11-08T05:06:14.2979160Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6405-recede-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199ed/txn7IlpHfQRSxTxv361yF_vIT1DrVW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6405-recede-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199ed/34FZW76W0t91yYjRsY2_1_bxY30BX1.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6405-recede-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab199ed/0fnPiLn8o__YvGhapbtPW_ZSuoiv7r.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1465962422
+}

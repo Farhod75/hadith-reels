@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2564-grove",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, wide view of a green date-palm grove beside low mud-brick houses in an Arabian oasis at sunrise, warm golden light through the palm fronds, clear bright sky, dark volcanic hills far in the distance. Peaceful and open. No moon, no minarets, no domes. No people, no hands, no animals, no text, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1c247-0f21-7f51-8b63-40b3249bc0f0",
+    "submitted_utc":  "2026-11-09T21:46:39.1776770Z",
+    "completed_utc":  "2026-11-09T21:46:47.4146220Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2564-grove-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d320/IaBOhgEyxGKXiwkB4x27e_s8zrlgjM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2564-grove-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d320/Og89B54Al7x89mzgi_Era_TV6NKErI.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2564-grove-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d320/PG25LD1M8rfmnRyKPzniF_o2ABUWhu.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1281997670
+}

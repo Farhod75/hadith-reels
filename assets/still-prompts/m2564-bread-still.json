@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2564-bread",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, early morning outside a simple old Arabian mud-brick house, a woven palm-leaf basket of round flatbread and dates and a clay water jug placed quietly on the ground beside a plain wooden door, soft golden sunlight, long gentle shadows on the sandy lane. Kind, quiet, humble. No people, no hands, no animals, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1c246-ac5b-7ea0-879d-bb60a6dacfe8",
+    "submitted_utc":  "2026-11-09T21:46:13.9155569Z",
+    "completed_utc":  "2026-11-09T21:46:26.1823965Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2564-bread-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31e/MIwGM_ti8BcHxNgnajB9j_gn4gZXIf.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2564-bread-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31e/Fk60r1J998mvJTgCmGrMf_0MUSNqrK.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2564-bread-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab1d31e/rYdBFJePT9lx7jTPfILqZ_pVS28iBU.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1575141375
+}
