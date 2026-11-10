@@ -1,3 +1,16 @@
+## [2026-11-10f] - first related events found through «Лучший пример» (P389)
+
+### Added
+
+- **Bukhari #1417** ("even half a date"): Jarir's account of the tribe of Mudar - Muslim 1017, HadeethEnc 3506
+  (ar/en/ru); see also «Лучший пример», т. 1, с. 261 (its footnote: Muslim, Zakat 69). Not added from the same pages:
+  Aisha's dinars (Ahmad VI 104 - no grading checked yet) and the Medina appeal (al-Waqidi - weak).
+- **Abu Dawud #3641**: Safwan ibn Assal to Zirr - "the angels lower their wings for the seeker of knowledge"
+  (Tirmidhi/Ibn Majah/Ahmad, sahih, HadeethEnc 4565). The book's own version (al-Haythami 1/131) is a different
+  report, so the book is not cited for it.
+
+---
+
 ## [2026-11-10e] - the caption links to the hadith page (P387)
 
 ### Added
