@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-316 patterns in 329 entries, frontier **P386**. The P-sequence is shared with
+317 patterns in 330 entries, frontier **P387**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -377,5 +377,6 @@ BEFORE changing it.
 - **P384** - the dry run printed a gain render-reel.ps1 refuses; UZ failed mid-set
 - **P385** - Meta dropped the Facebook title field; the publishing sequence written down
 - **P386** - equal clip slots put the wrong picture on the matn; the bed picker ranked by rotation only
+- **P387** - the site repeated its sources; a viewer had nowhere to read the hadith in full
 
-<!-- pattern-index-stamp entries=329 patterns=316 frontier=386 sha1=aea25e6ef07720efc8aafd1787b5a39a430a6f59 -->
+<!-- pattern-index-stamp entries=330 patterns=317 frontier=387 sha1=4c4b530d516bc278791be035dbfc804a5606c277 -->

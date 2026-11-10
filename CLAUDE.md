@@ -469,6 +469,27 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   `claude-sonnet-4-6` are gone; `scripts/translate-tajik.ts` still hardcodes
   `claude-sonnet-4-5` and will fail if run — TODO.
 
+### 8. Explanation pages quote sources, never our words (P387)
+- `hadithreels.com/hadith/<collection>/<number>` is what sets HR apart from the sites it
+  draws on: the viewer follows the reel's link and reads the hadith fully - the matn, the
+  translation the reel narrated, and what named scholars said about it (operator, 2026-11-10).
+- Order, as in the Zad Academy hadith lessons: matn -> Иборалар шарҳи (word meanings) ->
+  Ҳадиснинг шарҳи -> Ҳадисдан олинадиган сабоқлар. Ҳадиснинг айтилиш сабаби (sabab
+  al-wurud) ONLY when a cited source records one - never inferred from the matn.
+- Every word of commentary is quoted VERBATIM from a named source, with its deep link and
+  "quoted without changes". No model writes, summarises, merges or translates commentary.
+  A hadith with no sourced explanation says "not added yet" - the gap stays visible.
+- Files in `content/explanations/` are written only by `scripts/fetch-explanation.py`;
+  `scripts/lib/test_fetch_explanation.py` compares every field with the raw bytes stored
+  in `content/explanations/raw/` and fails on any difference.
+- Sources: HadeethEnc today (ar/en/ru/uz/tg; API terms: no modification, credit the
+  publisher - `scripts/lib/source_hadeethenc.py`). Next, each with its own adapter and
+  verbatim check first: an-Nawawi's Sharh Sahih Muslim and Ibn Hajar's Fath al-Bari
+  (classical Arabic; our translation of them is OUR text and needs an Arabic reader's
+  sign-off, as P265, before it is shown); Ibn Kathir's al-Bidaya wa'n-Nihaya for the
+  occasion of seerah events. Uswai Hasana and Ar-Raheeq al-Makhtum: rights not checked -
+  not used until they are.
+
 ---
 
 ## 🧰 STACK & FILES
@@ -505,6 +526,9 @@ If you add or remove a route or module, change this list in the same commit.
 - `lib/ffmpeg-pipeline.ts` — server-side video composition
 
 ### Agents (Python, `scripts/`)
+- `fetch-explanation.py` — P387: one HadeethEnc entry -> `content/explanations/<slug>.json`
+  (verbatim, raw bytes kept, same-hadith check against the library matn) + index + registry.
+  Dry run unless `--commit`. HARD RULE 8.
 - `lint-content.py` — pre-TTS checks on GENERATED reel text (Workflow E)
 - `stt-validate.py` — SRT vs source narration diff (Workflow F)
 - `mix-gap.py` — nasheed-under-voice gap per language and the `-NasheedGain` that puts it on

@@ -38,6 +38,7 @@ export interface UiStrings {
   copied: string
   source: string
   verify: string
+  explain: string   // P387: the card's link to the hadith's explanation page
   watchTitle: string
   watchDesc: string
   tiles: [Tile, Tile, Tile, Tile]
@@ -82,6 +83,7 @@ export const UI: Record<UiLang, UiStrings> = {
     copied: 'Copied ✓',
     source: 'Source ↗',
     verify: '🔍 Verify',
+    explain: '📖 Explanation',
     watchTitle: 'Watch our reels',
     watchDesc: 'Authentic hadith reels with verified Islamic sources — new reels added regularly. Follow us on your favourite platform.',
     tiles: [
@@ -121,6 +123,7 @@ export const UI: Record<UiLang, UiStrings> = {
     copied: 'Скопировано ✓',
     source: 'Источник ↗',
     verify: '🔍 Проверить',
+    explain: '📖 Разъяснение',
     watchTitle: 'Смотрите наши рилсы',
     watchDesc: 'Рилсы с достоверными хадисами из проверенных источников — новые выходят регулярно. Подписывайтесь на удобной вам платформе.',
     tiles: [
@@ -160,6 +163,7 @@ export const UI: Record<UiLang, UiStrings> = {
     copied: 'Нусха олинди ✓',
     source: 'Манба ↗',
     verify: '🔍 Текшириш',
+    explain: '📖 Шарҳ',
     watchTitle: 'Рилсларимизни кўринг',
     watchDesc: 'Ишончли манбалардан саҳиҳ ҳадислар билан рилслар — янгилари мунтазам чиқади. Ўзингизга қулай платформада обуна бўлинг.',
     tiles: [
@@ -199,6 +203,7 @@ export const UI: Record<UiLang, UiStrings> = {
     copied: 'Нусха шуд ✓',
     source: 'Манбаъ ↗',
     verify: '🔍 Тафтиш',
+    explain: '📖 Шарҳ',
     watchTitle: 'Рилсҳои моро тамошо кунед',
     watchDesc: 'Рилсҳо бо ҳадисҳои саҳеҳ аз манбаъҳои боэътимод — навҳо мунтазам илова мешаванд. Дар платформаи дӯстдоштаатон обуна шавед.',
     tiles: [

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { UI } from '@/lib/ui-strings'
 import { TAG_CANONICAL, TAG_FORMS } from '@/lib/tags'
 import { COLLECTIONS, NARRATORS } from '@/lib/refs'
+import { hasExplanation, hadithPagePath } from '@/lib/explanations'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 // P360: no 'ar'. AR is out of scope (P118) - nothing in the library is an Arabic
@@ -195,6 +196,13 @@ function HadithCard({ hadith, lang, audioUrl }: { hadith: Hadith; lang: Lang; au
           <a href={hadith.source_url} target="_blank" rel="noopener noreferrer"
             className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors">
             {UI[lang].source}
+          </a>
+        )}
+        {/* P387: the hadith's explanation page - only when a sourced explanation exists */}
+        {hasExplanation(hadith.collection, hadith.hadith_number) && (
+          <a href={hadithPagePath(hadith.collection, hadith.hadith_number, lang)} data-testid="explain-link"
+            className="text-xs px-3 py-1.5 rounded-lg bg-indigo-700 text-white border border-indigo-700 hover:bg-indigo-800 transition-colors">
+            {UI[lang].explain}
           </a>
         )}
         <a href="https://hadithverifier.com" target="_blank" rel="noopener noreferrer"

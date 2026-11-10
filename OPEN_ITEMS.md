@@ -1352,6 +1352,15 @@ the operator first - see the #6675 retro.
 
 ## Pipeline / design
 
+- **OPEN 2026-11-10: hadith explanation pages (P387, HARD RULE 8).** Pilot #2564 built on branch
+  `feature/hadith-explanation-pages`, waiting for the operator's look before it is merged. Then:
+  (1) the caption's link to the page (`build-caption.ts`, all four languages) and the set-close step
+  in reel-creation-pipeline.md; (2) explanations for the hadiths already published - find each one's
+  HadeethEnc id by its Arabic, run `fetch-explanation.py`; (3) an-Nawawi / Ibn Hajar adapters (Arabic
+  verbatim; any translation needs an Arabic reader's sign-off, P265); (4) Uswai Hasana and Ar-Raheeq:
+  check the rights first; (5) the occasion (sabab al-wurud) has no source adapter yet - `occasion`
+  stays null until one is cited.
+
 - **CLOSED 2026-10-30: OPEN_ITEMS is cross-referenced at render time (P321).**
   `render-reel.ps1` STEP 0 greps this file for the hadith number it already
   derives for the P319 gate, and prints every matching line as a NOTE. Warn-only

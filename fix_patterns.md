@@ -15886,3 +15886,29 @@ stays a thing he has to catch.
 **Status:** FIXED (mood ratings themselves wait for the operator's ear)
 
 ---
+
+## PATTERN 387: the site repeated its sources; a viewer had nowhere to read the hadith in full
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** product (raised by the operator)
+
+**What happened.** hadithreels.com showed the same things as the sites it draws on - matn, translation,
+grade, narration - and the reels gave nothing more to follow. The operator's intent from the start: a viewer
+who has watched a reel follows a link and reads everything about that hadith - the full text, why it was
+said when a source records it, and how the muhaddiths explained it (Ibn Kathir, Uswai Hasana, the Zad
+Academy lessons as the model).
+
+**Fix.** A page per hadith, `/hadith/<collection>/<number>`, built only from quoted sources:
+`scripts/fetch-explanation.py` copies a HadeethEnc entry in five languages into
+`content/explanations/<slug>.json`, keeps the raw bytes, and refuses an entry whose Arabic does not contain
+the library matn. A test compares every committed field with the raw bytes, so a hand edit fails the hook.
+The page has no generated text: no source, no explanation - it says so. CLAUDE.md HARD RULE 8.
+
+**Lesson:** the part that sets a channel apart is the part it is most tempted to write itself; here it must
+be the part it never writes.
+
+**Tripwire:** commentary on the site without a source link, or a `content/explanations/` file whose
+text differs from its raw file.
+
+**Status:** PILOT (#2564) - caption link and older hadiths open in OPEN_ITEMS
+
+---

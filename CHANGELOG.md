@@ -1,3 +1,18 @@
+## [2026-11-10] - hadith explanation page, verbatim from the source (P387)
+
+### Added
+
+- **`/hadith/<collection>/<number>`:** the matn and the reel's translation from the library, then a named
+  source's explanation and lessons quoted unchanged, credit and deep link, four languages. Pilot: Sahih
+  Muslim #2564 from HadeethEnc 4555 (ar/en/ru/uz/tg). The library card links to it when one exists.
+- **scripts/fetch-explanation.py:** writes `content/explanations/<slug>.json` with the raw HadeethEnc bytes
+  beside it, after checking the source's Arabic contains the library matn. Dry run unless `--commit`.
+- **HARD RULE 8** (CLAUDE.md): commentary is quoted, never written; occasion only when a source records it.
+- 10 tests (`test_fetch_explanation.py`, incl. a verbatim check of every committed file);
+  `tests/hadith-page.spec.ts` (dev server only, not in CI).
+
+---
+
 ## [2026-11-09d] - clips placed by the narration, bed mood (P386)
 
 ### Added

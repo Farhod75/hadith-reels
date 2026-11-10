@@ -1,3 +1,13 @@
+### Hadith explanation page (`app/hadith/[collection]/[number]`, `scripts/fetch-explanation.py`)
+
+`/hadith/muslim/2564?lang=uz` shows one hadith fully: the Arabic matn and the translation the
+reel narrated (library row), then the explanation and the lessons from a named source,
+quoted verbatim with a deep link and the source's reference list. Section names follow the
+Zad Academy hadith lessons; word meanings and the occasion (sabab al-wurud) appear only when
+the source has them. EN / RU / UZ / TJ toggle; a language the source lacks says so and links
+the languages it has. A library card with an explanation gets a "📖 Шарҳ" button. A hadith
+with none says it has not been added - nothing is generated (HARD RULE 8) (P387).
+
 ### Public site in four languages (`lib/ui-strings.ts`)
 
 The EN / RU / UZ / TJ toggle changes the whole page, not only the hadith text: tabs, search,
