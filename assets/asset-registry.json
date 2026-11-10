@@ -2302,6 +2302,24 @@
       "verified": false,
       "notes": "slow copy (P240): m2588-rise.mp4 slowed x0.55 (setpts + minterpolate blend) -> ~18.3 s, out/run-m2588-slow.ps1. Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Four clips (operator, 2026-11-10). Picks: caravan-2, share-1, horse-1, rise-2 (operator: yes).",
       "prompt_sidecar": "assets/scene-prompts/m2588-rise.json"
+    },
+    "m2588-height.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (height-3) -> Kling 3.0 Pro i2v 15s. a green terraced mountain oasis with a stream and pomegranates; the camera rises along the stream over the terraces to the peaks and open sky - 'Allah raises him' and the moral. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Option A (operator: yes, 2026-11-10): one bright clip for 'Allah raises him' and the moral, measured after narration (P393). Pick: height-3.",
+      "prompt_sidecar": "assets/scene-prompts/m2588-height.json"
+    },
+    "m2588-height-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "slow copy (P240): m2588-height.mp4 slowed x0.78 (setpts + minterpolate blend) -> 19.2 s, for the UZ/RU/EN moral slot (UZ 18.91 s). Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Option A (operator: yes, 2026-11-10): one bright clip for 'Allah raises him' and the moral, measured after narration (P393). Pick: height-3.",
+      "prompt_sidecar": "assets/scene-prompts/m2588-height.json"
     }
   }
 }

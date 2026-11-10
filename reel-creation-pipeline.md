@@ -414,6 +414,18 @@ brief: `-FitScenes` trims each clip to narration/clips, so a short reel gets fou
 shorter clips rather than fewer clips. R130 shipped on three reused clips for an
 18.9s reel; under this rule it would have had four.
 
+**Narrate first, then order clips (P393). Operator rule, 2026-11-10.** Clip count and
+length come from the measured narration, never from a guess. Order: script check ->
+narration in all four languages -> per language, read where the matn and the moral
+begin -> plan the `"align"` anchors (Step 14) -> only then stills and Kling. A scene's
+slot is the LONGEST of the four languages for its anchor span; order a Kling
+`-Duration` (5 / 10 / 15) at or above it, or plan a slow copy no slower than ~0.8x.
+#2588 ordered four 10 s clips before narration: the last slot then needed 17.5 s (EN)
+and 18.9 s (UZ) - 0.55x slow copies and a fifth paid clip.
+
+**Not every scene is desert.** The scene shows what the words say: an oasis, a garden,
+mountains for "Allah raises him" - bright, as MODE B requires. Operator, 2026-11-10.
+
 Per `animated-reel-scene-prompts.md`: hadith text → scene-prompt JSON, 3–4
 beats forming an arc (journey → worship → destination → path is the proven
 shape from #1520).

@@ -16017,3 +16017,24 @@ can no longer decide a gate. The eight 2588 notes were also rewritten in ASCII (
 **Status:** FIXED
 
 ---
+
+## PATTERN 393: clips were ordered before the narration was measured
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** paid rework (no content risk)
+
+**What happened.** #2588: four 10 s Kling clips were generated, then the four narrations. The align
+anchors put the third clause and the moral on the last clip: 17.5 s in EN, 18.9 s in UZ. The clips
+had to be slowed to 0.55x (visible blending) and a new 15 s clip ordered. The operator caught it:
+"you made the clips without measuring the narration?"
+
+**Fix.** reel-creation-pipeline.md Step 9: narrate all four languages first; each scene's slot is
+the longest language's span for its anchors; Kling duration (or a slow copy no slower than ~0.8x) is
+chosen from that. Also recorded: scenes follow the words, not always desert.
+
+**Lesson:** the narration is the timeline; anything paid that must fit it comes after it.
+
+**Tripwire:** a generate-scene call for a reel whose narrations are not all on disk.
+
+**Status:** FIXED (process)
+
+---

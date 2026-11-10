@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1f731/aZsmH1QWh8pnYamghiZjc_output.mp4",
+    "name":  "m2588-height",
+    "image":  "out\\refs\\m2588-height-3.jpg",
+    "file":  "out\\backgrounds\\new\\m2588-height.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-10T23:19:41.9941783Z",
+    "size_bytes":  56172797,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Clear water flows and sparkles down the rocky stream, palm fronds and vine leaves sway gently in a light breeze, ripe pomegranates move slightly on their branches, bright sunlight rests on the terraced gardens. Static start, then a very slow smooth tilt and rise upward along the stream, over the green terraces, to the sunlit mountain peak against the clear blue sky. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no animals, no birds, no moon, no buildings, no text.",
+    "request_id":  "01a1c7c2-9a58-7220-ad97-247345c4b914",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  15,
+    "completed_utc":  "2026-11-10T23:30:47.5795056Z",
+    "mode":  "image-to-video"
+}

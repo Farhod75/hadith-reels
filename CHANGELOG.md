@@ -1,3 +1,16 @@
+## [2026-11-10k] - narrate before ordering clips (P393); #2588 height clip
+
+### Changed
+
+- **reel-creation-pipeline.md Step 9:** narration in all four languages comes before stills and Kling;
+  each clip's length is the longest language's slot. Scenes follow the words, not always desert.
+
+### Added
+
+- **#2588:** m2588-height (bright mountain oasis, 15 s) for "Allah raises him" and the moral.
+
+---
+
 ## [2026-11-10j] - #2588 clips registered; the asset gate no longer dies on a Cyrillic note (P392)
 
 ### Fixed

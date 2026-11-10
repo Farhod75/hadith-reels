@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-322 patterns in 335 entries, frontier **P392**. The P-sequence is shared with
+323 patterns in 336 entries, frontier **P393**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -383,5 +383,6 @@ BEFORE changing it.
 - **P390** - every HV analysis carried a story credited to a book the model never saw
 - **P391** - a matn correction waited for a reader the project does not have
 - **P392** - a print crashed the asset gate, and the renderer read the crash as REJECTED
+- **P393** - clips were ordered before the narration was measured
 
-<!-- pattern-index-stamp entries=335 patterns=322 frontier=392 sha1=dedae222f67396869026ce84973540586d9d09ba -->
+<!-- pattern-index-stamp entries=336 patterns=323 frontier=393 sha1=5f8ed22e7d4d0ac2f8d1699f8bb488e569acbaf6 -->
