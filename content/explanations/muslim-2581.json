@@ -1,0 +1,98 @@
+{
+  "schema": 2,
+  "slug": "muslim-2581",
+  "library_id": "9c2f2409-bc1d-40d7-812e-f1f35d4fc586",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2581",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "6454",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (4/ 1997) (2581).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 312).\nنزهة المتقين شرح رياض الصالحين، مجموعة من الباحثين (1/ 241).\nشرح رياض الصالحين، لابن عثيمين (2/ 527).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/6454",
+          "raw": "raw/hadeethenc-6454-ar.json",
+          "raw_sha256": "d9ea1f383dcff861242c48d16fa26c128a3c4b97ad1f8236566d9f760732e099",
+          "title": "أتدرون ما المفلس؟",
+          "hadeeth": "عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: «أَتَدْرُونَ مَا الْمُفْلِسُ؟» قَالُوا: الْمُفْلِسُ فِينَا مَنْ لَا دِرْهَمَ لَهُ وَلَا مَتَاعَ، فَقَالَ: «إِنَّ الْمُفْلِسَ مِنْ أُمَّتِي يَأْتِي يَوْمَ الْقِيَامَةِ بِصَلَاةٍ وَصِيَامٍ وَزَكَاةٍ، وَيَأْتِي قَدْ شَتَمَ هَذَا، وَقَذَفَ هَذَا، وَأَكَلَ مَالَ هَذَا، وَسَفَكَ دَمَ هَذَا، وَضَرَبَ هَذَا، فَيُعْطَى هَذَا مِنْ حَسَنَاتِهِ، وَهَذَا مِنْ حَسَنَاتِهِ، فَإِنْ فَنِيَتْ حَسَنَاتُهُ قَبْلَ أَنْ يُقْضَى مَا عَلَيْهِ أُخِذَ مِنْ خَطَايَاهُمْ فَطُرِحَتْ عَلَيْهِ، ثُمَّ طُرِحَ فِي النَّارِ».",
+          "explanation": "سَألَ النبيُّ صلى الله عليه وسلم أصحابه: أتدرون من المفلس؟ قالوا: المفلس فينا من لا مال له ولا متاع، فقال: إن المفلس من أمتي يوم القيامة من يأتي بأعمال صالحة من صلاة وصيام وزكاة، ويأتي وقد شتم هذا وسبَّه، وقَذَفَ هذا في عرضه، وأكل مال هذا وجحده، وسَفَكَ دمَ هذا وظلمه، وضرب هذا وأهانه، فيعطى المظلوم من حسناته، فإن فنيت حسناته قبل أن يَقضيَ ما عليه من الحقوق والمظالم، أُخذ من ذنوب المظلوم فجُعلت في صحائف الظالم، ثم طُرح ورُمي في النار حيث لم يبقَ له حسنات.",
+          "lessons": [
+            "التحذير من الوقوع في المُحرمات، وخاصة ما يتعلق بحقوق العباد المادية والمعنوية.",
+            "حقوق الخَلْق فيما بينهم مَبنية على المُشَاحّة، وحقوق الخالق سوى الشرك مبنية على المُسامحة.",
+            "استعمال طريقة المحاورة التي تُشوِّق السامع وتُلفتْ نظرَه وتثير اهتمامه، وخاصة في التربية والتوجيه.",
+            "بيان معنى المفلس الحقيقي، وهو من أخذ غرماؤه أعمالَه الصالحةَ يوم القيامة.",
+            "القصاص في الآخرة قد يأتي على جميع الحسنات، حتى لا يبقي منها شيئًا.",
+            "معاملة الله للخلق قائمة على العدل والحق."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/6454",
+          "raw": "raw/hadeethenc-6454-en.json",
+          "raw_sha256": "5df66964d53ea2254c323a285ed8532943f52a4f8f6f815a548d72bf0b21b29a",
+          "title": "Do you know who the bankrupt is?",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Do you know who the bankrupt is?\" They said: \"The bankrupt among us is the one who has neither money nor belongings.\" He said: \"Verily, the bankrupt in my Ummah is the one who comes on the Day of Resurrection with prayers, fasting, and Zakah, but he comes while he has hurled abuse at this one, slandered that one, unlawfully consumed the wealth of this one, shed the blood of that one, and beat this one. So, this one will be given of his good deeds and that one will be given of his good deeds. If his good deeds run out before justice is fulfilled, some of their sins will be cast upon him and then he will be thrown into Hellfire.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) asked his Companions: Do you know who the bankrupt is? They said: The bankrupt among us is the one who has no wealth or property. He said: The bankrupt in my Ummah on the Day of Resurrection is the one who comes with righteous deeds such as prayer, fasting, and Zakah, but he comes having insulted and cursed this one, slandered that one, consumed the wealth of this one and denied it, shed the blood of that one and oppressed him, and beaten this one and humiliated him. So, the wronged ones will be given from his good deeds. If his good deeds run out before he has settled the rights and grievances due upon him, some of the sins of the wronged ones will be taken and placed in the records of the wrongdoer. Then, he will be thrown into Hellfire, as no good deeds will remain for him.",
+          "lessons": [
+            "The Hadīth warns against committing prohibitions, especially those that violate people's material and moral rights.\r",
+            "The rights among people are based on competing, and the rights of the Creator, apart from Shirk (polytheism), are based on forgiveness.\r",
+            "One should use a conversational technique that attracts the attention of the addressed person and provokes his interest, especially in education.\r",
+            "It defines the real bankrupt; he is the one whose opponents take his righteous deeds on the Day of Judgment.\r",
+            "Retribution in the Hereafter may wipe out all good deeds and leave nothing of them.\r",
+            "Allah Almighty treats His servants on the basis of justice and the truth."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/6454",
+          "raw": "raw/hadeethenc-6454-ru.json",
+          "raw_sha256": "13eca3ec98d76544fa3d564fbe7559ff01b5547b29e13b9f679a43bf4bb85f4f",
+          "title": "Знаете ли вы, кто является неимущим?",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Знаете ли вы, кто является неимущим?» Они ответили: «Неимущими среди нас называют тех, у кого нет ни денег, ни имущества». Тогда он сказал: «Поистине, неимущим из числа членов моей общины окажется тот, кто в День Воскрешения принесёт с собой молитвы, посты и закят, но при этом выяснится, что он оскорбил этого, оклеветал того, присвоил имущество этого, пролил кровь того и ударил этого. И тогда что-то из его благих дел будет отдано этому и что-то — другому. А если запас его благих дел иссякнет прежде, чем он сумеет рассчитаться со всеми, тогда из грехов обиженных им станут брать что-то и возлагать на него, а потом его ввергнут в Огонь!»",
+          "explanation": "Пророк (мир ему и благословение Аллаха) спросил своих сподвижников: «Знаете ли вы, кто является неимущим, разорившимся?» Они ответили: «Тот, у кого нет ни денег, ни имущества». Тогда он сказал: «Неимущим в моей общине будет в Судный день тот, кто  придёт с благими делами, то есть молитвой, постом и закятом, однако окажется, что в своё время он обругал такого-то, запятнал честь такого-то, присвоил имущество такого-то, ударил и оскорбил такого-то, и притеснённому будет отдано что-то из благих дел притеснившего, и если его благие деяния истощатся до того, как он рассчитается со всеми теми, чьи права он ущемил и кого он обидел, будет взято что-то из грехов притеснённого и перенесено в свиток с записью деяний притеснившего, после чего он будет брошен в Огонь, поскольку благих деяний у него не останется».",
+          "lessons": [
+            "Предостережение от впадения в запретное, особенно в том, что касается прав людей, как материальных, так и моральных.\r",
+            "За ущемлённые права людей человеку придётся отвечать, тогда как в отношении прав Аллаха есть основание надеяться на снисходительность Всевышнего, если только речь не идёт о придавании Ему сотоварищей (ширк).\r",
+            "Использование метода диалога, который подстёгивает интерес слушателя, привлекает его внимание и помогает ему сосредоточиться, особенно в области воспитания и направления.\r",
+            "Разъяснение того, кто на самом деле является неимущим, оставшимся ни с чем: это тот, у кого все те, перед кем он оказался в долгу, заберут у него благие дела в Судный день.\r",
+            "Воздаяние равным в мире вечном может оставить человека ни с чем, забрав у него весь запас его благих дел.\r",
+            "Отношение Аллаха к творениям зиждется на справедливости и истине."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/6454",
+          "raw": "raw/hadeethenc-6454-tg.json",
+          "raw_sha256": "194715fc64a702fdc1fe2c17d88d8477dd226023f9d93528229e37958bb4369e",
+          "title": "Паёмбар (саллаллоҳу алайҳи ва саллам) аз саҳобаҳо пурсид: \"Оё медонед, муфлис (фақир) кист?",
+          "hadeeth": "Аз Абуҳурайра (разияллоҳу анҳу ) ривоят аст, ки Расули Аллоҳ (саллаллоҳу алайҳи ва саллам) фармуданд: Паёмбар (саллаллоҳу алайҳи ва саллам) аз саҳобаҳо пурсид: \"Оё медонед, муфлис (фақир) кист?\" Онҳо гуфтанд: Муфлис дар байни мо касе аст, ки молу мулк надошта бошад. Паёмбар (саллаллоҳу алайҳи ва саллам) фармуд: \"Муфлис дар уммати ман касе аст, ки рӯзи қиёмат бо амалҳое мисли, намоз, рӯза ва закот меояд, вале ҳамзамон касеро дашном додааст, бадгӯӣ кардааст, моли касеро ба ноҳақ хӯрдааст, хуни касеро рехтааст, касеро задааст. Ҳар касеро, ки зулм кардааст, аз ҳасанот ва савобҳои  ӯ гирифта ба мазлум дода мешавад. Агар савобҳояш тамом шуданд, аз хатоҳои онҳо гирифта ба ҳисоби ӯ навишта мешавад ва сипас ӯ ба дӯзах андохта мешавад.\"",
+          "explanation": "Паёмбар (саллаллоҳу алайҳи ва саллам) асҳобашро пурсид: Оё медонед фақир кист? Онҳо гуфтанд: Фақир дар байни мо касе аст, ки молу мулке надорад. Паёмбар (саллаллоҳу алайҳи ва саллам) фармуд: Фақири умматам касест, ки дар рӯзи қиёмат бо амалҳои хайр мисли намоз, рӯза ва закот меояд, вале ҳамзамон касеро шиканҷа дода, бадгӯӣ кардааст, дар номуси касе гап задааст, ҳаққи касеро риоят накарда, молашро хӯрдааст, хуни касеро рехта, зулм кардааст, касеро зада, таҳқир намудааст. Ба касе, ки зулм шудааст, аз савобҳояш дода мешавад ва агар савобҳояш пеш аз пардохти ҳаққи мардуми мазлум тамом шавад, гуноҳи мазлумро гирифта, ба ҳисоби ӯ навишта мешавад ва ба дӯзах андохта мешавад, чун ки ӯ дигар аҷру савобе надорад.",
+          "lessons": [
+            "Ҳушдор аз воқеъ шудан дар муҳаррамот, бахусус он чизе, ки ба ҳуқуқҳои моддӣ ва маънавии мардум рабт дорад.\r",
+            "Ҳуқуқи байни одамон бар асоси муноқиша ва баҳс аст, аммо ҳуқуқҳои Парвардигор (ғайр аз ширк) бар асоси бахшиш, муҳаббат ва осонгирӣ аст.\r",
+            "Истифода аз усули гуфтугӯ, боиси шавқи гӯшкунандагон ва ҷалби диққати онон мегардад, махсусан дар таълим ва роҳнамоӣ.\r",
+            "Шарҳи маънои ҳақиқии \"муфлис\" — ӯ касе аст, ки рӯзе қиёмат талабгоронаш аҷру савобашро мегиранд.\r",
+            "Қасос дар рӯзи қиёмат метавонад ҳама аҷру савобҳои инсонро аз байн барад, то ҷое, ки чизе аз он барояш боқӣ намонад.\r",
+            "Муомилаи Худованд бо халқ бар асоси адолат ва ҳақиқат аст."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

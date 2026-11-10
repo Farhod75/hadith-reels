@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "slug": "bukhari-5027",
+  "library_id": "c016f133-30b4-4750-a439-42c6964bedb2",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "5027",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5913",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (6/ 192) (5027).\nفتح الباري شرح صحيح البخاري، لابن حجر العسقلاني (1/ 374).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (2/ 226).\nنزهة المتقين شرح رياض الصالحين، لمصطفى الخن وغيره (1/ 740).\nشرح رياض الصالحين، لابن عثيمين (4/ 638).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5913",
+          "raw": "raw/hadeethenc-5913-ar.json",
+          "raw_sha256": "49b5d3ad2ad12dd0a1544f44675f79a51a0bac1a80aa3f7596e4c58cfe2e548f",
+          "title": "خيركم من تعلم القرآن وعلمه",
+          "hadeeth": "عن عثمان رضي الله عنه عن النبي صلى الله عليه وسلم قال: «خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ».",
+          "explanation": "يُخْبِرُ النبيُّ صلى الله عليه وسلم أنَّ أفضلَ المسلمين وأعلاهم عند الله درجة: مَن تَعَلَّم القرآنَ، تلاوةً وحفظًا وترتيلًا وفقهًا وتفسيرًا، وعَلَّمَ غيرَه ما عنده من علوم القرآن مع عَمَلِهِ به.",
+          "lessons": [
+            "بيان شرف القرآن، وأنه خير الكلام؛ لأنه كلام الله.",
+            "خير المُتعلمين مَن يُعَلِّمُ غيرَه لا مَن يَقتصِرُ على نفسِه.",
+            "تَعَلُّمُ القرآنِ وتَعْلِيْمُه يشمل التلاوةَ والمعاني والأحكام."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه البخاري",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5913",
+          "raw": "raw/hadeethenc-5913-en.json",
+          "raw_sha256": "65b91a31d726e6bad01955110730e474cdcad366fe611c18d7e209ac33c82537",
+          "title": "The best of you are those who learn the Qur’an and teach it",
+          "hadeeth": "‘Uthmān ibn ‘Affān (may Allah be pleased with him) reported: The Prophet (may Allah’s peace and blessings be upon him) said: \"The best of you are those who learn the Qur’an and teach it.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that the best and higher-standing among Muslims in the sight of Allah are those who learn the Qur’an - in terms of recitation, memorization, tartīl (measured recitation), understanding, and interpretation - and teach others the knowledge of the Qur’an that they possess, along with acting upon it.",
+          "lessons": [
+            "The Hadīth highlights the excellence of the Qur’an and that it is the best speech, for it is the word of Allah.\r",
+            "The best learners are those who teach others and do not keep the knowledge to themselves only.\r",
+            "Learning the Qur’an and teaching it comprises its recitation, meanings, and rulings."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Al-Bukhāri",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5913",
+          "raw": "raw/hadeethenc-5913-ru.json",
+          "raw_sha256": "236a6bfaa8163651502ea0a7b769c782e84880ca67394969570013dff45052ba",
+          "title": "Лучший из вас — тот, кто обучается Корану и обучает ему других",
+          "hadeeth": "От Усмана (да будет доволен им Аллах) передаётся, что Пророк (да благословит его Аллах и приветствует) сказал: «Лучший из вас — тот, кто обучается Корану и обучает ему других».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) сообщает, что лучшим из мусульман и самым высоким по степени перед Аллахом является тот, кто изучил Коран, читая его, заучивая наизусть, читая его размеренно, внимая его смыслам, изучая его толкования, обучая тем знаниям, которыми он обладает относительно наук Корана, а также практикуя и совершая поступки в соответствии с этими знаниями Корана в своей жизни.",
+          "lessons": [
+            "Хадис вещает о величии Корана и, что он является лучшим словом, ибо он — слово Аллаха.\r",
+            "Лучший из обучающихся тот, кто учит других, а не тот, кто ограничивается только собой.\r",
+            "Изучение и обучение Корану включают в себя Его чтение, изучение смыслов и законоположений."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал аль-Бухари",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5913",
+          "raw": "raw/hadeethenc-5913-uz.json",
+          "raw_sha256": "80cf3489e20796b83a3755d6ff2c4aa015030bdfb1f16876ccafd7ddbd38851a",
+          "title": "Сизларнинг энг яхшиларингиз Қуръонни ўрганиб, бошқаларга ўргатганингиздир», дедилар",
+          "hadeeth": "Усмон разияллоҳу анҳудан ривоят қилинади: «Набий соллаллоҳу алайҳи ва саллам: «Сизларнинг энг яхшиларингиз Қуръонни ўрганиб, бошқаларга ўргатганингиздир», дедилар.",
+          "explanation": "Набий соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда мусулмонларнинг энг яхшиси ва Аллоҳнинг наздида даражаси энг улуғи: Қуръоннинг тиловатини, фиқҳини, тафсирини ёдлаб, ўрганиб бошқаларга ўзи ўрганган нарсаларни ўргатиб амал қилган киши эканини хабар бердилар.",
+          "lessons": [
+            "Қуръоннинг шарафи ва у энг яхши сўз эканининг баёни, чунки у Аллоҳнинг сўзидир.\r",
+            "Таълим олувчиларнинг энг яхшиси ўзи билан чекланмасдан бошқаларга ҳам ўргатганидир.\r",
+            "Қуръонни ўрганиш ва ўргатиш унинг тиловатини, маъноларини ва аҳкомларини ўз ичига олади."
+          ],
+          "word_meanings": [],
+          "attribution": "Имом Бухорий ривояти",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5913",
+          "raw": "raw/hadeethenc-5913-tg.json",
+          "raw_sha256": "82d9bab47fc1cbd978b870b63f837619e0cad05793a1f93610649c15e832984b",
+          "title": "Беҳтарини шумо касе аст, ки Қуръонро меомӯзад ва онро ба дигарон таълим медиҳад",
+          "hadeeth": "Аз Усмон (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Беҳтарини шумо касе аст, ки Қуръонро меомӯзад ва онро ба дигарон таълим медиҳад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармудаанд, ки беҳтарини мусалмонон ва волотарини онҳо назди Аллоҳ касе аст, ки тиловат, ҳифз, тартил, фаҳм ва тафсири Қуръонро фаро гирад ва ба он амал кунад ва ончи аз худ кардааст ба дигарон низ таълим диҳад.",
+          "lessons": [
+            "Баёни шарофати Қуръони карим, ки он беҳтарин калом аст, чун он каломи Аллоҳ аст.\r",
+            "Беҳтарин омузанда ҳамон аст, ки ба дигарон низ меомӯзонад.\r",
+            "Омӯзиш ва таълими Қуръон шомили тиловат, фаҳми маонӣ ва аҳкоми он аст."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه البخاري",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

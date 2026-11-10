@@ -1,0 +1,67 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6446",
+  "library_id": "737240f9-992e-4320-8808-969b59932ab8",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6446",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "3852",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "1-شرح صحيح مسلم (140/7).\n2-فتح الباري (272/11).\n3-كنوز رياض الصالحين (5/8).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/3852",
+          "raw": "raw/hadeethenc-3852-ar.json",
+          "raw_sha256": "d733a8c381e3988fa6237dd3067aafbd7a117739cdf108997d17c7b35fb0169a",
+          "title": "بيان حقيقة الغنى والحث على الرضا بما قسم الله تعالى",
+          "hadeeth": "عن أبي هريرة رضي الله عنه عن النبي صلى الله عليه وسلم قال: «ليس الغِنَى عن كَثرَة العَرَض، ولكن الغِنَى غنى النفس».",
+          "explanation": "بين النبي صلى الله عليه وسلم أن حقيقة الغِنى ليس بكثرة المال، وإنما الغِنى الحقيقي غِنى النفس، فإذا استغنى المرء بما أوتي وقنِع به ورضي ولم يحرص على الازدياد ولا يلحَّ في الطلب، كان من أغنى الناس.",
+          "lessons": [
+            "فيه بيان حقيقة الغنى.",
+            "الحث على الرضا بما قسمه الله تعالى، وعدم الحرص على الازدياد لغير حاجة والتطلع لما في أيدي الآخرين.",
+            "الغنى النافع الممدوح هو غنى النفس؛ لأنها إذا استغنت عما في أيدي الناس وقنعت بما قسمه الله لها كفت عن المطامع، وحفزت صاحبها إلى معالي الأمور ومكارم الأخلاق."
+          ],
+          "word_meanings": [
+            {
+              "word": "العرض",
+              "meaning": " المال، وهو بفتح العين والراء."
+            }
+          ],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/3852",
+          "raw": "raw/hadeethenc-3852-en.json",
+          "raw_sha256": "32b7dff35f2e68ccfc9555affb9f65093679176a9308b0f154e5d9fab1fb2e78",
+          "title": "Richness is not the abundance of wealth. Rather, true richness is self-sufficiency",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported that the Prophet (may Allah's peace and blessings be upon him) said: \"Richness is not the abundance of wealth. Rather, true richness is self-sufficiency.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) highlights that true richness is not in the abundance of wealth. Rather, it is self-sufficiency. So a person becomes the richest of people when he sufficiently relies on what he already possesses and is contented with it, without being keen to gain more or insisting on demanding more.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/3852",
+          "raw": "raw/hadeethenc-3852-ru.json",
+          "raw_sha256": "dbddfed0b538b191c33ced1c6f97715cef9d028a29b9f6de38d3a4e81a698096",
+          "title": "Разъяснение того, что является истинным богатством, а также побуждение к довольству тем, что судил тебе Всевышний Аллах",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт, что Пророк (мир ему и благословение Аллаха) сказал: «Богатство не в изобилии имущества. Истинное богатство — богатство души».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) разъяснил, что истинное богатство — не обилие имущества. Истинное богатство — богатство души. И если человек довольствуется тем, что имеет, и не желает большего и не проявляет назойливости в просьбах, то он относится к числу самых богатых людей.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

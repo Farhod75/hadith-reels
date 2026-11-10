@@ -314,9 +314,13 @@ def main(argv=None):
 
     raws, payloads, hashes = {}, {}, {}
     for lang in LANGS:
-        b = fetch_raw(a.hadeethenc, lang)
+        b = fetch_raw(a.hadeethenc, lang, missing_ok=True)   # newer entries lack some languages
+        if b is None:
+            continue
         raws[lang], payloads[lang] = b, json.loads(b.decode('utf-8'))
         hashes[lang] = hashlib.sha256(b).hexdigest()
+    if 'ar' not in payloads:
+        sys.exit('STOP: HadeethEnc %s has no Arabic entry' % a.hadeethenc)
 
     src_ar = payloads['ar'].get('hadeeth') or ''
     variant = None

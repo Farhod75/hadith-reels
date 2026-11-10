@@ -1,0 +1,107 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6114",
+  "library_id": "5d0fd935-1b89-457e-83aa-fc7ba6818b23",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6114",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5351",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (8/ 28) (6114).\nصحيح مسلم (4/ 2014) (2609).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 198).\nتوضيح الأحكام من بلوغ المرام، للبسام (7/ 394).\nنزهة المتقين شرح رياض الصالحين، (538).\nبهجة الناظرين شرح رياض الصالحين، للهلالي (1/ 698).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5351",
+          "raw": "raw/hadeethenc-5351-ar.json",
+          "raw_sha256": "41aeefb9204ddfb60795bdd98f5ed4c37200b609244ab462d561ec988f64c862",
+          "title": "ليس الشديد بالصرعة، إنما الشديد الذي يملك نفسه عند الغضب",
+          "hadeeth": "عن أبي هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: «لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ».",
+          "explanation": "يُبَيِّنُ النبيُّ صلى الله عليه وسلم أنَّ القوةَ الحقيقيةَ ليست قوةَ الجَسَد، أو الذي يَصْرَعُ غيرَه من الأقوياء، وإنما القويُّ الشديدُ هو الذي جاهَدَ نفسَه وقَهَرَها حينما يَشتدُّ به الغضبُ؛ لأنَّ هذا يدل على قوّة تَمَكُّنِهِ من نفسه وتَغَلُّبِه على الشيطان.",
+          "lessons": [
+            "فضيلة الحِلْم وضَبْط النفس عند الغضب، وأنه من الأعمال الصالحة التي حَثَّ عليها الإسلام.",
+            "مجاهدة النفس عند الغضب أشدُّ من مجاهدة العدو.",
+            "تغيير الإسلام لمفهوم القوة الجاهلي إلى أخلاق كريمة، فأشد الناس قوّة هو مَن مَلَكَ زِمَام نفسِه.",
+            "الابتعاد عن الغضب؛ لما يسبِّبُه من الأضرار على الأفراد والمجتمع."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5351",
+          "raw": "raw/hadeethenc-5351-en.json",
+          "raw_sha256": "6c2ea109ebdec42d1c4d461d69cbae39ea00e6f8aee26ce8b158ba36fd6e7555",
+          "title": "The strong man is not the one who can overpower others; rather, the strong man is the one who controls himself when he is angry",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"The strong man is not the one who can overpower others; rather, the strong man is the one who controls himself when he is angry.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) points out that true strength is not the strength of a person's body or his ability to overpower other strong men. But a truly strong person is one who strives to control and restrain himself while in a fit of rage. This indicates the power he exercises over himself and his ability to overpower the devil.",
+          "lessons": [
+            "The Hadīth points out the merit of forbearance and self-restraint while in anger and that it is one of the righteous acts encouraged by Islam.\r",
+            "Self-restraint in the moment of anger is more difficult than striving against the enemy.\r",
+            "Islam has transformed the jāhiliyyah (ignorance) notion of strength into noble manners. The most powerful person is he who maintains great self-restraint.\r",
+            "We should avoid anger, given its harmful effects on individuals as well as society."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5351",
+          "raw": "raw/hadeethenc-5351-ru.json",
+          "raw_sha256": "673396fd9668d620dca02a0fd0220623eae648486150d352432a71b1c5b38f56",
+          "title": "Не тот силён, кто побеждает многих, силён лишь тот, кто (способен) владеть собой в гневе",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Не тот силён, кто побеждает многих, силён лишь тот, кто (способен) владеть собой в гневе».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) разъясняет, что истинная сила заключается не в силе тела или в способности одолеть других силачей. По настоящему сильный и мощный человек это тот, кто борется с самим собой и одолевает, когда им овладевает гнев. Ведь это свидетельствует о его силе над самим собой и о его способности одолеть шайтана.",
+          "lessons": [
+            "Достоинство проявления терпения и самообладания в гневе, а также то, что это входит в число добрых дел, поощряемых Исламом.\r",
+            "Бороться с собой в гневе сложнее, чем с врагом.\r",
+            "Ислам изменил доисламское невежественное понятие силы на благородные нравы. Самый могущественный человек — это тот, кто контролирует себя.\r",
+            "Необходимость избегания гнева, учитывая его пагубное влияние на людей и общество."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5351",
+          "raw": "raw/hadeethenc-5351-uz.json",
+          "raw_sha256": "698d0e6725cbc978339a890e54905732454d352502184003326b7d71ba9aad4e",
+          "title": "Курашда ғолиб бўлган киши кучли эмас, балки ғазабланганда ўзини бошқара олган киши кучлидир», – дедилар",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳудан ривоят қилинади: «Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Курашда ғолиб бўлган киши кучли эмас, балки ғазабланганда ўзини бошқара олган киши кучлидир», – дедилар.",
+          "explanation": "Расулуллоҳ соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда ҳақиқий қувват – жасаднинг қуввати ёки бошқаларни курашда енгадиган эмас, балки нафсини қаттиқ ғазаб вақтида енгадиган инсон  ҳақиқий кучли эканини хабар бермоқдалар. Чунки бу ўз нафсини бошқара олиши ва шайтонни енга олишига далолат қилади.",
+          "lessons": [
+            "Юмшоқлик ва ғазаб вақтида нафсни бошқара олишнинг фазилати. Бу ислом дини ундаган фазилатли амаллардан.\r",
+            "Ғазаб чиққан вақтда нафс билан олишиш душман билан олишишдан шиддатлироқдир.\r",
+            "Қувватнинг жоҳилий тушунчасини чиройлик хулққа алмаштиришлик. Чунки энг кучли инсон нафсини жиловлаган инсондир.\r",
+            "Халққа ва якка инсонларга зарар бермаслик учун ғазабдан узоқлашиш."
+          ],
+          "word_meanings": [],
+          "attribution": "Муттафақун алайҳ",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5351",
+          "raw": "raw/hadeethenc-5351-tg.json",
+          "raw_sha256": "7755901200db7e3ea2c45affca587303d708d99d82aff6b4978a289cc82b9649",
+          "title": "Нерӯманд касе нест, ки ҳарифро бар замин мезанад, балки нерӯманд касест, ки ҳангоми ғазаб худро идора мекунад",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Нерӯманд касе нест, ки ҳарифро бар замин мезанад, балки нерӯманд касест, ки ҳангоми ғазаб худро идора мекунад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) баён мефармоянд, ки нерӯи ростин нерӯи бадан нест, ё нерӯманд касе нест, ки паҳлавононро бар замин мезанад, балки нерӯманд касе аст, ки ҳангоми хашму ғазаб болои худ ғолиб меояд, зеро ин нишони қудрат ва пирӯзии ӯ бар шайтон аст.",
+          "lessons": [
+            "Фазилати бурдборӣ ва худдорӣ ҳангоми хашм ва инки ин амалкард аз амалҳои шоистае аст, ки дини ислом ба он ташвиқ мекунад.\r",
+            "Худдорӣ ҳангоми хашму ғазаб душвортар аз мубориза бо душман аст.\r",
+            "Ислом маъно ва мафҳуми тавон ва қудрати замони ҷоҳилӣ ва пеш аз исломро ба маънои ахлоқи  наҷиб табдил додааст, яъне тавонотарин шахс касест, ки бар худ мусаллат бошад.\r",
+            "Дурӣ кардан аз асабоният ва ғазаб, ба сабаби онки осеб ба афрод ва ҷомеа мерасонад."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

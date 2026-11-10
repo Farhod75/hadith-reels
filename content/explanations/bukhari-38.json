@@ -1,0 +1,92 @@
+{
+  "schema": 2,
+  "slug": "bukhari-38",
+  "library_id": "3a1c1495-bb14-4f53-b7f3-183b8b04a66c",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "38",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "4196",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (1/ 16) (38).\nصحيح مسلم (1/ 523) (760).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (2/ 361).\nنزهة المتقين شرح رياض الصالحين، لمصطفى الخِن وغيره (2/ 868).\nكنوز رياض الصالحين، لمجموعة من الباحثين (15/ 40).\nشرح رياض الصالحين، لابن عثيمين (5/ 270).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4196",
+          "raw": "raw/hadeethenc-4196-ar.json",
+          "raw_sha256": "667b459813ece918c1de62058fb554dfc4b4779c123f0e216c08a06b600f02f1",
+          "title": "من صام رمضان إيمانا واحتسابا غفر له ما تقدم من ذنبه",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: «مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ»",
+          "explanation": "يُخبِرُ النبيُّ صلى الله عليه وسلم أنَّ مَن صام شهر رمضان إيمانًا بالله، وتصديقًا بفَرْضِيَّةِ الصيام وما أعدَّ الله تعالى للصائمين مِن جَزيل الأجور والثواب، قاصدًا به وجهَ الله تعالى لا رياء ولا سُمْعَة، غُفرتْ له ذنوبُه الماضية.",
+          "lessons": [
+            "فضل الإخلاص وأهميته في صيام رمضان وغيره من الأعمال الصالحة."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4196",
+          "raw": "raw/hadeethenc-4196-en.json",
+          "raw_sha256": "e1e5c3be83f3e27059c3e9814e89f9c9a5ce6471501c5f46da432054988843b9",
+          "title": "Whoever fasts Ramadan, out of faith and in pursuit of reward, his past sins will be forgiven",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Whoever fasts Ramadan, out of faith and in pursuit of reward, his past sins will be forgiven.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that if a person fasts the month of Ramadan out of faith in Allah and out of belief in the obligation of fasting and the abundant reward Allah Almighty has prepared for those who observe fast, seeking thereby Allah's pleasure, without show-off or pursuit of reputation among people, his past sins will be forgiven.",
+          "lessons": [
+            "The Hadīth points out the merit of sincerity and its significance in fasting Ramadan and other righteous deeds."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4196",
+          "raw": "raw/hadeethenc-4196-ru.json",
+          "raw_sha256": "26eeabe0cd8e6aa113092ceebc50be4320964a088a9dade67cfd835ede9d257e",
+          "title": "Кто соблюдал пост в рамадан с верой и надеждой на вознаграждение Аллаха, тому будут прощены совершенные им ранее грехи",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Кто соблюдал пост в рамадан с верой и надеждой на вознаграждение Аллаха, тому будут прощены совершенные им ранее грехи».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) сообщает, что кто постится в месяце Рамадан с верой в Аллаха, потдврерждая обязательность поста и то, что Аллах уготовил для постящихся великие награды и вознаграждения, соблюдая пост ради Лика Аллаха, а не ради показухи или репутации, тому простятся его прошлые грехи.",
+          "lessons": [
+            "Достоинства искренности и её значимость при соблюдении поста в Рамадане, а также при совершении других благих деяний."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/4196",
+          "raw": "raw/hadeethenc-4196-uz.json",
+          "raw_sha256": "c359f38db1daf00ccf4804cfe9483b0b26f2d4baf75c4bb1fd99b6778f9f3a86",
+          "title": "Ким Рамазон ойи рўзасини иймон ва Аллоҳдан савоб умид қилган ҳолда тутса, унинг барча ўтган гуноҳлари кечирилади», – дедилар",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳу ривоят қиладилар: «Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Ким Рамазон ойи рўзасини иймон ва Аллоҳдан савоб умид қилган ҳолда тутса, унинг барча ўтган гуноҳлари кечирилади», – дедилар».",
+          "explanation": "Расулуллоҳ соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда ким Рамазон рўзасини Аллоҳга иймон келтириб, уни фарз эканлигини тасдиқлаб, Аллоҳ таоло тайёрлаб қўйган савобларини умид қилиб ҳамда холис Аллоҳ учун риё ва сумъа қилмасдан тутса, ўтган барча гуноҳлари кечирилишини хабар бердилар.",
+          "lessons": [
+            "Рамазон рўзасида ва бошқа солиҳ амалларда ихлоснинг фазли ва аҳамияти."
+          ],
+          "word_meanings": [],
+          "attribution": "Муттафақун алайҳ",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/4196",
+          "raw": "raw/hadeethenc-4196-tg.json",
+          "raw_sha256": "78aaeda1207dd43d87a44f870eba9150bcf9fb4d8cad47ce6122de79b929fc48",
+          "title": "Ҳар кӣ моҳи рамазонро аз рӯи имон ва барои дарёфти савоб рӯза бигирад, гуноҳони гузаштаи ӯ бахшида мешавад",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Ҳар кӣ моҳи рамазонро аз рӯи имон ва барои дарёфти савоб рӯза бигирад, гуноҳони гузаштаи ӯ бахшида мешавад\"",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) хабар медиҳад, ки ҳар касе моҳи рамазонро аз рӯи имон ба Аллоҳ ва бовар доштан ба фарзияти он ва аҷру подош, ки дар он Худованд барои рӯзадорон арзонӣ доштааст, рӯза бидорад ва ҳадафи ӯ танҳо барои Худо, на аз рӯи риё ва худнамоӣ, бошад, гуноҳони гузаштаи ӯ омӯрзида мешавад.",
+          "lessons": [
+            "Фазилати ихлос ва аҳамияти он дар рӯза доштани моҳи Рамазон ва дигар амалҳои нек."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

@@ -1,0 +1,70 @@
+{
+  "schema": 2,
+  "slug": "abudawud-4811",
+  "library_id": "9cef5580-f3a0-4471-8c1f-4bdd1f2f0a2c",
+  "collection": "Sunan Abu Dawud",
+  "hadith_number": "4811",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "66255",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "سنن أبي داود (7/ 188) (4811).\nسنن الترمذي (3/ 403) (1954).\nمسند أحمد (13/ 322) (7939).\nشرح سنن أبي داود لابن رسلان (18/ 490).\nشرح سنن أبي داود للعباد (547/ 13).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/66255",
+          "raw": "raw/hadeethenc-66255-ar.json",
+          "raw_sha256": "c24098b7a0b375019c1b3be39ac2d7726d0138c23c708c32552be8783014f702",
+          "title": "لا يشكر الله من لا يشكر الناس",
+          "hadeeth": "عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: «لَا يَشْكُرُ اللَّهَ مَنْ لَا يَشْكُرُ النَّاسَ»",
+          "explanation": "أخبر النبي صلى الله عليه وسلم أنه لا يشكر الله عادةً من لا يشكر الناس على المعروف والجميل الذي صنعوه له، وذلك لاتصال أحد الأمرين بالآخر، حيث أن من طبعه وعادته كفران نعمة الناس وترك شكرهم، سيكون من عادته كفر نعمة الله والتقصير في شكره عليها.",
+          "lessons": [
+            "أهمية شكر الناس على المعروف.",
+            "المنعم حقيقة هو الله تعالى، والخلق أسباب يسخِّرها الله تعالى لمن يشاء، ولذلك فإنَّ شكر الناس من شكر الله تعالى.",
+            "شكر الناس على معروفهم دليل على كمال الخلق."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه أبو داود والترمذي وأحمد",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/66255",
+          "raw": "raw/hadeethenc-66255-en.json",
+          "raw_sha256": "84863d917177662d7d2ab8738459ab53f6462036b7f474c7408acc012bf67085",
+          "title": "He who does not thank people in fact does not thank Allah",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported that the Prophet (ﷺ) said: \"He who does not thank people in fact does not thank Allah.\"",
+          "explanation": "The Prophet (ﷺ) informed that one who habitually does not thank people for the kindness and good they show him does not truly thank Allah because the two are connected. A person whose nature and habit are to be ungrateful to people and fail to thank them will likewise be inclined to be ungrateful for Allah's blessings and neglect showing gratitude to Him.",
+          "lessons": [
+            "The importance of thanking people for the kindness and good they do.\r",
+            "The true Bestower of blessings is Allah Almighty, while people are merely means that Allah Almighty employs to whom He wills. Therefore, thanking people is in fact part of thanking Allah Almighty.\r",
+            "Thanking people for their kindness is a sign of perfect morals."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Abu Dāwūd, At-Tirmidhi, and Ahmad",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/66255",
+          "raw": "raw/hadeethenc-66255-ru.json",
+          "raw_sha256": "93349cc2c56556005f2d5be0e7f1665ad7d4950cc267d2a894fc8d16592e2728",
+          "title": "Тот, кто не благодарит людей, не благодарит Аллаха",
+          "hadeeth": "От Абу Хурайры, да будет доволен им Аллах, передаётся, что пророк, да благословит его Аллах и приветствует, сказал: «Тот, кто не благодарит людей, не благодарит Аллаха».",
+          "explanation": "Пророк, да благословит его Аллах и приветствует, сообщил, что тот, кто обычно не благодарит людей за добро и благодеяния, оказанные ему, не благодарит и Аллаха. Это обусловлено тем, что одно связано с другим: человек, которому свойственна по природе неблагодарность людям и отказ выражать им благодарность, будет так же склонен к неблагодарности по отношению к Аллаху и к пренебрежению благодарностью за Его милости.",
+          "lessons": [
+            "Важность выражения благодарности людям за оказанное ими добро.\r",
+            "Истинный Дарующий — это Всевышний Аллах, а творения лишь причины, которые Всевышний Аллах подчиняет тем, кому пожелает, и поэтому благодарность людям является частью благодарности Всевышнему Аллаху.\r",
+            "Благодарность людям за их добро — это признак благородства и совершенства нравов."
+          ],
+          "word_meanings": [],
+          "attribution": "Передали Абу Дауд, ат-Тирмизи и Ахмад",
+          "grade": "Достоверный хадис"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

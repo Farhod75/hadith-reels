@@ -1,0 +1,76 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6412",
+  "library_id": "b3f1529b-cbf6-42a7-9f57-6708c8b511fb",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6412",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5449",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (8/ 88) (6412).\nنزهة المتقين شرح رياض الصالحين، لمجموعة من الباحثين (1/ 131).\nشرح رياض الصالحين، لابن عثيمين (2/ 65).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 180).\nتحفة الأحوذي بشرح جامع الترمذي، للمباركفوري (6/ 485).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5449",
+          "raw": "raw/hadeethenc-5449-ar.json",
+          "raw_sha256": "ac08ae8f599fc1680ef21e03b0520d5dc19539130a15c04779554a86216d605a",
+          "title": "نعمتان مغبون فيهما كثير من الناس: الصحة والفراغ",
+          "hadeeth": "عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: قَالَ النَّبِيُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: «نِعْمَتَانِ مَغْبُونٌ فِيهِمَا كَثِيرٌ مِنَ النَّاسِ: الصِّحَّةُ وَالفَرَاغُ».",
+          "explanation": "أَخْبَرَ النبيُّ صلى الله عليه وسلم عن نعمتين عظيمتين من نعم الله على الإنسان يَخْسَر فيهما كثيرٌ من الناس حيث يَصرفونها في غير محلها؛ فإن الإنسان إذا اجتمع له نعمة الصحة مع الفراغ، فغَلَبَ عليه الكسل عن الطاعة فهو الخاسر؛ وهي حال أكثر الناس، وإن استعمل فراغَه وصحتَه في طاعة الله فهو الرابح؛ حيث أن الدنيا مزرعة الآخرة، وفيها التجارة التي يظهر ربحُها في الآخرة، والفراغ يَعْقُبُه الشُّغْل، والصحة يعقبها السَّقَم، ولو لم يكن إلا الهَرَم لَكَفى.",
+          "lessons": [
+            "تشبيه المكلَّف بالتاجر، والصحة والفراغ برأس المال؛ فمن أحسن استخدام رأس ماله نال وربح، ومن ضيَّعه خَسِر ونَدِم.",
+            "قال ابن الخازن: النعمة ما يتنعّم به الإنسان ويَستَلِذُّه، والغَبْنُ أنْ يشتري بأضعاف الثمن، أو يبيع بدون ثمن المِثْل؛ فمن صحَّ بدنه وتَفَرّغ من الأشغال العاتقة ولم يَسْعَ لصلاح آخرته فهو كالمغبون في البيع.",
+            "الحرص على الاستفادة من الصحة والفراغ للتقرب إلى الله عز وجل، وفعل الخيرات قبل فواتهما.",
+            "شكر نعم الله يكون باستخدامها في طاعة الله تعالى.",
+            "قال القاضي وأبو بكر بن العربي: اختلف في أول نعمة الله على العبد، فقيل: الإيمان، وقيل: الحياة، وقيل: الصحة، والأول أولى فإنه نعمة مُطْلَقة، وأما الحياة والصحة فإنهما نعمة دنيوية، ولا تكون نعمة حقيقة إلا إذا صاحبت الإيمانَ، وحينئذ يُغْبَنُ فيها كثير من الناس، أي يذهب رِبْحُهم أو يَنْقُص، فمَن استرسل مع نفسه الأمّارة بالسوء الخالدة إلى الراحة فترك المحافظة على الحدود، والمواظبة على الطاعة فقد غُبِنَ، وكذلك إذا كان فارغًا، فإنّ المشغول قد يكون له مَعذِرة بخلاف الفارغ؛ فإنه يرتفع عنه المعذرة وتقوم عليه الحجة."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه البخاري",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5449",
+          "raw": "raw/hadeethenc-5449-en.json",
+          "raw_sha256": "b424536eca2cadf5275d560f9544a1cba502fa3cc9aeecce8b8b8852a43000a5",
+          "title": "There are two blessings in which many people incur loss: health and free time",
+          "hadeeth": "Ibn ‘Abbās (may Allah be pleased with him and his father) reported: The Prophet (may Allah's peace and blessings be upon him) said: \"There are two blessings in which many people incur loss: health and free time.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informed about two great blessings that Allah bestows upon man, in which many people suffer loss because they use them inappropriately. When a person is blessed with both health and free time but is overcome by laziness in worship, he is among the losers, and this is the case with most people. However, if a person uses his free time and health in obeying Allah, he is the winner, for this world is the cultivation ground for the Hereafter, and in it lies the trade whose profit will be realized in the Hereafter. Free time is followed by preoccupation, and health is followed by sickness; and if nothing else except old age, it would suffice as a reminder.",
+          "lessons": [
+            "The person who is held accountable for religious duties is likened to a merchant, and health and free time are compared to capital; whoever makes good use of his capital will attain success and profit, while whoever wastes it will incur loss and regret.\r",
+            "Ibn al-Khāzin said: A blessing is something a person enjoys and finds pleasure in, and 'ghabn' (deception) refers to buying something for much more than its worth or selling it for less than its actual value. So, whoever has a healthy body and is free from burdensome tasks but does not strive for the betterment of his Hereafter is like someone deceived in a sale.\r",
+            "Keenness on benefitting from health and free time to draw closer to Allah Almighty and perform good deeds before they are lost.\r",
+            "Expressing gratitude to Allah for His blessings is by utilizing them in obeying Allah Almighty.\r",
+            "Al-Qādi and Abu Bakr ibn al-‘Arabi said: There is a difference of opinion regarding the first blessing that Allah bestows upon the slave. Some say it is faith, others say it is life, and some say it is health. The first opinion is more correct, as it is an absolute blessing, whereas life and health are worldly blessings. They are only considered true blessings if accompanied by faith, and here many people are deceived regarding these blessings, i.e., their profit is lost or diminished. Whoever indulges in his evil-commanding soul that seeks only comfort, neglecting the observance of boundaries and steadfastness in obedience, is deceived. Likewise, if a person has free time, he is more accountable than someone who is busy, as the busy person might have an excuse, but the one with free time has no excuse and is informed beyond the excuse of ignorance."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Al-Bukhāri",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5449",
+          "raw": "raw/hadeethenc-5449-ru.json",
+          "raw_sha256": "c8d964e024cafdb49fac773c2fab7981374c22b591a1e73c693fdbd91eaa00d5",
+          "title": "Две милости люди не ценят должным образом: здоровье и свободное время",
+          "hadeeth": "Ибн ‘Аббас (да будет доволен Аллах им и его отцом) передаёт, что Пророк (мир ему и благословение Аллаха) сказал: «Две милости люди не ценят должным образом: здоровье и свободное время».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщил о двух великих милостях Аллаха, в которых терпят убыток многие люди, поскольку растрачивают их ненадлежащим образом. Поистине, когда у человека есть обе милости, то есть и здоровье, и свободное время, то обычно он ленив в покорности Аллаху и из-за этого оказывается в убытке, и таково положение большинства людей. Если же человек использует свободное время и здоровье в покорности Аллаху, то он в прибыли, а не в убытке, ведь мир этот является пашней для мира вечного, и в нём происходит торговля, прибыль от которой проявляется в мире вечном. Свободное время сменяется занятостью, а здравие — болезнями, и если бы единственным недугом была старость, то и этого было бы достаточно.",
+          "lessons": [
+            "Человек, на котором лежат религиозные обязанности, сравнивается с торговцем, а здоровье и свободное время сравниваются с капиталом: кто использовал свой капитал наилучшим образом, тот получил и остался в прибыли, а кто растратил его, то оказался в убытке и будет сожалеть.\r",
+            "Ибн аль-Хазин сказал: «Милость есть то, чем человек наслаждается и от чего получает удовольствие, а словом \"габн\" обозначается тот случай, когда человек покупает что-то втридорога или же, наоборот, продаёт по дешёвке, ниже обыкновенной цены. Соответственно, если человек, здоровый телом и не отягощённый множеством задач, тем не менее не старается обеспечить себя благой жизнью в мире вечном, то он подобен тому, кто был обманут в торговле».\r",
+            "Побуждение использовать здоровье и свободное время для приближения к Всемогущему и Великому Аллаху и совершать благие деяния до того, как станет слишком поздно.\r",
+            "Благодарность за милости Аллаха осуществляется посредством использования этих милостей в покорности Всевышнему Аллаху.\r",
+            "Аль-Кады и Абу Бакр ибн аль-'Араби сказали: «Учёные разошлись во мнениях относительно первой милости Аллаха к рабу Своему. Одни сказали, что это вера. Говорили также, что это жизнь. И говорили ещё, что это здравие. Первое мнение наиболее весомое, потому что это абсолютная милость, тогда как жизнь и здравие являются мирскими благами и настоящей милостью они становятся только в сочетании с верой. И вот здесь многие люди оказываются обделёнными и обманутыми в отношении них, и они лишаются своей прибыли либо уменьшают её. Кто идёт на поводу у души своей, побуждающей к скверному и стремящейся к отдыху, и перестаёт соблюдать установленные Всевышним ограничения и отказывается от постоянства в покорности Аллаху, тот остаётся обманутым. И также если у него есть свободное время, потому что у занятого может быть уважительная причина в отличие от свободного, у которого оправданий нет и против которого таким образом получен довод»."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал аль-Бухари",
+          "grade": "Достоверный хадис"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

@@ -1,0 +1,97 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6406",
+  "library_id": "eb94dcdb-9b66-4aa6-b30d-1515eb6a5d65",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6406",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5507",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (8/ 86) (6406).\nصحيح مسلم (4/ 2072) (2694).\nمنحة العلام في شرح بلوغ المرام،  لعبد الله الفوزان (10/ 480).\nفتح ذي الجلال والإكرام بشرح بلوغ المرام، لابن عثيمين (6/ 519).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5507",
+          "raw": "raw/hadeethenc-5507-ar.json",
+          "raw_sha256": "496699f9ba07155a279b61b3be64f7c3026c18de9db30985b000cf73de5b1b20",
+          "title": "كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن",
+          "hadeeth": "عن أبي هريرة رضي الله عنه عن النبي صلى الله عليه وسلم قال: «كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللهِ الْعَظِيمِ، سُبْحَانَ اللهِ وَبِحَمْدِهِ».",
+          "explanation": "أَخبرَ النبيُّ صلى الله عليه وسلم عن كلمتين يَنطِقُهما الإنسان بلا مَشقَّة وعلى كل حال، وأنهما عظيم أجرهما في الميزان، وأنَّ ربَّنا الرحمن تبارك وتعالى يُحبُّهما: \n\nسبحان الله العظيم، سبحان الله وبحمده؛ لما تَضَمَّنتاه من وصف الله بالعظمة والكمال، وتنزيهه عن النقائص تبارك وتعالى.",
+          "lessons": [
+            "أعظم الذكر أن يُجْمَعَ فيه بين تنزيهِ الله والثناءِ عليه.",
+            "بيان سعة رحمة الله بعباده، فهو يجزي على العمل القليل بالثواب الجزيل."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5507",
+          "raw": "raw/hadeethenc-5507-en.json",
+          "raw_sha256": "7a946fa42a4e017bc7fcf52eee88b65e9d71dbda31c3dc7dead6f34f291c69b0",
+          "title": "There are two words that are light on the tongue, heavy on the scale, and dear to the Most Merciful",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Prophet (may Allah's peace and blessings be upon him) said: \"There are two words that are light on the tongue, heavy on the scale, and dear to the Most Merciful: subhān Allah al-‘azhīm (glory be to Allah, the Majestic), subhān Allah wa bihamdih (glory and praise be to Allah).\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) told about two words that the tongue utters without effort and in any condition, they bring great reward when weighed on the scale, and the Most Merciful Lord loves them:\r\n\r\nGlory be to Allah, the Majestic; glory and praise be to Allah. This is because these two words contain attributes of greatness and perfection of Allah Almighty and exalting Him far above defects and imperfections.",
+          "lessons": [
+            "The best dhikr is that which combines the exaltation of Allah and praise of Him.\r",
+            "The Hadīth shows Allah's vast mercy to His servants, as He gives abundant rewards in return for simple deeds."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5507",
+          "raw": "raw/hadeethenc-5507-ru.json",
+          "raw_sha256": "b350c9b313fecd2bb17a75b97e2b72ea426c53b9d3cfd876b23c7613b6c68228",
+          "title": "Два слова легкие для языка, тяжелые на весах, любимые для Милостивого",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Пророк (да благословит его Аллах и приветствует) сказал: «Два слова легкие для языка, тяжелые на весах, любимые для Милостивого: Субхана-Ллахи-ль-‘азым, субхана-Ллахи ва би-хамди-хи /Пречист Великий Аллах, Пречист Аллах и хвала Ему/».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) поведал о двух словах, которые человек произносит, не прилагая труда, и при любых обстоятельствах, и о том, что награда на Весах в Судный День за их произношение велика, а также, что наш Милостивый Господь, Благословен Он и Возвышен, любит их.\r\n\r\nСубхана-Ллахи-ль-‘азым, субхана-Ллахи ва би-хамди-хи /Пречист Великий Аллах, Пречист Аллах и хвала Ему/ - эти слова содержат в себе описание Аллаха величием, совершенством и абсолютной чистотой Его, Благословен Он и Возвышен, от любых недостатков.",
+          "lessons": [
+            "Величайшее поминание Аллаха — это то, которое содержит в себе придание абсолютной святости Аллаху и Его восхваление.\r",
+            "В этом хадисе ярко проявляется безграничная милость Аллаха по отношению к Своим рабам. Он щедро вознаграждает даже за самые незначительные благие деяния, умножая их награду многократно."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5507",
+          "raw": "raw/hadeethenc-5507-uz.json",
+          "raw_sha256": "b68d38965568f19020a86fa8cda6adeb981c903c7252575f8de5270502421577",
+          "title": "Икки калима борки, улар тилга енгил, тарозида оғир ва Раҳмонга маҳбуб",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳу ривоят қиладилар: «Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Икки калима борки, улар тилга енгил, тарозида оғир ва Раҳмонга маҳбуб, улар: “Субҳаналлоҳи ва биҳамдиҳи, Субҳаналлоҳил аъзийм», – дедилар.",
+          "explanation": "Пайғамбаримиз соллаллоҳу алайҳи ва саллам ҳар қандай ҳолатда нутқ қилиш машаққатсиз, осон, тарозида ажри улуғ ҳамда Раббимиз Раҳмон таоло яхши кўрадиган икки сўз ҳақида хабар бердилар. Улар:\r\n\r\n«Субҳаналлоҳи ва биҳамдиҳи, Субҳаналлоҳил аъзийм» \nБу сўзлар Аллоҳни улуғлик ва камолот билан васфлаш, ҳамда У Зотни ҳар қандай нуқсонлардан поклашни ўз ичига олади.",
+          "lessons": [
+            "Зикрнинг энг улуғи, Аллоҳни поклаш ва Уни мақташни ўз ичига олган зикрдир.\r",
+            "Аллоҳ раҳматининг кенглиги. У Зот оз амалга ҳам кўп савоб беради."
+          ],
+          "word_meanings": [],
+          "attribution": "Муттафақун алайҳ",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5507",
+          "raw": "raw/hadeethenc-5507-tg.json",
+          "raw_sha256": "6311c9ef1b2fe27ca34f0ac22befcd5cc28862c8c3ab79bd8d3e498ced09504f",
+          "title": "Ду калимае аст, ки дар забон бисёр сабук, дар тарозу сангин ва назди Худованд маҳбуб ҳастанд",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуд: \"Ду калимае аст, ки дар забон бисёр сабук, дар тарозу сангин ва назди Худованд маҳбуб ҳастанд: \"Субҳоналлоҳи-л-ъазим\" ва\n\"Субҳоналлоҳи ва биҳамдиҳи\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) дар бораи ду калима фармуданд, ки инсон ба осонӣ ва дар ҳар ҳолате метавонад ба забон оварад, подоши онҳо дар мизон бисёр бузург аст ва Худованд он ду калимаро дӯст медорад:\r\n\r\n\"Субҳоналлоҳил-азим\" ва \"Субҳоналлоҳи ва биҳамдиҳи\", дар ин ду калима васфи Худованд ба азамат ва камол ва танзиҳи Ӯ Таборак ва Таъоло аз навоқис аст.",
+          "lessons": [
+            "Бузургтарин зикр ҳамон аст, ки танзиҳ ва ситоиши Аллоҳ дар он ҷамъ оянд.\r",
+            "Баёни вусъати раҳмати Аллоҳ бар бандагон, ки Ӯ Таъоло барои амали андак подоши бузург медиҳад."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

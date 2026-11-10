@@ -1,0 +1,86 @@
+{
+  "schema": 2,
+  "slug": "bukhari-1417",
+  "library_id": "9e68cdff-a73f-41ca-b6db-1edebb774fc2",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "1417",
+  "library_is_excerpt": true,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "6615",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (9/ 148) (7512).\nصحيح مسلم (2/ 703) (1016).\nكنوز رياض الصالحين، لمجموعة من الباحثين.\nبهجة الناظرين، لسليم الهلالي (1/ 476).\nنزهة المتقين، مجموعة من الباحثين (1/ 370).\nشرح رياض الصالحين، لابن عثيمين (2/ 201).\nبهجة قلوب الأبرار، عبد الرحمن آل سعدي (ص181).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/6615",
+          "raw": "raw/hadeethenc-6615-ar.json",
+          "raw_sha256": "6b43d8e551b5d1793bc86f0ce654d1d33425654fb65d617f8fdb667a5b446a08",
+          "title": "ما منكم من أحد إلا سيكلمه الله، ليس بينه وبينه ترجمان",
+          "hadeeth": "عَنْ عَدِيِّ بْنِ حَاتِمٍ رضي الله عنه قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: «مَا مِنْكُمْ مِنْ أَحَدٍ إِلَّا سَيُكَلِّمُهُ اللهُ، لَيْسَ بَيْنَهُ وَبَيْنَهُ تُرْجُمَانٌ، فَيَنْظُرُ أَيْمَنَ مِنْهُ فَلَا يَرَى إِلَّا مَا قَدَّمَ، وَيَنْظُرُ أَشْأَمَ مِنْهُ فَلَا يَرَى إِلَّا مَا قَدَّمَ، وَيَنْظُرُ بَيْنَ يَدَيْهِ فَلَا يَرَى إِلَّا النَّارَ تِلْقَاءَ وَجْهِهِ، فَاتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ».",
+          "explanation": "يُخْبِرُ النبيُّ صلى الله عليه وسلم بأنَّ كلَّ مؤمن سيقف بين يدي الله يوم القيامة لوحدِه، وأنّ الله تعالى سيُكلّمه بدون واسطة وليس بينهما مترجم يترجم الكلام، فينظر جهة اليمين والشمال من شدة الفزع، ولعله أن يجد طريقًا يذهب فيها ليحصل له النجاة من النار التي هي أمامه. \nفإذا نظر في الجانب الذي على يمينه فلا يرى إلا ما قدَّمَ من العمل الصالح، \nوإذا نظر عن شماله فلا يرى إلا ما قدَّم من العمل السيء، \nوإذا نظر أمامه فلا يرى إلا النار، ولا يمكنه أن يَحيدَ عنها إذ لا بدّ له من المرور على الصراط. \nثم قال صلى الله عليه وسلم: اجعلوا بينكم وبين النار وقاية من الصدقة وعمل البر، ولو بشيء يسير كنصف تمرة.",
+          "lessons": [
+            "الحث على الصدقات وإن قَلَّتْ والتَّخَلُّق بالخصال الحميدة، والمعاملة باللطف ولين الكلام.",
+            "قرب الله تعالى من عبده يوم القيامة، إذ ليس بينهما حجاب ولا واسطة ولا ترجمان، فليَحذَر المؤمن من مخالفة أمر ربه.",
+            "ينبغي على المرء أن لا يحتقر ما يتصدق به، ولو كان يسيرًا، فإنه وقاية من النار."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/6615",
+          "raw": "raw/hadeethenc-6615-en.json",
+          "raw_sha256": "2a84a219e2d6566f5e0d1fd84956c507dcf9efc8d384230f1f4a02758f227e47",
+          "title": "There is none among you except that Allah will speak to him, with no interpreter between Him and him",
+          "hadeeth": "‘Adyy ibn Hātim (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"There is none among you except that Allah will speak to him, with no interpreter between Him and him. He will look to his right and see nothing except what he has sent forth, and he will look to his left and see nothing except what he has sent forth. And he will look ahead of him and see nothing except Hellfire in front of him. So, protect yourselves from Hellfire even with half a date.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that every believer will stand alone before Allah on the Day of Resurrection and that Allah Almighty will speak to him without an intermediary or interpreter between them to translate the words. He will look to the right and left out of extreme fear, hoping that he will find a way in which he can go and attain salvation from the Hellfire that lies in front of him. If he looks to the right side, he will see nothing but the good deeds he has sent forth. If he looks to his left, he will see nothing but the bad deeds he has sent forth. And if he looks ahead of him, he will see nothing but Hellfire and cannot turn away from it, as he must pass over the Sirāt (a bridge over Hellfire). Then, the Prophet (may Allah's peace and blessings be upon him) said: Put a shield between yourselves and the Hellfire by charity and pious acts, even if it is something little, like half a date.",
+          "lessons": [
+            "The Hadīth urges giving out charity, adopting praisworthy traits, treating people gently, and speaking tenderly.\r",
+            "It indicates Allah's closeness to His servant on the Day of Judgment since there is neither a barrier, an intermediary, nor a translator between them. So, a believer should beware of violating the command of his Lord.\r",
+            "A believer should not underestimate anything he gives out in charity, even if it is little, for it grants protection against Hellfire."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/6615",
+          "raw": "raw/hadeethenc-6615-ru.json",
+          "raw_sha256": "a43da66e5c7ecd137eaed21de39b7e68577295829cb55052e5fd7103e4f01433",
+          "title": "Не найдётся среди вас такого, с кем Господь не станет говорить без толмача",
+          "hadeeth": "‘Ади ибн Хатим (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Не найдётся среди вас такого, с кем Господь не станет говорить без толмача. И человек посмотрит направо и не увидит ничего, кроме своих деяний, и посмотрит налево, и не увидит ничего, кроме своих деяний, а потом посмотрит вперёд и не увидит перед лицом своим ничего, кроме Огня... Так защитите же себя от Огня хотя бы с помощью половинки финика!»",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщил, что каждый верующий предстанет пред Аллахом в Судный день в одиночестве, и Всевышний Аллах станет говорить с ним без посредника, и не будет между ними переводчика, который переводил бы сказанное. И он посмотрит направо и налево от охватившего его ужаса в надежде найти путь к спасению от Огня, который будет прямо перед ним. Но, посмотрев направо, он не увидит ничего, кроме совершённых им благих дел, а посмотрев налево, он не увидит ничего, кроме совершённых им дурных дел. Посмотрев же перед собой, он увидит только Огонь и не сможет никак обойти его, поскольку ему необходимо будет пройти по мосту ас-Сырат. Затем Пророк (мир ему и благословение Аллаха) сказал: «Создайте между вами и Огнём преграду из милостыни и благих деяний, пусть даже это будет что-то незначительное, как половинка финика».",
+          "lessons": [
+            "Побуждение подавать милостыню, пусть даже небольшую, а также обладать благими нравственными качествами и относиться к другим по-доброму и говорить с ними мягко.\r",
+            "Близость Всевышнего Аллаха к Своему рабу в Судный день: между ними не будет ни завесы, ни посредника, ни толмача. Так пусть же верующий остерегается поступать наперекор велениям Господа своего.\r",
+            "Человек не должен считать слишком ничтожным то, что подаёт в качестве милостыни, даже если это что-то небольшое и незначительное, потому что любая милостыня послужит ему защитой от Огня."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/6615",
+          "raw": "raw/hadeethenc-6615-tg.json",
+          "raw_sha256": "46e2e7bc6bad8b883a36057c1047cc0b1d845b723c77abec4e1689b7862dc30f",
+          "title": "Ҳар яке аз шумо ҳатман Парвардигораш бо ӯ сухан мегӯяд, — бе ягон тарҷумоне байни ӯ ва Худованд",
+          "hadeeth": "Аз Адий ибни Ҳотим (разияллоҳу анҳу) ривоят аст, ки гуфт: Паёмбар (саллаллоҳу алайҳи ва саллам) фармуданд: \"Ҳар яке аз шумо ҳатман Парвардигораш бо ӯ сухан мегӯяд, — бе ягон тарҷумоне байни ӯ ва Худованд. Ба тарафи рост нигоҳ мекунад, чизе ҷуз аъмоле, ки анҷом додааст, намебинад; ба тарафи чап нигоҳ мекунад, боз ҳам чизе ҷуз амалҳояш намебинад; ба пеши рӯяш менигарад, дар рӯ барӯяш танҳо дӯзахро мебинад. Пас, худро аз оташи дӯзах наҷот диҳед, ҳарчанд бо нисфи донаи хурмое бошад (бо садақа кардан).\"",
+          "explanation": "Паёмбар (саллаллоҳу алайҳи ва саллам) хабар медиҳад, ки ҳар як шахс дар рӯзи қиёмат танҳо, бе ягон восита, дар назди Худованд қарор мегирад ва Парвардигор бевосита бо ӯ сухан мегӯяд, бе тарҷумон. Аз шиддати тарс ва нигаронӣ, ба тарафи рост ва чап менигарад, шояд роҳе пайдо кунад, ки худро аз оташи дар рӯ ба рӯяш истода наҷот диҳад. Чун ба тарафи рост нигоҳ мекунад, чизе ҷуз аъмоли некӣ пешфиристодааш намебинад; ба тарафи чап менигарад, ҷуз аъмоли бади худ чизе намебинад. Чун ба пеш менигарад, ҷуз дӯзах чизеро намебинад. Чорае барои гурез надорад, зеро маҷбур аст аз болои сирот гузарад. Паёмбар (саллаллоҳу алайҳи ва саллам) мегӯяд: Байни худ ва оташи дӯзах сипаре ва муҳофизе ба воситаи садақа ва амалҳои нек қарор диҳед, ҳатто агар ин садақа нисфи донаи хурмо бошад.",
+          "lessons": [
+            "Тарғиб ба садақа кардан, ҳатто агар андаке ҳам бошад; ва ташвиқ ба ороста шудан бо ахлоқи нек, муомилаи нарму хуб бо мардум.\r",
+            "Наздик будани Худои Таъоло ба бандааш дар рӯзи қиёмат, ки байни онҳо на пардае хоҳад буд, на восита ва на тарҷумоне. Бинобар ин, муъмин бояд аз нофармонӣ ба Парвардигораш барҳазар бошад.\r",
+            "Инсон набояд садақаи андаке, ки медиҳад, кам шуморад, ҳатто агар ночиз ҳам бошад, зеро он метавонад сипаре аз оташи ҷаҳаннам гардад."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

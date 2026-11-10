@@ -1366,6 +1366,10 @@ the operator first - see the #6675 retro.
   Pilot BUILT 2026-11-10: /hadith/muslim/2699 - full text + 1 related event (Bukhari, Uhud; Arabic only until
   HadeethEnc translates 65557). Not added: Umar/Abu Musa "ذكرنا ربنا" (ad-Darimi 3525: Husayn Asad - two defects)
   and Uthman ibn Abi al-As "youngest, knew most Qur'an" (Ibn Sa'd / Ibn Hisham, no grading found yet).
+- **OPEN 2026-11-10: explanation backfill (P387)** - 34/57 published hadiths have a page. Left: 17 with no
+  HadeethEnc match (an-Nawawi / other sources later), 3 variants to read (Abu Dawud #1488 - library lacks اليه;
+  Muslim #2747 - diff empty but not contained, check; Muslim #223 - فبايع/فبائع), 3 Arabic-only at HadeethEnc
+  (Tirmidhi #1956, Bukhari #1773, #1903). Report: out/hadeethenc-map.tsv (`find-hadeethenc.py --published`).
 - **OPEN 2026-11-10: library row Sahih Muslim #2699 lacks بِهِ** ("سهل الله له به طريقا" in Muslim's text, HadeethEnc
   4801). Recorded in content/explanations/muslim-2699.json `matn_variant`. An Arabic reader decides (P265).
 

@@ -1,0 +1,97 @@
+{
+  "schema": 2,
+  "slug": "muslim-82",
+  "library_id": "0f8ce038-5fe0-4a1d-9f63-7f9e4d18fb0a",
+  "collection": "Sahih Muslim",
+  "hadith_number": "82",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "65093",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (1/ 88) (82)، المفهم لما أشكل من تلخيص كتاب مسلم (1/ 271)، البحر المحيط الثجاج في شرح صحيح الإمام مسلم بن الحجاج (2/ 622).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/65093",
+          "raw": "raw/hadeethenc-65093-ar.json",
+          "raw_sha256": "aa54cf7613c52f7d345815d83fa55fefc7f2ded510b88c7d2c2bbb3ac41bc280",
+          "title": "إن بين الرجل وبين الشرك والكفر ترك الصلاة",
+          "hadeeth": "عن جابرٍ رضي الله عنه قال: سمعت النبي صلى الله عليه وسلم يقول: «إِنَّ بَيْنَ الرَّجُلِ وَبَيْنَ الشِّرْكِ وَالْكُفْرِ تَرْكَ الصَّلَاةِ».",
+          "explanation": "حَذَّرَ النبيُّ صلى الله عليه وسلم مِن تَرْكِ الصلاة المفروضة، وأخبر أنَّ بَين الرجلِ وبين الوقوعِ في الشرك والكفر تركَ الصلاة، فالصلاةُ الركنُ الثاني من أركان الإسلام، وشأنُها عظيمٌ في الإسلام، فمَن تَرَكَها جاحدًا لوجوبها كَفَرَ بإجماع المسلمين، وإنَّ تركها بالكلية تهاونًا وكسلًا فهو كافر، ونُقل إجماع الصحابة على ذلك، وإنَّ كان يترك أحيانًا ويُصلّي أحيانًا فهو مُعَرَّض لهذا الوعيد الشديد.",
+          "lessons": [
+            "أهميَّة الصلاة والمحافظة عليها، فهي الفارق بين الكفر والإيمان.",
+            "التحذير الشديد من ترك الصلاة وإضاعتها."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/65093",
+          "raw": "raw/hadeethenc-65093-en.json",
+          "raw_sha256": "5db49e8f8521a5aa1b73a07e632f85fdaae7139aafb31e6071285a927b4af900",
+          "title": "What stands between a man and polytheism and disbelief is the abandonment of the prayers",
+          "hadeeth": "Jābir (may Allah be pleased with him) reported: I heard the Prophet (may Allah’s peace and blessings be upon him) say: \"What stands between a man and polytheism and disbelief is the abandonment of the prayers.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) warned against abandoning the obligatory prayers and informed us that what stands between a man and falling into Shirk (polytheism) and disbelief is the abandonment of prayer. Prayer is the second pillar of Islam and is of great significance in this religion. Whoever abandons it out of denial of its obligation has become a disbeliever by consensus among the Muslims, and whoever abandons it altogether out of negligence or lethargy is a disbeliever, a ruling the Companions are reported to have agreed upon unanimously. But if a person abandons it sometimes and performs it at other times, he is subject to this stern warning.",
+          "lessons": [
+            "The Hadīth stresses the significance of prayer and its observance, for it is the distinguishing feature between disbelief and belief.\r",
+            "It gives a severe warning against abandoning and neglecting the prayers."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/65093",
+          "raw": "raw/hadeethenc-65093-ru.json",
+          "raw_sha256": "0cede48dd392a5504c4180516859046b90234ab4794dafff27c870a82499bdd5",
+          "title": "Между человеком и многобожием и неверием — оставление молитвы",
+          "hadeeth": "От Джабира (да будет доволен им Аллах) передаётся, что он слышал, как Пророк (да благословит его Аллах и приветствует) говорил: «Между человеком и многобожием и неверием — оставление молитвы».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) предостерег от оставления обязательной молитвы и разъяснил, что между человеком и впадением в ширк (многобожие) и куфр (неверие) стоит именно оставление молитвы. Молитва является вторым столпом ислама, и её положение в Исламе имеет огромное значение. Тот, кто оставляет её, отрицая обязательность молитвы  становится кафиром (неверующим) по единогласному мнению мусульман. Тот же, кто полностью оставляет её, из-за лени и небрежности по отношению к ней, он также является неверующим, что передано и подтверждено консенсусом сподвижников. А тот, кто иногда совершает молитву, а иногда пропускает её, подвергается серьезному предупреждению и рискует попасть под этот суровый приговор, о котором было сказано выше.",
+          "lessons": [
+            "Важность молитвы и её постоянного соблюдения, поскольку она является различительной чертой между неверием и верой.\r",
+            "Строгое предостережение от оставления молитвы и пренебрежения ею."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/65093",
+          "raw": "raw/hadeethenc-65093-uz.json",
+          "raw_sha256": "830975ec4d3ced7bd4af76452dd4cf7af577fc316244123f976fcb7fdd7de118",
+          "title": "Киши билан ширк ва куфр ўртасида намозни тарк қилишгина бор",
+          "hadeeth": "Жобир разияллоҳу анҳудан ривоят қилинади: «Набий соллаллоҳу алайҳи ва салламнинг шундай деганларини эшитдим: «Киши билан ширк ва куфр ўртасида намозни тарк қилишгина бор».",
+          "explanation": "Набий соллаллоҳу алайҳи ва саллам фарз намозни тарк қилишдан қайтардилар. Киши ва ширкка ёки куфрга тушиб қолиш ўртасида фақат намозни тарк қилиш туради. Намоз ислом рукнларининг иккинчиси ва исломда унинг  қадри улуғ. Ким уни вожиблигини инкор қилса, кофир бўлишига уламолар ижмоъ қилишган. Ким эътиборсиз ва такасалтанглик қилиб барча намозларни ташласа ҳам кофир экалигига саҳобалар ижмоъ қилгани нақл қилинган. Ким баъзида ўқиб баъзида тарк қилса шу таҳдид остига тушиб қолиш эҳтимоли бор.",
+          "lessons": [
+            "Намознинг аҳамияти  ва унга махкам бўлиш лозимлиги. Чунки намоз иймон ва куфр ўртасини ажратиб турадиган амал.\r",
+            "Намозни тарк қилиш ва зое қилишдан қаттиқ огоҳлантириш."
+          ],
+          "word_meanings": [],
+          "attribution": "Имом Муслим ривояти",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/65093",
+          "raw": "raw/hadeethenc-65093-tg.json",
+          "raw_sha256": "1e54b306fd38b7afec0b9fac80092dcee638be7090c68736ca2d1527b9861f04",
+          "title": "Миёни шахс ва ширку куфр, тарки намоз аст",
+          "hadeeth": "Аз Ҷобир (разияллоҳу анҳу) ривоят аст, ки гуфт: Паёмбар (саллаллоҳу алайҳи ва саллам)-ро шунидам, ки мегуфт: \"Миёни шахс ва ширку куфр, тарки намоз аст.\"",
+          "explanation": "Паёмбар (саллаллоҳу алайҳи ва саллам) аз тарки намози фарз ҳушдор дода ва баён намуданд, ки миёни шахс ва афтоданаш дар ширк ва куфр, тарки намоз аст. Зеро намоз дувумин рукни аркони Ислом аст, ки дар Ислом аҳамияти бузурге дорад. Агар касе воҷиб будани намозро инкор карда, онро нахонад, бо иҷмоъи мусалмонон кофир мешавад. Вале агар онро аз рӯйи саҳлангорӣ ва танбалӣ ба таври комил тарк кунад, кофир аст ва иҷмоъи саҳобаро дар ин бора нақл кардаанд. Ва агар гоҳ таркаш кунад ва гоҳ адояш кунад, дучори ин таҳдид ва ваъиди шадид қарор дорад.",
+          "lessons": [
+            "Аҳамияти намоз ва мудовимат бар он, зеро намоз фосила миёни куфр ва имон аст.\r",
+            "Огоҳӣ ва ҳушдори сахт барои тарки намоз ва зоеъ сохтани он."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

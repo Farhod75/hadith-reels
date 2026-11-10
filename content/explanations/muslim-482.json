@@ -1,0 +1,97 @@
+{
+  "schema": 2,
+  "slug": "muslim-482",
+  "library_id": "10db7ea7-581b-4b42-9639-eaedec1ffa2d",
+  "collection": "Sahih Muslim",
+  "hadith_number": "482",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5382",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (1/ 350) (482).\nشرح رياض الصالحين، لابن عثيمين (5/ 509).\nتطريز رياض الصالحين، لفيصل المبارك (ص780).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (2/ 506).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5382",
+          "raw": "raw/hadeethenc-5382-ar.json",
+          "raw_sha256": "86c19551dceffe8151bc864144f5b0a6cd1b6c30550011b709e1f0f13a1ca26c",
+          "title": "أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا الدعاء",
+          "hadeeth": "عن أبي هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: «أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ، فَأَكْثِرُوا الدُّعَاءَ».",
+          "explanation": "بَيَّنَ النبيُّ صلى الله عليه وسلم أنَّ أقربَ ما يكون العبد من ربه وهو ساجد؛ وذلك أنّ المصليَ يَضعُ أعلى وأشرف ما في جسده على الأرض خضوعًا وتَذَلُّلًا وتواضعًا لله عز وجل وهو ساجد.\n\nوقد أمر صلى الله عليه وسلم بالإكثار من الدعاء في السجود، فيجتمع في ذلك التَذَلُّلُ لله بالقول والفعل.",
+          "lessons": [
+            "الطاعة تزيدُ العبدَ قُرْبًا مِن الله سبحانه وتعالى.",
+            "استحبابِ كثرةِ الدعاء في السجود؛ لأنه من مواطن الإجابة."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5382",
+          "raw": "raw/hadeethenc-5382-en.json",
+          "raw_sha256": "7b49646a36b7e6b7a48dcec669099829f4be4123a540379bd8aeb2cfb111c1fb",
+          "title": "The nearest a slave to his Lord is while he is prostrating, so increase supplication",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"The nearest a slave to his Lord is while he is prostrating, so increase supplication.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) pointed out that the closer a servant comes to his Lord is when he is prostrating, for he puts the highest and noblest part of his body on the ground in submission and humility to Allah Almighty.\r\n\r\nThe Prophet (may Allah's peace and blessings be upon him) ordered us to increase supplication while prostrating. Thus, we become submissive to Allah both by words and action.",
+          "lessons": [
+            "Acts of piety draw a servant closer to Allah Almighty.\r",
+            "It is recommended to supplicate a lot during prostration, for supplication is likely to be answered in this position."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5382",
+          "raw": "raw/hadeethenc-5382-ru.json",
+          "raw_sha256": "9defb41c279c4c6f754fa04bd7e1acda54dae91f96aba5de5174e7bc0696b0f2",
+          "title": "Ближе всего к своему Господу раб бывает во время совершения земного поклона, так почаще же обращайтесь к Нему с мольбами (в такие моменты)",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Ближе всего к своему Господу раб бывает во время совершения земного поклона, так почаще же обращайтесь к Нему с мольбами (в такие моменты)».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) пояснил, что ближе всего к своему Господу раб пребывает тогда, когда находится в земном поклоне. Так как молящийся кладёт на землю самую высокую и самую почитаемую часть своего тела, выражая тем самым покорность, унижение и смирение пред  Всемогущим и Великим Аллахом в состоянии земного поклона.\r\n\r\nПророк (да благословит его Аллах и приветствует) велел часто обращаться с мольбами в земном поклоне, сочетая тем самым смирение перед Аллахом как в словах, так и на деле.",
+          "lessons": [
+            "Послушание увеличивает приближение раба к Аллаху, Пречист Он и Возвышен.\r",
+            "Желательность часто обращаться с мольбой в земном поклоне, так как это одно из положений, когда принимается мольба."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5382",
+          "raw": "raw/hadeethenc-5382-uz.json",
+          "raw_sha256": "5a0638d9a638f0c1c40e6e73e513e02d4f36b779cffae1cbf0a5547fc6511912",
+          "title": "Банда Раббисига энг яқин бўладиган вақти бу сажда қилган холатидир. Бас (саждада) дуони кўпайтиринглар» – дедилар",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳудан ривоят қилинади: «Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Банда Раббисига энг яқин бўладиган вақти бу сажда қилган холатидир. Бас (саждада) дуони кўпайтиринглар» – дедилар.",
+          "explanation": "Пайғамбаримиз соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда банда Раббисига саждада энг яқин бўлишини хабар бердилар. Чунки намоз ўқувчи танасининг энг афзал аъзосини Аллоҳ азза ва жаллага тавозеълик қилиб, бўйсуниб ва ўзини хўр тутиб пешонасини саждагоҳга қўяди.\r\n\r\nШунинг учун Расулуллоҳ соллаллоҳу алайҳи ва саллам саждада дуони кўпайтиришга буюрдилар. Шундай қилиб бандада сўз ва феъл билан Аллоҳга ўзини хўр тутиш жамланади.",
+          "lessons": [
+            "Тоат-ибодатлар бандани Аллохга яқинлаштиради.\r",
+            "Саждада дуони кўпайтиришнинг мустаҳаблиги, чунки сажда дуо ижобат бўладиган ўринлардандир."
+          ],
+          "word_meanings": [],
+          "attribution": "Имом Муслим ривояти",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5382",
+          "raw": "raw/hadeethenc-5382-tg.json",
+          "raw_sha256": "1c2991a492dc7cfc256cf47aaffd65664add67a9c28ce4d94eb34eebb67a176b",
+          "title": "Лаҳзаи наздиктарини банда ба Парвардигораш дар ҳоли саҷда будан аст, пас дар ин лаҳза бисёр дуо кунед",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Лаҳзаи наздиктарини банда ба Парвардигораш дар ҳоли саҷда будан аст, пас дар ин лаҳза бисёр дуо кунед\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) баён намуданд, ки наздиктарин ҳолати банда ба Парвардигор дар ҳолати саҷда будан аст, зеро дар ин ҳолат намозгузор гиромитарин узви бадани худро аз рӯи фурӯтанӣ ва хоксорӣ ва тавозуъ дар баробари Аллоҳи Мутаъол, бар замин мегузорад.\r\n\r\nПаёмбар (Салому дуруди Аллоҳ бар ӯ бод) дастур додаанд, ки банда то метавонад дар ҳоли саҷда бештар дуо кунад, ки он фурӯтанӣ назди Худованд дар қавл ва дар амалро ба ҳам меорад.",
+          "lessons": [
+            "Тоату ибодат бандаро ба Аллоҳи Мутаъол наздиктар мекунад.\r",
+            "Бисёр дуо кардан дар ҳоли саҷда амали мустаҳаб аст, зеро он аз ҳолатҳое аст, ки дуо қабул мешавад."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "slug": "muslim-1631",
+  "library_id": "60c33b56-1ec4-4485-893c-ce0076217eb2",
+  "collection": "Sahih Muslim",
+  "hadith_number": "1631",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "65566",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (3/ 1255) (1631)، البحر المحيط الثجاج في شرح صحيح الإمام مسلم بن الحجاج (28/ 413).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/65566",
+          "raw": "raw/hadeethenc-65566-ar.json",
+          "raw_sha256": "3cac40337301fde706a0e43d64bb5e46521f6a9b9103703d26be7a52b1cb5613",
+          "title": "إذا مات الإنسان انقطع عنه عمله إلا من ثلاثة: إلا من صدقة جارية، أو علم ينتفع به، أو ولد صالح يدعو له",
+          "hadeeth": "عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللهِ صلى الله عليه وسلم قَالَ: «إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ».",
+          "explanation": "أَخْبَرَ النبيُّ صلى الله عليه وسلم أنَّ عملَ الميتِ ينقطع بموته، فلا تحصل له الحسنات بعد موته إلا في هذه الأشياء الثلاثة؛ لكونه كان سببَها: \n\nالأول: الصدقة التي يَجْري ثوابُها ويدوم، غير المُنقَطِع كالوقف، وبناء المساجد، وحفر الآبار، وغير ذلك.\n\nالثاني: العلم الذي يَنتفِعُ به الناس، كتصنيف كتب العلم، أو كأنْ يُعَلِّمَ شخصًا، فيقوم ذلك الشخص بنشر ذلك العلم بعد موته.\n\nالثالث: الولد الصالح المؤمن يدعو لوالديه.",
+          "lessons": [
+            "أجمع أهل العلم على أنّ مما يَلْحَقُ الإنسانَ بعد موته من الثواب: الصدقة الجارية، والعلم الذي ينتفع به، والدعاء، وورد في الأحاديث الأخرى: الحج أيضًا.",
+            "خص هذه الثلاثة بالذكر في هذا الحديث؛ لأنها أصول الخير، وأغلب ما يقصد أهل الفضل بقاءَه بعدهم.",
+            "كل علم يُنتَفَع به فإنه يحصل له الأجر، لكن على رأسها وقمَّتِها العلمُ الشرعي والعلوم المساندة له.",
+            "العلم أنفع هذه الثلاث؛ لأن العلم ينتفع به الإنسان الذي يتعلمه، العلم فيه حفظ الشريعة، فيه نفع الخلق عمومًا، وهو أشمل وأعم لأنه يتعلم من علمك الموجود في حياتك والموجود بعد وفاتك.",
+            "الحث على تربية الأولاد الصالحين؛ فهم الذين ينفعون والديهم في الآخرة، ومِن نَفْعِهم أنهم يدعون لهم.",
+            "الحث على الإحسان إلى الوالدين بعد موتهما، وهو أيضا من البر الذي يستفيد الولد منه.",
+            "الدعاء ينفع الميت ولو كان من غير الولد، ولكن خص الولد بالذكر لأنه الذي يستمر في الدعاء للشخص غالبًا إلى أن يموت هو."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/65566",
+          "raw": "raw/hadeethenc-65566-en.json",
+          "raw_sha256": "f79c2bb8b42db466fa9df52d692822ac1d420a7f7afd7d738b3d935870b6a715",
+          "title": "When a person dies, his deeds come to an end except for three things: ongoing charity, beneficial knowledge, or a pious child who supplicates for him",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"When a person dies, his deeds come to an end except for three things: ongoing charity, beneficial knowledge, or a pious child who supplicates for him.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informed that the deeds of a person come to a halt when he dies. No good deeds are recorded for him after death, except for these three things, as he was the cause behind them:\r\n\r\nFirst: Charity whose reward is enduring, permanent, and ceaseless, like endowment, building mosques, digging wells, etc.\r\n\r\nSecond: Knowledge from which people draw benefits, like authoring books of knowledge or teaching knowledge to someone, who in turn disseminates this knowledge after his teacher's death.\r\n\r\nThird: A pious, believing child who supplicates for his parents.",
+          "lessons": [
+            "The scholars unanimously agreed that the rewards that reach a person after his death include ongoing charity, beneficial knowledge, supplication, and Hajj, as mentioned in other Hadīths.\r",
+            "He singled out these three things in the Hadīth because they represent the foundations of goodness and they are mostly the things virtuous people want to endure after their passing.\r",
+            "Any beneficial knowledge will bring reward, but at the top and pinnacle of it is the Shar‘i knowledge and the sciences that support it.\r",
+            "Knowledge is the most beneficial of these three, because knowledge benefits the person who learns it, preserves the Shariah, and benefits people in general. Plus, it is more comprehensive and inclusive as people learn from your knowledge that exists during your lifetime and endures after your death.\r",
+            "The Hadīth encourages us to raise righteous children, as they are the ones who will benefit their parents in the Hereafter, and an example of their benefit is that they supplicate for them.\r",
+            "It encourages kindness to parents after their death, which is also a form of righteousness from which the child benefits.\r",
+            "Supplication benefits a deceased person even if the supplicant is not his child. But, a person's child is specifically mentioned because he is mostly the one who continues to supplicate for his parents until he dies."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/65566",
+          "raw": "raw/hadeethenc-65566-ru.json",
+          "raw_sha256": "54ef95f9dde195833f6c5c3caee5b8f3a16d6ac1fa2bd0301dd5d4affa2967ab",
+          "title": "Когда человек умирает, все его дела прекращаются, за исключением трёх: это непрерывная милостыня, знание, приносящее пользу, и праведный ребёнок, обращающийся к Аллаху с доброй мольбой за него",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Когда человек умирает, все его дела прекращаются, за исключением трёх: это непрерывная милостыня, знание, приносящее пользу, и праведный ребёнок, обращающийся к Аллаху с доброй мольбой за него».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщил, что деяния человека обрываются с его смертью, то есть благие деяния ему больше не записываются, если не считать этих трёх путей, упомянутых в хадисе, потому что он был причиной в них.\r\n\r\nПервый: милостыня, которая продолжает постоянно приносить ему награду, как вакф, построенная мечеть, вырытый колодец и тому подобное.\r\n\r\nВторой: знание, которое продолжает приносить пользу людям, как религиозное сочинение или знание, переданное данным человеком кому-то, кто распространяет это знание после его смерти.\r\n\r\nТретий: верующий праведный ребёнок, который обращается к Аллаху с мольбами за своих родителей.",
+          "lessons": [
+            "Учёные согласны в том, что к тому, что продолжает приносить человеку награду после его смерти, относится непрерывная милостыня, знание, приносящее пользу, и добрая мольба, возносимая за него. А в других хадисах также упоминается хадж.\r",
+            "В данном хадисе упоминаются именно эти три вещи, потому что они являются основами блага и обычно достойные люди стараются оставить их после себя.\r",
+            "Всякое полезное знание приносит награду, однако главная и самая важная часть полезного знания это исламское знание и связанные с ним науки.\r",
+            "Знание является самым полезным из трёх названных вещей, потому что оно приносит пользу тому, кто приобретает его. Знание способствует сохранению шариата, и оно приносит пользу людям вообще, и оно даёт большой охват, поскольку от твоего знания люди получают пользу как при твоей жизни, так и после твоей смерти.\r",
+            "Побуждение воспитывать детей в праведности, ведь праведные дети принесут пользу своим родителям в мире вечном, в том числе и своими добрыми мольбами за них.\r",
+            "Побуждение делать добро родителям после их смерти. Это относится к проявлениям почтительности к родителям, а эти проявления приносят детям пользу.\r",
+            "Мольба приносит пользу умершему, за которого обращаются с ней к Аллаху, даже если это делают не дети умершего, дети же упомянуты потому, что они обычно продолжают обращаться к Аллаху с мольбами за родителей до самой своей смерти."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/65566",
+          "raw": "raw/hadeethenc-65566-tg.json",
+          "raw_sha256": "130261e8b108d32b0b4a6f78ee13a0a8a60b0a14cd9e6b7caee609af7533bc07",
+          "title": "Ҳар гоҳ ки инсон бимирад, ҳамаи аъмолаш қатъ мешавад (савобаш қатъ мегардад), магар аз се чиз: Садақаи ҷория, илме, ки аз он манфиат бардошта мешавад, Фарзанди солеҳе, ки барои ӯ дуо мекунад",
+          "hadeeth": "Аз Абуҳурайра (разияллоҳу анҳу) ривоят аст, ки Паёмбари Аллоҳ (саллаллоҳу алайҳи ва саллам) фармуданд: \"Ҳар гоҳ ки инсон бимирад, ҳамаи аъмолаш қатъ мешавад (савобаш қатъ мегардад), магар аз се чиз: Садақаи ҷория, илме, ки аз он манфиат бардошта мешавад, Фарзанди солеҳе, ки барои ӯ дуо мекунад.\"",
+          "explanation": "Паёмбари Худо (саллаллоҳу алайҳи ва саллам) хабар доданд, ки амали инсон бо марги ӯ қатъ мегардад, дигар савобе ба ӯ намерасад, магар дар се ҳолат, ки дар онҳо худи ӯ сабабгор будааст:\r\n\r\nАввал: садақае, ки савобаш ҷорӣ ва давомнок аст ва қатъ намешавад, мисли вақф, бино кардани масҷид, кандан ва омода кардани чоҳи об ва ғайра.\r\n\r\nДувум: илмеро, ки мардум аз он баҳра мебаранд, мисли таълифи китобҳои илмӣ, омӯзонидани илм ба дигар шахс, ки баъд аз марги ӯ ин шахс он илмро нашр кунад.\r\n\r\nСевум: фарзанди солеҳ ва муъмин, ки барои падару модараш дуо мекунад.",
+          "lessons": [
+            "Олимони Ислом иттифоқ доранд, ки баъд аз марги инсон амале, ки барояш савоб мерасонад, иборат аст аз: садақаи ҷория, илме, ки дигарон аз он баҳра мебаранд ва дуо (и фарзанди солеҳ, ё дуои дигарон барои ӯ). Дар дигар ҳадисҳо омадааст: ҳамчунон ҳаҷ (агар касе ба номи ӯ анҷом диҳад).\r",
+            "Паёмбари Худо (саллаллоҳу алайҳи ва саллам) махсус ин се чизро зикр карданд, зеро онҳо асоси тамоми некиҳо ҳастанд ва бештарин чизеанд, ки аҳли фазлу некӣ кӯшиш мекунанд пас аз маргашон монда шавад, то савобаш идома ёбад.\r",
+            "Ҳар гуна илме, ки муфид бошад ва мардум аз он баҳра бигиранд, барои соҳиби он пас аз маргаш савоб мерасад. Вале болотарин ва афзалтарини он, илми шаръӣ ва илмҳое мебошанд, ки дар расидан ба он (илми шаръӣ) кумак мекунанд.\r",
+            "Дар байни ин се чиз (садақаи ҷория, илм, фарзанди солеҳ) илм фоидаовартарини онҳо аст. Зеро илм ба шахсе, ки онро меомӯзад фоида мерасонад, бо илм шариат ҳифз мешавад, фоидаи илм умумӣ ва доимист. Он шомилтар ва умумитар аст, зеро аз илмат ҳам дар замони зинда буданат ва ҳам баъди маргат омухта мешавад.\r",
+            "Тарғибу ташвиқ ба тарбияи фарзандони солеҳ, зеро онҳо дар охират ба падару модарашон манфиат мерасонанд, аз ҷумла бо дуои нек барои онҳо.\r",
+            "Тарғибу ташвиқ ба некӯкорӣ ба волидайн пас аз вафоти онҳо, ки ин низ аз кори хайр аст ва фарзанд аз он баҳра мебарад.\r",
+            "Дуо барои мурда фоида дорад, ҳатто агар аз фарзанд набошад, вале фарзанд махсус зикр шудааст, зеро одатан то замони вафоти худ барои волидайнаш дуо мекунад."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

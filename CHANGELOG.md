@@ -1,3 +1,17 @@
+## [2026-11-10d] - explanation pages for 34 published hadiths (P387 backfill)
+
+### Added
+
+- **scripts/find-hadeethenc.py:** read-only. Asks HadeethEnc's own site search with each published hadith's
+  library matn and keeps only entries whose Arabic contains it; a <=2-word difference is reported as a variant,
+  never matched. Report: `out/hadeethenc-map.tsv`. 5 tests.
+- **32 new pages** from that report (with #2564 and #2699: 34 of 57 published hadiths). 17 had no HadeethEnc
+  entry containing their matn, 3 are wording variants for review, 3 exist at HadeethEnc in Arabic only and were
+  left out (no use to a RU/UZ/TJ reader yet).
+- **fetch-explanation.py:** a language HadeethEnc has not translated is skipped instead of stopping the run.
+
+---
+
 ## [2026-11-10c] - generate-reel no longer names seerah books it never read (P389)
 
 ### Removed

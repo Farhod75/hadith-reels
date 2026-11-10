@@ -1,0 +1,107 @@
+{
+  "schema": 2,
+  "slug": "muslim-1005",
+  "library_id": "0b11ba07-f7be-4822-acd6-add0e8a24283",
+  "collection": "Sahih Muslim",
+  "hadith_number": "1005",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5346",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (8/ 11) (6021).\nصحيح مسلم (2/ 697) (1005).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 117).\nتوضيح الأحكام من بلوغ المرام، للبسام (7/ 341).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5346",
+          "raw": "raw/hadeethenc-5346-ar.json",
+          "raw_sha256": "924a4b8041a4f1ecb32f77aa1a6de76d0a6ffb1aecc2045f5c3306cdbfcef800",
+          "title": "كل معروف صدقة",
+          "hadeeth": "عن جابر بن عبد الله رضي الله عنهما عن النبي صلى الله عليه وسلم قال: «كُلُّ مَعْرُوفٍ صَدَقَةٌ».",
+          "explanation": "يُخْبِرُ النبيُّ صلى الله عليه وسلم أنَّ كلَّ إحسانٍ ونَفْعِ للآخرين مِن قول أو عمل يكون صدقةً، وفيه الأجر والثواب.",
+          "lessons": [
+            "أن الصَّدَقة لا تنحصر فيما يخرجه الإنسان من ماله، بل تشمل كلَّ خير يفعله الإنسان أو يقوله ويوصله إلى الآخرين.",
+            "فيه الترغيب في بذل المعروف وكل ما فيه نفع للآخرين.",
+            "عدم احتقار شيءٍ من المعروف، ولو كان يسيرًا."
+          ],
+          "word_meanings": [
+            {
+              "word": "معروف",
+              "meaning": " المعروف اسم جامع لكل ما فيه نفع للآخرين من قول أو فعل."
+            }
+          ],
+          "attribution": "رواه البخاري من حديث جابر، ورواه مسلم من حديث حذيفة",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5346",
+          "raw": "raw/hadeethenc-5346-en.json",
+          "raw_sha256": "85a4e5e5516ac48d7ed00a2a37d3d096466bc9fcc9ba65f2ad8f6b163bfdd11a",
+          "title": "Every act of goodness is charity",
+          "hadeeth": "Jābir ibn ‘Abdullāh (may Allah be pleased with him) reported: The Prophet (may Allah's peace and blessings be upon him) said: \"Every act of goodness is charity.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that every goodness and benefit for others, whether in words or deeds, is regarded as a charity, and its doer obtains a reward for it.",
+          "lessons": [
+            "The Hadīth indicates that charity is not limited to what a person spends out of his money, but it includes everything good a person says or does to others.\r",
+            "It encourages us to do what is good and beneficial to others.\r",
+            "We should not belittle any act of goodness, even if it was simple."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Al-Bukhāri via Jābir and by Muslim via Hudhayfah",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5346",
+          "raw": "raw/hadeethenc-5346-ru.json",
+          "raw_sha256": "8817958f31c6f8b5a66be8315a792c54a7a67ded4e90ad2982ee4be3b280813c",
+          "title": "Всякое благодеяние является пожертвованием (милостыней)",
+          "hadeeth": "От Джабира ибн Абдуллаха (да будет доволен Аллах ими обоими) передаётся, что Пророк (да благословит его Аллах и приветствует) сказал: «Всякое благодеяние является пожертвованием (милостыней)».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) сообщает, что каждый акт доброты и пользы по отношению к другим людям, будь то слово или действие, является милостыней, за которую полагается награда и воздаяние.",
+          "lessons": [
+            "Милостыня не ограничивается только тем, что жертвует человек из своего имущества, однако она включает в себя каждое доброе дело, которое он совершает или то, что он говорит и доносит это до других.\r",
+            "Данный хадис побуждает к совершению благих деяний и всего, что приносит пользу другим людям.\r",
+            "Не следует пренебрегать ни одним благим делом, даже если оно является незначительным."
+          ],
+          "word_meanings": [],
+          "attribution": "Передали аль-Бухари от Джабира, и Муслим — от Хузайфы",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5346",
+          "raw": "raw/hadeethenc-5346-uz.json",
+          "raw_sha256": "b6dee05d80a56e2470c4c90c5f5fde304571a34afd326d098285b0d43b89fe6e",
+          "title": "Ҳар бир маъруф садақадир», – дедилар",
+          "hadeeth": "Жобир ибн Абдуллоҳ разияллоҳу анҳумодан ривоят қилинади:\nНабий соллаллоҳу алайҳи ва саллам: «Ҳар бир маъруф садақадир», – дедилар.",
+          "explanation": "Расулуллоҳ соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда ҳар бир эҳсон ва бошқаларга фойдаси тегадиган сўз ва амалда ажр ва савоб борлигини хабар бермоқдалар.",
+          "lessons": [
+            "Садақа фақат молга чекланиб қолмаган. Балки, барча яхши сўз, амал ва бошқаларга фойдаси тегадиган амаллар ҳам садақадир.\r",
+            "Бу ҳадисда яхши ишларга ва бошқаларга фойда беришга тарғиб бор.\r",
+            "Оз бўлса ҳам, яхшиликнинг бирортасини ҳақир санамаслик."
+          ],
+          "word_meanings": [],
+          "attribution": "Бу ҳадисни Бухорий Жобир разияллоҳу анҳудан, Муслим эса Ҳузайфа разияллоҳу анҳудан ривоят қилган",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5346",
+          "raw": "raw/hadeethenc-5346-tg.json",
+          "raw_sha256": "94b33827a4156f9f46003df401d2c7be7966c27faeb97ef223e2a00985d458b6",
+          "title": "Ҳар кори нек садақа аст",
+          "hadeeth": "Аз Ҷобир ибни Абдуллоҳ (Худованд аз он ду розӣ бод) аз Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) ривоят аст, ки фармуданд: \"Ҳар кори нек садақа аст\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) хабар медиҳад, ки ҳар амали нек ва ҳар ончи ба дигарон суд мерасонад, чӣ дар сухан бошад ё дар амал, садақа аст ва савобу подош дорад.",
+          "lessons": [
+            "Садақа танҳо ба ончи инсон аз моли худ медиҳад нест, балки ҳар амали нек, ки инсон анҷом медиҳад ё ҳар сухани нек ба забон меорад ва ба дигарон мерасонад, садақа аст.\r",
+            "Ин ҳадис мардумро ба анҷоми амалҳои нек ва анҷоми ҳар амал, ки ба нафъи дигарон аст, ташвиқ мекунад.\r",
+            "Ҳеҷ амали некро, ҳарчанд андак бошад ҳам, кам нашумор."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه البخاري من حديث جابر، ورواه مسلم من حديث حذيفة",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

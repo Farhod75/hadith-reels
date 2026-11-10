@@ -1,0 +1,72 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6307",
+  "library_id": "9860e161-6ca1-47f2-9f9f-a9ae23c40d24",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6307",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "4808",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "-نزهة المتقين شرح رياض الصالحين، نشر: مؤسسة الرسالة، الطبعة: الرابعة عشر، 1407هـ - 1987م.\n-شرح رياض الصالحين، لابن عثيمين، نشر: دار الوطن للنشر، الرياض، الطبعة: 1426هـ.\n-بهجة الناظرين شرح رياض الصالحين، للهلالي، نشر: دار ابن الجوزي، الطبعة الأولى1418هـ.\n-صحيح البخاري، نشر: دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم ترقيم محمد فؤاد عبد الباقي)، الطبعة: الأولى، 1422هـ.",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4808",
+          "raw": "raw/hadeethenc-4808-ar.json",
+          "raw_sha256": "df50f74a786c2430610dcd71c569d98835241d08571167340659ce68f8b65eaf",
+          "title": "وَاللهِ إني لأَسْتَغْفِرُ اللهَ وأَتُوبُ إليهِ في اليومِ أَكْثَرَ من سَبْعِينَ مَرَّةً",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: سمعت رسول الله صلى الله عليه وسلم يقول: «وَاللهِ إني لأَسْتَغْفِرُ اللهَ وأَتُوبُ إليهِ في اليومِ أَكْثَرَ من سَبْعِينَ مَرَّةً».",
+          "explanation": "النبي صلى الله عليه وسلم الذي غفر الله له ما تقدم من ذنبه وما تأخر: يقسم أنه يستغفر الله ويتوب إليه في اليوم أكثر من سبعين مرة، واستغفار النبي صلى الله عليه وسلم لا يلزم أن يكون لذنوب ارتكبها ولكن ذلك لكمال عبوديته وتعلقه بذكره سبحانه ، واستشعاره عظم حق الله تعالى وتقصير العبد مهما عمل في شكر نعمه، وهو من باب التشريع للأمة من بعده، إلى غير ذلك من الحكم.",
+          "lessons": [
+            "جواز القسم على الشيء تأكيدا له، وإن لم يكن عند السامع فيه شك.",
+            "حض الأمة على التوبة والاستغفار اقتداء بالنبي -صلى الله عليه وسلم-؛ فإنه -صلى الله عليه وسلم- مع كونه معصوما، وخير الخلق، وقد غفر له ما تقدم من ذنبه وما تأخر، يستغفر الله ويتوب إليه في اليوم أكثر من سبعين مرة.",
+            "الإكثار من الاستغفار والتوبة؛ فإن العبد لا ينفك عن ذنب أو تقصير.",
+            "استغفار النبي -صلى الله عليه وسلم- لا يلزم أن يكون لذنوب ارتكبها ولكن ذلك لكمال عبوديته وتعلقه بذكره -سبحانه-، واستشعاره عظم حق الله -تعالى- وتقصير العبد مهما عمل في شكر نعمه، وهو من باب التشريع للأمة من بعده، إلى غير ذلك من الحكم."
+          ],
+          "word_meanings": [
+            {
+              "word": "أستغفر",
+              "meaning": " أي: أطلب المغفرة، وهي الصفح عن الذنب."
+            },
+            {
+              "word": "وأتوب إليه",
+              "meaning": " أي: أعزم على التوبة."
+            }
+          ],
+          "attribution": "رواه البخاري",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4808",
+          "raw": "raw/hadeethenc-4808-en.json",
+          "raw_sha256": "41727f96b02529984dd2463ae79a9d45129484e6fa0f7a87923653738b001b05",
+          "title": "By Allah! I ask Allah for forgiveness and repent to Him more than seventy times a day",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported that he heard the Prophet (may Allah's peace and blessings be upon him) say: \"By Allah! I ask Allah for forgiveness and repent to Him more than seventy times a day.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him), whose past and future sins had been forgiven by Allah, swore that he would seek Allah's forgiveness and repent to Him over seventy times every day. The Prophet's pursuit of forgiveness was not necessarily for sins that he had committed, but it was part of his complete servitude to Allah, deep attachment to His remembrance, and the feeling of the tremendous duty towards Him and the shortcoming of His servants no matter how much they show gratitude. His act does also serve the purpose of prescribing the religious deeds for the Ummah.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Bukhari",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4808",
+          "raw": "raw/hadeethenc-4808-ru.json",
+          "raw_sha256": "6dbfa28943deeba0ed135568bdb5015fe62d37da292cf4d07bfa0f32335f01c1",
+          "title": "Клянусь Аллахом, поистине, я испрашиваю у Аллаха прощения и приношу Ему покаяние более семидесяти раз в день",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт: «Я слышал, как Посланник Аллаха (мир ему и благословение Аллаха) говорил: “Клянусь Аллахом, поистине, я испрашиваю у Аллаха прощения и приношу Ему покаяние более семидесяти раз в день”».",
+          "explanation": "Пророк (мир ему и благословение Аллаха), которому Аллах простил всё изначально, поклялся, что он просит у Аллаха прощения и приносит Ему покаяние более семидесяти раз в день. То, что Пророк (мир ему и благословение Аллаха) испрашивал у Аллаха прощения, вовсе не свидетельствует о том, что он совершал грехи — это было обусловлено совершенством его подчинённости Аллаху и стремлением поминать Аллаха, а также осознанием величия права Всевышнего Аллаха и упущений раба, которые всё равно есть, сколь бы усердно он ни благодарил Аллаха за Его милости. И это его действие также имело целью научить этому его последователей. В нём можно найти и иной смысл.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Передал аль-Бухари",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

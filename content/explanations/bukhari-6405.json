@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "slug": "bukhari-6405",
+  "library_id": "f31cd2b7-625a-47de-ba33-5381c5bc00e9",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "6405",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5516",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح البخاري (8/ 86) (6405).\nصحيح مسلم (4/ 2071) (2691).\nتوضيح الأحكام من بلوغ المرام، للبسام (7/ 535).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 401).\nفتح ذي الجلال والإكرام، لابن عثيمين (6/ 470).\nسبل السلام بشرح بلوغ المرام، للصنعاني (2/ 704).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5516",
+          "raw": "raw/hadeethenc-5516-ar.json",
+          "raw_sha256": "f739b2f27abed5f25132f7c65cac6b1b69dabd4b5e61da5d1085d0710aaf484c",
+          "title": "من قال: سبحان الله وبحمده، في يوم مائة مرة، حطت خطاياه وإن كانت مثل زبد البحر",
+          "hadeeth": "عن أبي هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: «مَنْ قَالَ: سُبْحَانَ اللهِ وَبِحَمْدِهِ، فِي يَوْمٍ مِائَةَ مَرَّةٍ، حُطَّتْ خَطَايَاهُ وَإِنْ كَانَتْ مِثْلَ زَبَدِ الْبَحْرِ».",
+          "explanation": "يُخبِرُ النبيُّ صلى الله عليه وسلم أنَّ مَن قال في يوم مائة مرة: «سبحان الله وبحمده»؛ مُحيتْ خطاياه وغُفِرت، ولو كانت كثيرة مثل الرَّغْوَة البيضاء التي تعلو البحر عند تَمَوُّجِه وهَيَجَانِه.",
+          "lessons": [
+            "هذا الأجر يحصل لمن قالها في اليوم مُتَوالِيَة أو مُتَفَرِّقة.",
+            "التسبيح: هو تنزيه الله عن النقص، والحمد:  وصفه بالكمال مع المحبة والتعظيم.",
+            "المراد في الحديث تَكْفير صغائر الذنوب، وأمَّا الكبائر فلا بدَّ لها من توبة."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5516",
+          "raw": "raw/hadeethenc-5516-en.json",
+          "raw_sha256": "9daef119daed5e18529395f0a6cd979f1de7b0c641ad4e5eb8ab809c4c08914f",
+          "title": "Whoever says ‘subhān Allah wa bihamdih (glory be to Allah, and praise be to Him)’ one hundred times a day, his sins will be erased, even if they were as much as the foam of the sea",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah’s peace and blessings be upon him) said: \"Whoever says ‘subhān Allah wa bihamdih (glory be to Allah, and praise be to Him)’ one hundred times a day, his sins will be erased, even if they were as much as the foam of the sea.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that whoever says \"subhān Allah wa bihamdih (glory be to Allah, and praise be to Him)\" one hundred times a day, his sins will be erased and forgiven, even if they were as much as the white foam that appears above the water of the sea when it is wavy and stormy.",
+          "lessons": [
+            "This reward is attained by one who says it during a day in a successive or sporadic manner.\r",
+            "Tasbīh (glorification) is to exalt Allah above any imperfection, and hamd (praise) is to attribute perfection to Him while loving and extolling Him.\r",
+            "What is intended in the Hadīth is the expiation of minor sins. As for the major sins, repentance is a must."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5516",
+          "raw": "raw/hadeethenc-5516-ru.json",
+          "raw_sha256": "f26ced52da0e2c9d8a94689027741ce30246cf3749b261852c225e6700f64370",
+          "title": "Если человек будет сто раз в день говорить: \"Субхана-Лллахи ва бихамди-хи /Пречист Аллах и хвала Ему/\", то с него будет снято бремя его грехов, даже если они будут подобны пене морской",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Если человек будет сто раз в день говорить: \"Субхана-Лллахи ва бихамди-хи /Пречист Аллах и хвала Ему/\", то с него будет снято бремя его грехов, даже если они будут подобны пене морской».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) сообщает, что тому, кто сто раз в день скажет \"Субхана-Лллахи ва бихамди-хи /Пречист Аллах и хвала Ему/\", будут стёрты и прощены грехи, даже если их будет много, подобно белой пене, поднимающейся в море, когда оно волнуется и бушует.",
+          "lessons": [
+            "Этой награды удостаивается тот, кто скажет эти слова в течение дня подряд или по отдельности.\r",
+            "Ат-Тасбих (прославление Аллаха) - это признание отсутствия у Аллаха каких-либо недостатков. Аль-Хамд (восхваление Аллаха) - это описание Аллаха совершенством, с любовью и возвеличиванием Его.\r",
+            "В этом хадисе говорится об искуплении малых грехов, что же касается больших, то для их искупления требуется покаяние."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5516",
+          "raw": "raw/hadeethenc-5516-uz.json",
+          "raw_sha256": "a7821acce8fc3663f04ededb9d208f804c649ed81d9876352cb3de25d667809a",
+          "title": "Ким бир кунда юз маротаба «Субҳаналлоҳи ва биҳамдиҳ», деб айтса, гуноҳлари денгиз кўпигичалик бўлса ҳам, кечиб юборилади», дедилар",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳудан ривоят қилинади: Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Ким бир кунда юз маротаба «Субҳаналлоҳи ва биҳамдиҳ», деб айтса, гуноҳлари денгиз кўпигичалик бўлса ҳам, кечиб юборилади», дедилар.",
+          "explanation": "Расулуллоҳ соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда ким бир кунда юз маротаба «Субҳаналлоҳи ва биҳамдиҳ», деса хатолари денгиз тўлқинга учраганда ҳосил бўладиган оқ кўпикларчалик кўп бўлса ҳам ўчирилиб, кечирилиб юборилиши ҳақида хабар бермоқдалар.",
+          "lessons": [
+            "Бу зикрни кетма-кет ёки турли хил вақтларда айтса ҳам шу ажр берилади.\r",
+            "Тасбеҳ: Аллоҳ таолони барча нуқсонлардан поклашдир.  Ҳамд: Аллоҳни, муҳаббат ва улуғлаш ила камолот билан сифатлашдир.\r",
+            "Ҳадисдаги гуноҳлар сўзидан мурод кичик гуноҳлар. Катта гуноҳлар учун тавба қилиниши лозим."
+          ],
+          "word_meanings": [],
+          "attribution": "Муттафақун алайҳ",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5516",
+          "raw": "raw/hadeethenc-5516-tg.json",
+          "raw_sha256": "2dd11ee5c65a8c72e147feeda01cba88cc89cc112b1ea01a4b724e5dd3b766e4",
+          "title": "Ҳар кас дар як рӯз сад бор \"Субҳоналлоҳи ва биҳамдиҳи\" бигӯяд, гуноҳонаш омӯрзида мешавад, агарчи ба андозаи кафки дарё бошад",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Ҳар кас дар як рӯз сад бор \"Субҳоналлоҳи ва биҳамдиҳи\" бигӯяд, гуноҳонаш омӯрзида мешавад, агарчи ба андозаи кафки дарё бошад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) хабар додаанд, ки ҳар кас дар як рӯз сад бор \"Субҳоналлоҳи ва биҳамдиҳи\" бигӯяд гуноҳонаш пок ва бахшида мешавад, агарчи ба андозаи кафки сафед, ки ҳангоми мавҷ рӯйи баҳр намоён мешавад, бошад.",
+          "lessons": [
+            "Касе ин калимаро ба таври пай дар пай ва ё пароканда дар як рӯз сад бор бигӯяд ин савобро дармеёбад.\r",
+            "Тасбиҳ: (Субҳоналлоҳ гуфтан), яъне пок донистани Аллоҳ аз ҳамагуна нуқс ва нотамомӣ. Ҳамд: тавсифи Ӯ Таъоло ба камол бо тамоми муҳаббат ва бузургдоштӣ.\r",
+            "Мурод дар ин ҳадис кафораи гуноҳони сағира аст, аммо барои кафораи гуноҳони кабира бояд тавба кунад."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

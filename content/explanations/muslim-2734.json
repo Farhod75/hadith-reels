@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "slug": "muslim-2734",
+  "library_id": "a3f48cdb-ae6b-4a28-bbee-78673f483ab4",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2734",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5798",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (4/ 2095) (2734).\nنزهة المتقين شرح رياض الصالحين، لمصطفى الخن وغيره (1/ 164).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 215).\nشرح رياض الصالحين من كلام سيد المرسلين، لابن عثيمين (2/ 203).\nكنوز رياض الصالحين، لمجموعة من الباحثين.\nتطرز رياض الصالحين، لفيصل آل مبارك (ص764).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5798",
+          "raw": "raw/hadeethenc-5798-ar.json",
+          "raw_sha256": "dd1b38ea12f0ae257f37ac4129e4c9aa39cf2670b38e212438b80a4c08070934",
+          "title": "إن الله ليرضى عن العبد أن يأكل الأكلة فيحمده عليها، أو يشرب الشربة فيحمده عليها",
+          "hadeeth": "عن أنس بن مالك رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم: «إِنَّ اللهَ لَيَرْضَى عَنِ الْعَبْدِ أَنْ يَأْكُلَ الْأَكْلَةَ فَيَحْمَدَهُ عَلَيْهَا، أَوْ يَشْرَبَ الشَّرْبَةَ فَيَحْمَدَهُ عَلَيْهَا».",
+          "explanation": "يُبَيِّنُ النبيُّ صلى الله عليه وسلم أنَّ حَمْدَ العبدِ ربَّه على فَضْلِهِ ونِعَمِهِ مِن الأمور التي يَحْصُل بها رضا الله؛ فيَطْعَمُ الطعامَ ويقول: الحمد لله، ويَشرَبُ الشَّرَابَ ويقول: الحمد لله.",
+          "lessons": [
+            "كرم الله عز وجل، فقد تَفَضَّلَ بالرزق ورَضِيَ بالحَمْد.",
+            "رضا الله يُنالُ بأيسر سبب، كالحمد بعد الأكل والشرب.",
+            "من آداب الطعام والشراب: حمد الله تعالى عَقِب الأكل والشرب."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5798",
+          "raw": "raw/hadeethenc-5798-en.json",
+          "raw_sha256": "a00cd5497497f7aa4066688c150428fa6d96cc2ee93eb837739bc18acb50bba6",
+          "title": "Allah is pleased with one who eats some food and praises Him for it, or drinks some drink and praises Him for it",
+          "hadeeth": "Anas ibn Mālik (may Allah be pleased with him) reported: The Messenger of Allah (may Allah’s peace and blessings be upon him) said: \"Allah is pleased with one who eats some food and praises Him for it, or drinks some drink and praises Him for it.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) points out that praising Allah for His bounty and blessings is one of the ways the servant can win the pleasure of his Lord. He eats food, says \"al-hamdulillāh\" (praise be to Allah), drinks some drink, and says al-hamdulillāh.",
+          "lessons": [
+            "The Hadīth shows Allah's bounty, as He provides sustenance to His servants and is pleased with the praise.\r",
+            "The pleasure of Allah can be attained by the simplest means, like praising Him after eating and drinking.\r",
+            "One etiquette of eating and drinking is to praise Allah Almighty after that."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5798",
+          "raw": "raw/hadeethenc-5798-ru.json",
+          "raw_sha256": "ba06bc1714436b12f8795b54efb67b2154c8affc23a37384f45269fe33a8b6d8",
+          "title": "Поистине, Аллах доволен (Своим) рабом, который воздаёт Ему хвалу за каждый съеденный кусок (пищи) и каждый выпитый глоток (воды)",
+          "hadeeth": "От Анаса ибн Малика (да будет доволен им Аллах) переадётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Поистине, Аллах доволен (Своим) рабом, который воздаёт Ему хвалу за каждый съеденный кусок (пищи) и каждый выпитый глоток (воды)».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) разъясняет, что благодарность раба своему Господу за Его милости и дары является одним из путей к обретению Его довольства. Так, он ест пищу и говорит: \"АльхамдулиЛлях/ хвала Аллаху/\", пьет напиток и говорит: \"АльхамдулиЛлях/ хвала Аллаху/\".",
+          "lessons": [
+            "Щедрость Всевышнего Аллаха, ибо Он даровал нам удел и доволен нашей хвалой.\r",
+            "Довольство Аллаха достигается самыми простыми способами, например, воздавая Ему хвалу после еды и питья.\r",
+            "Из этикета приема пищи и питья: Воздать хвалу Всевышнему Аллаху после еды и питья."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5798",
+          "raw": "raw/hadeethenc-5798-uz.json",
+          "raw_sha256": "ca5afa4b3382c85b1f7aab2c99cb4a660d1a17e543424f2e1dff5c5924c7ff44",
+          "title": "Албатта, Аллоҳ, бандаси таомни еб унинг учун У Зотга ҳамд айтмоғидан ва шаробни ичиб унинг учун У Зотга ҳамд айтмоғидан рози бўлур», дедилар",
+          "hadeeth": "Анас ибн Молик разияллоҳу анҳудан ривоят қилинади:\nРасулуллоҳ соллаллоҳу алайҳи ва саллам: «Албатта, Аллоҳ, бандаси таомни еб унинг учун У Зотга ҳамд айтмоғидан ва шаробни ичиб унинг учун У Зотга ҳамд айтмоғидан рози бўлур», дедилар.",
+          "explanation": "Набий соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда банда Аллоҳ берган неъмату фазлларига ҳамд айтиши У Зотни рози қиладиган нарсалардан эканини хабар бердилар. Таомни еб: «Алҳамдулиллаҳ», дейди ва шаробни ичиб «Алҳамдулиллаҳ», дейди.",
+          "lessons": [
+            "Аллоҳнинг саҳийлиги, Ўзи ризқ бериб, шунга ҳамд айтган бандасидан рози бўлмоқда.\r",
+            "Аллоҳнинг розилигига, еб-ичгандан сўнг ҳамд айтиш каби энг осон сабаблар билан ҳам етиш мумкин.\r",
+            "Еб-ичиш одобларидан: Еб-ичиб битгач Аллоҳга ҳамд айтишдир."
+          ],
+          "word_meanings": [],
+          "attribution": "Имом Муслим ривояти",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5798",
+          "raw": "raw/hadeethenc-5798-tg.json",
+          "raw_sha256": "06b53f21aeb9417a4d34e8e0abb983334914edc2374bc2c63f627b9ce29a91c3",
+          "title": "Худованд аз бандае, ки чун таом хурд Худоро ҳамд гӯяд, ё об нӯшад Худоро ҳамд (Алҳамду лиллоҳ) гӯяд, розӣ мешавад",
+          "hadeeth": "Аз Анас ибни Молик (Худованд аз ӯ розӣ бод) ривоят аст, ки гуфт: Расули Худо (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Худованд аз бандае, ки чун таом хурд Худоро ҳамд гӯяд, ё об нӯшад Худоро ҳамд (Алҳамду лиллоҳ) гӯяд, розӣ мешавад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) баён медорад, ки ҳамду ситоиши банда аз Парвардигораш барои фазлу неъматҳо аз умурест, ки сабаби касби ризояти Аллоҳ мегардад, ба ин гуна, ки чун таомро мехурад мегӯяд: Алҳамду лиллоҳ ва чун менӯшад мегӯяд: Алҳамду лиллоҳ.",
+          "lessons": [
+            "Аз карами Аллоҳи Мутаъол аст, ки ризқро медиҳад ва бо ҳамд гуфтан розӣ аст.\r",
+            "Ризои Худованд бисёр ба осонӣ ба даст меояд, танҳо бо \"Алҳамду лиллоҳ\" гуфтан пас аз хурдан ва нӯшидан.\r",
+            "Аз одоби хӯрдан ва нӯшидан ин аст, ки пас аз он бигӯяд: Алҳамду лиллоҳ."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}
