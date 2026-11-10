@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1aa73/1BNL3QozHJIGrZVmvhmj0_output.mp4",
+    "name":  "b6405-mat",
+    "image":  "out\\refs\\b6405-mat-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6405-mat.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-08T16:47:11.9166982Z",
+    "size_bytes":  23890617,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Warm morning sunlight brightens slowly across the courtyard, the palm-tree shadow sways gently on the wall, fine dust motes float in the light. The mat stays perfectly still and in place. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no moon, no text.",
+    "request_id":  "01a1bc0e-8a04-7c41-a94d-25eb9097136b",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-08T16:58:53.8395936Z",
+    "mode":  "image-to-video"
+}

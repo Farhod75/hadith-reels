@@ -1210,3 +1210,41 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 1.** «кафи дарё» -> «кафи баҳр» on the next set (#6405, TJ): «дарё» reads as a river.
 
 **The finding:** a gate that exists only at the point of use turns a planning slip into a mid-run failure; the same check, run while planning, costs nothing.
+
+## R218-R221 - Sahih al-Bukhari #6405 - 2026-11-09
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (236-239, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok. Rendered 2026-11-08, published 2026-11-09 in the order the operator then fixed (P385).
+
+**Caught before publish**
+
+1. **UZ bed gain x2.14** asked for by the gap target; render-reel.ps1 accepts at most 2 and stopped UZ mid-set after the dry run had printed the number. P384: render-set's dry run now applies the same cap.
+2. **EN subtitles:** Whisper's «Subhan Allahi wa bihamdi» and «Abhurayra»; the Prophet's words without quotation marks - P339 stopped the burn twice (the second time after a stale device write had put the old SRT back).
+3. **RU subtitles:** «вобихамдеги», «Абхурайра», the quote marks - fixed by hand; and «Субхана-Ллахи» broke across two lines at the hyphen. The operator caught the break; U+2011 (non-breaking hyphen) keeps it whole.
+4. **TJ «кафи дарё»** -> «кафи баҳр» (operator, before narration): «дарё» reads as a river.
+5. **Facebook title field gone** in Meta Business Suite's Create reel; the title block was pasted into the Facebook "Text" field and replaced with the full caption before posting (P385).
+
+**Escaped to publish**
+
+- None found.
+
+**Root causes**
+
+- A planner that does not apply the limits of the step it plans for (the gain cap).
+- Repeated writes of the same staged file landing stale content on the PC - a transport fault, not a content one.
+- A form that changed under a generated block (Meta).
+
+**Prevention landed**
+
+- P384: the dry run stops on a gain render-reel.ps1 would refuse.
+- P385: platform-texts.py prints the fixed publishing sequence and no Facebook title; tests pin both.
+- Every device write now goes under a unique file name and is checked by hash.
+
+**Prevention deferred**
+
+- The SRT fixes are still by hand (draft-aligned subtitle text would remove the class).
+- Platform blocks were given from out/platform-6405.md but not run through `--check-sent` (P375) this time.
+- Listen (publish-narration) not run yet - waits for the operator's yes.
+
+**Operator corrections of the assistant: 2.** The RU hyphen break in «Субхана-Ллахи»; the publishing order, which he asked to be written down so it stops drifting.
+
+**The finding:** generated text is only as good as the form it is pasted into - the day a platform changes its form, the generator changes too.

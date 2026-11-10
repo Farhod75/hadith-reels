@@ -2132,6 +2132,87 @@
       "verified": true,
       "notes": "FLUX 2 still (mat-3) -> Kling 3.0 Pro i2v 10s. a prayer mat facing a blank lime-washed wall, sunlight from a side window (qibla rule). Sahih al-Bukhari #6114, Abu Hurairah, sahih - 'The strong one is not the one who overcomes people in wrestling; the strong one is the one who controls himself when angry.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Picks by the operator (pot-3, well-1, mat-3) and Claude (ring-2, ash-1).",
       "prompt_sidecar": "assets/scene-prompts/b6114-mat.json"
+    },
+    "b6405-foam.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (foam-2) -> Kling 3.0 Pro i2v 10s. waves breaking with thick white foam on a sandy shore - 'like the foam of the sea'. Sahih al-Bukhari #6405, Abu Hurairah, sahih - 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they were like the foam of the sea.' MODE B, no people, no hands, Red Sea coast / 7th-century Arabia, bright daylight; no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6405-foam.json"
+    },
+    "b6405-recede.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (recede-2) -> Kling 3.0 Pro i2v 10s. the foam melting away on wet sand as the water slides back - sins wiped away. Sahih al-Bukhari #6405, Abu Hurairah, sahih - 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they were like the foam of the sea.' MODE B, no people, no hands, Red Sea coast / 7th-century Arabia, bright daylight; no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6405-recede.json"
+    },
+    "b6405-smooth.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (smooth-1) -> Kling 3.0 Pro i2v 10s. smooth wet beach reflecting sky and clouds, faint footprints - what is left after the wave. Sahih al-Bukhari #6405, Abu Hurairah, sahih - 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they were like the foam of the sea.' MODE B, no people, no hands, Red Sea coast / 7th-century Arabia, bright daylight; no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6405-smooth.json"
+    },
+    "b6405-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (mat-2) -> Kling 3.0 Pro i2v 10s. a woven prayer mat facing a blank mud-brick wall in early sunlight, palm shadow (qibla rule) - dhikr at the start of the day. Sahih al-Bukhari #6405, Abu Hurairah, sahih - 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they were like the foam of the sea.' MODE B, no people, no hands, Red Sea coast / 7th-century Arabia, bright daylight; no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6405-mat.json"
+    },
+    "b6405-sunrise.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (sunrise-1) -> Kling 3.0 Pro i2v 10s. the sun rising over a calm sea, golden path on the water - the breadth of mercy. Sahih al-Bukhari #6405, Abu Hurairah, sahih - 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they were like the foam of the sea.' MODE B, no people, no hands, Red Sea coast / 7th-century Arabia, bright daylight; no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1).",
+      "prompt_sidecar": "assets/scene-prompts/b6405-sunrise.json"
+    },
+    "m2564-wealth.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (wealthb-3) -> Kling 3.0 Pro i2v 10s. an open wooden chest of thin hand-struck silver dirhams and gold dinars beside a folded plain linen robe in a bright sunlit room - forms and wealth, what Allah does not look at. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
+      "prompt_sidecar": "assets/scene-prompts/m2564-wealth.json"
+    },
+    "m2564-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (mat-3) -> Kling 3.0 Pro i2v 10s. a woven prayer mat on an earthen floor facing a plain blank mud-brick wall in morning light (qibla rule, no door) - the heart and its intention. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
+      "prompt_sidecar": "assets/scene-prompts/m2564-mat.json"
+    },
+    "m2564-well.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (well-2) -> Kling 3.0 Pro i2v 10s. a stone-lined desert well with wooden pulley, wooden bucket (the prompt asked for leather), goatskin waterskin and a full stone trough in a palm grove - deeds: giving water. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
+      "prompt_sidecar": "assets/scene-prompts/m2564-well.json"
+    },
+    "m2564-bread.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": false,
+      "notes": "FLUX 2 still (bread-1) -> Kling 3.0 Pro i2v 10s. a basket of flatbread and dates with a clay jug left quietly beside a closed wooden door at sunrise - deeds done quietly. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
+      "prompt_sidecar": "assets/scene-prompts/m2564-bread.json"
     }
   }
 }

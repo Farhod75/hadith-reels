@@ -157,6 +157,9 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Bukhari #6405 - PUBLISHED 2026-11-09 (R218-R221, TG 236-239); library f31cd2b7.** Next: Muslim #2564
+  (EN rendered 2026-11-09, TG on the operator's command; RU/UZ/TJ to narrate and render). Listen for #6405 waits
+  for the operator's yes.
 - **Bukhari #6114 - PUBLISHED 2026-11-08 (R214-R217, TG 232-235); library 5d0fd935.** Next set: #6405
   (Kling running 2026-11-08).
 - **Muslim #223 - PUBLISHED 2026-11-07 (R210-R213, TG 228-231).** Matn history below

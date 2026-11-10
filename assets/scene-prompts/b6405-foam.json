@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1a9ae/2Z9VERaokze5GKaBPPEL0_output.mp4",
+    "name":  "b6405-foam",
+    "image":  "out\\refs\\b6405-foam-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6405-foam.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-08T16:13:50.2469665Z",
+    "size_bytes":  36875286,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Waves roll in and break gently, thick white foam spreads across the turquoise water and slides up the golden sand, bright morning sun. Camera almost static, a very slow gentle push-in. Keep every element exactly as in the image, nothing added or removed. No people, no animals, no boats, no text.",
+    "request_id":  "01a1bbef-feab-7ac0-8ae5-35bc5a6d851b",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-08T16:24:10.7076654Z",
+    "mode":  "image-to-video"
+}

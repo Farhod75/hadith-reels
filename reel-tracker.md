@@ -238,6 +238,10 @@
 | R215 | 2026-11-08 | Sahih al-Bukhari #6114 | Abu Hurairah | Sahih | Character / Akhlaq | #akhlaq #patience #anger #selfcontrol | RU | Adults | bukhari-6114 | adults-ru-bukhari-6114-story.mp3 | adults-ru-bukhari-6114-moral.mp3 | adults-ru-bukhari-6114-narration.mp3 | b6114-ring.mp4, b6114-pot.mp4, b6114-ash.mp4, b6114-well.mp4, b6114-mat.mp4 | adults-ru-bukhari-6114-bg-mixed.mp4 | vocal-nasheed-05.mp3 | YES - SRT fixed against the draft before the burn (garbled opening, «селен», two invented cues after the narration removed); P339 gate | adults-ru-bukhari-6114-reel.mp4 | 26.3s | 8.2 MB | TG 233 (515 chars). First planned on aswati-Steady-Motivation, Content-ID claimed - refused by the render gate (P377). |
 | R216 | 2026-11-08 | Sahih al-Bukhari #6114 | Abu Hurairah | Sahih | Character / Akhlaq | #akhlaq #patience #anger #selfcontrol | UZ | Adults | bukhari-6114 | adults-uz-bukhari-6114-story.mp3 | adults-uz-bukhari-6114-moral.mp3 | adults-uz-bukhari-6114-narration.mp3 | b6114-ring.mp4, b6114-pot.mp4, b6114-ash.mp4, b6114-well.mp4, b6114-mat.mp4 | adults-uz-bukhari-6114-bg-mixed.mp4 | light-of-my-heart-bg.mp3 | NO (P078) | adults-uz-bukhari-6114-reel.mp4 | 30.4s | 8.9 MB | TG 234 (505 chars). YouTube cover on b6114-ash. |
 | R217 | 2026-11-08 | Sahih al-Bukhari #6114 | Abu Hurairah | Sahih | Character / Akhlaq | #akhlaq #patience #anger #selfcontrol | TJ | Adults | bukhari-6114 | adults-tj-bukhari-6114-story.mp3 | adults-tj-bukhari-6114-moral.mp3 | adults-tj-bukhari-6114-narration.mp3 | b6114-ring.mp4, b6114-pot.mp4, b6114-ash.mp4, b6114-well.mp4, b6114-mat.mp4 | adults-tj-bukhari-6114-bg-mixed.mp4 | vocal-nasheed-07.mp3 | NO (P078) | adults-tj-bukhari-6114-reel.mp4 | 27.1s | 8.0 MB | TG 235 (519 chars). YouTube cover on b6114-well. Closes the set. |
+| R218 | 2026-11-09 | Sahih al-Bukhari #6405 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #forgiveness #sins #reward | EN | Adults | bukhari-6405 | adults-en-bukhari-6405-story.mp3 | adults-en-bukhari-6405-moral.mp3 | adults-en-bukhari-6405-narration.mp3 | b6405-foam.mp4, b6405-recede.mp4, b6405-smooth.mp4, b6405-mat.mp4, b6405-sunrise.mp4 | adults-en-bukhari-6405-bg-mixed.mp4 | vocal-nasheed-01.mp3 | YES - SRT fixed against the draft before the burn (Whisper's «Subhan Allahi wa bihamdi», «Abhurayra»; the Prophet's words quoted); P339 gate | adults-en-bukhari-6405-reel.mp4 | 31.1s | 13.7 MB | TG 236, one video message (585 chars). Opens the set. |
+| R219 | 2026-11-09 | Sahih al-Bukhari #6405 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #forgiveness #sins #reward | RU | Adults | bukhari-6405 | adults-ru-bukhari-6405-story.mp3 | adults-ru-bukhari-6405-moral.mp3 | adults-ru-bukhari-6405-narration.mp3 | b6405-foam.mp4, b6405-recede.mp4, b6405-smooth.mp4, b6405-mat.mp4, b6405-sunrise.mp4 | adults-ru-bukhari-6405-bg-mixed.mp4 | aswati-Peaceful-Contemplation.mp3 | YES - SRT fixed against the draft before the burn («вобихамдеги», «Абхурайра», quote marks; «Субхана‑Ллахи» with a non-breaking hyphen so the line does not break inside it); P339 gate | adults-ru-bukhari-6405-reel.mp4 | 28.1s | 12.4 MB | TG 237 (595 chars). |
+| R220 | 2026-11-09 | Sahih al-Bukhari #6405 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #forgiveness #sins #reward | UZ | Adults | bukhari-6405 | adults-uz-bukhari-6405-story.mp3 | adults-uz-bukhari-6405-moral.mp3 | adults-uz-bukhari-6405-narration.mp3 | b6405-foam.mp4, b6405-recede.mp4, b6405-smooth.mp4, b6405-mat.mp4, b6405-sunrise.mp4 | adults-uz-bukhari-6405-bg-mixed.mp4 | vocal-nasheed-06.mp3 | NO (P078) | adults-uz-bukhari-6405-reel.mp4 | 32.3s | 14.4 MB | TG 238 (605 chars). Bed at x2.0, 0.6 dB under the P338 gap: render-reel's cap (P384). Own YouTube cover (cover-6405-uz.jpg). |
+| R221 | 2026-11-09 | Sahih al-Bukhari #6405 | Abu Hurairah | Sahih | Dhikr / Tasbih | #dhikr #forgiveness #sins #reward | TJ | Adults | bukhari-6405 | adults-tj-bukhari-6405-story.mp3 | adults-tj-bukhari-6405-moral.mp3 | adults-tj-bukhari-6405-narration.mp3 | b6405-foam.mp4, b6405-recede.mp4, b6405-smooth.mp4, b6405-mat.mp4, b6405-sunrise.mp4 | adults-tj-bukhari-6405-bg-mixed.mp4 | aswati-Morning-Serenity.mp3 | NO (P078) | adults-tj-bukhari-6405-reel.mp4 | 30.1s | 13.7 MB | TG 239 (620 chars). «кафи баҳр», not «кафи дарё» (operator). Own YouTube cover (cover-6405-tj.jpg). Closes the set. |
 
 *Approximate dates for R001-R003 — confirm via Telegram channel history post-Hajj.
 
@@ -258,6 +262,7 @@
 | Sahih Muslim #2581 | EN, RU, UZ, TJ | Adults | R206-R209. Narrated by Abu Hurairah, sahih, the Book of Virtue, Enjoining Good Manners and Joining of the Ties of Kinship. 'Do you know who the bankrupt one is?' - the one who comes with prayer, fasting and zakah, having reviled, slandered, consumed wealth, shed blood and struck; his good deeds go to those he wronged, then their sins are cast on him. NEAR SUBJECT: #2589 (backbiting, library c978f80c) and #105 (the tale-bearer) - both unused, both on the tongue; do not pair them consecutively. H from Shaykh Abdul Aziz Alvi, Tuhfat al-Muslim (en.tohed.com muslim/2581). UZ/TJ keep «муфлис» (HadeethEnc TJ: «муфлис (фақир)»). Library id 9c2f2409. |
 | Sahih Muslim #223 | EN, RU, UZ, TJ | Adults | R210-R213. Narrated by Abu Malik al-Ash'ari, sahih, the Book of Purification. 'Purity is half of faith...' - al-hamdu lillah fills the Scale, prayer is light, charity is proof, patience is radiance, the Qur'an is an argument for you or against you, every person sets out in the morning and sells his soul. Full matn restored 2026-11-02 (HadeethEnc 65004); the narrator's doubt -أو تملأ- kept as «(or: fills)» in all four. Library row: matn_verified_at NULL - a human sets it. |
 | Sahih al-Bukhari #6114 | EN, RU, UZ, TJ | Adults | R214-R217. Narrated by Abu Hurairah, sahih, the Book of Good Manners (al-Adab), chapter on being cautious of anger. 'The strong one is not the one who overcomes others in wrestling; the strong one is the one who controls himself at the time of anger.' H from Shaykh Abdul Sattar al-Hammad (Hidayat al-Qari). Library row: matn_verified_at NULL - a human sets it. |
+| Sahih al-Bukhari #6405 | EN, RU, UZ, TJ | Adults | R218-R221. Narrated by Abu Hurairah, sahih, Book 80 Invocations (كتاب الدعوات), chapter on the virtue of tasbih - the neighbour of #6406 (R174-R177). 'Whoever says SubhanAllahi wa bihamdihi a hundred times a day, his sins are wiped away even if they are like the foam of the sea.' H from Shaykh Abdul Sattar al-Hammad (Hidayat al-Qari): the forgiveness concerns the rights of Allah, not the rights of people. Library id f31cd2b7. |
 | Sahih Muslim #2747 | EN, RU, UZ, TJ | Adults | R178-R181. Narrated by Anas ibn Malik, sahih, The Book of Repentance (كتاب التوبة). The long narration (the man lies down in the shade; 'O Allah, You are my servant and I am Your Lord'). Bukhari #6309 is the short version from Anas and Muslim #2744 / #2746 the same parable via Ibn Mas'ud and al-Bara' - check against this row before treating any as new. Library id e7f5e920. |
 | Sahih Muslim #2749 | EN, RU, UZ, TJ | Adults | R182-R185. Narrated by Abu Hurairah, sahih, The Book of Repentance (كتاب التوبة). 'If you did not sin, Allah would take you away and bring a people who would sin, then seek forgiveness, and He would forgive them.' Muslim #2748 is the same meaning from Abu Ayyub ('had you not committed sins, Allah would have created a creation that sins and He would forgive them', en.tohed.com muslim/2748) - check against this row before treating it as new. Library id a783064f. |
 | Sahih al-Bukhari #6307 | EN, RU, UZ, TJ | Adults | R198-R201. Narrated by Abu Hurairah, sahih, the Book of Invocations (كتاب الدعوات). 'By Allah, I ask forgiveness of Allah and repent to Him more than seventy times a day.' Sourced 2026-11-05 by Workflow L (Dorar), A/B 4/4, operator approved. Same meaning in Jami at-Tirmidhi #3259 ('seventy times a day', under Muhammad 47:19); narrations giving one hundred are separate hadiths at other numbers - check against this row before treating one as new. Library id 9860e161. |
@@ -363,7 +368,7 @@
 | Forgiveness / Repentance | 4 | R146–R149 | EN, RU, UZ, TJ |
 | Tawheed / Intercession | 4 | R150–R153 | EN, RU, UZ, TJ |
 | Blessings / Time | 4 | R170-R173 | EN, RU, UZ, TJ |
-| Dhikr / Tasbih | 4 | R174-R177 | EN, RU, UZ, TJ |
+| Dhikr / Tasbih | 8 | R174-R177, R218-R221 | EN, RU, UZ, TJ |
 
 **Coverage gaps to consider for upcoming reels:**
 
@@ -395,10 +400,10 @@
 | vocal-nasheed-02.mp3 | 11 | R090 | R030, R041, R046, R056, R061, R064, R071, R076, R079, R085, R090. WITHDRAWN 2026-10-24 (P301): moved to `out/backgrounds/_claimed/` with `lanes: []` after a YouTube Content ID block was first attributed to it. The block was in fact on an Aswati bed; this withdrawal stands on provenance - the Pixabay uploader was not the rights holder - and no claim against this bed has been observed. |
 | ramadan-2-bg.mp3 | 9 | R025 | R014, R015, R016, R017, R018, R019, R020, R021, R025 |
 | vocal-nasheed-04.mp3 | 16 | R214 | R031, R047, R054, R062, R067, R074, R083, R084, R088, R096, R101, R107, R113, R126, R147, R214 |
-| vocal-nasheed-01.mp3 | 13 | R201 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129, R144, R201 |
+| vocal-nasheed-01.mp3 | 14 | R218 | R028, R034, R044, R057, R065, R068, R077, R087, R102, R108, R129, R144, R201, R218 |
 | vocal-nasheed-03.mp3 | 13 | R207 | R029, R035, R043, R058, R070, R081, R089, R092, R099, R140, R160, R192, R207 |
 | vocal-nasheed-05.mp3 | 14 | R215 | R032, R036, R045, R059, R069, R082, R093, R098, R109, R131, R145, R153, R200, R215 |
-| vocal-nasheed-06.mp3 | 13 | R206 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137, R159, R191, R206 |
+| vocal-nasheed-06.mp3 | 14 | R220 | R033, R039, R048, R060, R066, R073, R075, R100, R130, R137, R159, R191, R206, R220 |
 | vocal-nasheed-07.mp3 | 13 | R217 | R037, R049, R055, R063, R072, R080, R086, R097, R105, R136, R158, R196, R217 |
 | light-of-my-heart-bg.mp3 | 13 | R216 | R010, R013, R024, R038, R078, R091, R094, R104, R106, R134, R161, R198, R216 |
 | ramadan-bg.mp3 | 5 | R027 | R006, R007, R008, R009, R027 |
@@ -406,9 +411,9 @@
 | nasheed-bg-1.mp3 | 2 | R022 | R012, R022 |
 | path-to-jannah-bg.mp3 | 9 | R208 | R004, R023, R095, R103, R128, R135, R189, R195, R208 |
 | ramadan-1-bg.mp3 | 1 | R026 | R026 |
-| aswati-Peaceful-Contemplation.mp3 | 14 | R213 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176, R178, R184, R203, R213 |
+| aswati-Peaceful-Contemplation.mp3 | 15 | R219 | R114, R120, R138, R143, R148, R150, R163, R169, R170, R176, R178, R184, R203, R213, R219 |
 | aswati-Gentle-Reflection.mp3 | 14 | R212 | R115, R121, R139, R142, R156, R165, R168, R171, R174, R179, R182, R193, R205, R212 |
-| aswati-Morning-Serenity.mp3 | 13 | R211 | R116, R124, R154, R162, R167, R172, R177, R180, R185, R190, R199, R202, R211 |
+| aswati-Morning-Serenity.mp3 | 14 | R221 | R116, R124, R154, R162, R167, R172, R177, R180, R185, R190, R199, R202, R211, R221 |
 | aswati-Heartfelt-Gratitude.mp3 | 8 | R181 | R117, R123, R152, R164, R166, R173, R175, R181. RETIRED 2026-11-02 (operator): `lanes: []`, out of rotation; file kept on disk (P141). |
 | aswati-Rising-Hope.mp3 | 9 | R210 | R118, R125, R149, R157, R183, R188, R197, R204, R210 |
 | aswati-Steady-Motivation.mp3 | 4 | R146 | R119, R127, R133, R146. REFUSED BY THE RIGHTS GATE 2026-10-27 on the Bukhari #6570 Russian leg, which had been rendered on it on 2026-10-14, before the Content ID claim was known; that leg was re-rendered on aswati-Victory-March.mp3 and shipped. Content ID has CLAIMED this audio - "The Motion Wave", Abdullaerh Dee, owner Jungle Entertainment Ventures - and it blocked the Tirmidhi #3540 English reel globally (P301). `audit-assets.py --check` now exits 1 on it, so it cannot be drawn again by accident. The four reels listed above still carry it on the platforms where they were published. NOTE: no reel number belongs in this prose - the audit parses R-numbers out of the whole cell and reads them as usage. |
@@ -429,6 +434,7 @@ three sets.
 | Clip set | Uses | Last used | Reels |
 |---|---|---|---|
 | m223-wudu-c8, horizon, lamp, sadaqa, path (+ b6406-scalesky-r) | 1 set | 2026-11-07 (R210-R213) | R210-R213, six scenes in matn order: ablution, the Scale (scalesky reused from #6406), the horizon, the lamp (prayer is light), charity, the path (every person sets out); UZ on wudu-c8s (P240). m223-sadaqa shows a hand - MODE B says no people; published as is (presentation, not integrity - retro). |
+| b6405-foam, recede, smooth, mat, sunrise | 1 set | 2026-11-09 (R218-R221) | R218-R221, five scenes on every leg, -FitScenes: the foam of the sea, the wave drawing back and the foam melting away, the smooth beach with footprints washed off (sins wiped away), the prayer mat facing a blank wall in a sunlit courtyard (qibla rule), sunrise over the sea. No people, no moon. Picks by the operator (foam-2, recede-2, smooth-1, mat-2, sunrise-1). |
 | b6114-ring, pot, ash, well, mat | 1 set | 2026-11-08 (R214-R217) | R214-R217, five scenes in matn order: the empty wrestling ground, the pot boiling (anger rising), the cooled ash (anger gone), still water in the well (self-control), the prayer mat facing a blank wall. All daylight (the planned night scene changed before FLUX). Picks: pot-3, well-1, mat-3 by the operator; ring-2, ash-1 by Claude. |
 | m2581-empty, salah, iftar, zakat, spilt, road | 1 set | 2026-11-06 (R206-R209) | R206-R209, all six on every leg in matn order (the bankrupt man's empty room; the prayer, fasting and zakah he brings; the spilt jar of what he took; the road he leaves on), -FitScenes; UZ on x1.15 copies (-s, P240). Stills picked by Claude while the operator was away (empty-1, salah-2, iftar-1, zakat-3, spilt-2, road-2); reasons in out/clips-2581.json (modern clasps and measuring marks avoided). |
 | m2734-sufra, date, pour-c, dates-b | 1 set | 2026-11-06 (R202-R205) | R202-R205, all four on every leg, -FitScenes. Rendered 2026-11-02/04, published 2026-11-06. sufra-1 and dates-1 were the operator's picks; pour-c is the first 5.6 s of the Kling 2.6 pour-b take slowed x1.35. |
@@ -556,19 +562,19 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 
 | Metric | Value |
 |---|---|
-| Total reels posted | 217 |
+| Total reels posted | 221 |
 | Languages active | 4 (EN, RU, UZ, TJ) |
-| Adults reels | 165 |
+| Adults reels | 169 |
 | Kids reels | 52 |
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
-| Hadiths used (unique) | 55 |
-| Library rows | 83 (54 used, 29 unused - 2026-11-08) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×95, Sahih Muslim ×44, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
-| Companions cited | 21 (Abdullah ibn Amr ×8, Uthman ibn Affan ×4, Abu Hurairah ×74, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×12, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4, Jubayr ibn Mut'im ×4, Abu Malik al-Ash'ari ×4) |
+| Hadiths used (unique) | 56 |
+| Library rows | 83 (55 used, 28 unused - 2026-11-09) |
+| Hadith collections used | 5 (Sahih al-Bukhari ×99, Sahih Muslim ×44, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
+| Companions cited | 21 (Abdullah ibn Amr ×8, Uthman ibn Affan ×4, Abu Hurairah ×78, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×12, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4, Jubayr ibn Mut'im ×4, Abu Malik al-Ash'ari ×4) |
 
-**217 reels (165 adults) from 55 hadiths.** 54 of 83 library rows have been used;
-29 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**221 reels (169 adults) from 56 hadiths.** 55 of 83 library rows have been used;
+28 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the
@@ -612,6 +618,7 @@ Then update:
 | 2026-11-06 | R206-R209 - Sahih Muslim #2581 EN/RU/UZ/TJ adults, 'Do you know who the bankrupt one is?'. Major Sins / Accountability (second set, after #2654). Produced end to end while the operator was away (picks, beds, SRT fixes by Claude; publish on his go). Captions 1196-1267 chars: TG 220-227 as video + full-text reply. | Farhod / Claude |
 | 2026-11-07 | R210-R213 - Sahih Muslim #223 EN/RU/UZ/TJ adults, 'Purity is half of faith'. New theme Purity / Worship. Rendered 2026-11-02/03, published five days later at the operator's word. First set with UZ/TJ YouTube covers (P374), kept beside their reels from now on (P376); every platform block checked as sent (P375): 15 of 15 matched. | Farhod / Claude |
 | 2026-11-08 | R214-R217 - Sahih al-Bukhari #6114 EN/RU/UZ/TJ adults, 'the strong one is the one who controls himself at the time of anger'. Character / Akhlaq (second set). EN/RU subtitles corrected against the drafts before the burn; RU first planned on a Content-ID-claimed bed - P377 now checks beds in the dry run. Every platform block checked as sent (P375): 28 of 28 matched. Listen published. TG 232-235. | Farhod / Claude |
+| 2026-11-09 | R218-R221 - Sahih al-Bukhari #6405 EN/RU/UZ/TJ adults, 'SubhanAllahi wa bihamdihi a hundred times a day - sins wiped away even if like the foam of the sea'. Dhikr / Tasbih (second set, after #6406). P384 (UZ gain over render-reel's cap, now stopped in the dry run); P385 (Meta dropped the Facebook title field; the publishing sequence fixed by the operator). TG 236-239. | Farhod / Claude |
 | 2026-11-01 | R174-R177 - Sahih al-Bukhari #6406 EN/RU/UZ/TJ adults, two words light on the tongue and heavy on the Scale. New theme Dhikr / Tasbih. First hadith from a Dorar query to a published reel in one day. P344 (promote copied an Arabic narrator; caught by P337 at the narrate dry run). TG 184-187. | Farhod / Claude |
 | 2026-11-01 | R170-R173 - Sahih al-Bukhari #6412 EN/RU/UZ/TJ adults, two blessings many people lose: health and free time. New theme Blessings / Time. P342 caught its first defect live (RU 'добудет'). DB: RU matn corrected, tag death -> time (new tags.ts concept). P343 (the clip check looked for faces, not for whether the water came from the right place). TG 180-183. | Farhod / Claude |
 | 2026-10-31 | R166-R169 - Sunan Abu Dawud #4811 EN/RU/UZ/TJ adults, whoever does not thank people does not thank Allah. Second set in Gratitude / Contentment and the first in the bright palette. P340 (prayer direction in a frame - the qibla rule had lived in chat memory), P341 (the --strict splat). First production use of FLUX 3 (Edit). TG 176-179. | Farhod / Claude |

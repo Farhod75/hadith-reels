@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1d434/GWeYrNGt7TPan0xMALM8c_output.mp4",
+    "name":  "m2564-bread",
+    "image":  "out\\refs\\m2564-bread-1.jpg",
+    "file":  "out\\backgrounds\\new\\m2564-bread.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-09T22:29:02.7036785Z",
+    "size_bytes":  37040228,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft golden morning light slowly grows along the lane, long shadows shorten gently, a few grains of sand drift in a light breeze. The basket of bread and dates, the clay jug and the closed wooden door stay perfectly still. Static camera, a very slow gentle push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no animals, no text.",
+    "request_id":  "01a1c26d-de3e-7052-9506-ec93534a206e",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-09T22:34:45.9504421Z",
+    "mode":  "image-to-video"
+}

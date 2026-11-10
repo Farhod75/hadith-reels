@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1d3f2/9Iyum4dw4u90UhV8RTpo2_output.mp4",
+    "name":  "m2564-mat",
+    "image":  "out\\refs\\m2564-mat-3.jpg",
+    "file":  "out\\backgrounds\\new\\m2564-mat.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-09T22:17:09.8785985Z",
+    "size_bytes":  25556021,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Warm morning sunlight slowly brightens across the floor and the prayer mat, fine dust motes drift in the light from the window. The mat stays perfectly still and in place, facing the plain wall. Static camera, no camera movement. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no moon, no door, no text.",
+    "request_id":  "01a1c262-fdc7-77a0-90ac-82f88eb85fa8",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-09T22:23:17.9936472Z",
+    "mode":  "image-to-video"
+}

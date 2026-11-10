@@ -1,3 +1,13 @@
+## [2026-11-09b] - R218-R221, Sahih al-Bukhari #6405, four languages, set closed
+
+### Content
+
+- Tracker rows R218-R221 (TG 236-239), duplicate index (#6405), Dhikr / Tasbih now 8, nasheed usage, the
+  b6405 clip set, stats 221/169/52, Bukhari x99, Abu Hurairah x78, change log, retro. Registry: b6405 clips
+  verified; scene-prompt sidecars for b6405 and m2564 added. Listen not run (operator's yes pending).
+
+---
+
 ## [2026-11-09] - publishing sequence fixed; no Facebook title (P385)
 
 ### Changed

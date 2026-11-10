@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab1aab9/UO07fUsE8qQoCLgfAqJMV_output.mp4",
+    "name":  "b6405-sunrise",
+    "image":  "out\\refs\\b6405-sunrise-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6405-sunrise.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-08T16:58:56.7084171Z",
+    "size_bytes":  32162336,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The sun rises slowly above the sea horizon, the golden path of light shimmers on the water, gentle foam lines wash in and out on the shore. Camera almost static, a very slow gentle push-in. Keep every element exactly as in the image, nothing added or removed. No people, no boats, no birds, no text.",
+    "request_id":  "01a1bc19-4b17-75a1-9f78-4557ceeb1575",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-08T17:15:57.5590353Z",
+    "mode":  "image-to-video"
+}
