@@ -20,7 +20,7 @@ Mood (P386): the ranking is by rotation only, so on #2564 (a hadith about the he
 aswati-Victory-March first. The Aswati names are the store's labels, not the recordings'
 titles - the ID3 tags read as phone voice memos (P301) - so a name says nothing about the
 sound. The mood is the operator's ear: an optional "mood" on each audio entry in
-assets/asset-registry.json (calm | uplifting | energetic). --mood keeps beds of that mood and
+assets/asset-registry.json (calm | uplifting | energetic, or a list of them). --mood keeps beds of that mood and
 the unrated ones, and every line says which is which.
 
 Exit codes follow the audit contract (P093): 0 fine, 2 could not run.
@@ -59,28 +59,47 @@ def eligible_beds(lane):
     return [l.strip() for l in (out.stdout or "").splitlines() if l.strip().endswith(".mp3")]
 
 
+def _as_moods(value):
+    """A registry "mood" is one mood or a list of them (a bed the operator hears as both,
+    "calm/uplifting"). -> tuple of valid moods, () for none."""
+    vals = value if isinstance(value, list) else [value]
+    return tuple(v for v in vals if v in MOODS)
+
+
 def bed_moods(path):
-    """{bed: mood} from the registry's audio section; beds without a rating are absent."""
+    """{bed: (mood, ...)} from the registry's audio section; beds without a rating are absent."""
     try:
         reg = json.load(io.open(path, encoding="utf-8-sig"))
     except (OSError, ValueError):
         return {}
-    return {k: v["mood"] for k, v in (reg.get("audio") or {}).items()
-            if isinstance(v, dict) and v.get("mood") in MOODS}
+    out = {}
+    for k, v in (reg.get("audio") or {}).items():
+        if isinstance(v, dict) and _as_moods(v.get("mood")):
+            out[k] = _as_moods(v.get("mood"))
+    return out
+
+
+def _fits(moods, bed, wanted):
+    m = moods.get(bed)
+    if isinstance(m, str):
+        m = (m,)
+    return not m or wanted in m
 
 
 def filter_by_mood(rows, moods, wanted):
     """(kept, dropped): with a wanted mood, beds rated otherwise are dropped; unrated stay."""
     if not wanted:
         return rows, []
-    kept = [r for r in rows if moods.get(r["bed"]) in (None, wanted)]
-    dropped = [r for r in rows if moods.get(r["bed"]) not in (None, wanted)]
+    kept = [r for r in rows if _fits(moods, r["bed"], wanted)]
+    dropped = [r for r in rows if not _fits(moods, r["bed"], wanted)]
     return kept, dropped
 
 
 def mood_label(moods, bed):
     m = moods.get(bed)
-    return ("mood: %s" % m) if m else "mood: not rated - listen before choosing"
+    if isinstance(m, str):
+        m = (m,)
+    return ("mood: %s" % "/".join(m)) if m else "mood: not rated - listen before choosing"
 
 
 def tracker_usage(path):

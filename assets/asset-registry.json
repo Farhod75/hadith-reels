@@ -27,7 +27,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "energetic"
     },
     "path-to-jannah-bg.mp3": {
       "classification": "vocal+daf",
@@ -47,7 +48,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "calm"
     },
     "vocal-nasheed-01.mp3": {
       "classification": "vocal",
@@ -67,7 +69,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "uplifting"
     },
     "vocal-nasheed-03.mp3": {
       "classification": "vocal",
@@ -87,7 +90,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "calm"
     },
     "vocal-nasheed-04.mp3": {
       "classification": "vocal",
@@ -107,7 +111,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "uplifting"
     },
     "vocal-nasheed-05.mp3": {
       "classification": "vocal",
@@ -127,7 +132,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "uplifting"
     },
     "vocal-nasheed-06.mp3": {
       "classification": "vocal",
@@ -147,7 +153,11 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": [
+        "calm",
+        "uplifting"
+      ]
     },
     "vocal-nasheed-07.mp3": {
       "classification": "vocal",
@@ -167,7 +177,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "calm"
     },
     "aswati-Focused-Determination.mp3": {
       "gain": 1.41,
@@ -187,7 +198,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "uplifting"
     },
     "aswati-Gentle-Reflection.mp3": {
       "gain": 2.2,
@@ -207,7 +219,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "calm"
     },
     "aswati-Heartfelt-Gratitude.mp3": {
       "gain": 1.58,
@@ -245,7 +258,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "energetic"
     },
     "aswati-Peaceful-Contemplation.mp3": {
       "gain": 1.14,
@@ -265,7 +279,8 @@
           "result": null,
           "evidence": "#3540 UZ published 2026-10-24 on this bed showed no notice in Studio the same day. That is NOT a clean result: Content ID can claim at any time afterwards, and a same-day look proves nothing."
         }
-      }
+      },
+      "mood": "calm"
     },
     "aswati-Rising-Hope.mp3": {
       "gain": 1.0,
@@ -285,7 +300,8 @@
           "result": null,
           "evidence": "#3540 TJ published 2026-10-24 on this bed showed no notice in Studio the same day. Same caveat as Peaceful-Contemplation: not a clean result."
         }
-      }
+      },
+      "mood": "uplifting"
     },
     "aswati-Steady-Motivation.mp3": {
       "gain": 1.19,
@@ -325,7 +341,8 @@
           "result": null,
           "evidence": null
         }
-      }
+      },
+      "mood": "calm"
     },
     "vocal-hamd-kids-01.mp3": {
       "classification": "vocal",

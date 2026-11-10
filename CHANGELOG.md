@@ -1,3 +1,15 @@
+## [2026-11-10h] - every bed carries the operator's mood rating (P386)
+
+### Changed
+
+- **assets/asset-registry.json:** `mood` on all 14 beds in rotation, from the operator's listening of beds-preview.mp3.
+  uplifting: Focused-Determination, Rising-Hope, vocal-nasheed-01/04/05. calm: Gentle-Reflection, Peaceful-Contemplation,
+  Victory-March, path-to-jannah, vocal-nasheed-03/07. energetic: Morning-Serenity, light-of-my-heart.
+  vocal-nasheed-06: calm AND uplifting. The names were no guide: "Victory-March" is calm, "Morning-Serenity" energetic.
+- **pick-nasheed.py:** a mood may be a list; such a bed fits either. 1 test.
+
+---
+
 ## [2026-11-10g] - Muslim #2588 full matn in the library; its page (P387)
 
 ### Changed

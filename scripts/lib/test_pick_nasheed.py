@@ -33,10 +33,18 @@ def test_moods_come_from_the_registry_and_ignore_unknown_values(tmp_path):
     p = tmp_path / "reg.json"
     p.write_text(json.dumps({"audio": {"a.mp3": {"mood": "calm"}, "b.mp3": {"mood": "loud"},
                                        "c.mp3": {"lanes": ["adults"]}}}), encoding="utf-8")
-    assert pn.bed_moods(str(p)) == {"a.mp3": "calm"}
+    assert pn.bed_moods(str(p)) == {"a.mp3": ("calm",)}
+
+
+def test_a_bed_rated_two_moods_fits_either():
+    moods = {"both.mp3": ("calm", "uplifting"), "march.mp3": ("energetic",)}
+    rows = [{"bed": "both.mp3"}, {"bed": "march.mp3"}]
+    assert [r["bed"] for r in pn.filter_by_mood(rows, moods, "uplifting")[0]] == ["both.mp3"]
+    assert [r["bed"] for r in pn.filter_by_mood(rows, moods, "calm")[0]] == ["both.mp3"]
+    assert pn.mood_label(moods, "both.mp3") == "mood: calm/uplifting"
 
 
 def test_the_real_registry_reads():
     reg = os.path.join(os.path.dirname(SCRIPTS), "assets", "asset-registry.json")
     moods = pn.bed_moods(reg)
-    assert all(m in pn.MOODS for m in moods.values())
+    assert all(m and all(x in pn.MOODS for x in m) for m in moods.values())
