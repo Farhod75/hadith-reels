@@ -425,6 +425,13 @@ v3/pro is still current; FLUX remains a major version behind; and HV `/api/healt
 ---
 
 ## Production queue
+**MUSLIM #2588 — NEXT SET, PREPARED 2026-11-10 (nothing written to the DB, nothing paid).** Library row
+`859b2de3` holds only «مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ» - the partial matn listed above. Full matn checked on
+sunnah.com/muslim:2588 (book 45 no. 90, باب اسْتِحْبَابِ الْعَفْوِ وَالتَّوَاضُعِ): charity, forgiving -> honour,
+humility -> raised. Proposed full Arabic + EN/RU/UZ/TJ in `out/proposed-2588-full-matn.json` (first clause keeps
+the stored wording), set draft `out/set-2588.json`, five-scene plan with the operator's caravan/horse idea and
+`align` anchors in `out/plan-2588.md`. Next on the operator's yes: sign -> apply, Latin, Stage 3, drafts.
+
 **MUSLIM #2564 — PUBLISHED 2026-11-09 (R222-R225); kept below as the set's record.** Library row
 `8eeb6788`, Abu Hurairah, sahih. `text_arabic` matches sunnah.com/muslim:2564c
 (book 45, hadith 42) letter for letter; chapter باب تحريم ظلم المسلم
