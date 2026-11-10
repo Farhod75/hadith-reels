@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-318 patterns in 331 entries, frontier **P388**. The P-sequence is shared with
+319 patterns in 332 entries, frontier **P389**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -379,5 +379,6 @@ BEFORE changing it.
 - **P386** - equal clip slots put the wrong picture on the matn; the bed picker ranked by rotation only
 - **P387** - the site repeated its sources; a viewer had nowhere to read the hadith in full
 - **P388** - /api/health said "ok" through the kind of outage HV actually has
+- **P389** - the prompt named two seerah books the model had never read, and stamped one on every result
 
-<!-- pattern-index-stamp entries=331 patterns=318 frontier=388 sha1=523515bcd5238c9747272640f58e982541b19d33 -->
+<!-- pattern-index-stamp entries=332 patterns=319 frontier=389 sha1=e3b40b6fbb30304a16628b0ff13a4f92ed808335 -->

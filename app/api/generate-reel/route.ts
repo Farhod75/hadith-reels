@@ -2,10 +2,14 @@
 // POST /api/generate-reel
 // Generates story + moral + seerah_context + caption for a hadith reel
 //
-// Seerah sources (dual — matched to language):
-//   AR/EN → Ar-Raheeq Al-Makhtum (Safiur Rahman al-Mubarakpuri)
-//   UZ/TJ/RU → Uswa al-Hasana (Усваи Хасана) — Turkish Islamic Seerah
-//              translated to Russian/Uzbek, emotional devotional style
+// P389: no seerah book is named to the model or in the output. Until
+// 2026-11-10 this route told the model to "draw from" Ar-Raheeq Al-Makhtum
+// (EN/AR) or Uswa al-Hasana (RU/UZ/TJ) - books it has never been given - and
+// stamped "📖 Манба: Усваи Ҳасана" on the result whether or not a word came
+// from it (P049). That instruction is what produced the attributions P105 and
+// P115 then had to catch in lint-content.py. Context from a seerah book reaches
+// a reel only as a quoted, sourced passage (CLAUDE.md HARD RULE 8), never
+// through the prompt.
 
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
@@ -28,28 +32,6 @@ function getLangInstruction(lang: string): string {
   if (lang === 'tj')
     return 'Write ALL text in Tajik Cyrillic (Тоҷикӣ). Use Tajik vocabulary, not Russian.'
   return 'Write ALL text in English.'
-}
-
-// ─── Seerah source selection ──────────────────────────────────────────────────
-// Ar-Raheeq Al-Makhtum: scholarly, historical, Arabic/English audience
-// Uswa al-Hasana: emotional, devotional, warm — Russian/Uzbek/Tajik audience
-function getSeerahSource(lang: string): { name: string; description: string; attribution: string } {
-  if (lang === 'ru' || lang === 'uz' || lang === 'uz_cyrillic' || lang === 'uz_latin' || lang === 'tj') {
-    return {
-      name: 'Uswa al-Hasana (Усваи Ҳасана)',
-      description: 'the multi-volume Turkish Islamic Seerah translated into Russian and Uzbek, known for its warm emotional and devotional style, strong emphasis on love for the Prophet ﷺ',
-      attribution: lang === 'ru'
-        ? '📖 Источник: Усваи Хасана'
-        : lang === 'tj'
-        ? '📖 Сарчашма: Усваи Ҳасана'
-        : '📖 Манба: Усваи Ҳасана',
-    }
-  }
-  return {
-    name: 'Ar-Raheeq Al-Makhtum',
-    description: 'the award-winning biography of the Prophet ﷺ by Safiur Rahman al-Mubarakpuri, first prize of the Muslim World League Seerah competition 1979, known for its scholarly and eloquent style',
-    attribution: '📖 Source: Ar-Raheeq Al-Makhtum',
-  }
 }
 
 // ─── Audience instruction ─────────────────────────────────────────────────────
@@ -94,7 +76,6 @@ export async function POST(req: NextRequest) {
 
     const langInstruction     = getLangInstruction(lang)
     const audienceInstruction = getAudienceInstruction(style)
-    const seerahSource        = getSeerahSource(lang)
 
     const prompt = `${langInstruction}
 
@@ -107,24 +88,20 @@ Narrator: ${narrator || 'unknown'}
 Collection: ${collection || 'unknown'}${hadith_number ? ` #${hadith_number}` : ''}
 Tags: ${tags?.join(', ') || ''}
 
-Seerah source to draw from:
-"${seerahSource.name}" — ${seerahSource.description}
-
 Generate reel content. Respond ONLY with valid JSON (no markdown, no backticks, no preamble):
 {
   "title": "Max 8 words. State what the hadith is ABOUT, or quote its own words. It may not promise the reader an outcome, name a benefit, or rank the deed — the matn says what it says, and the title says no more. 'Two Deeds Allah Loves' is right; 'The Believer Always Wins' is not.",
   "story": "Follow the matn's own length. A one-sentence hadith gets a short story; do not pad to a target. Say what the hadith says, in the order it says it. You may explain a term it uses. You may NOT say what kind of thing it describes, how much of life it covers, or what the person thereby gains.",
   "moral": "1-2 sentences. A concrete action, and the reason the hadith gives for it. The action must be something a person does BEFORE ALLAH — thanking Him, obeying Him, guarding what He commanded, seeking what He promised — not a self-improvement tip that would read the same in a secular post. 'Notice how that feels in your chest' is wrong; 'say alhamdulillah — Allah promised Paradise to the one who guards them' is right. Name Allah, or name what He promised, or name the act of worship. State the ground plainly, as the hadith states it — do not explain what the hadith 'ties' or 'shows' or 'teaches', and do not describe how Allah made something known. Say the thing, not a comment about the text. The hadith is the Prophet's ﷺ speech unless the matn itself says Allah said it. Never attribute the wording to Allah — that would make it a hadith qudsi, which it is not. Do not add a promise the matn does not make.",
   "seerah_context": "2-3 sentences of context. If the sources tie this hadith to a specific period or event, name it. If they do not, give the collection and book, the narrator, and the classical scholarly reading of the hadith's meaning — and nothing more. Do not supply a period, setting, or occasion that the sources do not record.",
-  "source_attribution": "${seerahSource.attribution}",
   "caption_intro": "First 2 lines of social media caption — must grab attention immediately. No hashtags here."
 }
 
 RULES:
 1. ALL fields in the language specified above (${lang})
-2. story may reference the Prophet ﷺ or his companions ONLY as the hadith and
-   cited seerah source record them. If neither records an incident for this
-   hadith, do NOT construct one — explain the teaching itself instead.
+2. story may reference the Prophet ﷺ or his companions ONLY as the hadith
+   records them. If it records no incident, do NOT construct one — explain
+   the teaching itself instead.
 3. moral MUST be practical AND directed to Allah. "What to do today" alone
    produced twenty consecutive generations with no mention of Allah in the
    moral — the action had no addressee because none was asked for (P155).
@@ -148,7 +125,6 @@ RULES:
 
 ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
 7. NEVER invent an incident, scene, or conversation that is not in the hadith text
-   or the cited seerah source
 8. NEVER attribute direct or indirect speech to the Prophet ﷺ, any prophet, or any
    companion beyond what the hadith itself records. No quotation marks around words
    they did not say.
@@ -300,11 +276,9 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
           story:              { type: 'string' as const },
           moral:              { type: 'string' as const },
           seerah_context:     { type: 'string' as const },
-          source_attribution: { type: 'string' as const },
           caption_intro:      { type: 'string' as const },
         },
-        required: ['title', 'story', 'moral', 'seerah_context',
-                   'source_attribution', 'caption_intro'],
+        required: ['title', 'story', 'moral', 'seerah_context', 'caption_intro'],
       },
     }
 
@@ -356,7 +330,6 @@ ABSOLUTE CONTENT RULES (violating any of these is a fabricated hadith):
     // Add metadata
     result.lang           = lang
     result.style          = style
-    result.seerah_source  = seerahSource.name
 
     // P196: write draft.txt from the RAW generated output, BEFORE any human
     // has corrected it. Until 2026-10-05 draft.txt was written by hand AFTER

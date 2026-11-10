@@ -1359,7 +1359,10 @@ the operator first - see the #6675 retro.
   HadeethEnc id by its Arabic, run `fetch-explanation.py`; (3) an-Nawawi / Ibn Hajar adapters (Arabic
   verbatim; any translation needs an Arabic reader's sign-off, P265); (4) Uswai Hasana and Ar-Raheeq:
   check the rights first; (5) the occasion (sabab al-wurud) has no source adapter yet - `occasion`
-  stays null until one is cited.
+  stays null until one is cited. (6) "Related events" pilot: Muslim #2699 (gathering to recite
+  the Qur'an) with the stories «Лучший пример» pp. 281-283 points to - each from its primary source
+  and only with a named sahih/hasan grading (HARD RULE 8, P389). Uswai Hasana: САД asked
+  2026-11-10 (quote permission, now only "see also" - no reply needed to proceed).
 
 - **CLOSED 2026-10-30: OPEN_ITEMS is cross-referenced at render time (P321).**
   `render-reel.ps1` STEP 0 greps this file for the hadith number it already

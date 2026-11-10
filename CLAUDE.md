@@ -487,8 +487,17 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   verbatim check first: an-Nawawi's Sharh Sahih Muslim and Ibn Hajar's Fath al-Bari
   (classical Arabic; our translation of them is OUR text and needs an Arabic reader's
   sign-off, as P265, before it is shown); Ibn Kathir's al-Bidaya wa'n-Nihaya for the
-  occasion of seerah events. Uswai Hasana and Ar-Raheeq al-Makhtum: rights not checked -
-  not used until they are.
+  occasion of seerah events; for sabab al-wurud, Ibn Hamza al-Husayni's al-Bayan wa't-Ta'rif
+  and Fath al-Bari.
+- **Related events (Ҳадисга оид воқеалар)** - stories around a hadith (who acted on it, what
+  happened). Each comes from its PRIMARY source (Bukhari, Muslim, Ibn Sa'd, Ibn Hisham...),
+  quoted in Arabic with a reviewed translation, cited by book/volume/page, AND carries a named
+  muhaddith's sahih or hasan grading of its isnad. No grading -> not shown: Ibn Sa'd and Ibn
+  Hisham carry many weak chains (P389).
+- Modern seerah books (Uswai Hasana / «Лучший пример», Topbaş's Uzbek «Усваи Ҳасана»,
+  Ar-Raheeq) are a MAP, not a source: their footnotes lead to the primary text. Their own text is
+  not quoted (copyright, and their translations are loose); they may be named as "see also,
+  p. N" beside the primary citation. Nothing is translated from a translation.
 
 ---
 

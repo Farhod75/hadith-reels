@@ -15930,3 +15930,30 @@ P388 entry carries it. HR's public site makes no Claude call.
 **Status:** FIXED
 
 ---
+
+## PATTERN 389: the prompt named two seerah books the model had never read, and stamped one on every result
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** content integrity (attribution)
+
+**What happened.** P049 (June) made `/api/generate-reel` tell the model "Seerah source to draw from:
+Uswa al-Hasana" for RU/UZ/TJ and "Ar-Raheeq Al-Makhtum" for EN/AR, and return a fixed
+`source_attribution` - "📖 Манба: Усваи Ҳасана" - whatever the text said. Neither book was ever given to
+the model. The instruction invited exactly the attributions P105 and P115 later had to catch: "Ни сам
+хадис, ни «Усваи Ҳасана» не указывают…" (a book named in a claim nobody checked), and P115's linter list
+of seerah titles has guarded the output since. The prompt kept creating what the linter kept catching.
+Found on 2026-11-10 while the operator asked whether we need permission to quote the book at all; the
+`remotion/index.tsx` preview defaults also carried two invented scenes and the Ar-Raheeq line.
+
+**Fix.** The book selection, the prompt block, the schema field and `seerah_source` are gone; rules 2 and 7
+name the hadith only. The linter stays as the backstop. HARD RULE 8 now says how such a book CAN help:
+as a map - its footnotes (e.g. «Лучший пример» p. 281-283: Muslim, Dhikr 38; Ibn Sa'd V 508; Bukhari,
+Jana'iz 73, 75) lead to the primary text, which is quoted with its grading; the modern book is cited only
+as "see also".
+
+**Lesson:** naming a source in a prompt is not giving it to the model - it is asking the model to pretend.
+
+**Tripwire:** a book title in a generation prompt or a fixed attribution string in generated output.
+
+**Status:** FIXED
+
+---

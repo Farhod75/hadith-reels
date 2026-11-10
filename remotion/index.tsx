@@ -12,10 +12,10 @@ const adultDefaults: HadithReelProps = {
   narrator:      'Abu Hurairah',
   collection:    'Sahih al-Bukhari',
   hadithNumber:  '1894',
-  story:         'One day the Prophet ﷺ saw his companions struggling with their desires and reminded them of fasting as a shield against temptation.',
+  story:         'The Prophet ﷺ said: "Fasting is a shield."',   // P389: preview text only - no invented scene
   moral:         'Protect yourself with fasting — it shields the soul from harm.',
-  seerahContext: 'During the blessed months in Madinah, the Prophet ﷺ taught his companions the power of voluntary fasting.',
-  attribution:   '📖 Source: Ar-Raheeq Al-Makhtum',
+  seerahContext: 'Sahih al-Bukhari #1894, narrated by Abu Hurairah.',
+  attribution:   '📖 Sahih al-Bukhari #1894',
   lang:          'en',
   audioUrl:      undefined,
 }
@@ -25,7 +25,7 @@ const kidsDefaults: KidsReelProps = {
   hadithText:   'Your smile for your brother is charity!',
   narrator:     'Abu Dharr',
   collection:   'Jami at-Tirmidhi',
-  story:        'One day a little boy came to the Prophet ﷺ feeling very sad. The Prophet ﷺ smiled at him warmly — and the boy felt better right away!',
+  story:        'The Prophet ﷺ said: "Your smile for your brother is charity."',   // P389: no invented scene
   moral:        "A simple smile can make someone's whole day better — and Allah rewards you for it!",
   lang:         'en',
   audioUrl:     undefined,

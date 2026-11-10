@@ -1,3 +1,20 @@
+## [2026-11-10c] - generate-reel no longer names seerah books it never read (P389)
+
+### Removed
+
+- **`/api/generate-reel`:** the "Seerah source to draw from" instruction (Ar-Raheeq for EN/AR, Uswa al-Hasana
+  for RU/UZ/TJ) and the `source_attribution` field that stamped "📖 Манба: Усваи Ҳасана" on every result
+  (P049). The model was never given either book. Rules 2 and 7 now point at the hadith only.
+- **`remotion/index.tsx`:** preview defaults carried invented scenes and the Ar-Raheeq attribution;
+  now the matn and the collection reference.
+
+### Changed
+
+- **HARD RULE 8:** a "related events" section is allowed only from primary sources with a named muhaddith's
+  sahih/hasan grading; modern seerah books are a map to those sources, not a quoted source.
+
+---
+
 ## [2026-11-10b] - /api/health for HR; HV's health check sees a retired model (P388)
 
 ### Added
