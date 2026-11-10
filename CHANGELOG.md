@@ -1,3 +1,16 @@
+## [2026-11-09d] - clips placed by the narration, bed mood (P386)
+
+### Added
+
+- **render-reel.ps1 -SceneDurations:** seconds per clip in -Scenes order, checked like -FitScenes (count,
+  clip length, narration + tailPad).
+- **render-set.py "align":** anchors start / matn / matn:F / moral / moral:F per scene -> -SceneDurations per
+  language; matn start from cached subtitles or the lead-in's letter share. Dry run prints the slots.
+- **pick-nasheed.py --mood:** optional registry `mood` (calm / uplifting / energetic); unrated beds labelled.
+- 12 tests. reel-creation-pipeline.md Step 14 documents both.
+
+---
+
 ## [2026-11-09c] - R222-R225, Sahih Muslim #2564, four languages, set closed
 
 ### Content

@@ -20,6 +20,14 @@ Per language, before anything renders:
   - P384: the gain must be inside render-reel.ps1's own range (0 < g <= 2, read from the script).
     A bed too quiet for the target stops the dry run, with the dB the cap would leave it short,
     instead of failing that language in the middle of the render.
+  - P386: an optional "align" list, one anchor per scene, puts each clip where the narration says
+    what it shows instead of -FitScenes' equal slots:
+        "align": ["start", "matn", "matn:0.6", "moral"]
+    start = 0; matn = where the quoted matn begins; matn:F = that fraction through the matn;
+    moral = where the moral begins (after render-reel's 0.5 s pause); moral:F likewise. The matn
+    start comes from the language's cached subtitles when they exist (EN/RU after a render),
+    otherwise from the share of the S block's letters that the lead-in takes. Each clip must be
+    long enough for its slot (scenes, else scenes_slow); the result goes to -SceneDurations.
 Then (only with --render) it runs render-reel.ps1 -Style adults -FitScenes -NoReview per
 language, logs to out/render-<slug>.log, and finishes with mix-gap.py's after-render check.
 A render stopped by a gate (P339 subtitles, P319 matn) is reported and the set continues with
@@ -42,6 +50,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 LANGS = ('en', 'ru', 'uz', 'tj')
 CONCAT_GAP_GUARD = 0.6   # render-reel's narration.mp3 ran ~0.5 s longer than story+moral on muslim-2749
+STORY_MORAL_PAUSE = 0.5  # render-reel Step 4 (P135): silence between story and moral
+OPEN_QUOTES = ('\u00ab', '\u201c', '"')
+# What the TTS says for the glyph, so the letter count matches the audio (EN/RU write ﷺ;
+# UZ/TJ drafts spell the formula out).
+SPOKEN_SAW = {'en': 'peace be upon him', 'ru': 'да благословит его Аллах и приветствует'}
+MIN_SLOT = 1.5
 
 _spec = importlib.util.spec_from_file_location('mix_gap', os.path.join(HERE, 'mix-gap.py'))
 mg = importlib.util.module_from_spec(_spec)
@@ -86,6 +100,82 @@ def choose_scenes(narration, tail_pad, std, slow):
     return None, None, need
 
 
+def draft_s_block(slug, lang, repo=None):
+    p = os.path.join(repo or REPO, 'out', 'draft-%s-%s.txt' % (slug, lang))
+    for line in io.open(p, encoding='utf-8-sig'):
+        if line.startswith('S:'):
+            return line[2:].strip()
+    raise SystemExit('FAILED: no S: block in %s' % p)
+
+
+def _letters(t):
+    return sum(1 for ch in t if ch.isalpha())
+
+
+def lead_in_fraction(s_block, lang):
+    """Share of the spoken S block that comes before the matn's opening quote (P386)."""
+    qs = [s_block.find(q) for q in OPEN_QUOTES if q in s_block]
+    if not qs:
+        raise ValueError('no opening quote in the S block - the matn start cannot be placed')
+    q = min(qs)
+    spoken = lambda t: t.replace('\ufdfa', ' %s ' % SPOKEN_SAW.get(lang, ''))
+    lead, total = _letters(spoken(s_block[:q])), _letters(spoken(s_block))
+    return lead / float(total) if total else 0.0
+
+
+def _srt_seconds(t):
+    h, m, rest = t.strip().split(':')
+    sec, ms = rest.split(',')
+    return int(h) * 3600 + int(m) * 60 + int(sec) + int(ms) / 1000.0
+
+
+def matn_start_from_srt(text):
+    """Start of the first cue holding an opening quote, moved in by the share of the cue's
+    letters before the quote. None when no cue has one."""
+    for block in re.split(r'\r?\n\r?\n', text.strip()):
+        lines = [l for l in block.splitlines() if l.strip()]
+        if len(lines) < 3 or '-->' not in lines[1]:
+            continue
+        start, end = [_srt_seconds(x) for x in lines[1].split('-->')]
+        cue = ' '.join(lines[2:])
+        qs = [cue.find(q) for q in OPEN_QUOTES if q in cue]
+        if qs:
+            q = min(qs)
+            frac = _letters(cue[:q]) / float(_letters(cue) or 1)
+            return round(start + frac * (end - start), 3)
+    return None
+
+
+def anchor_seconds(anchor, story, moral, matn_start):
+    if anchor == 'start':
+        return 0.0
+    base, _, frac = anchor.partition(':')
+    f = float(frac) if frac else 0.0
+    if not 0.0 <= f < 1.0:
+        raise ValueError('anchor %r: the fraction must be in [0, 1)' % anchor)
+    if base == 'matn':
+        return matn_start + f * (story - matn_start)
+    if base == 'moral':
+        m0 = story + STORY_MORAL_PAUSE
+        return m0 + f * moral
+    raise ValueError('anchor %r: use start, matn, matn:F, moral or moral:F' % anchor)
+
+
+def aligned_durations(anchors, story, moral, matn_start, total, tail_pad):
+    """Seconds per clip from the anchors (P386). The last clip runs to total + tail_pad."""
+    if not anchors or anchors[0] != 'start':
+        raise ValueError('the first anchor must be "start"')
+    starts = [anchor_seconds(a, story, moral, matn_start) for a in anchors]
+    if any(b <= a for a, b in zip(starts, starts[1:])):
+        raise ValueError('anchors must move forward: %s -> %s' % (anchors, [round(x, 2) for x in starts]))
+    ends = starts[1:] + [total + tail_pad]
+    durs = [round(e - b, 3) for b, e in zip(starts, ends)]
+    short = [(a, d) for a, d in zip(anchors, durs) if d < MIN_SLOT]
+    if short:
+        raise ValueError('slot shorter than %.1fs: %s' % (MIN_SLOT, ', '.join('%s %.2fs' % x for x in short)))
+    return durs
+
+
 def narration_seconds(ff, slug, lang):
     w = os.path.join(REPO, 'out', 'work', 'adults', slug, lang)
     full = os.path.join(w, 'adults-%s-%s-narration.mp3' % (lang, slug))
@@ -114,12 +204,14 @@ def _ps_quote(s):
     return "'" + str(s).replace("'", "''") + "'"
 
 
-def build_render_command(slug, lang, bed, gain, scenes, repo=REPO):
-    """pwsh -Command, not -File: under -File a comma list reaches [string[]]$Scenes as ONE string."""
+def build_render_command(slug, lang, bed, gain, scenes, repo=REPO, durations=None):
+    """pwsh -Command, not -File: under -File a comma list reaches [string[]]$Scenes as ONE string.
+    With durations (P386) the clips get -SceneDurations instead of -FitScenes' equal split."""
+    fit = ('-SceneDurations @(%s)' % ','.join('%.3f' % d for d in durations)) if durations else '-FitScenes'
     script = ("& %s -Style adults -Lang %s -Slug %s -Nasheed %s -NasheedGain %.2f -Scenes @(%s) "
-              "-FitScenes -NoReview -Draft %s; exit $LASTEXITCODE"
+              "%s -NoReview -Draft %s; exit $LASTEXITCODE"
               % (_ps_quote(os.path.join(repo, 'render-reel.ps1')), lang, _ps_quote(slug), _ps_quote(bed), gain,
-                 ','.join(_ps_quote(s) for s in scenes),
+                 ','.join(_ps_quote(s) for s in scenes), fit,
                  _ps_quote(os.path.join('out', 'draft-%s-%s.txt' % (slug, lang)))))
     return ['pwsh', '-NoProfile', '-Command', script]
 
@@ -157,6 +249,9 @@ def main(argv=None):
     slow = clip_seconds(ff, plan['scenes_slow']) if plan.get('scenes_slow') else []
     if len(std) < 4:
         print('WARNING: %d clips - the operator wants at least four per reel' % len(std))
+    align = plan.get('align')
+    if align and len(align) != len(std):
+        raise SystemExit('FAILED: "align" has %d anchors for %d scenes (P386)' % (len(align), len(std)))
 
     print('render-set %s - %s' % (slug, 'RENDER' if args.render else 'DRY RUN'))
     jobs, bad = [], 0
@@ -167,7 +262,34 @@ def main(argv=None):
     for lang in langs:
         cfg = plan['langs'][lang]
         nar, src = narration_seconds(ff, slug, lang)
-        which, scenes, need = choose_scenes(nar, tail_pad, std, slow)
+        durations = None
+        if align:
+            w = os.path.join(REPO, 'out', 'work', 'adults', slug, lang)
+            story = mg.duration(ff, os.path.join(w, 'adults-%s-%s-story.mp3' % (lang, slug)))
+            moral = mg.duration(ff, os.path.join(w, 'adults-%s-%s-moral.mp3' % (lang, slug)))
+            srt = os.path.join(w, 'adults-%s-%s-narration.srt' % (lang, slug))
+            m0 = matn_start_from_srt(io.open(srt, encoding='utf-8-sig').read()) if os.path.exists(srt) else None
+            how = 'subtitles'
+            if m0 is None:
+                m0, how = round(story * lead_in_fraction(draft_s_block(slug, lang), lang), 3), 'letter share'
+            try:
+                durations = aligned_durations(align, story, moral, m0, nar, tail_pad)
+            except ValueError as e:
+                print('  %s  STOP (P386 align): %s' % (lang, e)); bad += 1; continue
+            fits = lambda clips: all(d <= s for d, (_, s) in zip(durations, clips))
+            if fits(std):
+                which, scenes = 'scenes', [n for n, _ in std]
+            elif slow and len(slow) == len(std) and fits(slow):
+                which, scenes = 'scenes_slow', [n for n, _ in slow]
+            else:
+                over = ['%s (%s) needs %.2fs, clip is %.2fs' % (n, a, d, c) for (n, c), a, d in zip(std, align, durations) if d > c]
+                print('  %s  STOP (P386 align): %s - add a clip for that part or move an anchor'
+                      % (lang, '; '.join(over))); bad += 1; continue
+            need = max(durations)
+            print('  %s  align (matn at %.2fs from %s): %s'
+                  % (lang, m0, how, ' | '.join('%s %.2fs' % (n, d) for n, d in zip(scenes, durations))))
+        else:
+            which, scenes, need = choose_scenes(nar, tail_pad, std, slow)
         if which is None:
             print('  %s  STOP: %.2fs narration (%s) needs %.2fs per clip; shortest is %.2fs%s'
                   % (lang, nar, src, need, min(s for _, s in std),
@@ -186,9 +308,10 @@ def main(argv=None):
         why = gain_problem(float(gain), gain_max)
         if why:
             print('  %s  STOP (P384): bed %s - %s' % (lang, cfg['bed'], why)); bad += 1; continue
-        print('  %s  narration %.2fs (%s) -> %.2fs per clip, %s | bed %s x%.2f'
-              % (lang, nar, src, need, which, cfg['bed'], float(gain)))
-        jobs.append((lang, scenes, cfg['bed'], float(gain)))
+        print('  %s  narration %.2fs (%s) -> %s, %s | bed %s x%.2f'
+              % (lang, nar, src, ('aligned, longest %.2fs' % need) if durations else ('%.2fs per clip' % need),
+                 which, cfg['bed'], float(gain)))
+        jobs.append((lang, scenes, cfg['bed'], float(gain), durations))
     if bad:
         print('FAILED: fix the above - nothing rendered.')
         return 1
@@ -200,9 +323,10 @@ def main(argv=None):
     def note(s):
         log.write(s + '\n'); log.flush(); print(s)
     results = {}
-    for lang, scenes, bed, gain in jobs:
-        note('=============== RENDER %s  bed=%s  gain=%.2f  scenes=%s' % (lang, bed, gain, ','.join(scenes)))
-        cmd = build_render_command(slug, lang, bed, gain, scenes)
+    for lang, scenes, bed, gain, durations in jobs:
+        note('=============== RENDER %s  bed=%s  gain=%.2f  scenes=%s%s' % (lang, bed, gain, ','.join(scenes),
+             ('  durations=' + ','.join('%.2f' % d for d in durations)) if durations else ''))
+        cmd = build_render_command(slug, lang, bed, gain, scenes, durations=durations)
         p = subprocess.run(cmd, cwd=REPO, capture_output=True, text=True, encoding='utf-8', errors='replace')
         for l in (p.stdout + p.stderr).splitlines():
             log.write('  ' + l + '\n')

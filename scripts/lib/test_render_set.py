@@ -83,3 +83,83 @@ def test_gain_above_the_cap_stops_with_the_shortfall():
 
 def test_gain_not_above_zero_stops():
     assert rs.gain_problem(0.0, 2.0)
+
+
+# ---- P386: clips placed where the narration says what they show ----
+
+EN_S = ('Abu Hurairah (may Allah be pleased with him) narrated that the Prophet \ufdfa said: '
+        '"Allah does not look at your forms or wealth, but He looks at your hearts and deeds."')
+
+SRT_EN = """1
+00:00:00,000 --> 00:00:03,042
+Abu Hurairah, may Allah be pleased with him,
+
+2
+00:00:03,042 --> 00:00:06,500
+narrated that the Prophet peace be upon him said:
+
+3
+00:00:06,500 --> 00:00:09,719
+"Allah does not look at your forms or wealth,
+
+4
+00:00:09,719 --> 00:00:12,500
+but He looks at your hearts and deeds."
+"""
+
+
+def test_matn_start_comes_from_the_first_quoted_cue():
+    assert rs.matn_start_from_srt(SRT_EN) == 6.5
+    assert rs.matn_start_from_srt("1\n00:00:00,000 --> 00:00:02,000\nno quote here\n") is None
+
+
+def test_letter_share_lands_near_the_subtitles():
+    # muslim-2564 EN: story 12.04 s, the subtitles put the matn at 6.50 s
+    est = 12.04 * rs.lead_in_fraction(EN_S, 'en')
+    assert abs(est - 6.5) < 0.8, est
+
+
+def test_saw_glyph_counts_as_spoken_words():
+    with_glyph = rs.lead_in_fraction(EN_S, 'en')
+    without = rs.lead_in_fraction(EN_S.replace('\ufdfa', ''), 'en')
+    assert with_glyph > without
+
+
+def test_aligned_durations_follow_the_anchors_and_cover_the_tail():
+    d = rs.aligned_durations(['start', 'matn', 'matn:0.6', 'moral'], story=12.04, moral=10.69,
+                             matn_start=6.5, total=23.23, tail_pad=1.0)
+    assert d[0] == 6.5
+    assert abs(d[1] - 0.6 * (12.04 - 6.5)) < 0.002
+    assert abs(sum(d) - 24.23) < 0.01
+    assert abs((d[0] + d[1] + d[2]) - (12.04 + 0.5)) < 0.002   # the moral clip starts with the moral
+
+
+def test_bad_anchors_stop_before_rendering():
+    for anchors in (['matn', 'moral'], ['start', 'moral', 'matn'], ['start', 'matn:1.2'], ['start', 'later']):
+        try:
+            rs.aligned_durations(anchors, 12.0, 10.0, 6.0, 23.0, 1.0)
+        except ValueError:
+            continue
+        raise AssertionError('accepted %r' % anchors)
+    try:
+        rs.aligned_durations(['start', 'matn', 'matn:0.1'], 12.0, 10.0, 6.0, 23.0, 1.0)
+    except ValueError as e:
+        assert 'shorter than' in str(e)
+    else:
+        raise AssertionError('accepted a 0.6 s slot')
+
+
+def test_render_command_passes_durations_instead_of_fitscenes():
+    cmd = rs.build_render_command('muslim-2564', 'en', 'bed.mp3', 0.78, ['a.mp4', 'b.mp4'], repo='C:/r',
+                                  durations=[6.5, 17.73])
+    assert '-SceneDurations @(6.500,17.730)' in cmd[-1] and '-FitScenes' not in cmd[-1]
+    plain = rs.build_render_command('muslim-2564', 'en', 'bed.mp3', 0.78, ['a.mp4', 'b.mp4'], repo='C:/r')
+    assert '-FitScenes' in plain[-1] and 'SceneDurations' not in plain[-1]
+
+
+def test_render_reel_takes_scene_durations_and_checks_them():
+    text = io.open(os.path.join(os.path.dirname(SCRIPTS), "render-reel.ps1"), encoding="utf-8-sig").read()
+    assert '[double[]]$SceneDurations' in text
+    assert 'one per clip, in -Scenes order (P386)' in text
+    assert 'would wrap to clip 1 (P240/P386)' in text
+    assert '$durs[$idx-1]' in text

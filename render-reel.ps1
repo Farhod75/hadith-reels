@@ -39,6 +39,10 @@
                 -AcceptSubtitleFindings - which accepts FINDINGS only; a
                 validator that could not run always stops (P356). With the
                 pause, the saved SRT is validated again before the burn.
+   -SceneDurations (optional) seconds per scene clip, in -Scenes order (P386).
+                Replaces -FitScenes' equal split so a clip can start where the
+                narration says what it shows. render-set.py computes it from the
+                plan's "align" anchors. Must cover narration + tailPad.
    -Open        (optional) auto-play the finished reel
    -ValidateOnly (optional) run step 0 and exit — smoke test for the pre-push hook
 ================================================================================
@@ -54,6 +58,7 @@ param(
   [string]$Draft = 'draft.txt',   # source text for the subtitle validator
   [switch]$ForceNoSubs,
   [switch]$FitScenes,     # trim each scene clip to narration/clips so ALL of them appear
+  [double[]]$SceneDurations,   # P386: seconds per clip, in -Scenes order; overrides -FitScenes' equal split
   [switch]$NoReview,
   [switch]$AcceptSubtitleFindings,   # P339: burn under -NoReview despite HIGH findings
   [switch]$Open,
@@ -777,7 +782,34 @@ if ($animated) {
   # Non-destructive: the masters on disk keep full length for the longer
   # languages in the same set, which still need all 10s.
   $fitDur = $null
-  if ($FitScenes) {
+  $durs = $null
+  if ($SceneDurations -and $SceneDurations.Count -gt 0) {
+    # P386: equal slots cannot follow the matn - on #2564 the wealth clip covered the
+    # lead-in and the mat covered 'your forms or wealth', and only the operator saw it.
+    # render-set.py turns the plan's anchors (start / matn / moral) into these seconds.
+    # Checked here against the same limits as -FitScenes: every clip long enough, and the
+    # total covering narration + tailPad so the merge never wraps to clip 1 (P240).
+    if ($SceneDurations.Count -ne $picked.Count) {
+      Die "-SceneDurations has $($SceneDurations.Count) value(s) for $($picked.Count) scene clip(s) - one per clip, in -Scenes order (P386)."
+    }
+    $nd  = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
+    $sum = [double](($SceneDurations | Measure-Object -Sum).Sum)
+    if ($sum + 0.05 -lt $nd + $tailPad) {
+      Die ("-SceneDurations add up to {0}s but narration + tailPad is {1}s - the background would wrap to clip 1 (P240/P386)." -f [math]::Round($sum,2), [math]::Round($nd + $tailPad,2))
+    }
+    $k = 0
+    foreach ($c in $picked) {
+      $d   = [double]$SceneDurations[$k]
+      $len = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $c.FullName)
+      if ($d -lt 0.5 -or $d -gt $len) {
+        Die ("-SceneDurations[{0}] = {1}s for {2}, which is {3}s long - each value must be 0.5s or more and no longer than its clip (P386)." -f $k, $d, $c.Name, [math]::Round($len,2))
+      }
+      $k++
+    }
+    $durs = $SceneDurations
+    Say ("        -SceneDurations (P386): {0}" -f (($durs | ForEach-Object { '{0:0.00}s' -f $_ }) -join ', '))
+  }
+  if ($FitScenes -and -not $durs) {
     $nd = [double](& ffprobe -v error -show_entries format=duration -of csv=p=0 $narr)
     $fitDur = [math]::Round(($nd + $tailPad) / $picked.Count, 3)
     Say ("        -FitScenes: {0}s narration / {1} clips -> {2}s per clip" -f [math]::Round($nd,2), $picked.Count, $fitDur)
@@ -803,7 +835,7 @@ if ($animated) {
     }
 
   }
-  else {
+  elseif (-not $durs) {
     # P286: -FitScenes is opt-in for behaviour that should be asserted. It was
     # omitted twice in the Sunan Abu Dawud #1488 set and the RU reel shipped
     # showing roughly 2.5 of its 4 clips, live on four platforms before anyone
@@ -831,7 +863,8 @@ if ($animated) {
     $ffArgs = @("-hide_banner","-loglevel","error","-y","-i",$c.FullName,
       "-vf","scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
       "-c:v","libx264","-pix_fmt","yuv420p","-r","30","-an")
-    if ($fitDur) { $ffArgs += @("-t","$fitDur") }
+    if ($durs) { $ffArgs += @("-t","$([double]$durs[$idx-1])") }
+    elseif ($fitDur) { $ffArgs += @("-t","$fitDur") }
     $ffArgs += $tmp
     Remove-Item $tmp -Force -ErrorAction SilentlyContinue   # P355: never reuse a stale temp
     $rc = Run "ffmpeg" $ffArgs
@@ -951,6 +984,7 @@ if ($chosen) {
       scenes    = @($picked | ForEach-Object { $_.Name })
       scenesRequested = $Scenes
       fitScenes = [bool]$FitScenes
+      sceneDurations = $SceneDurations
       subtitles = [bool]$useSubs
       acceptedSubtitleFindings = [bool]$AcceptSubtitleFindings
       noReview  = [bool]$NoReview

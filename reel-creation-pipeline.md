@@ -560,6 +560,26 @@ editorial decision, not a formality.
 **Whole set in one run:** `python scripts/render-set.py --plan out/render-<slug>.json` (dry run:
 per-language clip choice and gain, and every bed and clip through the asset gate - P377), then `--render`, started detached (P350).
 
+**Clips follow the narration (P386).** `-FitScenes` gives every clip an equal slot, so a
+clip can land on words it does not show (#2564: the mat appeared on «your forms or
+wealth»). The operator's rule: the clip shows what the narration is saying. Put an
+`"align"` list in the plan, one anchor per scene:
+
+```json
+"align": ["start", "matn", "matn:0.6", "moral"]
+```
+
+`start` = 0; `matn` = where the quoted matn begins (from the language's cached
+subtitles when they exist, otherwise from the lead-in's share of the S block's
+letters); `matn:F` = that fraction through the matn; `moral` = where the moral
+begins; `moral:F` likewise. render-set prints each language's slots in the dry run and
+passes them as `-SceneDurations`. Read the slots against the cues before `--render`.
+
+**Bed mood (P386).** `pick-nasheed.py` ranks by rotation only. The Aswati names are the
+store's labels - the recordings are voice memos (P301) - so a name is not a mood. Rate
+beds by ear with `"mood": "calm" | "uplifting" | "energetic"` on the registry entry;
+`--mood calm` then drops the others and every line says whether a bed was rated.
+
 **Nasheed level (P338).** Before the render, per language:
 `python scripts/mix-gap.py --slug <slug> --lang <lang> --bed <file>` prints the
 `-NasheedGain` that lands the gap on the target (EN 13.3, RU 10.8, UZ 15.7, TJ 13.4 LU).

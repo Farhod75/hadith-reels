@@ -16,6 +16,13 @@ filename (P168). Usage comes from the tracker's Active reels rows, parsed by
 HEADER INDEX - the Notes column holds prose and naive field splitting misreads
 rows, which nearly overwrote R052's history on 2026-08-31.
 
+Mood (P386): the ranking is by rotation only, so on #2564 (a hadith about the heart) it put
+aswati-Victory-March first. The Aswati names are the store's labels, not the recordings'
+titles - the ID3 tags read as phone voice memos (P301) - so a name says nothing about the
+sound. The mood is the operator's ear: an optional "mood" on each audio entry in
+assets/asset-registry.json (calm | uplifting | energetic). --mood keeps beds of that mood and
+the unrated ones, and every line says which is which.
+
 Exit codes follow the audit contract (P093): 0 fine, 2 could not run.
 """
 
@@ -27,6 +34,9 @@ import subprocess
 import sys
 from collections import defaultdict
 import hashlib
+import json
+
+MOODS = ("calm", "uplifting", "energetic")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -47,6 +57,30 @@ def eligible_beds(lane):
         print((out.stderr or out.stdout or "").strip()[:400])
         return None
     return [l.strip() for l in (out.stdout or "").splitlines() if l.strip().endswith(".mp3")]
+
+
+def bed_moods(path):
+    """{bed: mood} from the registry's audio section; beds without a rating are absent."""
+    try:
+        reg = json.load(io.open(path, encoding="utf-8-sig"))
+    except (OSError, ValueError):
+        return {}
+    return {k: v["mood"] for k, v in (reg.get("audio") or {}).items()
+            if isinstance(v, dict) and v.get("mood") in MOODS}
+
+
+def filter_by_mood(rows, moods, wanted):
+    """(kept, dropped): with a wanted mood, beds rated otherwise are dropped; unrated stay."""
+    if not wanted:
+        return rows, []
+    kept = [r for r in rows if moods.get(r["bed"]) in (None, wanted)]
+    dropped = [r for r in rows if moods.get(r["bed"]) not in (None, wanted)]
+    return kept, dropped
+
+
+def mood_label(moods, bed):
+    m = moods.get(bed)
+    return ("mood: %s" % m) if m else "mood: not rated - listen before choosing"
 
 
 def tracker_usage(path):
@@ -93,6 +127,9 @@ def main():
                     help="beds already assigned to other languages in THIS set")
     ap.add_argument("--tracker", default=os.path.join(REPO, "reel-tracker.md"))
     ap.add_argument("--top", type=int, default=5)
+    ap.add_argument("--mood", choices=MOODS,
+                    help="keep beds rated this mood plus unrated ones (P386)")
+    ap.add_argument("--registry", default=os.path.join(REPO, "assets", "asset-registry.json"))
     ap.add_argument("--slug", default="",
                     help="hadith slug, e.g. muslim-1631. Only used to "
                          "rotate the default when the ranking ties")
@@ -125,6 +162,11 @@ def main():
 
     if not rows:
         print("FAILED: every eligible bed was excluded")
+        return 2
+    moods = bed_moods(args.registry)
+    rows, dropped = filter_by_mood(rows, moods, args.mood)
+    if not rows:
+        print("FAILED: no bed left for mood %s" % args.mood)
         return 2
 
     # least-used first; then the one longest unused in THIS language; then
@@ -167,6 +209,7 @@ def main():
     for rank, r in enumerate(rows[:args.top], 1):
         mark = "  <= RECOMMENDED" if rank == 1 else ""
         print("  %d. %-34s %d use(s)%s" % (rank, r["bed"], r["total"], mark))
+        print("     %s" % mood_label(moods, r["bed"]))
         if r["total"] == 0:
             why = "never used in any language"
         else:
@@ -179,6 +222,8 @@ def main():
                        "(%d reels ago)" % (r["total"], r["in_lang"],
                        args.lang.upper(), args.lang.upper(), r["last_lang"], gap))
         print("     %s" % why)
+    if dropped:
+        print("  left out for mood %s: %s" % (args.mood, ", ".join(r["bed"] for r in dropped)))
     print()
     print("-" * width)
     print("  Pass it explicitly:  -Nasheed %s" % rows[0]["bed"])

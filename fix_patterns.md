@@ -15858,3 +15858,31 @@ platform's form changes, the generator changes the same day, not the operator's 
 **Status:** FIXED
 
 ---
+
+## PATTERN 386: equal clip slots put the wrong picture on the matn; the bed picker ranked by rotation only
+
+**Date:** 2026-11-09  **Repo:** hadith-reels  **Severity:** process (caught by the operator before publish)
+
+**What happened.** #2564 EN's first render showed the prayer mat while the narration said «Allah does not
+look at your forms or wealth», because -FitScenes gives every clip an equal share of the narration and the
+order had not been checked against the words. The operator: the clip must match the matn, "we already
+discussed this". Reordering helped but equal slots still put «hearts and deeds» on the wealth clip. The
+same set's bed picker recommended aswati-Victory-March and Focused-Determination for a hadith about the
+heart; the names are store labels on voice-memo recordings (P301), so neither the rank nor the name said
+anything about the sound.
+
+**Fix.** render-reel.ps1 `-SceneDurations` (seconds per clip, in -Scenes order; checked: one per clip, each
+0.5 s to its clip's length, total covering narration + tailPad). render-set.py's plan takes `"align"`
+anchors - start / matn / matn:F / moral / moral:F - and turns them into those seconds per language: the
+matn start from the cached subtitles when present, otherwise from the lead-in's letter share (ﷺ counted
+as spoken). pick-nasheed.py reads an optional registry `mood` and `--mood` drops beds rated otherwise;
+unrated beds are labelled so. 12 tests (render-set 7, pick-nasheed 5).
+
+**Lesson:** a rule the operator states ("the clip matches the matn") needs a field in the plan, or it
+stays a thing he has to catch.
+
+**Tripwire:** a render plan with clips about different parts of the hadith and no `align`.
+
+**Status:** FIXED (mood ratings themselves wait for the operator's ear)
+
+---
