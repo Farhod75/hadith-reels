@@ -2,7 +2,9 @@
 // Static imports so the hadith page bundles every explanation it can show.
 import type { Explanation } from './explanations'
 import x_muslim_2564 from '@/content/explanations/muslim-2564.json'
+import x_muslim_2699 from '@/content/explanations/muslim-2699.json'
 
 export const EXPLANATIONS: Record<string, Explanation> = {
   'muslim-2564': x_muslim_2564 as Explanation,
+  'muslim-2699': x_muslim_2699 as Explanation,
 }

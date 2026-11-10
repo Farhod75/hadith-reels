@@ -1363,6 +1363,11 @@ the operator first - see the #6675 retro.
   the Qur'an) with the stories «Лучший пример» pp. 281-283 points to - each from its primary source
   and only with a named sahih/hasan grading (HARD RULE 8, P389). Uswai Hasana: САД asked
   2026-11-10 (quote permission, now only "see also" - no reply needed to proceed).
+  Pilot BUILT 2026-11-10: /hadith/muslim/2699 - full text + 1 related event (Bukhari, Uhud; Arabic only until
+  HadeethEnc translates 65557). Not added: Umar/Abu Musa "ذكرنا ربنا" (ad-Darimi 3525: Husayn Asad - two defects)
+  and Uthman ibn Abi al-As "youngest, knew most Qur'an" (Ibn Sa'd / Ibn Hisham, no grading found yet).
+- **OPEN 2026-11-10: library row Sahih Muslim #2699 lacks بِهِ** ("سهل الله له به طريقا" in Muslim's text, HadeethEnc
+  4801). Recorded in content/explanations/muslim-2699.json `matn_variant`. An Arabic reader decides (P265).
 
 - **CLOSED 2026-10-30: OPEN_ITEMS is cross-referenced at render time (P321).**
   `render-reel.ps1` STEP 0 greps this file for the hadith number it already

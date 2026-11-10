@@ -19,6 +19,7 @@ export interface CommentaryLang {
   raw: string
   raw_sha256: string
   title: string
+  hadeeth: string            // the source's full text of the hadith, translated by the source
   explanation: string
   lessons: string[]
   word_meanings: unknown[]
@@ -36,6 +37,17 @@ export interface Commentary {
   langs: Partial<Record<SiteLang | 'ar', CommentaryLang>>
 }
 
+// P389: an event around the hadith, from its own source entry, sahih/hasan only.
+export interface RelatedEventLang {
+  url: string; raw: string; raw_sha256: string
+  title: string; hadeeth: string; attribution: string; grade: string
+}
+export interface RelatedEvent {
+  source: string; source_id: string; publisher: string; fetched_at: string
+  see_also: string           // a modern book as a map (title, page) - never quoted
+  langs: Partial<Record<SiteLang | 'ar', RelatedEventLang>>
+}
+
 export interface Occasion { source: string; url: string; text: Partial<Record<SiteLang, string>> }
 
 export interface Explanation {
@@ -44,7 +56,9 @@ export interface Explanation {
   library_id: string
   collection: string
   hadith_number: string
+  library_is_excerpt?: boolean   // the reel narrated part of a longer hadith
   occasion: Occasion | null
+  related_events?: RelatedEvent[]
   commentaries: Commentary[]
 }
 
@@ -77,6 +91,7 @@ export const EXPLAIN_UI: Record<SiteLang, {
   back: string; explanation: string; words: string; lessons: string; occasion: string
   sourceOf: string; verbatim: string; references: string; original: string
   noLang: string; noExplanation: string; checkSource: string; translationFallback: string
+  fullHadith: string; excerptNote: string; events: string; translationPending: string; seeAlso: string
 }> = {
   en: {
     back: '← Hadith Reels',
@@ -92,6 +107,11 @@ export const EXPLAIN_UI: Record<SiteLang, {
     noExplanation: 'An explanation for this hadith has not been added yet. We publish only explanations quoted from named scholars and sources.',
     checkSource: 'Check the hadith ↗',
     translationFallback: 'Shown in Russian: no Tajik translation yet.',
+    fullHadith: 'Full text of the hadith',
+    excerptNote: 'The reel narrates part of this hadith.',
+    events: 'Related events',
+    translationPending: 'A translation will be added after review.',
+    seeAlso: 'See also',
   },
   ru: {
     back: '← Hadith Reels',
@@ -107,6 +127,11 @@ export const EXPLAIN_UI: Record<SiteLang, {
     noExplanation: 'Разъяснение к этому хадису ещё не добавлено. Мы публикуем только разъяснения, приведённые из трудов названных учёных и источников.',
     checkSource: 'Проверить хадис ↗',
     translationFallback: 'Показано на русском: таджикского перевода пока нет.',
+    fullHadith: 'Полный текст хадиса',
+    excerptNote: 'В рилсе прозвучала часть этого хадиса.',
+    events: 'События, связанные с хадисом',
+    translationPending: 'Перевод будет добавлен после проверки.',
+    seeAlso: 'См. также',
   },
   uz: {
     back: '← Hadith Reels',
@@ -122,6 +147,11 @@ export const EXPLAIN_UI: Record<SiteLang, {
     noExplanation: 'Бу ҳадисга шарҳ ҳали қўшилмаган. Биз фақат номи айтилган олимлар ва манбалардан келтирилган шарҳларни чоп этамиз.',
     checkSource: 'Ҳадисни текшириш ↗',
     translationFallback: 'Рус тилида кўрсатилди: тожикча таржима ҳали йўқ.',
+    fullHadith: 'Ҳадиснинг тўлиқ матни',
+    excerptNote: 'Рилсда бу ҳадиснинг бир қисми ўқилган.',
+    events: 'Ҳадисга оид воқеалар',
+    translationPending: 'Таржимаси текширувдан ўтгач қўшилади.',
+    seeAlso: 'Яна қаранг',
   },
   tj: {
     back: '← Hadith Reels',
@@ -137,5 +167,10 @@ export const EXPLAIN_UI: Record<SiteLang, {
     noExplanation: 'Шарҳи ин ҳадис ҳоло илова нашудааст. Мо танҳо шарҳҳоеро нашр мекунем, ки аз уламо ва манбаъҳои маълум оварда шудаанд.',
     checkSource: 'Санҷидани ҳадис ↗',
     translationFallback: 'Бо забони русӣ нишон дода шуд: тарҷумаи тоҷикӣ ҳоло нест.',
+    fullHadith: 'Матни пурраи ҳадис',
+    excerptNote: 'Дар рилс қисмате аз ин ҳадис хонда шуд.',
+    events: 'Воқеаҳои марбут ба ҳадис',
+    translationPending: 'Тарҷума пас аз санҷиш илова мешавад.',
+    seeAlso: 'Инчунин нигаред',
   },
 }

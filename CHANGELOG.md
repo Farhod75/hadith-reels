@@ -8,6 +8,15 @@
 - **`remotion/index.tsx`:** preview defaults carried invented scenes and the Ar-Raheeq attribution;
   now the matn and the collection reference.
 
+### Added
+
+- **Hadith page, full text + related events:** when the reel narrates part of a longer hadith, the page shows the
+  source's full text (HadeethEnc, verbatim, 4 languages); "Ҳадисга оид воқеалар" lists events from their own
+  HadeethEnc entries, sahih/hasan only, Arabic with a pending-translation note until the source translates it, and the
+  modern book only as "see also". Pilot: Muslim #2699 (HadeethEnc 4801) + Bukhari's Uhud burial (65557).
+- **fetch-explanation.py:** `--related`, `--see-also`, `--accept-variant` (a wording variant of at most 2 words is
+  recorded in the file, never silent). Muslim #2699's library matn lacks بِهِ - recorded for an Arabic reader.
+
 ### Changed
 
 - **HARD RULE 8:** a "related events" section is allowed only from primary sources with a named muhaddith's

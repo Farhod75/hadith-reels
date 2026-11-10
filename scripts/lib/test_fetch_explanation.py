@@ -75,6 +75,40 @@ def test_a_language_without_an_explanation_is_left_out_not_filled():
     assert 'tj' not in doc['commentaries'][0]['langs']
 
 
+def test_a_fragment_of_a_long_hadith_is_marked_an_excerpt():
+    full = SRC_AR + ' ' + 'وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ'
+    assert fe.library_is_excerpt(LIB_AR, full)
+    assert not fe.library_is_excerpt(LIB_AR, SRC_AR)      # an isnad opener is not "more hadith"
+    assert not fe.library_is_excerpt('', full)
+
+
+def test_related_events_must_be_sahih_or_hasan():
+    assert fe.strong_grade('صحيح') and fe.strong_grade('حسن') and fe.strong_grade('حسن صحيح')
+    assert not fe.strong_grade('ضعيف') and not fe.strong_grade('') and not fe.strong_grade('حسن لغيره ضعيف')
+    weak = {'ar': dict(_payload('ar'), grade='ضعيف')}
+    try:
+        fe.build_related('1', weak, {'ar': 'h'}, 'd')
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('a weak related event was accepted')
+
+
+def test_related_event_keeps_only_the_languages_the_source_has():
+    pl = {'ar': dict(_payload('ar'), grade='صحيح', hadeeth='نص')}
+    ev = fe.build_related('65557', pl, {'ar': 'h'}, 'd', see_also='Лучший пример, т. 1, с. 282')
+    assert list(ev['langs']) == ['ar'] and ev['langs']['ar']['hadeeth'] == 'نص'
+    assert ev['see_also'] == 'Лучший пример, т. 1, с. 282'
+
+
+def test_word_diff_names_the_variant_word():
+    lib = 'مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ'
+    src = 'مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً، وَمَنْ سَتَرَ مُسْلِمًا، وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ، وَمَا'
+    assert not fe.same_hadith(lib, src)
+    missing, extra = fe.matn_word_diff(lib, src)
+    assert missing == [fe.letters('بِهِ')] and extra == [], (missing, extra)
+
+
 def test_registry_imports_each_slug():
     ts = fe.registry_ts(['muslim-2564', 'bukhari-6405'])
     assert "import x_muslim_2564 from '@/content/explanations/muslim-2564.json'" in ts
@@ -104,9 +138,19 @@ def test_every_explanation_is_verbatim_from_its_raw_source():
                 assert x['lessons'] == raw.get('hints', []), (slug, site_lang)
                 assert x['word_meanings'] == raw.get('words_meanings', []), (slug, site_lang)
                 assert x['title'] == raw['title'], (slug, site_lang)
+                assert x['hadeeth'] == raw['hadeeth'], (slug, site_lang)
                 if site_lang == 'ar':
                     assert c['references_ar'] == raw.get('reference', '')
                 seen += 1
+        for ev in doc.get('related_events', []):
+            assert ev['source'] == 'hadeethenc'
+            for site_lang, x in ev['langs'].items():
+                with open(os.path.join(CONTENT, x['raw']), 'rb') as fh:
+                    b = fh.read()
+                assert hashlib.sha256(b).hexdigest() == x['raw_sha256'], (slug, ev['source_id'])
+                raw = json.loads(b.decode('utf-8'))
+                assert x['hadeeth'] == raw['hadeeth'] and x['grade'] == raw['grade'], (slug, ev['source_id'])
+            assert fe.strong_grade(ev['langs']['ar']['grade']), (slug, ev['source_id'])
     assert seen, 'no explanation files checked'
 
 

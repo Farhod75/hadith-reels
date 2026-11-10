@@ -36,6 +36,7 @@ import re
 import sys
 import unicodedata
 import urllib.parse
+import urllib.error
 import urllib.request
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -92,8 +93,88 @@ def same_hadith(library_arabic, source_arabic):
     return bool(a) and bool(b) and a in b
 
 
+# The reel narrates a fragment of a long hadith (Muslim #2699 is one sentence of
+# a hadith eight sentences long). When the source's text is longer than the
+# library matn by more than an isnad opener, the page shows the full text too.
+EXCERPT_MARGIN = 60          # Arabic letters; an opener like "عن أبي هريرة قال قال رسول الله" is ~25
+
+
+def matn_word_diff(library_arabic, source_arabic):
+    """Words (letters only) in which the library matn differs from the closest
+    stretch of the source: (missing_from_library, extra_in_library). For the
+    operator to read when same_hadith() fails on a wording variant."""
+    import difflib
+    def key(w):
+        # a leading wa- ("and") joins clauses in a long hadith; an excerpt starts
+        # without it. Compared without it; never removed from any shown text.
+        w = letters(w)
+        return w[1:] if w.startswith('و') and len(w) > 2 else w
+    lw = [key(w) for w in (library_arabic or '').split() if letters(w)]
+    sw = [key(w) for w in (source_arabic or '').split() if letters(w)]
+    if not lw or not sw:
+        return sw, lw
+    # Anchor on the longest common run, then compare the library matn with the
+    # stretch of the source it lines up with - not with the whole long hadith.
+    m = difflib.SequenceMatcher(a=sw, b=lw, autojunk=False).find_longest_match(0, len(sw), 0, len(lw))
+    if not m.size:
+        return sw, lw
+    lo = max(0, m.a - m.b)
+    hi = min(len(sw), m.a + (len(lw) - m.b) + 2)
+    ops = difflib.SequenceMatcher(a=sw[lo:hi], b=lw, autojunk=False).get_opcodes()
+    while ops and ops[0][0] == 'delete':     # source words before the matn begins
+        ops = ops[1:]
+    while ops and ops[-1][0] == 'delete':    # source words after it ends
+        ops = ops[:-1]
+    missing, extra = [], []
+    for tag, i1, i2, j1, j2 in ops:
+        if tag in ('replace', 'delete'):
+            missing += sw[lo + i1:lo + i2]
+        if tag in ('replace', 'insert'):
+            extra += lw[j1:j2]
+    return missing, extra
+
+
+def library_is_excerpt(library_arabic, source_arabic):
+    a, b = letters(library_arabic), letters(source_arabic)
+    return bool(a) and len(b) - len(a) > EXCERPT_MARGIN
+
+
+def strong_grade(grade_ar):
+    """HadeethEnc's Arabic grade for a related event: sahih or hasan only (HARD RULE 8)."""
+    g = grade_ar or ''
+    return ('صحيح' in g or 'حسن' in g) and 'ضعيف' not in g
+
+
 # ---- building the page document ------------------------------------------
-def build_doc(row, payloads, raw_hashes, hadeethenc_id, fetched_at, collections):
+def build_related(hadeethenc_id, payloads, raw_hashes, fetched_at, see_also=''):
+    """PURE. A related event (Ҳадисга оид воқеалар) from its own HadeethEnc entry.
+    payloads may lack languages HadeethEnc has not translated - they are left out;
+    the page shows the Arabic and says a translation is pending. see_also is the
+    map reference (a modern book and page), never quoted text."""
+    if 'ar' not in payloads:
+        raise ValueError('related event %s has no Arabic entry' % hadeethenc_id)
+    if not strong_grade(payloads['ar'].get('grade')):
+        raise ValueError('related event %s is graded %r - only sahih/hasan is shown'
+                         % (hadeethenc_id, payloads['ar'].get('grade')))
+    langs = {}
+    for src_lang, site_lang in LANGS.items():
+        p = payloads.get(src_lang)
+        if not p or not (p.get('hadeeth') or '').strip():
+            continue
+        langs[site_lang] = {
+            'url': 'https://hadeethenc.com/%s/browse/hadith/%s' % (src_lang, hadeethenc_id),
+            'raw': 'raw/hadeethenc-%s-%s.json' % (hadeethenc_id, src_lang),
+            'raw_sha256': raw_hashes[src_lang],
+            'title': p.get('title') or '',
+            'hadeeth': p.get('hadeeth') or '',
+            'attribution': p.get('attribution') or '',
+            'grade': p.get('grade') or '',
+        }
+    return {'source': 'hadeethenc', 'source_id': str(hadeethenc_id), 'publisher': PUBLISHER,
+            'fetched_at': fetched_at, 'see_also': see_also, 'langs': langs}
+
+
+def build_doc(row, payloads, raw_hashes, hadeethenc_id, fetched_at, collections, related=()):
     """PURE. row: the library row. payloads: {hadeethenc_lang: parsed json}.
     Text fields are copied as-is; nothing is trimmed, joined or reworded."""
     ar = payloads['ar']
@@ -107,6 +188,7 @@ def build_doc(row, payloads, raw_hashes, hadeethenc_id, fetched_at, collections)
             'raw': 'raw/hadeethenc-%s-%s.json' % (hadeethenc_id, src_lang),
             'raw_sha256': raw_hashes[src_lang],
             'title': p.get('title') or '',
+            'hadeeth': p.get('hadeeth') or '',
             'explanation': p.get('explanation') or '',
             'lessons': list(p.get('hints') or []),
             'word_meanings': list(p.get('words_meanings') or []),
@@ -114,11 +196,12 @@ def build_doc(row, payloads, raw_hashes, hadeethenc_id, fetched_at, collections)
             'grade': p.get('grade') or '',
         }
     return {
-        'schema': 1,
+        'schema': 2,
         'slug': slug_for(row['collection'], row['hadith_number'], collections),
         'library_id': row['id'],
         'collection': row['collection'],
         'hadith_number': str(row['hadith_number']),
+        'library_is_excerpt': library_is_excerpt(row.get('text_arabic'), ar.get('hadeeth')),
         # Sabab al-wurud: only ever filled from a cited source, by hand review.
         # null means no source we hold records one - the page shows nothing.
         'occasion': None,
@@ -131,6 +214,7 @@ def build_doc(row, payloads, raw_hashes, hadeethenc_id, fetched_at, collections)
             'references_ar': ar.get('reference') or '',
             'langs': langs,
         }],
+        'related_events': list(related),
     }
 
 
@@ -159,12 +243,18 @@ def existing_slugs():
 
 
 # ---- network -------------------------------------------------------------
-def fetch_raw(hadeethenc_id, lang):
+def fetch_raw(hadeethenc_id, lang, missing_ok=False):
+    """Raw bytes, or None when missing_ok and HadeethEnc has no such language (404)."""
     q = urllib.parse.urlencode({'language': lang, 'id': str(hadeethenc_id)})
     req = urllib.request.Request('%s/hadeeths/one/?%s' % (API_BASE, q),
                                  headers={'Accept': 'application/json', 'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        if missing_ok and e.code == 404:
+            return None
+        raise
 
 
 def load_env(path):
@@ -205,6 +295,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--hadeethenc', required=True, help='HadeethEnc hadeeth id')
     ap.add_argument('--library-id', required=True, help='hadith_library.id')
+    ap.add_argument('--related', action='append', default=[], metavar='ID',
+                    help='HadeethEnc id of a related event (repeatable); sahih/hasan only')
+    ap.add_argument('--see-also', action='append', default=[], metavar='ID=TEXT',
+                    help='map reference for a related event, e.g. 65557="Лучший пример, т. 1, с. 282"')
+    ap.add_argument('--accept-variant', metavar='NOTE',
+                    help='the library matn differs from the source by a wording variant of at most 2 '
+                         'words; NOTE (why) is stored in the file and the page is built anyway')
     ap.add_argument('--commit', action='store_true', help='write the files (default: dry run)')
     a = ap.parse_args(argv)
     sys.stdout.reconfigure(encoding='utf-8')
@@ -222,13 +319,40 @@ def main(argv=None):
         hashes[lang] = hashlib.sha256(b).hexdigest()
 
     src_ar = payloads['ar'].get('hadeeth') or ''
+    variant = None
     if not same_hadith(row.get('text_arabic'), src_ar):
+        missing, extra = matn_word_diff(row.get('text_arabic'), src_ar)
+        print('  matn differs - missing from library: %s | extra in library: %s'
+              % (' '.join(missing) or '-', ' '.join(extra) or '-'))
+        if a.accept_variant and len(missing) + len(extra) <= 2:
+            variant = {'note': a.accept_variant, 'missing_from_library': missing,
+                       'extra_in_library': extra}
+    if not same_hadith(row.get('text_arabic'), src_ar) and not variant:
         sys.exit('STOP: HadeethEnc %s is not the library matn of %s #%s - not written.\n'
                  '  library: %s\n  source : %s' % (a.hadeethenc, row['collection'],
                                                    row['hadith_number'], row.get('text_arabic'), src_ar))
 
     today = datetime.date.today().isoformat()
-    doc = build_doc(row, payloads, hashes, a.hadeethenc, today, collections)
+    see = dict(x.split('=', 1) for x in a.see_also)
+    related = []
+    for rid in a.related:
+        rp, rh = {}, {}
+        for lang in LANGS:
+            b = fetch_raw(rid, lang, missing_ok=True)
+            if b is None:
+                continue
+            raws['%s:%s' % (rid, lang)] = b
+            rp[lang], rh[lang] = json.loads(b.decode('utf-8')), hashlib.sha256(b).hexdigest()
+        try:
+            related.append(build_related(rid, rp, rh, today, see.get(rid, '')))
+        except ValueError as e:
+            sys.exit('STOP: %s - not written.' % e)
+        print('  related %s: %s (%s)' % (rid, rp['ar'].get('title'), ', '.join(sorted(related[-1]['langs']))))
+    doc = build_doc(row, payloads, hashes, a.hadeethenc, today, collections, related)
+    if variant:
+        doc['matn_variant'] = variant         # recorded, never silent (OPEN_ITEMS: Arabic reader)
+    if doc['library_is_excerpt']:
+        print('  the library matn is an EXCERPT - the page shows the full text from the source')
     have = sorted(doc['commentaries'][0]['langs'])
     print('%s  <- HadeethEnc %s  (%s)' % (slug, a.hadeethenc, ', '.join(have)))
     for lg in ('uz', 'ru', 'en', 'tj', 'ar'):
@@ -240,8 +364,9 @@ def main(argv=None):
         print('dry run - nothing written (add --commit)')
         return 0
 
-    for lang, b in raws.items():
-        write_bytes(os.path.join(RAW, 'hadeethenc-%s-%s.json' % (a.hadeethenc, lang)), b)
+    for key, b in raws.items():
+        hid, lang = key.split(':') if ':' in key else (a.hadeethenc, key)
+        write_bytes(os.path.join(RAW, 'hadeethenc-%s-%s.json' % (hid, lang)), b)
     write_bytes(os.path.join(CONTENT, slug + '.json'),
                 (json.dumps(doc, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
     slugs = sorted(set(existing_slugs()) | {slug})

@@ -134,6 +134,29 @@ export default async function HadithPage({ params, searchParams }: { params: Par
           </div>
         )}
 
+        {/* P389: the reel narrated part of a longer hadith - the full text, as the source translated it */}
+        {explanation?.library_is_excerpt && (() => {
+          const c = explanation.commentaries[0]
+          const ar = c?.langs.ar?.hadeeth
+          const x = c?.langs[lang]
+          if (!ar && !x?.hadeeth) return null
+          return (
+            <section className="mb-6" data-testid="full-hadith">
+              <h2 className="text-lg font-semibold text-gray-900 mb-1">{t.fullHadith}</h2>
+              <p className="text-xs text-gray-500 mb-2">{t.excerptNote}</p>
+              {ar && (
+                <p dir="rtl" lang="ar" className="text-lg leading-loose text-right text-gray-900 p-4 bg-amber-50 rounded-xl border border-amber-100 mb-3 whitespace-pre-line">{ar}</p>
+              )}
+              {x?.hadeeth && <p className="text-gray-800 leading-relaxed whitespace-pre-line">{x.hadeeth}</p>}
+              {x && (
+                <a href={x.url} target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-700 hover:underline">
+                  {c.publisher}, №{c.source_id} ↗
+                </a>
+              )}
+            </section>
+          )
+        })()}
+
         {!explanation && (
           <p className="text-sm text-gray-600 bg-white border border-gray-200 rounded-xl p-4" data-testid="no-explanation">
             {t.noExplanation}
@@ -210,6 +233,33 @@ export default async function HadithPage({ params, searchParams }: { params: Par
             </article>
           )
         })}
+
+        {/* P389: events around the hadith - each from its own source entry, sahih/hasan only */}
+        {!!explanation?.related_events?.length && (
+          <section className="mb-8" data-testid="related-events">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">{t.events}</h2>
+            <div className="space-y-4">
+              {explanation.related_events.map(ev => {
+                const ar = ev.langs.ar
+                const x = ev.langs[lang]
+                const link = x ?? ar
+                return (
+                  <article key={ev.source + ev.source_id} className="bg-white border border-gray-200 rounded-xl p-4 space-y-2">
+                    <h3 className="font-semibold text-gray-900" dir="auto">{(x ?? ar)?.title}</h3>
+                    {ar && <p dir="rtl" lang="ar" className="text-right leading-loose text-gray-900 whitespace-pre-line">{ar.hadeeth}</p>}
+                    {x ? <p className="text-gray-800 leading-relaxed whitespace-pre-line">{x.hadeeth}</p>
+                       : <p className="text-xs text-gray-500">{t.translationPending}</p>}
+                    <p className="text-xs text-gray-500">
+                      <span dir="auto">{(x ?? ar)?.attribution} · {(x ?? ar)?.grade}</span>
+                      {link && <> · <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-indigo-700 hover:underline">{ev.publisher}, №{ev.source_id} ↗</a></>}
+                    </p>
+                    {ev.see_also && <p className="text-xs text-gray-400">{t.seeAlso}: {ev.see_also}</p>}
+                  </article>
+                )
+              })}
+            </div>
+          </section>
+        )}
 
         <div className="flex gap-2 flex-wrap">
           {row?.source_url && (
