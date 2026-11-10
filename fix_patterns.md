@@ -15912,3 +15912,18 @@ text differs from its raw file.
 **Status:** PILOT (#2564) - caption link and older hadiths open in OPEN_ITEMS
 
 ---
+
+## PATTERN 388: /api/health said "ok" through the kind of outage HV actually has
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+HV's outages (P90, P129) were a retired Claude model while the page served and Supabase answered; HV's
+`/api/health` checked only Supabase, so it would have reported "ok" through both. It now also asks
+Anthropic whether the model exists, and the id lives in one file. HR had no health route: `app/api/health`
+now reports whether the library answers (the public HR site makes no Claude call). Both are meant for an
+external uptime monitor, so an outage is seen within minutes instead of by accident.
+
+**Status:** FIXED on branch, not deployed (waiting for the operator)
+
+---

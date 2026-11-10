@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-317 patterns in 330 entries, frontier **P387**. The P-sequence is shared with
+318 patterns in 331 entries, frontier **P388**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -21,7 +21,7 @@ BEFORE changing it.
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `route.ts` (11) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
-- `fix_patterns.md` (8) - P209, P247, P256, P291, P332, P364, P365, P366
+- `fix_patterns.md` (9) - P209, P247, P256, P291, P332, P364, P365, P366, P388
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
@@ -378,5 +378,6 @@ BEFORE changing it.
 - **P385** - Meta dropped the Facebook title field; the publishing sequence written down
 - **P386** - equal clip slots put the wrong picture on the matn; the bed picker ranked by rotation only
 - **P387** - the site repeated its sources; a viewer had nowhere to read the hadith in full
+- **P388** - /api/health said "ok" through the kind of outage HV actually has
 
-<!-- pattern-index-stamp entries=330 patterns=317 frontier=387 sha1=4c4b530d516bc278791be035dbfc804a5606c277 -->
+<!-- pattern-index-stamp entries=331 patterns=318 frontier=388 sha1=523515bcd5238c9747272640f58e982541b19d33 -->

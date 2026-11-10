@@ -665,12 +665,13 @@ git log --oneline -5
 # 3. Confirm the hook is actually wired
 git config core.hooksPath          # must print .githooks
 
-# 4. Check upstream HV is serving AND can reach Supabase
-#    Returns {"status":"ok","db":"reachable","ms":N}. A 503 means the
-#    deployment is up but the database is not answering - the distinction a
-#    root-200 check cannot make. Route added 2026-10-22 (P291); before that
-#    this step curled a path that had never existed and failed every session.
+# 4. Check HV and HR are serving, reach Supabase, and (HV) still have a live
+#    Claude model. HV returns {"status":"ok","db":"reachable","claude":"ok","ms":N};
+#    HR the same without "claude". 503 = degraded: read `db` / `claude`. HV's
+#    route since P291; the Claude check and HR's route since P388 - HV's real
+#    outages (P90, P129) were a retired model while the database answered.
 curl -s https://hadithverifier.com/api/health | jq
+curl -s https://www.hadithreels.com/api/health | jq
 
 # 5. Run the suite the pre-push hook runs (P351). There is no test:smoke
 #    script and there never was - this step named one from the first commit.

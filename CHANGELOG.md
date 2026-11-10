@@ -1,3 +1,15 @@
+## [2026-11-10b] - /api/health for HR; HV's health check sees a retired model (P388)
+
+### Added
+
+- **`app/api/health`:** 200 `{status:"ok", db:"reachable"}` when the library answers, 503 otherwise; no
+  config detail. For the uptime monitor and the pre-flight (CLAUDE.md step 4 now checks HV and HR).
+- **HV (same P388, its own repo):** `/api/health` also asks Anthropic whether the model exists (free
+  metadata call) - HV's outages P90/P129 were a retired model while the database answered. The model id
+  now lives only in HV `lib/models.ts`.
+
+---
+
 ## [2026-11-10] - hadith explanation page, verbatim from the source (P387)
 
 ### Added
