@@ -103,5 +103,24 @@
       }
     }
   ],
-  "related_events": []
+  "related_events": [
+    {
+      "source": "hadeethenc",
+      "source_id": "65887",
+      "publisher": "HadeethEnc.com",
+      "fetched_at": "2026-11-10",
+      "see_also": "«Лучший пример», т. 3, с. 150",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/65887",
+          "raw": "raw/hadeethenc-65887-ar.json",
+          "raw_sha256": "a80e224c4560610c62f605aa541ecdfffc83c7d6673a7bfb558b4f566d842220",
+          "title": "كنا مع النبي صلى الله عليه وسلم نسقي ونداوي ‌الجرحى ونرد ‌القتلى إلى المدينة",
+          "hadeeth": "عَنِ الرُّبَيِّعِ بِنْتِ مُعَوِّذٍ قَالَتْ: كُنَّا مَعَ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ نَسْقِي وَنُدَاوِي الجَرْحَى، وَنَرُدُّ القَتْلَى إِلَى المَدِينَةِ.",
+          "attribution": "رواه البخاري",
+          "grade": "صحيح"
+        }
+      }
+    }
+  ]
 }

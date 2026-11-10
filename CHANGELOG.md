@@ -8,6 +8,8 @@
 - **Abu Dawud #3641**: Safwan ibn Assal to Zirr - "the angels lower their wings for the seeker of knowledge"
   (Tirmidhi/Ibn Majah/Ahmad, sahih, HadeethEnc 4565). The book's own version (al-Haythami 1/131) is a different
   report, so the book is not cited for it.
+- **Bukhari #1520** (women's jihad is hajj): ar-Rubayyi' bint Mu'awwidh - "we were with the Prophet ﷺ giving water,
+  treating the wounded" (Bukhari, sahih, HadeethEnc 65887, Arabic only so far); see also «Лучший пример», т. 3, с. 150.
 
 ---
 
