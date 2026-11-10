@@ -1,0 +1,92 @@
+{
+  "schema": 2,
+  "slug": "muslim-2588",
+  "library_id": "859b2de3-f291-45f1-8e6a-0bec2f027952",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2588",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5512",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "صحيح مسلم (4/ 2001) (2588).\nتوضيح الأحكام من بلوغ المرام، للبسام (7/ 501).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 354).\nفتح ذي الجلال والإكرام، لابن عثيمين (6/ 438).\nسبل السلام بشرح بلوغ المرام، للصنعاني (2/ 692).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5512",
+          "raw": "raw/hadeethenc-5512-ar.json",
+          "raw_sha256": "9cf928fd9b75f23b84ae5f439645298bb38c8ef5c81b32996f468fc0c360d6c1",
+          "title": "ما نقصت صدقة من مال، وما زاد الله عبدا بعفو إلا عزا، وما تواضع أحد لله إلا رفعه الله",
+          "hadeeth": "عن أبي هريرة رضي الله عنه عن رسول الله صلى الله عليه وسلم قال: «مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ، وَمَا زَادَ اللهُ عَبْدًا بِعَفْوٍ إِلَّا عِزًّا، وَمَا تَوَاضَعَ أَحَدٌ لِلهِ إِلَّا رَفَعَهُ اللهُ».",
+          "explanation": "يُبَيِّنُ النبيُّ صلى الله عليه وسلم أنَّ الصدقةَ لا تُنقِصُ المالَ، بل تَدْفَعُ عنه الآفات، ويُعَوِّض اللهُ صاحبَها الخيرَ العظيم، فتكون زيادةً لا نقصًا.\n\nوما زاد العفوُ مع القدرة على الانتقام أو المؤاخذة صاحبَه إلا قوةً وعزةً.\n\nوما تواضع وتَذَلَّل أحدٌ لوجه الله، لا خوفًا من أحد، ولا مداراة له، ولا طلبًا لمنفعة منه، إلا كان جزاؤه العُلُوَّ والشرفَ.",
+          "lessons": [
+            "الخير والفلاح في امتثال الشريعة وفعل الخير وإن ظن بعض الناس أنه بخلاف ذلك."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5512",
+          "raw": "raw/hadeethenc-5512-en.json",
+          "raw_sha256": "235fae32a05500db7a02b29eae192d36e38f9f325cfd1761f5f5e8c81316348c",
+          "title": "Charity does not diminish wealth, and Allah does not increase a servant, on account of his forgiveness, except in honor, and no one humbles himself seeking the pleasure of Allah except that Allah will elevate him",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Charity does not diminish wealth, and Allah does not increase a servant, on account of his forgiveness, except in honor, and no one humbles himself seeking the pleasure of Allah except that Allah will elevate him.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) points out that charity does not decrease wealth. Rather, it protects it from misfortunes and brings great compensation from Allah for its doner. So, it constitutes an increase, not a decrease.\r\n\r\nAnd Allah does not increase a person who forgives others, while he has the ability to take revenge or inflict punishment, except in power and honor.\r\n\r\nAnd that whoever humbles himself for the sake of Allah, not out of fear from anyone or a desire to flatter him or seek some benefit from him, Allah will reward him by elevation and honor.",
+          "lessons": [
+            "All goodness and success lies in complying with the Shariah and doing good, even if some people think otherwise."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5512",
+          "raw": "raw/hadeethenc-5512-ru.json",
+          "raw_sha256": "cda2e868948a2b0b6f89cb66f96d4a46b76cad898408f9e762d3e5ee7ffbb460",
+          "title": "Милостыня (садака) ничуть не уменьшает богатства. Аллах не добавит (Своему) рабу, про­щающему других, ничего, кроме славы, а любого, кто проявляет смирение ради Аллаха, Аллах непременно возвыша­ет",
+          "hadeeth": "От Абу Хурайры (да будет доволен им Аллах) передаётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Милостыня (садака) ничуть не уменьшает богатства. Аллах не добавит (Своему) рабу, про­щающему других, ничего, кроме славы, а любого, кто проявляет смирение ради Аллаха, Аллах непременно возвыша­ет».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) разъясняет, что садака (милостыня) не уменьшает имущество, а наоборот, становится для человека причиной, защищающей его от бед и несчастий. Аллах щедро воздаёт великим благом тому, кто выплачивает садака. Таким образом, садака – это не убыток, а приумножение.\r\n\r\nЧем больше человек проявляет прощение, имея при этом возможность отомстить или взыскать, тем больше он приобретает силы и величия.\r\n\r\nВ качестве воздаяния Аллах непременно возвысит и одарит почётом того, кто проявит скромность и смирение ради Лика Аллаха, а не из страха и не из лести перед кем-либо, и не из стремления к выгоде от него.",
+          "lessons": [
+            "Благо и успех – в следовании Шариату и совершении добрых дел, даже если некоторые люди думают иначе."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5512",
+          "raw": "raw/hadeethenc-5512-uz.json",
+          "raw_sha256": "b870a94e11f2670fe4730b7a37222e741af32901006168b7092e8875d95a6343",
+          "title": "Садақа бериш билан мол-дунё камайиб қолмайди. Аллоҳ таоло кечиримли бўлган бандасининг иззат-шарафини зиёда қилади. Киши Аллоҳ учун тавозе қилса, Аллоҳ таоло унинг мартабасини баланд қилади» – дедилар",
+          "hadeeth": "Абу Ҳурайра разияллоҳу анҳудан ривоят қилинади: «Расулуллоҳ соллаллоҳу алайҳи ва саллам: «Садақа бериш билан мол-дунё камайиб қолмайди. Аллоҳ таоло кечиримли бўлган бандасининг иззат-шарафини зиёда қилади. Киши Аллоҳ учун тавозе қилса, Аллоҳ таоло унинг мартабасини баланд қилади» – дедилар.",
+          "explanation": "Пайғамбаримиз соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда садақа молни камайтирмаслигин, аксинча офатларни тўсишини, Аллоҳ унга катта яхшиликлар беришини баён қилдилар. Шундай қилиб озайиш эмас кўпайиш бўлади.\r\n\r\nАллоҳ ,интиқом олишга қудрати бўлиб туриб, кечиримли бўлган бандасини иззат-шарафини зиёда қилади.\r\n\r\nКиши ўзини бировдан қўрққанидан, муғомбирлик қилиб ёки манфаат талабида эмас, балки Аллох учун хокисор тутса, Аллоҳ унинг улуғворлик ва шараф билан мукофотлайди.",
+          "lessons": [
+            "Баъзилар тескари ўйласаларда, яхшилик ва ютуқ шариатга амал қилишда ва яхши амал қилишдадир."
+          ],
+          "word_meanings": [],
+          "attribution": "Имом Муслим ривояти",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5512",
+          "raw": "raw/hadeethenc-5512-tg.json",
+          "raw_sha256": "82286bffc1b04e3d36e9305bf72ccbb0209db9e94175e44d97f0683fa0111b9c",
+          "title": "Садақа молро кам намекунад, Худованд чун бандаашро мавриди авф қарор диҳад ба ӯ иззати бештар медиҳад, ва ҳеҷ кас дар баробари Аллоҳ фурӯтанӣ намекунад магар инки ба ӯ бартарӣ мебахшад",
+          "hadeeth": "Аз Абуҳурайра (Худованд аз ӯ розӣ бод) ривоят аст, ки Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Садақа молро кам намекунад, Худованд чун бандаашро мавриди авф қарор диҳад ба ӯ иззати бештар медиҳад, ва ҳеҷ кас дар баробари Аллоҳ фурӯтанӣ намекунад магар инки ба ӯ бартарӣ мебахшад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) баён фармуданд, ки садақа молро кам намекунад, балки офат ва бадиҳоро дур месозад ва Худованд дар ивази он ба ӯ  хайри бузург медиҳад, пас дар садақа афзоиш аст, на коҳиш.\r\n\r\nБахшиш дар ҳоли қодир будан барои бозхост ё интиқом, чизе ҷуз қувват ва иззатро намеафзояд.\r\n\r\nКасе на барои тарс аз касе ва на барои мадоро бо касе ва на барои манфиатталабӣ ва танҳо барои ризои Худованд фурӯтанӣ мекунад Ӯ Таъоло ба ӯ ҷойгоҳи баланд ва иззат медиҳад.",
+          "lessons": [
+            "Хайру саодат ва комёбӣ дар риоя кардани қавонини шариат ва анҷоми амалҳои нек аст, агарчи бархе хилофи онро гумон кунанд."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

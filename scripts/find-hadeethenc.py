@@ -103,7 +103,8 @@ def main(argv=None):
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument('--published', action='store_true', help='every hadith in reel-tracker.md')
     g.add_argument('--hadith', action='append', help='"Sahih Muslim #2699" (repeatable)')
-    ap.add_argument('--out', default=os.path.join(ROOT, 'out', 'hadeethenc-map.tsv'))
+    ap.add_argument('--out', help='report path (default: out/hadeethenc-map.tsv with --published; '
+                    'none with --hadith, so a one-off lookup never overwrites the full map)')
     a = ap.parse_args(argv)
     sys.stdout.reconfigure(encoding='utf-8')
 
@@ -136,10 +137,12 @@ def main(argv=None):
         lines.append('\t'.join([coll, num, row['id'], status, hid, note]))
         print('%-22s #%-6s %-10s %-8s %s' % (coll, num, status, hid, note))
 
-    os.makedirs(os.path.dirname(a.out), exist_ok=True)
-    with open(a.out, 'w', encoding='utf-8', newline='\n') as fh:
-        fh.write('\n'.join(lines) + '\n')
-    print('report: %s' % os.path.relpath(a.out, ROOT))
+    out = a.out or (os.path.join(ROOT, 'out', 'hadeethenc-map.tsv') if a.published else None)
+    if out:
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        with open(out, 'w', encoding='utf-8', newline='\n') as fh:
+            fh.write('\n'.join(lines) + '\n')
+        print('report: %s' % os.path.relpath(out, ROOT))
     return 0
 
 

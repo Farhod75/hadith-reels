@@ -1,3 +1,15 @@
+## [2026-11-10g] - Muslim #2588 full matn in the library; its page (P387)
+
+### Changed
+
+- **Library row Sahih Muslim #2588** now carries the full three-clause matn in all four languages (was the first
+  clause only), from sunnah.com/muslim:2588; signed and applied by translate-candidates.py; Uzbek Latin derived.
+  Stage 3 A/B: pass on all four (A=claude-sonnet-5, B=gpt-6.1-sol); matn_verified_at left for a reader (P265).
+- **Page** /hadith/muslim/2588 from HadeethEnc 5512 (all four languages).
+- **find-hadeethenc.py:** `--hadith` no longer overwrites out/hadeethenc-map.tsv; only `--published` writes it.
+
+---
+
 ## [2026-11-10f] - first related events found through «Лучший пример» (P389)
 
 ### Added
