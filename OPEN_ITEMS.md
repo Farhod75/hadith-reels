@@ -157,6 +157,7 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Muslim #2564 - PUBLISHED 2026-11-09 (R222-R225, TG 240-243); library 8eeb6788.** Listen published (4).
 - **Bukhari #6405 - PUBLISHED 2026-11-09 (R218-R221, TG 236-239); library f31cd2b7.** Next: Muslim #2564
   (EN rendered 2026-11-09, TG on the operator's command; RU/UZ/TJ to narrate and render). Listen for #6405 waits
   for the operator's yes.
@@ -424,7 +425,7 @@ v3/pro is still current; FLUX remains a major version behind; and HV `/api/healt
 ---
 
 ## Production queue
-**MUSLIM #2564 — NEXT SET, 2026-11-09 (operator «да»).** Library row
+**MUSLIM #2564 — PUBLISHED 2026-11-09 (R222-R225); kept below as the set's record.** Library row
 `8eeb6788`, Abu Hurairah, sahih. `text_arabic` matches sunnah.com/muslim:2564c
 (book 45, hadith 42) letter for letter; chapter باب تحريم ظلم المسلم
 … confirmed there. Operator-approved library fix through sign → apply (no SQL

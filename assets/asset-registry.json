@@ -2183,7 +2183,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (wealthb-3) -> Kling 3.0 Pro i2v 10s. an open wooden chest of thin hand-struck silver dirhams and gold dinars beside a folded plain linen robe in a bright sunlit room - forms and wealth, what Allah does not look at. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
       "prompt_sidecar": "assets/scene-prompts/m2564-wealth.json"
     },
@@ -2192,7 +2192,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (mat-3) -> Kling 3.0 Pro i2v 10s. a woven prayer mat on an earthen floor facing a plain blank mud-brick wall in morning light (qibla rule, no door) - the heart and its intention. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
       "prompt_sidecar": "assets/scene-prompts/m2564-mat.json"
     },
@@ -2201,7 +2201,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (well-2) -> Kling 3.0 Pro i2v 10s. a stone-lined desert well with wooden pulley, wooden bucket (the prompt asked for leather), goatskin waterskin and a full stone trough in a palm grove - deeds: giving water. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
       "prompt_sidecar": "assets/scene-prompts/m2564-well.json"
     },
@@ -2210,7 +2210,7 @@
       "lanes": [
         "adults"
       ],
-      "verified": false,
+      "verified": true,
       "notes": "FLUX 2 still (bread-1) -> Kling 3.0 Pro i2v 10s. a basket of flatbread and dates with a clay jug left quietly beside a closed wooden door at sunrise - deeds done quietly. Sahih Muslim #2564, Abu Hurairah, sahih - 'Allah does not look at your forms or wealth, but He looks at your hearts and deeds.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Stills picked by Claude, clips approved by the operator (lg 2026-11-09).",
       "prompt_sidecar": "assets/scene-prompts/m2564-bread.json"
     }

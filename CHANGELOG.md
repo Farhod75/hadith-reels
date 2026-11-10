@@ -1,3 +1,13 @@
+## [2026-11-09c] - R222-R225, Sahih Muslim #2564, four languages, set closed
+
+### Content
+
+- Tracker rows R222-R225 (TG 240-243), duplicate index (#2564), new theme Sincerity / Heart, nasheed usage, the
+  m2564 clip set, stats 225/173/52, Muslim x48, Abu Hurairah x82, change log, retro. Registry: m2564 clips
+  verified; publish-narration run (3 uploaded, EN earlier).
+
+---
+
 ## [2026-11-09b] - R218-R221, Sahih al-Bukhari #6405, four languages, set closed
 
 ### Content

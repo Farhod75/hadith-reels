@@ -1248,3 +1248,39 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 2.** The RU hyphen break in «Субхана-Ллахи»; the publishing order, which he asked to be written down so it stops drifting.
 
 **The finding:** generated text is only as good as the form it is pasted into - the day a platform changes its form, the generator changes too.
+
+## R222-R225 - Sahih Muslim #2564 - 2026-11-09
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (240-243, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok - in the fixed order (P385).
+
+**Caught before publish**
+
+1. **Library UZ/TJ singular for a plural:** UZ «қалб ва амалларингизга», TJ «сурати шумо» for قُلُوبِكُمْ / صُوَرِكُمْ. Flagged against the Arabic; the operator chose to fix the library; written through sign -> apply, Latin re-derived, Stage 3 8/8 pass.
+2. **Clip order did not follow the matn:** the first EN render showed the mat on «forms or wealth». The operator asked for the clips to match the matn ("we discussed this"); reordered well, wealth, mat, bread. Equal slots still put «hearts and deeds» on the wealth clip - a fifth clip would align it exactly.
+3. **Five clips planned, four needed:** the operator asked why five for a 22-second narration; four used, one paid clip saved.
+4. **First wealth still:** dark, and the coins looked modern (bimetal). Regenerated bright with hand-struck dirhams and dinars.
+5. **Subtitles:** EN without quotation marks around the Prophet's words; RU «Абуху Райра добудет доволенным», «ваше сердца», «намеренье» and the closing quote after the moral - both stopped by P339, fixed against the drafts.
+6. **Beds:** the picker recommended aswati-Victory-March and Focused-Determination for a hadith about the heart; calmer beds chosen.
+
+**Escaped to publish**
+
+- None found. The mat clip is darker than the bright-palette rule asks; kept by the operator's lg.
+
+**Root causes**
+
+- Equal-length scene slots cannot follow the matn's own boundaries; the order is the only lever.
+- The bed picker ranks by rotation, not by mood.
+
+**Prevention landed**
+
+- Scene order chosen against the narration's cue times before the render (this set, by hand).
+
+**Prevention deferred**
+
+- Per-clip durations from the SRT cue times in render-reel.ps1, so a clip can start where the matn says what it shows.
+- A mood tag on beds so the picker can skip marches for contemplative hadiths.
+- Platform blocks given from out/platform-2564.md, not run through `--check-sent` (P375).
+
+**Operator corrections of the assistant: 2.** The clip order (clips must follow the matn, already agreed); four clips, not five.
+
+**The finding:** a scene order that ignores the words is a defect the operator has to catch every time; it belongs in the plan, checked against the cue times, before the first render.
