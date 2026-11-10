@@ -1,3 +1,16 @@
+## [2026-11-09] - publishing sequence fixed; no Facebook title (P385)
+
+### Changed
+
+- **Publishing order written down as fixed (operator):** Telegram for all four languages by the
+  agent, then EN -> RU -> UZ -> TJ, each IG + FB -> YouTube Shorts -> TikTok, one platform at a
+  time after the operator's `d` (reel-creation-pipeline.md "Publishing").
+- **scripts/platform-texts.py:** the Facebook title block is gone (Meta removed the field); the
+  Meta block gives the whole caption for both tabs, the tags line and the share-step switches,
+  and the file opens with the sequence. Two tests.
+
+---
+
 ## [2026-11-08h] - render-set dry run checks the bed gain against render-reel's range (P384)
 
 ### Fixed

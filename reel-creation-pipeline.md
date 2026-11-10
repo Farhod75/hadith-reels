@@ -734,6 +734,19 @@ that cannot happen by memory again.
 **Order: TG (agent) -> IG + FB (one post, Meta Business Suite) -> YT Shorts ->
 TikTok.** One platform at a time.
 
+**THE SEQUENCE IS FIXED (operator, 2026-11-09, P385). Do not reorder it.** This is
+how #6405 was published, and `platform-texts.py` prints it at the top of every
+`out/platform-<n>.md`:
+
+1. **Telegram, all four languages at once** - the agent posts with `tg-post-set.py`
+   (dry run first, then `--post`, detached) only on the operator's command.
+2. **Then language by language: EN -> RU -> UZ -> TJ.** For each language:
+   **IG + FB** (one Meta Business Suite post) -> **YouTube Shorts** -> **TikTok**.
+3. **One platform at a time.** The agent gives one platform's blocks (with the video
+   path) and waits for the operator's `d` before giving the next one.
+4. A second set waiting for publication goes after the first set is finished on
+   every platform, not interleaved with it.
+
 **HISTORY - the paragraphs below up to "Order is fixed" describe 2026-10-16 and
 are kept for the record; the Telegram part is superseded.**
 
@@ -768,8 +781,10 @@ business.facebook.com -> Sahih Hadith Reels -> **Create -> Reel** (not "Post", n
 "Bulk upload reels" - each language needs its own caption). In "Post to" tick
 **both** Facebook (Sahih Hadith Reels) and Instagram (@sahihhadithreels).
 
-- **Title** (Facebook only): `Facebook title` from `out/platform-<n>.md`
-  (`<title> | <Collection> <num>`, no `#`).
+- **No title field any more (2026-11-09, P385).** Create reel now shows only
+  "Text" on the Facebook tab: paste the WHOLE caption there (it starts with the
+  title line) - the same text as the Instagram tab. With "customise for Facebook
+  and Instagram" switched on, the two tabs are separate: fill both.
 - **Description**: the Instagram caption from the same file - the Telegram caption
   unchanged, title line included (Instagram has no title field).
 - **Tags**, if the field shows: the tags line from the same file.

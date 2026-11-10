@@ -131,3 +131,22 @@ def test_shadda_and_fatha_in_either_order_are_the_same_block():
     # P375: the chat wrote every #2581 TikTok block with fatha before shadda; NFC agrees.
     md = '```\nإنَّ\n```'
     assert pt.blocks_not_in('```\nإن\u064e\u0651\n```', md) == []
+
+
+def test_meta_block_has_no_facebook_title_and_the_caption_goes_in_whole():
+    # P385: Meta Business Suite dropped the Facebook title field (2026-11-09); the Facebook
+    # "Text" field takes the full caption, the same as Instagram's.
+    md = pt.render_md('5984', [('en', pt.build(EN, 'en'))])
+    meta, rest = md.split('### YouTube Shorts')
+    assert 'Facebook title' not in md
+    assert pt.FB_TEXT_NOTE in meta
+    assert EN.strip() in meta
+    assert 'Closed captions OFF' in meta
+
+
+def test_the_publishing_sequence_heads_every_platform_file():
+    # P385: TG (agent, all languages) -> per language EN, RU, UZ, TJ: IG+FB -> YT -> TikTok.
+    md = pt.render_md('5984', [('en', pt.build(EN, 'en')), ('ru', pt.build(RU, 'ru'))])
+    assert md.index(pt.SEQUENCE) < md.index('## EN') < md.index('## RU')
+    en = md.split('## RU')[0]
+    assert en.index('### Instagram + Facebook') < en.index('### YouTube Shorts') < en.index('### TikTok')

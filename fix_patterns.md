@@ -15832,3 +15832,29 @@ the planner must apply the same limits as the step it plans for (as P377 did for
 **Status:** FIXED
 
 ---
+
+## PATTERN 385: Meta dropped the Facebook title field; the publishing sequence written down
+
+**Date:** 2026-11-09  **Repo:** hadith-reels  **Severity:** process (no defect shipped)
+
+**What happened.** Publishing #6405 EN, Meta Business Suite's Create reel showed only an
+optional "Text" field on the Facebook tab - no title. The operator had pasted the
+`Facebook title` block from `out/platform-6405.md` into it, as the pipeline said. The
+caption was pasted in its place before posting. The same session the operator asked for
+the order he published in to be fixed in the docs so it does not drift.
+
+**Fix.** `platform-texts.py` no longer prints a Facebook title; the Meta block says the whole
+caption goes into the Text field of both tabs, carries the tags line as "Tags (Метки)" and
+the share-step switches, and every platform file now opens with the fixed sequence:
+Telegram (agent, all four languages) -> EN, RU, UZ, TJ, each IG + FB -> YouTube Shorts ->
+TikTok, one platform at a time after the operator's `d`. reel-creation-pipeline.md
+"Publishing" says the same. Two tests in scripts/lib/test_platform_texts.py.
+
+**Lesson:** a pasted block is only as right as the form it is pasted into - when a
+platform's form changes, the generator changes the same day, not the operator's memory.
+
+**Tripwire:** "Facebook title" anywhere in an out/platform-<n>.md.
+
+**Status:** FIXED
+
+---
