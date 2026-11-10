@@ -1,0 +1,70 @@
+{
+  "schema": 2,
+  "slug": "abudawud-1488",
+  "library_id": "67da4e82-daac-43cb-847d-091d3b135201",
+  "collection": "Sunan Abu Dawud",
+  "hadith_number": "1488",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5499",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "سنن أبي داود (2/ 609) (1488).\nسنن الترمذي (5/ 521) (3556).\nتوضيح الأحكام من بلوغ المرام، لعبد الله البسام (7/ 552).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 423).\nفتح ذي الجلال والإكرام، لابن عثيمين (6/ 483).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5499",
+          "raw": "raw/hadeethenc-5499-ar.json",
+          "raw_sha256": "b345e73ee9a7e1c3d8bc94c539d4a22dde18fbfb316f7b6cb03c74ee90022b62",
+          "title": "إن ربكم حيي كريم، يستحيي من عبده إذا رفع يديه إليه أن يردهما صفرا",
+          "hadeeth": "عَنْ سَلْمَانَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: «إِنَّ رَبَّكُمْ حَيِيٌّ كَرِيمٌ، يَسْتَحْيِي مِنْ عَبْدِهِ إِذَا رَفَعَ يَدَيْهِ إِلَيْهِ أَنْ يَرُدَّهُمَا صِفْرًا».",
+          "explanation": "يَحُثُّ النبيُّ صلى الله عليه وسلم على رفع اليدين أثناء الدعاء، وأخبر أنَّ الله سبحانه (حَيي) كثير الحياء، ولا يترك العطاء، يفعل بالعبد ما يَسُرُّه، ويترك ما يَضرُّه، (كريم) يعطي من غير سؤال فكيف بعد السؤال! يَستحيي مِن عبده المؤمن أنْ يَرُدَّ يديه بعد رفعِها للدعاء فارغتين خاليتين خائبتين من إجابته.",
+          "lessons": [
+            "كلما أظهر الإنسان الافتقار إلى الله تعالى والتعبد، كان أرجى له وأقرب للإجابة.",
+            "الترغيب في الدعاء، واستحباب رفع اليدين فيه، وأنه من أسباب الاستجابة.",
+            "بيان سعة كرم الله ورحمته بعباده."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه أبو داود والترمذي وابن ماجه",
+          "grade": "حسن"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5499",
+          "raw": "raw/hadeethenc-5499-en.json",
+          "raw_sha256": "53276176446e5227880e3a9029025f89f1a8fdfa64b1ed266636da070d333dd3",
+          "title": "Verily, your Lord is Bashful and Munificent. He is too Bashful of His slave to let him go empty-handed when raising his hands to Him",
+          "hadeeth": "Salmān (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Verily, your Lord is Bashful and Munificent. He is too Bashful of His slave to let him go empty-handed when raising his hands to Him.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) encourages raising the hands during supplication and informed that Allah Almighty is (Bashful), possessing great bashfulness, and does not withhold giving. He does for the slave what brings him joy and refrains from what harms him. (Munificent) as He gives without being asked, so how much more after being asked! He feels bashful of His believing slave to return his hands empty of His answer and disappointed after they have been raised in supplication.",
+          "lessons": [
+            "The more one shows his need for Allah Almighty and worships Him, the more likely it is to have his supplication answered.\r",
+            "Encouraging supplication and pointing out that it is recommended to raise the hands while supplicating, as this is one of the causes for the supplication to be answered.\r",
+            "Clarifying the extensive bounty and mercy of Allah towards His slaves."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Abu Dāwūd, At-Tirmidhi, and Ibn Mājah",
+          "grade": "Hasan"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5499",
+          "raw": "raw/hadeethenc-5499-ru.json",
+          "raw_sha256": "92ceaa80df19f121fdff10db2af0d81992a68a3876249758e79845ee5058813e",
+          "title": "Поистине, ваш Господь стыдлив и щедр, и Он стыдится оставить ни с чем Своего раба, когда тот протягивает к Нему руки",
+          "hadeeth": "Сальман [аль-Фариси] (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Поистине, ваш Господь стыдлив и щедр, и Он стыдится оставить ни с чем Своего раба, когда тот протягивает к Нему руки».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) побуждал мусульман поднимать руки во время обращения к Аллаху с мольбой и сообщил, что Всевышний Аллах весьма стыдлив, и Он дарует не переставая, и доставляет радость рабу Своему, и воздерживается от того, что вредит ему. И Он щедр и дарует даже без просьб, а что говорить о том случае, когда Его попросят! Он стыдится оставить ни с чем, то есть без ответа, раба своего, протягивающего к Нему руки в мольбе.",
+          "lessons": [
+            "Когда человек демонстрирует свою потребность во Всевышнем Аллахе и подчинённость Ему, у него больше надежды получить ответ.\r",
+            "Побуждение обращаться к Аллаху с мольбой и желательность поднимать руки во время него, и то, что это способствует получению ответа на мольбу.\r",
+            "Разъяснение обширности щедрости и милости Аллаха к Его рабам."
+          ],
+          "word_meanings": [],
+          "attribution": "Передали Абу Дауд, ат-Тирмизи и Ибн Маджа",
+          "grade": "Хороший хадис"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

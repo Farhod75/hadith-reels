@@ -498,6 +498,13 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   Ar-Raheeq) are a MAP, not a source: their footnotes lead to the primary text. Their own text is
   not quoted (copyright, and their translations are loose); they may be named as "see also,
   p. N" beside the primary citation. Nothing is translated from a translation.
+- **Matn corrections without an Arabic reader (P391, operator 2026-11-10).** When the library's
+  Arabic differs from its cited hadith by 1-2 words and TWO independent Tier-1 sources (sunnah.com - via
+  the local hadith-json mirror - and HadeethEnc) agree word for word, correct the library to them through
+  the signed path: `out/candidate-translations.json` with `proposed: {text_arabic}` -> `--sign` ->
+  `--library --apply --commit`, sources and reason in `translation_meta`. A word only ONE source has is
+  not added; it goes to OPEN_ITEMS. `matn_verified_at` stays NULL - that is still a reader's (P265).
+  A hamza seat (ئ/ي, ؤ/و) is spelling, not a different word.
 
 ---
 

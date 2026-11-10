@@ -75,7 +75,9 @@ def slug_for(collection, number, collections):
 # ---- same-hadith check ---------------------------------------------------
 _MARKS = re.compile('[ؐ-ًؚ-ٰٟۖ-ۭـ]')
 _ALEF = str.maketrans({'آ': 'ا', 'أ': 'ا', 'إ': 'ا',
-                       'ٱ': 'ا', 'ى': 'ي', 'ة': 'ه'})
+                       'ٱ': 'ا', 'ى': 'ي', 'ة': 'ه',
+                       # P391: a hamza seat is spelling, not wording (فبائع / فبايع)
+                       'ئ': 'ي', 'ؤ': 'و'})
 
 
 def letters(s):

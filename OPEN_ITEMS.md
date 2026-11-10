@@ -1369,9 +1369,9 @@ the operator first - see the #6675 retro.
   HadeethEnc match (an-Nawawi / other sources later), 3 variants to read (Abu Dawud #1488 - library lacks اليه;
   Muslim #2747 - diff empty but not contained, check; Muslim #223 - فبايع/فبائع), 3 Arabic-only at HadeethEnc
   (Tirmidhi #1956, Bukhari #1773, #1903). Report: out/hadeethenc-map.tsv (`find-hadeethenc.py --published`).
-- **OPEN 2026-11-10: library row Sahih Muslim #2699 lacks بِهِ** ("سهل الله له به طريقا" in Muslim's text, HadeethEnc
-  4801). Recorded in content/explanations/muslim-2699.json `matn_variant`. An Arabic reader decides (P265).
-
+- **DONE 2026-11-10 (P391): Muslim #2699 بِهِ and Abu Dawud #1488 إليه corrected from two sources.** Still open:
+  Abu Dawud #1488 `تبارك وتعالى` after ربكم is in the sunnah.com Abu Dawud text but not in HadeethEnc 5499 -
+  one source, not added.
 - **CLOSED 2026-10-30: OPEN_ITEMS is cross-referenced at render time (P321).**
   `render-reel.ps1` STEP 0 greps this file for the hadith number it already
   derives for the P319 gate, and prints every matching line as a NOTE. Warn-only

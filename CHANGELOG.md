@@ -1,3 +1,22 @@
+## [2026-11-10i] - matn corrections from two Tier-1 sources; 4 more pages (P391)
+
+### Changed
+
+- **Library Sahih Muslim #2699:** `بِهِ` added ("سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا") - in Muslim's text on the sunnah.com mirror
+  (muslim.json, Nawawi 40, Riyad) and HadeethEnc 4801; the old wording is Tirmidhi's.
+- **Library Sunan Abu Dawud #1488:** `إِلَيْهِ` added ("إِذَا رَفَعَ يَدَيْهِ إِلَيْهِ") - Abu Dawud mirror and HadeethEnc 5499.
+  Not added: `تبارك وتعالى` after ربكم (the mirror only) - OPEN_ITEMS.
+- **fetch-explanation.py:** a hamza seat is spelling (فبائع = فبايع), so Muslim #223 now matches. 1 test.
+
+### Added
+
+- Pages for Abu Dawud #1488, Muslim #223, Muslim #2747 (the last with a recorded `و` variant: HadeethEnc reads
+  وَقَدْ أَيِسَ, the library and Mishkat قد أيس - sources differ, library kept). #2699 rebuilt without its variant.
+- **CLAUDE.md HARD RULE 8:** the P391 rule - two Tier-1 sources agree -> correct through the signed path;
+  `matn_verified_at` stays a reader's.
+
+---
+
 ## [2026-11-10h] - every bed carries the operator's mood rating (P386)
 
 ### Changed

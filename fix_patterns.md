@@ -15972,3 +15972,28 @@ Bukhari #3624 the same day P389 was fixed here. `seerah_context` is now always e
 **Status:** FIXED in hadith-verifier
 
 ---
+
+## PATTERN 391: a matn correction waited for a reader the project does not have
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** content accuracy (low, wording)
+
+**What happened.** The explanation backfill (P387) compares each library matn with HadeethEnc. Three rows
+differed by one word: Muslim #2699 lacked بِهِ, Abu Dawud #1488 lacked إليه, Muslim #223 spelled فبائع where
+HadeethEnc spells فبايع. P265 reserves `matn_verified_at` for an Arabic reader, and the operator has none to
+ask - so the rows would have stayed wrong indefinitely, and #2699's wording turned out to be Tirmidhi's under
+Muslim's number.
+
+**Fix.** Operator ruling: when two independent Tier-1 sources (the sunnah.com mirror and HadeethEnc) agree
+word for word on a 1-2 word difference, correct the library to them through the signed apply path, with the
+sources in `translation_meta`; a word only one source has is not added. `matn_verified_at` stays NULL.
+#2699 and #1488 corrected; #223 was spelling (the comparison now folds hamza seats) and needed nothing;
+#2747's difference (و) is between the sources themselves, so the library was kept and the variant recorded.
+
+**Lesson:** a gate that only one absent person can open is a gate that never opens - give it a second key
+that is checkable, and keep the first one for what only that person can judge.
+
+**Tripwire:** a library `text_arabic` change with no two-source note in its review file.
+
+**Status:** FIXED
+
+---

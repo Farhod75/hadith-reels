@@ -2,6 +2,7 @@
 // Static imports so the hadith page bundles every explanation it can show.
 import type { Explanation } from './explanations'
 import x_abudawud_1479 from '@/content/explanations/abudawud-1479.json'
+import x_abudawud_1488 from '@/content/explanations/abudawud-1488.json'
 import x_abudawud_3641 from '@/content/explanations/abudawud-3641.json'
 import x_abudawud_4811 from '@/content/explanations/abudawud-4811.json'
 import x_bukhari_13 from '@/content/explanations/bukhari-13.json'
@@ -25,12 +26,14 @@ import x_bukhari_6857 from '@/content/explanations/bukhari-6857.json'
 import x_ibnmajah_4251 from '@/content/explanations/ibnmajah-4251.json'
 import x_muslim_1005 from '@/content/explanations/muslim-1005.json'
 import x_muslim_1631 from '@/content/explanations/muslim-1631.json'
+import x_muslim_223 from '@/content/explanations/muslim-223.json'
 import x_muslim_2564 from '@/content/explanations/muslim-2564.json'
 import x_muslim_2581 from '@/content/explanations/muslim-2581.json'
 import x_muslim_2588 from '@/content/explanations/muslim-2588.json'
 import x_muslim_2628 from '@/content/explanations/muslim-2628.json'
 import x_muslim_2699 from '@/content/explanations/muslim-2699.json'
 import x_muslim_2734 from '@/content/explanations/muslim-2734.json'
+import x_muslim_2747 from '@/content/explanations/muslim-2747.json'
 import x_muslim_2759 from '@/content/explanations/muslim-2759.json'
 import x_muslim_2999 from '@/content/explanations/muslim-2999.json'
 import x_muslim_482 from '@/content/explanations/muslim-482.json'
@@ -39,6 +42,7 @@ import x_tirmidhi_3540 from '@/content/explanations/tirmidhi-3540.json'
 
 export const EXPLANATIONS: Record<string, Explanation> = {
   'abudawud-1479': x_abudawud_1479 as Explanation,
+  'abudawud-1488': x_abudawud_1488 as Explanation,
   'abudawud-3641': x_abudawud_3641 as Explanation,
   'abudawud-4811': x_abudawud_4811 as Explanation,
   'bukhari-13': x_bukhari_13 as Explanation,
@@ -62,12 +66,14 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'ibnmajah-4251': x_ibnmajah_4251 as Explanation,
   'muslim-1005': x_muslim_1005 as Explanation,
   'muslim-1631': x_muslim_1631 as Explanation,
+  'muslim-223': x_muslim_223 as Explanation,
   'muslim-2564': x_muslim_2564 as Explanation,
   'muslim-2581': x_muslim_2581 as Explanation,
   'muslim-2588': x_muslim_2588 as Explanation,
   'muslim-2628': x_muslim_2628 as Explanation,
   'muslim-2699': x_muslim_2699 as Explanation,
   'muslim-2734': x_muslim_2734 as Explanation,
+  'muslim-2747': x_muslim_2747 as Explanation,
   'muslim-2759': x_muslim_2759 as Explanation,
   'muslim-2999': x_muslim_2999 as Explanation,
   'muslim-482': x_muslim_482 as Explanation,

@@ -43,6 +43,10 @@ def test_same_hadith_ignores_diacritics_punctuation_and_isnad():
     assert fe.same_hadith(LIB_AR, SRC_AR)
 
 
+def test_a_hamza_seat_is_spelling_not_a_different_word():
+    assert fe.same_hadith('كُلُّ النَّاسِ يَغْدُو فَبَائِعٌ نَفْسَهُ', 'كل الناس يغدو فبايع نفسه فمعتقها')
+
+
 def test_a_different_hadith_or_an_empty_side_is_not_the_same():
     assert not fe.same_hadith(LIB_AR, 'عن أبي هريرة: «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ»')
     assert not fe.same_hadith('', SRC_AR)

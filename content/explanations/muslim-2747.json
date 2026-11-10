@@ -1,0 +1,104 @@
+{
+  "schema": 2,
+  "slug": "muslim-2747",
+  "library_id": "e7f5e920-8e8c-4174-9c9b-a5b7c180c388",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2747",
+  "library_is_excerpt": true,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "4313",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-10",
+      "references_ar": "-نزهة المتقين شرح رياض الصالحين، نشر: مؤسسة الرسالة، الطبعة: الرابعة عشر، 1407هـ - 1987م.\n-دليل الفالحين لطرق رياض الصالحين، لابن علان، نشر دار الكتاب العربي.\n-شرح رياض الصالحين، لابن عثيمين، نشر: دار الوطن للنشر، الرياض، الطبعة: 1426هـ.\n-كنوز رياض الصالحين، نشر: دار كنوز إشبيليا، الطبعة: الأولى، 1430ه 2009م.\n-تطريز رياض الصالحين، لفيصل الحريملي، نشر: دار العاصمة، الرياض، الطبعة: الأولى، 1423هـ. - 2002م.\n-بهجة الناظرين شرح رياض الصالحين، للهلالي، نشر: دار ابن الجوزي.\n-المعجم الوسيط، نشر: دار إحياء التراث العربي، بيروت – لبنان، الطبعة: الثانية.\n-صحيح البخاري، نشر: دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم ترقيم محمد فؤاد عبد الباقي)، الطبعة: الأولى، 1422هـ.\n-صحيح مسلم، تحقيق: محمد فؤاد عبد الباقي، نشر: دار إحياء التراث العربي – بيروت.",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4313",
+          "raw": "raw/hadeethenc-4313-ar.json",
+          "raw_sha256": "dc087e76311e8b1bbe265e5ef5375617d38ff08fbfe46a913aef82a259210314",
+          "title": "للَّهُ أَفْرَحُ بِتَوْبَةِ عَبْدِهِ مِنْ أَحَدِكُمْ، سَقَطَ عَلَى بَعِيرِهِ، وَقَدْ أَضَلَّهُ فِي أَرْضِ فَلاَة",
+          "hadeeth": "عن أنس بن مالك رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم : «للَّهُ أَفْرَحُ بِتَوْبَةِ عَبْدِهِ مِنْ أَحَدِكُمْ، سَقَطَ عَلَى بَعِيرِهِ، وَقَدْ أَضَلَّهُ فِي أَرْضِ فَلاَةٍ».\nوفي رواية: «لَلَّهُ أَشَدُّ فَرَحًا بِتَوْبَةِ عَبْدِهِ حِينَ يَتُوبُ إِلَيْهِ، مِنْ أَحَدِكُمْ كَانَ عَلَى رَاحِلَتِهِ بِأَرْضِ فَلَاةٍ، فَانْفَلَتَتْ مِنْهُ وَعَلَيْهَا طَعَامُهُ وَشَرَابُهُ، فَأَيِسَ مِنْهَا، فَأَتَى شَجَرَةً، فَاضْطَجَعَ فِي ظِلِّهَا، وقَدْ أَيِسَ مِنْ رَاحِلَتِهِ، فَبَيْنَا هُوَ كَذَلِكَ إِذَا هُوَ بِهَا، قَائِمَةً عِنْدَهُ، فَأَخَذَ بِخِطَامِهَا، ثُمَّ قَالَ مِنْ شِدَّةِ الْفَرَحِ: اللهُمَّ أَنْتَ عَبْدِي وَأَنَا رَبُّكَ! أَخْطَأَ مِنْ شِدَّةِ الْفَرَح».",
+          "explanation": "يخبر صلى الله عليه وسلم أن الله أشد فرحًا برجوع عبده إليه بطاعته وامتثال أمره مخلصا من قلبه، من فرح أحدكم كان في أرض فلاة، ليس حوله أحد، لا ماء ولا طعام ولا أناس، وضاع بعيره، فجعل يطلبه فلم يجده، فذهب إلى شجرة ونام تحتها ينتظر الموت! قد أيس من بعيره، وأيس من حياته؛ لأن طعامه وشرابه على بعيره، والبعير قد ضاع، فبينما هو كذلك وجد بعيره فجأة عنده قد تعلق خطامه بالشجرة التي هو نائم تحتها، فبأي شيء يقدر هذا الفرح؟ هذا الفرح لا يمكن أن يتصوره أحد إلا من وقع في مثل هذه الحال! لأنه فرح عظيم، فرح بالحياة بعد الموت، ولهذا أخذ بالخطام، وقال: \"اللهم أنت عبدي وأنا ربك\"! أراد أن يثني على الله فيقول: \"اللهم أنت ربي وأنا عبدك\" لكن من شدة فرحه أخطأ.",
+          "lessons": [
+            "إثبات صفة الفرح لله -عز وجل- على ما يليق بجلال الله سبحانه.",
+            "رحمة الله تعالى بعباده بقبول توبتهم، وحبه إياهم.",
+            "الترغيب في التوبة والحث عليها.",
+            "عدم المؤاخذة في الخطأ غير المتعمد.",
+            "الحض على محاسبة النفس.",
+            "جواز استعمال ضرب المثل لتقريب المعنى في التعليم، اقتداء بالنبي -صلى الله عليه وسلم-.",
+            "جواز القسم للتأكيد على ما فيه فائدة ومصلحة."
+          ],
+          "word_meanings": [
+            {
+              "word": "أفرح",
+              "meaning": " أشد فرحا."
+            },
+            {
+              "word": "سقط على بعيره",
+              "meaning": " عثر عليه من غير قصد."
+            },
+            {
+              "word": "وقد أضله",
+              "meaning": " ذهب منه بغير قصده، ولم يعرف موضعه."
+            },
+            {
+              "word": "أرض فلاة",
+              "meaning": " أرض واسعة لا نبات بها ولا ماء."
+            },
+            {
+              "word": "راحلته",
+              "meaning": " الراحلة ما يركبه المسافر من ناقة أو غيرها."
+            },
+            {
+              "word": "انفلتت",
+              "meaning": " تخلصت."
+            },
+            {
+              "word": "أيس منها",
+              "meaning": " يئس وانقطع رجاؤه."
+            },
+            {
+              "word": "خطامها",
+              "meaning": " الخطام: حبل من ليف أو شعر أو كتان يُجعل في أحد طرفيه حلقة ثم يشد في الطرف الآخر؛ حتى يصير كالحلقة ثم يقلد للدابة ثم يثنى على مخطمه، وهو: مقدم الأنف والفم."
+            }
+          ],
+          "attribution": "متفق عليه والرواية الأولى لفظ البخاري، والرواية الثانية لفظ مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4313",
+          "raw": "raw/hadeethenc-4313-en.json",
+          "raw_sha256": "091ec0fa96d10a94fadf969aa2c0ab6f76b7a4779db082fe33fb0d6a54602bed",
+          "title": "Allah is happier with the repentance of His slave than one of you is with finding his riding camel after having lost it in a desert",
+          "hadeeth": "Anas ibn Mālik (may Allah be pleased with him) reported that the Prophet (may Allah's peace and blessings be upon him) said: \"Allah is happier with the repentance of His slave than one of you is with finding his riding camel after having lost it in a desert.\"\nAnother narration reads: \"Verily, Allah is happier with the repentance of His slave when he turns in repentance to Him than one of you who was on his camel in a desert and it got lost and was carrying his provision of food and drink. He, having lost all hope (of finding it), lies down in the shade of a tree feeling hopeless; when all of a sudden he finds it (his camel) standing before him. He takes hold of its reins and then out of boundless joy blurts out: 'O Allah, You are my slave and I am Your Lord!' He makes this mistake out of extreme joy.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs us that Allah is extremely pleased with His slave's return to Him by obeying Him and fulfilling His commands, sincerely from his heart. His pleasure is more than the pleasure of a person who was in a desert with no one around him – no water, food, or people – and he lost his camel. He looked for it but failed to find it. So he went to lie under a tree awaiting death. He lost hope in finding his camel and lost hope in life, for his food and drink were on the back of his lost camel. Then suddenly, in this state of hopelessness, he finds his camel right in front of him, its reins attached to the same tree he slept beneath. What is comparable to such happiness? No one can truly relate to such joy except one who was in the same situation. Indeed, it is great joy; joy of life after death. For this reason he took hold of its reins and cried, \"O Allah, You are my slave and I am Your Lord!\" He wanted to praise Allah saying: \"O Allah, You are my Lord and I am Your slave!\" but due to his extreme joy, he confused his words.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4313",
+          "raw": "raw/hadeethenc-4313-ru.json",
+          "raw_sha256": "165d32db5be8e8cd92d98eb682bdb869255aae3273ebf1cd503e86f8d5d2489c",
+          "title": "«Аллах радуется покаянию Своего раба больше, чем любой из вас, когда неожиданно находит своего верблюда, потерянного им в пустыне».",
+          "hadeeth": "Анас ибн Малик (да будет доволен им Аллах) передал, что Пророк (мир ему и благословение Аллаха) сказал: «Аллах радуется покаянию Своего раба больше, чем любой из вас, когда неожиданно находит своего верблюда, потерянного им в пустыне». В другой версии хадиса передано, что Пророк (мир ему и благословение Аллаха) сказал: «Аллах радуется покаянию Своего раба, который обращается к Нему с покаянием, больше, чем тот из вас, кто ехал по пустыне на своей верблюдице, вырвавшейся и убежавшей от него со всеми его съестными припасами и водой, отчаялся найти её, пришёл к какому-то дереву и улёгся в его тени, уже не надеясь увидеть свою верблюдицу. И когда он находился в подобном положении, вдруг оказалось, что она стоит рядом с ним, и тогда он взял её за повод и воскликнул: \"О Аллах, Ты — мой раб, а я — Твой Господь!\" — допустив оговорку из-за охватившей его сильной радости».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщает, что Аллах радуется покаянию Своего раба, который возвращается к повиновению Ему и чистосердечному выполнению Его приказов, больше, чем радовался бы тот человек, кто, оказавшись в безлюдной пустыне, в которой нет ни воды, ни пищи, потерял бы свою верблюдицу, а после безуспешных поисков отправился бы к дереву, чтобы заснуть под ним в ожидании смерти! Он отчаялся найти верблюдицу и потерял надежду выжить, поскольку его съестные припасы и вода находились на потерявшейся верблюдице. И когда этот человек находился в таком безнадёжном положении, он вдруг увидел рядом с собой верблюдицу, привязанную к дереву, под которым он заснул. Так с чем можно сравнить радость этого человека? Никто не в состоянии представить его ликование, за исключением того, кто сам когда-либо оказывался в подобной ситуации. Ведь это огромная радость, радость спасения от смерти! Поэтому человек взял свою верблюдицу за повод и воскликнул: «О Аллах, Ты — мой раб, а я — Твой Господь!» Он, наоборот, хотел восславить Аллаха и сказать: «О Аллах, я — Твой раб, а Ты — мой Господь!», однако из-за охватившего его ликования он допустил оговорку.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": [],
+  "matn_variant": {
+    "note": "HadeethEnc 4313 reads وَقَدْ أَيِسَ; the library (with Mishkat al-Masabih) reads قد أيس - one conjunction, sources differ, library kept.",
+    "missing_from_library": [],
+    "extra_in_library": []
+  }
+}

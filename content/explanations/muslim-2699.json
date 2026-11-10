@@ -142,12 +142,5 @@
         }
       }
     }
-  ],
-  "matn_variant": {
-    "note": "Library matn lacks the word بِهِ that Muslim's text (HadeethEnc 4801) has; for an Arabic reader to check the library row (P265).",
-    "missing_from_library": [
-      "به"
-    ],
-    "extra_in_library": []
-  }
+  ]
 }
