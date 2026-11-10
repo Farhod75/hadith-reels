@@ -274,6 +274,15 @@ if [ "$HAS_TSSCRIPT" -gt 0 ] && [ $FAILED -eq 0 ]; then
   [ $FAILED -eq 0 ] && echo "✅ TypeScript scripts OK"
 fi
 
+# The caption's link to the hadith page (P387): buildCaptionBody adds it only for
+# hadiths with a sourced explanation. A change to the caption, the explanation
+# index or the content must keep "no page, no line" true.
+if echo "$CHANGED_FILES" | grep -qE "^lib/caption\.ts$|^lib/explanations|^content/explanations/|caption-explain\.test\.ts$" && [ $FAILED -eq 0 ]; then
+  echo "▶ Caption page-link checks..."
+  npx tsx scripts/lib/caption-explain.test.ts 2>&1
+  if [ $? -ne 0 ]; then echo "❌ caption-explain tests failed"; FAILED=1; else echo "✅ Caption page link OK"; fi
+fi
+
 # PowerShell → parse without executing (P123)
 # render-reel.ps1 IS the render pipeline and IS the asset gate. Before this
 # branch, a change to it was checked only by `npx tsc --noEmit`, which cannot

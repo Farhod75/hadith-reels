@@ -23,6 +23,7 @@
 // from a script, a route or a React component.
 
 import { buildRef, buildTranslationCredit } from './refs'
+import { hasExplanation, hadithPagePath, type SiteLang } from './explanations'
 
 // P150: the verify line and hashtags were hardcoded English and appended to
 // Cyrillic body text on every RU/UZ/TJ reel. Topic tags stay English — they
@@ -32,13 +33,24 @@ import { buildRef, buildTranslationCredit } from './refs'
 // the same table that supplies `verify` here. Two tables would drift.
 export const CAPTION_L10N: Record<
   string,
-  { verify: string; tags: string; kids: string; lang: string }
+  { verify: string; tags: string; kids: string; lang: string; explain: string }
 > = {
-  en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english' },
-  ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский' },
-  uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча' },
-  tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ' },
-  ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية' },
+  en: { verify: 'Verify',           tags: '#hadith #islamic #authentic', kids: '#kids',      lang: '#english', explain: 'Full hadith and explanation' },
+  ru: { verify: 'Проверить хадис',  tags: '#хадис #ислам #сунна',        kids: '#дети',      lang: '#русский', explain: 'Полный хадис и разъяснение' },
+  uz: { verify: 'Ҳадисни текшириш', tags: '#ҳадис #ислом #суннат',       kids: '#болаларга', lang: '#ўзбекча', explain: 'Тўлиқ ҳадис ва шарҳи' },
+  tj: { verify: 'Ҳадисро санҷед',   tags: '#ҳадис #ислом #суннат',       kids: '#кӯдакон',   lang: '#тоҷикӣ', explain: 'Ҳадиси пурра ва шарҳи он' },
+  ar: { verify: 'تحقق من الحديث',     tags: '#حديث #إسلام #سنة',            kids: '#أطفال',     lang: '#العربية', explain: '' },
+}
+
+// P387: the line that sends a viewer from the reel to the hadith's page on
+// hadithreels.com - only when that page carries a sourced explanation
+// (content/explanations/index.json). No page, no line: the caption never
+// points at an empty page. AR has no site language, so no line.
+export function explainLine(collection: string, number: string | number | null | undefined, lang: string): string {
+  const l10n = CAPTION_L10N[lang]
+  const num = number == null ? undefined : String(number)
+  if (!l10n?.explain || !hasExplanation(collection, num)) return ''
+  return `📚 ${l10n.explain}: hadithreels.com${hadithPagePath(collection, num, lang as SiteLang)}\n`
 }
 
 // Only the fields the body actually reads. Narrower than the admin's `Hadith`
@@ -130,6 +142,7 @@ export function buildCaptionBody(opts: {
     // Ternary, not `${credit}\n` — an in-house row would otherwise emit a
     // blank line where the credit would have been.
     (credit ? `${credit}\n` : '') +
+    explainLine(row.collection, row.hadith_number, lang) +
     `🔍 ${l10n.verify}: hadithverifier.com\n\n`
   )
 }

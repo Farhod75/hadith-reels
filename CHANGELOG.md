@@ -1,3 +1,15 @@
+## [2026-11-10e] - the caption links to the hadith page (P387)
+
+### Added
+
+- **`lib/caption.ts`:** `explainLine()` - `📚 Тўлиқ ҳадис ва шарҳи: hadithreels.com/hadith/<collection>/<n>?lang=<lang>`
+  between the reference and the verify line, only when the hadith has a sourced page; no page, no line; no line`r
+  for AR. Admin and build-caption.ts both get it through `buildCaptionBody`.
+- **`scripts/lib/caption-explain.test.ts`** (6 checks), run by the pre-push hook when the caption, the
+  explanation index or the content change. reel-creation-pipeline.md Step 6: make the page before captions.
+
+---
+
 ## [2026-11-10d] - explanation pages for 34 published hadiths (P387 backfill)
 
 ### Added

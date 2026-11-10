@@ -220,6 +220,14 @@ Caption is generated deterministically (P106): title, hadith text in the target
 language, moral, reference, verify link, filtered tags. `TAG_BLOCKLIST` removes
 tags that pull the wrong audience (`date` → dating content, `hellfire` → metal).
 
+**The page link (P387).** When the hadith has a page with a sourced explanation, the caption carries
+`📚 Тўлиқ ҳадис ва шарҳи: hadithreels.com/hadith/<collection>/<n>?lang=<lang>` between the reference and
+the verify line - automatically, from `content/explanations/index.json`. No page, no line. Make the page
+BEFORE building captions, at set start:
+`python scripts/find-hadeethenc.py --hadith "Sahih Muslim #2564"` (read-only; prints the HadeethEnc id or
+`none`/`variant`), then `python scripts/fetch-explanation.py --hadeethenc <id> --library-id <uuid>` (dry
+run; add `--commit`). `none` means no page for now - publish without the line.
+
 **NO LONGER A GAP — P150 fixed it in code.** `lib/refs.ts` localises the
 reference line. `buildRef()` emits the localised collection WITH the Latin name
 in parentheses, the narrator localised only, and `№` rather than `#`:
