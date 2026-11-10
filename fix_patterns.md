@@ -15957,3 +15957,18 @@ as "see also".
 **Status:** FIXED
 
 ---
+
+## PATTERN 390: every HV analysis carried a story credited to a book the model never saw
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+HV's analyze prompt asked for a "story from the Prophet's life (from Ar-Raheeq Al-Makhtum)" and the page
+labelled every result with that book - the P389 defect, in the public verifier. Found by the operator on
+Bukhari #3624 the same day P389 was fixed here. `seerah_context` is now always empty and the card is gone.
+
+**Tripwire:** none in this repo - the recurrence lives in HV's prompt and page; HR's is P389's.
+
+**Status:** FIXED in hadith-verifier
+
+---

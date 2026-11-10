@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-319 patterns in 332 entries, frontier **P389**. The P-sequence is shared with
+320 patterns in 333 entries, frontier **P390**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -21,7 +21,7 @@ BEFORE changing it.
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `route.ts` (11) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
-- `fix_patterns.md` (9) - P209, P247, P256, P291, P332, P364, P365, P366, P388
+- `fix_patterns.md` (10) - P209, P247, P256, P291, P332, P364, P365, P366, P388, P390
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
 - `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
@@ -380,5 +380,6 @@ BEFORE changing it.
 - **P387** - the site repeated its sources; a viewer had nowhere to read the hadith in full
 - **P388** - /api/health said "ok" through the kind of outage HV actually has
 - **P389** - the prompt named two seerah books the model had never read, and stamped one on every result
+- **P390** - every HV analysis carried a story credited to a book the model never saw
 
-<!-- pattern-index-stamp entries=332 patterns=319 frontier=389 sha1=e3b40b6fbb30304a16628b0ff13a4f92ed808335 -->
+<!-- pattern-index-stamp entries=333 patterns=320 frontier=390 sha1=da763176ed877246360253d9881d2ae6c4da1502 -->
