@@ -38,3 +38,9 @@ def test_a_one_word_variant_is_reported_not_matched():
 
 def test_query_is_letters_only():
     assert fh.search_query(LIB, words=3) == 'ان الله لا'
+
+
+def test_tail_query_is_the_end_of_the_matn():
+    # P401: Bukhari #5971 opens like a dozen other hadiths; its end is its own
+    q = fh.tail_query('جَاءَ رَجُلٌ إِلَى رَسُولِ اللَّهِ فَقَالَ مَنْ أَحَقُّ النَّاسِ بِحُسْنِ صَحَابَتِي قَالَ أُمُّكَ', words=4)
+    assert q == 'بحسن صحابتي قال امك'

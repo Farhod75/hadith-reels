@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-330 patterns in 343 entries, frontier **P400**. The P-sequence is shared with
+331 patterns in 344 entries, frontier **P401**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -391,5 +391,6 @@ BEFORE changing it.
 - **P398** - the HV bot had no server - it now runs inside HV
 - **P399** - the HV bot greeted in English
 - **P400** - nothing read the seam between the story and the moral
+- **P401** - the HadeethEnc map missed hadiths it had - a spelling and a crowded opening
 
-<!-- pattern-index-stamp entries=343 patterns=330 frontier=400 sha1=cd1ce01645bf8fdabb76c9c353ead072854c4d69 -->
+<!-- pattern-index-stamp entries=344 patterns=331 frontier=401 sha1=1840acff00509ef78a45e04b7d111c2ccd37d3ad -->

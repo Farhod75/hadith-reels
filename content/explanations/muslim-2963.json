@@ -1,0 +1,67 @@
+{
+  "schema": 2,
+  "slug": "muslim-2963",
+  "library_id": "dfa4637f-3263-409b-85e0-ec80ceec9d5c",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2963",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5341",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-11",
+      "references_ar": "صحيح البخاري (8/ 102) (6490).\nصحيح مسلم (4/ 2275) (2963).\nكنوز رياض الصالحين، لمجموعة من الباحثين (7/ 261).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 534).\nتطريز رياض الصالحين، لفيصل آل مبارك (ص316).\nتوضيح الأحكام من بلوغ المرام ، لعبد الله البسام (7/ 287).\nمنحة العلام شرح بلوغ المرام، لعبد الله الفوزان (10/ 17).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5341",
+          "raw": "raw/hadeethenc-5341-ar.json",
+          "raw_sha256": "364ee4bc89911b4a3fb4e65c21c2796a4c1e0aa6c4b4ccfef32ca815e1f1dfc5",
+          "title": "انظروا إلى من أسفل منكم، ولا تنظروا إلى من هو فوقكم، فهو أجدر ألا تزدروا نعمة الله عليكم",
+          "hadeeth": "عَنْ أَبِي هُرَيْرَةَ رَضيَ اللهُ عنهُ قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: «انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ، وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ، فَهُوَ أَجْدَرُ أَلَّا تَزْدَرُوا نِعْمَةَ اللهِ عَلَيْكُمْ».",
+          "explanation": "أمَر النبيُّ صلى الله عليه وسلم المسلم أن ينظر في أمور الدنيا  في المنزلة والمال والجاه وغيرها إلى من حاله أسفل منه وأقل، وألّا ينظر في أمور دنياه إلى من هو فوقه وأفضل منه، فإن ذلك النظر إلى من هو أسفل أحق وأحرى ألّا تَحتقر وتَنتقص نعمة الله عليك.",
+          "lessons": [
+            "القناعة من أجلّ أخلاق المؤمنين، وهي علامة على الرضا بقدر الله.",
+            "قال ابن جرير: هذا حديث جامع لأنواع من الخير؛ لأن الإنسان إذا رأى من فضل عليه في الدنيا طلبت نفسه مثل ذلك، واستصغر ما عنده من نعمة الله تعالى، وحرص على الازدياد ليلحق بذلك أو يقاربه، هذا هو الموجود في غالب الناس، وأما إذا نظر في أمور الدنيا إلى من هو دونه فيها ظهرت له نعمة الله تعالى عليه، فشكرها وتواضع، وفعل فيه الخير."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5341",
+          "raw": "raw/hadeethenc-5341-en.json",
+          "raw_sha256": "15f6486a8ac7252958951378f578709da5b8472ac9273876546781034eebf757",
+          "title": "Look at those who are below you, and do not look at those who are above you, for that is more likely to hold you back from belittling the blessing of Allah upon you",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Look at those who are below you, and do not look at those who are above you, for that is more likely to hold you back from belittling the blessing of Allah upon you.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) commanded the Muslim to look at those who are below him and lower than him in terms of status, wealth, prestige, etc., and not to look at those who are above him or better than him in his worldly affairs. This is because looking at those who are below you is more likely to prevent you from despising or belittling the blessings of Allah upon you.",
+          "lessons": [
+            "Contentment is one of the believers' most noble traits and it is a sign of being pleased with the decree of Allah.\r",
+            "Ibn Jarīr said: This is a comprehensive Hadīth that encompasses various forms of goodness. When a person sees someone who has been given preference over him in this world, his soul desires the same, belittling the blessings bestowed upon him by Allah Almighty, and he becomes eager to acquire more to reach or match that person. This is the condition of most people. However, if he looks at those who are below him in worldly matters, he will recognize the blessings of Allah upon him, giving thanks, humbling himself, and doing good with what he has."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5341",
+          "raw": "raw/hadeethenc-5341-ru.json",
+          "raw_sha256": "a7b42de176c1b198138a588e6c793faf735cb0ea921e6bc065673d7330688870",
+          "title": "Смотрите на тех, кто ниже вас по положению, и не смотрите на того, кто выше вас по положению, и это поможет вам не считать никакую из милостей Аллаха незначительной",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Смотрите на тех, кто ниже вас по положению, и не смотрите на того, кто выше вас по положению, и это поможет вам не считать никакую из милостей Аллаха незначительной».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) повелел мусульманину смотреть в мирском, то есть положении, состоятельности, влиятельности и так далее, на того, кто ниже его по положению, а не на того, чьё положение лучше, поскольку, когда мы смотрим на того, кто ниже нас по мирским меркам, это помогает нам не считать незначительной ни одну из милостей, дарованных нам Аллахом.",
+          "lessons": [
+            "Довольство имеющимся относится к наилучшим нравственным качествам верующих и указывает на довольство предопределением Аллаха.\r",
+            "Ибн Джарир сказал: «Этот хадис вобрал в себя разные виды блага, потому что когда человек видит того, кто превзошёл его в мирском, душа его желает иметь то же, и милости, которыми одарил его Всевышний Аллах, начинают казаться ему незначительными, и ему хочется иметь больше, чтобы достичь такого же положения или хотя бы приблизиться к нему. Так это происходит у большинства людей. Когда же человек смотрит на того, кто ниже его по своему положению в этом мире, он начинает замечать милости, дарованные ему Всевышним Аллахом, благодарить за них и проявлять скромность и использует их во благо»."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

@@ -1,3 +1,16 @@
+## [2026-11-11d] - two hadiths found that the map had missed; Muslim #2963 page (P401)
+
+### Fixed
+
+- **fetch-explanation.py `letters()`:** أن لا = ألا. **find-hadeethenc.py:** a second query from the end of the matn
+  when the first finds nothing. 2 tests.
+
+### Added
+
+- Page for Sahih Muslim #2963 (HadeethEnc 5341; ar, en, ru).
+
+---
+
 ## [2026-11-11c] - the S/M seam is linted (P400)
 
 ### Added

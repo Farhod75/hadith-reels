@@ -138,6 +138,12 @@ def test_a_companions_narrative_before_the_quote_is_part_of_the_hadith():
     assert fe.library_is_excerpt('إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا', src)
 
 
+def test_an_la_and_alla_are_one_spelling():
+    # P401: Muslim #2963 «أَنْ لَا تَزْدَرُوا» against HadeethEnc 5341 «أَلَّا تَزْدَرُوا عَلَيْكُمْ»
+    lib = 'فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ'
+    assert fe.same_hadith(lib, '«فَهُوَ أَجْدَرُ أَلَّا تَزْدَرُوا نِعْمَةَ اللهِ عَلَيْكُمْ»')
+
+
 # ---- the committed files -------------------------------------------------
 def _docs():
     for f in sorted(os.listdir(CONTENT)):

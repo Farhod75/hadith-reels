@@ -85,6 +85,9 @@ def letters(s):
     alef forms, alef maqsura and ta marbuta folded. For COMPARING, never shown."""
     s = unicodedata.normalize('NFC', s or '')
     s = _MARKS.sub('', s).translate(_ALEF)
+    # P401: أَنْ لَا and أَلَّا are one word spelled two ways (Muslim #2963: library «أَنْ لَا
+    # تَزْدَرُوا», HadeethEnc 5341 «أَلَّا تَزْدَرُوا»)
+    s = re.sub('ان\\s+لا', 'الا', s)
     return ''.join(ch for ch in s if 'ء' <= ch <= 'ي')
 
 

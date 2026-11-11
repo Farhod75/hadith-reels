@@ -16172,3 +16172,26 @@ matn's key phrase, which is what a reader should look at; the first version also
 **Status:** FIXED (warn-only, by design: a human reads the seam)
 
 ---
+
+## PATTERN 401: the HadeethEnc map missed hadiths it had - a spelling and a crowded opening
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** coverage (no wrong page)
+
+**What happened.** 21 published hadiths had no explanation page; the map said "none" for 16. Reading three
+by hand: Muslim #2963's HadeethEnc entry (5341) was found, but the library reads «أَنْ لَا تَزْدَرُوا» and
+HadeethEnc «أَلَّا تَزْدَرُوا» - one word spelled two ways - so the matn was "not contained". Bukhari #5971
+opens «جاء رجل إلى رسول الله...», the opening of a dozen other hadiths, and its own entry (4182) was not in
+the twelve results. Bukhari #1's entry (4560) is the combined wording, not Bukhari's - a real difference.
+
+**Fix.** `letters()` folds أن لا / ألا; find-hadeethenc tries the END of the matn as a second query when
+the first finds nothing. Rerun: #2963 match (page built, ar/en/ru), #5971 variant (one word: Bukhari's
+«ثُمَّ أَبُوكَ», mirror checked). Every existing page re-checked: 0 changes. 2 tests.
+
+**Lesson:** "no match" from a search is a claim about the search, not about the source.
+
+**Tripwire:** a backfill report whose "none" rows nobody has opened.
+
+**Status:** FIXED. #5971's page waits for the operator (variant + the page would call it an excerpt: the
+source adds Muslim's second narration after the agreed-upon one).
+
+---

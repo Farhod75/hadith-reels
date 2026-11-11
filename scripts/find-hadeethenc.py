@@ -57,6 +57,14 @@ def search_query(arabic, words=14):
     return ' '.join(ws[:words])
 
 
+def tail_query(arabic, words=12):
+    """P401: the last words of the matn. A matn that opens with a narrative ("a man came to the
+    Messenger of Allah and said...") shares its opening with dozens of entries; Bukhari #5971's
+    first query returned twelve of them and not its own. The end is where a hadith is itself."""
+    ws = [fe.letters(w) for w in (arabic or '').split() if fe.letters(w)]
+    return ' '.join(ws[-words:])
+
+
 def classify(library_arabic, results):
     """PURE. results: [{'id', 'matn'}]. -> (status, id, note)."""
     exact = [r for r in results if fe.same_hadith(library_arabic, r.get('matn', ''))]
@@ -134,6 +142,14 @@ def main(argv=None):
             print('%-22s #%-6s search error: %s' % (coll, num, e))
             continue
         status, hid, note = classify(row['text_arabic'], results)
+        if status == 'none':                     # P401: try the end of the matn too
+            time.sleep(1.5)
+            try:
+                more = search(tail_query(row['text_arabic']))
+            except Exception:
+                more = []
+            seen = {r.get('id') for r in results}
+            status, hid, note = classify(row['text_arabic'], results + [r for r in more if r.get('id') not in seen])
         lines.append('\t'.join([coll, num, row['id'], status, hid, note]))
         print('%-22s #%-6s %-10s %-8s %s' % (coll, num, status, hid, note))
 
