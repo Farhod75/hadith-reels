@@ -1,3 +1,12 @@
+## [2026-11-11c] - the S/M seam is linted (P400)
+
+### Added
+
+- **lint-content.py `check_seam()`:** WARN when the moral opens with three words the story ends on (two of them
+  content words). 3 of 76 drafts on disk flagged, all morals restating the matn's key phrase. 4 tests.
+
+---
+
 ## [2026-11-11b] - the tracker's collection and companion counts are gated (P397)
 
 ### Fixed

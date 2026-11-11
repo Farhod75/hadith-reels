@@ -16148,3 +16148,27 @@ An English Telegram app got an English-only welcome; it now gets RU, UZ, TJ and 
 **Status:** FIXED in hadith-verifier
 
 ---
+
+## PATTERN 400: nothing read the seam between the story and the moral
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** content (the Prophet's words and ours merge)
+
+**What happened.** OPEN_ITEMS had carried P315 since R158: a moral that opens by repeating the story's
+closing words ("So treat women well. Treat women well.") narrates them twice and blurs where the quote
+ends. `check_duplicate_blocks` fires only on IDENTICAL blocks; stt-validate compares the SRT with the
+draft, so a faithful rendering of a bad seam scores 1.000.
+
+**Fix.** `lint-content.py check_seam()`: a WARN when the last sentence of S and the first sentence of M
+share a run of three words with at least two content words (function words, honorifics and Arabic-script
+honorific formulas do not count). Run over the 76 drafts on disk: 3 flagged - #2564 RU («Аллах смотрит
+на сердца и дела» in the moral), #6412 RU and TJ (health and free time) - each a moral restating the
+matn's key phrase, which is what a reader should look at; the first version also flagged honorifics and
+"касе ки ба" and was narrowed. 4 tests.
+
+**Lesson:** a defect that lives between two blocks needs a check that reads both.
+
+**Tripwire:** a new kind of defect found by reading, with no lint check that compares the parts it spans.
+
+**Status:** FIXED (warn-only, by design: a human reads the seam)
+
+---

@@ -546,6 +546,65 @@ def check_duplicate_blocks(blocks):
     return out
 
 
+# P400 (OPEN_ITEMS P315): the S/M seam. check_duplicate_blocks fires only when two blocks
+# are IDENTICAL, so a moral that opens by repeating the story's closing sentence passed -
+# R158 cue 6 read "So treat women well. Treat women well.", merging the Prophet's words
+# with ours, and stt-validate cannot see it (the SRT matched the draft). Mechanical check:
+# any run of SEAM_RUN words shared by the last sentence of S and the first sentence of M.
+SEAM_RUN = 3
+_WORD = re.compile(r"[^\W\d_]+(?:['\u2019\u02bc\u02bb][^\W\d_]+)?", re.UNICODE)
+
+
+# Words that do not make a repetition on their own: function words, and the honorific and
+# attribution formulas every block may carry (tirmidhi-1161 EN: "the Prophet ﷺ" in both).
+_SEAM_STOP = set(normalise(w) for w in (
+    'the a an of to and in on for is are was be that who which it its his her their your you we '
+    'и в во не на с со что кто к ко по за от до из у о об а но же ли как его её их ваш ваши '
+    'ва билан учун ҳам ки бу у уни унинг ва ба дар аз бо ин он ҳар касе барои '
+    'prophet messenger allah peace be upon him sallallahu alayhi wa sallam '
+    'пророк посланник аллах аллаха мир ему пайғамбар соллаллоҳу алайҳи саллам паёмбар расулуллоҳ аллоҳ'
+).split())
+
+
+def _seam_words(s):
+    # Arabic-script words in a translated block are honorifics (صلى الله عليه وسلم): skipped
+    return [normalise(w) for w in _WORD.findall(s or '') if not re.search('[\u0600-\u06ff]', w)]
+
+
+def _content(gram):
+    return sum(1 for w in gram if w not in _SEAM_STOP)
+
+
+def seam_overlap(story, moral, run=SEAM_RUN):
+    """Word runs of length `run` shared by the last sentence of `story` and the first
+    sentence of `moral`, in the moral's order. PURE."""
+    s_sent = sentences(story)
+    m_sent = sentences(moral)
+    if not s_sent or not m_sent:
+        return []
+    a, b = _seam_words(s_sent[-1]), _seam_words(m_sent[0])
+    grams = {tuple(a[i:i + run]) for i in range(len(a) - run + 1)}
+    out = []
+    for i in range(len(b) - run + 1):
+        g = tuple(b[i:i + run])
+        if g in grams and _content(g) >= 2 and ' '.join(g) not in out:
+            out.append(' '.join(g))
+    return out
+
+
+def check_seam(blocks):
+    if 'S' not in blocks or 'M' not in blocks:
+        return []
+    shared = seam_overlap(block_body(blocks['S']), block_body(blocks['M']))
+    if not shared:
+        return []
+    return [Finding(
+        'WARN', 'seam-repeat', BLOCK_NAMES['M'], blocks['M'][0][0], block_body(blocks['M']),
+        'the moral opens with words the story ends on (%s). Read the seam aloud: the '
+        'narration says them twice, and the listener cannot tell where the Prophet\'s '
+        'words end and ours begin (P315).' % '; '.join(shared[:3]))]
+
+
 # ---------------------------------------------------------------- main
 
 
@@ -590,6 +649,7 @@ def main():
         # content checks below are even looking at
         ('missing-block',     lambda: check_missing_block(blocks)),
         ('duplicate-blocks',  lambda: check_duplicate_blocks(blocks)),
+        ('seam-repeat',       lambda: check_seam(blocks)),
         ('script-integrity',  lambda: check_script(blocks, args.lang)),
         # content
         ('divine-name',       lambda: check_divine_name(blocks, args.lang)),

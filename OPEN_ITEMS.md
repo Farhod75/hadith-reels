@@ -1379,7 +1379,7 @@ the operator first - see the #6675 retro.
   #5185, where it prints the lines that were sat on all evening, and against a
   number this file does not mention, where it says so.
 
-- **No gate reads the S/M seam (P315).** `lint-content.py` fires
+- **DONE 2026-11-11 (P400): No gate reads the S/M seam (P315).** `lint-content.py check_seam()` now warns. Original note: `lint-content.py` fires
   `duplicate-block` only when two blocks are IDENTICAL, so a moral that repeats
   the STORY'S CLOSING SENTENCE passes clean - and then gets burned into a
   subtitle. On R158 cue 6 read "So treat women well. Treat women well.", which
