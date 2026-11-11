@@ -16121,3 +16121,17 @@ both cells rewritten from the rows, largest first.
 **Status:** FIXED
 
 ---
+
+## PATTERN 398: the HV bot had no server - it now runs inside HV
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+The docs said the Telegram bot was hosted on Railway; it most likely never ran. @HadithVerifierBot is now a
+webhook route on hadithverifier.com sharing `lib/analyze.ts` with the site. Branch `share-features`.
+
+**Tripwire:** none in this repo.
+
+**Status:** built in hadith-verifier (branch share-features), waiting for the operator
+
+---
