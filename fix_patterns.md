@@ -16135,3 +16135,16 @@ webhook route on hadithverifier.com sharing `lib/analyze.ts` with the site. Bran
 **Status:** built in hadith-verifier (branch share-features), waiting for the operator
 
 ---
+
+## PATTERN 399: the HV bot greeted in English
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+An English Telegram app got an English-only welcome; it now gets RU, UZ, TJ and EN together.
+
+**Tripwire:** none in this repo.
+
+**Status:** FIXED in hadith-verifier
+
+---
