@@ -1284,3 +1284,40 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 2.** The clip order (clips must follow the matn, already agreed); four clips, not five.
 
 **The finding:** a scene order that ignores the words is a defect the operator has to catch every time; it belongs in the plan, checked against the cue times, before the first render.
+
+## R226-R229 - Sahih Muslim #2588 - 2026-11-10
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (244-247, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok - in the fixed order (P385).
+
+**Caught before publish**
+
+1. **Clips ordered before the narration was measured:** four 10 s Kling clips, then the narrations; the last slot (third clause + moral) needed 17.5 s in EN and 18.9 s in UZ. A 0.55x slow copy was the first fix. The operator asked whether the clips had been made without measuring the narration - they had. Option A on his direction: a new bright 15 s clip, a mountain oasis, for «Allah raises him» and the moral (not always desert).
+2. **The asset gate crashed on a Cyrillic note** and render-reel.ps1 read the crash as a rejection of four registered clips (P392).
+3. **Clips on the wrong clause:** proportional anchors (matn:0.35, matn:0.7) put the horse (honour) on «no one humbles himself». Seen on a frame sheet of the first EN render; anchors moved to the EN/RU clause cues (matn:0.22, matn:0.55), which stretched the last slot to 20.9 s (UZ) - the oasis slow copy went from x0.78 to x0.70.
+4. **Subtitles:** EN without quotation marks; RU «Абуху Райра, добудет доволенным», «пророг», «Запрощения» and the closing quote after the moral - fixed against the drafts before the burn (P339).
+5. **YouTube description:** the caption's new page line was glued to the end of the moral (P394), caught in the generated block before it was sent.
+
+**Escaped to publish**
+
+- None found. The oasis clip plays at x0.70 with blended frames; on a slow rising shot it reads as smooth.
+
+**Root causes**
+
+- The clip plan was written from the hadith, not from the measured narration.
+- A shared fraction of the matn cannot know where each language's clauses begin.
+- platform-texts.parse() folded every line it did not know into the moral.
+
+**Prevention landed**
+
+- P393: reel-creation-pipeline.md Step 9 - narrate all four languages first; each clip's length is the longest language's slot; scenes follow the words, not always desert.
+- P392: the asset gate prints with errors="replace".
+- P394: the page line is its own field; 1 test.
+
+**Prevention deferred**
+
+- An anchor keyed to a subtitle cue (for example `cue:4`) so a clause boundary is exact in each language instead of one shared fraction.
+- The P393 tripwire in code: generate-scene.ps1 refusing a reel whose four narrations are not on disk.
+
+**Operator corrections of the assistant: 2.** The clips were made without measuring the narration; not every scene has to be desert.
+
+**The finding:** the narration is the timeline - anything paid that has to fit it is ordered after it is measured.
