@@ -1,3 +1,20 @@
+## [2026-11-11e] - Bukhari #5971 page; make-drafts survives the console
+
+### Added
+
+- Page for Sahih al-Bukhari #5971 (HadeethEnc 4182, ar/en/ru; variant «ثُمَّ أَبُوكَ» recorded - operator's decision).
+
+### Fixed
+
+- **make-drafts.py:** stdout reconfigured to UTF-8 - printing the drafts (ﷺ, Cyrillic) crashed on the cp1252
+  console (the P392 class).
+
+### Decided
+
+- Bukhari #1 gets no page for now: HadeethEnc's text is the combined wording, not Bukhari #1's (OPEN_ITEMS).
+
+---
+
 ## [2026-11-11d] - two hadiths found that the map had missed; Muslim #2963 page (P401)
 
 ### Fixed

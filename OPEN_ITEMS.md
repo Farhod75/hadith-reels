@@ -1364,11 +1364,11 @@ the operator first - see the #6675 retro.
   Pilot BUILT 2026-11-10: /hadith/muslim/2699 - full text + 1 related event (Bukhari, Uhud; Arabic only until
   HadeethEnc translates 65557). Not added: Umar/Abu Musa "ذكرنا ربنا" (ad-Darimi 3525: Husayn Asad - two defects)
   and Uthman ibn Abi al-As "youngest, knew most Qur'an" (Ibn Sa'd / Ibn Hisham, no grading found yet).
-- **OPEN: explanation backfill (P387; recounted 2026-11-11, P401)** - 38 of 58 published hadiths have a page.
-  Waiting for the operator: Bukhari #5971 (variant: Bukhari «ثُمَّ أَبُوكَ», HadeethEnc 4182 «أبوك»; the page would
-  also mark it an excerpt because 4182 appends Muslim's second narration - command ready:
-  `fetch-explanation.py --hadeethenc 4182 --library-id 3960acde-7b6d-4cb3-8a17-44a1cdd4dff6 --accept-variant "..."`);
-  Bukhari #1 (HadeethEnc 4560 is the combined wording - same hadith, different route; decide whether to show it).
+- **OPEN: explanation backfill (P387; recounted 2026-11-11, P401)** - 39 of 58 published hadiths have a page.
+  Bukhari #5971 built 2026-11-11 (operator: build it, sahih; variant «ثُمَّ أَبُوكَ» recorded in the file).
+  Bukhari #1 NOT built (decided 2026-11-11): HadeethEnc 4560 shows the combined wording with the clause on
+  hijrah to Allah and His Messenger, which Bukhari #1 itself omits - a page titled "Bukhari #1" would print
+  a wording that is not Bukhari #1's. Revisit with an adapter that can show the explanation without the matn.
   Arabic-only at HadeethEnc (no page yet): Tirmidhi #1956, Bukhari #1773, #1903. No HadeethEnc entry found
   (an-Nawawi / other sources later): Tirmidhi #3373, #3895, #2307, #1161; Bukhari #1894, #6009, #8, #527, #6423,
   #6570, #5185; Nasai #463, #3104; Ibn Majah #4248; Muslim #2749. Report: out/hadeethenc-map.tsv.

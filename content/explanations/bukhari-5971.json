@@ -1,0 +1,84 @@
+{
+  "schema": 2,
+  "slug": "bukhari-5971",
+  "library_id": "3960acde-7b6d-4cb3-8a17-44a1cdd4dff6",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "5971",
+  "library_is_excerpt": true,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "4182",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-11",
+      "references_ar": "- شرح صحيح البخارى لابن بطال - تحقيق: أبو تميم ياسر بن إبراهيم مكتبة الرشد - السعودية، الرياض الطبعة: الثانية، 1423هـ - 2003م.\n- الأدب النبوي لمحمد الخَوْلي، ط4، دار المعرفة - بيروت، 1423 هـ.\n- بهجة الناظرين شرح رياض الصالحين لسليم الهلالي، ط1، دار ابن الجوزي، الدمام، 1415ه.\n- رياض الصالحين للنووي، ط1، تحقيق: ماهر ياسين الفحل، دار ابن كثير، دمشق، بيروت، 1428 هـ.\n- رياض الصالحين، تحقيق: عصام هادي، وزارة الأوقاف والشؤون الإسلامية القطرية، دار الريان، بيروت، ط4، 1428هـ.\n- شرح رياض الصالحين  للشيخ ابن عثيمين، دار الوطن للنشر، الرياض، 1426هـ.\n- شرح صحيح البخارى لابن بطال، تحقيق: أبو تميم ياسر بن إبراهيم، ط2، مكتبة الرشد - السعودية، الرياض، 1423هـ.\n- صحيح البخاري، تحقيق: محمد زهير بن ناصر الناصر دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم: محمد فؤاد عبد الباقي)، ط1، 1422ه.\n- صحيح مسلم، تحقيق: محمد فؤاد عبد الباقي، دار إحياء التراث العربي، بيروت.\n- نزهة المتقين شرح رياض الصالحين لمجموعة من الباحثين، ط14، مؤسسة الرسالة، 1407هـ.",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4182",
+          "raw": "raw/hadeethenc-4182-ar.json",
+          "raw_sha256": "a0003fc5b89b5f62502730b7e60addadf0c412f228785016b636955a211a4753",
+          "title": "يا رسول الله، مَنْ أحقُّ بِحُسْن الصُّحبة؟ قال: أمك، ثم أمك، ثم أمك، ثم أباك، ثم أَدْنَاكَ أَدْنَاكَ",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: جاء رجل إلى رسول الله صلى الله عليه وسلم فقال: يا رسول الله، مَنْ أحقُّ الناس بِحُسن صَحَابَتِي؟ قال: «أمك» قال: ثم مَنْ ؟ قال: «أمك»، قال: ثم مَنْ؟ قال: «أمك»، قال: ثم مَنْ؟ قال: «أبوك». متفق عليه. وفي رواية: يا رسول الله، مَنْ أحقُّ بحُسْنِ الصُّحْبَةِ؟ قال: «أمك، ثم أمك، ثم أمك، ثم أباك، ثم أدْنَاك أدْنَاك».",
+          "explanation": "هذا الحديث يدل على أن لكل من الأبوين حقًا في المصاحبة الحسنة؛ والعناية التامة بشؤونه (وصاحبهما في الدنيا معروفًا )، ولكن حق الأم فوق حق الأب بدرجات، إذ لم يذكر حقه إلا بعد أن أكد حق الأم تمام التأكيد، بذكرها ثلاث مرات، وإنما علت منزلتها منزلته مع أنهما شريكان في تربية الولد هذا بماله ورعايته؛ وهذه بخدمته في طعامه وشرابه، ولباسه وفراشه و ... إلخ.\nلأن الأم عانت في سبيله ما لم يعانه الأب، فحملته تسعة أشهر وهنًا على وهنٍ، وضعفًا إلى ضعف؛ ووضعته كرهًا؛ يكاد يخطفها الموت من هول ما تقاسي، وكذلك أرضعته سنتين، ساهرة على راحته، عاملة لمصلحته وإن برحت بها في سبيل ذلك الآلام وبذلك نطق الوحي: (ووصينا الإنسان بوالديه إحسانا حملته أمه كرها ووضعته كرها وحمله وفصاله ثلاثون شهرا)، فتراه وصى الإنسان بالإحسان إلى والديه؛ ولم يذكر من الأسباب إلا ما تعانيه الأم إشارة إلى عظم حقها.\nومن حسن المصاحبة للأبوين الإنفاق عليهما طعامًا وشراباً، ومسكناً ولباسًا؛ وما إلى ذلك من حاجات المعيشة، إن كانا محتاجين، بل إن كانا في عيشة دنيا أو وسطى؛ وكنت في عيشة ناعمة راضية فارفعهما إلى درجتك أو زد، فإن ذلك من الإحسان في الصحبة. \nواذكر ما صنع يوسف مع أبويه وقد أوتي الملك إذ رفعهما على العرش بعد أن جاء بهما من البدو. ومن حسن الصحبة بل جماع أمورها ما ذكره الله بقوله: ( وقضى ربك ألا تعبدوا إلا إياه وبالوالدين إحسانا إما يبلغن عندك الكبر أحدهما أو كلاهما فلا تقل لهما أف ولا تنهرهما وقل لهما قولاً كريمًا. واخفض لهما جناح الذل من الرحمة وقل رب ارحمهما كما ربياني صغيرا ) فامنع عنهما لسان البذاءة، وجنبهما أنواع الأذى. وأَلن لهما قولك؛ واخفض لهما جناحك؛ وذلل لطاعتهما نفسك، ورطب لسانك بالدعاء لهما من خالص قلبك وقرارة نفسك وقل: (رب ارحمهما كما ربياني صغيرا)، ولا تنس زيادة العناية بالأم، عملا بإشارة الوحي؛ ومسايرة لمنطق الحديث.",
+          "lessons": [
+            "عظيم حق الوالدين.",
+            "زيادة الوصية بالأم لضعفها وحاجتها.",
+            "إكرام ذوي القرابات ليس على درجة واحدة.",
+            "ترتيب الحقوق ووضعها في مواضعها هو الأصل والعدل.",
+            "تقديم الأم على الأب في النفقة."
+          ],
+          "word_meanings": [
+            {
+              "word": "صحابتي",
+              "meaning": " صحبتي."
+            },
+            {
+              "word": "ثم أباك",
+              "meaning": " ثم بر أباك."
+            },
+            {
+              "word": "أدْنَاك أدْنَاك",
+              "meaning": " الأقرب فالأقرب."
+            }
+          ],
+          "attribution": "الرواية الأولى: متفق عليها.\nالرواية الثانية: رواها مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4182",
+          "raw": "raw/hadeethenc-4182-en.json",
+          "raw_sha256": "31cd2e7fb50f5cbff1358e1d76949fe43fb818ad4009485f16204237c11ff349",
+          "title": "O Messenger of Allah, who is the most entitled among people to my good companionship? He said: Your mother, then your mother, then your mother, then your father, and then those who are the closest to you",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported that a man came to the Messenger of Allah (may Allah's peace and blessings be upon him) and said: \"O Messenger of Allah, who is the most entitled among people to my good companionship?\" He said: \"Your mother.\" The man said: \"Who next?\" He said: \"Your mother.\" The man asked again: \"Who next?\" He replied: \"Your mother.\" The man further said: \"Who next?\" He said: \"Your father.\"\nIn another narration, the man asked: \"O Messenger of Allah, who is the most entitled among people to my good companionship?\" He said: \"Your mother, then your mother, then your mother, then your father, and then those who are the closest to you.\"",
+          "explanation": "This Hadīth indicates that both parents have a right to good companionship and utmost care of their affairs. Allah says: {Accompany them in [this] world with appropriate kindness} [Sūrat Luqmān: 31]. However, the right of the mother precedes the right of the father by far. The father's right was not mentioned except after the Prophet (may Allah's peace and blessings be upon him) had emphasized the right of the mother by mentioning her three times. The mother's status is greater than the father's status, even though they both raise and bring up their children - the father with his wealth and care, and the mother with her services such as preparing their food, drinks, clothes, beds, etc. In fact, the mother suffers in raising her children greater than the father. She carries the child in her womb for nine months adding more to her pain and weakness; she gives birth to the child with hardship and severe pain as if she is almost dying; and she breast-feeds the child for two years during which she remains awake in order for him to relax and spares no effort of his betterment regardless of her pains. The Qur'an described these experiences saying: {And We have enjoined upon man, to his parents, good treatment. His mother carried him with hardship and gave birth to him with hardship, and his gestation and weaning [period] is thirty months} [Sūrat al-Ahqāf: 15]. In this verse, Allah enjoined man to be dutiful to his parents and justified this injunction by listing only the suffering the mother endures as a sort of highlighting her great right on the children. Good companionship with the parents includes providing their food, drink, accommodation, clothing, and the other needs of living, particularly when they are needy. Moreover, if your parents' standard of living is low or adequate and you lead a luxurious and comfortable life, then you should raise them to your living standard or even higher. Doing this is part of your good companionship to the parents. Remember what Prophet Yūsuf did with his parents; when he was granted sovereignty, he raised his parents upon the throne after bringing them from the desert. The best manifestation of good companionship is what Allah said: {And your Lord has decreed that you not worship except Him, and to parents, good treatment. Whether one or both of them reach old age [while] with you, say not to them [so much as], \"uff,\" and do not repel them but speak to them a noble word. And lower to them the wing of humility out of mercy and say, \"My Lord, have mercy upon them as they brought me up [when I was] small\"} [Sūrat al-Isrā': 23-24] So, hold back your tongue from saying bad words to them and keep them far from all things that could harm them. Speak to them kindly and be humble and obedient to them. Always supplicate to Allah for them sincerely from your heart and soul and say: \"My Lord, have mercy upon them as they brought me up when I was small.\" Do not forget to provide your mother with special and greater care as implied by divine revelation and stated in this Hadīth.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim - Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4182",
+          "raw": "raw/hadeethenc-4182-ru.json",
+          "raw_sha256": "50209c542bbe9d7912d4e5a5f9146f36bf2b6b345be34eb1e28075f48f75a77c",
+          "title": "«Я спросил: “О Посланник Аллаха, кто более всего достоин хорошего обхождения?” Он ответил: “Твоя мать, потом твоя мать, потом твоя мать, потом твой отец, потом твои ближайшие родственники”»",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт: «Один человек пришёл к Посланнику Аллаха (мир ему и благословение Аллаха) и спросил: “О Посланник Аллаха, кто из людей больше всего заслуживает хорошего отношения с моей стороны?” Он ответил: “Твоя мать”. Тот спросил: “А затем кто?” Он ответил: “Твоя мать”. Тот спросил: “А затем кто?” Он ответил: “Твоя мать”. Тот спросил: “А затем кто?” Он ответил: “Твой отец”» [Бухари; Муслим]. А в другой версии говорится: “О Посланник Аллаха, кто из людей больше всего заслуживает хорошего отношения с моей стороны?” Он ответил: “Твоя мать, затем — твоя мать, затем — твоя мать, затем — твой отец а затем — твои родственники, начиная с ближайших”».",
+          "explanation": "Хадис указывает на то, что каждый из родителей имеет право на хорошее отношение и заботу: «И сопровождай их в этом мире по-доброму…» Однако право матери больше права отца — недаром право отца упомянуто лишь после того, как право матери утверждено посредством трёхкратного упоминания о нём. Ей было отведено столь высокое положение, несмотря на то, что оба родителя принимают участие в воспитании ребёнка — один посредством имущества и оберегания, второй — посредством заботы о питании, одежде, сне и так далее. Причина в том, что мать претерпевает то, чего не приходится претерпевать отцу. Ведь она носит ребёнка в течение девяти месяцев, испытывая слабость и изнеможение, а потом рожает его в муках, перенося такие тяготы, что ей начинает казаться, что она вот-вот покинет этот мир. А после этого она кормит его в течение двух лет, оберегая его покой и неустанно заботясь о нём, испытывая при этом тяготы и страдания, о чём упоминается в Откровении: «Мы заповедали человеку делать добро родителям. Матери тяжело носить его и рожать его, а беременность и кормление до отнятия его от груди продолжаются тридцать месяцев» (46:15). Мы видим, что, заповедовав человеку делать добро родителям, Всевышний Аллах упомянул лишь одну причину — тяготы, переносимые матерью. Это указание на то, насколько велико её право в отношении ребёнка. К хорошему отношению к родителям относится и обеспечение их питанием, жильём и одеждой, а также удовлетворение других их жизненных потребностей, если они нуждаются. Более того, если родители живут бедно или средне, а ты живёшь в роскоши, то подними и их уровень жизни до твоего или выше, ибо это также входит в хорошее отношение. Вспомним, как поступил Юсуф (мир ему) со своими родителями. Он поднял их на свой трон после того, как привёз их из их селения. К важным проявлениям хорошего отношения к родителям относится и упомянутое Всевышним: «Если один из родителей или оба достигнут старости, то не говори им: “Уф” — не повышай на них голос и обращайся к ним почтительно. Преклоняй пред ними крыло смирения [проявляя скромность] по милосердию своему и говори: “Господи! Помилуй их, ведь они растили меня ребёнком”» (17:23-24). Не говори им скверных слов и огради их от любых обид и беспокойства. Говори с ними мягко и будь послушен им. И постоянно обращайся к Аллаху с мольбой за них, искренне, от всего сердца, и говори: «Господи! Помилуй их, ведь они растили меня ребёнком». И не забудь уделять дополнительное внимание матери, претворяя в жизнь слова Всевышнего, а также поступая согласно хадису.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "передал Муслим - Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": [],
+  "matn_variant": {
+    "note": "library follows Bukhari's own wording «ثُمَّ أَبُوكَ» (sunnah.com bukhari:5971, mirror checked); HadeethEnc 4182 gives the agreed-upon wording «أبوك» and adds Muslim's second narration - sources differ, library kept (operator 2026-11-11: build it, sahih)",
+    "missing_from_library": [],
+    "extra_in_library": [
+      "ثم"
+    ]
+  }
+}

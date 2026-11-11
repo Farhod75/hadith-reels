@@ -96,6 +96,8 @@ def main(argv=None):
     ap.add_argument('--write', action='store_true')
     ap.add_argument('--force', action='store_true', help='overwrite existing drafts')
     args = ap.parse_args(argv)
+    # P392 class: the drafts carry ﷺ and Cyrillic; the cp1252 console must not crash the run
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
     import narrator_leadin as nl
     s = json.load(io.open(args.set, encoding='utf-8-sig'))
