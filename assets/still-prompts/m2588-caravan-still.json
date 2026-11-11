@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2588-caravan",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a caravan of camels crossing a wide bright desert valley in clear morning light, seen from the side at a distance, each camel loaded with vividly dyed hand-woven saddlebags with long tassels and bales wrapped in rich gold-and-crimson brocade, carved wooden North Arabian saddles. No riders. Abundant and rich, bright colours. No people, no hands, no faces, no moon, no text, no calligraphy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1c752-76a4-7080-b5a4-5f7ec7172c4f",
+  "submitted_utc": "2026-11-10T21:17:11.9010416Z",
+  "completed_utc": "2026-11-10T21:17:21.4885396Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2588-caravan-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f42f/IhNjIaRy7RkPzNh7xv-yb_ox9Xs62Q.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2588-caravan-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f42f/TNoS6WR51ufxrUFEnTiqH_T0O3FsFM.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2588-caravan-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f42f/tQjZmlKNRhe_pGDUO5BXI_W3gPVEvo.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 511898776
+}

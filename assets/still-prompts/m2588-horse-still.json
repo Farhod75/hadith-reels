@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2588-horse",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a grey Arabian horse standing calm and tall in a green date-palm garden, side view, bridle and harness with silver ornaments and red tassels, saddle cloth of rich brocade, bright daylight. Dignified and noble. No rider, no people, no hands, no faces, no moon, no text, no calligraphy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1c752-db92-7650-88fd-3383ba70c465",
+  "submitted_utc": "2026-11-10T21:17:38.1860956Z",
+  "completed_utc": "2026-11-10T21:17:47.1977314Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2588-horse-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f432/YpmhKmYrom3MAwyNe66SH_5DxYiLpU.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2588-horse-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f432/a8OPV0dUryxDDcQsuODoh_PpegwHgs.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2588-horse-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f432/UC5zmZTcyJTApG_rK3Q4Y_6EUueiYz.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1690218590
+}

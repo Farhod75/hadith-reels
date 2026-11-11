@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2588-height",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a lush green mountain oasis in the highlands of western Arabia in bright full daylight: terraced gardens of palms, pomegranate and vines stepping up a valley, a clear stream running over smooth stones between the terraces, and above them sunlit rocky peaks against a clear blue sky. Fresh, bright, uplifting, the eye drawn upward. No people, no hands, no faces, no animals, no moon, no buildings with domes or minarets, no text, no calligraphy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1c7bc-7d72-7022-928c-d96294edf4d0",
+  "submitted_utc": "2026-11-10T23:13:00.6316723Z",
+  "completed_utc": "2026-11-10T23:13:31.0424504Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2588-height-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f6e8/Cq3CO-cqjIMnhYZLB3vEi_W2TCGdjU.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2588-height-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f6e8/90MvhNVl69kTtNpXJYok8_dyTZyZWX.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2588-height-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f6e8/bq_-cCfyYteS0XQDfRFUF_B4oi3AOv.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 641726022
+}

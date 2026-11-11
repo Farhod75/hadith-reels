@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2588-share",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, at the open entrance of a goat-hair tent in a bright green palm oasis, an open hand-woven saddlebag spilling dates and round flatbread onto a woven mat, a full stitched goatskin water skin beside it, heavy brocade-wrapped bales of a caravan still stacked behind. Generous and warm, full daylight. No people, no hands, no faces, no moon, no text, no calligraphy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1c752-a929-7dc1-9e95-c8186bce8c31",
+  "submitted_utc": "2026-11-10T21:17:25.5184577Z",
+  "completed_utc": "2026-11-10T21:17:34.2134096Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2588-share-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f431/1kwnA0lbj4XHEIW_Hfahb_lHNacWwf.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2588-share-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f431/wb8sfeZ6v2NDf3mw29Et7_F7WkwVmW.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2588-share-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f431/58zCpMB1hly5nZWkEDx5o_R5a2E17x.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1137614080
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m2588-rise",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, the low entrance of a simple black goat-hair tent on the floor of a desert valley at dawn, and beyond it the sun rising over a high golden dune ridge, warm light climbing the slope toward a clear sky. Humble below, light rising above. No people, no hands, no faces, no moon, no text, no calligraphy, no modern objects.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1c753-09e9-7ca1-8111-fcd0084d4ccc",
+  "submitted_utc": "2026-11-10T21:17:50.2576961Z",
+  "completed_utc": "2026-11-10T21:17:58.8768776Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m2588-rise-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f433/id0aSTsUUgvjG9oU7qLFT_ijWwXznO.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m2588-rise-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f433/7t2u32vryn0MuVou7hXvo_nOrYxoqo.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m2588-rise-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab1f433/sXurNwzCMGUX82tv8vU2f_Q7YYpCDd.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1369626557
+}
