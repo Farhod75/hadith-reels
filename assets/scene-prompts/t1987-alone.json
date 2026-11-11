@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab210dc/cbYb7iEavjG9I-EiuR32C_output.mp4",
+    "name":  "t1987-alone",
+    "image":  "out\\refs\\t1987-alone-3.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  16261668,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "very slow forward camera drift along the path, white clouds drifting slowly across the wide sky, grass moving gently in the wind, no people",
+    "request_id":  "01a1cbaf-7f6c-7143-a3ee-e4fbc55754b2",
+    "file":  "out\\backgrounds\\new\\t1987-alone.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:32:28.4289242Z",
+    "duration_sec":  5,
+    "completed_utc":  "2026-11-11T19:34:03.6517370Z",
+    "mode":  "image-to-video"
+}

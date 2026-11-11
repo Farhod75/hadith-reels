@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2113d/u6VqH1P_ieByWW7nXEGX0_output.mp4",
+    "name":  "t1987-mat",
+    "image":  "out\\refs\\t1987-mat-1.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  26703886,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "static camera, soft daylight from the side window slowly shifts across the floor and the prayer rug, faint dust motes in the light, very calm and still, no people",
+    "request_id":  "01a1cbbd-b5bb-72d2-9692-0239ca1ed0ca",
+    "file":  "out\\backgrounds\\new\\t1987-mat.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:36:11.6104189Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-11T19:37:37.1900733Z",
+    "mode":  "image-to-video"
+}

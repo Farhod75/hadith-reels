@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t1987-alone",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a single narrow path crossing a wide empty green steppe under a vast bright open sky with high white clouds, midday light, nobody on the path, no people, no animals, no moon, quiet and open.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1cb8e-3c08-7020-bcf7-ef2e90215191",
+    "submitted_utc":  "2026-11-11T17:00:58.5520854Z",
+    "completed_utc":  "2026-11-11T17:01:06.8074965Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t1987-alone-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20fee/G5oEEypo6ok93U_SWylbS_BRNXV2YH.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t1987-alone-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20fee/ooNdHxE7LCtJ7OvhPLFPO_Db8iYsG2.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t1987-alone-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20fee/ytgj5buflskCFVKt7TB09_0NjQDseN.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  3,
+    "seed":  1705960884
+}

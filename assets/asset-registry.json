@@ -2320,6 +2320,83 @@
       "verified": false,
       "notes": "slow copy (P240): m2588-height.mp4 slowed x0.70 (setpts + minterpolate blend) -> 21.5 s, for the slot from the third clause through the moral (UZ 20.87 s). Same content. Sahih Muslim #2588, Abu Hurairah, sahih - 'Charity does not decrease wealth; Allah increases a servant who forgives in nothing but honour; and no one humbles himself for the sake of Allah but that Allah raises him.' MODE B, no people, no hands, 7th-century Arabia, bright daylight; no moon. Option A (operator: yes, 2026-11-10): one bright clip for 'Allah raises him' and the moral, measured after narration (P393). Pick: height-3.",
       "prompt_sidecar": "assets/scene-prompts/m2588-height.json"
+    },
+    "t1987-valley.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (valley-1) -> Kling 3.0 Pro i2v 10s. A green valley path between date palms and orchards toward the mountains, morning; slow forward dolly - the isnad lead-in. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-valley.json"
+    },
+    "t1987-alone.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (alone-3) -> Kling 3.0 Pro i2v 5s. A lone path across an empty green steppe under a wide bright sky - 'fear Allah wherever you are'. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-alone.json"
+    },
+    "t1987-sand.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "COMPOSITE: t1987-sand-raw2.mp4 0-3.0 s, 1.0 s fade at 2.0 s (on the wind gust) into a FLUX Kontext [pro] edit of still sand-2 with the footprints removed (out/refs/t1987-sand-smooth.jpg, horizon aligned, 2.5% push-in), 5.04 s. The wind erases the footprints - 'follow a bad deed with a good one and it will erase it'. Kling i2v kept the prints in two takes. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-sand-raw2.json"
+    },
+    "t1987-gate.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (gate-1) -> Kling 3.0 Pro i2v 5s. An open gate onto a sunlit lane, a water jug and cups set on a bench for passers-by - 'treat people with good character'. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-gate.json"
+    },
+    "t1987-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (mat-1) -> Kling 3.0 Pro i2v 10s. A prayer rug facing a blank whitewashed wall, daylight from a side window - the moral, first part. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-mat.json"
+    },
+    "t1987-mat-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "slow copy (P240): t1987-mat.mp4 slowed x0.85 (setpts + minterpolate blend) -> ~11.8 s for the UZ moral slot (10.91 s), out/run-b1987-slow.ps1. Same content. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-mat.json"
+    },
+    "t1987-bread.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (bread-2) -> Kling 3.0 Pro i2v 10s. Flatbread and dates on a cloth by an open door for passers-by, garden beyond - the moral's end, kindness to the next person. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-bread.json"
+    },
+    "t1987-sand-raw1.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": true,
+      "notes": "RAW take, not for use (P141): the footprints did not fill. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-sand-raw1.json"
+    },
+    "t1987-sand-raw2.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": true,
+      "notes": "RAW take, not for use on its own (P141): a gust passes but the footprints stay; source of t1987-sand.mp4. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
+      "prompt_sidecar": "assets/scene-prompts/t1987-sand-raw2.json"
     }
   }
 }

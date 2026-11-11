@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t1987-sand",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, low close angle on a line of footprints in smooth golden sand, a gentle wind blowing fine sand across them so the prints are half filled and fading away, bright late-morning sun, clean blue sky, no people, no moon.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1cb8e-b81f-7740-821e-ffcb9941acdb",
+    "submitted_utc":  "2026-11-11T17:01:30.3114200Z",
+    "completed_utc":  "2026-11-11T17:01:38.5595459Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t1987-sand-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff1/kBynlJ6fo0JTvQd4BWVl6_F0GZ2WQc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t1987-sand-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff1/I4m5rSnKVY_vOPoPw1YVl_Smdn2B02.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t1987-sand-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff1/7jx4lxTWXwKgZnfJ_h3oa_jpnujhQo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  2,
+    "seed":  1526489255
+}

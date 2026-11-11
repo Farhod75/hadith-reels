@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab21161/ax2HAwBf1wWZSkYw7X1IL_output.mp4",
+    "name":  "t1987-bread",
+    "image":  "out\\refs\\t1987-bread-2.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  33345537,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "slow gentle push in toward the bread and dates on the table, leaves in the garden beyond move softly in the breeze, warm afternoon light, calm, no people",
+    "request_id":  "01a1cbc3-3edc-7cb3-be5c-6851c0479229",
+    "file":  "out\\backgrounds\\new\\t1987-bread.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:37:37.5543989Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-11T19:39:10.7175287Z",
+    "mode":  "image-to-video"
+}

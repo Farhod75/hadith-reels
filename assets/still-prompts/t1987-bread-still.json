@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t1987-bread",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, round flatbread loaves and dates laid on a woven cloth on a low wooden table beside an open doorway, set out for passers-by, bright warm afternoon light, green garden visible beyond, no people, no moon, generous and kind atmosphere.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1cb90-1643-7471-99b9-3b96d32684dc",
+    "submitted_utc":  "2026-11-11T17:02:59.9397844Z",
+    "completed_utc":  "2026-11-11T17:03:16.3615971Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t1987-bread-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ffb/bLgOACqzartmBR8Bpn_nz_POip4hJu.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t1987-bread-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ffb/x7HeG4ajO0CLxGc2PGSaV_Xw2C7oUX.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t1987-bread-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ffb/hzj4MDnLlCe7ndiBmAkan_9Y78FMLK.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  2,
+    "seed":  1911549151
+}

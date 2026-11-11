@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab21100/gdQ_Rune7CUFzmig9cMym_output.mp4",
+    "name":  "t1987-sand-raw1",
+    "image":  "out\\refs\\t1987-sand-2.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  12747592,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "static camera, a gentle wind blows fine sand across the footprints, the sand drifts into them and the prints slowly fill in and smooth away, bright sun, no people",
+    "request_id":  "01a1cbb3-e693-7b01-88c7-fcf2b9ff1467",
+    "file":  "out\\backgrounds\\new\\t1987-sand-raw1.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:34:04.2863155Z",
+    "duration_sec":  5,
+    "completed_utc":  "2026-11-11T19:34:53.6621363Z",
+    "mode":  "image-to-video"
+}

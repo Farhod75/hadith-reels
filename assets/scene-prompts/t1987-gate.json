@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab21114/MWKF2P-5J752wkIZAl9bD_output.mp4",
+    "name":  "t1987-gate",
+    "image":  "out\\refs\\t1987-gate-1.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  18490262,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "static camera with a very slight push in, flowers on the vine sway gently in a soft breeze, sunlight shifts warmly across the jug and cups, calm, no people",
+    "request_id":  "01a1cbb8-cbba-7330-9a12-ee4929f9b8a6",
+    "file":  "out\\backgrounds\\new\\t1987-gate.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:34:54.0573253Z",
+    "duration_sec":  5,
+    "completed_utc":  "2026-11-11T19:36:11.2642662Z",
+    "mode":  "image-to-video"
+}

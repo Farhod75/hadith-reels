@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t1987-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a quiet bright room off a sunlit courtyard, a plain prayer rug on the floor facing a blank whitewashed wall, soft daylight falling from a window at the side, the wall in front of the rug has no window and no door, no people, no moon, calm and bright.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1cb8f-b033-7e82-8eb7-4c13aab55572",
+    "submitted_utc":  "2026-11-11T17:02:33.8097944Z",
+    "completed_utc":  "2026-11-11T17:02:46.1116770Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t1987-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff8/UsWcYp1P34sjT3r7abSnf_ALAjAW3x.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t1987-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff8/UBdrj5zVJXCgzL2bNooqY_SEj2H4Rx.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t1987-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab20ff8/UpI7nFpp3S9tibUCnGOSD_Its6jajE.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  1,
+    "seed":  1072667808
+}

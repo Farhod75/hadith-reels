@@ -155,8 +155,13 @@ this one wins.
     matn (it is the translator's note, cf. HadeethEnc 4198); #1773 RU grammar
     ("искупление того", "принятому хаджу"); #6423 RU construction ("Ни один
     раб не явится ... без того, чтобы Аллах не запретил").
-  - Kept: #6009 (P271). Still open: Tirmidhi #1987 (full Arabic to restore),
+  - Kept: #6009 (P271). Tirmidhi #1987 full Arabic restored 2026-11-10 and published 2026-11-11 (R230-R233). Still open:
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **Tirmidhi #1987 - PUBLISHED 2026-11-11 (R230-R233, TG 249-252); library c8ffd22e.**
+- **Scene tooling from #1987 (P402, P403) - OPEN.** (1) A repo script for a FLUX Kontext still edit
+  (`fal-ai/flux-pro/kontext`, image_url + prompt, sidecar under assets/still-prompts); it ran once as
+  out/explain-src/edit1987.ps1. (2) generate-image.ps1 and generate-scene.ps1 refusing a `-Name` whose
+  prefix is not the set's collection (b Bukhari, m Muslim, t Tirmidhi, ad Abu Dawud, ij Ibn Majah).
 - **Muslim #2564 - PUBLISHED 2026-11-09 (R222-R225, TG 240-243); library 8eeb6788.** Listen published (4).
 - **Bukhari #6405 - PUBLISHED 2026-11-09 (R218-R221, TG 236-239); library f31cd2b7.** Next: Muslim #2564
   (EN rendered 2026-11-09, TG on the operator's command; RU/UZ/TJ to narrate and render). Listen for #6405 waits
@@ -413,8 +418,8 @@ and `reel-retro.md`:
 - **Never smoke-test a render script against a published slug** (P288).
 
 **Still open, carried unchanged:** #2307 TJ («Сабабкунандаи» for هاذم, and the
-UZ fix built in `out/candidate-translations.json` and never applied); the five
-narrator mismatches (#31, #1987, #6018, #1005, #2616); 21 legacy
+UZ fix built in `out/candidate-translations.json` and never applied); the
+narrator mismatches (#6018, #1005, #2616; #31 and #1987 read and benign); 21 legacy
 `matn_verified_at` stamps under P265; #1520's four published captions; Bukhari
 #1 Tier 1 confirmation, where the fetcher caps quotes at 125 characters so the
 vocalised matn is still mirror-only; the weekly `self_upskilling.md` check, RUN
@@ -588,7 +593,8 @@ narrator against the mirror. No narrator misattribution found library-wide.
   the companion, al-Ahnaf the man he told. The library row is right. Four remain.
 - **5 narrator mismatches need a HUMAN READING, not a fix:** #31 (Abu Bakra vs
   Al-Ahnaf bin Qais - companion vs immediate narrator, almost certainly fine),
-  #1987 (narrated from both Muadh and Abu Dharr), #6018 and #2616 (both
+  #1987 (READ 2026-11-11: settled - at-Tirmidhi gives Abu Dharr's route and Mahmud ibn Ghaylan
+  calls it the authentic one, en.tohed.com tirmidhi/1987; the library row is right), #6018 and #2616 (both
   duplicate-number rows), #1005 (multiple chains). The mirror's narrator is
   the IMMEDIATE narrator while ours is the COMPANION - expect benign
   mismatches from that alone.

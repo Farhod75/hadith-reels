@@ -1321,3 +1321,39 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 2.** The clips were made without measuring the narration; not every scene has to be desert.
 
 **The finding:** the narration is the timeline - anything paid that has to fit it is ordered after it is measured.
+
+## R230-R233 - Jami at-Tirmidhi #1987 - 2026-11-11
+
+**Shipped:** EN, RU, UZ, TJ - Telegram (249-252, one video message each), Instagram and Facebook from Meta Business Suite, YouTube Shorts (UZ and TJ with their own covers), TikTok - in the fixed order (P385).
+
+**Caught before publish**
+
+1. **A clip that did not show its words:** «follow a bad deed with a good one and it will erase it» was footprints in sand that the wind should fill. Two Kling takes ($0.56 each) kept every print to the last frame. Fixed with a FLUX Kontext edit of the same still with the prints removed ($0.04), horizon matched to the pixel, and a 1 s fade timed on the gust in the second take (P402).
+2. **Wrong collection prefix:** the stills and clips were generated as `b1987-*`; `b` is Bukhari, Tirmidhi is `t`. Renamed before registering.
+3. **The rename emptied seven prompt sidecars** (assets/scene-prompts, untracked, so git could not restore them). Rebuilt by `generate-scene.ps1 -Resume <request_id>` for each - fal still held the jobs, nothing was charged - and the still sidecars were rewritten from a staged copy with a size and hash check (P403).
+4. **Two beds refused by the rights gate:** aswati-Heartfelt-Gratitude (retired) and aswati-Steady-Motivation (Content ID claim). Swapped for Morning-Serenity (RU) and Peaceful-Contemplation (TJ). The gate did its job.
+5. **Subtitles:** EN without quotation marks and «Abu Dhar»; RU «Абузар, добудет доволенным», no quotation marks, and two cues Whisper invented after the narration ended («Редактор субтитров…», «Корректор…») - fixed against the drafts before the burn (P339).
+
+**Escaped to publish**
+
+- None found.
+
+**Root causes**
+
+- An image-to-video model animates what is in its first frame; it does not take things out of it. A prompt that asks it to is asking for the opposite of what it does.
+- The stills were named before the collection prefix was checked against the registry.
+- An in-place rewrite of untracked provenance files, with no check on what was written.
+
+**Prevention landed**
+
+- P402: a clip whose meaning is an object disappearing is built as still -> edited still -> crossfade on the motion, not prompted.
+- P403: untracked provenance is rewritten only through a staged copy whose size and hash are checked before and after; renames are renames, content edits are separate.
+
+**Prevention deferred**
+
+- A repo script for the Kontext edit (it ran as a one-off from out/explain-src/edit1987.ps1) - OPEN_ITEMS.
+- generate-image.ps1 checking the `-Name` prefix against the collection of the set.
+
+**Operator corrections of the assistant: 1.** The scene numbers on the contact sheet (1.2, 2.2) did not match anything in the folder - he could not find the files; answered with the file names.
+
+**The finding:** when the words say something vanishes, make the vanishing out of two pictures, not one prompt.

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab212b8/bmHqLNqQ9_qkT8Tu9vcTU_output.mp4",
+    "name":  "t1987-sand-raw2",
+    "image":  "out\\refs\\t1987-sand-2.jpg",
+    "resolution":  null,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "size_bytes":  12853476,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "static camera, a steady strong wind sweeps streams of fine golden sand low across the ground from left to right, the sand pours into the footprints and fills them completely, by the end the footprints are fully erased and the sand surface is smooth and untouched, bright sun, clear sky, no people",
+    "request_id":  "01a1cbf7-e2bb-7fa3-980b-e62acd623209",
+    "file":  "out\\backgrounds\\new\\t1987-sand-raw2.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "resumed_utc":  "2026-11-11T19:39:11.1697434Z",
+    "duration_sec":  5,
+    "completed_utc":  "2026-11-11T19:39:50.5182584Z",
+    "mode":  "image-to-video"
+}

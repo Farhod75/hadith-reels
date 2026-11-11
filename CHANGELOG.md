@@ -1,3 +1,22 @@
+## [2026-11-11f] - Tirmidhi #1987 published (R230-R233); P402, P403
+
+### Added
+
+- Reel set Jami at-Tirmidhi #1987 EN/RU/UZ/TJ (R230-R233, TG 249-252): nine clips registered and verified
+  (`t1987-*`; six on screen, the mat slow copy for UZ, two raw sand takes), still and scene prompt sidecars.
+
+### Fixed
+
+- **t1987-sand.mp4:** Kling kept the footprints in two takes; built as a composite with a FLUX Kontext edit of the
+  same still (P402).
+- **Seven scene-prompt sidecars** emptied by a rename rebuilt from fal by request id, no charge (P403).
+
+### Decided
+
+- Tirmidhi #1987 narrator: Abu Dharr (at-Tirmidhi: the authentic route is Abu Dharr's; Mu'adh's is the other).
+
+---
+
 ## [2026-11-11e] - Bukhari #5971 page; make-drafts survives the console
 
 ### Added

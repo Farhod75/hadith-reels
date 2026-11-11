@@ -16195,3 +16195,58 @@ the first finds nothing. Rerun: #2963 match (page built, ar/en/ru), #5971 varian
 source adds Muslim's second narration after the agreed-upon one).
 
 ---
+
+## PATTERN 402: Kling would not erase the footprints - an i2v model keeps its first frame
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** presentation (a clip that does not show its words)
+
+**What happened.** Tirmidhi #1987's third clause, «follow a bad deed with a good one and it will erase it»,
+was planned as footprints in sand that the wind fills. Kling 3.0 Pro image-to-video, two takes: the first
+("the sand drifts into them and the prints slowly fill in") barely moved the sand; the second ("a steady
+strong wind ... by the end the footprints are fully erased") produced a real gust across the frame and left
+every print exactly where it was. Image-to-video animates the content of its start frame; removing an
+object from it runs against what the model is anchored to.
+
+**Fix.** Edit the STILL instead: FLUX Kontext [pro] (`fal-ai/flux-pro/kontext`, image_url + prompt "Remove
+all the footprints. Keep exactly the same camera angle, horizon, sky, light and sand colour", $0.04) on the
+same still, horizon measured in both frames (blue-minus-red crossing, 24 px offset) and cropped to match;
+then the second Kling take 0-3.0 s with a 1.0 s fade at 2.0 s - on the gust - into the edited still with a
+2.5% push-in. On screen the wind sweeps the prints away. 5.04 s, registered as t1987-sand.mp4 with the raw
+takes as lanes [].
+
+**Lesson:** to show something disappear, make the before and after as two pictures and join them on the
+motion; do not prompt a video model to take content out of its own first frame.
+
+**Tripwire:** a scene whose meaning is removal - erasing, wiping, fading, melting away - planned as a single
+image-to-video prompt.
+
+**Status:** FIXED for #1987. Deferred: a repo script for the Kontext edit (OPEN_ITEMS); it ran as a one-off.
+
+---
+
+## PATTERN 403: a rename emptied seven untracked prompt sidecars
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** provenance (recovered, nothing published wrong)
+
+**What happened.** The #1987 stills and clips were generated as `b1987-*` - `b` is Bukhari's prefix in the
+registry, Tirmidhi's is `t` (t1161, t3895, t2307, t3540). Renaming them, the assistant also rewrote the name
+inside each assets/scene-prompts sidecar with an inline PowerShell helper (decode, Replace, WriteAllText). All
+seven files came out 0 bytes. They were untracked - new in this set - so git had nothing to restore. The
+cause inside the helper was not established; the write was not checked.
+
+**Fix.** Each clip's fal request id was in the run log, and fal still held the jobs: `generate-scene.ps1
+-Name t1987-<x> -Image ... -Prompt ... -Resume <request_id>` rebuilt every sidecar (video_url, request_id,
+model, prompt) with no new charge, records `resumed_utc` rather than the original submit time, and
+re-downloaded identical clips (sizes matched). The six still-prompt sidecars were then renamed with
+Rename-Item only and their content changed through a staged copy: JSON parsed, size > 1000, hash compared
+after the write.
+
+**Lesson:** a rename is a rename. Changing what is inside a provenance file is a separate step, done on a
+copy and checked before and after - above all when git cannot give it back.
+
+**Tripwire:** an in-place rewrite of an untracked file; any bulk file edit whose result is not read back.
+
+**Status:** FIXED (recovered). Deferred: generate-image.ps1 / generate-scene.ps1 checking the `-Name` prefix
+against the set's collection.
+
+---
