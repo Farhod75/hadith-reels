@@ -16038,3 +16038,24 @@ chosen from that. Also recorded: scenes follow the words, not always desert.
 **Status:** FIXED (process)
 
 ---
+
+## PATTERN 394: the page link was glued to the moral in the YouTube description
+
+**Date:** 2026-11-10  **Repo:** hadith-reels  **Severity:** publishing text (caught before paste)
+
+**What happened.** #2588 is the first reel whose caption carries the P389 page line
+("Full hadith and explanation: hadithreels.com/..."). platform-texts.py's parse() knew the title, matn,
+Arabic, reference, verify and tag lines; every other line was joined into the moral, so the page line
+became the end of the moral paragraph in the YouTube description.
+
+**Fix.** parse() reads the line that starts with the books emoji as `explain`; the YouTube description
+puts it between the reference and the verify line, as the caption does. 1 test.
+
+**Lesson:** a parser that treats "everything else" as one field silently absorbs every new line added
+to its input.
+
+**Tripwire:** a new caption line in lib/caption.ts without a matching field in platform-texts.parse().
+
+**Status:** FIXED
+
+---

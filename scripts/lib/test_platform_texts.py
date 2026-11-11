@@ -150,3 +150,17 @@ def test_the_publishing_sequence_heads_every_platform_file():
     assert md.index(pt.SEQUENCE) < md.index('## EN') < md.index('## RU')
     en = md.split('## RU')[0]
     assert en.index('### Instagram + Facebook') < en.index('### YouTube Shorts') < en.index('### TikTok')
+
+
+EXPLAIN = EN.replace("\U0001F50D Verify", "\U0001F4DA Full hadith and explanation: hadithreels.com/hadith/bukhari/5984?lang=en\n\U0001F50D Verify")
+
+
+def test_the_explanation_line_is_not_glued_to_the_moral():
+    # P394: #2588's YouTube description ended the moral with the page link.
+    p = pt.parse(EXPLAIN)
+    assert 'hadithreels.com' not in p['moral']
+    desc = pt.build(EXPLAIN, 'en')['youtube_description']
+    assert ('\U0001F4D6 Sahih al-Bukhari #5984, Jubayr ibn Mutim\n'
+            '\U0001F4DA Full hadith and explanation: hadithreels.com/hadith/bukhari/5984?lang=en\n'
+            '\U0001F50D Verify: hadithverifier.com') in desc
+    assert desc.count('hadithreels.com') == 1

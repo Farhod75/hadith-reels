@@ -54,13 +54,15 @@ def parse(caption):
     body = [l for l in lines[1:]]
     ref = next((l for l in lines if l.startswith(u'\U0001F4D6')), '')
     verify = next((l for l in lines if l.startswith(u'\U0001F50D')), '')
+    # P394: the explanation-page line (P389) is its own line, never part of the moral.
+    explain = next((l for l in lines if l.startswith(u'\U0001F4DA')), '')
     tags = next((l for l in reversed(lines) if l.startswith('#')), '')
     arabic = [l for l in lines if ARABIC.search(l)]
     matn = next((l for l in lines if l.startswith(u'«') or l.startswith('"')), '')
-    known = {title, ref, verify, tags, matn} | set(arabic)
+    known = {title, ref, explain, verify, tags, matn} | set(arabic)
     moral = ' '.join(l for l in lines[1:] if l.strip() and l not in known)
     return {'title': title, 'body': body, 'ref': ref, 'verify': verify, 'tags': tags,
-            'arabic': arabic, 'matn': matn, 'moral': moral, 'lines': lines}
+            'arabic': arabic, 'matn': matn, 'moral': moral, 'explain': explain, 'lines': lines}
 
 
 def collection_and_number(ref):
@@ -95,7 +97,7 @@ def build(caption, lang):
         if t and t not in tag_list:
             tag_list.append(t)
     yt_title = ('%s | %s %s' % (p['title'], coll, num)).replace('#', '').strip()
-    yt_desc_parts = [p['matn'], p['moral'], p['ref'] + '\n' + p['verify'], '#Shorts ' + p['tags']]
+    yt_desc_parts = [p['matn'], p['moral'], '\n'.join(x for x in (p['ref'], p['explain'], p['verify']) if x), '#Shorts ' + p['tags']]
     yt_desc = '\n\n'.join(x for x in yt_desc_parts if x.strip())
     fb_desc = '\n'.join(p['body']).strip()
     # P371: the Arabic stays (operator 2026-11-05); the caption goes in unchanged.

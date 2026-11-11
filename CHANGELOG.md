@@ -1,3 +1,12 @@
+## [2026-11-10l] - YouTube description keeps the page link on its own line (P394)
+
+### Fixed
+
+- **platform-texts.py:** the caption's page line (P389) was joined into the moral in the YouTube description;
+  it now sits between the reference and the verify line. 1 test.
+
+---
+
 ## [2026-11-10k] - narrate before ordering clips (P393); #2588 height clip
 
 ### Changed
