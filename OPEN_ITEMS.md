@@ -291,9 +291,8 @@ this one wins.
   the adults lane only.
 - **UZ/TJ have no subtitle gate** - by P078 they carry no subtitles, so P342
   protects EN/RU only. The narration itself is checked against the draft.
-- **Tracker stats prose disagrees with itself** - the counted stats are gated by
-  `audit-docs.py`; the per-collection and per-companion prose is not and no
-  longer sums to the reel count.
+- **DONE 2026-11-11 (P397): Tracker stats prose disagrees with itself** - both cells rewritten from
+  the rows and gated by `audit-docs.py check_breakdowns()`.
 - **FLUX 3 text-to-image** - not evaluated for stills. FLUX 3 Edit
   (`blackforestlabs/flux-3/edit-image`) works and lives only in
   `out/edit_4811_f3.ps1`, not in `scripts/`.

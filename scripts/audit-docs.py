@@ -33,6 +33,7 @@ import datetime
 import io
 import json
 import os
+import collections
 import re
 import subprocess
 import sys
@@ -121,6 +122,36 @@ def check_counts(tracker, rows):
     if declared is not None and declared.strip() != str(actual):
         fail('tracker', 'Hadiths used (unique) says %s; the Hadith column has %d '
              'distinct values' % (declared, actual))
+
+
+# P397: the per-collection and per-companion prose was never checked and no longer
+# summed to the reel count (Bukhari x99 against 115 rows; 21 companions against 24).
+C_NARRATOR = 3
+
+
+def parse_breakdown(cell):
+    """'5 (Sahih al-Bukhari ×99, Sahih Muslim ×52)' -> (5, {'Sahih al-Bukhari': 99, ...})"""
+    m = re.match(r'^\s*(\d+)\s*\((.*)\)\s*$', cell or '')
+    if not m:
+        return None, {}
+    return int(m.group(1)), {n.strip(): int(k) for n, k in re.findall(r'([^,(]+?)\s*×\s*(\d+)', m.group(2))}
+
+
+def check_breakdowns(tracker, rows):
+    for label, key in (('Hadith collections used', lambda r: r[C_HADITH].split('#')[0].strip()),
+                       ('Companions cited', lambda r: r[C_NARRATOR].strip())):
+        cell = stat(tracker, label)
+        if cell is None:
+            warn('tracker', 'no "%s" row in Production stats' % label)
+            continue
+        declared_n, declared = parse_breakdown(cell)
+        actual = collections.Counter(key(r) for r in rows)
+        if declared_n != len(actual):
+            fail('tracker', '%s says %s; the rows have %d' % (label, declared_n, len(actual)))
+        for name in sorted(set(actual) | set(declared)):
+            if declared.get(name) != actual.get(name):
+                fail('tracker', '%s: %s ×%s declared, %s in the rows'
+                     % (label, name, declared.get(name, 0), actual.get(name, 0)))
 
 
 def check_duplicate_index(tracker, rows):
@@ -581,6 +612,7 @@ def main():
         sys.exit(2)
 
     check_counts(tracker, rows)
+    check_breakdowns(tracker, rows)
     check_duplicate_index(tracker, rows)
     check_nasheed_table(tracker, rows)
     check_registry(rows)

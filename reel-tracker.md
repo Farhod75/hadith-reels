@@ -583,8 +583,8 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | Avg file size | ~13 MB |
 | Hadiths used (unique) | 58 |
 | Library rows | 83 (57 used, 26 unused - 2026-11-10) |
-| Hadith collections used | 5 (Sahih al-Bukhari ×99, Sahih Muslim ×52, Sunan Abu Dawud ×12, Jami at-Tirmidhi ×6) |
-| Companions cited | 21 (Abdullah ibn Amr ×8, Uthman ibn Affan ×4, Abu Hurairah ×86, Abdullah ibn Masud ×8, Jabir ibn Abdullah ×8, Suhaib ×8, Abu Darda ×4, Abu Musa al-Ashari ×12, Adiy ibn Hatim ×4, Anas ibn Malik ×12, Ibn Umar ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Umar ibn al-Khattab ×4, Abu Dharr ×1, Aisha ×1, Abu Bakra ×4, Itban ibn Malik ×4, Salman al-Farisi ×4, Jubayr ibn Mut'im ×4, Abu Malik al-Ash'ari ×4) |
+| Hadith collections used | 6 (Sahih al-Bukhari ×115, Sahih Muslim ×64, Jami at-Tirmidhi ×18, Sunan Abu Dawud ×16, Sunan Ibn Majah ×8, Sunan an-Nasai ×8) |
+| Companions cited | 24 (Abu Hurairah ×103, Anas ibn Malik ×20, Abu Musa al-Ashari ×12, Abdullah ibn Amr ×8, Abdullah ibn Masud ×8, Suhaib ×8, Aisha ×5, Abu Bakra ×4, Abu Darda ×4, Abu Malik al-Ashari ×4, Adiy ibn Hatim ×4, Hudhayfah ibn al-Yaman ×4, Ibn Abbas ×4, Ibn Umar ×4, Itban ibn Malik ×4, Jabir ibn Abdullah ×4, Jubayr ibn Mut'im ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Salman al-Farisi ×4, Umar ibn al-Khattab ×4, Umm Salamah ×4, Uthman ibn Affan ×4, Abu Dharr ×1) |
 
 **229 reels (177 adults) from 58 hadiths.** 57 of 83 library rows have been used;
 26 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was

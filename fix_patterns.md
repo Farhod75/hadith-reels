@@ -16084,3 +16084,40 @@ argparse. 2 tests.
 **Status:** FIXED
 
 ---
+
+## PATTERN 396: the HV Telegram bot was a second, weaker verifier
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+The bot had its own prompt and source list, read text messages only (a forwarded photo with a caption got no
+answer), sent Markdown that Telegram refused whenever the model wrote "_" or "*", and had no Tajik. It now
+sends every check to HV's /api/analyze; HV became an installable app in Android's Share menu and prints
+"not a fatwa" under every result. Built on branch `share-features`, not merged.
+
+**Tripwire:** none in this repo.
+
+**Status:** built in hadith-verifier (branch share-features), waiting for the operator
+
+---
+
+## PATTERN 397: the tracker's per-collection and per-companion counts drifted unchecked
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** docs (no content risk)
+
+**What happened.** audit-docs.py checked the total, the adults/kids split and the unique hadiths, but not
+the "Hadith collections used" and "Companions cited" cells. They had drifted far: 5 collections listed for
+6 used, Bukhari x99 against 115 rows, Muslim x52 against 64, Tirmidhi x6 against 18, Nasai and Ibn Majah
+missing; 21 companions against 24, Abu Hurairah x86 against 103. OPEN_ITEMS had it as "the prose no longer
+sums to the reel count".
+
+**Fix.** `check_breakdowns()` compares both cells with the rows (count of names and each name's x-count);
+both cells rewritten from the rows, largest first.
+
+**Lesson:** a number nobody checks is a number nobody can trust - it drifts one set at a time.
+
+**Tripwire:** a counted fact in reel-tracker.md that audit-docs.py does not read.
+
+**Status:** FIXED
+
+---

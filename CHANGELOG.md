@@ -1,3 +1,18 @@
+## [2026-11-11b] - the tracker's collection and companion counts are gated (P397)
+
+### Fixed
+
+- **reel-tracker.md:** "Hadith collections used" 6 (Bukhari x115, Muslim x64, Tirmidhi x18, Abu Dawud x16,
+  Ibn Majah x8, Nasai x8) and "Companions cited" 24 - rewritten from the rows; both had drifted.
+- **audit-docs.py:** `check_breakdowns()` fails when either cell disagrees with the rows.
+
+### Recorded
+
+- P396 (HV): the Telegram bot as the site's verifier, the installable app with the Share menu, "not a fatwa" -
+  branch `share-features` in hadith-verifier.
+
+---
+
 ## [2026-11-11] - Tirmidhi #1987: full matn and its page (P395)
 
 ### Changed
