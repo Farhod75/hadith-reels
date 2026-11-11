@@ -119,6 +119,25 @@ def test_registry_imports_each_slug():
     assert "'bukhari-6405': x_bukhari_6405 as Explanation," in ts
 
 
+
+def test_narrators_before_the_quote_are_not_more_hadith():
+    # P395: HadeethEnc 4302 names two companions before the quote; the matn is all of it.
+    src = ('عَنْ أَبِي ذَرٍّ، جُنْدُبِ بْنِ جُنَادَةَ، وَأَبِي عَبْدِ الرَّحْمَنِ، مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللَّهُ عَنْهُمَا '
+           'عَنْ رَسُولِ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: «اتَّقِ اللَّهَ حَيْثُمَا كُنْت، وَأَتْبِعْ السَّيِّئَةَ '
+           'الْحَسَنَةَ تَمْحُهَا، وَخَالِقْ النَّاسَ بِخُلُقٍ حَسَنٍ».')
+    lib = 'اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ'
+    assert fe.same_hadith(lib, src)
+    assert not fe.library_is_excerpt(lib, src)
+    assert fe.library_is_excerpt('اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ', src)     # the old one-clause row was one
+
+
+def test_a_companions_narrative_before_the_quote_is_part_of_the_hadith():
+    # Bukhari #3559 (HadeethEnc 5803): the description before the quote is more hadith.
+    src = ('عن عبد الله بن عمرو رضي الله عنهما قال: لَمْ يَكُنِ النَّبِيُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ فَاحِشًا '
+           'وَلَا مُتَفَحِّشًا، وَكَانَ يَقُولُ: «إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا».')
+    assert fe.library_is_excerpt('إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا', src)
+
+
 # ---- the committed files -------------------------------------------------
 def _docs():
     for f in sorted(os.listdir(CONTENT)):

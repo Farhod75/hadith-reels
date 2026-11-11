@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-324 patterns in 337 entries, frontier **P394**. The P-sequence is shared with
+325 patterns in 338 entries, frontier **P395**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -385,5 +385,6 @@ BEFORE changing it.
 - **P392** - a print crashed the asset gate, and the renderer read the crash as REJECTED
 - **P393** - clips were ordered before the narration was measured
 - **P394** - the page link was glued to the moral in the YouTube description
+- **P395** - two named companions before the quote read as "a longer hadith"
 
-<!-- pattern-index-stamp entries=337 patterns=324 frontier=394 sha1=336f14ed3f9cc8eda161aad8a7504abdc5d1cb16 -->
+<!-- pattern-index-stamp entries=338 patterns=325 frontier=395 sha1=3f6fc44659d1e55bbb64feea5db4e720e251c516 -->

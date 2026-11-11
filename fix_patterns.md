@@ -16059,3 +16059,28 @@ to its input.
 **Status:** FIXED
 
 ---
+
+## PATTERN 395: two named companions before the quote read as "a longer hadith"
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** wrong page note (caught in the dry run)
+
+**What happened.** Tirmidhi #1987's HadeethEnc entry (4302) opens with two companions - Abu Dharr and
+Mu'adh ibn Jabal - before the Prophet's words. library_is_excerpt() compared the whole source text with
+the library matn against a 60-letter margin meant for a one-name opener, so the complete matn was
+marked an excerpt and the page would have said "the reel narrates part of this hadith".
+Found with it: `fetch-explanation.py --help` crashed on the cp1252 console - stdout was reconfigured
+after argparse, and the help text carries Cyrillic (the P392 class).
+
+**Fix.** When the text before the quote ends by handing over to the Prophet's speech ("... rasul Allah,
+salla Allahu alayhi wa sallam (qala)"), only the quote is measured (10-letter margin). Any other text
+before the quote - a companion's own narrative, as in Bukhari #3559 - still counts as hadith. Every
+existing page re-checked against its library row: 0 flags change. stdout is reconfigured before
+argparse. 2 tests.
+
+**Lesson:** a margin tuned on one shape of opener is a guess about every other shape.
+
+**Tripwire:** a page marked as an excerpt whose reel narrates the whole quoted matn.
+
+**Status:** FIXED
+
+---

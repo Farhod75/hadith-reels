@@ -136,9 +136,27 @@ def matn_word_diff(library_arabic, source_arabic):
     return missing, extra
 
 
+QUOTED_MARGIN = 10          # inside the quotation marks there is no opener to allow for
+
+
+# The text before the quote is only an opener when it ends by handing over to the Prophet's
+# speech: "... رسول الله صلى الله عليه وسلم (قال)". A companion's own narrative before the quote
+# (Bukhari #3559: "he was not obscene ... and he used to say") is part of the hadith.
+_OPENER_END = re.compile('(صلياللهعليهوسلم|رسولالله|النبي)(قال|يقول|فقال)?$')
+
+
 def library_is_excerpt(library_arabic, source_arabic):
-    a, b = letters(library_arabic), letters(source_arabic)
-    return bool(a) and len(b) - len(a) > EXCERPT_MARGIN
+    """P395: when the source quotes the Prophet's words after a plain opener, measure only the
+    quote - Tirmidhi #1987's opener names two companions and was read as a longer hadith.
+    Otherwise the whole text against EXCERPT_MARGIN, as before."""
+    a = letters(library_arabic)
+    if not a:
+        return False
+    src = source_arabic or ''
+    q = re.search('[«"]', src)
+    if q and _OPENER_END.search(letters(src[:q.start()])):
+        return len(letters(src[q.end():])) - len(a) > QUOTED_MARGIN
+    return len(letters(src)) - len(a) > EXCERPT_MARGIN
 
 
 def strong_grade(grade_ar):
@@ -305,8 +323,8 @@ def main(argv=None):
                     help='the library matn differs from the source by a wording variant of at most 2 '
                          'words; NOTE (why) is stored in the file and the page is built anyway')
     ap.add_argument('--commit', action='store_true', help='write the files (default: dry run)')
+    sys.stdout.reconfigure(encoding='utf-8')     # P395: before argparse - --help prints Cyrillic
     a = ap.parse_args(argv)
-    sys.stdout.reconfigure(encoding='utf-8')
 
     row = library_row(a.library_id)
     if row.get('grade') not in ('sahih', 'hasan'):

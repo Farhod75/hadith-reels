@@ -1,3 +1,24 @@
+## [2026-11-11] - Tirmidhi #1987: full matn and its page (P395)
+
+### Changed
+
+- **Library Jami at-Tirmidhi #1987:** the Arabic held only «اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ» while the translations
+  carried two clauses. Full matn from the sunnah.com mirror (the Abu Dharr route) and HadeethEnc 4302, word for word:
+  «... وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ». Operator approved restoring the clause
+  (precedents #223, #2734). EN/RU/UZ/TJ re-translated from the Arabic; Stage 3 A/B 4/4 pass; signed -> applied;
+  Uzbek Latin derived.
+
+### Fixed
+
+- **fetch-explanation.py:** names before the quote are an opener only when they hand over to the Prophet's speech;
+  #1987 is no longer marked an excerpt, and #3559 still is. `--help` no longer crashes on the console. 2 tests.
+
+### Added
+
+- Page for Jami at-Tirmidhi #1987 (HadeethEnc 4302, all five languages).
+
+---
+
 ## [2026-11-10l] - YouTube description keeps the page link on its own line (P394)
 
 ### Fixed
