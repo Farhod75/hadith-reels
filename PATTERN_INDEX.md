@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-336 patterns in 349 entries, frontier **P406**. The P-sequence is shared with
+337 patterns in 350 entries, frontier **P407**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -397,5 +397,6 @@ BEFORE changing it.
 - **P404** - CI tested the deployed site, not the commit
 - **P405** - the HV bot answered every video "I can't check video yet"
 - **P406** - the HV bot's TikTok path got no caption; transcript quotes read as evidence
+- **P407** - two renders of one reel could run at once, and a re-render replaced the approved reel
 
-<!-- pattern-index-stamp entries=349 patterns=336 frontier=406 sha1=e08b31eeb0a63fd93c31a437b29b68a456758a18 -->
+<!-- pattern-index-stamp entries=350 patterns=337 frontier=407 sha1=5b09ac86abd9e5050e6a923401870094cb02b88e -->

@@ -483,6 +483,47 @@ Ok "story + moral present; ffmpeg ready; $($clips.Count) bg clips; $($nasheeds.C
     exit 0
   }
 
+# --- R3 (P407): one render of a reel at a time; the previous reel is kept ------
+# Sol R3 left two gaps. (1) Two renders of the same reel (two windows, or the
+# pipeline and a hand run) wrote the same files at once. A lock file per reel
+# folder now refuses the second; a lock whose process is gone (a killed window)
+# is stale and taken over. It is released in the `finally` at the end of this
+# file, which also runs on Die's `exit 1` and on Ctrl+C (checked on PS 5.1 and 7).
+# (2) The output paths are fixed, so a re-render of an unpublished set replaced
+# the approved reel. The previous reel, its render.json and SRT are now copied to
+# prev\<the old reel's time>\ before anything is written; the last 5 are kept.
+# .NET calls get absolute paths only (P281).
+$lockFull = Join-Path (Resolve-Path $workDir).Path '.render.lock'
+if (Test-Path -LiteralPath $lockFull) {
+  $held = [string](Get-Content -LiteralPath $lockFull -Raw -ErrorAction SilentlyContinue)
+  $heldPid = if ($held -match 'pid=(\d+)') { [int]$Matches[1] } else { 0 }
+  if ($heldPid -and $heldPid -ne $PID -and (Get-Process -Id $heldPid -ErrorAction SilentlyContinue)) {
+    Die "another render of $base is running ($($held.Trim())). Wait for it to finish. If no render is running, delete $lockFull and re-run (P407)."
+  }
+  Remove-Item -LiteralPath $lockFull -Force   # stale: left by a run that was killed
+}
+try {
+  $lockStream = [System.IO.File]::Open($lockFull, 'CreateNew', 'Write', 'None')
+  $lockBytes = [System.Text.Encoding]::ASCII.GetBytes("pid=$PID started=$($runStart.ToString('s'))")
+  $lockStream.Write($lockBytes, 0, $lockBytes.Length)
+  $lockStream.Close()
+} catch {
+  Die "could not take the render lock $lockFull ($($_.Exception.Message)) - another render of $base may have started at the same moment (P407)."
+}
+
+try {   # P407: the matching `finally` (lock release) is the last block of this file
+
+if (Test-Path -LiteralPath $reel) {
+  $prevDir = Join-Path $workDir ("prev\" + (Get-Item -LiteralPath $reel).LastWriteTime.ToString('yyyyMMdd-HHmmss'))
+  New-Item -ItemType Directory -Force $prevDir | Out-Null
+  foreach ($keep in @($reel, "$workDir\$base-render.json", $srt)) {
+    if (Test-Path -LiteralPath $keep) { Copy-Item -LiteralPath $keep -Destination $prevDir -Force }
+  }
+  Ok "previous reel kept in $prevDir"
+  Get-ChildItem -LiteralPath (Join-Path $workDir 'prev') -Directory | Sort-Object Name -Descending |
+    Select-Object -Skip 5 | Remove-Item -Recurse -Force
+}
+
 # --- STEP 4: concat story + moral (0.5s pause, P135) into one narration ------
 Say "`n[1/5] Step 4 - concatenating story + moral narration..."
 # P355 (Sol R1): remove the previous run's file first. ffmpeg can exit non-zero
@@ -1039,3 +1080,11 @@ if ($mb -gt 50) {
 
 Write-Host "`nNEXT: watch it, then post to @SahihHadithReels (human approval per hard rules)." -ForegroundColor Cyan
 if ($Open) { Start-Process $reel }
+
+} finally {
+  # P407: release the lock only if it is still ours
+  if ($lockFull -and (Test-Path -LiteralPath $lockFull)) {
+    $held = [string](Get-Content -LiteralPath $lockFull -Raw -ErrorAction SilentlyContinue)
+    if ($held -match "pid=$PID\b") { Remove-Item -LiteralPath $lockFull -Force -ErrorAction SilentlyContinue }
+  }
+}

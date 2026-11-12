@@ -16312,3 +16312,36 @@ told the transcript's punctuation and quotes are the recogniser's (a false red f
 **Status:** FIXED in hadith-verifier
 
 ---
+
+## PATTERN 407: two renders of one reel could run at once, and a re-render replaced the approved reel
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** process (Sol R3, the part P358 left open)
+
+**What happened.** P358 made the render record trustworthy, but two gaps stayed in OPEN_ITEMS: render-reel.ps1
+writes fixed paths (`out\work\<style>\<slug>\<lang>\<style>-<lang>-<slug>-reel.mp4`), so re-rendering an
+unpublished set overwrote the reel the operator had approved; and nothing stopped two renders of the same reel
+(two windows, or a pipeline run and a hand run) writing the same narration, SRT and reel at once.
+
+**Fix.** render-reel.ps1, just before Step 4 (after -ValidateOnly has exited, so the pre-push smoke test never
+takes it):
+- `.render.lock` in the reel's work folder, created with .NET `CreateNew` (absolute path, P281) and holding
+  `pid=<PID> started=<time>`. A lock whose process is alive refuses the run with the path to delete; a lock whose
+  process is gone (a closed window) is stale and taken over; the same PID (a re-run in the same window after a
+  crash) is taken over too. Released in a `finally` wrapping the rest of the script, only if it is still ours -
+  `exit` inside Die and Ctrl+C both run it (checked on PS 5.1 and 7 with a two-line script).
+- Before anything is written: the existing reel, its render.json and SRT are copied to
+  `prev\<the old reel's LastWriteTime>\`; the newest 5 are kept. Copy, not move, so nothing later in the run
+  behaves differently.
+
+**Verified:** parser 0 errors; a planted lock with a live PID stopped `render-reel.ps1 -Style adults -Lang en
+-Slug tirmidhi-1987` after the step-0 gates with the P407 message, exit 1, the foreign lock left in place.
+**Not exercised:** the stale-lock takeover and the prev\ copy - a full render without the set's -Scenes would
+have redrawn #1987's work copy with random scenes. The first real render is their first run.
+
+**Lesson:** a fixed output path is an overwrite waiting for a re-run.
+
+**Tripwire:** an output file name with no run identity and no copy of what it replaces.
+
+**Status:** FIXED (first real render pending for the two unexercised paths)
+
+---

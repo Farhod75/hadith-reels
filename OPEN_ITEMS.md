@@ -46,7 +46,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   can no longer accept a crash; the SRT saved at the review pause is re-validated.
   Not yet exercised by a real render - the first interactive EN/RU render after
   this will be the first run of the re-check prompt.
-- **PARTLY DONE 2026-11-04: R3 - the render record (P358).** The sidecar now records
+- **DONE 2026-11-12: R3 - the render record (P358, P407).** The two open parts closed by P407: a
+  `.render.lock` per reel folder refuses a concurrent render, and the previous reel + render.json + SRT are
+  copied to `prev\<time>\` before a re-render (last 5 kept). Lock refusal verified; stale takeover and the
+  prev\ copy wait for the first real render. History: **PARTLY DONE 2026-11-04 (P358).** The sidecar now records
   the scenes actually drawn, SHA-256 of reel / narration / draft / SRT / nasheed,
   ffmpeg version and whether findings were accepted; a sidecar that cannot be
   written fails the run; "reel newer than 5 min" became "reel newer than this

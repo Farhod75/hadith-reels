@@ -1,3 +1,17 @@
+## [2026-11-12a] - render-reel: one render per reel, previous reel kept (P407, Sol R3)
+
+### Fixed
+
+- **render-reel.ps1:** a `.render.lock` per reel work folder refuses a second concurrent render (a stale lock from a
+  killed run is taken over; released in `finally`, which also runs on Die and Ctrl+C); before writing, the existing
+  reel, render.json and SRT are copied to `prev\<old reel time>\`, last 5 kept.
+
+### Docs
+
+- OPEN_ITEMS: Sol R3 closed.
+
+---
+
 ## [2026-11-11i] - HV bot: TikTok links and transcript quotes (P406)
 
 ### Fixed
