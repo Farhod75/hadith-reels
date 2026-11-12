@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-335 patterns in 348 entries, frontier **P405**. The P-sequence is shared with
+336 patterns in 349 entries, frontier **P406**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -18,7 +18,7 @@ named by fewer than 3 patterns are left out. Check the line for a file
 BEFORE changing it.
 
 - `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
-- `fix_patterns.md` (14) - P209, P247, P256, P291, P332, P364, P365, P366, P388, P390, P396, P398, P399, P405
+- `fix_patterns.md` (15) - P209, P247, P256, P291, P332, P364, P365, P366, P388, P390, P396, P398, P399, P405, P406
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `route.ts` (11) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
@@ -396,5 +396,6 @@ BEFORE changing it.
 - **P403** - a rename emptied seven untracked prompt sidecars
 - **P404** - CI tested the deployed site, not the commit
 - **P405** - the HV bot answered every video "I can't check video yet"
+- **P406** - the HV bot's TikTok path got no caption; transcript quotes read as evidence
 
-<!-- pattern-index-stamp entries=348 patterns=335 frontier=405 sha1=ddcaf49766eb08bd7f2959825c87d797c24d4cdb -->
+<!-- pattern-index-stamp entries=349 patterns=336 frontier=406 sha1=e08b31eeb0a63fd93c31a437b29b68a456758a18 -->

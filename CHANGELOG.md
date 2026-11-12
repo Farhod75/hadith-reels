@@ -1,3 +1,13 @@
+## [2026-11-11i] - HV bot: TikTok links and transcript quotes (P406)
+
+### Fixed
+
+- **hadith-verifier:** TikTok's oEmbed no longer returns the caption - TikTok links now get "send the video
+  file or a screenshot" like Instagram / YouTube / Facebook; the model is told the transcript's punctuation and
+  quotation marks are the recogniser's (a false red flag on our own #4811 reel). P405 confirmed live.
+
+---
+
 ## [2026-11-11h] - HV bot checks videos (P405)
 
 ### Added

@@ -1790,10 +1790,11 @@ Reconsider only if bed variety becomes an actual complaint.
 
 
 
-**HV: verify a hadith from a video or reel link.** **2026-11-11: phase 1 BUILT in the bot (P405)** -
+**HV: verify a hadith from a video or reel link.** **2026-11-11: phase 1 LIVE in the bot (P405, P406)** -
 decisions and design in hadith-verifier/REEL_LINK_CHECK.md (Scribe, no scraping, 3/user/day, 30/day).
-The transcript is shown with every answer, as this item asked. **Operator step:** add ELEVENLABS_API_KEY
-(Production) to the HV Vercel project, redeploy, send the bot one reel. **Still open:** (a) the link field
+The transcript is shown with every answer, as this item asked. TikTok links: oEmbed lost the caption (P406), so
+every video LINK gets "send the file"; Scribe's own URL fetch is an operator decision (REEL_LINK_CHECK.md).
+**Still open:** (a) the link field
 on the site's Analyze tab; (b) the video caps live in one serverless instance's memory and reset on a cold
 start - a hard 30-a-day needs a Supabase counter (same gap as HV /api/tts, P366). The text below is the
 2026-10-09 proposal, kept for the reasoning. Proposed 2026-10-09. The

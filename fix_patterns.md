@@ -16295,6 +16295,20 @@ TikTok link by its oEmbed caption; other links get "send the video file". 3 per 
 
 **Tripwire:** none in this repo.
 
-**Status:** built in hadith-verifier; live once ELEVENLABS_API_KEY is added to the HV Vercel project
+**Status:** LIVE in hadith-verifier 2026-11-11 (TikTok part replaced by P406)
+
+---
+
+## PATTERN 406: the HV bot's TikTok path got no caption; transcript quotes read as evidence
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+TikTok's oEmbed now returns no caption, so TikTok links get "send the video file" like the rest; the model is
+told the transcript's punctuation and quotes are the recogniser's (a false red flag on our own #4811 reel).
+
+**Tripwire:** none in this repo.
+
+**Status:** FIXED in hadith-verifier
 
 ---
