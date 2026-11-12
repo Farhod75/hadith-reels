@@ -101,7 +101,7 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   every push. **Operator step open:** add `ADMIN_PASSWORD` to the HV Vercel project and
   redeploy - until then sign-in answers 503 and the queue stays closed (safe).
   P365 (same day): HV pre-push E2E started no server - fixed, 15/15.
-- **PARTLY DONE 2026-11-04: HV `/api/tts` was callable by anyone (P366, 9f19c4f).**
+- **DONE 2026-11-12: HV `/api/tts` was callable by anyone (P366 2026-11-04, P411).**
   Cross-origin 403, 30 calls per caller per 10 min per instance (429), voice from
   `lang` only; the 600-char cap was already there. **DONE 2026-11-12 (P411):** the
   30-per-10-min quota is counted in Supabase `rate_counters` across all instances; memory is the fallback.
@@ -641,7 +641,9 @@ verified NULL.
 - **TODO: review the other 21 `matn_verified_at` rows** under this standard.
   #5185 was stamped verified with no screening behind it; others may be.
   Clearing them also returns them to the default batch selector (P257).
-- **TODO: stale screening stamps.** Nothing links `matn_screened_at` to the
+- **BUILT 2026-11-12 (P413), migration to run: stale screening stamps.** A trigger clears
+  `matn_screened_at` when text_arabic changes without it and stores `matn_screened_sha256`
+  (supabase/migrations/20261112_matn_screened_binding.sql). History: Nothing linked `matn_screened_at` to the
   text it screened, so an `UPDATE text_arabic` leaves it attesting to a string
   that is gone - #8, #1520 and #1894 all carried a Sept 5 stamp for Arabic
   replaced this morning. Fix: store a hash of the screened text and flag any

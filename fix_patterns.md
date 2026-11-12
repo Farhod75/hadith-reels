@@ -16476,3 +16476,25 @@ request body is the one edit1987.ps1 sent successfully.
 **Status:** FIXED
 
 ---
+
+## PATTERN 413: a screening stamp outlived the Arabic it screened
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** integrity of the "screened" flag (P265 TODO)
+
+**What happened.** matn_screened_at records that audit-diacritics found text_arabic EXACT against the
+mirror (P265). It was a bare timestamp, like matn_verified_at before P409: #8, #1520 and #1894 carried a
+Sept 5 stamp for Arabic replaced on 2026-10-17. The TODO under P265 said "store a hash of the screened text".
+
+**Fix.** supabase/migrations/20261112_matn_screened_binding.sql: column `matn_screened_sha256` (SHA-256 of
+text_arabic); a BEFORE INSERT/UPDATE trigger, separate from P409's, that clears matn_screened_at when
+text_arabic changes in an UPDATE that does not set it, and fills the hash whenever it is set. Translations
+do not touch it - screening reads the Arabic only, and P265 says translate-candidates must not clear it.
+Baseline: the 51 screened rows (counted through the API) get the hash of their current Arabic.
+
+**Lesson:** P409's lesson, for the second stamp - fix the class, not the instance.
+
+**Tripwire:** any `*_at` attestation column without a hash beside it.
+
+**Status:** BUILT; migration waiting for the operator (Supabase SQL editor). No code depends on it.
+
+---

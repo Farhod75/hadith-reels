@@ -1,3 +1,16 @@
+## [2026-11-12g] - screening stamps bound to the Arabic (P413)
+
+### Fixed
+
+- **supabase/migrations/20261112_matn_screened_binding.sql:** `matn_screened_sha256` + a trigger clearing
+  `matn_screened_at` when text_arabic changes without a re-screen (operator runs it once).
+
+### Docs
+
+- OPEN_ITEMS: the stale-screening TODO built; P366 heading marked DONE. CLAUDE.md: the rule.
+
+---
+
 ## [2026-11-12f] - scene tools: edit-still.ps1 and the -Name prefix check (P412)
 
 ### Added

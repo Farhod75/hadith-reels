@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-342 patterns in 355 entries, frontier **P412**. The P-sequence is shared with
+343 patterns in 356 entries, frontier **P413**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -403,5 +403,6 @@ BEFORE changing it.
 - **P410** - promotion was three writes, so a failure could leave half a promotion
 - **P411** - the HV paid limits lived in one instance's memory
 - **P412** - the scene tools from #1987 - a Kontext edit script and a -Name prefix check
+- **P413** - a screening stamp outlived the Arabic it screened
 
-<!-- pattern-index-stamp entries=355 patterns=342 frontier=412 sha1=c91b00568def51c664f37bd17d267c110e7b8eab -->
+<!-- pattern-index-stamp entries=356 patterns=343 frontier=413 sha1=178612bb4bb4e073a3ebfb70c2e6783869ff9b23 -->

@@ -508,7 +508,8 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   text_arabic / text_english / text_russian / text_uzbek_cyrillic / text_tajik change in an UPDATE that
   does not set it too, and stores `matn_verified_sha256` (hash of those five) whenever it is set. To record
   a re-read, set `matn_verified_at = now()` in the SAME update as the corrected text. text_uzbek and
-  text_uzbek_latin are derived and not covered. Migration: supabase/migrations/20261112_matn_verified_binding.sql.
+  text_uzbek_latin are derived and not covered. Same for `matn_screened_at` and text_arabic alone
+  (P413): a corrected Arabic loses its screening stamp unless the UPDATE re-sets it after a re-screen. Migration: supabase/migrations/20261112_matn_verified_binding.sql.
   A hamza seat (ئ/ي, ؤ/و) is spelling, not a different word.
 
 ---
