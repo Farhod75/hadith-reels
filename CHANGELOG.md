@@ -1,3 +1,16 @@
+## [2026-11-12e] - HV: paid limits shared across instances (P411)
+
+### Fixed
+
+- **hadith-verifier:** the bot's video caps (3/user/day, 30/day) and /api/tts's quota are counted in Supabase
+  (`rate_counters`, `bump_counter()`), not in one instance's memory. Migration in hadith-verifier/supabase/migrations.
+
+### Docs
+
+- OPEN_ITEMS: P366 global quota and the video-cap item closed.
+
+---
+
 ## [2026-11-12d] - promotion is one transaction (P410, Sol R10)
 
 ### Fixed

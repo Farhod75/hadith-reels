@@ -16429,3 +16429,17 @@ the API: an unknown candidate -> 400 "P410: candidate ... not found", the anon k
 on a real promotion (none approved today) - the next promotion is its first run.
 
 ---
+
+## PATTERN 411: the HV paid limits lived in one instance's memory
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+The bot's video caps and /api/tts's per-caller quota are now counted in a shared Supabase table
+(`rate_counters`, `bump_counter()`), so a cold start or a second instance no longer resets them.
+
+**Tripwire:** none in this repo.
+
+**Status:** code FIXED in hadith-verifier; migration waiting for the operator
+
+---

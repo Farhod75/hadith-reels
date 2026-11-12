@@ -103,8 +103,8 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   P365 (same day): HV pre-push E2E started no server - fixed, 15/15.
 - **PARTLY DONE 2026-11-04: HV `/api/tts` was callable by anyone (P366, 9f19c4f).**
   Cross-origin 403, 30 calls per caller per 10 min per instance (429), voice from
-  `lang` only; the 600-char cap was already there. **Still open:** the limit is per
-  Vercel instance - a global quota needs shared storage (Upstash or a Supabase table).
+  `lang` only; the 600-char cap was already there. **DONE 2026-11-12 (P411):** the
+  30-per-10-min quota is counted in Supabase `rate_counters` across all instances; memory is the fallback.
 - **Public site Listen - stored narration (P362, 2026-11-04).** 15 rows x 4 languages (59 clips after #38)
   (55 clips) published from existing story.mp3 by scripts/publish-narration.py into the
   public Supabase bucket `narration`; Listen plays them on the deployed site. **Open:**
@@ -1806,8 +1806,7 @@ decisions and design in hadith-verifier/REEL_LINK_CHECK.md (Scribe, no scraping,
 The transcript is shown with every answer, as this item asked. TikTok links: oEmbed lost the caption (P406), so
 every video LINK gets "send the file"; Scribe's own URL fetch is an operator decision (REEL_LINK_CHECK.md).
 **Still open:** (a) the link field
-on the site's Analyze tab; (b) the video caps live in one serverless instance's memory and reset on a cold
-start - a hard 30-a-day needs a Supabase counter (same gap as HV /api/tts, P366). The text below is the
+on the site's Analyze tab; (b) DONE 2026-11-12 (P411): the video caps are counted in Supabase across instances. The text below is the
 2026-10-09 proposal, kept for the reasoning. Proposed 2026-10-09. The
 reverse of the text/screenshot verifier: a lot of reels recite the hadith aloud,
 and checking one today means copying it out by hand.
