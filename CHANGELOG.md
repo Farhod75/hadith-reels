@@ -1,3 +1,17 @@
+## [2026-11-12c] - verification stamps bound to the text (P409, Sol R5)
+
+### Fixed
+
+- **supabase/migrations/20261112_matn_verified_binding.sql:** `matn_verified_sha256` + a trigger that clears
+  `matn_verified_at` when the verified text changes without a re-read (operator runs it once).
+- **translate-candidates.py:** the review signature covers the source Arabic; re-sign reviews signed earlier.
+
+### Docs
+
+- CLAUDE.md: how to record a re-read. OPEN_ITEMS: Sol R5 closed.
+
+---
+
 ## [2026-11-12b] - paid verification evidence is committed (P408, Sol R4)
 
 ### Changed

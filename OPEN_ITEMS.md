@@ -70,9 +70,11 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   approved one (narration and SRT too); the draft default picked
   out/draft-muslim-2734-en.txt; the validator ran strict, 0 findings; the new
   sidecar was written. Not exercised: the interactive re-check prompt (P356 part 3).
-- **R5 - approval stamps are not bound to the revision they approved.** Open,
-  already known (matn_verified_at). Also: translate-candidates' review digest
-  hashes candidate_id + proposed text, not the source Arabic.
+- **DONE 2026-11-12: R5 - approval stamps are not bound to the revision they approved (P409).**
+  A trigger on hadith_library clears matn_verified_at when the five verified text columns change
+  without it, and stores matn_verified_sha256; the review digest now covers the source Arabic.
+  Baseline: the 17 rows verified on 2026-11-12 got the hash of their current text.
+  **Operator step:** run supabase/migrations/20261112_matn_verified_binding.sql once.
 - **R6 - Next 16.2.6 in an advisory range.** Already closed: 16.4.5 on 2026-11-03.
 - **DONE 2026-11-04: R8 - /api/tts builds write paths from request fields (P354).**
   lang, style, section allowlisted, slug `^[a-z0-9][a-z0-9-]*$`, and the resolved

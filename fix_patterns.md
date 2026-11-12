@@ -16368,3 +16368,34 @@ signatures (P219) were overwritten by the next run.
 **Status:** FIXED. Commit verify-runs/ with the set or library change it verified.
 
 ---
+
+## PATTERN 409: a verification stamp outlived the text it verified
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** integrity of the "verified" flag (Sol R5)
+
+**What happened.** `hadith_library.matn_verified_at` means a human read the matn and its translations
+against a source (P151, P265). It was a bare timestamp: a later edit to text_russian left the row saying
+verified - and the 2026-11-01 RU fixes on published rows were exactly such edits. Separately,
+translate-candidates' review signature (P219) hashed the proposed translations only, so a sign-off still
+matched after the Arabic it was translated from had changed.
+
+**Fix.**
+- supabase/migrations/20261112_matn_verified_binding.sql: column `matn_verified_sha256`; function
+  `hadith_matn_hash(row)` (SHA-256 of text_arabic, text_english, text_russian, text_uzbek_cyrillic,
+  text_tajik, separated by U+001F); a BEFORE INSERT/UPDATE trigger that clears matn_verified_at when one
+  of those five changes in an UPDATE that does not also set it, and fills the hash whenever it is set. In
+  the database, so it holds for the scripts, the SQL editor and anything written later alike. Baseline:
+  rows verified when the migration runs get the hash of their current text - it records the state from
+  2026-11-12 on and cannot prove what happened before.
+- translate-candidates.py `_review_digest`: the Arabic of each row is part of the signature. A review
+  signed before this no longer matches - re-read and --sign again.
+- Test: test_translate_run_copy.py (+1). scripts/lib 254 passed. Live columns checked first (83 rows, 17
+  verified).
+
+**Lesson:** an approval is a statement about specific content; store which content.
+
+**Tripwire:** a `*_verified_at` / `approved_at` column with nothing tying it to what was approved.
+
+**Status:** code FIXED; migration waiting for the operator to run it in the Supabase SQL editor.
+
+---

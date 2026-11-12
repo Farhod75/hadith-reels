@@ -241,14 +241,21 @@ def translate(api_key, arabic, lang):
 
 
 def _review_digest(results):
-    """P219: hash exactly what ships - candidate_id + proposed text, nothing else.
+    """P219: hash exactly what ships - candidate_id + proposed text.
+
+    P409 (Sol R5): and the Arabic each translation was made from. The signature
+    used to cover the proposed text only, so a sign-off still matched after the
+    source matn under it had changed - an approval not bound to what it approved.
+    A review signed before P409 no longer matches: re-read and --sign again.
 
     Order-independent, so re-sorting the file is not a change. Any edit to any
-    translated character is.
+    translated character, or to the Arabic, is.
     """
     h = hashlib.sha256()
     for r in sorted(results, key=lambda x: str(x.get('candidate_id'))):
         h.update(str(r.get('candidate_id')).encode('utf-8'))
+        h.update(b'\x1ftext_arabic\x1f')
+        h.update((r.get('text_arabic') or '').encode('utf-8'))
         proposed = r.get('proposed') or {}
         for f in sorted(proposed):
             h.update(f.encode('utf-8'))

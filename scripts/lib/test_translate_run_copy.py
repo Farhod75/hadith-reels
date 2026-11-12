@@ -32,3 +32,11 @@ def test_keep_run_copy_never_overwrites_the_tracked_folder_layout(monkeypatch, t
     dst = tc.keep_run_copy(str(src), 'candidate-translations')
     assert os.path.dirname(dst) == 'verify-runs'
     assert os.path.basename(dst).startswith('candidate-translations-2')
+
+
+def test_the_review_signature_covers_the_source_arabic():
+    # P409 (Sol R5): a sign-off must stop matching when the matn under it changes
+    row = {'candidate_id': 'c-1', 'text_arabic': 'إنما الأعمال بالنيات', 'proposed': {'text_russian': 'r'}}
+    changed = dict(row, text_arabic='إنما الأعمال بالنية')
+    assert tc._review_digest([row]) != tc._review_digest([changed])
+    assert tc._review_digest([row]) == tc._review_digest([dict(row)])

@@ -504,6 +504,11 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   the signed path: `out/candidate-translations.json` with `proposed: {text_arabic}` -> `--sign` ->
   `--library --apply --commit`, sources and reason in `translation_meta`. A word only ONE source has is
   not added; it goes to OPEN_ITEMS. `matn_verified_at` stays NULL - that is still a reader's (P265).
+- **`matn_verified_at` is bound to the text (P409, Sol R5).** A database trigger clears it when
+  text_arabic / text_english / text_russian / text_uzbek_cyrillic / text_tajik change in an UPDATE that
+  does not set it too, and stores `matn_verified_sha256` (hash of those five) whenever it is set. To record
+  a re-read, set `matn_verified_at = now()` in the SAME update as the corrected text. text_uzbek and
+  text_uzbek_latin are derived and not covered. Migration: supabase/migrations/20261112_matn_verified_binding.sql.
   A hamza seat (ئ/ي, ؤ/و) is spelling, not a different word.
 
 ---
