@@ -16440,6 +16440,6 @@ The bot's video caps and /api/tts's per-caller quota are now counted in a shared
 
 **Tripwire:** none in this repo.
 
-**Status:** code FIXED in hadith-verifier; migration waiting for the operator
+**Status:** FIXED in hadith-verifier (d9e928c); migration applied 2026-11-12
 
 ---
