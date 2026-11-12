@@ -16399,3 +16399,32 @@ matched after the Arabic it was translated from had changed.
 **Status:** FIXED. Migration run by the operator 2026-11-12 00:50: verified 17, verified_without_hash 0, hash_without_verified 0.
 
 ---
+
+## PATTERN 410: promotion was three writes, so a failure could leave half a promotion
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** data integrity (Sol R10)
+
+**What happened.** promote-candidates.py moved an approved candidate with three REST calls: insert into
+hadith_library, insert into hadith_promotions, PATCH the candidate to 'promoted'. Each was its own
+transaction. A failure after the first left a library row with no audit trail and a candidate still
+'approved' - which the next run, finding it approved and unpromoted, would insert a second time. Two runs at
+once could do the same without any failure.
+
+**Fix.**
+- supabase/migrations/20261112_promote_candidate_rpc.sql: `public.promote_candidate(candidate_id, row jsonb,
+  reviewer, deeplink, columns[])` - `SELECT ... FOR UPDATE` on the candidate, refuses unless status is
+  'approved' and promoted_library_id is null, inserts only the columns sent (so id / created_at defaults
+  apply), writes the audit row and the stamp, returns the library id; all in one transaction. Execute
+  revoked from anon / authenticated, granted to service_role; `notify pgrst` reloads the API schema.
+- promote-candidates.py: `promote_one()` calls it through /rest/v1/rpc; an HTTP error prints the reason,
+  counts as failed (nothing written) and the run exits 1. Mapping, guards and dry run unchanged.
+- Tests: +2 in test_promote_candidates.py; scripts/lib 256 passed. Dry run against the live DB: 0 approved.
+
+**Lesson:** steps that must all happen belong in one transaction, not one script.
+
+**Tripwire:** several REST writes in a row for one logical change.
+
+**Status:** code FIXED; migration waiting for the operator to run it in the Supabase SQL editor. Not yet
+exercised on a real promotion (none approved today) - the next promotion is its first run.
+
+---

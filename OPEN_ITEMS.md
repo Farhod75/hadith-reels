@@ -82,7 +82,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
 - **DONE 2026-11-04: R9 - /api/tts silently cut the text at 1000 characters (P354).**
   Now 413 with the length, nothing narrated; the admin page's own silent cut at
   800 removed. Latent only: the longest of 112 narrated blocks on disk was 640.
-- **R10 - promotion is three separate writes.** Open. Needs a DB function (RPC).
+- **DONE 2026-11-12: R10 - promotion is three separate writes (P410).** One transaction now:
+  `public.promote_candidate()` (supabase/migrations/20261112_promote_candidate_rpc.sql) inserts the
+  library row, the audit row and the candidate's stamp, locking the candidate and refusing one that is not
+  'approved'. promote-candidates.py calls it. **Operator step:** run the migration once.
 - **DONE 2026-11-04: R11 - verify-candidates: a missing language read as pass; a failed write exited 0 (P357).**
   A candidate missing a language rolls up 'incomplete' (--from-json and --library
   still score what is there); each write must update exactly one row; any failed

@@ -14,6 +14,10 @@
 # Preview mapping:    python scripts/promote-candidates.py --show
 #
 # Idempotent: a candidate with status='promoted' is skipped; re-running is safe.
+# P410 (Sol R10): the three writes are ONE database call, public.promote_candidate()
+# (supabase/migrations/20261112_promote_candidate_rpc.sql) - one transaction, so a
+# failure leaves nothing half-written, and it locks the candidate row and refuses
+# one that is no longer 'approved', so two runs cannot insert the same hadith twice.
 # Stdlib only. Uses SUPABASE_SERVICE_ROLE_KEY (bypasses RLS, server-side).
 # ============================================================
 import os
@@ -91,6 +95,26 @@ def rest_patch(url: str, key: str, table: str, query: str, patch: dict) -> None:
         method="PATCH",
     )
     urllib.request.urlopen(req, timeout=30).read()
+
+
+def rest_rpc(url: str, key: str, fn: str, args: dict):
+    endpoint = f"{url}/rest/v1/rpc/{fn}"
+    body = json.dumps(args, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(endpoint, data=body, headers=_headers(key), method="POST")
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def promote_one(url: str, key: str, cid: str, lib_row: dict, reviewer: str, rpc=None) -> str:
+    """P410: library row + audit row + candidate stamp in one transaction. Returns the library id."""
+    rpc = rpc or rest_rpc
+    return str(rpc(url, key, "promote_candidate", {
+        "p_candidate_id": cid,
+        "p_row":          lib_row,
+        "p_reviewer":     reviewer,
+        "p_deeplink":     lib_row.get("source_url"),
+        "p_columns":      [k for k in LIBRARY_COLS if lib_row.get(k) not in (None, [], "")],
+    }))
 
 
 # ── candidate slug -> library display name ──────────────────────────
@@ -258,6 +282,7 @@ def main():
 
     promoted = 0
     skipped = 0
+    failed = 0
     for c in candidates:
         cid = c.get("candidate_id")
         coll = c.get("collection")
@@ -308,31 +333,25 @@ def main():
         if not args.commit:
             continue
 
-        # 1. insert into library
-        new_row = rest_insert(url, key, "hadith_library", lib_row)
-        library_id = str(new_row.get("id"))
-
-        # 2. audit row
-        rest_insert(url, key, "hadith_promotions", {
-            "candidate_id":    cid,
-            "library_id":      library_id,
-            "promote_mode":    "insert",
-            "reviewed_by":     args.reviewer,
-            "source_deeplink": deeplink,
-            "columns_written": [k for k in LIBRARY_COLS if lib_row.get(k) not in (None, [], "")],
-        })
-
-        # 3. stamp candidate promoted (idempotency)
-        rest_patch(url, key, "hadith_candidates",
-                   f"candidate_id=eq.{cid}",
-                   {"status": "promoted", "promote_mode": "insert",
-                    "promoted_library_id": library_id})
-
+        # P410: library row, audit row and the candidate's 'promoted' stamp in ONE
+        # transaction. They were three REST calls; a failure between them left a
+        # library row with no audit, and a candidate still 'approved' that the next
+        # run would insert a second time.
+        try:
+            library_id = promote_one(url, key, cid, lib_row, args.reviewer)
+        except urllib.error.HTTPError as e:
+            print(f"   ❌ {coll} {num}: not promoted, nothing written - "
+                  f"{e.code} {e.read().decode('utf-8', 'replace')[:300]}")
+            failed += 1
+            continue
+        print(f"      promoted -> library {library_id}")
         promoted += 1
 
     print("━" * 42)
     if args.commit:
-        print(f"✅ promoted: {promoted}   skipped: {skipped}")
+        print(f"✅ promoted: {promoted}   skipped: {skipped}   failed: {failed}")
+        if failed:
+            sys.exit(1)
     else:
         print(f"🧪 DRY RUN — {len(candidates)} would promote (skipped {skipped}). Re-run with --commit.")
 

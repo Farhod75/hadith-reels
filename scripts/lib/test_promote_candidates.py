@@ -52,6 +52,30 @@ def test_pick_deeplink_prefers_sunnah_over_a_dorar_search():
     assert got == "https://sunnah.com/tirmidhi:1161"
 
 
+def test_promotion_is_one_rpc_call_with_the_audit_fields():
+    """P410 (Sol R10): library row, audit row and candidate stamp in ONE transaction."""
+    calls = []
+    def fake_rpc(url, key, fn, args):
+        calls.append((fn, args)); return "lib-42"
+    row = {"text_arabic": "نص", "text_english": "e", "tags": [], "source_url": "https://sunnah.com/muslim:1",
+           "book": None, "collection": "Sahih Muslim", "hadith_number": "1"}
+    got = pc.promote_one("u", "k", "c-1", row, "farhod", rpc=fake_rpc)
+    assert got == "lib-42"
+    assert len(calls) == 1 and calls[0][0] == "promote_candidate"
+    a = calls[0][1]
+    assert a["p_candidate_id"] == "c-1" and a["p_reviewer"] == "farhod"
+    assert a["p_deeplink"] == "https://sunnah.com/muslim:1"
+    assert "tags" not in a["p_columns"] and "book" not in a["p_columns"]
+    assert "text_arabic" in a["p_columns"]
+
+def test_main_no_longer_writes_the_three_tables_separately():
+    src = open(os.path.join(_scripts, "promote-candidates.py"), encoding="utf-8").read()
+    body = src.split("def main():", 1)[1]
+    assert 'rest_insert(url, key, "hadith_library"' not in body
+    assert 'rest_insert(url, key, "hadith_promotions"' not in body
+    assert "promote_one(" in body
+
+
 if __name__ == "__main__":
     fns = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and callable(f)]
     passed = failed = 0

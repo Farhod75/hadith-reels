@@ -1,3 +1,16 @@
+## [2026-11-12d] - promotion is one transaction (P410, Sol R10)
+
+### Fixed
+
+- **promote-candidates.py + supabase/migrations/20261112_promote_candidate_rpc.sql:** library row, audit row
+  and the candidate's 'promoted' stamp in one database call; a candidate that is not 'approved' is refused.
+
+### Docs
+
+- OPEN_ITEMS: Sol R10 closed (migration to run).
+
+---
+
 ## [2026-11-12c] - verification stamps bound to the text (P409, Sol R5)
 
 ### Fixed

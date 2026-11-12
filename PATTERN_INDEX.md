@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-339 patterns in 352 entries, frontier **P409**. The P-sequence is shared with
+340 patterns in 353 entries, frontier **P410**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -400,5 +400,6 @@ BEFORE changing it.
 - **P407** - two renders of one reel could run at once, and a re-render replaced the approved reel
 - **P408** - the paid verification record lived only in a gitignored folder
 - **P409** - a verification stamp outlived the text it verified
+- **P410** - promotion was three writes, so a failure could leave half a promotion
 
-<!-- pattern-index-stamp entries=352 patterns=339 frontier=409 sha1=059b1877167b188d128c1052274c2a3efe8bb4e5 -->
+<!-- pattern-index-stamp entries=353 patterns=340 frontier=410 sha1=c946d0822134477b084249dd8d6a7c905b1e6643 -->
