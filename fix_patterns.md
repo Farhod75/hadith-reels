@@ -16284,3 +16284,17 @@ the deployed site) and the local step runs with `--grep-invert "GET /api/reels"`
 **Status:** FIXED (#478 red for the reason above; the follow-up push is the proof).
 
 ---
+
+## PATTERN 405: the HV bot answered every video "I can't check video yet"
+
+**Allocated to the HV repo** - full entry in `hadith-verifier/fix_patterns.md`. Recorded here because the
+P sequence is one global series and this repo holds the frontier.
+
+A video sent to @HadithVerifierBot is now transcribed by ElevenLabs Scribe and checked with its caption; a
+TikTok link by its oEmbed caption; other links get "send the video file". 3 per user per day, 30 a day.
+
+**Tripwire:** none in this repo.
+
+**Status:** built in hadith-verifier; live once ELEVENLABS_API_KEY is added to the HV Vercel project
+
+---

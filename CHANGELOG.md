@@ -1,3 +1,18 @@
+## [2026-11-11h] - HV bot checks videos (P405)
+
+### Added
+
+- **hadith-verifier:** a video sent to @HadithVerifierBot is transcribed (ElevenLabs Scribe, `scribe_v2`) and
+  checked with its caption, the transcript shown in the answer; TikTok links by caption (oEmbed); Instagram /
+  YouTube / Facebook links get "send the video file or a screenshot". 3 video checks per user per day, 30 a
+  day in total (REEL_LINK_CHECK.md, operator 2026-11-11). Scribe verified on a published RU reel first.
+
+### Docs
+
+- P405 pointer here (HV holds the full entry); OPEN_ITEMS: the reel-link item updated.
+
+---
+
 ## [2026-11-11g] - CI tests the commit it builds; pytest in CI (P404, R12)
 
 ### Changed
