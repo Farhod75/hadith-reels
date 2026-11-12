@@ -16231,8 +16231,12 @@ image-to-video prompt.
 **What happened.** The #1987 stills and clips were generated as `b1987-*` - `b` is Bukhari's prefix in the
 registry, Tirmidhi's is `t` (t1161, t3895, t2307, t3540). Renaming them, the assistant also rewrote the name
 inside each assets/scene-prompts sidecar with an inline PowerShell helper (decode, Replace, WriteAllText). All
-seven files came out 0 bytes. They were untracked - new in this set - so git had nothing to restore. The
-cause inside the helper was not established; the write was not checked.
+seven files came out 0 bytes. They were untracked - new in this set - so git had nothing to restore.
+CAUSE (found the same evening): the helper read with `[IO.File]::ReadAllBytes('assets\...')`, a RELATIVE
+path. .NET resolves it against `[Environment]::CurrentDirectory` (C:\Users\Farhod), which `cd` /
+Set-Location does not change - P281 again. The read failed as a non-terminating error, the helper went on
+with nothing, and WriteAllText (given an absolute path) wrote the nothing. Confirmed: the same call on
+.gitignore from the repo returned 0 bytes while Get-Content returned 203.
 
 **Fix.** Each clip's fal request id was in the run log, and fal still held the jobs: `generate-scene.ps1
 -Name t1987-<x> -Image ... -Prompt ... -Resume <request_id>` rebuilt every sidecar (video_url, request_id,
@@ -16242,11 +16246,35 @@ Rename-Item only and their content changed through a staged copy: JSON parsed, s
 after the write.
 
 **Lesson:** a rename is a rename. Changing what is inside a provenance file is a separate step, done on a
-copy and checked before and after - above all when git cannot give it back.
+copy and checked before and after - above all when git cannot give it back. In PowerShell, every .NET
+file call takes an ABSOLUTE path (P281).
 
 **Tripwire:** an in-place rewrite of an untracked file; any bulk file edit whose result is not read back.
 
 **Status:** FIXED (recovered). Deferred: generate-image.ps1 / generate-scene.ps1 checking the `-Name` prefix
 against the set's collection.
+
+---
+
+## PATTERN 404: CI tested the deployed site, not the commit
+
+**Date:** 2026-11-11  **Repo:** hadith-reels  **Severity:** process (a broken push could go green)
+
+**What happened.** Sol 6.1 R12 (2026-11-04): ci.yml built the commit, then ran the E2E suite with
+`BASE_URL: https://hadith-reels.vercel.app` - the last deploy, which on a push to main is the PREVIOUS commit
+while Vercel builds the new one. A regression passed CI and failed it one push later, against innocent code.
+The 251 Python tests in scripts/lib ran only in the local pre-push hook.
+
+**Fix.** ci.yml: after `npm run build`, `next start -p 3002` in the background with a 30 s readiness loop;
+E2E runs against http://localhost:3002. The admin-guard tests ("without an admin session is refused (401)")
+skip on localhost by design, so they run in a second step against the live site, as before. New steps:
+actions/setup-python@v7 (3.12), `pip install pytest numpy pillow certifi`, `pytest scripts/lib -q`. Rehearsed
+on this machine against a production build on :3012: 47 passed, 4 skipped; pytest 251 passed.
+
+**Lesson:** a test is evidence about the thing it ran against. Point it at the artifact you are about to ship.
+
+**Tripwire:** a BASE_URL in CI that names a deployed host.
+
+**Status:** FIXED (first CI run on the new workflow is the proof - see CHANGELOG).
 
 ---

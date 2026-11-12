@@ -56,17 +56,51 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
+      # R12 (Sol 6.1, 2026-11-11): the E2E suite used to run against
+      # https://hadith-reels.vercel.app - the LAST deploy, not this commit - so a
+      # broken push went green and the next one went red for it. It now runs
+      # against the build made two steps above, served by `next start`.
+      - name: Start the build (next start, port 3002)
+        run: |
+          npx next start -p 3002 > next-start.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://localhost:3002 && echo "up after ${i}s" && exit 0
+            sleep 1
+          done
+          echo "next start did not answer in 30 s"; cat next-start.log; exit 1
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
       # P043/P045: ONLY mocked tests in CI push
       # language-speech.spec.ts → EXCLUDED (real ElevenLabs calls)
       # Real API tests → manual: npx playwright test --grep @real-api
-      - name: Run E2E tests
+      - name: Run E2E tests (this commit, localhost)
         run: npx playwright test tests/hadith-reels.spec.ts tests/admin-session.spec.ts tests/tts-route.spec.ts --reporter=list --workers=1 --project=chromium
         env:
+          BASE_URL: http://localhost:3002
+
+      # The admin guards answer 401 only off localhost, so those tests skip above.
+      # They still run against the live site, as they did before R12.
+      - name: Production guard check (deployed site)
+        run: npx playwright test tests/hadith-reels.spec.ts --grep "without an admin session" --reporter=list --workers=1 --project=chromium
+        env:
           BASE_URL: https://hadith-reels.vercel.app
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # R12: the Python suite (scripts/lib, 250+ tests) ran only in the local
+      # pre-push hook. It reads the scripts as text and needs no ffmpeg or PowerShell.
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Python tests (scripts/lib)
+        run: |
+          python -m pip install --quiet pytest numpy pillow certifi
+          python -m pytest scripts/lib -q
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v7

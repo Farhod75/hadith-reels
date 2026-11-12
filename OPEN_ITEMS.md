@@ -79,7 +79,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   A candidate missing a language rolls up 'incomplete' (--from-json and --library
   still score what is there); each write must update exactly one row; any failed
   write -> exit 1 and no WRITTEN footer. scripts/lib/test_verify_candidates.py.
-- **R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI.** Open.
+- **DONE 2026-11-11: R12 - CI runs Playwright against the deployed URL, not the commit; no pytest in CI (P404).**
+  ci.yml now serves its own build with `next start` on :3002 and runs the E2E suite against it;
+  the admin-guard 401 tests (which skip on localhost) still run against the live site; a
+  Python step runs `pytest scripts/lib`. Rehearsed locally on a production build: 47 passed, 4 skipped.
 - **DONE 2026-11-04: HV admin queue was public (P364, hadith-verifier e7a5832).** Found by
   the plan review, not Sol: HV `/api/queue` answered GET/PATCH/DELETE to anyone through
   the service-role key (anonymous GET on production: 200, ~152 KB). HR's P353 guard
@@ -157,6 +160,18 @@ this one wins.
     раб не явится ... без того, чтобы Аллах не запретил").
   - Kept: #6009 (P271). Tirmidhi #1987 full Arabic restored 2026-11-10 and published 2026-11-11 (R230-R233). Still open:
     Musnad Ahmad #7936 (DO NOT PRODUCE, below).
+- **HV on Google Play (TWA) - IN PROGRESS 2026-11-11.** Play Console personal account created
+  (developer name «Hadith Verifier», non-trader, US). Package `com.hadithverifier.app` built with
+  Bubblewrap 1.27.0 in hadith-verifier/android/ (gitignored, keystore inside it; operator holds the
+  passwords): app-release-bundle.aab + app-release-signed.apk, upload key SHA-256
+  84:8F:70:6A:2E:D5:E6:B0:CF:50:4F:B8:74:13:83:11:42:46:4C:66:CD:F9:54:01:3E:83:6F:E6:BB:DC:FE:5B.
+  minSdkVersion raised 21 -> 24 (androidbrowserhelper requires it); Bubblewrap's jdkPath set to
+  the 8.3 short path (apksigner broke on «C:\Program Files»). WAITING ON: Google's identity
+  check; an Android 10+ phone for the device check (the operator's LG runs Android 5); phone
+  number check. THEN: create the app, upload the .aab to closed testing, take the Play App
+  Signing SHA-256, publish public/.well-known/assetlinks.json with both fingerprints, 12 testers
+  x 14 consecutive days, production. LATER: a paid tier (operator 2026-11-11: the API costs
+  grow with use) - Play Billing via the Digital Goods API, trader status at that point.
 - **Tirmidhi #1987 - PUBLISHED 2026-11-11 (R230-R233, TG 249-252); library c8ffd22e.**
 - **Scene tooling from #1987 (P402, P403) - OPEN.** (1) A repo script for a FLUX Kontext still edit
   (`fal-ai/flux-pro/kontext`, image_url + prompt, sidecar under assets/still-prompts); it ran once as
@@ -335,7 +350,9 @@ this one wins.
   HTTP with their own anthropic-version and are not affected.
 - **DONE 2026-11-03: HV next 14.2.5 -> 14.2.35** (HV e813e1b) + npm audit fix (no --force):
   production audit 6 (5 high, 1 critical) -> 2 (1 high, 1 critical).
-- **HV -> Next 16 migration (open).** The two advisories left - next itself (critical among
+- **DONE 2026-11-08 (bd19198, found stale 2026-11-11): HV -> Next 16 migration.** HV and HR both on
+  next 16.4.5 / React 19.2.4; `npm audit --omit=dev` 0 in both. The text below is the history.
+  Was: The two advisories left - next itself (critical among
   them: RSC deserialization DoS, rewrites request smuggling, image-optimizer DoS) and its
   bundled postcss - are fixed only in Next 15/16; npm offers only --force to next@16.4.5.
   A major migration (React 18 -> 19, App Router changes) with its own test pass, not a

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-333 patterns in 346 entries, frontier **P403**. The P-sequence is shared with
+334 patterns in 347 entries, frontier **P404**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -394,5 +394,6 @@ BEFORE changing it.
 - **P401** - the HadeethEnc map missed hadiths it had - a spelling and a crowded opening
 - **P402** - Kling would not erase the footprints - an i2v model keeps its first frame
 - **P403** - a rename emptied seven untracked prompt sidecars
+- **P404** - CI tested the deployed site, not the commit
 
-<!-- pattern-index-stamp entries=346 patterns=333 frontier=403 sha1=9d59a387768ec745e3870f126408b19b3c6b0959 -->
+<!-- pattern-index-stamp entries=347 patterns=334 frontier=404 sha1=e4f6660d283b934a2124e4518fb597b0de362fea -->

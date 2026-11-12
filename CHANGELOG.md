@@ -1,3 +1,18 @@
+## [2026-11-11g] - CI tests the commit it builds; pytest in CI (P404, R12)
+
+### Changed
+
+- **.github/workflows/ci.yml (operator approved the workflow edit):** E2E against the commit's own build on
+  localhost (`next start`), not the deployed site; the 401 admin-guard checks stay on the live site; a
+  Python step runs `pytest scripts/lib`.
+
+### Docs
+
+- P403 root cause found: a relative path in a .NET file call (P281). OPEN_ITEMS: R12 and the Next 16
+  migration marked DONE (the latter was done 2026-11-08); HV Google Play status recorded.
+
+---
+
 ## [2026-11-11f] - Tirmidhi #1987 published (R230-R233); P402, P403
 
 ### Added
