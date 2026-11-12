@@ -16495,6 +16495,6 @@ Baseline: the 51 screened rows (counted through the API) get the hash of their c
 
 **Tripwire:** any `*_at` attestation column without a hash beside it.
 
-**Status:** BUILT; migration waiting for the operator (Supabase SQL editor). No code depends on it.
+**Status:** FIXED. Migration run by the operator 2026-11-12 18:04: screened 51, without hash 0, hash without screened 0.
 
 ---
