@@ -85,7 +85,7 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
 - **DONE 2026-11-12: R10 - promotion is three separate writes (P410).** One transaction now:
   `public.promote_candidate()` (supabase/migrations/20261112_promote_candidate_rpc.sql) inserts the
   library row, the audit row and the candidate's stamp, locking the candidate and refusing one that is not
-  'approved'. promote-candidates.py calls it. **Operator step:** run the migration once.
+  'approved'. promote-candidates.py calls it. Migration applied 2026-11-12, probed through the API.
 - **DONE 2026-11-04: R11 - verify-candidates: a missing language read as pass; a failed write exited 0 (P357).**
   A candidate missing a language rolls up 'incomplete' (--from-json and --library
   still score what is there); each write must update exactly one row; any failed

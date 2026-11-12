@@ -16424,7 +16424,8 @@ once could do the same without any failure.
 
 **Tripwire:** several REST writes in a row for one logical change.
 
-**Status:** code FIXED; migration waiting for the operator to run it in the Supabase SQL editor. Not yet
-exercised on a real promotion (none approved today) - the next promotion is its first run.
+**Status:** FIXED. Migration run 2026-11-12 00:57 (anon cannot execute, service_role can); probed through
+the API: an unknown candidate -> 400 "P410: candidate ... not found", the anon key -> 401. Not yet exercised
+on a real promotion (none approved today) - the next promotion is its first run.
 
 ---
