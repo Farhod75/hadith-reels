@@ -16345,3 +16345,26 @@ have redrawn #1987's work copy with random scenes. The first real render is thei
 **Status:** FIXED (first real render pending for the two unexercised paths)
 
 ---
+
+## PATTERN 408: the paid verification record lived only in a gitignored folder
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** evidence (Sol R4, the part P359 left open)
+
+**What happened.** P359 made verify-candidates write a per-run report after every row, but into
+`out/verify-runs/` - and `/out/` is gitignored. The record of what two paid models said about a translation
+survived only as long as this machine's disk; translate-candidates' proposals and the operator's review
+signatures (P219) were overwritten by the next run.
+
+**Fix.** Operator's choice 2026-11-12: a tracked folder over a database table.
+- verify-candidates.py: `RUNS_DIR = 'verify-runs'` (repo root). The 18 reports from 2026-11-04 on copied there.
+- translate-candidates.py: `keep_run_copy()` - each dry-run proposal (`candidate-translations-<UTC>.json`) and
+  each signed review (`candidate-translations-reviewed-<UTC>.json`) is copied to verify-runs/.
+- Tests: the P359 test reads verify-runs/; test_translate_run_copy.py (2). scripts/lib: 253 passed.
+
+**Lesson:** evidence that is not committed is a cache.
+
+**Tripwire:** a report "kept per run" under a gitignored path.
+
+**Status:** FIXED. Commit verify-runs/ with the set or library change it verified.
+
+---

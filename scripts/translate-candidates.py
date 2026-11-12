@@ -46,6 +46,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import shutil
 import sys
 import time
 import urllib.error
@@ -59,6 +60,19 @@ ANTHROPIC_VERSION = '2023-06-01'
 
 OUT_PATH = os.path.join('out', 'candidate-translations.json')
 REVIEW_PATH = os.path.join('out', 'candidate-translations.reviewed.json')
+# P408 (Sol R4): every proposal and every review signature also kept per run in
+# verify-runs/ (tracked in git), beside verify-candidates' verdicts. out/ is
+# overwritten by the next run and never committed.
+RUNS_DIR = 'verify-runs'
+
+
+def keep_run_copy(src, prefix):
+    """Copy src to verify-runs/<prefix>-<UTC stamp>.json; returns the new path."""
+    stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    os.makedirs(RUNS_DIR, exist_ok=True)
+    dst = os.path.join(RUNS_DIR, f'{prefix}-{stamp}.json')
+    shutil.copyfile(src, dst)
+    return dst
 
 # P234: statuses that record a HUMAN RULING rather than a position in the
 # pipeline. --apply never overwrites one. Bukhari #3435 sits at needs_human
@@ -259,10 +273,11 @@ def sign_review(path=OUT_PATH):
            'refs': [r.get('ref') for r in results]}
     with open(REVIEW_PATH, 'w', encoding='utf-8') as fh:
         json.dump(rec, fh, ensure_ascii=False, indent=2)
+    run_copy = keep_run_copy(REVIEW_PATH, 'candidate-translations-reviewed')
     refs = ', '.join(str(r.get('ref')) for r in results)
     print(f'  signed {len(results)} row(s): {refs}')
     print(f'  sha256 {digest}')
-    print(f'  -> {REVIEW_PATH}')
+    print(f'  -> {REVIEW_PATH}  (run copy: {run_copy})')
     print('  --apply will refuse if the file changes after this point.')
     return 0
 
@@ -562,9 +577,10 @@ def main():
     os.makedirs('out', exist_ok=True)
     with open(OUT_PATH, 'w', encoding='utf-8') as fh:
         json.dump(results, fh, ensure_ascii=False, indent=2)
+    run_copy = keep_run_copy(OUT_PATH, 'candidate-translations')
 
     print('\n' + '-' * width)
-    print(f'  {len(results)} candidate(s) translated -> {OUT_PATH}')
+    print(f'  {len(results)} candidate(s) translated -> {OUT_PATH}  (run copy: {run_copy})')
     if args.commit:
         if args.library:
             print('  WRITTEN to hadith_library. matn_verified_at CLEARED -')

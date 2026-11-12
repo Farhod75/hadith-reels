@@ -1,0 +1,85 @@
+[
+  {
+    "candidate_id": "9a7de963-0c1f-4b18-96bb-31d8046141e5",
+    "ref": "bukhari #6724",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "не выведывайте тайн",
+              "why": "Arabic 'ولا تجسسوا' means 'do not spy/investigate secretly' without an explicit object like 'тайн' (secrets); the addition of 'тайн' introduces specificity not present in the source."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ҷустуҷӯи айбҳои якдигарро накунед",
+              "why": "The Arabic 'لا تحسسوا' does not specify 'faults' (айбҳо); it refers generally to seeking out/eavesdropping, not explicitly to searching for each other's faults."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "0ccb1774386467ea6f6616f9aedd7ccb3b50a30e81d64855694f83741bcffc35",
+      "text_english": "6d1a9e21a5cc66246cc0f3791cead97332033048110e98ca710a3dd2cead6a08",
+      "text_russian": "8f2664225103f5175f22783798ce8a135d7d332ea3ee8ff516200bfa5bc8ffcb",
+      "text_uzbek_cyrillic": "7201405e782a170b1d5e18bf77f16f3ddc1c9f26f2147c44101e43af52290ec4",
+      "text_tajik": "4b96df5872a5006b8aa8eaae60a77ea7671007f3b5a81aca9da8f01ffe24aa82"
+    },
+    "checked_at": "2026-11-06T17:20:47+00:00"
+  }
+]

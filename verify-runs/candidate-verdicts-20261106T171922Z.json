@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": "da84ad8a-4768-4d47-944b-3da839716436",
+    "ref": "muslim #105",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "31645364280bdb7c4e318c6a689994e8f455af597b75f4a04aa6e25c5bffe4aa",
+      "text_english": "1af4797d4b498ead17ad54c77f8fde39d5362a82d7580f65b6b25be07c6db35f",
+      "text_russian": "2700e241ce9233faa231018fafb6fc0d457e7e1eb9c23d789f48c68afb4bd1ca",
+      "text_uzbek_cyrillic": "6d49868d4371ce49fa03df1e8ca56b7447954c5ff92b98cfa497aee97a78e332",
+      "text_tajik": "2e8214ff05c2aa4e3835f82125be6f21f89fbc0a9ca6ca5f2e01939b2e5b9465"
+    },
+    "checked_at": "2026-11-06T17:19:45+00:00"
+  }
+]

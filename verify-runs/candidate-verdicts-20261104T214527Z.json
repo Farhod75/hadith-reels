@@ -1,0 +1,91 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #5984",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "тот, кто разрывает родственные связи",
+              "why": "Arabic text only has 'qāṭiʿ' (a cutter/severer) without specifying 'родственные связи' (ties of kinship); the object of the cutting is not stated in this Arabic source and was added in translation."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "Қариндошлик ришталарини узган",
+              "why": "The Arabic text only says 'قَاطِعٌ' (a severer) without specifying 'ties of kinship'; the translation adds this specific object not present in the given Arabic."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "пайвандҳои хешовандиро қатъ кунад",
+              "why": "The Arabic only says 'قاطع' (one who severs/cuts), without specifying 'رحم' (kinship ties). The translation adds the specific object 'kinship ties' which is not present in this Arabic text."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "bf1e1c0066d40298d535b2d5b6bcc478bdd0e1ee7bf78fc704b5a31671960b92",
+      "text_english": "9cf00a4093a1fc1dcf9714ef456ea5c7714bf89503285b5a82d5f766077f6bc1",
+      "text_russian": "1bb5d5b1bf456f8e6c5ba495bcdf0e5bee65b30358e4072ef7b2753a22992cef",
+      "text_uzbek_cyrillic": "9893e9a87bdf08f10d4d6a8ec55c15f3b65dd2a839ee9f5d07ff4bc583fe1d48",
+      "text_tajik": "46c96d5c3f16a29919663ab5373cc8f953b58d2c7a57579f7179cee140707b62"
+    },
+    "checked_at": "2026-11-04T21:46:09+00:00"
+  }
+]

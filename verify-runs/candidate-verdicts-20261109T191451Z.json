@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih Muslim #2564",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "ca50732d7f140f6a99bc9a129a66346d28fa34ce9b62a42a14e0f81923a45f70",
+      "text_english": "f154bd3874fe4bb9d4e9d0d40332f239f197fe6838db7568bcb9778182d819b4",
+      "text_russian": "e1963de53442daf8be8d2e0fd5cdcca2ca8e2b29460bedc15f7bba1badc21188",
+      "text_uzbek_cyrillic": "8fb28fe27599c1812230f59cf7f23c4be4c74be9ea5d036a546012a9ed15991e",
+      "text_tajik": "98d1901864d4c457f3ea0521de7ee14178e9430575cdb0d19814566ab92d4193"
+    },
+    "checked_at": "2026-11-09T19:15:19+00:00"
+  }
+]

@@ -1,3 +1,16 @@
+## [2026-11-12b] - paid verification evidence is committed (P408, Sol R4)
+
+### Changed
+
+- **verify-candidates.py / translate-candidates.py:** per-run verdicts, translation proposals and review
+  signatures go to `verify-runs/` (tracked) instead of only gitignored `out/`; 18 earlier reports added.
+
+### Docs
+
+- OPEN_ITEMS: Sol R4 closed.
+
+---
+
 ## [2026-11-12a] - render-reel: one render per reel, previous reel kept (P407, Sol R3)
 
 ### Fixed

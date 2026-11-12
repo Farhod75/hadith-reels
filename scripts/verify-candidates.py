@@ -95,7 +95,10 @@ OUT_PATH = os.path.join('out', 'candidate-verdicts.json')
 # P359 (Sol R4): every run also keeps its own copy here, written after EACH row.
 # On 2026-10-26 roughly 208 paid calls ended in one report written at the end of
 # the batch, into a container that was then lost; only a prose summary survived.
-RUNS_DIR = os.path.join('out', 'verify-runs')
+# P408 (Sol R4, operator 2026-11-12): out/ is gitignored, so those copies were still
+# local disk. They now go to verify-runs/ at the repo root, which IS tracked - the
+# paid evidence is committed with the work it verified.
+RUNS_DIR = 'verify-runs'
 
 
 def _input_sha256(row):

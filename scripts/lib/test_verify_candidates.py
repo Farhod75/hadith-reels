@@ -99,7 +99,7 @@ def test_each_run_keeps_its_own_report_with_models_and_input_hashes(harness):
     import glob
     import json
     harness([dict(FULL)], argv=())
-    runs = glob.glob(os.path.join('out', 'verify-runs', 'candidate-verdicts-*.json'))
+    runs = glob.glob(os.path.join('verify-runs', 'candidate-verdicts-*.json'))   # P408: tracked
     assert len(runs) == 1
     with open(runs[0], encoding='utf-8') as fh:
         entry = json.load(fh)[0]

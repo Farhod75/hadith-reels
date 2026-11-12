@@ -56,7 +56,10 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   run's start". **Still open:** fixed output paths (a re-render replaces the
   previous reel of an unpublished set - published sets are safe since tidy-out
   moves them to out/published/), and a lock against two renders of one reel.
-- **PARTLY DONE 2026-11-04: R4 - paid verification evidence (P359).** verify-candidates
+- **DONE 2026-11-12: R4 - paid verification evidence (P359, P408).** Operator's call: a tracked folder.
+  verify-candidates' per-run reports now go to `verify-runs/` at the repo root (committed), the 18 earlier
+  ones copied there; translate-candidates keeps each proposal and each review signature there too. History:
+  **PARTLY DONE 2026-11-04 (P359).** verify-candidates
   writes its report after EVERY row (atomic), keeps a per-run copy in
   out/verify-runs/ that the next run cannot overwrite, and records both model ids
   and a SHA-256 of each text it was shown. **Still open:** it is still local disk
