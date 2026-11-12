@@ -79,14 +79,16 @@ jobs:
       # language-speech.spec.ts → EXCLUDED (real ElevenLabs calls)
       # Real API tests → manual: npx playwright test --grep @real-api
       - name: Run E2E tests (this commit, localhost)
-        run: npx playwright test tests/hadith-reels.spec.ts tests/admin-session.spec.ts tests/tts-route.spec.ts --reporter=list --workers=1 --project=chromium
+        run: npx playwright test tests/hadith-reels.spec.ts tests/admin-session.spec.ts tests/tts-route.spec.ts --grep-invert "GET /api/reels" --reporter=list --workers=1 --project=chromium
         env:
           BASE_URL: http://localhost:3002
 
-      # The admin guards answer 401 only off localhost, so those tests skip above.
-      # They still run against the live site, as they did before R12.
-      - name: Production guard check (deployed site)
-        run: npx playwright test tests/hadith-reels.spec.ts --grep "without an admin session" --reporter=list --workers=1 --project=chromium
+      # Two kinds of test need the LIVE site and run here, as they did before R12:
+      # the admin guards (they answer 401 only off localhost, so they skip above) and
+      # the /api/reels smoke tests (they read the real database with the service-role
+      # key, which CI deliberately does not hold - run #478 answered 500 without it).
+      - name: Production checks (deployed site)
+        run: npx playwright test tests/hadith-reels.spec.ts --grep "without an admin session|GET /api/reels" --reporter=list --workers=1 --project=chromium
         env:
           BASE_URL: https://hadith-reels.vercel.app
 

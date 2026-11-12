@@ -4,7 +4,8 @@
 
 - **.github/workflows/ci.yml (operator approved the workflow edit):** E2E against the commit's own build on
   localhost (`next start`), not the deployed site; the 401 admin-guard checks stay on the live site; a
-  Python step runs `pytest scripts/lib`.
+  Python step runs `pytest scripts/lib`. Follow-up after run #478: the two `/api/reels` smoke tests read the
+  real database (service-role key, not in CI) and run in the production step.
 
 ### Docs
 

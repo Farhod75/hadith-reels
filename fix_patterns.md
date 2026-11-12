@@ -16275,6 +16275,12 @@ on this machine against a production build on :3012: 47 passed, 4 skipped; pytes
 
 **Tripwire:** a BASE_URL in CI that names a deployed host.
 
-**Status:** FIXED (first CI run on the new workflow is the proof - see CHANGELOG).
+**Follow-up, same evening.** The first run on the new workflow (#478) went red on two tests only:
+`GET /api/reels` answered 500 on localhost, because the route reads the database with
+SUPABASE_SERVICE_ROLE_KEY and CI deliberately does not hold that key. 45 passed, 4 skipped. Those two are
+smoke tests of the LIVE API, so they moved to the production step with the admin guards (6 pass against
+the deployed site) and the local step runs with `--grep-invert "GET /api/reels"`.
+
+**Status:** FIXED (#478 red for the reason above; the follow-up push is the proof).
 
 ---
