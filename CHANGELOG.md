@@ -1,3 +1,13 @@
+## [2026-11-12h] - Playwright 1.65.0
+
+### Changed
+
+- **@playwright/test 1.64.1 -> 1.65.0** (exact pin), Chromium 158. Build + `next start -p 3002` + CI's suite
+  (hadith-reels, admin-session, tts-route) locally: 45 passed, 4 skipped; `tsc --noEmit` clean. OPEN_ITEMS: the upgrade
+  item closed. (ci.yml's comment still says 1.64.1 - the file is protected from remote edits.)
+
+---
+
 ## [2026-11-12g] - screening stamps bound to the Arabic (P413)
 
 ### Fixed

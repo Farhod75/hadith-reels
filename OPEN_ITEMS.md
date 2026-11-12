@@ -345,7 +345,9 @@ this one wins.
     Duplicate CSP `media-src` removed too.
   - **WATCH - HV `next dev` reload loop** (235 GET /, 2026-11-08, operator's browser): not reproduced
     in a clean browser (one navigation in 42 s). If it comes back, note the browser and extensions.
-- **OPEN 2026-11-08: Playwright 1.65.0 (2026-11-05)** - HR pins 1.64.1. Upgrade at a quiet moment and
+- **DONE 2026-11-12: Playwright 1.65.0.** HR pinned exact 1.65.0; build + `next start -p 3002` + CI's
+  suite locally: 45 passed, 4 skipped; tsc clean. HV (1.59.1, its own browsers) unaffected. History:
+  **OPEN 2026-11-08: Playwright 1.65.0 (2026-11-05)** - HR pins 1.64.1. Upgrade at a quiet moment and
   re-run the suite (1.65 changes TypeScript class-field initialisation). Node 22 everywhere, so its Node
   20 drop does not apply.
 - **DONE 2026-11-03: Next.js November security release.** HR next 16.2.6 -> 16.4.5
