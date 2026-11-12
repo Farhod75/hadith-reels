@@ -863,12 +863,17 @@ and reading the four languages side by side against the Arabic (Workflow I, 3a).
    DIAL in animated-reel-scene-prompts.md for when anonymous figures are
    permitted, and when they are not), drawn from settings the
    matn implies — never from imagery it does not contain (P111 rule 14):
-   `.\scripts\generate-image.ps1 -Name "<slug>-<scene>" -Count 3 -Prompt "..."`
-   review the stills (MODE B, era, and for prayer/dua scenes the PRAYER
+   `.\scripts\generate-image.ps1 -Name "<prefix><number>-<scene>" -Count 3 -Prompt "..."`
+   (prefix = the collection: b Bukhari, m Muslim, t Tirmidhi, ad Abu Dawud, ij Ibn Majah, n Nasai,
+   ah Ahmad - e.g. t1987-sand. P412: all three generators check it against the library and refuse a
+   wrong one.) A still that is right but for one thing (footprints, a stray object) is EDITED, not
+   regenerated or animated around: `.\scripts\edit-still.ps1 -Name "<new name>" -Source "out\refs\<pick>.jpg"
+   -Prompt "<what to change AND what to keep>"` (FLUX Kontext, P402/P412).
+   Review the stills (MODE B, era, and for prayer/dua scenes the PRAYER
    DIRECTION rule - never facing the sun or a door, P340) AND the action
    itself - where water comes from and lands, what a gesture means (P343),
    then
-   `.\scripts\generate-scene.ps1 -Name "<slug>-<scene>" -Image "out\refs\<pick>.jpg" -Duration 10 -Prompt "<MOTION only>"`
+   `.\scripts\generate-scene.ps1 -Name "<prefix><number>-<scene>" -Image "out\refs\<pick>.jpg" -Duration 10 -Prompt "<MOTION only>"`
 5. **Moving the clips is no longer required (P217).** `generate-scene.ps1`
    writes to `out\backgrounds\new\`; `render-reel.ps1 -Scenes` now resolves a
    clip from `normalized\` and falls back to `new\`, and says which it used.

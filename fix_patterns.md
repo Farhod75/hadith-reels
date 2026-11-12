@@ -16443,3 +16443,36 @@ The bot's video caps and /api/tts's per-caller quota are now counted in a shared
 **Status:** FIXED in hadith-verifier (d9e928c); migration applied 2026-11-12
 
 ---
+
+## PATTERN 412: the scene tools from #1987 - a Kontext edit script and a -Name prefix check
+
+**Date:** 2026-11-12  **Repo:** hadith-reels  **Severity:** tooling (the deferred halves of P402 and P403)
+
+**What happened.** P402 fixed #1987's footprints by editing the still with FLUX Kontext, but the edit ran
+as a one-off (out/explain-src/edit1987.ps1, gitignored, no sidecar). P403 recovered the b1987-* assets of
+a Tirmidhi hadith; nothing stopped the next wrong prefix.
+
+**Fix.**
+- scripts/edit-still.ps1: -Name, -Source, -Prompt (-Model fal-ai/flux-pro/kontext, -AspectRatio 9:16,
+  -Force). Refuses to overwrite out\refs\<Name>.jpg without -Force; writes
+  assets\still-prompts\<Name>-still.json (mode kontext-edit, source file + sha256, prompt, timing,
+  output) like generate-image's P250 sidecar.
+- scripts/lib/SetName.ps1: `Test-SetName` (pure) / `Assert-SetName` (reads hadith_library for the
+  number). Prefixes b, m, t, ad, ij as used so far; n (Nasai) and ah (Ahmad) added for the two library
+  collections that had none. A wrong prefix is refused with the right one named; a number with no library
+  row is refused; an unknown prefix is refused; an unreadable library or a non-set name (lamb-wave) only
+  warns. -SkipNameCheck on all three scripts.
+- generate-image.ps1 and generate-scene.ps1 call it before spending anything.
+
+**Verified:** parser 0 errors on all four; test_set_name.py 4 passed (scripts/lib 260); live on PS 5.1:
+`-Name b1987-probe` refused by all three with "the library's #1987 is: t1987- (Jami at-Tirmidhi)", exit 1,
+no file written, no fal call. edit-still has not yet made a real edit (it would cost a generation) - its
+request body is the one edit1987.ps1 sent successfully.
+
+**Lesson:** a naming convention nobody checks is a guess with a format.
+
+**Tripwire:** an asset name built by hand from a convention.
+
+**Status:** FIXED
+
+---

@@ -40,7 +40,9 @@ param(
   # correctly on variants 1 AND 2 of a single call, from the same prompt text.
   # The concept was never the problem. Keep v1.1 reachable via -Model for a
   # straight comparison when a prompt that used to work starts failing.
-  [string]$Model = 'fal-ai/flux-2'
+  [string]$Model = 'fal-ai/flux-2',
+  # P412: refuse a -Name whose collection prefix is not this hadith's (P403, #1987)
+  [switch]$SkipNameCheck
 )
 
 $ErrorActionPreference = 'Stop'
@@ -50,6 +52,14 @@ Set-Location $repo
 function Say($m){ Write-Host $m -ForegroundColor Cyan }
 function Ok ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
+
+# --- P412: the -Name prefix must be this hadith's collection ------------------
+. (Join-Path $PSScriptRoot 'lib\SetName.ps1')
+if (-not $SkipNameCheck) {
+  $nameCheck = Assert-SetName -Name $Name
+  if (-not $nameCheck.Ok) { Die $nameCheck.Message }
+  if ($nameCheck.Message) { Write-Host "  note: $($nameCheck.Message)" -ForegroundColor Yellow }
+}
 
 # --- read FAL_KEY from .env.local --------------------------------------------
 if (-not (Test-Path ".env.local")) { Die ".env.local not found in repo root" }

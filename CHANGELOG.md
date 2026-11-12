@@ -1,3 +1,17 @@
+## [2026-11-12f] - scene tools: edit-still.ps1 and the -Name prefix check (P412)
+
+### Added
+
+- **scripts/edit-still.ps1:** FLUX Kontext edit of an existing still, with a sidecar in assets/still-prompts.
+- **scripts/lib/SetName.ps1:** generate-image / generate-scene / edit-still refuse a -Name whose collection
+  prefix does not match the library's hadith of that number (the #1987 b/t mix-up).
+
+### Docs
+
+- CLAUDE.md: name format and the edit step. OPEN_ITEMS: P402/P403 tooling closed.
+
+---
+
 ## [2026-11-12e] - HV: paid limits shared across instances (P411)
 
 ### Fixed

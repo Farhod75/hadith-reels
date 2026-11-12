@@ -50,7 +50,9 @@ param(
   [ValidateSet('5','10','15')][string]$Duration = '5',   # 15 = Kling 3.0 only (2.6 caps at 10)
   [string]$Model,                           # auto-set by mode if not given
   [string]$Resume,        # request_id from a timed-out run: poll it, do not re-submit
-  [switch]$KeepText       # the input still carries DELIBERATE text - see P216
+  [switch]$KeepText,      # the input still carries DELIBERATE text - see P216
+  # P412: refuse a -Name whose collection prefix is not this hadith's (P403, #1987)
+  [switch]$SkipNameCheck
 )
   
 
@@ -70,6 +72,14 @@ Set-Location $repo
 function Say($m){ Write-Host $m -ForegroundColor Cyan }
 function Ok ($m){ Write-Host "  OK  $m" -ForegroundColor Green }
 function Die($m){ Write-Host "`nFAILED: $m" -ForegroundColor Red; exit 1 }
+
+# --- P412: the -Name prefix must be this hadith's collection ------------------
+. (Join-Path $PSScriptRoot 'lib\SetName.ps1')
+if (-not $SkipNameCheck) {
+  $nameCheck = Assert-SetName -Name $Name
+  if (-not $nameCheck.Ok) { Die $nameCheck.Message }
+  if ($nameCheck.Message) { Write-Host "  note: $($nameCheck.Message)" -ForegroundColor Yellow }
+}
 
 # --- P215: the prompt is part of the asset -----------------------------------
 # Every clip in out\backgrounds\new\ made before 2026-10-11 is unreproducible:

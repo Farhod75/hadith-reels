@@ -184,7 +184,9 @@ this one wins.
   x 14 consecutive days, production. LATER: a paid tier (operator 2026-11-11: the API costs
   grow with use) - Play Billing via the Digital Goods API, trader status at that point.
 - **Tirmidhi #1987 - PUBLISHED 2026-11-11 (R230-R233, TG 249-252); library c8ffd22e.**
-- **Scene tooling from #1987 (P402, P403) - OPEN.** (1) A repo script for a FLUX Kontext still edit
+- **DONE 2026-11-12: Scene tooling from #1987 (P402, P403 -> P412).** scripts/edit-still.ps1 (Kontext, sidecar
+  in assets/still-prompts, mode kontext-edit); generate-image / generate-scene / edit-still refuse a -Name
+  whose prefix is not the library's collection for that number (scripts/lib/SetName.ps1). History: (1) A repo script for a FLUX Kontext still edit
   (`fal-ai/flux-pro/kontext`, image_url + prompt, sidecar under assets/still-prompts); it ran once as
   out/explain-src/edit1987.ps1. (2) generate-image.ps1 and generate-scene.ps1 refusing a `-Name` whose
   prefix is not the set's collection (b Bukhari, m Muslim, t Tirmidhi, ad Abu Dawud, ij Ibn Majah).
