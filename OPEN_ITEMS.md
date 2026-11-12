@@ -74,7 +74,7 @@ it went on this list (CLAUDE.md "verify the premise"). R-numbers are Sol's.
   A trigger on hadith_library clears matn_verified_at when the five verified text columns change
   without it, and stores matn_verified_sha256; the review digest now covers the source Arabic.
   Baseline: the 17 rows verified on 2026-11-12 got the hash of their current text.
-  **Operator step:** run supabase/migrations/20261112_matn_verified_binding.sql once.
+  Migration applied 2026-11-12 (17 verified, all hashed).
 - **R6 - Next 16.2.6 in an advisory range.** Already closed: 16.4.5 on 2026-11-03.
 - **DONE 2026-11-04: R8 - /api/tts builds write paths from request fields (P354).**
   lang, style, section allowlisted, slug `^[a-z0-9][a-z0-9-]*$`, and the resolved

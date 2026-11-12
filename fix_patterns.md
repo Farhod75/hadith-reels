@@ -16396,6 +16396,6 @@ matched after the Arabic it was translated from had changed.
 
 **Tripwire:** a `*_verified_at` / `approved_at` column with nothing tying it to what was approved.
 
-**Status:** code FIXED; migration waiting for the operator to run it in the Supabase SQL editor.
+**Status:** FIXED. Migration run by the operator 2026-11-12 00:50: verified 17, verified_without_hash 0, hash_without_verified 0.
 
 ---
