@@ -265,7 +265,8 @@ this one wins.
   long), Muslim #2749 (if you did not sin, Allah would bring people who sin and
   seek forgiveness), Muslim #2766 (the killer of a hundred; long matn), Bukhari
   #6307 (seeking forgiveness more than seventy times a day). Already shipped:
-  #4251, #4248, Muslim #2759, Tirmidhi #3540. Dorar dropped «التائب من الذنب
+  #4251, #4248, Muslim #2759, Tirmidhi #3540, Muslim #2749 (R182-R185), Bukhari #6307 (R198-R201,
+  2026-11-05 - added 2026-11-13 after it was nearly re-made from this list; check reel-tracker.md, not this list). Dorar dropped «التائب من الذنب
   كمن لا ذنب له» (no primary-source sahih route). Query file:
   `out/source-queries-tawba.txt`.
 - **Muslim #2747 - PUBLISHED 2026-11-02 (R178-R181, TG 188-195).**
