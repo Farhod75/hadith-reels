@@ -16498,3 +16498,29 @@ Baseline: the 51 screened rows (counted through the API) get the hash of their c
 **Status:** FIXED. Migration run by the operator 2026-11-12 18:04: screened 51, without hash 0, hash without screened 0.
 
 ---
+
+## PATTERN 414: a dialogue matn was quoted whole after "the Prophet said:"
+
+**Date:** 2026-11-13  **Repo:** hadith-reels  **Severity:** attribution (P316 / P342 class)
+
+**What happened.** make-drafts.py builds S as the fixed lead-in "...narrated that the Prophet ﷺ said:" and
+the whole matn in one pair of quotes, inner quotes dropped (P342). For Muslim #91 the matn is a dialogue -
+the Prophet's warning, "A man said: ...", then the Prophet's answer - so the man's question sat inside the
+Prophet's quoted words, in every language. In the audio it is invisible; in the subtitles and the caption it
+is a misattribution. Muslim #2747 had the same shape (the man's «O Allah» in the matn) and shipped with the
+inner quotes simply dropped.
+
+**Fix.** A set file's language block may carry `"dialogue": [["q", text], ["t", text], ...]` - q quoted, t the
+narration between. `quote_dialogue()` refuses unless the pieces are the stored matn letter for letter (the
+same letters-only rule check-draft-sync.py applies), so nothing is added or dropped and only the quotation
+marks move. EN "..." with the period inside; RU/UZ/TJ «...» with the period outside; a piece starting with a
+comma (Uzbek «...», деди) attaches without a space. stt-validate's quote_boundary already pairs any number of
+spans. Tests +4 (test_make_drafts.py); scripts/lib 264 passed. #91: check-draft-sync OK in all four.
+
+**Lesson:** "who is speaking" is part of the text; a single quotation is a claim that one person is.
+
+**Tripwire:** a matn containing "said:" / «сказал» / «деди» / «гуфт» inside one quotation.
+
+**Status:** FIXED
+
+---

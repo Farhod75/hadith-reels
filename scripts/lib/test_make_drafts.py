@@ -44,3 +44,44 @@ def test_caption_blocks_carry_title_and_moral_only():
     s = {"number": "2749", "library_id": "a7", "langs": {"en": BLOCK}}
     assert md.caption_blocks(s) == {"hadith_number": "2749", "id": "a7", "style": "adults",
                                     "langs": {"en": {"title": "T", "moral": "M."}}}
+
+
+# --- P414: a dialogue matn - only the spoken parts are quoted -----------------------
+EN91 = ("He who has an atom's weight of pride in his heart will not enter Paradise. A man said: A man loves "
+        "that his garment be good and his sandal be good. He said: Allah is beautiful and loves beauty. "
+        "Pride is rejecting the truth and belittling people.")
+EN91_PARTS = [["q", "He who has an atom's weight of pride in his heart will not enter Paradise."],
+              ["t", "A man said:"],
+              ["q", "A man loves that his garment be good and his sandal be good."],
+              ["t", "He said:"],
+              ["q", "Allah is beautiful and loves beauty. Pride is rejecting the truth and belittling people."]]
+
+
+def test_dialogue_quotes_each_speaker_separately_en():
+    out = md.quote_dialogue(EN91_PARTS, EN91, "en")
+    assert out == ('"He who has an atom\'s weight of pride in his heart will not enter Paradise." A man said: '
+                   '"A man loves that his garment be good and his sandal be good." He said: '
+                   '"Allah is beautiful and loves beauty. Pride is rejecting the truth and belittling people."')
+
+
+def test_dialogue_uzbek_comma_after_the_quote():
+    matn = u'Кирмайди. Бир киши: "Хуш кўради", деди.'
+    parts = [["q", u"Кирмайди."], ["t", u"Бир киши:"], ["q", u"Хуш кўради"], ["t", u", деди."]]
+    assert md.quote_dialogue(parts, matn, "uz") == u"«Кирмайди». Бир киши: «Хуш кўради», деди."
+
+
+def test_dialogue_that_changes_a_word_is_refused():
+    bad = [list(p) for p in EN91_PARTS]
+    bad[4][1] = bad[4][1].replace("belittling", "despising")
+    try:
+        md.quote_dialogue(bad, EN91, "en")
+    except ValueError as e:
+        assert "letter for letter" in str(e)
+    else:
+        raise AssertionError("a changed word was accepted")
+
+
+def test_dialogue_reaches_the_s_block():
+    lines = md.build_draft("X narrated that the Prophet ﷺ said:", EN91, dict(BLOCK, dialogue=EN91_PARTS), "en")
+    assert lines[0].startswith('S: X narrated that the Prophet ﷺ said: "He who has')
+    assert ' A man said: "A man loves' in lines[0]

@@ -1,3 +1,13 @@
+## [2026-11-13a] - make-drafts: dialogue matns quoted per speaker (P414)
+
+### Fixed
+
+- **scripts/make-drafts.py:** optional `dialogue` pieces in the set file quote only the spoken parts, so a man's
+  question is no longer inside the Prophet's quoted words; refused unless the pieces are the stored matn letter
+  for letter. First use: Muslim #91.
+
+---
+
 ## [2026-11-12h] - Playwright 1.65.0
 
 ### Changed

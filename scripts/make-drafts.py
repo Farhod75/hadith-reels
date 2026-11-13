@@ -17,6 +17,11 @@ S block = the narrator lead-in (scripts/lib/narrator_leadin.py, P337, from the r
           + the matn read LIVE from hadith_library, quoted: "..." in EN, «...» in RU/UZ/TJ.
           Quotation marks inside the matn are dropped (P342: nested quotes break stt-validate's
           span pairing) - words identical.
+P414: a hadith with a dialogue (a man asks, the Prophet answers) cannot be one quotation after
+"the Prophet said:" - that puts the man's words in the Prophet's mouth. A language block may carry
+  "dialogue": [["q", "<the Prophet's words>"], ["t", "A man said:"], ["q", "<the man's words>"], ...]
+q = quoted, t = the narration between the quotes. The pieces must be the stored matn, letter for
+letter, in order (refused otherwise), so nothing is added or dropped; only the quotation marks move.
 M = moral, H = h, C = title. Written to out/draft-<slug>-<lang>.txt (CRLF, as the admin writes
 them), and out/caption-<n>.json for build-caption.ts gets the same title and moral.
 Then each draft goes through lint-content.py and narrate-reel.py --dry-run.
@@ -54,12 +59,44 @@ def quote_matn(matn, lang):
     return u'«' + body + u'».'
 
 
+def letters(s):
+    """Letters and digits only, lower-cased - what check-draft-sync.py compares."""
+    return ''.join(ch for ch in s.lower() if ch.isalnum())
+
+
+def quote_dialogue(parts, matn, lang):
+    """P414: quote only the spoken parts of a dialogue matn."""
+    if not parts or any(len(p) != 2 or p[0] not in ('q', 't') for p in parts):
+        raise ValueError('%s: dialogue must be [["q"|"t", text], ...]' % lang)
+    if not any(k == 'q' for k, _ in parts):
+        raise ValueError('%s: dialogue has no quoted part' % lang)
+    if letters(''.join(t for _, t in parts)) != letters(matn):
+        raise ValueError('%s: the dialogue pieces are not the stored matn letter for letter (P414) - '
+                         'only the quotation marks may move' % lang)
+    out = ''
+    for kind, text in parts:
+        t = strip_inner_quotes(text)
+        if kind == 'q':
+            if lang == 'en':
+                piece = '"' + t + '"'
+            else:
+                end = t.endswith('.')
+                piece = u'\u00ab' + (t[:-1] if end else t) + u'\u00bb' + ('.' if end else '')
+        else:
+            piece = t
+        if out and not piece[:1] in ',.;:!?':
+            out += ' '
+        out += piece
+    return out
+
+
 def build_draft(leadin, matn, block, lang):
     """The four lines of draft.txt for one language."""
     for k in ('title', 'moral', 'h'):
         if not (block.get(k) or '').strip():
             raise ValueError('%s: "%s" is empty in the set file' % (lang, k))
-    return ['S: ' + leadin + ' ' + quote_matn(matn, lang),
+    s_body = quote_dialogue(block['dialogue'], matn, lang) if block.get('dialogue') else quote_matn(matn, lang)
+    return ['S: ' + leadin + ' ' + s_body,
             'M: ' + block['moral'].strip(),
             'H: ' + block['h'].strip(),
             'C: ' + block['title'].strip()]
