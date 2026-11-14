@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-garment-slide",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, close view of a folded length of plain unstitched white cotton cloth lying on a woven palm-leaf mat, and in front of it a matching pair of simple hand-made leather slide sandals placed side by side, a left one and a right one, each with a flat leather sole and exactly one broad plain leather strap straight across the top of the foot, open toe, no toe loop, no toe ring, no holes, no buckles, both sandals identical mirror images, soft morning light from the side, earthen floor, 7th-century Arabian, no people, no hands, no feet, warm and bright.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d78f-da22-7022-9d09-0e2cee471ccd",
+    "submitted_utc":  "2026-11-14T00:58:10.9484029Z",
+    "completed_utc":  "2026-11-14T00:58:19.5615121Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-garment-slide-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25e9d/HcJHJwJY2vQ1_DH0c6lbf_70QvNwJw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-garment-slide-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25e9d/t-_8I7EVOzhUt4fWb3M0i_60h3HfEO.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-garment-slide-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25e9d/gKZFVA48H30U5CPIkpJ6F_nFHr2TGA.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1079381803
+}

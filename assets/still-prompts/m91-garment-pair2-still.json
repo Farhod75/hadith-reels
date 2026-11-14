@@ -1,0 +1,23 @@
+{
+    "schema":  1,
+    "mode":  "kontext-edit",
+    "name":  "m91-garment-pair2",
+    "model":  "fal-ai/flux-pro/kontext",
+    "prompt":  "Fix only the LEFT sandal: its strap and the loop for the big toe must be exactly like the RIGHT sandal\u0027s, mirrored - the same narrow toe loop, the same strap width and shape. The left sandal\u0027s toe opening is currently far too wide; make it the same size as the right one. Keep the right sandal, the folded white cloth, the woven mat, the positions, the camera angle, the light and the colours exactly the same. No people, no hands.",
+    "aspect_ratio":  "9:16",
+    "source":  {
+                   "file":  "out\\refs\\m91-garment-pair.jpg",
+                   "sha256":  "8dd39b6b398a5ed63aab7845466b1da43abc250548acd26bab0996ad8eca2cdb",
+                   "bytes":  328150
+               },
+    "submitted_utc":  "2026-11-14T00:31:13.2743970Z",
+    "completed_utc":  "2026-11-14T00:31:25.6193596Z",
+    "output":  {
+                   "file":  "out\\refs\\m91-garment-pair2.jpg",
+                   "url":  "https://v3b.fal.media/files/b/0ab25dfc/ueSQxVydjzaB7oILlODY2_b3ee1b2573ce49d98e509d5b84ccc60a.jpg",
+                   "width":  752,
+                   "height":  1392
+               },
+    "chosen":  null,
+    "seed":  973371278
+}

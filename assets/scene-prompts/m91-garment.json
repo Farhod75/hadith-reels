@@ -1,0 +1,18 @@
+{
+    "name":  "m91-garment",
+    "image":  "out\\refs\\m91-garment-slide-2.jpg",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-14T00:58:47.1563698Z",
+    "size_bytes":  29382860,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Very slow push-in, soft morning light shifts gently across the folded cloth and the pair of sandals, the sandals keep their exact shape and do not move, no hands, no feet, no people.",
+    "request_id":  "01a1d790-65e9-7b91-961c-167f917b4a07",
+    "file":  "out\\backgrounds\\new\\m91-garment.mp4",
+    "schema":  1,
+    "generate_audio":  false,
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-14T01:04:24.9601509Z",
+    "video_url":  "https://v3b.fal.media/files/b/0ab25ebb/x-It6_onZjSu8e2BG4eOt_output.mp4",
+    "mode":  "image-to-video"
+}

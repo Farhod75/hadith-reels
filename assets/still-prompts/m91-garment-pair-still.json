@@ -1,0 +1,23 @@
+{
+    "schema":  1,
+    "mode":  "kontext-edit",
+    "name":  "m91-garment-pair",
+    "model":  "fal-ai/flux-pro/kontext",
+    "prompt":  "Make the two sandals an identical matching pair: a left sandal and a right sandal that are exact mirror images of each other, the same design with one wide leather strap across the foot and no toe loop, the same leather and stitching. Keep everything else exactly the same: the folded white cloth, the woven palm-leaf mat, the positions of the sandals, the camera angle, the light and the colours. No people, no hands.",
+    "aspect_ratio":  "9:16",
+    "source":  {
+                   "file":  "out\\refs\\m91-garment-2.jpg",
+                   "sha256":  "7400d8c0d80973e3fd71099b988c6aa6a0d35cb01ae2d8fc752428208e8578c5",
+                   "bytes":  905931
+               },
+    "submitted_utc":  "2026-11-13T23:48:23.4057789Z",
+    "completed_utc":  "2026-11-13T23:48:35.3763235Z",
+    "output":  {
+                   "file":  "out\\refs\\m91-garment-pair.jpg",
+                   "url":  "https://v3b.fal.media/files/b/0ab25cfb/1BA_RtT9lcuvuEH839Ejm_d93211df971e4eaca453d302dee9aea5.jpg",
+                   "width":  752,
+                   "height":  1392
+               },
+    "chosen":  null,
+    "seed":  2235043929
+}

@@ -16524,3 +16524,26 @@ spans. Tests +4 (test_make_drafts.py); scripts/lib 264 passed. #91: check-draft-
 **Status:** FIXED
 
 ---
+
+## PATTERN 415: the caption quoted the dialogue matn whole after P414 fixed the subtitles
+
+**Date:** 2026-11-13  **Repo:** hadith-reels  **Severity:** attribution (P414 in a second place)
+
+**What happened.** P414 quoted Muslim #91's matn per speaker in draft.txt, so the narration's subtitles were
+right. The caption is built by a different path - lib/caption.ts wrapMatn() puts the whole matn in one pair of
+guillemets - so every caption (Telegram, and every platform text derived from it) still put "A man said: ..."
+inside the Prophet's words. Found on the read of the EN Telegram caption, before anything was posted.
+
+**Fix.** make-drafts.py writes `matn_quoted` per language into out/caption-<n>.json for a dialogue set
+(quote_dialogue(..., caption=True): guillemets in every language, the period inside them in EN as wrapMatn
+does). build-caption.ts uses it only if it is the stored matn letter for letter (refused otherwise); it
+starts with «, so buildCaptionBody's P180 branch takes it as is - lib/caption.ts and the admin are
+untouched. Test +1; scripts/lib 265 passed; tsc clean. #91's four captions rebuilt and read.
+
+**Lesson:** a fix to how a text is quoted belongs in every place the text is quoted - list them first.
+
+**Tripwire:** a quoting change made in one of make-drafts.py / lib/caption.ts and not the other.
+
+**Status:** FIXED
+
+---

@@ -59,7 +59,7 @@ interface BlocksFile {
   hadith_number?: string | number
   id?: string
   style?: 'adults' | 'kids'
-  langs: Record<string, { title: string; moral: string }>
+  langs: Record<string, { title: string; moral: string; matn_quoted?: string }>
 }
 
 const spec: BlocksFile = JSON.parse(fs.readFileSync(blocksPath, 'utf8'))
@@ -119,11 +119,23 @@ async function main() {
       console.error(`${lang}: spec is missing title or moral`); failed++; continue
     }
 
+    // P415: a dialogue matn arrives quoted per speaker from make-drafts.py. It starts with «,
+    // so buildCaptionBody uses it as is (P180). Refused unless it is the stored matn letter for
+    // letter - only the quotation marks may differ.
+    let quoted = matn
+    if (blocks.matn_quoted) {
+      const letters = (x: string) => x.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase()
+      if (letters(blocks.matn_quoted) !== letters(matn)) {
+        console.error(`${lang}: matn_quoted is not the stored matn letter for letter (P415)`); failed++; continue
+      }
+      quoted = blocks.matn_quoted
+    }
+
     const body = buildCaptionBody({
       // text_english carries the per-language matn so buildCaptionBody quotes
       // the right one; text_display is left unset so it cannot win over it.
       row: {
-        text_english: matn,
+        text_english: quoted,
         text_arabic: row.text_arabic,
         collection: row.collection,
         hadith_number: row.hadith_number,

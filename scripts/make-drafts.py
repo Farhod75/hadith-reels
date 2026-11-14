@@ -64,8 +64,9 @@ def letters(s):
     return ''.join(ch for ch in s.lower() if ch.isalnum())
 
 
-def quote_dialogue(parts, matn, lang):
-    """P414: quote only the spoken parts of a dialogue matn."""
+def quote_dialogue(parts, matn, lang, caption=False):
+    """P414: quote only the spoken parts of a dialogue matn. caption=True (P415): the caption
+    convention - guillemets in every language, the period inside them in EN (lib/caption.ts)."""
     if not parts or any(len(p) != 2 or p[0] not in ('q', 't') for p in parts):
         raise ValueError('%s: dialogue must be [["q"|"t", text], ...]' % lang)
     if not any(k == 'q' for k, _ in parts):
@@ -77,7 +78,9 @@ def quote_dialogue(parts, matn, lang):
     for kind, text in parts:
         t = strip_inner_quotes(text)
         if kind == 'q':
-            if lang == 'en':
+            if lang == 'en' and caption:
+                piece = u'\u00ab' + t + u'\u00bb'
+            elif lang == 'en':
                 piece = '"' + t + '"'
             else:
                 end = t.endswith('.')
@@ -102,10 +105,16 @@ def build_draft(leadin, matn, block, lang):
             'C: ' + block['title'].strip()]
 
 
-def caption_blocks(setfile):
+def caption_blocks(setfile, row=None):
+    """P415: a dialogue set also carries matn_quoted, the matn quoted per speaker, which
+    build-caption.ts uses instead of wrapping the whole matn in one pair of guillemets."""
+    langs = {}
+    for l, b in setfile['langs'].items():
+        langs[l] = {'title': b['title'].strip(), 'moral': b['moral'].strip()}
+        if b.get('dialogue') and row is not None:
+            langs[l]['matn_quoted'] = quote_dialogue(b['dialogue'], row[COLS[l]], l, caption=True)
     return {'hadith_number': setfile['number'], 'id': setfile['library_id'], 'style': 'adults',
-            'langs': {l: {'title': b['title'].strip(), 'moral': b['moral'].strip()}
-                      for l, b in setfile['langs'].items()}}
+            'langs': langs}
 
 
 def _row(library_id):
@@ -163,7 +172,7 @@ def main(argv=None):
         io.open(paths[lang], 'w', encoding='utf-8', newline='').write(N.join(lines) + N)
         assert io.open(paths[lang], encoding='utf-8', newline='').read() == N.join(lines) + N
     cap = os.path.join(REPO, 'out', 'caption-%s.json' % s['number'])
-    io.open(cap, 'w', encoding='utf-8').write(json.dumps(caption_blocks(s), ensure_ascii=False, indent=2) + '\n')
+    io.open(cap, 'w', encoding='utf-8').write(json.dumps(caption_blocks(s, row), ensure_ascii=False, indent=2) + '\n')
     print('\nwrote %d drafts + %s' % (len(drafts), os.path.relpath(cap, REPO)))
     for lang in drafts:
         r = subprocess.run([sys.executable, os.path.join(HERE, 'lint-content.py'), paths[lang], '--lang', lang,

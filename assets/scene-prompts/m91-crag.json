@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab25a63/eV3Yfo5hctHe2TEuC-vWZ_output.mp4",
+    "name":  "m91-crag",
+    "image":  "out\\refs\\m91-crag-3.jpg",
+    "file":  "out\\backgrounds\\new\\m91-crag.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-13T21:53:40.7683530Z",
+    "size_bytes":  29575419,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Slow upward tilt from the small tents below to the top of the crag, the shadow stays still, light heat haze, no people.",
+    "request_id":  "01a1d6e6-eda1-7550-9fdd-bb867ae3a73c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-13T21:59:20.2965139Z",
+    "mode":  "image-to-video"
+}

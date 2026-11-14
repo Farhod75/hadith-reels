@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-pool",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a small still pool of perfectly clear water in a simple stone basin in a sunlit oasis courtyard, the calm mirror-like surface reflecting the bright blue sky and green palm fronds above, a few fallen date-palm leaves at the edge, soft morning light, clean and pure, no people, no buildings in view, serene and bright.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d6cb-a4cf-72c2-a30d-051e68c6951f",
+    "submitted_utc":  "2026-11-13T21:23:52.1511300Z",
+    "completed_utc":  "2026-11-13T21:24:05.3873059Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-pool-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25998/2TeOsVEWARgWCdoYpxY66_B9BZ03GW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-pool-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25998/WE8zGOQJKPuQqc1hM9lON_1k7CG69k.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-pool-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25998/DWQH43-Wva22BLcAqH2gm_3SPBYSp8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  290018114
+}

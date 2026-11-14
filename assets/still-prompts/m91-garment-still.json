@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-garment",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, close view of a folded length of plain unstitched white cotton cloth, a simple wrap garment with no collar, no buttons, no sleeves and no seams, lying beside a pair of hand-made leather sandals with a thick sole and a single wide leather strap across the foot, on a woven palm-leaf mat, soft morning light from the side, earthen floor, 7th-century Arabian, no people, no hands, no modern clothing, warm and bright.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d6c8-cb33-7583-a30f-dcb0be93de6d",
+    "submitted_utc":  "2026-11-13T21:20:45.5223804Z",
+    "completed_utc":  "2026-11-13T21:20:54.1022308Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-garment-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25985/tjfhAbXhvS2En2CFOvqtl_gV8SaNTR.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-garment-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25985/a_QZuKJFCL4s0ZQX28JsX_IWilKaYG.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-garment-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25985/k-4RyXCBTXW58envmDQN2_qsn3QgHZ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  547239334
+}

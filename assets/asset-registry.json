@@ -2397,6 +2397,69 @@
       "verified": true,
       "notes": "RAW take, not for use on its own (P141): a gust passes but the footprints stay; source of t1987-sand.mp4. Jami' at-Tirmidhi #1987, Abu Dharr - 'Fear Allah wherever you are, follow a bad deed with a good one and it will erase it, and treat people with good character.' MODE B, no people, no hands, bright daylight, no moon. Six clips measured after narration (P393); operator picks 2026-11-11: valley-1, alone-3, sand-2, gate-1, mat-1, bread-2.",
       "prompt_sidecar": "assets/scene-prompts/t1987-sand-raw2.json"
+    },
+    "m91-court.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (court-2) -> Kling 3.0 Pro i2v 10s. A 7th-century Madinah courtyard, mud-brick walls, palm-trunk beams, morning; slow forward dolly - the isnad lead-in. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-court.json"
+    },
+    "m91-mote.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (mote-2) -> Kling 3.0 Pro i2v 10s. Dust specks glittering in a single sunbeam in a mud-brick room - an atom's weight of pride. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-mote.json"
+    },
+    "m91-garment.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (garment-slide-2) -> Kling 3.0 Pro i2v 10s. Slide sandals, one broad strap across the foot, open toe. History, operator review 2026-11-13: garment-2's sandals were not a left/right pair; a Kontext edit and then a mirrored copy made them a pair, but the toe-loop design itself could not be worn (no loop for the big toe). Re-generated with a wearable design; frame-checked: the pair holds through the clip. Folded unstitched white cloth and a pair of leather sandals on a palm-leaf mat - his garment good and his sandal good. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-garment.json"
+    },
+    "m91-garden.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (garden-2) -> Kling 3.0 Pro i2v 5s. A bright oasis garden, palms, pomegranate blossom, a stream - Allah is beautiful and loves beauty. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-garden.json"
+    },
+    "m91-crag.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (crag-3) -> Kling 3.0 Pro i2v 10s. A tall crag above humble tents, upward tilt - pride: rejecting the truth and belittling people. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-crag.json"
+    },
+    "m91-pool.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (pool-2) -> Kling 3.0 Pro i2v 10s. A still clear pool reflecting sky and palms, one ripple - moral: check your heart, ask Allah to cleanse it. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-pool.json"
+    },
+    "m91-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (door-1) -> Kling 3.0 Pro i2v 10s. An open door of a mud-brick house onto a sunlit lane, forward dolly - moral: greet first the one you would pass by. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
+      "prompt_sidecar": "assets/scene-prompts/m91-door.json"
     }
   }
 }

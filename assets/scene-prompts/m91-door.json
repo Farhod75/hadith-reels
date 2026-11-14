@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab25aae/ZKQxzU-WAsTV7GtdxG-wk_output.mp4",
+    "name":  "m91-door",
+    "image":  "out\\refs\\m91-door-1.jpg",
+    "file":  "out\\backgrounds\\new\\m91-door.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-13T22:06:13.9993440Z",
+    "size_bytes":  36030145,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Slow forward dolly through the open doorway toward the sunlit lane, light dust floats in the warm light, the palm sways gently, no people.",
+    "request_id":  "01a1d6f2-6bf5-7260-8204-3a59c184a38e",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-13T22:11:55.1232098Z",
+    "mode":  "image-to-video"
+}

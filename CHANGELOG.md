@@ -1,3 +1,17 @@
+## [2026-11-13b] - Muslim #91 set rendered; caption quotes per speaker (P415)
+
+### Fixed
+
+- **build-caption.ts / make-drafts.py:** a dialogue matn is quoted per speaker in the caption too (P415).
+
+### Added
+
+- **Muslim #91 (pride) assets:** seven scenes m91-court, mote, garment, garden, crag, pool, door registered
+  (Kling 3.0 Pro), still and scene prompt sidecars. The garment scene was redone three times on the operator's
+  review: the sandals were not a pair, then not wearable; final: slide sandals with one broad strap.
+
+---
+
 ## [2026-11-13a] - make-drafts: dialogue matns quoted per speaker (P414)
 
 ### Fixed

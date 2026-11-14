@@ -85,3 +85,13 @@ def test_dialogue_reaches_the_s_block():
     lines = md.build_draft("X narrated that the Prophet ﷺ said:", EN91, dict(BLOCK, dialogue=EN91_PARTS), "en")
     assert lines[0].startswith('S: X narrated that the Prophet ﷺ said: "He who has')
     assert ' A man said: "A man loves' in lines[0]
+
+
+def test_caption_quotes_each_speaker_in_guillemets_p415():
+    out = md.quote_dialogue(EN91_PARTS, EN91, "en", caption=True)
+    assert out.startswith(u"\u00abHe who has") and u'Paradise.\u00bb A man said: \u00abA man loves' in out
+    blocks = md.caption_blocks({"number": "91", "library_id": "x",
+                                "langs": {"en": dict(BLOCK, dialogue=EN91_PARTS)}}, {"text_english": EN91})
+    assert blocks["langs"]["en"]["matn_quoted"] == out
+    assert "matn_quoted" not in md.caption_blocks({"number": "1", "library_id": "x",
+                                                   "langs": {"en": BLOCK}}, {"text_english": "x."})["langs"]["en"]

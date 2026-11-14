@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-court",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a quiet courtyard of a 7th-century Madinah house in bright morning light: sun-dried mud-brick walls, a roof of palm-trunk beams and palm-frond thatch, a date palm in the corner, soft golden light, clean swept earth floor, clear blue sky, no people, peaceful, warm and bright.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d6c4-f2e7-7772-9164-a30f0ef3adf2",
+    "submitted_utc":  "2026-11-13T21:16:33.5077921Z",
+    "completed_utc":  "2026-11-13T21:16:42.1051165Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-court-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596c/o93sCTpqsG39ck4gt_GAb_fSAWhQfw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-court-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596c/-xn71BKjswaFY-aiGkN8c_tnwuDhjy.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-court-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596c/qZK4hdzLsieByqo7rdsW1_9ixlvWe8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1009899700
+}

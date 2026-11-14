@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a simple wooden door of a mud-brick house standing wide open onto a narrow sunlit lane of an old Arabian town, warm morning light pouring through the doorway onto the earthen threshold, a date palm visible beyond, no people, welcoming, bright and hopeful.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d6c6-a609-76e2-8275-8fc681b5b722",
+    "submitted_utc":  "2026-11-13T21:18:24.9366845Z",
+    "completed_utc":  "2026-11-13T21:18:41.6976835Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25977/U2idgIehAAEWKtTm5x1zI_YJhnpgO9.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25977/pK7hF3u6ZokAMBDm-RaHy_FF4mucYA.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab25977/Ct2e_bOWdRuCnjj8Bsp3L_0o36EBcW.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  358259089
+}

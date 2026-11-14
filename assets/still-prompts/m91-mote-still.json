@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m91-mote",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Cinematic vertical 9:16 photoreal, a single shaft of warm sunlight entering a simple mud-brick room through a small high window, tiny specks of dust floating and glittering in the beam, the rest of the room in soft warm shade, plain earthen walls, no people, no furniture, contemplative, warm golden tones.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1d6c5-4d49-7af2-a0dc-57e1e08a240f",
+    "submitted_utc":  "2026-11-13T21:16:56.6836125Z",
+    "completed_utc":  "2026-11-13T21:17:05.2810444Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m91-mote-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596e/cuHYpe25FBXQ2Zf4CaPEH_nT3dyqzy.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m91-mote-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596e/cviTPh2BHM7Q6zpmpYSNT_7w9zavL1.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m91-mote-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2596e/gPumN0l1q5KlKig5hFveu_oAwi3m8K.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1709777650
+}
