@@ -16547,3 +16547,27 @@ untouched. Test +1; scripts/lib 265 passed; tsc clean. #91's four captions rebui
 **Status:** FIXED
 
 ---
+
+## PATTERN 416: a typo in the stored translation passed every gate and reached a published caption
+
+**Date:** 2026-11-13  **Repo:** hadith-reels  **Severity:** content (a misspelled word in a published hadith text)
+
+**What happened.** Muslim #91's UZ translation in hadith_library read «оёғ кийими»; the word is «оёқ кийими»
+(footwear). The row was translated, read side by side and A/B-verified on 2026-11-06. From there every gate
+compares text with the stored matn letter for letter (P319, P414, P415) - so each one confirmed the typo
+faithfully: the draft, the narration, the UZ caption and Telegram post 255. Found on the read of the UZ
+platform text, after Telegram and before IG/FB, YouTube and TikTok.
+
+**Fix.** The DB row corrected (text_uzbek_cyrillic only, by id; matn_verified_at was NULL, so the P409
+binding had nothing to clear), out/set-91.json's dialogue piece, make-drafts --write --force, build-caption.ts
+(EN/RU/TJ captions byte-identical), platform-texts.py; TG 255's caption replaced with editMessageCaption (the
+video untouched). The UZ reel has no subtitles (P078); the narration was not re-checked for the word.
+
+**Lesson:** a letter-for-letter gate proves the text is the stored text, not that the stored text is right.
+
+**Tripwire:** none cheap - тоғ, боғ end in ғ legitimately. The translation read at library entry is the gate,
+and the platform-text read is a second one: read UZ/TJ as text, not as a diff.
+
+**Status:** FIXED (row 91); no automated check
+
+---

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-345 patterns in 358 entries, frontier **P415**. The P-sequence is shared with
+346 patterns in 359 entries, frontier **P416**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -406,5 +406,6 @@ BEFORE changing it.
 - **P413** - a screening stamp outlived the Arabic it screened
 - **P414** - a dialogue matn was quoted whole after "the Prophet said:"
 - **P415** - the caption quoted the dialogue matn whole after P414 fixed the subtitles
+- **P416** - a typo in the stored translation passed every gate and reached a published caption
 
-<!-- pattern-index-stamp entries=358 patterns=345 frontier=415 sha1=56c72c7ff46227073dad4343ccc3fd85dce5de18 -->
+<!-- pattern-index-stamp entries=359 patterns=346 frontier=416 sha1=64349049e8c273d68b0aebf091b9e6a3e4daeee2 -->

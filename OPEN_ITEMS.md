@@ -190,6 +190,13 @@ this one wins.
   (`fal-ai/flux-pro/kontext`, image_url + prompt, sidecar under assets/still-prompts); it ran once as
   out/explain-src/edit1987.ps1. (2) generate-image.ps1 and generate-scene.ps1 refusing a `-Name` whose
   prefix is not the set's collection (b Bukhari, m Muslim, t Tirmidhi, ad Abu Dawud, ij Ibn Majah).
+- **Muslim #91 - PUBLISHED 2026-11-13 (R234-R237, TG 253-256); library 8474d16e.** UZ «оёғ кийими» ->
+  «оёқ кийими» corrected in the DB at publish and TG 255's caption edited (P416). Listen for #91 waits for the
+  operator's yes. The UZ narration was rendered from the uncorrected text - not re-checked for this word.
+- **Uncovered-topics queue (operator 2026-11-13; chosen with the view analytics in mind - personal stakes
+  with a named consequence).** Next, in order: Bukhari #31 (two Muslims meeting with swords; a dialogue matn,
+  P414 support ready), Bukhari #6724 (suspicion, 9b90e5b4), then a Hajj topic (only R004 TJ and R005 RU so far,
+  one language each; #1521 Hajj mabrur still has the UZ/TJ fix below). Check reel-tracker.md before each pick.
 - **Muslim #2564 - PUBLISHED 2026-11-09 (R222-R225, TG 240-243); library 8eeb6788.** Listen published (4).
 - **Bukhari #6405 - PUBLISHED 2026-11-09 (R218-R221, TG 236-239); library f31cd2b7.** Next: Muslim #2564
   (EN rendered 2026-11-09, TG on the operator's command; RU/UZ/TJ to narrate and render). Listen for #6405 waits

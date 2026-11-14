@@ -1,3 +1,17 @@
+## [2026-11-13c] - Muslim #91 published (R234-R237); UZ translation typo (P416)
+
+### Fixed
+
+- **hadith_library #91 (UZ):** «оёғ кийими» -> «оёқ кийими». Set file, drafts, captions and platform texts
+  rebuilt; Telegram post 255's caption edited (P416).
+
+### Docs
+
+- reel-tracker.md: R234-R237, duplicate index, theme coverage, bed and scene usage, stats, change log.
+- reel-retro.md: R234-R237. OPEN_ITEMS.md: #91 published; the uncovered-topics queue (#31, #6724, Hajj).
+
+---
+
 ## [2026-11-13b] - Muslim #91 set rendered; caption quotes per speaker (P415)
 
 ### Fixed

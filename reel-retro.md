@@ -1357,3 +1357,48 @@ Rendered 2026-11-02/03 and held until the operator said «публикуй #223�
 **Operator corrections of the assistant: 1.** The scene numbers on the contact sheet (1.2, 2.2) did not match anything in the folder - he could not find the files; answered with the file names.
 
 **The finding:** when the words say something vanishes, make the vanishing out of two pictures, not one prompt.
+
+## R234-R237 - Sahih Muslim #91 - 2026-11-13
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok
+
+**Caught before publish**
+
+- The matn is a dialogue. S quoted all of it after "the Prophet said:", so the man's question sat inside
+  the Prophet's words (P414). The caption path carried the same defect on its own (P415), found on the read
+  of the EN caption.
+- The garment scene, three times, all found by the operator: the sandals were not a pair; the left toe
+  opening was too wide (Kontext changed nothing, the still was mirrored); both had toe loops no foot could
+  wear. Final: slide sandals, one broad strap, open toe.
+- UZ moral «ва индамай ўтиб кетадиган» -> «ва олдидан индамай ўтиб кетадиган» (operator); UZ re-narrated.
+- stt-validate HIGH on EN and RU (Whisper's lead-in, missing quotation marks, typos); SRTs fixed against
+  the drafts, 0 high on re-run.
+- Scene count planned from total lengths; the operator asked whether the text had been measured. Slots
+  measured per language -> seven scenes.
+
+**Escaped to publish**
+
+- UZ «оёғ кийими» (for «оёқ кийими») from the stored translation, in the UZ Telegram caption (TG 255).
+  Caught at the platform-text read before the other platforms; corrected everywhere and the TG caption
+  edited (P416). The UZ narration came from the same text and was not re-checked for the word.
+
+**Root causes**
+
+- Every gate after library entry checks text against the stored matn; none checks the stored matn.
+- Generated objects were checked for symmetry, not for whether they could be used.
+
+**Prevention landed**
+
+- P414, P415 (dialogue quoting in drafts and captions). P416 recorded.
+
+**Prevention deferred**
+
+- No automated UZ/TJ spelling check; the side-by-side read at library entry stays the gate.
+- Review line for object scenes: could a person use this as drawn?
+
+**Operator corrections of the assistant: 7** - topic picks twice (#6307 already shipped; #7936 flagged
+DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ moral wording.
+
+**The finding:** a letter-for-letter gate proves the text is the stored text, not that it is right.
+
+---
