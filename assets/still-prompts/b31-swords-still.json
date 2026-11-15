@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-swords",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, low-angle close-up of two swords lying crossed blade over blade on rippled sand; each is a straight double-edged early Arab sword (saif) of the 7th century: long straight iron blade with no curve, simple short iron crossguard, grip wrapped in dark leather, plain round pommel - not a curved scimitar. Deep red-orange dusk sky with dark heavy clouds, a hard glint of last light along the steel, fine dust lifting in the wind. Heavy, ominous, foreboding. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03b-2993-7532-bd32-e9ccb8ac49de",
+    "submitted_utc":  "2026-11-15T17:22:16.6923373Z",
+    "completed_utc":  "2026-11-15T17:22:41.4002117Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-swords-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976f/upI7F1ktBfpKx7rW16O0I_Xx7qCz3A.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-swords-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976f/R86XcThBv0ALRaqPqk_3-_c25VjRgV.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-swords-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976f/qiCMdAG16UGgXwUaAHExw_gEkTP0g4.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  25751140
+}

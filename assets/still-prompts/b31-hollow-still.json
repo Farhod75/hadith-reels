@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-hollow",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a shallow hollow between low desert dunes at cold first light; wind lifts thin veils of dust across the empty ground, a single dry thorn bush bends in the gusts, heavy grey-blue sky with a pale sun smothered behind haze. The silence before a storm. Mood: anxiety, dread, foreboding - something bad is coming. No people, no feet, no legs, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no tyre tracks, no roads.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e04b-80f3-7201-99b1-dcef8a5f950c",
+    "submitted_utc":  "2026-11-15T17:40:07.2621077Z",
+    "completed_utc":  "2026-11-15T17:40:15.9118391Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-hollow-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297d9/nIXYTTSebSHxvjxqOSy5d_XQliJNzT.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-hollow-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297d9/OUM_yY9RusqoQCTmT5bLT_x5gxc4g4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-hollow-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297d9/UAhtkjroQ6bA90hBn8JBV_P8xkxRZe.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1236114230
+}

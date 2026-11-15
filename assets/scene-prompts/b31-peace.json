@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab298cb/JBZlLKzIU7VwshpOjq36d_output.mp4",
+    "name":  "b31-peace",
+    "image":  "out\\refs\\b31-peace-2.jpg",
+    "file":  "out\\backgrounds\\new\\b31-peace.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T18:13:07.5602497Z",
+    "size_bytes":  37564813,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Bright morning sunlight grows and floods through the open door into the room, the palm fronds and the bougainvillea in the courtyard sway gently in a light breeze, warm light spreads over the water jug, the two cups and the dates. The door, the jug, the cups and the dates stay perfectly still and in place. Relief, joy, warmth, reconciliation. A slow gentle push-in toward the light. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e069-b773-7082-978a-5240c2464b1c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T18:22:17.0597619Z",
+    "mode":  "image-to-video"
+}

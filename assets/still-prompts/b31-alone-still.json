@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-alone",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a single sword lying alone and small in the frame on a wide empty dune, a straight double-edged early Arab sword (saif) of the 7th century: long straight iron blade with no curve, simple short iron crossguard, grip wrapped in dark leather, plain round pommel - not a curved scimitar; the wind blows thin streams of sand across the blade and is slowly burying it. Overcast pale sky, muted desaturated colours, vast empty space around it. Desolate, lonely, a sense of loss. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03b-a710-7e83-b8bf-62dfc24da205",
+    "submitted_utc":  "2026-11-15T17:22:48.8237828Z",
+    "completed_utc":  "2026-11-15T17:23:38.0730160Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-alone-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29775/gSiMnzfvu5909ZRVv1ogk_1fHSLhD8.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-alone-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29775/SyVV-gF-GCmusZ_W49SJ7_P3hYQTiM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-alone-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29775/UfZx_GGthkLbohfBUlvQ3_OKOuzNTg.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  81334913
+}

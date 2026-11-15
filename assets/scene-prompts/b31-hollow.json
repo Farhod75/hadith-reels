@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2980b/3QhpssDJ_s-PMpqC-R1kq_output.mp4",
+    "name":  "b31-hollow",
+    "image":  "out\\refs\\b31-hollow-2.jpg",
+    "file":  "out\\backgrounds\\new\\b31-hollow.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T17:43:38.3295437Z",
+    "size_bytes":  26972999,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Gusts of wind sweep across the hollow, the dry thorn bush bends and shudders, veils of dust race low over the ground and twist, the pale sun sinks deeper into the grey haze and the light grows colder. Anxious, uneasy, the dread before a storm. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e04e-b7cb-7850-ba9b-2737581f28b2",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T17:49:58.0640595Z",
+    "mode":  "image-to-video"
+}

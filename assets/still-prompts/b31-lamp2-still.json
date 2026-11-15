@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-lamp2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, seen from the side at eye level, an early Islamic clay slipper oil lamp of the 7th century: a low, flat-bottomed lamp of plain reddish terracotta about the size of a palm, pear-shaped when seen from above, with a short spout at the narrow end, a round filling hole with a raised rim on top, and a small knob handle at the back; it is low and flat - not a jug, not a teapot, not a vase, no tall body, no other openings, standing on a plain clay shelf in a dark quiet room; one small flame burns at the tip of the spout, perfectly still and upright; a soft warm glow on a rough plaster wall. Calm and introspective - the heart settling. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e040-492c-7610-a2b9-7ebb39bfa10f",
+    "submitted_utc":  "2026-11-15T17:27:52.4338438Z",
+    "completed_utc":  "2026-11-15T17:28:00.7784504Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-lamp2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978f/bfX2OFHB86K0WSgujPn8m_w6WTFSO5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-lamp2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978f/R3dTNce-NUFLbBIf_0A2w_e3eyqtOB.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-lamp2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978f/YA-wEYrs7XzwC9z-7gDfl_OL2pmpfA.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1251044083
+}

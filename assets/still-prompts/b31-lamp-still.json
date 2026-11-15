@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-lamp",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a small early Islamic terracotta oil lamp of the 7th century: pointed oval body, large filling hole with a raised rim, a channel running to the nozzle, a small conical handle, plain reddish clay, standing on a plain clay shelf in a dark quiet room; its single small flame burns perfectly still and upright, a soft warm glow on a rough plaster wall. Calm and introspective - the heart settling. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03d-472a-7f01-9540-84238154ad60",
+    "submitted_utc":  "2026-11-15T17:24:35.3228541Z",
+    "completed_utc":  "2026-11-15T17:24:45.4169699Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-lamp-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2977c/gQEgKX_4Qc8G9u52lxpaG_j8k6RRJm.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-lamp-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2977c/WvgEBXALO1vdUnV-XtraF_ZyJA3Vyg.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-lamp-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2977c/-ee5ZHnVGTE86Ui--12u5_f9zP7jXl.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  200304097
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-scabbard",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an empty plain dark-leather sword scabbard lying dropped and abandoned on the sand at dusk, its leather strap trailing loose, the wind drifting fine sand into its open mouth; the dune behind it falls away to a darkening horizon under a deep red-violet afterglow. Mood: bitterness, regret, despair - a loss that cannot be undone. No people, no feet, no legs, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no tyre tracks, no roads.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e04b-c40f-7cd2-a06a-e8b2276b8bba",
+    "submitted_utc":  "2026-11-15T17:40:24.6756721Z",
+    "completed_utc":  "2026-11-15T17:40:33.0468765Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-scabbard-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297db/Qp8vjuv5rdFj5r51oLnNN_cTTtURj4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-scabbard-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297db/ss_CvwIN_inV4M7fO-lTl_GGUrHwfb.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-scabbard-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab297db/gBbJ7TiMTsRC1KaG6bLaj_rTB3oru8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1429543731
+}

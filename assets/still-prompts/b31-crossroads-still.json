@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-crossroads",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, two narrow footpaths crossing a vast empty desert plain, running toward each other and meeting at one point in the middle distance, at first light; cold blue-grey air, a thin haze of dust, the low sun just breaking the horizon right behind the meeting point. Quiet, uneasy stillness - the feeling that something is about to happen. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03a-e2c3-7be2-84c4-0afbfadfc6a3",
+    "submitted_utc":  "2026-11-15T17:21:58.2825267Z",
+    "completed_utc":  "2026-11-15T17:22:06.9660043Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-crossroads-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976c/PYaU8h1fl3P--SbWPaMaW_2j9vzvyK.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-crossroads-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976c/Gaczhq3SkzeCuW_ZK_vRj_KdAArqNO.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-crossroads-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2976c/ITHubwyy6w3fi9IHc_9UB_bYfzxNdw.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  221727670
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-drawn2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, close-up on a woven palm-fibre mat in a dim mud-brick room: one sword resting in its plain dark leather scabbard with the blade pulled halfway out, so the upper half of the straight steel blade is bare and the lower half is still inside the scabbard; the sword is a straight double-edged early Arab sword (saif) of the 7th century: long straight iron blade with no curve at all, simple short iron crossguard, grip wrapped in dark leather, plain round pommel - not a curved scimitar, not a sabre. Beside it an early Islamic clay slipper oil lamp of the 7th century: a low, flat-bottomed lamp of plain reddish terracotta about the size of a palm, pear-shaped when seen from above, with a short spout at the narrow end, a round filling hole with a raised rim on top, and a small knob handle at the back; it is low and flat - not a jug, not a teapot, not a vase, no tall body, no other openings, a small flame burning at the tip of its spout. Flickering light, harsh moving shadows. Tense and restless, like a held breath. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03f-bf6f-7741-a749-2d58554dbc9a",
+    "submitted_utc":  "2026-11-15T17:27:17.1309518Z",
+    "completed_utc":  "2026-11-15T17:27:25.5202644Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-drawn2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978c/bhEgNNg76K55lMtfcm81O_i7De9laH.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-drawn2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978c/lFgKF3nNcexz0vNIUEzJ5_NwaqGhKd.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-drawn2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978c/FT9CTDNO2FLJxAtlOK-q8_n6GmIhHm.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  951181349
+}

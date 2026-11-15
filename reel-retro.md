@@ -1402,3 +1402,42 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** a letter-for-letter gate proves the text is the stored text, not that it is right.
 
 ---
+
+## R238-R241 - Sahih al-Bukhari #31 - 2026-11-15
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok
+
+**Caught before publish**
+
+- Stills reviewed before any Kling spend: swords drawn as curved sabres (2 of 3), a sword drawn as a dagger, lamps
+  drawn as jugs and one with an obscene-looking opening, the half-drawn sword not in its scabbard - all rejected or
+  re-prompted with 7th-century references (straight saif, clay slipper lamp).
+- Two concepts dropped after two tries each: converging footpaths (parallel boardwalks, then tyre tracks) and
+  footprints meeting (feet and legs appeared). Replaced by a windswept hollow and an abandoned scabbard.
+- Tea at the reconciliation scene replaced by water - no tea in 7th-century Arabia.
+- stt-validate HIGH on EN (missing quotes) and RU (lead-in garbled, typos «стремиться», «примеряет»); SRTs fixed.
+- UZ moral wording corrected by the operator before narration; TJ H aligned to the lead-in's «Абӯбакра».
+
+**Escaped to publish**
+
+- b31-swords: a red light runs along one blade from ~6 s; visible at the end of the UZ slot (8 s). Flagged to the
+  operator before Telegram and published as is.
+
+**Root causes**
+
+- FLUX does not draw two things converging toward each other, and adds people to footprint scenes.
+- generate-scene.ps1 reports a network failure as "check FAL_KEY is valid and has credits".
+
+**Prevention landed**
+
+- Standing scene direction: each clip names its feeling, objects come from internet references (OPEN_ITEMS).
+
+**Prevention deferred**
+
+- generate-scene.ps1: tell a network error from an auth/credit error.
+
+**Operator corrections of the assistant: 1** - the UZ moral wording.
+
+**The finding:** checking stills before Kling is where the money is saved - every defect this set was caught there.
+
+---

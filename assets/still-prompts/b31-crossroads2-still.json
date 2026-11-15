@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-crossroads2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, high view over an empty desert plain at first light: two narrow worn dirt footpaths of trodden earth and pebbles, one entering from the lower left corner and one from the lower right corner, run diagonally toward each other and join at a single point in the middle distance, forming a V. No planks, no boardwalk, no paved road. Cold blue-grey air, a thin haze of dust, the low sun on the horizon just beyond the meeting point. Quiet, uneasy stillness - the feeling that something is about to happen. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03f-747c-7962-a960-a9db68d516ab",
+    "submitted_utc":  "2026-11-15T17:26:57.8257674Z",
+    "completed_utc":  "2026-11-15T17:27:06.4215104Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-crossroads2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978a/4yrR_kDTFd7MvhfmBM0a0_8PXjABKF.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-crossroads2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978a/-9mUMrPhrT2hkab0U1H80_vpRBoEjC.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-crossroads2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2978a/HaaRXhHoWYctP9d_2846n_qaUsIU1C.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1983568936
+}

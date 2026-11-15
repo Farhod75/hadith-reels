@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab29897/nVQOeFSqb8vHuZr51uN-O_output.mp4",
+    "name":  "b31-lamp",
+    "image":  "out\\refs\\b31-lamp2-1.jpg",
+    "file":  "out\\backgrounds\\new\\b31-lamp.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T18:07:42.9545825Z",
+    "size_bytes":  24005746,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The small flame at the tip of the lamp\u0027s spout trembles once, then settles and burns perfectly still and upright, the warm glow on the plaster wall steadies and softens. The lamp stays in place. Calm, humility, a heart becoming still. Static camera, no movement. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e064-c361-7900-99f5-5fd82d039f93",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T18:13:05.8352825Z",
+    "mode":  "image-to-video"
+}

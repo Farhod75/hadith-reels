@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab29850/FvclTsThGUoZPoK75KuDL_output.mp4",
+    "name":  "b31-alone",
+    "image":  "out\\refs\\b31-alone-2.jpg",
+    "file":  "out\\backgrounds\\new\\b31-alone.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T17:55:47.7164118Z",
+    "size_bytes":  27478071,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The wind blows thin streams of sand over the lone sword and slowly buries it, the grey overcast sky hangs heavy and still, the empty dunes stretch away. The sword stays in place. Sorrow, loneliness, grief. Static camera, a very slow pull-back that leaves the sword smaller in the emptiness. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e059-d941-7020-b680-2f54a3d9f709",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T18:01:24.0673292Z",
+    "mode":  "image-to-video"
+}

@@ -1,3 +1,17 @@
+## [2026-11-15] - Bukhari #31 published (R238-R241)
+
+### Added
+
+- **Bukhari #31 assets:** seven scenes b31-hollow, swords, alone, drawn, scabbard, lamp, peace registered (Kling 3.0 Pro),
+  still and scene prompt sidecars, including the rejected stills (crossroads, crossroads2, steps, steps2).
+
+### Docs
+
+- reel-tracker.md: R238-R241, new theme Brotherhood / Fitna, duplicate index, bed and scene usage, stats, change log.
+- reel-retro.md: R238-R241. OPEN_ITEMS.md: #31 published, Listen #91 published, the feeling-per-clip scene direction.
+
+---
+
 ## [2026-11-13c] - Muslim #91 published (R234-R237); UZ translation typo (P416)
 
 ### Fixed

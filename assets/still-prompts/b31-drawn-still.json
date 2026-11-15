@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b31-drawn",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a dim mud-brick room, a sword half drawn out of its plain leather scabbard lying on a woven palm-fibre mat, a straight double-edged early Arab sword (saif) of the 7th century: long straight iron blade with no curve, simple short iron crossguard, grip wrapped in dark leather, plain round pommel - not a curved scimitar; beside it a small early Islamic terracotta oil lamp of the 7th century: pointed oval body, large filling hole with a raised rim, a channel running to the nozzle, a small conical handle, plain reddish clay, burning with a flickering flame that throws harsh moving shadows. Tense and restless, like a held breath. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e03c-819e-7992-9503-bd63473b3abc",
+    "submitted_utc":  "2026-11-15T17:23:44.7574559Z",
+    "completed_utc":  "2026-11-15T17:24:09.4823635Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b31-drawn-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29778/jFaIrmqkJlYV7cqbsTMO7_8rY1AQ21.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b31-drawn-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29778/ilCQHnIlVbCPvL4-QjvxK_1UuuscOk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b31-drawn-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29778/AuJzzAcU7PTh9dSAr-hwS_YXw49oFy.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  195648637
+}

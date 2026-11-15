@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2990c/53Fj2FmD1JIwP5G8CVmFH_output.mp4",
+    "name":  "b31-scabbard",
+    "image":  "out\\refs\\b31-scabbard-2.jpg",
+    "file":  "out\\backgrounds\\new\\b31-scabbard.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T18:23:38.5038721Z",
+    "size_bytes":  27676481,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The wind drifts fine sand into the open mouth of the abandoned scabbard and over its loose strap, the red-violet afterglow slowly fades toward night over the dunes. The scabbard stays in place. Bitterness, regret, despair, a loss that cannot be undone. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e073-5830-7ab1-8106-90324d9ae794",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T18:33:15.8682721Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab29874/VZp43FtxjYq66cGG2wstz_output.mp4",
+    "name":  "b31-drawn",
+    "image":  "out\\refs\\b31-drawn2-3.jpg",
+    "file":  "out\\backgrounds\\new\\b31-drawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T18:01:26.1964111Z",
+    "size_bytes":  26488213,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The small flame at the spout of the clay lamp flickers nervously and jumps, harsh shadows twitch and stretch across the woven mat and the mud wall, light glints on the bare steel of the half-drawn blade. The sword, the scabbard and the lamp stay perfectly still and in place. Tension, hostility, a held breath. Static camera with a very slight unsteady drift. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e05f-038a-7592-bafb-aea1b4c2751c",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T18:07:17.9397728Z",
+    "mode":  "image-to-video"
+}

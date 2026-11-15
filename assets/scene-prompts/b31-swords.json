@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2982d/0ir-ngx3TzhDy-2f8JSuI_output.mp4",
+    "name":  "b31-swords",
+    "image":  "out\\refs\\b31-swords-1.jpg",
+    "file":  "out\\backgrounds\\new\\b31-swords.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T17:50:03.7175310Z",
+    "size_bytes":  31556658,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Dark storm clouds roll and thicken over the red sky, a hard red glint of light flares and slides along both blades, fine sand lifts and swirls around the crossed swords. The swords stay perfectly still, crossed, in place. Anger and menace, a building threat. Slow ominous push-in toward the crossing point of the blades. Keep every object exactly as in the image, nothing added or removed. No people, no feet, no hands, no faces, no blood, no moon, no text.",
+    "request_id":  "01a1e054-9963-7690-b730-570fcc357166",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T17:55:45.8776061Z",
+    "mode":  "image-to-video"
+}

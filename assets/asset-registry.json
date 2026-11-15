@@ -2460,6 +2460,69 @@
       "verified": true,
       "notes": "FLUX 2 still (door-1) -> Kling 3.0 Pro i2v 10s. An open door of a mud-brick house onto a sunlit lane, forward dolly - moral: greet first the one you would pass by. Sahih Muslim #91, Abdullah ibn Mas'ud - 'He who has an atom's weight of pride in his heart will not enter Paradise ... Allah is beautiful and loves beauty; pride is rejecting the truth and belittling people.' MODE B, no people, no hands, bright. Seven clips measured after narration (P393); picks approved by the operator 2026-11-13: court-2, mote-2, garment-2 (regenerated: the first garment stills showed modern collared shirts), garden-2, crag-3, pool-2, door-1. All seven frame-checked (start/mid/end).",
       "prompt_sidecar": "assets/scene-prompts/m91-door.json"
+    },
+    "b31-hollow.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. A desert hollow at cold dawn, gusts bend a thorn bush, dust, a smothered sun - anxiety (the lead-in). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-hollow.json"
+    },
+    "b31-swords.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. Two straight swords crossed in sand under a red storm sky - anger, threat. WATCH: from ~6 s a red light runs along one blade and reads as a glow at 9-10 s. Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-swords.json"
+    },
+    "b31-alone.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. One sword alone on the dunes, the wind buries it; gone by ~9.5 s - sorrow (the question about the killed). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-alone.json"
+    },
+    "b31-drawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. A sword half drawn from its scabbard beside a clay slipper lamp, flickering flame - tension ('he was eager to kill'). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-drawn.json"
+    },
+    "b31-scabbard.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. An abandoned scabbard in the sand at dusk, sand drifting in - despair (the killed man was not innocent). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-scabbard.json"
+    },
+    "b31-lamp.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. A clay slipper lamp, the flame settling still - calm, humility (watch the heart). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-lamp.json"
+    },
+    "b31-peace.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. An open door onto a bright courtyard, palm and bougainvillea, a water jug, two cups and dates - relief, reconciliation (no tea: not 7th-century Arabia). Sahih al-Bukhari #31, Abu Bakra - 'When two Muslims meet with their swords, the killer and the killed are both in the Fire ... he was eager to kill his companion.' MODE B, no people, no hands, no blood. Each clip carries the feeling of its words (operator 2026-11-15). Seven clips on measured slots (P393); stills picked 2026-11-15 (hollow-2, swords-1, alone-2, drawn2-3, scabbard-2, lamp2-1, peace-2). Sword and lamp from 7th-century references: straight double-edged saif, clay slipper lamp. All frame-checked (0.3/3/6/9.7 s).",
+      "prompt_sidecar": "assets/scene-prompts/b31-peace.json"
     }
   }
 }
