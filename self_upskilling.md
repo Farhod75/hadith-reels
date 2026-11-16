@@ -11,8 +11,8 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-11-08
-**Next due:** 2026-11-15
+**Last checked:** 2026-11-16
+**Next due:** 2026-11-23
 
 > **This date is now enforced.** `audit-docs.py` fails the push when it
 > passes (P332). Before that it was a line in a file that was missed three
@@ -41,7 +41,8 @@ section says whether it works for us.
 
 | Tool | Where to look | Last fetched | What it showed |
 |---|---|---|---|
-| Claude API / models | https://platform.claude.com/docs/en/release-notes/overview | 2026-11-08 | Entries since 10-30: Console IP allowlist (11-05), text watermark on Mythos 5 / Opus 4.7 / Sonnet 4.6 (11-03), message threads beta (11-02). No new model ids, deprecations, Batches or price changes. Fetched as overview.md (the HTML page is not reachable from the assistant) |
+| Claude API / models | https://platform.claude.com/docs/en/release-notes/overview | 2026-11-16 | npm (package.json vs `npm view`), Next.js, Kling/fal, ElevenLabs (news only, no paid probe) | Ran 1 day overdue - audit-docs failed the push on it again (P332). **npm behind:** next 16.4.5 vs 16.4.6 (bug-fix release 2026-11-09; the November security fixes are in 16.4.5, which we have); @playwright/test 1.65.0 vs 1.65.1 (patch); react 19.2.4 vs 19.3.1; @supabase/supabase-js 2.105.4 vs 2.119.0; @anthropic-ai/sdk 1.4.0 vs 1.9.0; @fal-ai/client 1.10.1 vs 1.11.0; remotion 4.0.460 vs 4.0.544; typescript 5 vs 7.0.2 (major). None upgraded unattended. **Kling 4.0 Flash** (cheaper, faster) reported on fal 2026-11-04 (kling/v4/flash) - add to the Kling 4.0 eval. **ElevenLabs Scribe v3** (speech-to-text) launched 2026-11-10 - a new lead for P078 (UZ/TJ subtitles); needs a probe, which is a paid call for the operator. Not verified: FLUX/BFL page, Claude API model list, Claude Code release notes. |
+| 2026-11-08 | Entries since 10-30: Console IP allowlist (11-05), text watermark on Mythos 5 / Opus 4.7 / Sonnet 4.6 (11-03), message threads beta (11-02). No new model ids, deprecations, Batches or price changes. Fetched as overview.md (the HTML page is not reachable from the assistant) |
 | Claude Code | https://code.claude.com/docs/en/hooks , https://code.claude.com/docs/en/settings | 2026-10-31 | Hook schema (event -> array of matcher groups); SessionStart stdout enters context; unknown/invalid entries are skipped (P334). Installed CLI here: 2.1.223 |
 | Claude Code settings schema | https://json.schemastore.org/claude-code-settings.json | referenced 2026-10-31 | Named by the settings docs as the published schema; `.claude/settings.json` now points `$schema` at it so VS Code validates |
 | Prompt practice (GenAI) | https://claude.com/blog/best-practices-for-prompt-engineering | earlier - see Practice section | Already used for the Practice section below |
