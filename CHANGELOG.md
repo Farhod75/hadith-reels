@@ -1,3 +1,17 @@
+## [2026-11-16b] - Agent publishing documented; Bukhari #1521 re-translated
+
+### Docs
+
+- reel-creation-pipeline.md: Publishing section 5 - agent publishing by Playwright (approval rule, upload folder,
+  selectors per platform, per-language covers on every platform).
+
+### Fixed
+
+- hadith_library #1521 (9f2f905f): EN without sunnah.com's bracketed additions; UZ/TJ no longer leave rafath and fusuq
+  as bare Arabic terms. A/B 4/4 pass before writing; operator approved. OPEN_ITEMS updated.
+
+---
+
 ## [2026-11-16] - Bukhari #6724 published (R242-R245)
 
 ### Added

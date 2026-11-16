@@ -296,7 +296,10 @@ this one wins.
     жазо бера олмайди» and TJ «Фарзанд ба падар ҷазо дода наметавонад» use «жазо/ҷазо»,
     which reads as PUNISHMENT in Uzbek and Tajik; «لا يجزي» here means "cannot repay".
     EN/RU are right. Needs a corrected proposal + A/B (paid) + operator approval.
-  - **Bukhari #1521** (9f2f905f, Hajj mabrur): UZ/TJ leave «рафас ва фусуқ» as bare
+  - **DONE 2026-11-16 - Bukhari #1521** re-translated (EN after HadeethEnc 2758, without the bracketed
+    additions; UZ «беҳаёлик ҳамда гуноҳ», TJ «суханони қабеҳ ... гуноҳ»; RU kept), A/B 4/4 pass on the proposed
+    text before writing (verify-candidates --from-json), UZ Latin derived; operator approved. Was:
+    (9f2f905f, Hajj mabrur): UZ/TJ leave «рафас ва фусуқ» as bare
     Arabic terms a viewer will not understand; EN is sunnah.com's text with bracketed
     additions ("(after Hajj free from all sins)", "with his wife"). Same path.
 - **DONE 2026-11-05: published fields corrected (P368, P371).** YouTube: " #Shorts" removed

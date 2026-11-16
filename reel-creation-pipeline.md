@@ -910,6 +910,47 @@ Then Everyone -> AI label **ON** -> clear the Cornelius location -> checks pass
 -> **Post**. **Reuse of content OFF** (TikTok Studio's single checkbox for Duet and
 Stitch, 2026-11-04) - same reason as Facebook's Remixing. Comments stay on.
 
+### 5. Agent publishing by Playwright (since 2026-11-16, first used on #6724)
+
+IG + FB, YouTube Shorts and TikTok can be published BY THE AGENT through the Playwright MCP server on the
+operator's PC (`mcp__remote-devices__playwright__*`), the same fields as the manual steps above, from
+`out/platform-<n>.md`. The Graph API (Instagram: app review + a public video URL) and the TikTok Content API
+(an unaudited client posts SELF_ONLY only) are not usable, so this is the route.
+
+**Approval.** The agent stops before every Publish / Share / Post button and waits for the operator's word
+(«опубликуй»), unless the operator has approved the rest of the set in one message. Logins are the operator's:
+he signs in once in the Playwright window; the sessions persist in its profile. The agent never types a password.
+
+**Files.** Uploads are accepted only from
+`C:\Users\Farhod\AppData\Local\AnthropicClaude\app-<version>\.playwright-mcp\upload\` - copy the reel and the
+cover there first. A native file dialog must be answered with `browser_file_upload` (a `setFiles` inside
+`run_code` leaves the MCP's own chooser pending); YouTube and TikTok have an `input[type=file]` that
+`setInputFiles` fills directly.
+
+**Per platform (selectors that worked on 2026-11-16):**
+
+- **Meta Business Suite** - `business.facebook.com/latest/reels_composer?asset_id=...`. «Добавить видео» -> file;
+  caption pasted into the single contenteditable with a synthetic `paste` event (keeps the line breaks);
+  **Миниатюра** -> «Выберите кадр» (slider 0-1000 over the video) or «Загрузить изображение» (cover file);
+  «Метки» is disabled when posting to FB and IG together - hashtags stay in the caption. Далее -> Далее -> share
+  step: uncheck «Автоматические субтитры», Remixing «Запретить», then «Поделиться» -> «Готово». Meta processes
+  and publishes on its own.
+- **YouTube Studio** - `studio.youtube.com/channel/<id>/videos/upload?d=ud`. Title and description are the two
+  `#textbox` fields (select all, then `insertText`); `VIDEO_MADE_FOR_KIDS_NOT_MFK` radio; Show more -> tags input
+  + Enter (count the chips: 15); Thumbnail -> Upload file (UZ/TJ cover) or Select from video; Next x3 ->
+  `PUBLIC` radio -> wait for «Checks complete» before Publish (otherwise YouTube warns "still checking").
+  **Never press Escape in the upload dialog** - it closes it (the draft survives under Content -> Shorts).
+- **TikTok Studio** - `tiktok.com/tiktokstudio/upload`. `input[type=file]`; the Draft.js description takes the
+  same synthetic paste; Show more -> uncheck «Reuse of content», check «AI-generated content» and confirm
+  «Turn on»; Edit cover -> a frame from the strip or «Upload cover» -> Save; Post (-> «Post now» if the music
+  check is still running). A new post sits under «Content under review / Only me» for a few minutes, then
+  turns Everyone.
+
+**Covers - every platform, a different one per language (operator 2026-11-16).** UZ and TJ upload
+`cover-<n>-<lang>.jpg` on all three. EN and RU have no cover file yet (make-covers.py builds UZ/TJ only, OPEN_ITEMS):
+pick a frame that is not used by another language. Check the result: YouTube Content -> Shorts shows Public;
+TikTok Content shows Everyone; the Instagram profile's post count rises by one per language.
+
 ### Per-platform traps, learned the hard way
 
 Publish order: Telegram → Instagram → YouTube Shorts → TikTok. YouTube needs
@@ -1055,4 +1096,5 @@ Seven of the eight aswati beds name an uploader rather than a composer.
 | 2026-11-04 | Publishing: Facebook added (Instagram + Facebook as one Meta Business Suite reel, with its Share-step settings); Telegram marked automated (tg-post-set.py); TikTok "Reuse of content" OFF; `platform-texts.py` generates every platform field (P368, after '#Shorts' went into YouTube titles and the Arabic into TikTok captions on R186-R193). |
 | 2026-11-05 | TikTok keeps the Arabic matn: the 2026-10-05 no-Arabic rule withdrawn after the operator checked the #38 caption in TikTok Studio (P371); platform-texts.py follows. |
 | 2026-11-05 | Choosing the hadith: `list-library.py --notes` puts what the docs say about each unused number beside it (P372). |
+| 2026-11-16 | Publishing: agent publishing by Playwright on the operator's PC (IG+FB, YouTube, TikTok) written down as section 5 - approval rule, upload folder, selectors per platform, per-language covers on every platform. First used on #6724. |
 | 2026-11-06 | YouTube covers for the UZ and TJ legs: `make-covers.py` (P374), named in platform-<n>.md, uploaded with Upload file. |
