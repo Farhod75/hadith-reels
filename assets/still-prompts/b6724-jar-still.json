@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-jar",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a plain clay jar with a cloth tied tightly over its mouth with cord, standing on a mud-brick shelf in soft side light, calm shadows. No people. Mood: restraint and dignity - a word kept back, a secret not spread; calm, quiet strength. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e17a-8c50-7963-be9c-e95b422c2446",
+    "submitted_utc":  "2026-11-15T23:11:07.3002073Z",
+    "completed_utc":  "2026-11-15T23:11:15.6886815Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-jar-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f9b/TsIanPry_h9EvKXeTjJir_UfxNQGsr.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-jar-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f9b/sVGrIwey7VhQssms0bObh_MpxBdEtE.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-jar-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f9b/5b5636Qrz_A65-McjoxxJ_2o1ewez0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  259030720
+}

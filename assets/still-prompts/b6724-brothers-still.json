@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-brothers",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, seen from behind and far away, two small silhouetted men in simple robes walking side by side along a desert path toward a warm golden sunrise, long shadows stretching back toward the camera, palms at the horizon. Silhouettes only, no faces. Mood: warmth, belonging, brotherhood. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e179-ff06-7e83-a6cb-41f5220af0cf",
+    "submitted_utc":  "2026-11-15T23:10:31.1348987Z",
+    "completed_utc":  "2026-11-15T23:10:39.5211146Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-brothers-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f97/ClE-oQPx3nrpTfzGJfZP8_LPYzcVrM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-brothers-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f97/fBVTHr5lC1ifTfE8E7T7R_ul75U2M4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-brothers-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f97/xagV-ejf9mdgaFjEpbq7B_1s2cwDP3.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1290605024
+}

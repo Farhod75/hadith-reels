@@ -1441,3 +1441,48 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** checking stills before Kling is where the money is saved - every defect this set was caught there.
 
 ---
+
+## R242-R245 - Sahih al-Bukhari #6724 - 2026-11-16
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok
+
+**Caught before publish**
+
+- Stills reviewed before any Kling spend; the jar-shadow still was redone because its shape could read as something
+  unseen. Picks made before Kling.
+- render-set stopped on P384 for UZ (bed gain 2.02 > 2.00); the plan now pins UZ at 2.00.
+- stt-validate HIGH on EN (missing quotes; last cue past the audio end - clamped to 37.8 s) and RU (lead-in garbled
+  «Абуху Райра, добудет доволенным», missing quotes, «о братье»); SRTs fixed against the drafts and re-rendered.
+- Telegram post failed on a stopped dev server (URLError 10061); run-tg-6724.ps1 now starts `npm run dev` first.
+
+**Escaped to publish**
+
+- EN on IG+FB went out with Meta's own cover frame: the Миниатюра field was found only on the RU leg.
+
+**Root causes**
+
+- device_commit_files did not overwrite a device file when committed again from the same staged path (render plan,
+  EN SRT) - a rule already known, forgotten again. Commit from a new file name each time.
+- Kling: several submits and status checks failed on the network (jar, ripple, orchard); resubmitted or resumed with
+  -Resume, no double charge.
+
+**Prevention landed**
+
+- Publishing by Playwright on the operator's PC: Meta Business Suite (reels composer), YouTube Studio and TikTok
+  Studio, with the reel copied into .playwright-mcp\upload first. Each publish waited for the operator's approval
+  until he approved the rest of the set in one message.
+- Covers per language on every platform: YouTube (Upload file / Select from video), Meta (Миниатюра -> Выберите
+  кадр / Загрузить изображение), TikTok (Edit cover -> frame or Upload cover).
+
+**Prevention deferred**
+
+- make-covers.py builds UZ and TJ only; EN and RU used frames from the video. Extend to all four languages with
+  distinct scenes and titles.
+- Meta: the Метки (tags) field is disabled when posting to FB and IG together; hashtags stay in the caption.
+- Never press Escape in YouTube Studio's upload dialog - it closes it (the draft survives).
+
+**Operator corrections of the assistant: 1** - the device_commit_files reused-path rule.
+
+**The finding:** the platforms all accept a per-language cover; the gap was only that we had made two of four.
+
+---

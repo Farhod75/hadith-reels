@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a0df/yCfHRkVDSaP8HTf9VMiby_output.mp4",
+    "name":  "b6724-shadow",
+    "image":  "out\\refs\\b6724-shadow2-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-shadow.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T23:59:51.2424054Z",
+    "size_bytes":  26400493,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The lamp flame flickers and the jug\u0027s huge shadow on the wall wavers, swells and looms taller over the small real jug, then shrinks back and swells again. The jug and the lamp stay perfectly still. Suspicion and unease - an innocent thing made to look threatening. Static camera, a very slow tilt up the looming shadow. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1a7-294c-7f01-a758-6e07f822bbeb",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:06:54.3699404Z",
+    "mode":  "image-to-video"
+}

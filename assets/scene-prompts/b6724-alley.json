@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a0b1/i9B6yezlNqoXnuWaPcXQM_output.mp4",
+    "name":  "b6724-alley",
+    "image":  "out\\refs\\b6724-alley-1.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-alley.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-15T23:52:16.8536768Z",
+    "size_bytes":  34135381,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The coarse curtain in the dark doorway stirs and sways in a slow draught, thin dust drifts through the last slanted light, the shadows in the alley deepen. No people appear. Unease and quiet curiosity, something unknown behind the wall. Slow, hesitant push-in down the alley. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1a0-3a04-77e1-8f14-f698cec5868a",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-15T23:59:32.3645648Z",
+    "mode":  "image-to-video"
+}

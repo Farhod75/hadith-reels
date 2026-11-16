@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a1e9/jMyCt5VNR0IDXhx98bbDx_output.mp4",
+    "name":  "b6724-jar",
+    "image":  "out\\refs\\b6724-jar-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-jar.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T00:45:09.4338973Z",
+    "size_bytes":  29657060,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft side light slowly brightens across the cloth-covered clay jar, a few motes of dust float in the beam, everything else is still. The jar and its tied cloth stay perfectly still. Restraint, dignity, a word kept back. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1d0-a332-75f2-8d48-d37ad344ce13",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:51:15.8111481Z",
+    "mode":  "image-to-video"
+}

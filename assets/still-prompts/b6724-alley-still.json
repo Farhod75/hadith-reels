@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-alley",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a narrow mud-brick alley at dusk, half in deep shadow, a coarse woven curtain stirring in a dark doorway, dust in the last slanted light. No people. Mood: unease and quiet curiosity - something unknown behind a wall. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e178-d626-7411-8d6c-e7cc5d58b1fd",
+    "submitted_utc":  "2026-11-15T23:09:14.8634483Z",
+    "completed_utc":  "2026-11-15T23:09:23.5231754Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-alley-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f90/c1ZiDe-t0b1HkkIlABsPj_POt4HhAk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-alley-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f90/zbh9GTUlEaKHFPWbiRAuu_VGW6mkgH.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-alley-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f90/raM6WI1jvPDe8RcoxigoU_pAljNvBk.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1523247905
+}

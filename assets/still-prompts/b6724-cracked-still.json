@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-cracked",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a plain clay bowl broken cleanly into two halves lying apart on a palm-fibre mat, cold grey-blue light from a small window, dust settling. No people. Mood: estrangement and coldness - what was one is now apart. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e179-b624-74d3-ac26-5e69f59c2ae8",
+    "submitted_utc":  "2026-11-15T23:10:12.4880582Z",
+    "completed_utc":  "2026-11-15T23:10:20.8621306Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-cracked-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f95/JNcs_fE4cj2jJICHbtL76_jKlkJn3r.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-cracked-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f95/YqZnLEq72bmExEGPe_Rw__sVbr66x5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-cracked-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f95/-igsx1TPI0FSUH4xPzZlZ_X7t21Oyz.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1414125007
+}

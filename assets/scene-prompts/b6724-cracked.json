@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a12e/RE51d14Ku2YDqKidrXkPJ_output.mp4",
+    "name":  "b6724-cracked",
+    "image":  "out\\refs\\b6724-cracked-3.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-cracked.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T00:13:58.7631261Z",
+    "size_bytes":  32602211,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Fine dust drifts down through the cold grey-blue window light onto the two broken halves of the bowl, the light slowly dims and grows colder. The two halves stay apart and perfectly still. Estrangement, coldness, a bond broken. Static camera, a very slow pull-back. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1b4-17e7-7a83-a0ee-23c40b629187",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:20:25.0193360Z",
+    "mode":  "image-to-video"
+}

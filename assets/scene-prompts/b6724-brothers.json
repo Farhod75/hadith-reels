@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a157/zYjH9BYs_MDXcn7DcQ5Mr_output.mp4",
+    "name":  "b6724-brothers",
+    "image":  "out\\refs\\b6724-brothers-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-brothers.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T00:20:28.8793495Z",
+    "size_bytes":  36776188,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The two silhouetted men walk slowly side by side away from the camera toward the golden sunrise, their long shadows moving with them, the light grows warmer and brighter, palm fronds sway at the horizon. They stay side by side, seen only from behind, no faces. Warmth, belonging, brotherhood. Gentle camera follow. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1ba-0bcc-7532-a41b-f26be1dfac1e",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:27:25.5711826Z",
+    "mode":  "image-to-video"
+}

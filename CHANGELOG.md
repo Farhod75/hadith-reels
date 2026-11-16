@@ -1,3 +1,18 @@
+## [2026-11-16] - Bukhari #6724 published (R242-R245)
+
+### Added
+
+- **Bukhari #6724 assets:** eight scenes b6724-alley, shadow, door, cracked, brothers, ripple, jar, orchard registered
+  (Kling 3.0 Pro), still and scene prompt sidecars, including the redone shadow2 still.
+
+### Docs
+
+- reel-tracker.md: R242-R245, new theme Brotherhood / Akhlaq, duplicate index, bed and scene usage, stats, change log.
+- reel-retro.md: R242-R245 (Playwright publishing, per-language covers). OPEN_ITEMS.md: #6724 published, covers for
+  all four languages, queue: a Hajj topic next.
+
+---
+
 ## [2026-11-15] - Bukhari #31 published (R238-R241)
 
 ### Added

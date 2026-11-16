@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-ripple",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, looking down into an old stone-lined well, the still dark water mirrors the sky, a single ripple spreading across it and bending the reflection out of shape. No people. Mood: self-deception - a quiet inner voice that twists what you see; uneasy, reflective. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e17a-4461-7ee0-8db7-3b9bb14adc9d",
+    "submitted_utc":  "2026-11-15T23:10:48.8931772Z",
+    "completed_utc":  "2026-11-15T23:10:57.4503959Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-ripple-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f99/PyjX7hdOjL-KxLivRVWH6_vAYL3TxW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-ripple-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f99/QRiABDGE-eLo6LHStp6SR_2snKlbL8.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-ripple-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f99/QRXiJCxxk8CAB9WK80l0T_HCcckluI.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1833038349
+}

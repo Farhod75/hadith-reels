@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a closed rough wooden plank door in a mud-brick wall at night, a thin bright slit of warm lamplight leaking through the gap between two planks, the dark lane in front empty. No people. Mood: the temptation to look where you should not - secrecy, a held breath. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e179-7314-7fd3-b696-57a4405a1919",
+    "submitted_utc":  "2026-11-15T23:09:54.9620973Z",
+    "completed_utc":  "2026-11-15T23:10:03.8272034Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f94/5B4PpPRQQcvYWCMBjWqHz_lmtqLYEz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f94/yiL546Cb35FxLLn5_efJg_dLgliZxX.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f94/PVmacFxvECeLU9jv4P_pe_3RSM6BlL.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1031226476
+}

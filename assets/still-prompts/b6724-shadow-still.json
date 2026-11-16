@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-shadow",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a dim mud-brick room, a small ordinary clay water jug stands on the floor beside an early Islamic clay slipper oil lamp; the low flame throws the jug\u0027s shadow huge, twisted and menacing up the rough plaster wall. No people. Mood: suspicion - an innocent thing made monstrous by how it is seen; unsettling, distorted. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No faces, no hands, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks or keyholes.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e179-2517-7ca1-b2ed-40291be3400d",
+    "submitted_utc":  "2026-11-15T23:09:35.3480336Z",
+    "completed_utc":  "2026-11-15T23:09:43.7458830Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-shadow-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f92/u3zHkYQnKhOVQROr59k7R_Xtq94mKZ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-shadow-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f92/byrayGpFzAllxWhXQjHRT_wT5emRT2.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-shadow-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29f92/Qbst_8r5XBsbYILVP_Jcr_1aX9pwKe.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  973172036
+}

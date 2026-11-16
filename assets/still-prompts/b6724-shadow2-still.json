@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6724-shadow2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, inside a dim mud-brick room at night, a small ordinary clay water jug stands on a palm-fibre mat close to an early Islamic clay slipper oil lamp burning low on the floor; the lamp light throws the jug\u0027s own shadow up the rough plaster wall - clearly the same jug shape, the same neck and handle, but stretched three times taller, dark and looming over the small jug. No other shapes in the shadow. No people, no faces, no hands, no creatures, no smoke figures, no text, no modern objects. Mood: suspicion - an innocent thing made to look threatening by how it is seen; uneasy, distorted.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e17d-5adb-7751-ad14-da7a5730ea6b",
+    "submitted_utc":  "2026-11-15T23:14:11.0249618Z",
+    "completed_utc":  "2026-11-15T23:16:46.4709727Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6724-shadow2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29fbc/MhyY8dH2AyGzvhjjGAnQx_SCcTtdpy.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6724-shadow2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29fbc/MnUGsKdsnmKc9nunBb-Bc_lmvfMEid.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6724-shadow2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab29fbc/N8-DVCLM-zS9agv4oVW9N_1Hy7HNl8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1620618950
+}

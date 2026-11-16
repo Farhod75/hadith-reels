@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a1a4/D_pji7k3mT8qlByfdpxYX_output.mp4",
+    "name":  "b6724-orchard",
+    "image":  "out\\refs\\b6724-orchard-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-orchard.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T00:33:13.3403025Z",
+    "size_bytes":  39245322,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Bright morning sun rays shimmer through the palm fronds, the fronds and the clusters of ripe dates sway gently, small birds fly across the light, warm light spreads down the path. Relief, warmth, open-heartedness, joy. Slow gentle push-in along the path of light. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1c5-b5ea-70c1-8e51-0d8221dc002d",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:40:24.4198907Z",
+    "mode":  "image-to-video"
+}

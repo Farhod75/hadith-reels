@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2a109/bc1cbU3Z1QIgml-K7_itu_output.mp4",
+    "name":  "b6724-door",
+    "image":  "out\\refs\\b6724-door-2.jpg",
+    "file":  "out\\backgrounds\\new\\b6724-door.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T00:06:58.2389543Z",
+    "size_bytes":  26959969,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The thin slit of warm light in the gap of the closed door flickers softly as a lamp moves somewhere inside, the dark lane in front stays empty and still. The door stays closed. Temptation and secrecy, a held breath - the urge to look where you should not. Slow push-in toward the gap, then the camera stops short. Keep every object exactly as in the image, nothing added or removed. No faces, no hands, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e1ad-ad2d-7070-8800-ffa08174907a",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T00:13:55.2843879Z",
+    "mode":  "image-to-video"
+}
