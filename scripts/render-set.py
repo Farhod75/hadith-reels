@@ -272,6 +272,8 @@ def main(argv=None):
             story = mg.duration(ff, os.path.join(w, 'adults-%s-%s-story.mp3' % (lang, slug)))
             moral = mg.duration(ff, os.path.join(w, 'adults-%s-%s-moral.mp3' % (lang, slug)))
             srt = os.path.join(w, 'adults-%s-%s-narration.srt' % (lang, slug))
+            if lang in ('uz', 'tj'):   # P422: the real matn start, not the letter share - clips land on the words
+                subprocess.call([sys.executable, os.path.join(REPO, 'scripts', 'scribe-srt.py'), '--lang', lang, '--slug', slug])
             m0 = matn_start_from_srt(io.open(srt, encoding='utf-8-sig').read()) if os.path.exists(srt) else None
             how = 'subtitles'
             if m0 is None:

@@ -15,7 +15,7 @@ admin UI:
 |---|---|---|
 | Visual | Talking mascot (lamb), lip-synced | Animated scenes or looped background |
 | Renderer | `render-mascot-reel.ps1` | `render-reel.ps1` |
-| Subtitles | None | Whisper SRT (en/ru/ar only, P078) |
+| Subtitles | None | EN/RU/AR: Whisper SRT. UZ/TJ: our text + Scribe v3 word timings (scribe-srt.py, P422; P078 before 2026-11-17) |
 | Wrapper | `make-kids-reel.ps1` — one command | None; run steps by hand |
 
 **The kids path below is current and verified. The adults path further down is
@@ -361,9 +361,10 @@ second one) · Change log. Then one commit, `Doc=1`.
   grapheme-to-phoneme behaviour of the MODEL. Do not look for a pattern in the
   words. Look for it in the model, and re-run the audition when the model moves.
 
-  ⚠ P078 turns subtitles OFF for UZ and TJ, so stt-validate.py never runs on
-  the two languages this list is about. Nothing automated hears these. The only
-  listener is the human narration check.
+  Since P422 (2026-11-17) UZ and TJ carry subtitles built from our own text, and
+  stt-validate.py runs on them. Their timings come from Scribe hearing the audio,
+  but the WORDS are ours - so a mispronounced word still reads correctly on screen.
+  The narration check by ear stays the only listener for pronunciation.
 
 ### Known gaps
 
@@ -617,8 +618,9 @@ to play the result.
 
 ### Step 15 — Subtitle review checkpoint
 
-**Only fires for EN, RU and AR.** `$subLangs = @('en','ru','ar')` — UZ and TJ
-ship without subtitles (P078), so this gate does not exist on half the set.
+**Fires for every language with subtitles - EN, RU, AR, and since P422 UZ and TJ.** UZ/TJ SRTs are written
+by scribe-srt.py from the draft's own words, so the validator mostly confirms the lead-in, honorifics and
+quotation marks; a SRT whose alignment is too uncertain is refused and that reel falls back to no subtitles.
 
 Whisper transcribes the narration, then the script opens the SRT in VS Code and
 blocks. Fix any grammar or transcription errors and save, then ENTER to burn
@@ -724,7 +726,7 @@ state; check them against `render-reel.ps1` before a run.
 - **Pillar 2:** animated scenes — FLUX text-to-image (`generate-image.ps1`) →
   human review → Kling image-to-video (`generate-scene.ps1`) → `render-reel.ps1`
   with `-Scenes` (per-clip 1080×1920@30fps normalization)
-- Subtitles via Whisper, **en/ru/ar only** — auto-skipped for uz/tj (P078)
+- Subtitles: Whisper for en/ru/ar; uz/tj from `scripts/scribe-srt.py` (P422) - our Cyrillic text, Scribe v3 word timings
 - Voices: EN James, RU Abrar, UZ Opa Johann, TJ Meisam
 
 **Open items on this path:** P100 (Whisper UTF-8 on Cyrillic) is session-only and
@@ -909,6 +911,17 @@ One description field: the Telegram caption, unchanged (`out/platform-<n>.md`).
 Then Everyone -> AI label **ON** -> clear the Cornelius location -> checks pass
 -> **Post**. **Reuse of content OFF** (TikTok Studio's single checkbox for Duet and
 Stitch, 2026-11-04) - same reason as Facebook's Remixing. Comments stay on.
+
+### UZ/TJ subtitles - scribe-srt.py (P422, 2026-11-17)
+
+Scribe v3 hears Uzbek and writes Latin, hears Tajik and writes Persian script, so its TEXT is never shown.
+scribe-srt.py takes the story/moral text sent to TTS, asks Scribe for word timings of each mp3 (cached as
+`<mp3>.scribe.json`, re-asked only when the mp3 changes), lines our words up with Scribe's on a consonant
+skeleton shared by the three scripts (scripts/lib/scribe_align.py), and writes `<base>-narration.srt` on
+render-reel's timeline (story, 0.5 s, moral) with the P211 stamp. Refused (exit 3) above alignment cost 0.25
+or 10% unmatched words - that reel renders without subtitles. render-set.py calls it before the P386 align, so
+the `matn` anchor for UZ/TJ is the real moment the Prophet's words begin (on #105: UZ 14.28 s against
+13.76 s by letter share). Cost: Scribe at the speech-to-text rate, cents per reel.
 
 ### 5. Agent publishing by Playwright (since 2026-11-16, first used on #6724)
 

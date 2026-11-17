@@ -195,8 +195,11 @@ $reel    = "$workDir\$base-reel.mp4"
 $tailPad = 1.0
 $normDir = "out\backgrounds\new\normalized"
 
-# subtitles routing per P078: Latin transliteration breaks UZ/TJ -> skip
-$subLangs = @('en','ru','ar')
+# subtitles routing. P078: Whisper writes UZ/TJ in Latin, so those got none.
+# P422: UZ/TJ now get an SRT from scribe-srt.py - OUR Cyrillic text, Scribe v3 word timings.
+$whisperLangs = @('en','ru','ar')
+$scribeLangs  = @('uz','tj')
+$subLangs = $whisperLangs + $scribeLangs
 $useSubs  = ($subLangs -contains $Lang) -and (-not $ForceNoSubs)
 # P356: make-drafts.py writes out\draft-<slug>-<lang>.txt and render-set.py passes
 # it. A hand-run render that forgot -Draft fell back to draft.txt in the repo root -
@@ -224,7 +227,7 @@ if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
 }
 
 # whisper only needed if we're making subs
-if ($useSubs -and -not (Get-Command whisper -ErrorAction SilentlyContinue)) {
+if ($useSubs -and ($whisperLangs -contains $Lang) -and -not (Get-Command whisper -ErrorAction SilentlyContinue)) {
   $problems += "whisper not found (needed for $Lang subtitles). Run: pip install openai-whisper  (or use -ForceNoSubs)"
 }
 
@@ -542,7 +545,23 @@ if ($rc -ne 0 -or -not (Test-Path $narr)) { Die "narration concat failed (ffmpeg
 Ok "$narr ($([math]::Round((Get-Item $narr).Length/1KB)) KB)"
 
 # --- STEP 5: subtitles (conditional by language) -----------------------------
-if ($useSubs) {
+# P422: UZ/TJ - scribe-srt.py writes the SRT (our text, Scribe timings) with the same P211 stamp;
+# it keeps a fresh one, and refuses (exit 3) when the alignment is too uncertain to burn.
+if ($useSubs -and ($scribeLangs -contains $Lang)) {
+  Say "`n[2/5] Step 5 - subtitles from our text + Scribe timings ($Lang, P422)..."
+  $prevPyIO = $env:PYTHONIOENCODING; $env:PYTHONIOENCODING = 'utf-8'
+  $prevEAP = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+  & python "scripts\scribe-srt.py" --lang $Lang --slug $Slug --style $Style 2>&1 | ForEach-Object { Write-Host "   $_" }
+  $scribeRc = $LASTEXITCODE
+  $ErrorActionPreference = $prevEAP; $env:PYTHONIOENCODING = $prevPyIO
+  if ($scribeRc -eq 3) {
+    Write-Host "  alignment refused - this $Lang reel renders WITHOUT subtitles (P078 fallback)" -ForegroundColor Yellow
+    $useSubs = $false
+    if (Test-Path $srt) { Remove-Item $srt }
+  } elseif ($scribeRc -ne 0 -or -not (Test-Path $srt)) {
+    Die "scribe-srt.py failed (exit $scribeRc) - fix it, or pass -ForceNoSubs"
+  } else { Ok "$srt" }
+} elseif ($useSubs) {
   Say "`n[2/5] Step 5 - generating subtitles via Whisper ($Lang)..."
   # P211: this cache must invalidate when the NARRATION changes, and it must
   # survive a hand-edit, which is why it exists: the operator corrects the SRT
@@ -627,7 +646,8 @@ if ($useSubs) {
 # by hand at the pause below. This runs BEFORE the validator so the validator
 # reports only what actually needs a human: word-boundary errors, mishearings,
 # punctuation. It takes its spelling from $Draft, never from a word list.
-if ($useSubs) {
+# P422: not for UZ/TJ - their SRT is already the draft's own text.
+if ($useSubs -and ($whisperLangs -contains $Lang)) {
   $prevPyIO = $env:PYTHONIOENCODING
   $env:PYTHONIOENCODING = 'utf-8'
   & python "scripts\restore-srt-casing.py" --srt "$srt" --source "$Draft" --lang $Lang

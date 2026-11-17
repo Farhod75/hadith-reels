@@ -16684,3 +16684,29 @@ sub-second COMPLETED means the body is wrong.
 **Status:** FIXED
 
 ---
+
+## PATTERN 422: UZ/TJ subtitles from our own text and Scribe timings (supersedes P078's "no subtitles")
+
+**Date:** 2026-11-17  **Repo:** hadith-reels  **Severity:** feature gap (half of every set had no subtitles)
+
+**What happened.** P078 turned subtitles off for UZ and TJ because Whisper writes them in Latin. Scribe v3
+(probed 2026-11-16) does the same - Uzbek in Latin, Tajik in Persian script - but its WORD TIMINGS are good.
+On Muslim #105 every one of our words found a Scribe word (UZ 60/59, TJ 71/76, alignment cost 0.01 / 0.05),
+and the last word ended where the audio ends.
+
+**Fix.** scripts/scribe-srt.py + scripts/lib/scribe_align.py: our text (what TTS was sent), Scribe timings matched
+on a consonant skeleton shared by Cyrillic, Uzbek Latin and Persian, k:1 / 1:k steps for merged and split words
+(«ва саллам» = vasallam; the Tajik honorific = five Persian words). Cues break at clause ends; a one-word clause
+end left by a size break is rebalanced with the cue before it. render-reel.ps1 calls it for uz/tj (no
+restore-srt-casing - the text is already the draft's); render-set.py calls it before the P386 align so the matn
+anchor is the real moment. stt-validate.py SUB_LANGS += uz, tj. Refused above cost 0.25 or 10% unmatched ->
+that reel falls back to no subtitles. Tests: test_scribe_align.py (5).
+
+**Lesson:** an ASR that writes the wrong script can still be the clock; the words do not have to come from it.
+
+**Tripwire:** scribe-srt.py prints the alignment cost and unmatched share on every run and refuses past the
+limits (exit 3); stt-validate.py --strict on the written SRT under render-reel.
+
+**Status:** FIXED
+
+---

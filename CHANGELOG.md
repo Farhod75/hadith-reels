@@ -1,3 +1,21 @@
+## [2026-11-17f] - UZ/TJ subtitles from our text + Scribe v3 timings (P422)
+
+### Added
+
+- scripts/scribe-srt.py, scripts/lib/scribe_align.py, scripts/lib/test_scribe_align.py (5 tests).
+
+### Changed
+
+- render-reel.ps1: uz/tj get subtitles from scribe-srt.py (falls back to none when it refuses).
+- render-set.py: runs scribe-srt.py for uz/tj before the align, so the matn anchor is the real time.
+- scripts/stt-validate.py: uz, tj in SUB_LANGS.
+
+### Docs
+
+- fix_patterns.md P422, PATTERN_INDEX; reel-creation-pipeline.md, CLAUDE.md, OPEN_ITEMS.md (P078 superseded).
+
+---
+
 ## [2026-11-17e] - Kling 4.0 request body (P421); first 3.0 vs 4.0 A/B
 
 ### Fixed

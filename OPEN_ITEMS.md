@@ -344,8 +344,8 @@ this one wins.
   clause). Not chosen for production while its grade is disputed.
 - **Kids lane and the narrator lead-in (P337)** - undecided. The gate covers
   the adults lane only.
-- **UZ/TJ have no subtitle gate** - by P078 they carry no subtitles, so P342
-  protects EN/RU only. The narration itself is checked against the draft.
+- **DONE 2026-11-17 (P422): UZ/TJ have subtitles and the subtitle gate** - scribe-srt.py writes them from
+  our text with Scribe v3 timings; stt-validate.py runs on them. First set to ship with them: the next one.
 - **DONE 2026-11-11 (P397): Tracker stats prose disagrees with itself** - both cells rewritten from
   the rows and gated by `audit-docs.py check_breakdowns()`.
 - **FLUX 3 text-to-image** - not evaluated for stills. FLUX 3 Edit

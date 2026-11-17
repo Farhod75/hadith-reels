@@ -24,7 +24,7 @@ USAGE
 
   --srt        the generated .srt
   --source     draft.txt (S:/M:/H:/C: blocks; only S and M are narrated)
-  --lang       en | ru | ar   (uz/tj skip subtitles per P078)
+  --lang       en | ru | ar | uz | tj   (uz/tj SRTs come from scribe-srt.py, P422)
   --narration  optional .mp3, for the duration check (needs ffprobe)
 """
 
@@ -35,7 +35,7 @@ import subprocess
 import sys
 import unicodedata
 
-SUB_LANGS = {'en', 'ru', 'ar'}          # P078
+SUB_LANGS = {'en', 'ru', 'ar', 'uz', 'tj'}   # P078; uz/tj since P422 (scribe-srt.py)
 MIN_CUE_SEC = 0.3
 AUDIO_TOLERANCE_SEC = 0.5
 SIM_WARN = 0.90

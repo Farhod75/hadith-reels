@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-351 patterns in 364 entries, frontier **P421**. The P-sequence is shared with
+352 patterns in 365 entries, frontier **P422**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -412,5 +412,6 @@ BEFORE changing it.
 - **P419** - the caption wrapped a per-speaker matn again because it did not start with «
 - **P420** - align slots too short when the quoted words come only at the end of the story
 - **P421** - Kling 4.0 refused the v3 request body (422)
+- **P422** - UZ/TJ subtitles from our own text and Scribe timings (supersedes P078's "no subtitles")
 
-<!-- pattern-index-stamp entries=364 patterns=351 frontier=421 sha1=e4bc32951009349e1cc5ed9006c3895dc7ac3dea -->
+<!-- pattern-index-stamp entries=365 patterns=352 frontier=422 sha1=79f4aea5d3050f4a6874d62a75ef69fc09538686 -->
