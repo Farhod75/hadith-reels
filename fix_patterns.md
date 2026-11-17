@@ -16661,3 +16661,26 @@ with story:F for the account and one matn anchor.
 **Status:** FIXED
 
 ---
+
+## PATTERN 421: Kling 4.0 refused the v3 request body (422)
+
+**Date:** 2026-11-17  **Repo:** hadith-reels  **Severity:** tooling (model eval blocked)
+
+**What happened.** The 2026-11-16 Kling 4.0 try sent generate-scene.ps1's v3 body (image_url, a string duration,
+aspect_ratio, negative_prompt, generate_audio) to the kling/v4 id; it COMPLETED in 0.5 s with a 422 and no video.
+fal's model page for fal-ai/kling-video/v4/image-to-video lists start_image_url, an integer duration (3-30),
+resolution 720p/1080p, optional prompt, middle/end frames and multi_prompt - nothing else.
+
+**Fix.** generate-scene.ps1 builds the v4 body when -Model matches kling-video/v4: start_image_url, [int] duration,
+1080p; aspect_ratio, negative_prompt and generate_audio removed. First run: m105-bridge-k4 (same still, same prompt
+as m105-bridge on 3.0 Pro), 10 s, 1080x1920, 24 fps. Kling 4.0 returns an AUDIO track (no generate_audio switch);
+render-reel maps 0:v only, so it never reaches a reel.
+
+**Lesson:** a new model version is a new API; read its schema before sending the old body.
+
+**Tripwire:** generate-scene.ps1 prints "Kling 4.0 body: start_image_url ..." on every v4 run; a 422 or a
+sub-second COMPLETED means the body is wrong.
+
+**Status:** FIXED
+
+---

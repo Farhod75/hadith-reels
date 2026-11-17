@@ -1,3 +1,17 @@
+## [2026-11-17e] - Kling 4.0 request body (P421); first 3.0 vs 4.0 A/B
+
+### Fixed
+
+- scripts/generate-scene.ps1: the Kling 4.0 image-to-video body (start_image_url, integer duration, 1080p; no
+  aspect_ratio, negative_prompt or generate_audio). fix_patterns.md P421, PATTERN_INDEX.
+
+### Added
+
+- assets/scene-prompts/m105-bridge-k4.json - the A/B clip (same still and prompt as m105-bridge). Not registered:
+  an evaluation clip, not a reel scene.
+
+---
+
 ## [2026-11-17d] - Muslim #105 published (R250-R253)
 
 ### Added

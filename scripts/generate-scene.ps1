@@ -192,6 +192,18 @@ if ($imageMode) {
 } else {
   Write-Host "  mode: TEXT-TO-VIDEO" -ForegroundColor DarkGray
 }
+# P421: Kling 4.0 (fal-ai/kling-video/v4/image-to-video) has its own input schema - start_image_url,
+# an integer duration, resolution; no aspect_ratio (the still sets it), no negative_prompt, no
+# generate_audio. Sending the v3 body is what returned 422 on 2026-11-16 (that try also used the
+# kling/v4 id, whose status URL is not under fal-ai/kling-video).
+if ($Model -match 'kling-video/v4') {
+  if (-not $imageMode) { Die "Kling 4.0 path is image-to-video only here" }
+  $payload['start_image_url'] = $payload['image_url']; $payload.Remove('image_url')
+  $payload['duration'] = [int]$Duration
+  $payload['resolution'] = '1080p'
+  foreach ($k in 'aspect_ratio','negative_prompt','generate_audio') { $payload.Remove($k) }
+  Write-Host "  Kling 4.0 body: start_image_url, duration=$Duration, 1080p (P421)" -ForegroundColor DarkGray
+}
 $body = $payload | ConvertTo-Json -Depth 5
 
 Say "================================================================"
