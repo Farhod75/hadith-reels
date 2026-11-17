@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-349 patterns in 362 entries, frontier **P419**. The P-sequence is shared with
+350 patterns in 363 entries, frontier **P420**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -410,5 +410,6 @@ BEFORE changing it.
 - **P417** - the frame check looked at the frames and did not count the hands
 - **P418** - the fixed lead-in put a companion's own account in the Prophet's mouth
 - **P419** - the caption wrapped a per-speaker matn again because it did not start with «
+- **P420** - align slots too short when the quoted words come only at the end of the story
 
-<!-- pattern-index-stamp entries=362 patterns=349 frontier=419 sha1=0c6c9dd534b05ac89c86c0d45d5d4e1c0a7eaa23 -->
+<!-- pattern-index-stamp entries=363 patterns=350 frontier=420 sha1=221d774f132c9febffac1f8590af67768bc398fc -->

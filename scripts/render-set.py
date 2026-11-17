@@ -24,7 +24,9 @@ Per language, before anything renders:
     what it shows instead of -FitScenes' equal slots:
         "align": ["start", "matn", "matn:0.6", "moral"]
     start = 0; matn = where the quoted matn begins; matn:F = that fraction through the matn;
-    moral = where the moral begins (after render-reel's 0.5 s pause); moral:F likewise. The matn
+    moral = where the moral begins (after render-reel's 0.5 s pause); moral:F likewise.
+    story:F = that fraction of the whole story (P420) - for a dialogue set whose quoted words come
+    only at the end of the S block, so matn:F slots would be too short. The matn
     start comes from the language's cached subtitles when they exist (EN/RU after a render),
     otherwise from the share of the S block's letters that the lead-in takes. Each clip must be
     long enough for its slot (scenes, else scenes_slow); the result goes to -SceneDurations.
@@ -155,10 +157,12 @@ def anchor_seconds(anchor, story, moral, matn_start):
         raise ValueError('anchor %r: the fraction must be in [0, 1)' % anchor)
     if base == 'matn':
         return matn_start + f * (story - matn_start)
+    if base == 'story':   # P420: fraction of the whole story, for a matn quoted only at its end
+        return f * story
     if base == 'moral':
         m0 = story + STORY_MORAL_PAUSE
         return m0 + f * moral
-    raise ValueError('anchor %r: use start, matn, matn:F, moral or moral:F' % anchor)
+    raise ValueError('anchor %r: use start, story:F, matn, matn:F, moral or moral:F' % anchor)
 
 
 def aligned_durations(anchors, story, moral, matn_start, total, tail_pad):

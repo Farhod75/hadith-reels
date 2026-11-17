@@ -16641,3 +16641,23 @@ and read the caption's matn line before posting - only the Prophet's words may s
 **Status:** FIXED
 
 ---
+
+## PATTERN 420: align slots too short when the quoted words come only at the end of the story
+
+**Date:** 2026-11-17  **Repo:** hadith-reels  **Severity:** render stop (no output)
+
+**What happened.** Muslim #105 is a report set (P418): Hudhayfah's account first, then the Prophet's six words in «».
+render-set's matn anchors measure from the first « to the story end, so matn / matn:0.42 / matn:0.72 split ~2.8 s
+into three slots; all 4 languages stopped at P386 ("slot shorter than 1.5s"). Nothing rendered.
+
+**Fix.** New anchor story:F = that fraction of the whole story. #105 plan: start, story:0.45, matn, moral, moral:0.3,
+moral:0.58, moral:0.8 (shortest slot 2.19 s, RU). test_render_set.py +1; scripts/lib 269 passed.
+
+**Lesson:** for a dialogue set the matn is only the quoted part; story scenes before it need an anchor of their own.
+
+**Tripwire:** render-set's P386 MIN_SLOT check stops the render before any spend; for a report set write the align
+with story:F for the account and one matn anchor.
+
+**Status:** FIXED
+
+---

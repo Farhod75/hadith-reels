@@ -1,3 +1,11 @@
+## [2026-11-17c] - story:F align anchor for a matn quoted only at the end (P420)
+
+### Added
+
+- scripts/render-set.py anchor story:F (fraction of the whole story); docstring. test_render_set.py +1. fix_patterns.md P420, PATTERN_INDEX.
+
+---
+
 ## [2026-11-17b] - Caption keeps a per-speaker matn that does not start with « (P419)
 
 ### Fixed

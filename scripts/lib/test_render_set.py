@@ -163,3 +163,18 @@ def test_render_reel_takes_scene_durations_and_checks_them():
     assert 'one per clip, in -Scenes order (P386)' in text
     assert 'would wrap to clip 1 (P240/P386)' in text
     assert '$durs[$idx-1]' in text
+
+
+def test_story_anchor_places_clips_before_a_late_matn():
+    # P420: Muslim #105 - the Prophet's words are the last 2.8 s of a 15.8 s story
+    d = rs.aligned_durations(['start', 'story:0.4', 'matn', 'moral'], story=15.8, moral=15.0,
+                             matn_start=13.0, total=31.3, tail_pad=1.0)
+    assert abs(d[0] - 6.32) < 0.002
+    assert abs(d[1] - (13.0 - 6.32)) < 0.002
+    assert abs(d[2] - (15.8 + 0.5 - 13.0)) < 0.002
+    try:
+        rs.aligned_durations(['start', 'story:1.0'], 15.8, 15.0, 13.0, 31.3, 1.0)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('accepted story:1.0')
