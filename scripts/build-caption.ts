@@ -144,6 +144,7 @@ async function main() {
       },
       blocks,
       lang,
+      preQuoted: !!blocks.matn_quoted,   // P419
     })
 
     const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en

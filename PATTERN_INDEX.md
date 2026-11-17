@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-348 patterns in 361 entries, frontier **P418**. The P-sequence is shared with
+349 patterns in 362 entries, frontier **P419**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -409,5 +409,6 @@ BEFORE changing it.
 - **P416** - a typo in the stored translation passed every gate and reached a published caption
 - **P417** - the frame check looked at the frames and did not count the hands
 - **P418** - the fixed lead-in put a companion's own account in the Prophet's mouth
+- **P419** - the caption wrapped a per-speaker matn again because it did not start with «
 
-<!-- pattern-index-stamp entries=361 patterns=348 frontier=418 sha1=4c52905b0593e3bf59f13f09590dc4ded917587b -->
+<!-- pattern-index-stamp entries=362 patterns=349 frontier=419 sha1=0c6c9dd534b05ac89c86c0d45d5d4e1c0a7eaa23 -->

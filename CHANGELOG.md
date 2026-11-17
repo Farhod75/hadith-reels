@@ -1,3 +1,12 @@
+## [2026-11-17b] - Caption keeps a per-speaker matn that does not start with « (P419)
+
+### Fixed
+
+- lib/caption.ts buildCaptionBody: optional preQuoted; scripts/build-caption.ts passes it for matn_quoted (P415 sets).
+  caption-explain.test.ts +2. fix_patterns.md P419, PATTERN_INDEX.
+
+---
+
 ## [2026-11-17] - Lead-in for a matn that opens with the companion's own account (P418)
 
 ### Added

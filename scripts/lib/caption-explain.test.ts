@@ -24,3 +24,18 @@ const iRef = body.indexOf('📖'), iLink = body.indexOf('📚'), iVerify = body.
 assert.ok(iRef < iLink && iLink < iVerify, body)
 
 console.log('caption-explain: 6 checks passed')
+
+// P419: a matn quoted per speaker that starts with the companion's account is used as is
+const pre = buildCaptionBody({
+  row: { text_english: 'Ба ӯ хабар расид: «Суханчин ба биҳишт дохил намешавад».', collection: 'Sahih Muslim', hadith_number: '105', narrator: 'Hudhayfah ibn al-Yaman' },
+  blocks: { title: 'T', moral: 'M' },
+  lang: 'tj',
+  preQuoted: true,
+})
+assert.ok(pre.includes('\n\nБа ӯ хабар расид: «Суханчин ба биҳишт дохил намешавад».\n\n'), pre)
+const wrapped = buildCaptionBody({
+  row: { text_english: 'Ба ӯ хабар расид: «Суханчин».', collection: 'Sahih Muslim', hadith_number: '105', narrator: 'Hudhayfah ibn al-Yaman' },
+  blocks: { title: 'T', moral: 'M' },
+  lang: 'tj',
+})
+assert.ok(wrapped.includes('«Ба ӯ хабар расид: „Суханчин“».'), wrapped)

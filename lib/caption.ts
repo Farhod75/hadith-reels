@@ -109,8 +109,11 @@ export function buildCaptionBody(opts: {
   row: CaptionRow
   blocks: CaptionBlocks
   lang: string
+  // P419: the matn arrives already quoted per speaker (P415) but does not START with « -
+  // a companion's account comes first (Muslim #105). Use it as is; do not wrap it again.
+  preQuoted?: boolean
 }): string {
-  const { row, blocks, lang } = opts
+  const { row, blocks, lang, preQuoted } = opts
   const l10n = CAPTION_L10N[lang] || CAPTION_L10N.en
 
   const hadithText = row.text_display || row.text_english
@@ -129,7 +132,7 @@ export function buildCaptionBody(opts: {
     // P180: these matns begin with « themselves (the first words are the
     // Prophet's speech), so the wrapper produced «« and a lone closing ».
     // Only wrap text that isn't already quoted.
-    (hadithText.trim().startsWith('«')
+    (preQuoted || hadithText.trim().startsWith('«')
       ? `${hadithText}\n\n`
       : `${wrapMatn(hadithText, lang)}\n\n`) +
     // P153: the Arabic was in the DB and in the admin card but never reached a

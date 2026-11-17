@@ -16619,3 +16619,22 @@ own story needs its own opening.
 **Status:** FIXED
 
 ---
+
+## PATTERN 419: the caption wrapped a per-speaker matn again because it did not start with «
+
+**Date:** 2026-11-17  **Repo:** hadith-reels  **Severity:** content (caption quotation marks)
+
+**What happened.** Muslim #105's caption matn arrives quoted per speaker from make-drafts (P415): Hudhayfah's account
+unquoted, the Prophet's words in «». buildCaptionBody() only leaves a matn alone when it STARTS with « (P180); this
+one starts with the account, so it was wrapped whole and the inner pair demoted (P236): «It reached him ... „A
+tale-carrier will not enter Paradise.“» - the account shown as part of a quotation. Caught on the read of the built
+caption, before any post.
+
+**Fix.** buildCaptionBody({..., preQuoted}) uses the text as is; build-caption.ts passes preQuoted when the set
+supplies matn_quoted. caption-explain.test.ts +2 checks; tsc clean.
+
+**Lesson:** "already quoted" is a property of where the text came from, not of its first character.
+
+**Status:** FIXED
+
+---
