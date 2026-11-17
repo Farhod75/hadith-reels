@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4f0/i4gtLSAeWb4VZTIMAuXVH_output.mp4",
+    "name":  "m105-sparks",
+    "image":  "out\\refs\\m105-sparks-2.jpg",
+    "file":  "out\\backgrounds\\new\\m105-sparks.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:36.9625265Z",
+    "size_bytes":  30300039,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The fire crackles and the wind lifts a stream of glowing sparks up toward the dry palm-frond roof, a few sparks land and glow on the fronds. Alarm - a small thing spreading toward disaster. Static camera, slow tilt up following the sparks. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e728-dc98-7893-a761-8c79b91e9418",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:45:51.5409754Z",
+    "mode":  "image-to-video"
+}

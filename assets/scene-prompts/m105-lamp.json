@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4f0/hQtRY67XmSqLaTKa2YE0s_output.mp4",
+    "name":  "m105-lamp",
+    "image":  "out\\refs\\m105-lamp-2.jpg",
+    "file":  "out\\backgrounds\\new\\m105-lamp.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:39.0140091Z",
+    "size_bytes":  27437691,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The lamp flame burns perfectly still, then a single slow flicker, the warm light breathes softly on the walls. Solemn gravity - a weighty word about to be spoken. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e728-e490-73d1-b35e-1a169b51f7ac",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:45:54.6188261Z",
+    "mode":  "image-to-video"
+}

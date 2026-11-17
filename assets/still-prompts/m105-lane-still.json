@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m105-lane",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a narrow mud-brick lane at dusk between two houses whose small windows face each other, a gust carrying dry leaves and dust from one doorway across to the other. No people. Mood: unease - something passing quietly from house to house. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e724-9585-7161-89f4-711a3a69d440",
+    "submitted_utc":  "2026-11-17T01:34:56.0690413Z",
+    "completed_utc":  "2026-11-17T01:36:10.7266510Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m105-lane-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c0/mtGeuFAEYNOkhPxNcIV8C_ZDxRnRBD.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m105-lane-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c0/pDy5HHDJ0nccnz-zkpYP0_MYy8idD5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m105-lane-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c0/7DkLdBBrvENpm3aQT8pKp_E2QAZUst.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  543902069
+}

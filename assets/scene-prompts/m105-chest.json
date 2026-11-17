@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4f5/gThysTxRm3NbJxfc1b5QG_output.mp4",
+    "name":  "m105-chest",
+    "image":  "out\\refs\\m105-chest-1.jpg",
+    "file":  "out\\backgrounds\\new\\m105-chest.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:45.0668430Z",
+    "size_bytes":  33158758,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft side light slowly brightens across the closed wooden chest and its tied cord, dust motes float in the beam, everything else still. The lid stays shut. Restraint and dignity - what you heard stays with you. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e728-fc3c-72e1-a93c-38c94f4abdbc",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:47:08.8040996Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m105-lamp",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a simple clay oil lamp burning with a perfectly still flame in a quiet dim mud-brick room, a rolled palm-fibre mat beside it, soft warm light. No people. Mood: solemn gravity - a weighty word about to be spoken. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e726-36b7-7ac3-b895-6a183da05fa0",
+    "submitted_utc":  "2026-11-17T01:36:43.0385711Z",
+    "completed_utc":  "2026-11-17T01:36:51.6299584Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m105-lamp-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c5/dN-I3mCao9MhxMBkAqKhP_yCYcWAa9.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m105-lamp-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c5/dC6fQFey9Wy4pfU8Nx3Rj_nFVcjisk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m105-lamp-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c5/JaWd7LUkTHTG1IpDKnwIU_I4qXeyQS.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1108692831
+}

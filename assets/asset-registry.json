@@ -2672,6 +2672,69 @@
       "verified": true,
       "notes": "FLUX 2 still (arafat3-2) -> Kling 3.0 Pro i2v 10s. Wide view of Arafat's granite hill and white pillar in golden haze, pilgrims only as tiny white specks - humility and hope ('ask Him'). Replaces b1521-arafat. Two other stills rejected: the pillar drawn like a minaret. Sahih al-Bukhari #1521 (Hajj). MODE B. Frame-checked 2026-11-16 with hands and fingers counted: none appear.",
       "prompt_sidecar": "assets/scene-prompts/b1521-arafat3.json"
+    },
+    "m105-lane.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A mud-brick lane at dusk, a gust carrying leaves from one doorway to the other - unease (the lead-in). Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-lane.json"
+    },
+    "m105-sparks.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A courtyard fire, the wind carrying sparks onto a dry palm-frond roof - gossip spreading toward disaster. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-sparks.json"
+    },
+    "m105-lamp.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay lamp's still flame in a dim room - the gravity of 'I heard the Messenger of Allah say'. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-lamp.json"
+    },
+    "m105-gate.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A closed garden gate, a bright garden with water seen through the gaps - 'will not enter Paradise', shut out. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-gate.json"
+    },
+    "m105-bridge.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A rope-and-plank bridge over a ravine burning in the middle - every word carried burns a bridge (the moral). Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-bridge.json"
+    },
+    "m105-chest.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A wooden chest tied shut with cord - let what you heard stop with you. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-chest.json"
+    },
+    "m105-well.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two paths meeting at a stone well with two clay cups side by side - a good word that brings hearts together. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
+      "prompt_sidecar": "assets/scene-prompts/m105-well.json"
     }
   }
 }

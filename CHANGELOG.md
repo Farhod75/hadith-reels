@@ -1,3 +1,17 @@
+## [2026-11-17d] - Muslim #105 published (R250-R253)
+
+### Added
+
+- **Muslim #105 assets:** seven scenes m105-lane, sparks, gate, bridge, chest, lamp, well registered (Kling 3.0 Pro),
+  prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R250-R253 (new theme Speech / Gossip), reel-retro.md, OPEN_ITEMS.md (#105 published).
+- reel-creation-pipeline.md: TikTok description - check the Draft.js editor state, not the DOM.
+
+---
+
 ## [2026-11-17c] - story:F align anchor for a matn quoted only at the end (P420)
 
 ### Added

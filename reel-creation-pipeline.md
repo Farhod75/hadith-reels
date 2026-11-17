@@ -945,6 +945,10 @@ cover there first. A native file dialog must be answered with `browser_file_uplo
   «Turn on»; Edit cover -> a frame from the strip or «Upload cover» -> Save; Post (-> «Post now» if the music
   check is still running). A new post sits under «Content under review / Only me» for a few minutes, then
   turns Everyone.
+  **Check the editor state, not the DOM (2026-11-17, #105):** after the paste the first block (the title) is not
+  rendered, so innerText starts with blank lines; typing the title again doubles it. Read
+  `editorState.getCurrentContent().getPlainText()` off the React fiber of `.public-DraftEditor-content` and compare it
+  with the source text.
 
 **Covers - every platform, a different one per language (operator 2026-11-16).** UZ and TJ upload
 `cover-<n>-<lang>.jpg` on all three. EN and RU have no cover file yet (make-covers.py builds UZ/TJ only, OPEN_ITEMS):

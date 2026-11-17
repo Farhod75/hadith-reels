@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4fa/zroHYvz7tnI2tjV3XtBVE_output.mp4",
+    "name":  "m105-gate",
+    "image":  "out\\refs\\m105-gate-3.jpg",
+    "file":  "out\\backgrounds\\new\\m105-gate.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:40.8559487Z",
+    "size_bytes":  37345393,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Bright light from the garden behind the closed gate glows and shimmers through the narrow gaps between the planks, leaves sway beyond, while outside the shadow on the dusty ground slowly deepens. The gate stays closed. Sorrow and loss - shut out of something beautiful. Slow push-in toward the gate. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e728-ebcf-7ea3-8d52-0c5bda794def",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:48:21.3307052Z",
+    "mode":  "image-to-video"
+}

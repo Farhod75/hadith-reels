@@ -197,6 +197,8 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Muslim #105 - PUBLISHED 2026-11-17 (R250-R253, TG 269-272); library 2c56ebec.** Picked on the view analytics
+  (stakes with a named consequence). Four made covers on every platform. Listen for #105 publishing 2026-11-17.
 - **Bukhari #1521 - PUBLISHED 2026-11-16 (R246-R249, TG 265-268); library 9f2f905f.** Listen for #1521 PUBLISHED 2026-11-16 (4 clips). Four made covers on every platform.
 - **Bukhari #6724 - PUBLISHED 2026-11-16 (R242-R245, TG 261-264); library 9b90e5b4.** Listen for #6724 PUBLISHED 2026-11-16 (4 clips). All four legs published to IG+FB, YouTube and TikTok by Playwright on the operator's PC.
 - **Covers for all four languages (operator 2026-11-16): every platform, and different per language.** make-covers.py

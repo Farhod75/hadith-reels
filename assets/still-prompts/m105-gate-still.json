@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m105-gate",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a tall old wooden garden gate firmly closed in a mud-brick wall, through the narrow gaps between its planks a lush green garden glows in bright light, flowing water and fruit trees beyond; outside the gate dry dusty ground in shadow. No people. Mood: sorrow and loss - shut out of something beautiful. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e726-7880-77d3-a040-d55e4c97da6a",
+    "submitted_utc":  "2026-11-17T01:37:00.0320523Z",
+    "completed_utc":  "2026-11-17T01:37:20.8209996Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m105-gate-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c7/-hQ1LeAZn4Y3Pk-YhbMv0_C7RitAMJ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m105-gate-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c7/XvB8fbDITLZ2dWBkZYIqI_qchRQoSU.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m105-gate-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c7/p5QKxnL2bapMXh4S7SAS8_vZAwlQSK.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  698162152
+}

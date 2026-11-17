@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m105-sparks",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, at night a small cooking fire in a courtyard, the wind lifting a stream of glowing sparks and carrying them toward a dry palm-frond roof nearby. No people. Mood: alarm - a small thing spreading toward a disaster. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e725-e1df-7973-ab35-2f5358777a69",
+    "submitted_utc":  "2026-11-17T01:36:21.4638574Z",
+    "completed_utc":  "2026-11-17T01:36:33.9874697Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m105-sparks-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c3/ZmcjzENHNttZUiVpE6fGh_kUhcixcz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m105-sparks-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c3/Yc-4Qr4mfv1UFQHyf-UtK_rA4gZ0kC.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m105-sparks-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c4c3/oox63sF1NW569PzejJg0o_AtQu1T8a.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1543279757
+}

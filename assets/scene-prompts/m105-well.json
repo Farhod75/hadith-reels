@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4f1/yWn3YPU6I8jaRtHf_z3Ly_output.mp4",
+    "name":  "m105-well",
+    "image":  "out\\refs\\m105-well-2.jpg",
+    "file":  "out\\backgrounds\\new\\m105-well.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:47.2369519Z",
+    "size_bytes":  37639407,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Bright morning sunlight grows warmer over the well and the two clay cups side by side, palm fronds and green shoots sway gently, light dust drifts. Warmth and reconciliation. Slow gentle push-in toward the well. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e729-04b4-7a81-a12c-1600bee7c640",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:46:49.5806050Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c4f8/UqxBVFZBrVYYZjmV5umAX_output.mp4",
+    "name":  "m105-bridge",
+    "image":  "out\\refs\\m105-bridge-2.jpg",
+    "file":  "out\\backgrounds\\new\\m105-bridge.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T01:39:43.0752119Z",
+    "size_bytes":  36603331,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The flames on the middle planks of the footbridge flicker and spread, smoke rises and drifts across the ravine, a charred plank sags. Regret - a link between two sides destroyed. Slow push-in along the bridge. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1e728-f47f-7540-8344-3e448f8bf906",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T01:48:01.8151835Z",
+    "mode":  "image-to-video"
+}

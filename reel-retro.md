@@ -1528,3 +1528,41 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** a rule that lives only in chat is not a check; it has to be in the list I run on every frame.
 
 ---
+
+## R250-R253 - Sahih Muslim #105 - 2026-11-17
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok
+
+**Caught before publish**
+
+- Lead-in: the matn opens with Hudhayfah's own account, and the fixed formula made the account read as the Prophet's
+  words. New report lead-in (P418), operator approved.
+- Caption: the per-speaker matn was wrapped whole in «» again because it did not start with « (P419).
+- Render: all four languages stopped at the P386 slot check - the Prophet's words are the last ~3 s of the story, so
+  matn:F slots were under 1.5 s. New story:F anchor (P420); nothing was spent.
+- stt-validate HIGH on EN and RU (lead-in, honorifics, quotation marks); SRTs fixed against the drafts.
+- TikTok: after the paste the description showed no first line (the title). The editor's own state held the full text
+  - checked against the source on all four before Post.
+
+**Escaped to publish**
+
+- None known.
+
+**Root causes**
+
+- The lead-in, caption and align code all assumed the matn is the Prophet's words from its first character.
+
+**Prevention landed**
+
+- P418 (report lead-in), P419 (preQuoted caption), P420 (story:F anchor), each with a test.
+- Frame check counted people and hands (P417): none in any frame.
+
+**Prevention deferred**
+
+- Kling 4.0 still not used: generate-scene.ps1 needs the v4 input schema before an A/B (paid run, operator's yes).
+
+**Operator corrections of the assistant: 0**
+
+**The finding:** a dialogue matn breaks every step that assumes "matn = the Prophet's words"; the set found three.
+
+---
