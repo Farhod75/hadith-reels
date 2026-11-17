@@ -56,9 +56,27 @@ def load_narrators(path=REFS):
     return out
 
 
-def leadin(narrator, lang, table):
+def leadin(narrator, lang, table, mode='prophet'):
+    """mode='prophet' (default): "X narrated that the Prophet said:".
+    mode='report' (P418): the matn opens with the companion's own account (Muslim #105:
+    "It reached him that a man spread gossip, so Hudhayfah said: I heard the Messenger of
+    Allah say: ..."), so the Prophet-said frame would put that account in the Prophet's mouth.
+    The report form names the same narrator from the same table and stops at the colon."""
     e = table[narrator]
     h = e['h']
+    if mode == 'report':
+        if lang == 'en':
+            return '%s (may Allah be pleased with %s) reported:' % (narrator, HON_EN[h])
+        if lang == 'ru':
+            verb = 'передаёт'
+            return '%s, да будет доволен %s Аллах, %s:' % (e['ru'], HON_RU[h], verb)
+        if lang == 'uz':
+            return '%s розияллоҳу %sдан ривоят қилинади:' % (e['uz'], HON_UZ_TJ[h])
+        if lang == 'tj':
+            return 'Аз %s розияллоҳу %s ривоят аст:' % (e['tj'], HON_UZ_TJ[h])
+        raise ValueError('no lead-in for lang %r' % lang)
+    if mode != 'prophet':
+        raise ValueError('lead-in mode must be prophet or report, not %r' % mode)
     if lang == 'en':
         return ('%s (may Allah be pleased with %s) narrated that the Prophet '
                 '\ufdfa said:' % (narrator, HON_EN[h]))
@@ -87,8 +105,11 @@ def check_story(story, narrator, lang, table):
         return ['narrator %r is not in lib/refs.ts NARRATORS - add it with all '
                 'three forms (and h: if not m) before narrating' % narrator]
     want = leadin(narrator, lang, table)
-    if not _norm(story).startswith(_norm(want)):
-        return ['S must open with exactly: %s' % want]
+    report = leadin(narrator, lang, table, 'report')
+    s = _norm(story)
+    if not (s.startswith(_norm(want)) or s.startswith(_norm(report))):
+        return ['S must open with exactly: %s (or, for a matn that opens with the '
+                'companion\'s own account, P418: %s)' % (want, report)]
     return []
 
 

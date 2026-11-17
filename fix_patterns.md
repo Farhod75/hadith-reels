@@ -16595,3 +16595,27 @@ allow it, choose a scene with no hands.
 **Status:** FIXED (#1521); manual check in the review list
 
 ---
+
+## PATTERN 418: the fixed lead-in put a companion's own account in the Prophet's mouth
+
+**Date:** 2026-11-16  **Repo:** hadith-reels  **Severity:** content (would have misattributed words to the Prophet)
+
+**What happened.** Muslim #105's stored matn opens with Hudhayfah's account - "It reached him that a man used to spread
+gossip, so Hudhayfah said: I heard the Messenger of Allah say: A tale-carrier will not enter Paradise." make-drafts.py
+always opens S with the P337 lead-in "Hudhayfah narrated that the Prophet said:" and quotes the whole matn after it,
+so the dry run read: the Prophet said "It reached him that a man... so Hudhayfah said...". Caught at the dry run.
+
+**Fix.** narrator_leadin.leadin(..., mode='report') - "X (may Allah be pleased with him) reported:" / «X, да будет
+доволен им Аллах, передаёт:» / «X розияллоҳу анҳудан ривоят қилинади:» / «Аз X розияллоҳу анҳу ривоят аст:», the
+narrator from the same table; check_story accepts either form and still refuses a wrong or missing narrator.
+make-drafts.py reads "leadin": "report" from the set file; the account goes in as dialogue "t" pieces (P414), only the
+Prophet's words quoted. Tests +3; scripts/lib 268 passed.
+
+**Lesson:** a fixed formula is right only for the matn shape it was written for; a matn that starts with the narrator's
+own story needs its own opening.
+
+**Tripwire:** read the dry-run S line as a sentence: whatever follows "the Prophet said:" must be the Prophet's words.
+
+**Status:** FIXED
+
+---

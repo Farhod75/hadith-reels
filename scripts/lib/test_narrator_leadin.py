@@ -51,6 +51,28 @@ def test_masculine_ru_verb():
     assert leadin('Abu Hurairah', 'ru', T).startswith('Абу Хурайра, да будет доволен им Аллах, передал,')
 
 
+def test_report_mode_p418():
+    # Muslim #105: the matn opens with Hudhayfah's own account
+    assert leadin('Abu Hurairah', 'en', T, 'report') == 'Abu Hurairah (may Allah be pleased with him) reported:'
+    assert leadin('Abu Hurairah', 'ru', T, 'report') == 'Абу Хурайра, да будет доволен им Аллах, передаёт:'
+    assert leadin('Umm Salamah', 'uz', T, 'report').endswith('розияллоҳу анҳодан ривоят қилинади:')
+    assert leadin('Umm Salamah', 'tj', T, 'report').startswith('Аз Уммӣ Салама розияллоҳу анҳо ривоят аст:')
+
+
+def test_report_story_passes_and_names_the_narrator():
+    s = 'Umm Salamah (may Allah be pleased with her) reported: It reached her ...'
+    assert check_story(s, 'Umm Salamah', 'en', T) == []
+    assert check_story(s.replace('Umm Salamah', 'Aisha'), 'Umm Salamah', 'en', T)
+
+
+def test_unknown_mode_refused():
+    try:
+        leadin('Abu Hurairah', 'en', T, 'other')
+    except ValueError:
+        return
+    raise AssertionError('mode other accepted')
+
+
 if __name__ == '__main__':
     for name, fn in list(globals().items()):
         if name.startswith('test_'):

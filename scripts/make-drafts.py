@@ -22,6 +22,9 @@ P414: a hadith with a dialogue (a man asks, the Prophet answers) cannot be one q
   "dialogue": [["q", "<the Prophet's words>"], ["t", "A man said:"], ["q", "<the man's words>"], ...]
 q = quoted, t = the narration between the quotes. The pieces must be the stored matn, letter for
 letter, in order (refused otherwise), so nothing is added or dropped; only the quotation marks move.
+P418: a matn that opens with the companion's own account (Muslim #105) takes "leadin": "report" at the
+top level of the set file - the S block then opens "X (may Allah be pleased with him) reported:" instead
+of "X narrated that the Prophet said:", and the account goes unquoted as dialogue "t" pieces.
 M = moral, H = h, C = title. Written to out/draft-<slug>-<lang>.txt (CRLF, as the admin writes
 them), and out/caption-<n>.json for build-caption.ts gets the same title and moral.
 Then each draft goes through lint-content.py and narrate-reel.py --dry-run.
@@ -155,7 +158,7 @@ def main(argv=None):
     for lang in LANGS:
         if lang not in s['langs']:
             continue
-        lead = nl.leadin(row['narrator'], lang, table)
+        lead = nl.leadin(row['narrator'], lang, table, s.get('leadin', 'prophet'))
         drafts[lang] = build_draft(lead, row[COLS[lang]], s['langs'][lang], lang)
         print('=== %s' % lang)
         print('\n'.join(drafts[lang]))

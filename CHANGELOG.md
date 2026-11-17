@@ -1,3 +1,16 @@
+## [2026-11-17] - Lead-in for a matn that opens with the companion's own account (P418)
+
+### Added
+
+- scripts/lib/narrator_leadin.py: mode='report' lead-in in four languages; check_story accepts it. make-drafts.py:
+  set-level "leadin": "report". Tests +3 (268 passed). First use: Muslim #105 (out/set-105.json).
+
+### Docs
+
+- fix_patterns.md P418, PATTERN_INDEX.
+
+---
+
 ## [2026-11-16c] - Bukhari #1521 published (R246-R249); hand count in every frame check (P417)
 
 ### Added
