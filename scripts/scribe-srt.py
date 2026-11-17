@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""P422: write the narration SRT for a UZ or TJ reel from our text + Scribe word timings.
+"""P422/P423: write the narration SRT for a UZ, TJ, EN or RU reel from our text + Scribe word timings.
 
     python scripts/scribe-srt.py --lang uz --slug muslim-105 [--style adults] [--force]
 
@@ -19,8 +19,24 @@ import scribe_align as sa  # noqa: E402
 
 FFPROBE = r'C:\ffmpeg\ffmpeg-master-latest-win64-gpl\bin\ffprobe.exe'
 PAUSE = 0.5                       # render-reel Step 4 apad (P135)
-SCRIBE_LANG = {'uz': 'uz', 'tj': 'tg'}
+SCRIBE_LANG = {'uz': 'uz', 'tj': 'tg', 'en': 'en', 'ru': 'ru'}   # en/ru since P423
 MAX_COST, MAX_UNMATCHED = 0.25, 0.10
+# P423: formulas a cue must not be split inside (the spoken honorifics; spelled variants as TTS got them)
+HOLD = ['peace be upon him', 'may allah be pleased with him', 'да благословит его аллах и приветствует',
+        'да будет доволен им аллах', 'соллаллоҳу алайҳи ва саллам', 'саллаллоҳу алайҳи васаллам',
+        'салаллоҳу алайҳи васаллам', 'розияллоҳу анҳу', 'розияллоҳу анҳудан']
+
+
+def hold_indices(words, spoken):
+    norm = [re.sub(r'[^\w]', '', w.lower()) for w in words]
+    out = set()
+    for ph in HOLD + [spoken.lower()]:
+        toks = [re.sub(r'[^\w]', '', x) for x in ph.split()]
+        n = len(toks)
+        for i in range(len(norm) - n + 1):
+            if norm[i:i + n] == toks:
+                out.update(range(i, i + n - 1))
+    return out
 
 
 def _stt_validate():
@@ -84,17 +100,21 @@ def main():
     ap.add_argument('--slug', required=True)
     ap.add_argument('--style', default='adults')
     ap.add_argument('--force', action='store_true', help='rewrite even when the SRT is fresh')
+    ap.add_argument('--out', help='write here instead of the narration SRT (a trial; no stamp)')
     a = ap.parse_args()
     base = '%s-%s-%s' % (a.style, a.lang, a.slug)
     w = os.path.join(REPO, 'out', 'work', a.style, a.slug, a.lang)
     story, moral = os.path.join(w, base + '-story.mp3'), os.path.join(w, base + '-moral.mp3')
     srt = os.path.join(w, base + '-narration.srt')
+    trial = bool(a.out)
+    if trial:
+        srt = os.path.abspath(a.out)
     for p in (story, moral, story[:-4] + '.txt', moral[:-4] + '.txt'):
         if not os.path.exists(p):
             print('scribe-srt: missing %s' % p); return 2
     fp = fingerprint(story, moral)
     stamp = srt + '.src'
-    if not a.force and os.path.exists(srt) and os.path.exists(stamp) and io.open(stamp).read().strip() == fp:
+    if not a.force and not trial and os.path.exists(srt) and os.path.exists(stamp) and io.open(stamp).read().strip() == fp:
         print('scribe-srt %s %s: SRT fresh - kept' % (a.slug, a.lang)); return 0
     spoken = _stt_validate().PROPHET_SPOKEN[a.lang]
     key = api_key()
@@ -114,8 +134,9 @@ def main():
         print('  REFUSED: timings too uncertain to burn (limits cost %.2f, unmatched %.0f%%) - P078 stays for this reel'
               % (MAX_COST, MAX_UNMATCHED * 100))
         return 3
-    io.open(srt, 'w', encoding='utf-8', newline='\n').write(sa.to_srt(sa.cues(words, times)))
-    io.open(stamp, 'w', encoding='utf-8', newline='').write(fp)
+    io.open(srt, 'w', encoding='utf-8', newline='\n').write(sa.to_srt(sa.cues(words, times, hold=hold_indices(words, spoken))))
+    if not trial:
+        io.open(stamp, 'w', encoding='utf-8', newline='').write(fp)
     print('  wrote %s' % os.path.relpath(srt, REPO))
     return 0
 

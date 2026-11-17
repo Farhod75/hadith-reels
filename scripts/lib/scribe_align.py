@@ -104,16 +104,21 @@ def align(src_words, hyp):
     return times, D[n][m] / max(n, 1), ops.count('ds'), ops.count('dh')
 
 
-def cues(words, times, max_words=6, max_chars=38):
+def cues(words, times, max_words=6, max_chars=38, hold=()):
     """Group words into cues: break after . : ! ? », after , ; once 3 words are in, or at the size
-    limit; then fold a one-word cue into its neighbour when the pair still fits."""
+    limit; then fold a one-word cue into its neighbour when the pair still fits. hold: indices after
+    which a size break is not allowed (the spoken honorific, P423)."""
     out, cur = [], []
+    depth = 0
     for k, w in enumerate(words):
         cur.append(k)
+        depth += w.count('(') - w.count(')')
         text = ' '.join(words[c] for c in cur)
-        if (re.search(r'[.:!?»]["»]?$', w) or (re.search(r'[,;]$', w) and len(cur) >= 3)
-                or len(cur) >= max_words or len(text) >= max_chars):
-            out.append(cur); cur = []
+        # never break a size limit inside parentheses - '(may Allah be pleased with him)' stays on one cue
+        size_break = (len(cur) >= max_words or len(text) >= max_chars) and depth <= 0 and k not in hold
+        if (re.search(r'[.:!?»)]["»]?$', w) and depth <= 0 or (re.search(r'[,;]$', w) and len(cur) >= 3 and depth <= 0)
+                or size_break or len(text) >= max_chars + 30):
+            out.append(cur); cur = []; depth = max(depth, 0)
     if cur:
         out.append(cur)
     # a one-word clause end left behind by a size break: rebalance with the cue before it
@@ -121,7 +126,10 @@ def cues(words, times, max_words=6, max_chars=38):
         prev, c = out[i - 1], out[i]
         if (len(c) == 1 and len(prev) >= 4 and re.search(r'[.:!?»,;]["»]?$', words[c[0]])
                 and not re.search(r'[.:!?»,;]["»]?$', words[prev[-1]])):
-            cut = len(prev) // 2
+            cuts = [j for j in range(1, len(prev)) if prev[j - 1] not in hold]
+            if not cuts:
+                continue
+            cut = min(cuts, key=lambda j: abs(j - len(prev) / 2.0))
             out[i - 1], out[i] = prev[:cut], prev[cut:] + c
     merged = []
     for c in out:

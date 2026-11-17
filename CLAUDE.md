@@ -456,9 +456,9 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   **Known breach:** the #527 adults set ran EN 66.4s / UZ 51.6s / RU 44.7s /
   TJ 39.8s — a 67% spread, with EN the outlier. Uzbek runs structurally longer
   than EN/RU/TJ because reported speech takes explicit «деди»/«дедим» tags.
-- Subtitle timing synced per language. EN/RU/AR from Whisper; UZ/TJ from
-  scripts/scribe-srt.py since 2026-11-17 (P422: our Cyrillic text + Scribe v3 word
-  timings - Whisper and Scribe both write UZ/TJ in another script, P078).
+- Subtitle timing synced per language. EN/RU/UZ/TJ from scripts/scribe-srt.py since
+  2026-11-17 (P422/P423: our draft text + Scribe v3 word timings, so the words on
+  screen are ours, never a recogniser's); AR still from Whisper.
 
 ### 7. Cost Management
 - ElevenLabs `eleven_v3` — cap at $0.50/reel of narration.

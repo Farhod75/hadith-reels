@@ -47,3 +47,9 @@ def test_a_clause_ending_one_word_later_is_not_split():
     words = 'Ҳузайфа ибн Яман розияллоҳу анҳудан ривоят қилинади: Унга бир кишининг'.split()
     c = sa.cues(words, [(i, i + 0.5) for i in range(len(words))])
     assert c[1][2].endswith('қилинади:') and len(c[1][2].split()) > 1
+
+
+def test_parenthesis_stays_on_one_cue():
+    words = 'Abu Hurairah (may Allah be pleased with him) narrated that the Prophet said:'.split()
+    c = sa.cues(words, [(i, i + 0.5) for i in range(len(words))])
+    assert any('(may Allah be pleased with him)' in x[2] for x in c)

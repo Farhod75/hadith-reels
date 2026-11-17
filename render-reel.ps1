@@ -197,8 +197,10 @@ $normDir = "out\backgrounds\new\normalized"
 
 # subtitles routing. P078: Whisper writes UZ/TJ in Latin, so those got none.
 # P422: UZ/TJ now get an SRT from scribe-srt.py - OUR Cyrillic text, Scribe v3 word timings.
-$whisperLangs = @('en','ru','ar')
-$scribeLangs  = @('uz','tj')
+# P423: EN/RU too - Whisper's lead-in, quotation-mark and hallucinated-tail errors needed a hand fix on
+# nearly every EN/RU leg; scribe-srt.py burns our own text. AR stays on Whisper.
+$whisperLangs = @('ar')
+$scribeLangs  = @('uz','tj','en','ru')
 $subLangs = $whisperLangs + $scribeLangs
 $useSubs  = ($subLangs -contains $Lang) -and (-not $ForceNoSubs)
 # P356: make-drafts.py writes out\draft-<slug>-<lang>.txt and render-set.py passes

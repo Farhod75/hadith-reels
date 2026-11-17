@@ -198,9 +198,8 @@ this one wins.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Muslim #1510 - PUBLISHED 2026-11-17 (R254-R257, TG 273-276); library f9401679.** First set with UZ/TJ subtitles
-  (P422) and on Kling 4.0 (P421). Listen for #1510 waits for the operator's yes.
-- **scribe-srt.py for EN/RU (proposed 2026-11-17):** Whisper needed SRT fixes on every EN/RU leg (lead-in, quotes, a
-  hallucinated credit tail on #1510 RU); our text + Scribe timings would remove the step. Operator to decide.
+  (P422) and on Kling 4.0 (P421). Listen for #1510 PUBLISHED 2026-11-17 (4 clips).
+- **DONE 2026-11-17 (P423): scribe-srt.py for EN/RU** - operator approved; render-reel uses it for en/ru/uz/tj.
 - **generate-scene.ps1 -Resume rewrites the prompt sidecar** with whatever -Prompt was passed (seen on m1510-fetters).
 - **Muslim #105 - PUBLISHED 2026-11-17 (R250-R253, TG 269-272); library 2c56ebec.** Picked on the view analytics
   (stakes with a named consequence). Four made covers on every platform. Listen for #105 PUBLISHED 2026-11-17 (4 clips).

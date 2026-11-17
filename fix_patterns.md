@@ -16710,3 +16710,27 @@ limits (exit 3); stt-validate.py --strict on the written SRT under render-reel.
 **Status:** FIXED
 
 ---
+
+## PATTERN 423: EN/RU subtitles from our text too - Whisper needed a hand fix on nearly every leg
+
+**Date:** 2026-11-17  **Repo:** hadith-reels  **Severity:** process (a manual step on every EN/RU render)
+
+**What happened.** On #6724, #1521, #105 and #1510 the EN and RU Whisper SRTs failed stt-validate --strict on the
+same classes every time - the narrator lead-in («Абуху Райра», «Hudhaifa ... reported.»), missing quotation marks,
+honorifics - and on #1510 RU Whisper added «Редактор субтитров и.Бойкова / Корректор а.Егорова» after the audio
+ended. Each was fixed by hand against the draft.
+
+**Fix.** render-reel.ps1 $scribeLangs = uz, tj, en, ru (AR stays on Whisper); render-set.py takes the matn anchor
+from the scribe SRT for all four. scribe-srt.py: SCRIBE_LANG += en, ru; HOLD list - a cue never splits inside a
+spoken honorific or (via scribe_align.cues) inside parentheses; --out writes a trial SRT. scribe_align: the one-word
+rebalance picks a cut outside the held span. On #1510 and #105 EN/RU: alignment cost 0.00, 0 unmatched, 0 HIGH,
+no edit. Tests: test_scribe_align.py +1 (275 passed).
+
+**Lesson:** when the source text exists, a recogniser should only supply the clock.
+
+**Tripwire:** stt-validate --strict still runs on every SRT under render-reel; a scribe-srt refusal (exit 3) falls
+back to no subtitles for that leg rather than to Whisper.
+
+**Status:** FIXED
+
+---

@@ -15,7 +15,7 @@ admin UI:
 |---|---|---|
 | Visual | Talking mascot (lamb), lip-synced | Animated scenes or looped background |
 | Renderer | `render-mascot-reel.ps1` | `render-reel.ps1` |
-| Subtitles | None | EN/RU/AR: Whisper SRT. UZ/TJ: our text + Scribe v3 word timings (scribe-srt.py, P422; P078 before 2026-11-17) |
+| Subtitles | None | EN/RU/UZ/TJ: our text + Scribe v3 word timings (scribe-srt.py, P422/P423). AR: Whisper SRT |
 | Wrapper | `make-kids-reel.ps1` — one command | None; run steps by hand |
 
 **The kids path below is current and verified. The adults path further down is
@@ -726,7 +726,7 @@ state; check them against `render-reel.ps1` before a run.
 - **Pillar 2:** animated scenes — FLUX text-to-image (`generate-image.ps1`) →
   human review → Kling image-to-video (`generate-scene.ps1`) → `render-reel.ps1`
   with `-Scenes` (per-clip 1080×1920@30fps normalization)
-- Subtitles: Whisper for en/ru/ar; uz/tj from `scripts/scribe-srt.py` (P422) - our Cyrillic text, Scribe v3 word timings
+- Subtitles: en/ru/uz/tj from `scripts/scribe-srt.py` (P422/P423) - our draft text, Scribe v3 word timings; ar from Whisper
 - Voices: EN James, RU Abrar, UZ Opa Johann, TJ Meisam
 
 **Open items on this path:** P100 (Whisper UTF-8 on Cyrillic) is session-only and
@@ -912,7 +912,7 @@ Then Everyone -> AI label **ON** -> clear the Cornelius location -> checks pass
 -> **Post**. **Reuse of content OFF** (TikTok Studio's single checkbox for Duet and
 Stitch, 2026-11-04) - same reason as Facebook's Remixing. Comments stay on.
 
-### UZ/TJ subtitles - scribe-srt.py (P422, 2026-11-17)
+### Subtitles from our text - scribe-srt.py (P422 UZ/TJ, P423 EN/RU, 2026-11-17)
 
 Scribe v3 hears Uzbek and writes Latin, hears Tajik and writes Persian script, so its TEXT is never shown.
 scribe-srt.py takes the story/moral text sent to TTS, asks Scribe for word timings of each mp3 (cached as
@@ -922,6 +922,11 @@ render-reel's timeline (story, 0.5 s, moral) with the P211 stamp. Refused (exit 
 or 10% unmatched words - that reel renders without subtitles. render-set.py calls it before the P386 align, so
 the `matn` anchor for UZ/TJ is the real moment the Prophet's words begin (on #105: UZ 14.28 s against
 13.76 s by letter share). Cost: Scribe at the speech-to-text rate, cents per reel.
+
+Since P423 EN and RU go the same way: Whisper needed a hand fix on nearly every EN/RU leg (lead-in, quotation
+marks, honorifics, and on #1510 RU a hallucinated credit tail past the audio). On #1510 and #105 the Scribe path gave
+0 HIGH findings with no edit. A cue is never split inside parentheses or inside a spoken honorific (HOLD list in
+scribe-srt.py). `--out FILE` writes a trial SRT without touching the cached one.
 
 ### 5. Agent publishing by Playwright (since 2026-11-16, first used on #6724)
 

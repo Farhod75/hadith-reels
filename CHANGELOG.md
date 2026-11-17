@@ -1,3 +1,17 @@
+## [2026-11-17h] - EN/RU subtitles from our text + Scribe timings (P423); Listen #1510
+
+### Changed
+
+- render-reel.ps1: en/ru join uz/tj on scribe-srt.py; AR stays on Whisper. render-set.py: matn anchor from it for all four.
+- scripts/scribe-srt.py: en, ru; HOLD (no split inside a spoken honorific); --out for a trial SRT.
+- scripts/lib/scribe_align.py: no size break inside parentheses or a held span; test +1.
+
+### Docs
+
+- fix_patterns.md P423, PATTERN_INDEX; reel-creation-pipeline.md, CLAUDE.md, OPEN_ITEMS.md (Listen #1510 published).
+
+---
+
 ## [2026-11-17g] - Muslim #1510 published (R254-R257)
 
 ### Added
