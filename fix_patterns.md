@@ -16635,6 +16635,9 @@ supplies matn_quoted. caption-explain.test.ts +2 checks; tsc clean.
 
 **Lesson:** "already quoted" is a property of where the text came from, not of its first character.
 
+**Tripwire:** caption-explain.test.ts asserts a preQuoted matn passes through unwrapped (run by the pre-push hook);
+and read the caption's matn line before posting - only the Prophet's words may sit inside «».
+
 **Status:** FIXED
 
 ---
