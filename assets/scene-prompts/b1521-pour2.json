@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c290/q-vg4zHuMQR_33CQld3MN_output.mp4",
+    "name":  "b1521-pour2",
+    "image":  "out\\refs\\b1521-pour2-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-pour2.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T23:58:20.5232896Z",
+    "size_bytes":  30205678,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Clear water pours steadily from the spout of the resting clay jug into the stone basin, the basin fills and the surface ripples and sparkles in bright clean morning sunlight, drops glint. Purification and gratitude - washed clean. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. The jug stays resting where it is and does not float or move. No people, no hands, no arms, no faces, no creatures, no text.",
+    "request_id":  "01a1e6cc-2440-70a1-a517-1ed4a3b03226",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T00:07:06.7739183Z",
+    "mode":  "image-to-video"
+}

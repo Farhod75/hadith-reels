@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b1521-ihram",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, two folded plain white unstitched cotton sheets (ihram) resting on a woven palm-fibre mat beside a pair of simple leather sandals, soft clean morning side light, nothing else. No people. Mood: sincerity and humility - everything set aside, only for Allah. Timeless Hijaz setting near Mecca: granite hills, pale sand, simple cloth. No faces, no blood, no moon, no text, no calligraphy, no buildings with domes or minarets, no Kaaba, no modern objects, no vehicles, no plastic, no glass.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e65a-6efd-77c1-a6e5-dfa358a9a13f",
+    "submitted_utc":  "2026-11-16T21:54:08.3576686Z",
+    "completed_utc":  "2026-11-16T21:54:16.9162161Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b1521-ihram-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8d/ZovgOi72HOlbMXcNo8evC_DpC5E02T.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b1521-ihram-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8d/mjZDy2sSUiZlgUR_axC--_apDUH0L9.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b1521-ihram-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8d/RR3TbGvhnXnyimRvGrb66_fOeBn8Ox.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1649422168
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c016/Jz7ZUvixK1569KCL0qQ4g_output.mp4",
+    "name":  "b1521-tents",
+    "image":  "out\\refs\\b1521-tents-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-tents.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T22:10:42.3349200Z",
+    "size_bytes":  29735457,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The thin blue mist drifts slowly between the rows of white tents, the sky brightens very slightly toward dawn, the tents stay perfectly still, no one appears. Restraint and calm discipline - peace, nothing out of place. Slow steady push-in down the row. Keep every object exactly as in the image, nothing added or removed. No faces, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e669-98b2-7a73-8090-486e570d403e",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T22:18:27.3885547Z",
+    "mode":  "image-to-video"
+}

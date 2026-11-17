@@ -1,0 +1,13 @@
+{
+    "image":  "out\\refs\\b1521-spring-1.jpg",
+    "model":  "kling/v4/image-to-video",
+    "duration_sec":  10,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "generate_audio":  false,
+    "name":  "b1521-spring-k4",
+    "mode":  "image-to-video",
+    "schema":  1,
+    "prompt":  "Clear water wells up and ripples over the clean pale stones, sunlight sparkles and dances on the surface, the green shoots sway gently, the sun rises a little higher. Renewal and joy - washed clean, born anew. Slow gentle push-in toward the light on the water. Keep every object exactly as in the image, nothing added or removed. No faces, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e681-bb0f-7d23-b74a-aa64ce689ac9",
+    "submitted_utc":  "2026-11-16T22:37:03.9860735Z"
+}

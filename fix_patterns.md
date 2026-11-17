@@ -16571,3 +16571,27 @@ and the platform-text read is a second one: read UZ/TJ as text, not as a diff.
 **Status:** FIXED (row 91); no automated check
 
 ---
+
+## PATTERN 417: the frame check looked at the frames and did not count the hands
+
+**Date:** 2026-11-16  **Repo:** hadith-reels  **Severity:** content (an anatomically impossible figure in a rendered reel)
+
+**What happened.** Bukhari #1521's pour clip showed water poured from a clay jug into cupped hands. The still and the
+clip were reviewed and the set was rendered; the operator then found THREE hands - one on the jug and two cupped,
+all from one white sleeve. He had already told me to count hands and fingers; the rule lived in the chat, not in the
+check. Counting then caught the Arafat clip as well: a bearded side profile at the left edge, and hands that belonged
+to no visible arm.
+
+**Fix.** Both clips retired in the registry (lanes [], with the reason); replaced by scenes with no hands at all - a
+jug resting on a ledge pouring into a stone basin, and a wide view of Arafat with pilgrims as specks. Re-rendered all
+four languages before Telegram; EN cover remade.
+
+**Lesson:** "does this frame look right" is not a check. Count: hands, fingers per hand, and trace each hand to its arm.
+
+**Tripwire:** for every still and clip that shows a person or any part of one: count the hands, the fingers on each,
+and match every hand to an arm and a body - at the still (before Kling) and again on the clip's frames. When the words
+allow it, choose a scene with no hands.
+
+**Status:** FIXED (#1521); manual check in the review list
+
+---

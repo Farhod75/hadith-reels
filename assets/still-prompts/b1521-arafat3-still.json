@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b1521-arafat3",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, wide distant view of a granite hill under a vast glowing golden late-afternoon sky, a slender white pillar on its summit, the slopes and plain at its foot softly covered by a sea of tiny white-clad pilgrims seen only as small white specks far away, warm haze, a few birds in the sky. Mood: humility and hope, a whole people asking. Timeless Hijaz setting near Mecca: granite hills, pale sand. No faces, no visible hands, no close figures, no text, no calligraphy, no buildings with domes or minarets, no Kaaba, no modern objects, no vehicles.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e6cc-a94a-7853-a197-396a0e6cdcd2",
+    "submitted_utc":  "2026-11-16T23:58:53.8973149Z",
+    "completed_utc":  "2026-11-16T23:59:02.8745380Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b1521-arafat3-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c27a/EP8CkGy7E7kv_Rtiz-Q-Q_wYzESsXY.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b1521-arafat3-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c27a/CEw9dBVzFhrUoDAd22JLd_Xku4Cb9l.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b1521-arafat3-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c27a/SNwTQZLaZYynmrLSceKuL_2qdCb984.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  215659447
+}

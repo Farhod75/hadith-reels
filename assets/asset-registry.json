@@ -2595,6 +2595,83 @@
       "verified": true,
       "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. Morning sun through a date-palm orchard, birds - relief, open-heartedness. Sahih al-Bukhari #6724, Abu Hurairah - 'Beware of suspicion, for suspicion is the most untruthful of speech. Do not pry, do not spy, do not hate one another, do not turn away from one another, and be, O servants of Allah, brothers.' MODE B, no faces, no hands. Each clip carries the feeling of its words (operator 2026-11-15). Eight clips on measured slots (P393); stills approved 2026-11-15 (alley-1, shadow2-1, door-2, cracked-3, brothers-2, ripple-3, jar-2, orchard-2). All frame-checked (0.3/3/6/9.7 s).",
       "prompt_sidecar": "assets/scene-prompts/b6724-orchard.json"
+    },
+    "b1521-road.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. A pale track through dark granite hills at dawn, a far line of pilgrims in white from behind - longing (the lead-in). Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-road.json"
+    },
+    "b1521-ihram.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. Two folded white unstitched sheets and leather sandals on a palm-fibre mat - sincerity, 'for Allah'. Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-ihram.json"
+    },
+    "b1521-tents.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. Rows of plain white canvas tents in blue dawn mist between granite hills - restraint ('without obscenity and without sin'). Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-tents.json"
+    },
+    "b1521-spring2.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. Clear water in a stone-ringed desert spring at sunrise - renewal ('like the day his mother gave birth to him'). Second take: the first (b1521-spring, not used) drew an arcing jet like a fountain pipe; this one keeps a thin natural trickle from the stones. Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-spring2.json"
+    },
+    "b1521-pour.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": false,
+      "notes": "RETIRED 2026-11-16 by the operator's review: THREE hands - one holding the jug and two cupped, all from one sleeve. Never use. FLUX 2 still -> Kling 3.0 Pro i2v 10s. Water poured from a clay jug into cupped hands, white sleeve - purification (the moral's first line). Hands only, no face. Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-pour.json"
+    },
+    "b1521-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still -> Kling 3.0 Pro i2v 10s. An open wooden door, a travel bundle and sandals on the threshold, a path outside - longing and intention ('if Hajj is not yet written for you'). Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-door.json"
+    },
+    "b1521-arafat.mp4": {
+      "classification": "scene",
+      "lanes": [],
+      "verified": false,
+      "notes": "RETIRED 2026-11-16 on the hand count after the operator's review of pour: a bearded side profile at the left edge and hands that belong to no visible arm. Never use. FLUX 2 still (arafat2-1) -> Kling 3.0 Pro i2v 10s. Arafat's granite hill and white pillar at golden hour, pilgrims from behind with palms open at the chest - humility and hope ('ask Him'). First stills had arms flung overhead like a stadium crowd and were redone. Sahih al-Bukhari #1521, Abu Hurairah - 'Whoever performs Hajj for Allah without obscenity and without sin will return like the day his mother gave birth to him.' MODE B, no faces (figures from behind only). Each clip carries the feeling of its words; Hajj references from news photo reports (Arafat's granite hill with the white pillar, Mina's white tents). Stills approved 2026-11-16 (road-1, ihram-2, tents-2, spring-1, pour-2, door-2, arafat2-1). Frame-checked.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-arafat.json"
+    },
+    "b1521-pour2.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (pour2-2) -> Kling 3.0 Pro i2v 10s. A clay jug resting on a stone ledge pours clear water into a carved stone basin - purification (the moral's first line). Replaces b1521-pour. Sahih al-Bukhari #1521 (Hajj). MODE B. Frame-checked 2026-11-16 with hands and fingers counted: none appear.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-pour2.json"
+    },
+    "b1521-arafat3.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "FLUX 2 still (arafat3-2) -> Kling 3.0 Pro i2v 10s. Wide view of Arafat's granite hill and white pillar in golden haze, pilgrims only as tiny white specks - humility and hope ('ask Him'). Replaces b1521-arafat. Two other stills rejected: the pillar drawn like a minaret. Sahih al-Bukhari #1521 (Hajj). MODE B. Frame-checked 2026-11-16 with hands and fingers counted: none appear.",
+      "prompt_sidecar": "assets/scene-prompts/b1521-arafat3.json"
     }
   }
 }

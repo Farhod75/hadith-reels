@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2bfe4/glYKjlQjW3ak9HoELwmxS_output.mp4",
+    "name":  "b1521-ihram",
+    "image":  "out\\refs\\b1521-ihram-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-ihram.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T22:03:46.7001843Z",
+    "size_bytes":  36455834,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Soft clean morning light slowly spreads across the folded white cloth and the sandals, the edge of the cloth stirs faintly in a light breeze, everything else still. Sincerity and humility - everything set aside, only for Allah. Static camera, a very slow push-in. Keep every object exactly as in the image, nothing added or removed. No faces, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e663-411d-7a31-9086-5af77088ac16",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T22:10:39.4717434Z",
+    "mode":  "image-to-video"
+}

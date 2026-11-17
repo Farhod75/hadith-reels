@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c102/gbqNdrGUtRnFjbgAjtYkD_output.mp4",
+    "name":  "b1521-spring2",
+    "image":  "out\\refs\\b1521-spring-1.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-spring2.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T22:51:50.9335844Z",
+    "size_bytes":  36052658,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The clear water of the shallow pool wells up softly from beneath the pale stones in slow gentle bubbles and spreads in quiet ripples, sunlight sparkles on the surface, the green shoots sway gently in the breeze. Renewal and joy - washed clean, born anew. Slow gentle push-in toward the light on the water. Keep every object exactly as in the image, nothing added or removed. No jets, no spouts, no fountain, no arcing stream, no pipe - the water only wells up gently from below. No faces, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e68f-43b0-7ae3-adb8-b3fc0c416d96",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T23:00:46.8912477Z",
+    "mode":  "image-to-video"
+}

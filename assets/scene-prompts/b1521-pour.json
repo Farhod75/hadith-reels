@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c05e/08OJ4Rkiju8J2GEpVvuBw_output.mp4",
+    "name":  "b1521-pour",
+    "image":  "out\\refs\\b1521-pour-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-pour.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-16T22:24:42.5143154Z",
+    "size_bytes":  21364787,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "Clear water pours steadily from the clay jug into the cupped hands, overflows and falls in sparkling drops, bright morning light. The hands stay still and keep their shape. Purification and gratitude. Static camera. Keep every object exactly as in the image, nothing added or removed. No faces, no blood, no creatures, no moon, no text.",
+    "request_id":  "01a1e676-6aa8-7b82-a14e-25a99fcba3fc",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-16T22:30:11.1905563Z",
+    "mode":  "image-to-video"
+}

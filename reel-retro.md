@@ -1486,3 +1486,45 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** the platforms all accept a per-language cover; the gap was only that we had made two of four.
 
 ---
+
+## R246-R249 - Sahih al-Bukhari #1521 - 2026-11-16
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok
+
+**Caught before publish**
+
+- Translation: UZ/TJ left rafath and fusuq as bare Arabic, EN carried sunnah.com's bracketed additions. Re-translated,
+  A/B 4/4 on the proposed text before writing, operator approved.
+- Stills: Arafat figures with arms flung overhead like a stadium crowd (redone); pillars drawn like minarets (rejected).
+- Kling 3.0 drew an arcing jet like a fountain pipe in the spring (re-run with 'no jets').
+- stt-validate HIGH on EN (quotes, Him/His) and RU (lead-in «Абуху Райра»); SRTs fixed.
+- **By the operator, after the first render:** the pour clip had THREE hands - a hand on the jug and two cupped hands,
+  all from one sleeve. My frame check looked at the frames and did not count hands. The hand count then caught the
+  Arafat clip too (a bearded side profile at the edge, hands with no arm). Both replaced by scenes with no hands at
+  all and the set re-rendered before Telegram.
+
+**Escaped to publish**
+
+- None known.
+
+**Root causes**
+
+- The frame check asked "does it look right", not "how many hands, how many fingers, whose arm". The operator had
+  already given this rule; it lived in chat, not in the check (P417).
+- Kling 4.0: generate-scene.ps1 sends the v3 body; v4 completed in 0.5 s and returned 422 (self_upskilling).
+
+**Prevention landed**
+
+- P417: count hands and fingers, and trace each hand to an arm, on every still and clip that shows a person - at the
+  still, before Kling, and again on the clip. Prefer scenes without hands when the words allow it.
+- make-covers.py already builds EN and RU (`--langs en ru uz tj --scene`): the first set with four made covers.
+
+**Prevention deferred**
+
+- Kling 4.0 input schema in generate-scene.ps1, then the A/B.
+
+**Operator corrections of the assistant: 1** - the hand count, a rule he had given before.
+
+**The finding:** a rule that lives only in chat is not a check; it has to be in the list I run on every frame.
+
+---

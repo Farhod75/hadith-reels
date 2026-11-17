@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b1521-pour2",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a plain terracotta clay jug tilted on the rim of a simple carved stone basin, clear water pouring from its spout in a smooth stream into the basin, the water surface sparkling, bright clean morning sunlight, sand and granite boulders softly blurred behind. No people. Mood: purification and gratitude - washed clean. Timeless Hijaz setting near Mecca: granite hills, pale sand. No people, no hands, no arms, no faces, no text, no calligraphy, no modern objects, no metal taps, no pipes, no glass.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e6ca-b34e-7e71-b6ea-87f84a19cf5c",
+    "submitted_utc":  "2026-11-16T23:56:45.5137233Z",
+    "completed_utc":  "2026-11-16T23:56:54.3335963Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b1521-pour2-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c26d/E0jza6xjAHQmYsYaZ5NY0_E91MMTnQ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b1521-pour2-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c26d/9aKyddJNvHSfmHSEm9KXD_3yNQLbL6.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b1521-pour2-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2c26d/VK_JQ_1a_1GxwaMhziGx9_ODxx8DhK.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  304318171
+}

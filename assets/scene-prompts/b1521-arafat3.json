@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2c29d/YdMuzObze9XTthT56CjH7_output.mp4",
+    "name":  "b1521-arafat3",
+    "image":  "out\\refs\\b1521-arafat3-2.jpg",
+    "file":  "out\\backgrounds\\new\\b1521-arafat3.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T00:00:13.6416336Z",
+    "size_bytes":  30802773,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The golden haze over the hill slowly deepens and glows, a few birds glide slowly across the sky, the sea of tiny white specks below barely stirs, warm light spreads across the plain. Humility and hope, a whole people asking. Very slow push-in toward the hill. Keep every object exactly as in the image, nothing added or removed. The pilgrims stay tiny distant white specks. No close figures, no faces, no hands, no text.",
+    "request_id":  "01a1e6cd-de0a-7020-b246-fec6070a89f8",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T00:09:15.8971548Z",
+    "mode":  "image-to-video"
+}

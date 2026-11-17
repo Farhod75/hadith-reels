@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b1521-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the open wooden door of a simple home at early morning, a small cloth travel bundle and a pair of sandals waiting on the threshold, warm light outside, a path leading away. No people. Mood: longing and intention - waiting to set out. Timeless Hijaz setting near Mecca: granite hills, pale sand, simple cloth. No faces, no blood, no moon, no text, no calligraphy, no buildings with domes or minarets, no Kaaba, no modern objects, no vehicles, no plastic, no glass.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e65b-95cc-7610-b49c-90772d96fcb1",
+    "submitted_utc":  "2026-11-16T21:55:23.8768456Z",
+    "completed_utc":  "2026-11-16T21:55:32.3572365Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b1521-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf95/P6NFppp7dATV_7qQmgWtE_RVRFwYM8.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b1521-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf95/IdFwJvP-vSYotQRdjHvjx_d9LjS6rV.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b1521-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf95/WtUd9kYgtvr0DShUOGooa_wbKD6i4r.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1396269830
+}

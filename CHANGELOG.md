@@ -1,3 +1,18 @@
+## [2026-11-16c] - Bukhari #1521 published (R246-R249); hand count in every frame check (P417)
+
+### Added
+
+- **Bukhari #1521 assets:** seven scenes b1521-road, ihram, tents, spring2, pour2, door, arafat3 registered (Kling 3.0
+  Pro), prompt sidecars; b1521-pour and b1521-arafat retired (hands), b1521-spring not used (fountain jet).
+
+### Docs
+
+- fix_patterns.md P417 + PATTERN_INDEX. reel-tracker.md R246-R249 (new theme Hajj / Forgiveness), reel-retro.md,
+  OPEN_ITEMS.md (#1521 published; the uncovered-topics queue done; make-covers builds all four languages).
+- self_upskilling.md: ElevenLabs probe (v4 current; Scribe v3 UZ in Latin, TJ in Persian script) and the Kling 4.0 try.
+
+---
+
 ## [2026-11-16b] - Agent publishing documented; Bukhari #1521 re-translated
 
 ### Docs

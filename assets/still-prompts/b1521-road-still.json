@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b1521-road",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a long pale sand track winding through dark granite hills toward a distant valley at first dawn, soft pink and gold light rising behind the hills, a small far-off line of pilgrims in white seen from behind walking on it. Mood: longing and hope - a long journey toward something beloved. Timeless Hijaz setting near Mecca: granite hills, pale sand, simple cloth. No faces, no blood, no moon, no text, no calligraphy, no buildings with domes or minarets, no Kaaba, no modern objects, no vehicles, no plastic, no glass.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1e65a-299a-7822-97ba-a593e93a3ad8",
+    "submitted_utc":  "2026-11-16T21:53:50.2914350Z",
+    "completed_utc":  "2026-11-16T21:53:59.1049101Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b1521-road-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8b/_rQb-t5DxjXUOeqb81aEM_6TgceWUC.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b1521-road-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8b/_8vnDTZNQFZgB2oUqhj63_stbL9oQS.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b1521-road-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2bf8b/S8mRVLUhXYaZ3a59_koJB_a9vmKEmO.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  249070615
+}

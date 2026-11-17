@@ -197,14 +197,16 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Bukhari #1521 - PUBLISHED 2026-11-16 (R246-R249, TG 265-268); library 9f2f905f.** Listen for #1521 waits for the
+  operator's yes. Four made covers on every platform.
 - **Bukhari #6724 - PUBLISHED 2026-11-16 (R242-R245, TG 261-264); library 9b90e5b4.** Listen for #6724 waits for
   the operator's yes. All four legs published to IG+FB, YouTube and TikTok by Playwright on the operator's PC.
 - **Covers for all four languages (operator 2026-11-16): every platform, and different per language.** make-covers.py
-  builds UZ and TJ only - extend it to EN and RU with distinct scenes and titles. Meta takes an uploaded cover
+  already builds EN and RU (`--langs en ru uz tj --scene en=... ru=...`, found 2026-11-16) - use it on every set. Meta takes an uploaded cover
   (Миниатюра), TikTok too (Upload cover), YouTube Shorts too (Upload file).
 - **Uncovered-topics queue (operator 2026-11-13; chosen with the view analytics in mind - personal stakes
-  with a named consequence).** #31 SHIPPED 2026-11-15, #6724 SHIPPED 2026-11-16. Next: a Hajj topic
-  (only R004 TJ and R005 RU so far,
+  with a named consequence).** #31 SHIPPED 2026-11-15, #6724 and the Hajj topic (#1521) SHIPPED 2026-11-16 -
+  THE QUEUE IS DONE; the next pick goes back to the view analytics. (Hajj before: only R004 TJ and R005 RU,
   one language each; #1521 Hajj mabrur still has the UZ/TJ fix below). Check reel-tracker.md before each pick.
 - **Muslim #2564 - PUBLISHED 2026-11-09 (R222-R225, TG 240-243); library 8eeb6788.** Listen published (4).
 - **Bukhari #6405 - PUBLISHED 2026-11-09 (R218-R221, TG 236-239); library f31cd2b7.** Next: Muslim #2564
