@@ -1,0 +1,15 @@
+{
+    "name": "m1510-fetters",
+    "image": "out\\refs\\m1510-fetters-1.jpg",
+    "submitted_utc": "2026-11-17T21:24:49.7832532Z",
+    "negative_prompt": null,
+    "prompt": "The thin shaft of grey light from the high window slowly shifts across the stone floor toward the iron fetters, fine dust floats in the beam; the fetters stay still. Sorrow and gravity. Slow descending camera. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id": "01a1eb65-f456-7a93-a8f8-2f0d6616c04d",
+    "model": "fal-ai/kling-video/v4/image-to-video",
+    "schema": 1,
+    "generate_audio": null,
+    "resumed_utc": "2026-11-17T21:56:42.5039636Z",
+    "duration_sec": 10,
+    "mode": "image-to-video",
+    "note": "Kling 4.0 job COMPLETED on fal but the result fetch returned 504 on every resume (2026-11-17); no clip on disk. The reel uses m1510-fetters-k3 (Kling 3.0 Pro, same still and prompt)."
+}

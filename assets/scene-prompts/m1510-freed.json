@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e0c0/7HGYvsw1KxiqptK8q584X_output.mp4",
+    "name":  "m1510-freed",
+    "image":  "out\\refs\\m1510-freed3-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1510-freed.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T21:24:53.6396660Z",
+    "size_bytes":  22266251,
+    "negative_prompt":  null,
+    "prompt":  "Warm morning sunlight grows brighter through the open door, a light breeze stirs the palm fronds outside and lifts a little sand over the threshold beside the cut rope. Relief and freedom. Slow push-in toward the open doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1eb66-0374-7392-9ca1-7cf9ee2e377b",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T21:32:17.0970939Z",
+    "mode":  "image-to-video"
+}

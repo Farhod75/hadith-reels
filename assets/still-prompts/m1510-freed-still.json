@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-freed",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the same kind of heavy old iron fetters lying OPEN and empty on the threshold of a wide open wooden door, bright warm morning sunlight flooding in, a sandy path leading out to green palm trees and open sky. No people. Mood: relief and freedom - set free. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb60-ea3c-7093-ab59-2cf3a10332e8",
+    "submitted_utc":  "2026-11-17T21:19:19.3125618Z",
+    "completed_utc":  "2026-11-17T21:19:27.6750753Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-freed-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07c/hT6mRLL3g-ccNQSSKL_Cw_srYpAdqB.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-freed-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07c/szX5o43dWfbfUa1UX2W1r_LozyLrFK.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-freed-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07c/HvcrJQt_BHZSsKHelOCiQ_lj7iAdbO.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1298093822
+}

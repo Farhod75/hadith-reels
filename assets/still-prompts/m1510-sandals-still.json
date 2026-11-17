@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-sandals",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a pair of old worn leather thong sandals, cracked and dusty from years of walking, set neatly side by side on the doorstep of a mud-brick house at dawn, a plain wooden walking staff leaning beside the door frame, soft golden low light. No people. Mood: tenderness and quiet gratitude - a father\u0027s long years of walking for his family. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb60-17e3-75b1-8dad-6642ef138507",
+    "submitted_utc":  "2026-11-17T21:18:25.1721865Z",
+    "completed_utc":  "2026-11-17T21:18:33.8716759Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-sandals-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e077/4Mytnr8dC2W3LyLBvjr7U_VaQK2G0P.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-sandals-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e077/5owZiTLOsPW89tqZl2FVu_RHv28oXQ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-sandals-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e077/9oN7FRCiPV1N8KUQ_5GTp_xAEUAHGC.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  648421196
+}

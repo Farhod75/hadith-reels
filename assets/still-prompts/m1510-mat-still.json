@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a simple woven prayer mat laid on a clean swept floor facing a plain blank mud-brick wall, soft early-morning light falling from the side through a small window, dust motes in the beam, a calm empty room. No people. Mood: humility and hope - a quiet prayer for him. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb61-cc77-75a3-904e-6e9941cd9984",
+    "submitted_utc":  "2026-11-17T21:20:17.2568907Z",
+    "completed_utc":  "2026-11-17T21:20:25.6700367Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e082/pTqcutjGPkc-ClOH5FQ5r_T56JwzYz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e082/LpusSAI2zAG1Ns8lww5Cf_LKg5Ambj.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e082/96-QnMmwFEwCg9WRllR9C_3hhMK81o.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  204630481
+}

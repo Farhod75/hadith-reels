@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-scale",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an old bronze equal-arm balance hanging from a palm-trunk beam: two shallow round bronze pans suspended by thin chains; the left pan is pressed far down under one large smooth heavy stone, the right pan hangs high and nearly empty with only three small silver coins in it, the beam steeply tilted. Warm dim interior light. No people. Mood: awe and humility - a debt that outweighs everything you could give. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb60-6075-7fd1-9c65-5933ca037404",
+    "submitted_utc":  "2026-11-17T21:18:44.0073508Z",
+    "completed_utc":  "2026-11-17T21:18:52.3750181Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-scale-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e079/RLMiUvdlSK1yqNqX5YqQb_H7fV05Ad.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-scale-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e079/NAWVgEOfYJIGwIMrHbD2a_IiZty0mP.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-scale-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e079/1mLJpEntfKh3dufgdX0et_sBu1HkXd.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  776060332
+}

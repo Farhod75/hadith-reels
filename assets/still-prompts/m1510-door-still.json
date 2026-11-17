@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the open wooden door of a mud-brick house at dusk, warm lamplight spilling out onto the path, inside a clay slipper oil lamp burning and two clay cups set together on a palm-fibre mat. No people. Mood: warmth and homecoming - go to him and ask how he is. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb61-8403-7790-9628-8e4b761f0c58",
+    "submitted_utc":  "2026-11-17T21:19:58.6839898Z",
+    "completed_utc":  "2026-11-17T21:20:07.0626549Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e080/exylcBch_vUJmC-or3-L3_Yz1uVlcr.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e080/SKxhAr_FKTjsYVxksQ8RS_HrOEIajF.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e080/ZYLmaTUSx11xjBODgphrG_1lBLoJb0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  108032828
+}

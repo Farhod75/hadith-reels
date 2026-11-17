@@ -2735,6 +2735,69 @@
       "verified": true,
       "notes": "Two paths meeting at a stone well with two clay cups side by side - a good word that brings hearts together. Sahih Muslim #105 (Hudhayfah: 'A tale-carrier will not enter Paradise'). MODE B, no people, no hands, no faces - frame-checked 2026-11-16 with the P417 count (none present). Stills approved 2026-11-16 (lane-1, sparks-2, lamp-2, gate-3, bridge-2, chest-1, well-2). FLUX 2 still -> Kling 3.0 Pro i2v 10s.",
       "prompt_sidecar": "assets/scene-prompts/m105-well.json"
+    },
+    "m1510-sandals.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Old worn leather sandals side by side on a mud-brick doorstep at dawn, a walking staff by the door - tenderness, a father's years of walking (the lead-in). Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-sandals.json"
+    },
+    "m1510-scale.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A bronze equal-arm balance, one pan pressed down by a heavy stone, the other high with three silver coins - a debt that cannot be balanced ('No child can repay his father'). Balance from museum references (two shallow bronze pans on thin chains). Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-scale.json"
+    },
+    "m1510-fetters-k3.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Heavy iron fetters on bare stone under a thin shaft of grey light - sorrow ('finds him a slave'). Kling 3.0 Pro: the Kling 4.0 job completed but fal returned 504 on every fetch. Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-fetters-k3.json"
+    },
+    "m1510-freed.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A cut palm-fibre rope on the threshold of a wide open door onto palms and morning light - relief and freedom ('buys him and sets him free'). The first stills drew modern handcuffs; redone with rope. Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-freed.json"
+    },
+    "m1510-tools.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A spade and a water skin against a date palm at the edge of a furrowed orchard at sunset - years of tired work (the moral's first line). Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-tools.json"
+    },
+    "m1510-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An open door at dusk, an oil lamp and two clay cups on a mat - go to him and ask how he is. Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-door.json"
+    },
+    "m1510-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A prayer mat facing a plain blank wall in soft morning light (P340) - dua and asking forgiveness for him. Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
+      "prompt_sidecar": "assets/scene-prompts/m1510-mat.json"
     }
   }
 }

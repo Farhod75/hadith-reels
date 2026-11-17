@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-fetters",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a pair of heavy old iron ankle fetters - two thick rings joined by a short chain - lying closed on bare stone in a dim cold mud-brick room, a single thin shaft of grey light from a small high window. No people. Mood: sorrow and gravity - a life held captive. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb60-a498-7381-9836-489e360d4df0",
+    "submitted_utc":  "2026-11-17T21:19:01.4840410Z",
+    "completed_utc":  "2026-11-17T21:19:09.8151040Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-fetters-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07a/6gYe62evuS3jRp2Gn-y6b_NexnOGYT.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-fetters-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07a/vzGaZAGd1UfdFFZlJ2kvZ_MpxaAbxI.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-fetters-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e07a/3zVrn1BFKYEttSdvdxegs_cQlGROnv.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1077376501
+}

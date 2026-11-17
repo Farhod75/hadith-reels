@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e0c2/VLIVSBSdjeEv40ooPqJx3_output.mp4",
+    "name":  "m1510-sandals",
+    "image":  "out\\refs\\m1510-sandals-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1510-sandals.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T21:24:51.4042649Z",
+    "size_bytes":  16999710,
+    "negative_prompt":  null,
+    "prompt":  "Dawn light slowly warms and spreads across the doorstep, a little dust drifts over the worn sandals, the shadow of the staff shortens slightly. Tenderness and quiet gratitude. Very slow push-in toward the sandals. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1eb65-faa1-7870-aec6-8689b531e420",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T21:32:15.1081575Z",
+    "mode":  "image-to-video"
+}

@@ -1566,3 +1566,43 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** a dialogue matn breaks every step that assumes "matn = the Prophet's words"; the set found three.
 
 ---
+
+## R254-R257 - Sahih Muslim #1510 - 2026-11-17
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. First set with subtitles in all four languages
+(UZ/TJ by scribe-srt.py, P422) and the first set on Kling 4.0 (P421).
+
+**Caught before publish**
+
+- Library translation: UZ «жазо» and TJ «ҷазо» read as "punishment" for يجزي (repay). Re-translated against
+  HadeethEnc 3775 and the Arabic; A/B 4/4 after two UZ rewrites (A refused added objects «ҳақ», «(яхшилигини)»).
+- Stills: all three 'freed' options drew modern hinged handcuffs; redone with a cut palm-fibre rope (a first rope
+  prompt saying it "once bound someone" was refused by the image API, 422).
+- Kling 4.0: the fetters job ran past the 20-min poll and its result fetch returned 504 on every resume; the scene
+  was made on Kling 3.0 Pro instead. A -Resume run overwrote the sidecar prompt with the placeholder (restored).
+- stt-validate HIGH on EN/RU: Whisper lead-in and quotation marks again, and a hallucinated RU credit tail
+  («Редактор субтитров и.Бойкова / Корректор а.Егорова») past the end of the audio. SRTs fixed.
+
+**Escaped to publish**
+
+- None known.
+
+**Root causes**
+
+- The library UZ/TJ rows were machine translations nobody checked against the Arabic word by word.
+- Whisper on EN/RU keeps producing the same classes of error on every reel.
+
+**Prevention landed**
+
+- P421 (Kling 4.0 body), P422 (UZ/TJ subtitles; matn anchor from real timings).
+
+**Prevention deferred**
+
+- scribe-srt.py for EN/RU too (our text + Scribe timings) would end the Whisper SRT fixes - operator to decide.
+- generate-scene.ps1 -Resume should not rewrite the prompt sidecar.
+
+**Operator corrections of the assistant: 0**
+
+**The finding:** the words on screen should come from our text in every language, not from what a recogniser heard.
+
+---

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e0b7/SyTagt8gvz_dWYqg_Hvfn_output.mp4",
+    "name":  "m1510-scale",
+    "image":  "out\\refs\\m1510-scale-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1510-scale.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T21:24:55.0908991Z",
+    "size_bytes":  14250802,
+    "negative_prompt":  null,
+    "prompt":  "The heavy pan with the stone stays pressed down; the light pan with the coins trembles and sways faintly on its chains but cannot rise the beam back to level. Awe and humility - a weight that cannot be balanced. Slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1eb66-0919-71d0-ab14-2b605c9cd0b2",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T21:30:04.0085735Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e156/Y6woXHRgaIWBLvXL_7DwR_output.mp4",
+    "name":  "m1510-fetters-k3",
+    "image":  "out\\refs\\m1510-fetters-1.jpg",
+    "file":  "out\\backgrounds\\new\\m1510-fetters-k3.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T21:51:02.8160097Z",
+    "size_bytes":  30116669,
+    "negative_prompt":  "blur, distort, low quality, text, watermark, deformed hands, extra fingers, extra limbs, fused fingers",
+    "prompt":  "The thin shaft of grey light from the high window slowly shifts across the stone floor toward the iron fetters, fine dust floats in the beam; the fetters stay still. Sorrow and gravity. Slow descending camera. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1eb7d-f4f1-7e61-9168-a433326cf8de",
+    "model":  "fal-ai/kling-video/v3/pro/image-to-video",
+    "schema":  1,
+    "generate_audio":  false,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T21:57:18.3141568Z",
+    "mode":  "image-to-video"
+}

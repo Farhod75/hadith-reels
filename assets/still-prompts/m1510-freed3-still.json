@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1510-freed3",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a thick coarse palm-fibre rope lies cut through and loose in two pieces on the threshold of a wide open plain wooden door, bright warm morning sunlight flooding in, a sandy path leading out to green palm trees and open sky. No people. Mood: relief and freedom - set free. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no text, no calligraphy, no modern objects, no handcuffs, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1eb64-3417-7621-9365-982c70cfded7",
+    "submitted_utc":  "2026-11-17T21:22:54.7400861Z",
+    "completed_utc":  "2026-11-17T21:23:03.2012785Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1510-freed3-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e092/cis9If-JXV7WYloR9Oe12_Iu9r3sUj.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1510-freed3-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e092/BAMKhmghe-4SwQqZcRm6d_5DnRlvdc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1510-freed3-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e092/sW3mwiA2YQ00MzhmeTTh2_UH8HKFVY.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  539528416
+}

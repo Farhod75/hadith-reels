@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e0c2/Qrx91Dm8dpLsot8t966WJ_output.mp4",
+    "name":  "m1510-door",
+    "image":  "out\\refs\\m1510-door-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1510-door.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T21:24:55.4820484Z",
+    "size_bytes":  22151216,
+    "negative_prompt":  null,
+    "prompt":  "The oil lamp flame flickers warmly, its glow spilling out through the open door as the dusk sky deepens to blue. Warmth and homecoming. Slow push-in toward the doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1eb66-0a80-76a1-8d69-11e2ae4c0ac6",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-17T21:32:36.1240233Z",
+    "mode":  "image-to-video"
+}

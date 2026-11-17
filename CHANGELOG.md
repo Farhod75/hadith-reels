@@ -1,3 +1,17 @@
+## [2026-11-17g] - Muslim #1510 published (R254-R257)
+
+### Added
+
+- **Muslim #1510 assets:** seven scenes m1510-sandals, scale, fetters-k3, freed, tools, door, mat registered (six on
+  Kling 4.0, fetters on 3.0 Pro), prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R254-R257 (new theme Parents / Father); nasheed rows re-sorted (R250-R253 had been inserted after
+  the first id), reel-retro.md, OPEN_ITEMS.md (#1510 published; scribe-srt for EN/RU proposed; -Resume sidecar bug).
+
+---
+
 ## [2026-11-17f] - UZ/TJ subtitles from our text + Scribe v3 timings (P422)
 
 ### Added
