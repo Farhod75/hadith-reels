@@ -1,3 +1,17 @@
+## [2026-11-17i] - Muslim #1151 published (R258-R261)
+
+### Added
+
+- **Muslim #1151 assets:** eight scenes m1151-dawn, wheat, plate, iftar, light, door, bowl, sunset registered (all on
+  Kling 4.0), prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R258-R261 (new theme Fasting / Reward; the #1151 vs #1894 pair row marked shipped), reel-retro.md,
+  OPEN_ITEMS.md (#1151 published; Playwright upload folder after the app update).
+
+---
+
 ## [2026-11-17h] - EN/RU subtitles from our text + Scribe timings (P423); Listen #1510
 
 ### Changed

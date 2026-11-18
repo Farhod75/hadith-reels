@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-plate",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, at bright noon in a quiet cool mud-brick room, a plain clay plate of fresh dates and a clay cup of water sit untouched on a palm-fibre mat, a single beam of sunlight across them, dust motes. No people. Mood: restraint and sincerity - food left for Allah\u0027s sake. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebee-a659-7940-9f9b-bded10e8bcaa",
+    "submitted_utc":  "2026-11-17T23:54:07.9969719Z",
+    "completed_utc":  "2026-11-17T23:55:42.0885664Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-plate-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e425/m_iu77fMMo_VmcheGD7pa_qB61jggr.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-plate-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e425/9nxSqmx8SiXsYTw039J_x_MFwWPKLf.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-plate-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e425/d-LmYE9ROW3BIRQTlT-Ki_vgKcgiDa.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1152844230
+}

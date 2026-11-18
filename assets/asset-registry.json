@@ -2798,6 +2798,78 @@
       "verified": true,
       "notes": "A prayer mat facing a plain blank wall in soft morning light (P340) - dua and asking forgiveness for him. Sahih Muslim #1510 (Abu Hurairah: 'No child can repay his father unless he finds him a slave, buys him and sets him free'). MODE B, no people, no hands, no feet, no faces - frame-checked 2026-11-17 with the P417 count (none present). Stills picked 2026-11-17 (sandals-2, scale-2, fetters-1, freed3-2, tools-2, door-2, mat-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421; first set on Kling 4.0) unless noted.",
       "prompt_sidecar": "assets/scene-prompts/m1510-mat.json"
+    },
+    "m1151-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Dawn over oasis rooftops, a water jug and dates set aside on a mat - a day of fasting begins (the lead-in). Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-dawn.json"
+    },
+    "m1151-wheat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A golden wheat field, one stalk heavy with ears in the wind - a deed multiplied ten to seven hundred times. Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-wheat.json"
+    },
+    "m1151-plate.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Dates and a cup of water untouched in a noon sunbeam - 'he leaves his desire and his food for My sake'. Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-plate.json"
+    },
+    "m1151-iftar.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sunset through a small window, dates, a cup and a freshly lit lamp - the joy at breaking the fast. Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-iftar.json"
+    },
+    "m1151-light.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Rays breaking through clouds over the dunes - the joy at meeting his Lord. Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-light.json"
+    },
+    "m1151-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A closed door with a thin line of light - a deed only Allah fully sees (the moral). Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-door.json"
+    },
+    "m1151-bowl.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Still water in a clay bowl reflecting the late sky and a palm frond - patience through the long day. Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-bowl.json"
+    },
+    "m1151-sunset.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sunset over the town, one lamplit window with dates on the sill - waiting for both joys. sunset-1 not used (a glass lantern). Sahih Muslim #1151 (Abu Hurairah: every deed multiplied ten to seven hundred times - 'except fasting, for it is for Me, and I shall reward it'; two joys; the breath sweeter than musk). MODE B, no people, no hands, no faces - frame-checked 2026-11-17 (P417: none present). Stills picked 2026-11-17 (dawn-2, wheat-2, plate-2, iftar-2, light-2, door-2, sunset-3, bowl-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1151-sunset.json"
     }
   }
 }

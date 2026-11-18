@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-wheat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a golden wheat field in warm morning light, in the foreground one tall stalk bearing seven full heavy ears bending with grain, the field stretching to palm trees behind. No people. Mood: awe at abundance - one deed multiplied many times over. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebee-04ef-7581-b2b9-038bcc865f03",
+    "submitted_utc":  "2026-11-17T23:53:26.7270130Z",
+    "completed_utc":  "2026-11-17T23:53:59.3407140Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-wheat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e41b/1qxyFmbq8kQ4a0ExUYmKO_43OIS59w.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-wheat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e41b/yCUGIjZ0bJhejbUnkuZW5_YemIorZT.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-wheat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e41b/YD7IGoF5q0lQ4PiNfdJf4_D2DTMfTQ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1861603258
+}

@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e45b/9NhAErrqWk8Bwbmz2B5N7_output.mp4",
+    "name":  "m1151-door",
+    "image":  "out\\refs\\m1151-door-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1151-door.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T23:59:50.4042611Z",
+    "size_bytes":  16845785,
+    "negative_prompt":  null,
+    "prompt":  "The thin line of soft light around the closed door glows and pulses gently as the day light shifts; the room stays still and quiet. Quiet privacy. Very slow push-in toward the door. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1ebf3-df43-78c2-ae39-c1bc621b8c11",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-18T00:05:29.4147109Z",
+    "mode":  "image-to-video"
+}

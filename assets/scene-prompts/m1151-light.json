@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e463/YL1V6WJ3F8b8TTUlOrlpg_output.mp4",
+    "name":  "m1151-light",
+    "image":  "out\\refs\\m1151-light-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1151-light.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T23:59:48.9947917Z",
+    "size_bytes":  18417462,
+    "negative_prompt":  null,
+    "prompt":  "Golden rays slowly widen as the sun breaks through the clouds over the dunes, the light spreading across the sand toward the shelter. Hope and longing. Slow upward tilt toward the sky. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1ebf3-d961-72f1-a5c0-765b65890c74",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-18T00:07:08.6519846Z",
+    "mode":  "image-to-video"
+}

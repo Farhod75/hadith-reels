@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e45b/kgCkcLr-ZKK09piZ6cbtv_output.mp4",
+    "name":  "m1151-bowl",
+    "image":  "out\\refs\\m1151-bowl-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1151-bowl.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T23:59:50.5365527Z",
+    "size_bytes":  20681015,
+    "negative_prompt":  null,
+    "prompt":  "The reflection in the still water of the clay bowl shimmers faintly as a palm frond above moves in a light breeze, the light slowly turning golden. Patience and hope. Slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1ebf3-dfc7-7af2-bb8b-efc39ec2a842",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-18T00:06:01.2410420Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-light",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, soft golden light breaking through layered clouds over a calm open desert at dawn, long gentle rays reaching the sand dunes and a distant line of palms, a serene vast sky. No people. Mood: hope and longing - the joy of meeting one\u0027s Lord. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebf1-166b-79f3-bad0-23c7306fcbce",
+    "submitted_utc":  "2026-11-17T23:56:47.7686259Z",
+    "completed_utc":  "2026-11-17T23:56:56.0006320Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-light-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42d/W_6yYfXyWJxc_bU61fZcb_ZNBWenv1.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-light-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42d/YaZpQB-yUWgeVEVjQ4Xbl_VFUApsGn.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-light-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42d/2GhOO1vfXS-ku4D1YuL1B_NeqZKr7Z.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2084395832
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-iftar",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, warm orange sunset light through a small window onto a low palm-fibre mat with fresh dates, a clay cup of water and a clay slipper oil lamp just lit with a small bright flame. No people. Mood: joy and relief - the moment of breaking the fast. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebf0-37ec-7e81-aade-b18726bc3984",
+    "submitted_utc":  "2026-11-17T23:55:50.8016554Z",
+    "completed_utc":  "2026-11-17T23:56:39.6205827Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-iftar-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42b/GcJfozjXLiLJZhBQvDAve_sisz3isP.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-iftar-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42b/kzZ7awiYPiMh7p5vpYS3n_xDTwPUY7.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-iftar-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e42b/AqDvhx17LH42laaxiWiVr_IW1Kg8O0.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  694107643
+}

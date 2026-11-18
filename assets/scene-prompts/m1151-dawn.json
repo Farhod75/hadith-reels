@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e45c/0jXErocZkUFFyfdhD15fF_output.mp4",
+    "name":  "m1151-dawn",
+    "image":  "out\\refs\\m1151-dawn-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1151-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T23:59:48.5785452Z",
+    "size_bytes":  20348331,
+    "negative_prompt":  null,
+    "prompt":  "The dawn sky slowly brightens from deep blue to soft gold over the rooftops, a light breeze stirs the palm fronds in the distance; the jug and dates stay still. Calm devotion. Very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1ebf3-d80e-7853-bfd6-a900a5ef43bd",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-18T00:06:08.9772233Z",
+    "mode":  "image-to-video"
+}

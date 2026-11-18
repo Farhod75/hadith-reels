@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab2e468/gTY68Xd4fBNGe1SLWhxlq_output.mp4",
+    "name":  "m1151-plate",
+    "image":  "out\\refs\\m1151-plate-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1151-plate.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-17T23:59:41.4887466Z",
+    "size_bytes":  15337097,
+    "negative_prompt":  null,
+    "prompt":  "The beam of noon sunlight slowly drifts across the untouched dates and water cup, fine dust floats in the light; nothing else moves. Restraint and sincerity. Very slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a1ebf3-bc60-7d43-b30b-4f140f43e72c",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-18T00:07:35.3321212Z",
+    "mode":  "image-to-video"
+}

@@ -1606,3 +1606,41 @@ DO NOT PRODUCE), slot lengths not measured, the sandals three times, the UZ mora
 **The finding:** the words on screen should come from our text in every language, not from what a recogniser heard.
 
 ---
+
+## R258-R261 - Sahih Muslim #1151 - 2026-11-17
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. First set with every language's subtitles from our
+text (scribe-srt.py, P422 + P423); all eight clips on Kling 4.0.
+
+**Caught before publish**
+
+- Library translation: TJ «ҷазо» for أجزي (I reward) again read as "punishment"; RU/UZ/TJ re-translated against the
+  Arabic and Tier 1 sources, A/B 4/4.
+- The pair row in the tracker already flagged the partial overlap with Bukhari #1894 (R002); the set went ahead on
+  the analytics pick, not held for Ramadan.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents during publish**
+
+- The PC slept while TJ was going to YouTube; the upload stayed a draft and was finished from Studio afterwards
+  (checked first, so no double upload).
+- After the restart the desktop app had updated: the Playwright upload tool refused the old staging folder and the
+  browser was signed out of Google and TikTok (operator signed in again).
+
+**Prevention landed**
+
+- P423 (EN/RU subtitles from our text) - no SRT fixes were needed on this set.
+
+**Prevention deferred**
+
+- Move the upload staging folder to the new app root (OPEN_ITEMS).
+- generate-scene.ps1 -Resume should not rewrite the prompt sidecar.
+
+**Operator corrections of the assistant: 0**
+
+**The finding:** with our own text on screen in all four languages, the subtitle step stopped producing fixes.
+
+---

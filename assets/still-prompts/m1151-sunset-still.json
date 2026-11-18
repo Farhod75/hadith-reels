@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-sunset",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, sunset over a mud-brick oasis town, the sky deep orange and rose, one window glowing with lamplight and a small bowl of dates waiting on its sill, palms swaying. No people. Mood: warm anticipation - waiting for both joys. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebf1-9adf-76b3-812b-c0a830eac217",
+    "submitted_utc":  "2026-11-17T23:57:21.6705666Z",
+    "completed_utc":  "2026-11-17T23:57:29.9520871Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-sunset-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e430/2ZglW9tmGBXce7lRQfij9_V3CN9u0f.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-sunset-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e430/rnVAzc22Ra-sImz9h4pvs_WxkdNOuc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-sunset-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e430/ORI7ieqBS81kkWG_FNVRN_gDi0sZSL.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1732712385
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1151-bowl",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, late afternoon in a quiet courtyard, a wide shallow clay bowl of still clear water on a low mud-brick ledge reflects the warm sky and a palm frond, the light slowly turning golden. No people. Mood: patience and hope - the long day almost done. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1ebf1-fce8-7851-89d6-0136913782df",
+    "submitted_utc":  "2026-11-17T23:57:46.6715309Z",
+    "completed_utc":  "2026-11-17T23:57:55.0133278Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1151-bowl-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e433/yyGEbl_qxUZHrOEDphqnk_Q0mEezNd.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1151-bowl-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e433/RLDAefV7Mc16Dl_7rZ9-E_iLwVKO5N.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1151-bowl-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab2e433/DiTLf3oT0A3SjX54jr-08_INuwZxat.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  994742587
+}
