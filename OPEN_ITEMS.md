@@ -183,7 +183,7 @@ this one wins.
   Signing SHA-256, publish public/.well-known/assetlinks.json with both fingerprints, 12 testers
   x 14 consecutive days, production. LATER: a paid tier (operator 2026-11-11: the API costs
   grow with use) - Play Billing via the Digital Goods API, trader status at that point.
-- **Tirmidhi #1987 - PUBLISHED 2026-11-11 (R230-R233, TG 249-252); library c8ffd22e.** Listen for #1987 and for Muslim #2588 PUBLISHED 2026-11-17 (8 clips; they had been left out of every later --commit by --since runs, operator yes).
+- **Tirmidhi #1987 - PUBLISHED 2026-11-11 (R230-R233, TG 249-252); library c8ffd22e.** Listen for #1987 and for Muslim #2588 PUBLISHED 2026-11-17 (8 clips, operator yes; why they were not published earlier was not traced).
 - **DONE 2026-11-12: Scene tooling from #1987 (P402, P403 -> P412).** scripts/edit-still.ps1 (Kontext, sidecar
   in assets/still-prompts, mode kontext-edit); generate-image / generate-scene / edit-still refuse a -Name
   whose prefix is not the library's collection for that number (scripts/lib/SetName.ps1). History: (1) A repo script for a FLUX Kontext still edit
