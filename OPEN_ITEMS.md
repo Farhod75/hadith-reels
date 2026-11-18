@@ -198,8 +198,8 @@ this one wins.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Muslim #1151 - PUBLISHED 2026-11-17 (R258-R261, TG 277-284); library 90701b8f.** Picked on the view analytics;
-  first set with every language on scribe-srt.py (P422/P423), all eight clips on Kling 4.0. Listen for #1151 waits for
-  the operator's yes.
+  first set with every language on scribe-srt.py (P422/P423), all eight clips on Kling 4.0. Listen for #1151 PUBLISHED
+  2026-11-17 (4 clips).
 - **Playwright after a Claude desktop update (2026-11-17):** the app moved to app-6.6395.0, and browser_file_upload now
   refuses files under the old app-5.11492.5\.playwright-mcp\upload folder (run_code setInputFiles still reads it). The
   browser also came back signed out of Google and TikTok. Move the upload staging folder to the new app root.
