@@ -198,7 +198,7 @@ this one wins.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Bukhari #5090 - PUBLISHED 2026-11-18 (R262-R265, TG 285-288); library e60c8969.** Library row fixed first (Arabic
-  missing «تربت يداك», EN «you will prosper»). Listen for #5090 waits for the operator's yes.
+  missing «تربت يداك», EN «you will prosper»). Listen for #5090 PUBLISHED 2026-11-18 (4 clips).
 - **UZ bed level (2026-11-18):** the auto gain keeps UZ at a 15.7 dB voice-over-bed gap and Opa Johann reads ~5 dB
   louder than the other voices, so the UZ leg came out loud with the nasheed buried. #5090 UZ was re-rendered at
   gain 1.32 (gap 10 dB) and lowered 5 dB to -28.1 LUFS on the operator's ear. Proposed: a UZ gap target near
