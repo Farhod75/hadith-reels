@@ -1,3 +1,13 @@
+## [2026-11-19b] - Books: translators' service preamble no longer shown
+
+### Fixed
+
+- build-books.py drops everything between a volume's H1 and its first '## ' line - the translators' status and
+  audit notes («Таржима ҳолати», «Вазъи тарҷума», «Мустақил редакторлик текшируви» ...) that opened every volume.
+  Rebuilt: 548 files (tj v03 and uz v06 lost one section each; the two stale objects were deleted from the bucket).
+
+---
+
 ## [2026-11-19a] - Book texts served from a private Storage bucket
 
 ### Added

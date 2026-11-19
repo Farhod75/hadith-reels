@@ -53,6 +53,12 @@ def read_volume(path):
     raw = open(path, encoding='utf-8').read()
     raw = COMMENT.sub('', raw)
     lines = raw.split('\n')
+    # The translators' service preamble (status, audit log) sits between the H1
+    # and the first '## ' line in every volume. It is not part of the book: keep
+    # the H1, drop the rest of the preamble.
+    first = next((i for i, ln in enumerate(lines) if ln.startswith('## ')), None)
+    if first is not None:
+        lines = [ln for ln in lines[:first] if ln.startswith('# ')] + lines[first:]
     # footnote definitions (may continue on indented lines)
     notes, body, cur = {}, [], None
     for ln in lines:
