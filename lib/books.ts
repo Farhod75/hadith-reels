@@ -110,12 +110,29 @@ export async function canRead(book: string): Promise<boolean> {
 
 const ROOT = path.join(process.cwd(), 'content', 'books')
 
-async function readJson<T>(...parts: string[]): Promise<T | null> {
+// Book texts are not in the public repo (.gitignore). Locally they are read from
+// content/books; in production from the PRIVATE Supabase Storage bucket 'books',
+// with the service-role client, and only after canRead() has passed.
+const BUCKET = 'books'
+
+async function readFile(parts: string[]): Promise<Buffer | null> {
   try {
-    return JSON.parse(await fs.readFile(path.join(ROOT, ...parts), 'utf-8')) as T
+    return await fs.readFile(path.join(ROOT, ...parts))
+  } catch { /* not on disk - try storage */ }
+  try {
+    const { supabaseAdmin } = await import('./supabase')
+    const { data, error } = await supabaseAdmin.storage.from(BUCKET).download(parts.join('/'))
+    if (error || !data) return null
+    return Buffer.from(await data.arrayBuffer())
   } catch {
     return null
   }
+}
+
+async function readJson<T>(...parts: string[]): Promise<T | null> {
+  const buf = await readFile(parts)
+  if (!buf) return null
+  try { return JSON.parse(buf.toString('utf-8')) as T } catch { return null }
 }
 
 export interface Catalog { book: string; languages: { lang: BookLang; volumes: { volume: number; title: string; sections: number }[] }[] }
@@ -147,5 +164,5 @@ export function loadSection(book: string, lang: string, vol: number, sec: number
 
 export async function loadAsset(book: string, lang: string, file: string): Promise<Buffer | null> {
   if (!SAFE.test(book) || !SAFE.test(lang) || !/^[A-Za-z0-9_.-]+\.(png|jpe?g)$/.test(file)) return null
-  try { return await fs.readFile(path.join(ROOT, book, lang, 'assets', file)) } catch { return null }
+  return readFile([book, lang, 'assets', file])
 }

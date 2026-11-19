@@ -1,3 +1,14 @@
+## [2026-11-19a] - Book texts served from a private Storage bucket
+
+### Added
+
+- lib/books.ts reads content/books from disk when present, otherwise from the PRIVATE Supabase Storage bucket
+  books with the service-role client - always after canRead(). Admin can now read Al-Bidaya on production.
+- scripts/upload-books.py: creates the bucket private if missing, refuses a public one, upserts content/books
+  (550 files, 19.4 MB uploaded). Anonymous public URL returns 400.
+
+---
+
 ## [2026-11-18e] - Books section (reader), closed to the public
 
 ### Added
