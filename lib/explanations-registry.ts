@@ -36,6 +36,7 @@ import x_muslim_223 from '@/content/explanations/muslim-223.json'
 import x_muslim_2564 from '@/content/explanations/muslim-2564.json'
 import x_muslim_2581 from '@/content/explanations/muslim-2581.json'
 import x_muslim_2588 from '@/content/explanations/muslim-2588.json'
+import x_muslim_2592 from '@/content/explanations/muslim-2592.json'
 import x_muslim_2628 from '@/content/explanations/muslim-2628.json'
 import x_muslim_2699 from '@/content/explanations/muslim-2699.json'
 import x_muslim_2734 from '@/content/explanations/muslim-2734.json'
@@ -85,6 +86,7 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'muslim-2564': x_muslim_2564 as Explanation,
   'muslim-2581': x_muslim_2581 as Explanation,
   'muslim-2588': x_muslim_2588 as Explanation,
+  'muslim-2592': x_muslim_2592 as Explanation,
   'muslim-2628': x_muslim_2628 as Explanation,
   'muslim-2699': x_muslim_2699 as Explanation,
   'muslim-2734': x_muslim_2734 as Explanation,

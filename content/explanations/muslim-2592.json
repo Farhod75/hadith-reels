@@ -1,0 +1,90 @@
+{
+  "schema": 2,
+  "slug": "muslim-2592",
+  "library_id": "855855d0-72ee-483f-a31b-dec406991305",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2592",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "4939",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-19",
+      "references_ar": "صحيح مسلم (4/ 2003) (2592).\nنزهة المتقين شرح رياض الصالحين، لمجموعة من الباحثين (1/ 532).\nتطريز رياض الصالحين، لفيصل آل مبارك (ص416).\nشرح رياض الصالحين، لابن عثيمين (3/ 592).\nكنوز رياض الصالحين، لمجموعة من الباحثين (9/ 152).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 687).\nفيض القدير شرح الجامع الصغير، للمناوي (6/ 241).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4939",
+          "raw": "raw/hadeethenc-4939-ar.json",
+          "raw_sha256": "2cd809647f2620cd0ed9b38892fedd3266c9526f2da2d199f6c8b2a3c9fd9e38",
+          "title": "من يحرم الرفق يحرم الخير",
+          "hadeeth": "عَنْ جَرِيرٍ رضي الله عنه عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: «مَنْ يُحْرَمِ الرِّفْقَ يُحْرَمِ الْخَيْرَ».",
+          "explanation": "يُخْبِرُ النبيُّ صلى الله عليه وسلم أنّ مَن يُحرَم الرفق فلم يوفق له في أمور الدين والدنيا وفيما يتصرَّف فيه لنفسه، وفيما يتصرَّف فيه مع غيره، فقد مُنِعَ الخيرَ كله.",
+          "lessons": [
+            "فضل الرِّفق والحث على التخلُّق به، وذم العنف.",
+            "الرفق به انتظام خير الدارين واتساع أمرهما، وفي العنف ضد ذلك.",
+            "الرفق ناتج عن حسن الخلق والسلامة، والعنف ناتج عن الغضب والفَظَاظة، ولذا أثنى صلى الله عليه وسلم على الرفق وبالغ فيه.",
+            "قال سفيان الثوري رحمه الله لأصحابه: أتدرون ما الرفق؟ هو أن تضع الأمور مواضعها، الشدة في موضعها، واللين في موضعه، والسيف في موضعه، والسوط في موضعه."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4939",
+          "raw": "raw/hadeethenc-4939-en.json",
+          "raw_sha256": "d8be980a86e9748f3e9dd250ecd6aa575f51b6ba7f546806b1c39529fde890a7",
+          "title": "He who is deprived of gentleness is deprived of goodness",
+          "hadeeth": "Jarīr (may Allah be pleased with him) reported: The Prophet (may Allah's peace and blessings be upon him) said: \"He who is deprived of gentleness is deprived of goodness.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informs that whoever is deprived of gentleness and is not guided to it concerning religious and worldly matters, and in what he does for himself and what he does with others, has been deprived of all goodness.",
+          "lessons": [
+            "The Hadīth points out the merit of gentleness, urges us to possess it, and dispraises harshness.\r",
+            "Gentleness is conducive to good and comfort in the worldly life and the Hereafter, whereas harshness leads to the opposite.\r",
+            "Gentleness results from good manners and wellness; harshness stems from anger and rudeness. Therefore, he (may Allah's peace and blessings be upon him) exaggeratedly praised gentleness.\r",
+            "Sufyān al-Thawri (may Allah have mercy upon him) said to his companions: Do you know what gentleness is? It is to put things in their proper places: severity in its place, leniency in its place, the sword in its place, and the whip in its place."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4939",
+          "raw": "raw/hadeethenc-4939-ru.json",
+          "raw_sha256": "87e4b767a0a2b054908ba48e16b9e14dc855c25a573cfc214f710f215ec40ffa",
+          "title": "Кто лишён мягкости, тот лишён всякого блага",
+          "hadeeth": "Джарир (да будет доволен им Аллах) передаёт, что Пророк (мир ему и благословение Аллаха) сказал: «Кто лишён мягкости, тот лишён всякого блага».",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщил, что лишённый мягкости не преуспеет в делах религиозных и мирских, в личных делах и в отношениях с другими людьми, поскольку он лишён всякого блага.",
+          "lessons": [
+            "Достоинства мягкости и побуждение к обладанию этим нравственным качеством, а также порицание жестокости, грубости и насилия.\r",
+            "Мягкость облегчает и делает благой жизнь человека в обоих мирах, тогда как грубость и жестокость оказывают противоположное влияние.\r",
+            "Мягкость является следствием благонравия и мирного характера, тогда как жестокость становится следствием гнева и черствости, поэтому Пророк (мир ему и благословение Аллаха) так восхвалял мягкость и доброту и подчёркивал их достоинства.\r",
+            "Суфьян ас-Саури (да помилует его Аллах) сказал своим товарищам: «Знаете ли вы, что такое мягкость? Это когда ты действуешь сообразно ситуации, применяя строгость там, где она требуется, и деликатность там, где требуется она, меч там, где он требуется, и плеть там, где требуется она»."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/4939",
+          "raw": "raw/hadeethenc-4939-tg.json",
+          "raw_sha256": "bc14ba1cbaa0c7d1e58b96d300a1655885f1fabf1b7f1c2bda431f4ce1d7842b",
+          "title": "Касе, ки аз нармӣ (мулоимӣ) маҳрум шавад, аз хайру хубӣ (некӣ) маҳрум мешавад",
+          "hadeeth": "Аз Ҷарир (разияллоҳу анҳу) аз Паёмбар (саллаллоҳу алайҳи ва саллам) ривоят аст, ки фармуданд: \"Касе, ки аз нармӣ (мулоимӣ) маҳрум шавад, аз хайру хубӣ (некӣ) маҳрум мешавад.\"",
+          "explanation": "Паёмбари Акрам (саллаллоҳу алайҳи ва саллам) хабар медиҳанд, ки ҳар кас аз нармӣ ва мулоимӣ маҳрум гардад, чи дар корҳои диниву дунявӣ, чи дар муомила бо худ ва дигарон, ӯ аз ҳама хайру хубӣ маҳрум шудааст.",
+          "lessons": [
+            "Фазилати нармӣ ва ташвиқ ба ин ахлоқи некӯ ва мазаммати хушунат ва зӯроварӣ.\r",
+            "Нармию меҳрубонӣ сабаби хайру некӯӣ ду ҷаҳон ва густариши умури онҳост, аммо зӯрӣ ва хушунат акси он аст.\r",
+            "Нармӣ натиҷаи хулқи нек ва дили соф аст, вале зӯрӣ аз хашму бадхӯӣ сар мезанад. Аз ин рӯ, Паёмбари акрам (саллаллоҳу алайҳи ва саллам) нармиро ситоиш намуда, дар ин бора муболиға намуданд.\r",
+            "Суфёни Саврӣ (раҳимаҳуллоҳ) ба шогирдонаш гуфт: Оё медонед нармӣ чист? Нармӣ он аст, ки ҳар чизро дар ҷояш гузорӣ, шиддатро дар ҷояш, мулоимиро дар ҷояш, шамшерро дар ҷояш ва тозиёнаро дар ҷояш."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}
