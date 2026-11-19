@@ -1,3 +1,22 @@
+## [2026-11-18d] - Library refill: 20 hadiths promoted (83 -> 103 rows)
+
+### Added
+
+- hadith_library +20, all sahih, Dorar-confirmed, A/B verified and approved by the operator («Да», 2026-11-18
+  22:27 CT): Bukhari 15, 99, 5986, 5997, 6056, 6116, 6323, 6682, 7536, 7563; Muslim 28, 1048, 1914, 2592, 2609,
+  2631, 2664, 2691, 2956; Tirmidhi 1988. Tags set per row; audit-tags.ts clean. 36 rows now unused.
+- lib/refs.ts NARRATORS: Jarir ibn Abdullah, Ubadah ibn as-Samit (P344 gate on promote).
+
+### Notes
+
+- Stage-4 text corrections before promotion: #15 UZ «отасидан» (Arabic has والده only), #6323 clause order and
+  no «that night», #6056 قتّات = talebearer in all four, #6682/#7563 العظيم = Magnificent, ﷺ removed where the
+  matn has none (#28, #2609), #7536 EN هرولة = hurrying, #28 TJ «ба ҳақ» removed.
+- Bukhari #6938 held back at status deduped: «ألا تقولوه» is plural and was rendered singular.
+- Bukhari #6021 (every good deed is charity) dropped as a duplicate of Muslim #1005.
+
+---
+
 ## [2026-11-18c] - HadeethEnc candidates reach Stage 2 again (P424)
 
 ### Fixed

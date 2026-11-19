@@ -642,12 +642,12 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
 | Hadiths used (unique) | 67 |
-| Library rows | 83 (66 used, 17 unused - 2026-11-18) |
+| Library rows | 103 (67 used, 36 unused - 2026-11-18, refill of 20) |
 | Hadith collections used | 6 (Sahih al-Bukhari ×131, Sahih Muslim ×80, Jami at-Tirmidhi ×22, Sunan Abu Dawud ×16, Sunan Ibn Majah ×8, Sunan an-Nasai ×8) |
 | Companions cited | 24 (Abu Hurairah ×123, Anas ibn Malik ×20, Abu Musa al-Ashari ×12, Abdullah ibn Amr ×8, Abdullah ibn Masud ×12, Suhaib ×8, Abu Dharr ×5, Aisha ×5, Abu Bakra ×8, Abu Darda ×4, Abu Malik al-Ashari ×4, Adiy ibn Hatim ×4, Hudhayfah ibn al-Yaman ×8, Ibn Abbas ×4, Ibn Umar ×4, Itban ibn Malik ×4, Jabir ibn Abdullah ×4, Jubayr ibn Mut'im ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Salman al-Farisi ×4, Umar ibn al-Khattab ×4, Umm Salamah ×4, Uthman ibn Affan ×4) |
 
-**265 reels (213 adults) from 67 hadiths.** 66 of 83 library rows have been used;
-17 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
+**265 reels (213 adults) from 67 hadiths.** 67 of 103 library rows have been used (20 added 2026-11-18);
+36 remain. Stage 0 is no longer blocked: the Sunnah API dependency (#3675) was
 routed around on 2026-09-25 using HadeethEnc for discovery and the Arabic matn,
 with Dorar supplying the citation and grade (P172–P175). The first five hadiths
 sourced that way entered the library on 2026-09-27, and #2654 and #6857 are the

@@ -64,6 +64,8 @@ export const NARRATORS: Record<string, Forms> = {
   'Umm Salamah':           { ru: 'Умм Салама',             uz: 'Умму Салама',           tj: 'Уммӣ Салама', h: 'f' },
   'Itban ibn Malik':       { ru: 'Итбан ибн Малик',        uz: 'Итбон ибн Молик',       tj: 'Итбон ибни Молик' },
   'Shaddad ibn Aws':       { ru: 'Шаддад ибн Аус',         uz: 'Шаддод ибн Авс',        tj: 'Шаддод ибни Авс' },
+  'Jarir ibn Abdullah':    { ru: 'Джарир ибн Абдуллах',    uz: 'Жарир ибн Абдуллоҳ',    tj: 'Ҷарир ибни Абдуллоҳ' },
+  'Ubadah ibn as-Samit':   { ru: 'Убада ибн ас-Самит',     uz: 'Убода ибн Сомит',       tj: 'Убода ибни Сомит' },
 }
 
 /**
