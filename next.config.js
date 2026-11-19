@@ -13,6 +13,11 @@ const nextConfig = {
 
   turbopack: {},
 
+  // /books reads content/books/** with fs at request time (lib/books.ts) - ship it with those routes.
+  outputFileTracingIncludes: {
+    '/books/**': ['./content/books/**/*'],
+  },
+
   async headers() {
     return [
       {

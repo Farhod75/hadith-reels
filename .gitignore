@@ -57,3 +57,7 @@ __pycache__/
 out/backgrounds/.last-used.json
 
 push.log
+
+# Book texts stay out of this PUBLIC repo until the publisher grants permission
+# (Al-Bidaya: Darussalam). Built locally by scripts/build-books.py.
+content/books/

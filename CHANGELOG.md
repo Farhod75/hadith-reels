@@ -1,3 +1,21 @@
+## [2026-11-18e] - Books section (reader), closed to the public
+
+### Added
+
+- /books with Books and Audiobooks tabs; /books/[book]/[lang]/[vol]/[sec] reader (components/books/BookReader):
+  light/sepia/dark themes, font size 14-32, line spacing, serif/sans, bookmarks and notes per paragraph (saved in
+  the browser), resume position, footnotes, prev/next.
+- lib/books.ts: BOOKS registry and UI strings in UZ/TJ/RU/EN. Al-Bidaya wan-Nihaya is public:false - visible to
+  the admin session only, noindex; everyone else gets 404, assets included.
+- scripts/build-books.py: Markdown translation -> content/books/<book>/<lang>/vNN/ sections, manifests, catalog.
+
+### Notes
+
+- content/books/ is gitignored: this repo is public and the Darussalam permission is still outstanding, so the
+  texts are not committed. Production therefore shows no books until permission and a private storage path exist.
+
+---
+
 ## [2026-11-18d] - Library refill: 20 hadiths promoted (83 -> 103 rows)
 
 ### Added
