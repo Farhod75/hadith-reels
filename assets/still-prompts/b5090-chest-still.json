@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-chest",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a small open wooden chest of plain silver coins and a folded fine woven cloth on a palm-fibre mat in warm afternoon light inside a mud-brick room. No people. Mood: the pull of wealth. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f140-ce9f-7a42-8dc6-d926e38fdf6a",
+  "submitted_utc": "2026-11-19T00:41:58.2761565Z",
+  "completed_utc": "2026-11-19T00:42:33.1908806Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-chest-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306ff/hDi65lYGz70Wo4Poqz8XR_BdKk2m63.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-chest-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306ff/G2ikpwQTKoEB_5BH9_KaI_yJmYqNHm.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-chest-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306ff/zD8yzffuh1uBtKSwaOn6__pZFxgKTt.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2050043108
+}

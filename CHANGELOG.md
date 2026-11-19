@@ -1,3 +1,21 @@
+## [2026-11-18a] - Bukhari #5090 published (R262-R265)
+
+### Added
+
+- **Bukhari #5090 assets:** seven scenes b5090-town, chest, house, garden, mat, palms, home2 and their x1.22 slow
+  copies registered (Kling 4.0), prompt sidecars.
+
+### Fixed
+
+- hadith_library #5090: full Arabic matn and four new translations (HadeethEnc 65940 / Dorar, A/B 4/4).
+
+### Docs
+
+- reel-tracker.md R262-R265 (Family / Marriage), reel-retro.md, OPEN_ITEMS.md (#5090; UZ bed level; Kling 4.0 audio
+  as a bed; publishing after the app update).
+
+---
+
 ## [2026-11-17i] - Muslim #1151 published (R258-R261)
 
 ### Added

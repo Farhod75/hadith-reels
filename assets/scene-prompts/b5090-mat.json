@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "negative_prompt": null,
+  "completed_utc": "2026-11-19T00:55:13.8480958Z",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resolution": null,
+  "name": "b5090-mat",
+  "submitted_utc": "2026-11-19T00:50:07.5661008Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab30749/4beE1YbWnkbhxGOwBpVNh_output.mp4",
+  "schema": 1,
+  "duration_sec": 10,
+  "prompt": "The small flame of the clay lamp flickers softly, morning light from the side brightens slowly across the prayer mat. Quiet devotion. Very slow push-in toward the mat. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "file": "out\\backgrounds\\new\\b5090-mat.mp4",
+  "generate_audio": null,
+  "request_id": "01a1f148-42fd-7043-958f-ec04426364fe",
+  "size_bytes": 18068091,
+  "image": "out\\refs\\b5090-mat-1.jpg"
+}

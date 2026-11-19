@@ -197,6 +197,21 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Bukhari #5090 - PUBLISHED 2026-11-18 (R262-R265, TG 285-288); library e60c8969.** Library row fixed first (Arabic
+  missing «تربت يداك», EN «you will prosper»). Listen for #5090 waits for the operator's yes.
+- **UZ bed level (2026-11-18):** the auto gain keeps UZ at a 15.7 dB voice-over-bed gap and Opa Johann reads ~5 dB
+  louder than the other voices, so the UZ leg came out loud with the nasheed buried. #5090 UZ was re-rendered at
+  gain 1.32 (gap 10 dB) and lowered 5 dB to -28.1 LUFS on the operator's ear. Proposed: a UZ gap target near
+  RU/TJ and a final loudness match across the four legs. Operator to decide.
+- **Kling 4.0 audio as a bed (2026-11-18):** every Kling 4.0 clip carries its own ambience (-21..-26 dB mean). Two
+  RU tests of #5090 were made (nature only; nasheed + nature) - not published; the operator chose the nasheed version
+  for this set. Their own-nasheed idea (ElevenLabs, a mawlid recording, Parviz Nazarov's studio) is not recorded in
+  this repo or this project's chats; waiting for the operator to resend the recording.
+- **Publishing after the app update (2026-11-18):** the Playwright browser came back signed out of Google, TikTok and
+  Meta; Meta Business Suite now runs in English (Add video / Upload image / Next / Auto-generated captions on /
+  Don't allow / Share / Done) and has a new optional Reel title field (left empty). File choosers are handled by
+  page.waitForEvent('filechooser') inside run_code - the files go in, then the tool's modal is cancelled. In TikTok
+  getByRole('button', {name:'Save'}) also matches "Save draft": use button.header-button for the cover Save.
 - **Muslim #1151 - PUBLISHED 2026-11-17 (R258-R261, TG 277-284); library 90701b8f.** Picked on the view analytics;
   first set with every language on scribe-srt.py (P422/P423), all eight clips on Kling 4.0. Listen for #1151 PUBLISHED
   2026-11-17 (4 clips).

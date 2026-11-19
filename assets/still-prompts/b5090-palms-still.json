@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-palms",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, two old date palms growing side by side from one patch of ground beside a well, their trunks thick with years, golden late-afternoon light. No people. Mood: what lasts through the years together. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f142-4b44-7e81-8afe-34520bb645df",
+  "submitted_utc": "2026-11-19T00:43:36.1190970Z",
+  "completed_utc": "2026-11-19T00:44:06.3891037Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-palms-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30708/96lQf8zHuGvs90YaTHwwJ_MZk94WNe.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-palms-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30708/wAr1SrJd1p0gF-oQxncl2_sKlDndcq.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-palms-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30708/TPmmq9-wpvhmxvi-ftCgZ_Qx6e6lyi.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2117601374
+}

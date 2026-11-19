@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-garden",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a small walled oasis garden in full bloom, pomegranate trees with red flowers, green grass, a narrow water channel catching the sunlight. No people. Mood: beauty that delights the eye. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f141-c896-7e62-b345-e663ad31da18",
+  "submitted_utc": "2026-11-19T00:43:02.3283187Z",
+  "completed_utc": "2026-11-19T00:43:19.9842373Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-garden-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30703/qkugPy3G4UjLhONh_2U2t_h1GZk85E.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-garden-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30703/PmQrBiXI_TYtfqzMOk_Cn_f6tLVmsX.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-garden-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30703/M_jt-y7lQTHf1JvZ15zy4_KpMN617m.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1727400888
+}

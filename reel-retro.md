@@ -1644,3 +1644,39 @@ text (scribe-srt.py, P422 + P423); all eight clips on Kling 4.0.
 **The finding:** with our own text on screen in all four languages, the subtitle step stopped producing fixes.
 
 ---
+
+## R262-R265 - Sahih al-Bukhari #5090 - 2026-11-18
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips, slow copies for the long legs.
+
+**Caught before publish**
+
+- Library row: the Arabic ended at «فاظفر بذات الدين» (dropped «تربت يداك»), and EN «and you will prosper» - followed
+  by RU/UZ/TJ - is not in the Arabic. Full matn from HadeethEnc 65940 / Dorar, four new translations, A/B 4/4.
+- Still 'home': all three takes put a sofa, a bed or a lampshade in the room; redone as a bare lamplit room.
+- Align: the lineage and beauty slots came out under 1.5 s and the UZ moral needed 12 s from 10 s clips; anchors
+  moved and slow copies (x1.22) added.
+- UZ loudness (operator): voice too loud, nasheed inaudible; re-rendered twice to a 10 dB gap and -28 LUFS.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- fal queue status checks failed on network errors for five of seven clips; resumed by request id (watch5090.ps1).
+- A PowerShell variable clash ($K and $k are the same variable) sent empty prompts to generate-scene twice - no spend.
+- The selection note said marriage was an uncovered theme; the tracker has Family / Marriage (R118, R158, R162). This
+  hadith is the first on choosing a spouse, not the first on marriage.
+- TikTok RU: a Save locator matched "Save draft" and the dialog came up; cancelled, music copyright check re-enabled.
+
+**Prevention deferred**
+
+- A UZ bed-gap target and a loudness match across the four legs (OPEN_ITEMS).
+
+**Operator corrections of the assistant: 2** (UZ loudness, twice).
+
+**The finding:** a library row can be short by the last two words and still read as a whole hadith; compare the
+stored Arabic with a Tier 1 matn before anything else.
+
+---

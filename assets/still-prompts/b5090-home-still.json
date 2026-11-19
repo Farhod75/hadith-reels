@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-home",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a modest home courtyard at dusk, a lit clay lamp and two clay cups of water on a palm-fibre mat, the door open to a warm lit room. No people. Mood: a household built on faith, peace and warmth. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f142-d20e-79a3-94fe-fe96fe63b9df",
+  "submitted_utc": "2026-11-19T00:44:10.5917171Z",
+  "completed_utc": "2026-11-19T00:47:20.2966299Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-home-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3071b/hocnhjdhmgPeZFO419hR-_oyaLr7Rj.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-home-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3071b/OFc2Z0HOJzkbrqWJKw98o_8YeE3usb.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-home-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3071b/af_41jJU96e2WXgTif_Me_OZFLKcTF.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 674043300
+}

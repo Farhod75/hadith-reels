@@ -1,0 +1,18 @@
+{
+  "completed_utc": "2026-11-19T00:59:05.0206468Z",
+  "submitted_utc": "2026-11-19T00:52:26.0102819Z",
+  "name": "b5090-home2",
+  "resolution": null,
+  "generate_audio": null,
+  "schema": 1,
+  "size_bytes": 20169127,
+  "mode": "image-to-video",
+  "image": "out\\refs\\b5090-home2-2.jpg",
+  "request_id": "01a1f14a-6004-70b1-a538-d79157549e2c",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "file": "out\\backgrounds\\new\\b5090-home2.mp4",
+  "duration_sec": 10,
+  "negative_prompt": null,
+  "prompt": "The lamp flame flickers warmly, soft dusk light deepens in the courtyard, the warm glow inside the open room grows slightly. Peace and warmth of a home built on faith. Slow push-in toward the door. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "video_url": "https://v3b.fal.media/files/b/0ab30762/miVJ_9ZaORCmPOp_6s9Md_output.mp4"
+}

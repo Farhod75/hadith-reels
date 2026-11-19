@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "mode": "image-to-video",
+  "schema": 1,
+  "name": "b5090-town",
+  "size_bytes": 19813131,
+  "image": "out\\refs\\b5090-town-2.jpg",
+  "completed_utc": "2026-11-19T00:56:00.8986451Z",
+  "prompt": "Thin smoke rises slowly from a rooftop and drifts in the still morning air, palm fronds stir gently, soft early light spreads along the lane. Thoughtful anticipation. Slow push-in down the lane. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab3074f/1I-P2wTHeIg8oGNRrKdh3_output.mp4",
+  "submitted_utc": "2026-11-19T00:50:06.1044105Z",
+  "generate_audio": null,
+  "request_id": "01a1f148-3d62-7171-8eda-4fd3c92533c7",
+  "file": "out\\backgrounds\\new\\b5090-town.mp4",
+  "negative_prompt": null
+}

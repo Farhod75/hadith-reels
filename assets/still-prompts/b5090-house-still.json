@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-house",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, the tall carved wooden gate of an old respected family house, mud-brick walls weathered by generations, a large old palm tree over the courtyard wall, soft golden light. No people. Mood: the weight of lineage and family name. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f141-63e9-70f3-9e47-c591984dc9e1",
+  "submitted_utc": "2026-11-19T00:42:36.8791464Z",
+  "completed_utc": "2026-11-19T00:42:54.1651129Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-house-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30701/kVSrWkWklgnZx4_kmWy7a_w50Xwivx.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-house-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30701/WnmoyXeLUGkP3bVopR8XM_n1h9yfds.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-house-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab30701/N3X-0u3z6yrtpscf1SeOV_el72af5E.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 2027218170
+}

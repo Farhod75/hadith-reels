@@ -1,0 +1,19 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab3074e/8GcVmT4Y5DjyQookUzNr1_output.mp4",
+  "file": "out\\backgrounds\\new\\b5090-chest.mp4",
+  "request_id": "01a1f148-4983-71d3-9cce-4eb9ab15ecfc",
+  "submitted_utc": "2026-11-19T00:50:09.2535892Z",
+  "name": "b5090-chest",
+  "prompt": "Warm afternoon light slides slowly across the silver coins so they glint softly, dust motes drift in the sunbeam. The pull of wealth. Slow push-in toward the chest. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "completed_utc": "2026-11-19T00:56:23.6561395Z",
+  "schema": 1,
+  "size_bytes": 22394519,
+  "generate_audio": null,
+  "negative_prompt": null,
+  "image": "out\\refs\\b5090-chest-3.jpg",
+  "duration_sec": 10,
+  "mode": "image-to-video",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resumed_utc": "2026-11-19T00:56:09.5788363Z"
+}

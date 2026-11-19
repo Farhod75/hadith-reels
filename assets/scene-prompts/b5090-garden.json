@@ -1,0 +1,19 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab30747/AeGvCGP0qFibC0uBqFgNj_output.mp4",
+  "file": "out\\backgrounds\\new\\b5090-garden.mp4",
+  "request_id": "01a1f148-4811-76a2-8a7d-3f8398658e26",
+  "submitted_utc": "2026-11-19T00:50:08.8363867Z",
+  "name": "b5090-garden",
+  "prompt": "Water flows and sparkles along the narrow channel, pomegranate leaves and red flowers tremble in a soft breeze, sunlight flickers on the grass. Beauty that delights the eye. Slow push-in along the channel. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "completed_utc": "2026-11-19T00:56:53.2955231Z",
+  "schema": 1,
+  "size_bytes": 42314313,
+  "generate_audio": null,
+  "negative_prompt": null,
+  "image": "out\\refs\\b5090-garden-2.jpg",
+  "duration_sec": 10,
+  "mode": "image-to-video",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resumed_utc": "2026-11-19T00:56:24.4191898Z"
+}

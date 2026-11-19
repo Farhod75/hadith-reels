@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b5090-town",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, early morning light over a quiet oasis town of mud-brick houses, two neighbouring courtyards with palm trees, smoke rising softly from one roof, the lanes empty and clean. No people. Mood: thoughtful anticipation - a decision about a household to come. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f13f-e02a-7f41-91da-c5fade6ba6b0",
+  "submitted_utc": "2026-11-19T00:40:57.4757046Z",
+  "completed_utc": "2026-11-19T00:41:53.4476639Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b5090-town-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306fa/Z1j_90wF2OvWDl0NtD_4F_5C3Mt4u3.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b5090-town-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306fa/wx9kheOWuOlNXjHB0WdRe_WFANMa65.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b5090-town-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab306fa/0qKsAVbi9ULJB6Q7_QS4S_lOCFDnIF.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1346172659
+}
