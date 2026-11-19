@@ -1,3 +1,16 @@
+## [2026-11-18b] - Hadith pages for four recent sets (P387)
+
+### Added
+
+- content/explanations: Bukhari #31 (HadeethEnc 4304), #1521 (2758), Muslim #1510 (3775, RU/EN/AR only), Muslim #91
+  (6209, accepted variant فقال/قال). 45 of 67 published hadiths now have a page.
+
+### Docs
+
+- OPEN_ITEMS.md: explanation backfill recount; #6724, #105, #1151 have no HadeethEnc match, #5090 is Arabic only.
+
+---
+
 ## [2026-11-18a] - Bukhari #5090 published (R262-R265)
 
 ### Added

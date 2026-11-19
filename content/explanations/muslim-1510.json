@@ -1,0 +1,72 @@
+{
+  "schema": 2,
+  "slug": "muslim-1510",
+  "library_id": "f9401679-728a-4352-9196-7557bb955f33",
+  "collection": "Sahih Muslim",
+  "hadith_number": "1510",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "3775",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-18",
+      "references_ar": "- صحيح البخاري، للإمام محمد بن إسماعيل البخاري، عناية محمد زهير الناصر، دار طوق النجاة، الطبعة الأولى، 1422هـ.\n- صحيح مسلم، للإمام مسلم بن الحجاج، تحقيق محمد فؤاد عبد الباقي، دار إحياء التراث العربي.\n- بهجة الناظرين شرح رياض الصالحين؛ تأليف سليم الهلالي، دار ابن الجوزي- الطبعة الأولى1418ه.\n- نزهة المتقين شرح رياض الصالحين؛ تأليف د. مصطفى الخِن وغيره، مؤسسة الرسالة-بيروت، الطبعة الرابعة عشرة، 1407هـ.\n- كنوز رياض الصالحين، لحمد بن ناصر العمار، دار كنوز إشبيليا- الطبعة الأولى1430ه.\n- دليل الفالحين لطرق رياض الصالحين، لمحمد علي بن محمد بن علان بن إبراهيم البكري، تحقيق خليل مأمون شيحا-دار المعرفة-بيروت-الطبعة الرابعة1425ه.\n- شرح رياض الصالحين؛ للشيخ محمد بن صالح العثيمين، مدار الوطن، الرياض، 1426هـ.",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/3775",
+          "raw": "raw/hadeethenc-3775-ar.json",
+          "raw_sha256": "e1a89de11113905128a2ea3e51b9b8f784d9f01dbf32a89a939c0c7faf3310ba",
+          "title": "لا يَجزي ولدٌ والدًا إلا أن يَجده مملوكًا، فيَشتريه فيُعتِقه",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: قال رسول الله صلى الله عليه وسلم : «لاَ يَجْزِي ولدٌ والدًا إلا أن يجده مملوكًا، فَيَشْتَرِيَهُ فَيُعْتِقَهُ».",
+          "explanation": "لا يقوم ولد بما لأبيه عليه من حق ولا يكافئه بإحسانه به إلا أن يجده مملوكًا فيشتريه ويعتقه.",
+          "lessons": [
+            "عظيم حق الوالدين في الإسلام.",
+            "ظاهر الحديث: أنه لا بد من التصريح بالعتق، ولكن هذا الظاهر غير مراد بل يُعتق الأب على الابن بمجرد الشراء، ولا يحتاج إلى تصريح بالعتق.",
+            "إذا اشترى الولد أمه المملوكة عُتقت عليه بمجرد الشراء ولا يحتاج إلى تصريح بالعتق.",
+            "لا يجوز للولد أن يسترق أبويه أو أحدهما، فإن حدث ذلك؛ فهو من أمارات الساعة، ودلائل تغيير الزمان."
+          ],
+          "word_meanings": [
+            {
+              "word": "يجزي",
+              "meaning": " يكافئ."
+            },
+            {
+              "word": "العتق",
+              "meaning": " أعتق العبد: حرره فهو معتق."
+            }
+          ],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/3775",
+          "raw": "raw/hadeethenc-3775-en.json",
+          "raw_sha256": "38055ef57be7bb53e9c5f459814e50fbe604e0580148288732341fb140414504",
+          "title": "No son can repay the kindness of his father unless he finds him a slave and buys him and emancipates him",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported that the Prophet (may Allah's peace and blessings be upon him) said: \"No son can repay the kindness of his father unless he finds him a slave and buys him and emancipates him.\"",
+          "explanation": "The son can never repay his father for all the good he has done or fulfill all the rights his father has over him, except if the father was a slave and the son emancipated him by buying him (from his master) and setting him free.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/3775",
+          "raw": "raw/hadeethenc-3775-ru.json",
+          "raw_sha256": "8de855973d50690201fcc0a8d7c6abfd15c4af3de2d47abb9e6ca77443e7413d",
+          "title": "«Не сможет человек отблагодарить своего родителя как следует, если только не обнаружит его попавшим в рабство, после чего выкупит и освободит».",
+          "hadeeth": "Абу Хурайра (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «Не сможет человек отблагодарить своего родителя как следует, если только не обнаружит его попавшим в рабство, после чего выкупит и освободит».",
+          "explanation": "Человек не сможет соблюсти право родителя должным образом и воздать ему за его благодеяния, если только не обнаружит его попавшим в рабство и не освободит его.",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "передал Муслим",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}

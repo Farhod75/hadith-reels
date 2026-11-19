@@ -8,7 +8,9 @@ import x_abudawud_4811 from '@/content/explanations/abudawud-4811.json'
 import x_bukhari_13 from '@/content/explanations/bukhari-13.json'
 import x_bukhari_1417 from '@/content/explanations/bukhari-1417.json'
 import x_bukhari_1520 from '@/content/explanations/bukhari-1520.json'
+import x_bukhari_1521 from '@/content/explanations/bukhari-1521.json'
 import x_bukhari_2654 from '@/content/explanations/bukhari-2654.json'
+import x_bukhari_31 from '@/content/explanations/bukhari-31.json'
 import x_bukhari_3559 from '@/content/explanations/bukhari-3559.json'
 import x_bukhari_38 from '@/content/explanations/bukhari-38.json'
 import x_bukhari_5027 from '@/content/explanations/bukhari-5027.json'
@@ -26,6 +28,7 @@ import x_bukhari_6675 from '@/content/explanations/bukhari-6675.json'
 import x_bukhari_6857 from '@/content/explanations/bukhari-6857.json'
 import x_ibnmajah_4251 from '@/content/explanations/ibnmajah-4251.json'
 import x_muslim_1005 from '@/content/explanations/muslim-1005.json'
+import x_muslim_1510 from '@/content/explanations/muslim-1510.json'
 import x_muslim_1631 from '@/content/explanations/muslim-1631.json'
 import x_muslim_223 from '@/content/explanations/muslim-223.json'
 import x_muslim_2564 from '@/content/explanations/muslim-2564.json'
@@ -40,6 +43,7 @@ import x_muslim_2963 from '@/content/explanations/muslim-2963.json'
 import x_muslim_2999 from '@/content/explanations/muslim-2999.json'
 import x_muslim_482 from '@/content/explanations/muslim-482.json'
 import x_muslim_82 from '@/content/explanations/muslim-82.json'
+import x_muslim_91 from '@/content/explanations/muslim-91.json'
 import x_tirmidhi_1987 from '@/content/explanations/tirmidhi-1987.json'
 import x_tirmidhi_3540 from '@/content/explanations/tirmidhi-3540.json'
 
@@ -51,7 +55,9 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'bukhari-13': x_bukhari_13 as Explanation,
   'bukhari-1417': x_bukhari_1417 as Explanation,
   'bukhari-1520': x_bukhari_1520 as Explanation,
+  'bukhari-1521': x_bukhari_1521 as Explanation,
   'bukhari-2654': x_bukhari_2654 as Explanation,
+  'bukhari-31': x_bukhari_31 as Explanation,
   'bukhari-3559': x_bukhari_3559 as Explanation,
   'bukhari-38': x_bukhari_38 as Explanation,
   'bukhari-5027': x_bukhari_5027 as Explanation,
@@ -69,6 +75,7 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'bukhari-6857': x_bukhari_6857 as Explanation,
   'ibnmajah-4251': x_ibnmajah_4251 as Explanation,
   'muslim-1005': x_muslim_1005 as Explanation,
+  'muslim-1510': x_muslim_1510 as Explanation,
   'muslim-1631': x_muslim_1631 as Explanation,
   'muslim-223': x_muslim_223 as Explanation,
   'muslim-2564': x_muslim_2564 as Explanation,
@@ -83,6 +90,7 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'muslim-2999': x_muslim_2999 as Explanation,
   'muslim-482': x_muslim_482 as Explanation,
   'muslim-82': x_muslim_82 as Explanation,
+  'muslim-91': x_muslim_91 as Explanation,
   'tirmidhi-1987': x_tirmidhi_1987 as Explanation,
   'tirmidhi-3540': x_tirmidhi_3540 as Explanation,
 }

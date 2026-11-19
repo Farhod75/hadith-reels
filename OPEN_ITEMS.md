@@ -1451,7 +1451,7 @@ the operator first - see the #6675 retro.
   Pilot BUILT 2026-11-10: /hadith/muslim/2699 - full text + 1 related event (Bukhari, Uhud; Arabic only until
   HadeethEnc translates 65557). Not added: Umar/Abu Musa "ذكرنا ربنا" (ad-Darimi 3525: Husayn Asad - two defects)
   and Uthman ibn Abi al-As "youngest, knew most Qur'an" (Ibn Sa'd / Ibn Hisham, no grading found yet).
-- **OPEN: explanation backfill (P387; recounted 2026-11-11, P401)** - 39 of 58 published hadiths have a page.
+- **OPEN: explanation backfill (P387; recounted 2026-11-11, P401)** - 39 of 58 published hadiths have a page. **2026-11-18:** 45 of 67 - added Bukhari #31, #1521, Muslim #1510 (HadeethEnc 3775: RU/EN only, no UZ/TJ explanation), Muslim #91 (HadeethEnc 6209, accepted variant فقال/قال). No HadeethEnc match: Bukhari #6724, Muslim #105, #1151. Arabic only at HadeethEnc (65940, no page yet): Bukhari #5090.
   Bukhari #5971 built 2026-11-11 (operator: build it, sahih; variant «ثُمَّ أَبُوكَ» recorded in the file).
   Bukhari #1 NOT built (decided 2026-11-11): HadeethEnc 4560 shows the combined wording with the clause on
   hijrah to Allah and His Messenger, which Bukhari #1 itself omits - a page titled "Bukhari #1" would print
