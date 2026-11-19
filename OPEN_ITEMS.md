@@ -198,7 +198,7 @@ this one wins.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Bukhari #6116 - PUBLISHED 2026-11-19 (R266-R269, TG 289-292); library 45420bf4.** First set from the 2026-11-18
-  library refill (35 rows unused). Explanation page live. Listen for #6116 waits for the operator's yes.
+  library refill (35 rows unused). Explanation page live. Listen published 2026-11-19 (4 clips, index 131).
 - **Library refill held back:** Bukhari #6938 at status deduped - «ألا تقولوه» is plural and the machine translation
   made it singular; translate by hand before it goes to Stage 3.
 - **TikTok cover (P-check, 2026-11-19):** the cover Save is now clicked by its own bounding box and the dialog checked
