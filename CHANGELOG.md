@@ -1,3 +1,12 @@
+## [2026-11-19c] - Subtitles: honorific followed by punctuation (P425)
+
+### Fixed
+
+- scribe-srt.py re-joins , . ; : ! ? after the spoken honorific - EN/RU cues read "peace be upon him ," and
+  «приветствует :» on #6116.
+
+---
+
 ## [2026-11-19b] - Books: translators' service preamble no longer shown
 
 ### Fixed

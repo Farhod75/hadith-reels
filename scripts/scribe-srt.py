@@ -123,6 +123,8 @@ def main():
     for mp3, off in ((story, 0.0), (moral, offset)):
         text = io.open(mp3[:-4] + '.txt', encoding='utf-8-sig').read().strip()
         text = re.sub(r'\s*(ﷺ|\ufdfa)\s*', ' %s ' % spoken, text)
+        # P425: the expansion leaves a space before a following , or : - «приветствует :»
+        text = re.sub(r'\s+([,.;:!?])', r'\1', text)
         src = text.split()
         t, cost, miss_s, miss_h = sa.align(src, scribe(mp3, a.lang, key))
         worst.append((cost, (miss_s + miss_h) / float(max(len(src), 1))))

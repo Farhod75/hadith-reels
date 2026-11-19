@@ -16757,3 +16757,22 @@ status='translated' as before.
 **Status:** FIXED
 
 ---
+
+## PATTERN 425: Spoken honorific left a space before the next comma or colon in EN/RU subtitles
+
+**Date:** 2026-11-19  **Repo:** hadith-reels  **Severity:** cosmetic (burned into the reel)
+
+**What happened.** On #6116 the matn has «Пророку ﷺ:» and "the Prophet ﷺ,". scribe-srt.py replaces the glyph with
+the spoken honorific padded by spaces, so the cue read «...да благословит его Аллах и приветствует :» and
+"peace be upon him ,". Earlier sets had no punctuation right after the glyph.
+
+**Fix.** scribe-srt.py: after the honorific substitution, whitespace before , . ; : ! ? is removed. #6116 EN/RU SRTs
+regenerated (alignment cost 0.00) and both legs re-rendered.
+
+**Lesson:** a substitution padded with spaces must be followed by a punctuation re-join.
+
+**Tripwire:** grep the narration SRTs for a space before punctuation before publishing.
+
+**Status:** FIXED
+
+---

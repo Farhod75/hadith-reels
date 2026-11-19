@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-354 patterns in 367 entries, frontier **P424**. The P-sequence is shared with
+355 patterns in 368 entries, frontier **P425**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -415,5 +415,6 @@ BEFORE changing it.
 - **P422** - UZ/TJ subtitles from our own text and Scribe timings (supersedes P078's "no subtitles")
 - **P423** - EN/RU subtitles from our text too - Whisper needed a hand fix on nearly every leg
 - **P424** - HadeethEnc candidates had no path into Stage 2
+- **P425** - Spoken honorific left a space before the next comma or colon in EN/RU subtitles
 
-<!-- pattern-index-stamp entries=367 patterns=354 frontier=424 sha1=b43a1ba96b4242ea6139e48feb01e4731510106d -->
+<!-- pattern-index-stamp entries=368 patterns=355 frontier=425 sha1=9763bd7d853d9d97ef540d7d50ea9914aea6aa04 -->
