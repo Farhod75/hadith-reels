@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "request_id": "01a1f5df-6e14-7af0-bd47-9a3379697bb0",
+  "resolution": null,
+  "completed_utc": "2026-11-19T22:22:13.8445703Z",
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab32574/XGISw0rlbE7Q2wVmelH-9_output.mp4",
+  "submitted_utc": "2026-11-19T22:13:43.1167929Z",
+  "prompt": "Rays of morning sunlight shimmer through the palm fronds, the haze glows and drifts gently. Mercy from above. Slow tilt up toward the light. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\m1914-light.mp4",
+  "name": "m1914-light",
+  "size_bytes": 21249120,
+  "duration_sec": 10,
+  "image": "out\\refs\\m1914-light-2.jpg"
+}

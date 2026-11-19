@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab32569/K7_pxND5IBmONEaFGuzqW_output.mp4",
+  "name": "m1914-dusk",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-19T22:20:27.6007491Z",
+  "prompt": "The small lamp flame flickers warmly in its niche, the golden dusk sky deepens behind the palms. Do not belittle any good deed. Slow push-in down the lane. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a1f5df-730a-7da0-9ccd-ac25d1cb30a8",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m1914-dusk.mp4",
+  "negative_prompt": null,
+  "generate_audio": null,
+  "resolution": null,
+  "submitted_utc": "2026-11-19T22:13:44.4185759Z",
+  "image": "out\\refs\\m1914-dusk-2.jpg",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "size_bytes": 26820520,
+  "duration_sec": 10
+}

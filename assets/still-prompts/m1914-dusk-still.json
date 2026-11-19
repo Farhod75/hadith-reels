@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-dusk",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, an oasis village lane at golden dusk, clean and clear, palms silhouetted against a warm sky, a small clay oil lamp burning in a wall niche. No people. Mood: do not belittle any good deed. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5de-1b3c-7cd1-aa13-d805201cc4c5",
+  "submitted_utc": "2026-11-19T22:12:16.1240698Z",
+  "completed_utc": "2026-11-19T22:12:24.7519090Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-dusk-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3253a/j5DXITMlxY99aPaU7xaji_M2iV6sE1.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-dusk-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3253a/7LGBvxxVmIErUDHKNi7h5_AWTSk4zD.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-dusk-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab3253a/ZriZmu84ylL2ZKtJ_IBq8_BupFj56H.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1352584648
+}

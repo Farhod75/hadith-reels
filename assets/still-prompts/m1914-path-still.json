@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-path",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, early morning, a narrow dusty path winding between low mud-brick walls and date palms toward an oasis village, soft golden light, long shadows, the path empty. No people. Mood: an ordinary walk on an ordinary day. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5db-b2d3-7223-8ef5-441784fc7077",
+  "submitted_utc": "2026-11-19T22:09:38.2557845Z",
+  "completed_utc": "2026-11-19T22:11:11.8524130Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-path-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32533/Y37HbbeGp64nE3hKRwj2u_p8k1Sska.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-path-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32533/MCPb2AIlBRxFJjMroDEas_OHy3AfgV.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-path-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32533/FBovwI_LiiT55QOkem02Q_fYoVVirz.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 480839033
+}

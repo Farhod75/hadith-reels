@@ -1,0 +1,18 @@
+{
+  "size_bytes": 40915340,
+  "video_url": "https://v3b.fal.media/files/b/0ab32576/F5eAK7rsyrU3RlbAN0T_A_output.mp4",
+  "image": "out\\refs\\m1914-clear-2.jpg",
+  "generate_audio": null,
+  "prompt": "Sunbeams shift through the palm grove, light dust drifts and glows above the clear path. A path safe for everyone. Slow push-in down the path. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "schema": 1,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "submitted_utc": "2026-11-19T22:13:44.6010091Z",
+  "file": "out\\backgrounds\\new\\m1914-clear.mp4",
+  "resolution": null,
+  "mode": "image-to-video",
+  "duration_sec": 10,
+  "negative_prompt": null,
+  "name": "m1914-clear",
+  "request_id": "01a1f5df-73ac-7d00-bd95-ae1309749f7d",
+  "completed_utc": "2026-11-19T22:22:39.3283071Z"
+}

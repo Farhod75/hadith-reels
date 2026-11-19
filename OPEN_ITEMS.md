@@ -197,6 +197,9 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Muslim #1914 - PUBLISHED 2026-11-19 (R270-R273, TG 293-296); library 411a7f60.** Second set from the 2026-11-18
+  refill (34 rows unused). Explanation page live (AR/EN/RU). TikTok covers checked in the posts list. Listen for #1914
+  waits for the operator's yes.
 - **Bukhari #6116 - PUBLISHED 2026-11-19 (R266-R269, TG 289-292); library 45420bf4.** First set from the 2026-11-18
   library refill (35 rows unused). Explanation page live. Listen published 2026-11-19 (4 clips, index 131).
 - **Library refill held back:** Bukhari #6938 at status deduped - «ألا تقولوه» is plural and the machine translation

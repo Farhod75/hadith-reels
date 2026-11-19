@@ -3122,6 +3122,132 @@
       "verified": true,
       "notes": "Mist over a still oasis pool at dawn seen through a doorway - peace; remember the advice. Slow copy (setpts 1.22, ~0.82x) of b6116-oasis.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/b6116-oasis.json"
+    },
+    "m1914-path.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An empty morning path between mud-brick walls and palms - a man walking on a path (the lead-in). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-path.json"
+    },
+    "m1914-path-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An empty morning path between mud-brick walls and palms - a man walking on a path (the lead-in). Slow copy (setpts 1.22, ~0.82x) of m1914-path.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-path.json"
+    },
+    "m1914-branch.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A dry thorny branch lying across the path - 'he found a thorny branch on the path'. Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-branch.json"
+    },
+    "m1914-branch-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A dry thorny branch lying across the path - 'he found a thorny branch on the path'. Slow copy (setpts 1.22, ~0.82x) of m1914-branch.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-branch.json"
+    },
+    "m1914-side.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "The branch lying at the foot of the wall, the path clear - 'so he moved it aside'. Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-side.json"
+    },
+    "m1914-side-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "The branch lying at the foot of the wall, the path clear - 'so he moved it aside'. Slow copy (setpts 1.22, ~0.82x) of m1914-side.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-side.json"
+    },
+    "m1914-light.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Morning sun breaking through palm fronds - 'Allah thanked him and forgave him'. Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-light.json"
+    },
+    "m1914-light-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Morning sun breaking through palm fronds - 'Allah thanked him and forgave him'. Slow copy (setpts 1.22, ~0.82x) of m1914-light.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-light.json"
+    },
+    "m1914-clear.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clear path through a palm grove in sunbeams - a way made safe for everyone (the moral). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-clear.json"
+    },
+    "m1914-clear-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clear path through a palm grove in sunbeams - a way made safe for everyone (the moral). Slow copy (setpts 1.22, ~0.82x) of m1914-clear.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-clear.json"
+    },
+    "m1914-pebble.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sharp stones and a clay shard gathered at the side of a clean path - small good deeds. Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-pebble.json"
+    },
+    "m1914-pebble-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sharp stones and a clay shard gathered at the side of a clean path - small good deeds. Slow copy (setpts 1.22, ~0.82x) of m1914-pebble.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-pebble.json"
+    },
+    "m1914-dusk.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clean lane at golden dusk with a lamp in a wall niche - do not belittle any good deed. Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-dusk.json"
+    },
+    "m1914-dusk-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clean lane at golden dusk with a lamp in a wall niche - do not belittle any good deed. Slow copy (setpts 1.22, ~0.82x) of m1914-dusk.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1914-dusk.json"
     }
   }
 }

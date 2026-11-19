@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-light",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, soft rays of morning sunlight breaking through the fronds of tall date palms above a quiet path, gentle haze, peaceful sky. No people. Mood: mercy and forgiveness from above. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5dd-bd82-75a3-bde3-63725f8737ee",
+  "submitted_utc": "2026-11-19T22:11:52.1355063Z",
+  "completed_utc": "2026-11-19T22:12:00.7100727Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-light-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32537/QYlyvki9-ppcmqCFdcxmt_AVgNdK1S.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-light-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32537/90GryNF1jMI4-kNy-tdkn_LMVpRllC.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-light-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32537/doyt0J9S78r_JZm8WW_qe_n9pKHGQ6.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 162263963
+}

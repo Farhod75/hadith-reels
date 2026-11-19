@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab32578/I1ibNO0882jRGXQsMNQil_output.mp4",
+  "file": "out\\backgrounds\\new\\m1914-path.mp4",
+  "completed_utc": "2026-11-19T22:22:55.2635520Z",
+  "name": "m1914-path",
+  "resolution": null,
+  "submitted_utc": "2026-11-19T22:13:42.7164507Z",
+  "generate_audio": null,
+  "duration_sec": 10,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "size_bytes": 30694463,
+  "prompt": "Soft morning light spreads along the empty path, palm fronds sway gently, fine dust floats in the sunlight. An ordinary walk. Slow push-in along the path. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "image": "out\\refs\\m1914-path-1.jpg",
+  "schema": 1,
+  "request_id": "01a1f5df-6c7f-7463-aee8-e3371af72871",
+  "mode": "image-to-video"
+}

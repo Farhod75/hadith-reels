@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-side",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, the same kind of narrow dusty path now completely clear, and a dry thorny branch lying at the very edge of the path against the foot of a mud-brick wall, warm morning light. No people. Mood: the branch moved aside, the way made safe. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5dd-60b2-7930-a47d-75f58562ec72",
+  "submitted_utc": "2026-11-19T22:11:28.3689176Z",
+  "completed_utc": "2026-11-19T22:11:37.1961715Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-side-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32535/cD7kCXcuPoOh5a-qbrXNY_dxyTV5iE.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-side-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32535/n8Jg_6RHglxXzUA-_702h_5QuQnzjT.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-side-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32535/aVe15F9nS_uwocrQVpDIV_D8RtJjzq.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1068246524
+}

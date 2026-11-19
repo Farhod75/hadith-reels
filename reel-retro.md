@@ -1710,3 +1710,28 @@ stored Arabic with a Tier 1 matn before anything else.
 questioner's words in the Prophet's mouth.
 
 ---
+
+## R270-R273 - Sahih Muslim #1914 - 2026-11-19
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips.
+
+**Caught before publish**
+
+- The morals first drafted repeated the matn's words at the seam (lint); rewritten.
+- UZ loudness: -23.0 LUFS against -28 for the approved UZ legs; lowered 5 dB.
+- RU bed: the first pick was not adults-approved; swapped to aswati-Peaceful-Contemplation.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- The PC slept during the render; the render had already finished.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** the set started from a Facebook post the operator asked about - a real sahih meaning carried with a
+non-sahih source and added words. A reel on the authentic wording answers that kind of post.
+
+---

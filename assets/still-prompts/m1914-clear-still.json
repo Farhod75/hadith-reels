@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-clear",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, a long clear dusty path through a palm grove in warm sunlight, smooth sand, light dust drifting in sunbeams, the way open and safe. No people. Mood: a path made safe for everyone. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5dd-8f65-7740-a67d-62c4d21caea7",
+  "submitted_utc": "2026-11-19T22:11:40.3054675Z",
+  "completed_utc": "2026-11-19T22:11:49.0336372Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-clear-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32536/u_umtJ0K5BITFff4RBkq8_ndAlF4wM.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-clear-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32536/ZQzysBmxVbnGBrFMMnoSU_fMe5LbMO.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-clear-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32536/OG32ENQu44NKDZm3ZzEIU_rLHd7OYz.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1391980261
+}

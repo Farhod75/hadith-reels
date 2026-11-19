@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "m1914-branch",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, close view at ground level of a dry thorny acacia branch lying across the middle of a narrow dusty path, sharp long thorns catching the light, mud-brick wall and palms softly blurred behind. No people. Mood: a small harm lying in the way. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, dry thorn bushes. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f5dd-3155-7101-9833-de042349cfa0",
+  "submitted_utc": "2026-11-19T22:11:16.2364320Z",
+  "completed_utc": "2026-11-19T22:11:24.8514367Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\m1914-branch-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32534/LR4bq_CoTWD_D-zAZ0qQ1_pCxsdnfU.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\m1914-branch-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32534/sJr7Kh3XAzdcgFhsqWiKs_Xqo38vGy.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\m1914-branch-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32534/CswABA6jVr_NSvbjNZOdg_NSGdqkO4.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1238948572
+}
