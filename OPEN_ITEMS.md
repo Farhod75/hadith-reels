@@ -197,6 +197,13 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
   operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Bukhari #6116 - PUBLISHED 2026-11-19 (R266-R269, TG 289-292); library 45420bf4.** First set from the 2026-11-18
+  library refill (35 rows unused). Explanation page live. Listen for #6116 waits for the operator's yes.
+- **Library refill held back:** Bukhari #6938 at status deduped - «ألا تقولوه» is plural and the machine translation
+  made it singular; translate by hand before it goes to Stage 3.
+- **TikTok cover (P-check, 2026-11-19):** the cover Save is now clicked by its own bounding box and the dialog checked
+  closed; every cover is also checked in the posts list after posting. The posted-cover editor on TikTok offers only
+  frames of the video, so a missed cover means delete and re-post (#5090 UZ was re-posted 2026-11-18).
 - **Bukhari #5090 - PUBLISHED 2026-11-18 (R262-R265, TG 285-288); library e60c8969.** Library row fixed first (Arabic
   missing «تربت يداك», EN «you will prosper»). Listen for #5090 PUBLISHED 2026-11-18 (4 clips).
 - **UZ bed level (2026-11-18):** the auto gain keeps UZ at a 15.7 dB voice-over-bed gap and Opa Johann reads ~5 dB

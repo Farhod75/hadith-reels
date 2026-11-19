@@ -1,0 +1,18 @@
+{
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "completed_utc": "2026-11-19T20:51:09.2867101Z",
+  "schema": 1,
+  "generate_audio": null,
+  "name": "b6116-lane",
+  "request_id": "01a1f58e-8b5c-7270-9fcb-891e41a55c80",
+  "duration_sec": 10,
+  "submitted_utc": "2026-11-19T20:45:22.3339656Z",
+  "mode": "image-to-video",
+  "size_bytes": 19182206,
+  "image": "out\\refs\\b6116-lane-2.jpg",
+  "file": "out\\backgrounds\\new\\b6116-lane.mp4",
+  "prompt": "Soft morning light spreads slowly down the empty lane, palm fronds beyond the gate stir gently, fine dust floats in the light. Someone came seeking advice. Slow push-in toward the open gate. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "resolution": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab32352/3iMkB25N9dvg7giwpdR1D_output.mp4"
+}

@@ -1,3 +1,17 @@
+## [2026-11-19d] - Bukhari #6116 published (R266-R269)
+
+### Added
+
+- **Bukhari #6116 assets:** seven scenes b6116-lane, embers, pot, basin, dust, lamp, oasis and their x1.22 slow copies
+  registered (Kling 4.0), prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R266-R269 (Character / Akhlaq), reel-retro.md, OPEN_ITEMS.md (#6116; #6938 held back; TikTok cover
+  check).
+
+---
+
 ## [2026-11-19c] - Subtitles: honorific followed by punctuation (P425)
 
 ### Fixed

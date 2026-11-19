@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-19T20:45:21.6702353Z",
+  "completed_utc": "2026-11-19T20:50:28.9441839Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab3234d/Rr9mtVgxuV7BYf2_iugoX_output.mp4",
+  "schema": 1,
+  "prompt": "The embers pulse red and the flames flare up sharply, sparks leap and dark smoke rises fast. Anger flaring. Slow push-in toward the fire. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "b6116-embers",
+  "image": "out\\refs\\b6116-embers-3.jpg",
+  "file": "out\\backgrounds\\new\\b6116-embers.mp4",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "generate_audio": null,
+  "duration_sec": 10,
+  "size_bytes": 21300397,
+  "mode": "image-to-video",
+  "resolution": null,
+  "request_id": "01a1f58e-88cb-7381-88bc-ca2c4d4685bb"
+}

@@ -1,0 +1,18 @@
+{
+  "image": "out\\refs\\b6116-lamp-2.jpg",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "duration_sec": 10,
+  "file": "out\\backgrounds\\new\\b6116-lamp.mp4",
+  "resolution": null,
+  "size_bytes": 10340632,
+  "generate_audio": null,
+  "name": "b6116-lamp",
+  "prompt": "The small flame of the clay lamp burns perfectly steady, the warm light glows softly on the wall, the air is completely still. A held tongue. Very slow push-in toward the flame. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "completed_utc": "2026-11-19T20:50:31.8526395Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab3234d/5krgDQW3DZC75kgvna2zW_output.mp4",
+  "mode": "image-to-video",
+  "negative_prompt": null,
+  "request_id": "01a1f58e-5e5d-7400-b661-e6bc1ff13c79",
+  "submitted_utc": "2026-11-19T20:45:10.8166543Z",
+  "schema": 1
+}

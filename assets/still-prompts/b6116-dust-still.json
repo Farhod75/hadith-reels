@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "mode": "text-to-image",
+  "name": "b6116-dust",
+  "model": "fal-ai/flux-2",
+  "prompt": "Vertical 9:16 photoreal cinematic, wide desert of sand dunes where a passing dust storm is settling, the last veils of sand drifting low while clear blue sky opens above and soft sunlight returns. No people. Mood: the storm passing, self-control. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats. No people, no hands, no feet, no faces, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal locks.",
+  "image_size": "portrait_16_9",
+  "num_inference_steps": 28,
+  "safety_tolerance": "2",
+  "count_requested": 3,
+  "request_id": "01a1f58a-8013-7442-9e4d-7b419128c935",
+  "submitted_utc": "2026-11-19T20:40:57.0893827Z",
+  "completed_utc": "2026-11-19T20:41:05.7428974Z",
+  "variants": [
+    {
+      "n": 1,
+      "file": "out\\refs\\b6116-dust-1.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32316/8o246mMhD9-KVmY_Mo0Uf_R8zVlpra.png",
+      "downloaded": true
+    },
+    {
+      "n": 2,
+      "file": "out\\refs\\b6116-dust-2.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32316/svsp5-fq1RpfK0ZroXf0h_V3mpgnE2.png",
+      "downloaded": true
+    },
+    {
+      "n": 3,
+      "file": "out\\refs\\b6116-dust-3.jpg",
+      "url": "https://v3b.fal.media/files/b/0ab32316/T7_O8rvMd3LMq8L1cMAlp_vA9k8uYf.png",
+      "downloaded": true
+    }
+  ],
+  "chosen": null,
+  "seed": 1872509849
+}

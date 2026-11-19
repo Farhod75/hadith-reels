@@ -2996,6 +2996,132 @@
       "verified": true,
       "notes": "A courtyard at dusk, a lamp and two cups on a mat, the door open to a bare lamplit room - a home built on faith. home (first take) not used: modern sofa, bed and lampshade in the room. Slow copy (setpts 1.22, ~0.82x) of b5090-home2.mp4 for the long UZ moral (P386). Sahih al-Bukhari #5090 (Abu Hurairah: a woman is married for four things - wealth, lineage, beauty, religion; 'so win the one with religion, may your hands be covered in dust'). MODE B, no people, no hands, no faces - frame-checked 2026-11-18 (P417: none present). Stills picked 2026-11-18 (town-2, chest-3, house-2, garden-2, mat-1, palms-1, home2-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/b5090-home2.json"
+    },
+    "b6116-lane.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An empty morning lane to an open courtyard gate - someone came seeking advice (the lead-in). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-lane.json"
+    },
+    "b6116-lane-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An empty morning lane to an open courtyard gate - someone came seeking advice (the lead-in). Slow copy (setpts 1.22, ~0.82x) of b6116-lane.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-lane.json"
+    },
+    "b6116-embers.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Embers flaring into sharp flames in a clay hearth - anger rising. Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-embers.json"
+    },
+    "b6116-embers-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Embers flaring into sharp flames in a clay hearth - anger rising. Slow copy (setpts 1.22, ~0.82x) of b6116-embers.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-embers.json"
+    },
+    "b6116-pot.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay pot boiling hard over a strong fire - anger boiling over (the repeated request). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-pot.json"
+    },
+    "b6116-pot-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay pot boiling hard over a strong fire - anger boiling over (the repeated request). Slow copy (setpts 1.22, ~0.82x) of b6116-pot.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-pot.json"
+    },
+    "b6116-basin.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay basin of water settling to stillness, palm fronds reflected - calm returning. Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-basin.json"
+    },
+    "b6116-basin-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay basin of water settling to stillness, palm fronds reflected - calm returning. Slow copy (setpts 1.22, ~0.82x) of b6116-basin.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-basin.json"
+    },
+    "b6116-dust.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A dust storm drifting away over the dunes, the sky clearing - the storm passing (the moral). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-dust.json"
+    },
+    "b6116-dust-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A dust storm drifting away over the dunes, the sky clearing - the storm passing (the moral). Slow copy (setpts 1.22, ~0.82x) of b6116-dust.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-dust.json"
+    },
+    "b6116-lamp.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay lamp burning with a steady flame in a still room - holding back hand and tongue. Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-lamp.json"
+    },
+    "b6116-lamp-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay lamp burning with a steady flame in a still room - holding back hand and tongue. Slow copy (setpts 1.22, ~0.82x) of b6116-lamp.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-lamp.json"
+    },
+    "b6116-oasis.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Mist over a still oasis pool at dawn seen through a doorway - peace; remember the advice. Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-oasis.json"
+    },
+    "b6116-oasis-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Mist over a still oasis pool at dawn seen through a doorway - peace; remember the advice. Slow copy (setpts 1.22, ~0.82x) of b6116-oasis.mp4 (P386). Sahih al-Bukhari #6116 (Abu Hurairah: a man asked the Prophet for advice; he said 'Do not get angry', and repeated it when the man asked again). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (lane-2, embers-3, pot-2, basin-2, dust-2, lamp-2, oasis-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/b6116-oasis.json"
     }
   }
 }

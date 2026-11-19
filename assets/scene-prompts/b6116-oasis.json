@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab32357/cJRIyfutAfCd_ORVgJ9Ne_output.mp4",
+  "file": "out\\backgrounds\\new\\b6116-oasis.mp4",
+  "request_id": "01a1f58e-8d4d-7c40-a31b-39b2dfb84609",
+  "completed_utc": "2026-11-19T20:51:58.9244404Z",
+  "size_bytes": 21698598,
+  "prompt": "Light mist drifts slowly over the still oasis pool, the golden dawn light grows, the palm reflections stay mirror-calm. Peace after restraint. Slow push-in through the doorway toward the water. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "generate_audio": null,
+  "submitted_utc": "2026-11-19T20:45:22.8471624Z",
+  "mode": "image-to-video",
+  "image": "out\\refs\\b6116-oasis-2.jpg",
+  "name": "b6116-oasis",
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resolution": null
+}

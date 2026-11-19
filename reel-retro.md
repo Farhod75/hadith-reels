@@ -1680,3 +1680,33 @@ text (scribe-srt.py, P422 + P423); all eight clips on Kling 4.0.
 stored Arabic with a Tier 1 matn before anything else.
 
 ---
+
+## R266-R269 - Sahih al-Bukhari #6116 - 2026-11-19
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips.
+
+**Caught before publish**
+
+- Framing: the default lead-in would have read "the Prophet said: A man said to the Prophet...". Report form (P418)
+  with the dialogue quoted per speaker (P414).
+- EN/RU subtitles: «приветствует :» and "peace be upon him ," - a space before punctuation after the spoken
+  honorific. Fixed in scribe-srt.py (P425), both legs re-rendered.
+- UZ loudness: -23.6 LUFS against -28 for the approved #5090 UZ; lowered 4.5 dB.
+- TikTok music copyright check was found off on EN and UZ before posting and switched on.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- render-set --render run inside the 80 s tool window died after the first leg; re-run detached (P350).
+- Meta Business Suite: a click meant for the captions switch hit the sticky header and stepped back to Edit; the
+  switch is now scrolled to the centre and clicked by its own box.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a dialogue matn needs its frame chosen before the drafts are written - the default lead-in puts the
+questioner's words in the Prophet's mouth.
+
+---

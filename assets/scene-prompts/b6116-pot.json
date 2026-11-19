@@ -1,0 +1,18 @@
+{
+  "file": "out\\backgrounds\\new\\b6116-pot.mp4",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "name": "b6116-pot",
+  "schema": 1,
+  "video_url": "https://v3b.fal.media/files/b/0ab3234c/K33DJca6k0uVPdXUnKj8H_output.mp4",
+  "size_bytes": 23745905,
+  "completed_utc": "2026-11-19T20:50:12.6204916Z",
+  "negative_prompt": null,
+  "submitted_utc": "2026-11-19T20:44:48.5253606Z",
+  "request_id": "01a1f58e-0748-7273-857f-3c46b31c681f",
+  "duration_sec": 10,
+  "resolution": null,
+  "generate_audio": null,
+  "image": "out\\refs\\b6116-pot-2.jpg",
+  "prompt": "The water in the clay pot boils hard, thick steam pours upward, the flames lick around the pot. Anger boiling. Slow push-in toward the pot. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "mode": "image-to-video"
+}

@@ -1,0 +1,18 @@
+{
+  "generate_audio": null,
+  "size_bytes": 23359042,
+  "resolution": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab32353/DKNEbV5VDViGDOR-3H_ZC_output.mp4",
+  "completed_utc": "2026-11-19T20:51:20.5103866Z",
+  "file": "out\\backgrounds\\new\\b6116-basin.mp4",
+  "duration_sec": 10,
+  "name": "b6116-basin",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-19T20:45:17.4545065Z",
+  "negative_prompt": null,
+  "prompt": "The surface of the water settles from faint ripples to mirror stillness, the reflected palm fronds become clear, soft light brightens. Calm returning. Very slow push-in toward the basin. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "image": "out\\refs\\b6116-basin-2.jpg",
+  "schema": 1,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "request_id": "01a1f58e-783a-7d40-b494-badbd66c28fd"
+}

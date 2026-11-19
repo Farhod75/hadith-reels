@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "file": "out\\backgrounds\\new\\b6116-dust.mp4",
+  "schema": 1,
+  "resolution": null,
+  "request_id": "01a1f58e-7603-7491-bc0a-08abfe2e4f98",
+  "size_bytes": 11422272,
+  "video_url": "https://v3b.fal.media/files/b/0ab3235b/8pSoRu40XkWnoYW5iOFFr_output.mp4",
+  "image": "out\\refs\\b6116-dust-2.jpg",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "completed_utc": "2026-11-19T20:52:43.7760844Z",
+  "negative_prompt": null,
+  "prompt": "The dust storm drifts away across the dunes and thins out, the sky clears to blue and warm sunlight returns over the courtyard. The storm passing. Slow pan following the drifting dust. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "submitted_utc": "2026-11-19T20:45:16.8812617Z",
+  "name": "b6116-dust",
+  "generate_audio": null,
+  "mode": "image-to-video"
+}
