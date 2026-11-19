@@ -205,7 +205,12 @@ def json_to_row(c: dict, now_iso: str):
         meta[col] = {"at": now_iso, "provenance": src,
                      "source_field": "hadeethenc", "lang": lang}
     if not meta:
-        return None, "no translations present — nothing this path adds"
+        # P424: since P178 the HadeethEnc adapter carries no translations, so a
+        # HadeethEnc candidate arrives with the Arabic only. It now enters at
+        # status='deduped' - the status translate-candidates.py (Stage 2) reads -
+        # instead of being skipped, which had left it no path into Stage 2.
+        row["status"] = "deduped"
+        return row, None
 
     row["translation_meta"] = meta
     # text_uzbek_latin is deliberately left NULL. It is derived from the
@@ -260,7 +265,7 @@ def run_from_json(path: str, commit: bool, allow_fuzzy: bool) -> int:
             print(f"   skip {c.get('collection')} {c.get('hadith_number')}: {reason}")
             skipped += 1
             continue
-        langs = " ".join(k.split("_", 1)[1] for k in row["translation_meta"])
+        langs = " ".join(k.split("_", 1)[1] for k in row.get("translation_meta", {})) or "none -> deduped (Stage 2)"
         print(f"   -> {row['collection']} {row['hadith_number']} [{row['grade']}]  langs: {langs}")
         rows.append(row)
 

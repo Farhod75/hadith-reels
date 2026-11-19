@@ -16734,3 +16734,26 @@ back to no subtitles for that leg rather than to Whisper.
 **Status:** FIXED
 
 ---
+
+## PATTERN 424: HadeethEnc candidates had no path into Stage 2
+
+**Date:** 2026-11-18  **Repo:** hadith-reels  **Severity:** process (library refill blocked)
+
+**What happened.** P178 stopped the HadeethEnc adapter carrying translations, so candidates.json rows arrive with
+the Arabic only. upload-candidates.py --from-json still required at least one translation and skipped every such
+row ("no translations present - nothing this path adds"), and translate-candidates.py reads only status='deduped'
+rows from hadith_candidates. Twelve Dorar-confirmed sahih candidates stood in candidates.json with no way into the
+table.
+
+**Fix.** json_to_row: when no translation column is present, the row is inserted at status='deduped' and without
+translation_meta; the dry-run line prints "none -> deduped (Stage 2)". Rows that do carry text keep
+status='translated' as before.
+
+**Lesson:** when a stage stops producing a field, every later gate that tested for that field must be re-read.
+
+**Tripwire:** the --from-json dry run lists every candidate as either "-> ... deduped (Stage 2)" or a named skip;
+"ready: 0" on a batch of new HadeethEnc ids is the symptom.
+
+**Status:** FIXED
+
+---

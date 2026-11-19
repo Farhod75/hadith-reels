@@ -1,3 +1,14 @@
+## [2026-11-18c] - HadeethEnc candidates reach Stage 2 again (P424)
+
+### Fixed
+
+- upload-candidates.py --from-json: a candidate with no translations (every HadeethEnc candidate since P178) is
+  inserted at status='deduped', the status translate-candidates.py reads, instead of being skipped as "nothing
+  this path adds". Library refill 1: 12 HadeethEnc ids from Bukhari/Muslim passed Dorar and dedup and entered
+  hadith_candidates (6116, 2592, 1914, 5986, 2631, 2664, 7536, 15, 2956, 1048, 5997, 6056).
+
+---
+
 ## [2026-11-18b] - Hadith pages for four recent sets (P387)
 
 ### Added

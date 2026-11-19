@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-353 patterns in 366 entries, frontier **P423**. The P-sequence is shared with
+354 patterns in 367 entries, frontier **P424**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -414,5 +414,6 @@ BEFORE changing it.
 - **P421** - Kling 4.0 refused the v3 request body (422)
 - **P422** - UZ/TJ subtitles from our own text and Scribe timings (supersedes P078's "no subtitles")
 - **P423** - EN/RU subtitles from our text too - Whisper needed a hand fix on nearly every leg
+- **P424** - HadeethEnc candidates had no path into Stage 2
 
-<!-- pattern-index-stamp entries=366 patterns=353 frontier=423 sha1=24b8c2ba8841d2f95e8202a58a047b18099a4dd7 -->
+<!-- pattern-index-stamp entries=367 patterns=354 frontier=424 sha1=b43a1ba96b4242ea6139e48feb01e4731510106d -->
