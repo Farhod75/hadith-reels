@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2592-stream",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, close view of clear water flowing softly over and around smooth rounded stones in a shallow oasis stream, the stones worn round by the water, gentle morning light. No people. Mood: softness that shapes even stone. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1f629-107c-7442-9564-64d0952a38ef",
+    "submitted_utc":  "2026-11-19T23:34:08.5283716Z",
+    "completed_utc":  "2026-11-19T23:34:16.8567618Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2592-stream-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32725/3pcA10jZyWluqyiuEi1D8_ROdraFg5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2592-stream-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32725/cprIqNk5TiCdzv97dn3-g_SGmRtbZ3.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2592-stream-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32725/Fn6fJq2ulBBO39D6w4cbG_Z0e4v1iE.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2113238628
+}

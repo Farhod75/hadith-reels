@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2592-lamp",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a small clay oil lamp burning softly on a palm-fibre mat at dusk beside two clay cups, a mud-brick wall glowing warm behind. No people. Mood: a soft word in a hard moment. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1f62a-f223-7460-917c-a79d94e6f227",
+    "submitted_utc":  "2026-11-19T23:36:11.7961231Z",
+    "completed_utc":  "2026-11-19T23:36:20.1586591Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2592-lamp-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32731/BPwu_HIvWHbiQqCZkZupW_20ASl1ot.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2592-lamp-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32731/JQHwx8MIqhPXMH9QWYhrF_NL8J3Ctv.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2592-lamp-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32731/vfNX2JCcQGh5LQi1WTH5q_jJAbfjRm.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1332319335
+}

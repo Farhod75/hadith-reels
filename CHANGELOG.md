@@ -1,3 +1,17 @@
+## [2026-11-19f] - Muslim #2592 published (R274-R277)
+
+### Added
+
+- **Muslim #2592 assets:** seven scenes m2592-dawn, stream, crack, garden, tools, door, lamp and their x1.22 slow
+  copies registered (Kling 4.0), prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R274-R277 (Character / Akhlaq), reel-retro.md, OPEN_ITEMS.md (#2592; tidy-out and parse_platform;
+  library duplicates).
+
+---
+
 ## [2026-11-19e] - Muslim #1914 published (R270-R273)
 
 ### Added

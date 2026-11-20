@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2592-dawn",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a quiet mud-brick courtyard at first light, a narrow stone water channel running through it, a young palm, soft pale gold light, perfect calm. No people. Mood: a calm beginning. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1f628-c20f-7930-bed0-6fd7775ef089",
+    "submitted_utc":  "2026-11-19T23:33:48.0792702Z",
+    "completed_utc":  "2026-11-19T23:33:56.9263799Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2592-dawn-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32723/uczN511XoQGGoEDkMojxX_YitccFs4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2592-dawn-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32723/wnObQEwkYADk6JBKSoAmC_znRY1e1z.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2592-dawn-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab32723/GkHtTG6KLjKQVEKJUMLSY_xlmkYTIo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1208939083
+}

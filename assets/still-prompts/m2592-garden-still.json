@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2592-garden",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, soft gentle rain falling on a small walled oasis garden, young green shoots and a flowering pomegranate, droplets on the leaves, wet earth, diffused light. No people. Mood: good that grows from gentleness. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a1f629-bf69-7e73-9250-c5bd88771694",
+    "submitted_utc":  "2026-11-19T23:34:53.2804668Z",
+    "completed_utc":  "2026-11-19T23:35:05.8357696Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2592-garden-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3272a/lzBU3brucE8XVE92BSyJk_arZOhjPx.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2592-garden-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3272a/zcd7lqeD-UgMFUAZG14ex_Mty5sdhF.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2592-garden-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3272a/q_S8Z7otoH0I3IxIHU-Jw_NeNdfoIy.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  475263762
+}

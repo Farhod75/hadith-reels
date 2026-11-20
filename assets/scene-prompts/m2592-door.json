@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "generate_audio": null,
+  "negative_prompt": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab3275e/0uA1u_LNRSw0bQhC1txv1_output.mp4",
+  "submitted_utc": "2026-11-19T23:37:55.782572Z",
+  "mode": "image-to-video",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "image": "out\\refs\\m2592-door-2.jpg",
+  "name": "m2592-door",
+  "file": "out\\backgrounds\\new\\m2592-door.mp4",
+  "size_bytes": 29226821,
+  "duration_sec": 10,
+  "completed_utc": "2026-11-19T23:43:59.2188471Z",
+  "prompt": "Warm golden light spills from the half-open carved door onto the quiet lane, the light glows a little brighter, faint dust drifts in it. Gentleness opens doors. Slow push-in toward the door. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a1f62c-872f-7bd2-bfb2-98ccae5f3f6a",
+  "schema": 1
+}

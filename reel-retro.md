@@ -1735,3 +1735,31 @@ questioner's words in the Prophet's mouth.
 non-sahih source and added words. A reel on the authentic wording answers that kind of post.
 
 ---
+
+## R274-R277 - Sahih Muslim #2592 - 2026-11-19
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips.
+
+**Caught before publish**
+
+- UZ loudness: -23.1 LUFS against -28 for the approved UZ legs; lowered 5 dB.
+- The explanation page commit was still local when the captions linking to it were about to go out; pushed first.
+- TikTok UZ: the description was empty after the cover dialog closed (a hashtag suggestion was open); re-typed and
+  checked before posting. TJ then had the cover set first and the description typed after it.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- tidy-out.py (run on the operator's request to audit work/) archived out/parse_platform.py and the push script as
+  one-off scripts; both were put back by hand. The Telegram wrapper log took the name tg-<n>.log that tg-post-set.py
+  writes itself, so the first run stopped before posting; re-run with another log name.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a TikTok description can be lost when the cover dialog closes - read the editor state again right
+before Post, not only after typing.
+
+---

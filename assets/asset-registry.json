@@ -3248,6 +3248,132 @@
       "verified": true,
       "notes": "A clean lane at golden dusk with a lamp in a wall niche - do not belittle any good deed. Slow copy (setpts 1.22, ~0.82x) of m1914-dusk.mp4 (P386). Sahih Muslim #1914 (Abu Hurairah: a man walking on a path found a thorny branch on it and moved it aside; Allah thanked him and forgave him). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (path-1, branch-2, side-3, clear-2, light-2, pebble-2, dusk-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m1914-dusk.json"
+    },
+    "m2592-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A quiet courtyard with a water channel at first light (the lead-in). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-dawn.json"
+    },
+    "m2592-dawn-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A quiet courtyard with a water channel at first light (the lead-in). Slow copy (setpts 1.22, ~0.82x) of m2592-dawn.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-dawn.json"
+    },
+    "m2592-stream.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Water flowing softly round smooth stones - gentleness ('whoever is deprived of gentleness'). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-stream.json"
+    },
+    "m2592-stream-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Water flowing softly round smooth stones - gentleness ('whoever is deprived of gentleness'). Slow copy (setpts 1.22, ~0.82x) of m2592-stream.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-stream.json"
+    },
+    "m2592-crack.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A cracked clay jar on parched cracked earth at noon - 'is deprived of good'. Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-crack.json"
+    },
+    "m2592-crack-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A cracked clay jar on parched cracked earth at noon - 'is deprived of good'. Slow copy (setpts 1.22, ~0.82x) of m2592-crack.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-crack.json"
+    },
+    "m2592-garden.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Soft rain on a small garden of shoots and a pomegranate - the good that gentleness brings (the moral). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-garden.json"
+    },
+    "m2592-garden-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Soft rain on a small garden of shoots and a pomegranate - the good that gentleness brings (the moral). Slow copy (setpts 1.22, ~0.82x) of m2592-garden.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-garden.json"
+    },
+    "m2592-tools.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A stone hand-mill beside a folded wool cloth - firmness and softness, each in its place. Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-tools.json"
+    },
+    "m2592-tools-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A stone hand-mill beside a folded wool cloth - firmness and softness, each in its place. Slow copy (setpts 1.22, ~0.82x) of m2592-tools.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-tools.json"
+    },
+    "m2592-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A half-open carved door with warm light spilling into the lane - gentleness opens doors harshness shuts. Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-door.json"
+    },
+    "m2592-door-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A half-open carved door with warm light spilling into the lane - gentleness opens doors harshness shuts. Slow copy (setpts 1.22, ~0.82x) of m2592-door.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-door.json"
+    },
+    "m2592-lamp.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay lamp and two cups at dusk - meet a hard moment with a soft word. Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-lamp.json"
+    },
+    "m2592-lamp-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A clay lamp and two cups at dusk - meet a hard moment with a soft word. Slow copy (setpts 1.22, ~0.82x) of m2592-lamp.mp4 (P386). Sahih Muslim #2592 (Jarir ibn Abdullah: whoever is deprived of gentleness is deprived of good). MODE B, no people, no hands, no faces - frame-checked 2026-11-19 (P417: none present). Stills picked 2026-11-19 (dawn-1, stream-2, crack-1, garden-2, tools-2, door-2, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2592-lamp.json"
     }
   }
 }

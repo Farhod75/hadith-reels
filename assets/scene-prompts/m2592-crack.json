@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-19T23:37:56.5832948Z",
+  "resolution": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab3275c/IpsuLQ5WKnCNEeVEL1SWG_output.mp4",
+  "mode": "image-to-video",
+  "prompt": "Harsh noon sun beats down on the cracked jar and the parched cracked earth, heat haze shimmers, a little dry dust drifts. Deprived of good. Very slow push-in toward the jar. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "completed_utc": "2026-11-19T23:43:31.3145029Z",
+  "file": "out\\backgrounds\\new\\m2592-crack.mp4",
+  "negative_prompt": null,
+  "name": "m2592-crack",
+  "request_id": "01a1f62c-8a45-74a3-8478-7808c34f7251",
+  "schema": 1,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "image": "out\\refs\\m2592-crack-1.jpg",
+  "duration_sec": 10,
+  "size_bytes": 30462070,
+  "generate_audio": null
+}

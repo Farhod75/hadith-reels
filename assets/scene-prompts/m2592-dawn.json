@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "size_bytes": 26197858,
+  "video_url": "https://v3b.fal.media/files/b/0ab32759/leQ-UKDQWn1iDUUKafks5_output.mp4",
+  "file": "out\\backgrounds\\new\\m2592-dawn.mp4",
+  "schema": 1,
+  "image": "out\\refs\\m2592-dawn-1.jpg",
+  "completed_utc": "2026-11-19T23:43:02.2734614Z",
+  "mode": "image-to-video",
+  "submitted_utc": "2026-11-19T23:37:55.676928Z",
+  "prompt": "First light slowly brightens the quiet courtyard, the water in the channel shimmers softly, palm fronds sway gently. A calm beginning. Slow push-in along the channel. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "m2592-dawn",
+  "generate_audio": null,
+  "request_id": "01a1f62c-86d3-7393-9c8a-f047307d1c3d",
+  "resolution": null
+}

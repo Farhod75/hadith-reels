@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "completed_utc": "2026-11-19T23:43:49.1984902Z",
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab3275d/4cWrl4ZAVDfvZb_VUYUle_output.mp4",
+  "image": "out\\refs\\m2592-garden-2.jpg",
+  "generate_audio": null,
+  "size_bytes": 23665774,
+  "negative_prompt": null,
+  "duration_sec": 10,
+  "submitted_utc": "2026-11-19T23:37:55.5536321Z",
+  "request_id": "01a1f62c-8651-7441-89c3-33b333151268",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "file": "out\\backgrounds\\new\\m2592-garden.mp4",
+  "name": "m2592-garden",
+  "schema": 1,
+  "prompt": "Soft gentle rain begins to fall on the small garden, droplets land on the young shoots and the pomegranate leaves, the earth darkens. Good that grows from gentleness. Slow push-in toward the pomegranate. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text."
+}

@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-19T23:37:56.4459274Z",
+  "duration_sec": 10,
+  "size_bytes": 29558317,
+  "generate_audio": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab32766/FOotAedyMjZRMRizMTbVc_output.mp4",
+  "name": "m2592-stream",
+  "prompt": "Clear water flows softly over and around the smooth rounded stones, small ripples catch the morning light. Softness that shapes even stone. Slow push-in along the stream. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "file": "out\\backgrounds\\new\\m2592-stream.mp4",
+  "image": "out\\refs\\m2592-stream-2.jpg",
+  "completed_utc": "2026-11-19T23:45:13.4132602Z",
+  "request_id": "01a1f62c-89d7-72f1-90a2-547e25b04719",
+  "mode": "image-to-video",
+  "resolution": null,
+  "schema": 1,
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video"
+}

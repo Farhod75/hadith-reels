@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab32762/veU3dXTydkHthNdMLv9pS_output.mp4",
+  "mode": "image-to-video",
+  "duration_sec": 10,
+  "size_bytes": 21258469,
+  "completed_utc": "2026-11-19T23:44:28.8037961Z",
+  "image": "out\\refs\\m2592-tools-2.jpg",
+  "file": "out\\backgrounds\\new\\m2592-tools.mp4",
+  "prompt": "Warm light from the small window moves slowly across the stone hand-mill and the folded wool cloth, fine dust floats in the beam. Firmness and softness, each in its place. Slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "submitted_utc": "2026-11-19T23:37:55.6926291Z",
+  "generate_audio": null,
+  "schema": 1,
+  "name": "m2592-tools",
+  "negative_prompt": null,
+  "request_id": "01a1f62c-86e1-7952-9cb5-5da11749cd87",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video"
+}

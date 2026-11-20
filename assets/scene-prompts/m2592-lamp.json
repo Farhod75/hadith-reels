@@ -1,0 +1,18 @@
+{
+  "size_bytes": 12429973,
+  "request_id": "01a1f62c-8549-7813-8254-a06c890bef83",
+  "video_url": "https://v3b.fal.media/files/b/0ab3276f/N_Cl1GIqbUtC73qnH6bCz_output.mp4",
+  "generate_audio": null,
+  "image": "out\\refs\\m2592-lamp-2.jpg",
+  "negative_prompt": null,
+  "submitted_utc": "2026-11-19T23:37:55.2852626Z",
+  "schema": 1,
+  "duration_sec": 10,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "file": "out\\backgrounds\\new\\m2592-lamp.mp4",
+  "resolution": null,
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-19T23:46:40.2281190Z",
+  "prompt": "The small clay lamp flame flickers softly beside the two cups, the warm glow breathes on the wall as dusk deepens. A soft word in a hard moment. Slow push-in toward the lamp. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "m2592-lamp"
+}
