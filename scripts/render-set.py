@@ -32,6 +32,8 @@ Per language, before anything renders:
     long enough for its slot (scenes, else scenes_slow); the result goes to -SceneDurations.
 Then (only with --render) it runs render-reel.ps1 -Style adults -FitScenes -NoReview per
 language, logs to out/render-<slug>.log, and finishes with mix-gap.py's after-render check.
+P426: after each leg renders, a leg louder than -27 LUFS is brought to -28 (the render is kept as
+...-reel-loud.mp4 and the sidecar gets a "loudness" record and the new reel hash).
 A render stopped by a gate (P339 subtitles, P319 matn) is reported and the set continues with
 the next language; fix and re-run just that one with --langs.
 
@@ -39,6 +41,7 @@ Long run - start it detached (P350):
     Start-Process pwsh -ArgumentList '-NoProfile','-Command','python scripts/render-set.py --plan out/render-muslim-2749.json --render *> out/render-set.out' -WorkingDirectory (Get-Location).Path
 """
 import argparse
+import hashlib
 import importlib.util
 import io
 import json
@@ -58,6 +61,11 @@ OPEN_QUOTES = ('\u00ab', '\u201c', '"')
 # UZ/TJ drafts spell the formula out).
 SPOKEN_SAW = {'en': 'peace be upon him', 'ru': 'да благословит его Аллах и приветствует'}
 MIN_SLOT = 1.5
+# P426: every leg ends at the loudness of the operator-approved UZ legs (#5090 on). The P338
+# voice-over-bed gap is set per language, but the Uzbek voice reads ~5 dB hotter, so UZ came out
+# near -23 LUFS against -27..-28 for the others and was lowered by hand on every set.
+LOUDNESS_TARGET = -28.0
+LOUDNESS_TOL = 1.0
 
 _spec = importlib.util.spec_from_file_location('mix_gap', os.path.join(HERE, 'mix-gap.py'))
 mg = importlib.util.module_from_spec(_spec)
@@ -220,6 +228,54 @@ def build_render_command(slug, lang, bed, gain, scenes, repo=REPO, durations=Non
     return ['pwsh', '-NoProfile', '-Command', script]
 
 
+def parse_integrated_lufs(ebur128_stderr):
+    """The integrated loudness from ffmpeg's ebur128 summary (the last 'I:' line), or None. Pure."""
+    vals = re.findall(r'^\s*I:\s+(-?\d+(?:\.\d+)?) LUFS', ebur128_stderr, re.M)
+    return float(vals[-1]) if vals else None
+
+
+def loudness_gain(lufs, target=LOUDNESS_TARGET, tol=LOUDNESS_TOL):
+    """dB to apply to a finished leg (P426). Only a leg louder than target+tol is lowered, to the
+    target; a quieter one is left as it is - raising it could clip the voice. Pure."""
+    return round(target - lufs, 1) if lufs > target + tol else 0.0
+
+
+def _lufs(ff, path, run):
+    p = run([ff, '-hide_banner', '-nostats', '-i', path, '-af', 'ebur128', '-f', 'null', '-'],
+            capture_output=True, text=True, encoding='utf-8', errors='replace')
+    v = parse_integrated_lufs(p.stderr or '')
+    if v is None:
+        raise RuntimeError('no integrated loudness from ebur128 for %s' % path)
+    return v
+
+
+def match_loudness(ff, slug, lang, run=subprocess.run, repo=REPO):
+    """P426: measure the leg; if it is too loud, keep the render as -loud.mp4, write the reel at the
+    target (video copied, audio re-encoded), and record it in the render sidecar with the new reel
+    hash. Returns a one-line report."""
+    w = os.path.join(repo, 'out', 'work', 'adults', slug, lang)
+    reel = os.path.join(w, 'adults-%s-%s-reel.mp4' % (lang, slug))
+    before = _lufs(ff, reel, run)
+    gain = loudness_gain(before)
+    if not gain:
+        return '%s  loudness %.1f LUFS - kept (target %.1f)' % (lang, before, LOUDNESS_TARGET)
+    loud = reel[:-4] + '-loud.mp4'
+    os.replace(reel, loud)
+    run([ff, '-v', 'error', '-y', '-i', loud, '-c:v', 'copy', '-af', 'volume=%.1fdB' % gain,
+         '-c:a', 'aac', '-b:a', '192k', reel], check=True)
+    after = _lufs(ff, reel, run)
+    side = os.path.join(w, 'adults-%s-%s-render.json' % (lang, slug))
+    if os.path.exists(side):
+        sc = json.load(io.open(side, encoding='utf-8-sig'))
+        sc['loudness'] = {'measured': before, 'gainDb': gain, 'final': after, 'target': LOUDNESS_TARGET,
+                          'premaster': os.path.basename(loud)}
+        if isinstance(sc.get('sha256'), dict):
+            sc['sha256']['reel'] = hashlib.sha256(open(reel, 'rb').read()).hexdigest()
+        io.open(side, 'w', encoding='utf-8').write(json.dumps(sc, ensure_ascii=False, indent=2) + '\n')
+    return '%s  loudness %.1f -> %.1f LUFS (%+.1f dB, premaster kept as %s)' % (
+        lang, before, after, gain, os.path.basename(loud))
+
+
 def asset_gate(names, lane='adults', run=subprocess.run):
     """[(name, reason)] for every file the render gate would refuse (P377): audit-assets.py
     --check is the gate render-reel.ps1 runs, so the plan is checked by the same rule before
@@ -339,6 +395,11 @@ def main(argv=None):
         log.flush()
         results[lang] = p.returncode
         note('RENDER_%s_EXIT=%d' % (lang, p.returncode))
+        if p.returncode == 0:
+            try:
+                note('  ' + match_loudness(ff, slug, lang))
+            except Exception as e:   # the reel stays as rendered; the operator sees why
+                note('  %s  LOUDNESS NOT MATCHED (P426): %s' % (lang, e))
     r = subprocess.run([sys.executable, os.path.join(HERE, 'mix-gap.py'), '--slug', slug, '--lang'] +
                        [l for l, c in results.items() if c == 0], capture_output=True, text=True,
                        encoding='utf-8', errors='replace', env=dict(os.environ, PYTHONIOENCODING='utf-8'))

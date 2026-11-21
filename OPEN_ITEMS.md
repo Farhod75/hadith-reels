@@ -216,7 +216,8 @@ this one wins.
   frames of the video, so a missed cover means delete and re-post (#5090 UZ was re-posted 2026-11-18).
 - **Bukhari #5090 - PUBLISHED 2026-11-18 (R262-R265, TG 285-288); library e60c8969.** Library row fixed first (Arabic
   missing «تربت يداك», EN «you will prosper»). Listen for #5090 PUBLISHED 2026-11-18 (4 clips).
-- **UZ bed level (2026-11-18):** the auto gain keeps UZ at a 15.7 dB voice-over-bed gap and Opa Johann reads ~5 dB
+- **DONE 2026-11-21 (P426, operator «да»): UZ bed level (2026-11-18):** render-set.py now brings every leg louder
+  than -27 LUFS to -28 after it renders. the auto gain keeps UZ at a 15.7 dB voice-over-bed gap and Opa Johann reads ~5 dB
   louder than the other voices, so the UZ leg came out loud with the nasheed buried. #5090 UZ was re-rendered at
   gain 1.32 (gap 10 dB) and lowered 5 dB to -28.1 LUFS on the operator's ear. Proposed: a UZ gap target near
   RU/TJ and a final loudness match across the four legs. Operator to decide.

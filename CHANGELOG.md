@@ -1,3 +1,16 @@
+## [2026-11-21b] - Render: every leg lands at -28 LUFS (P426)
+
+### Fixed
+
+- render-set.py measures each leg after it renders and lowers one louder than -27 LUFS to -28; the render is kept as
+  -reel-loud.mp4 and the sidecar records it. UZ was ~5 dB hot on every set and fixed by hand.
+
+### Docs
+
+- OPEN_ITEMS.md: UZ bed level closed by P426.
+
+---
+
 ## [2026-11-21] - #1520: the lakunna 'defect' closed as a valid reading
 
 ### Docs

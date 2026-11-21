@@ -16776,3 +16776,25 @@ regenerated (alignment cost 0.00) and both legs re-rendered.
 **Status:** FIXED
 
 ---
+
+## PATTERN 426: The Uzbek leg came out ~5 dB louder than the others on every set
+
+**Date:** 2026-11-21  **Repo:** hadith-reels  **Severity:** audible (published reels, fixed by hand each time)
+
+**What happened.** render-reel.ps1 sets the bed against the voice (P338 gap), not the leg's loudness. The Uzbek voice
+reads ~5 dB hotter than the EN/RU/TJ voices, so every UZ leg rendered near -23 LUFS against -27..-28 for the others:
+#5090 -23.0, #6116 -23.6, #1914 -23.0, #2592 -23.1. Each was lowered by hand with ffmpeg before publishing.
+
+**Fix.** render-set.py, after each leg renders: measure the integrated loudness (ebur128); a leg louder than -27 LUFS
+is brought to -28 (the operator-approved UZ level) - the render is kept as ...-reel-loud.mp4, the reel is written with
+the video copied and the audio re-encoded, and the render sidecar gets a "loudness" record and the new reel hash. A
+quieter leg is never boosted (it could clip the voice). A failure is logged and the reel stays as rendered.
+Checked on a copy of #2592 UZ: -23.1 -> -28.0, and a second pass keeps it. Tests: scripts/lib/test_render_set.py.
+
+**Lesson:** a mix rule that is relative (voice over bed) needs an absolute end check when the voices differ.
+
+**Tripwire:** the render log's "loudness" line for each leg.
+
+**Status:** FIXED
+
+---

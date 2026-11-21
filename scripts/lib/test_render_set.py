@@ -178,3 +178,29 @@ def test_story_anchor_places_clips_before_a_late_matn():
         pass
     else:
         raise AssertionError('accepted story:1.0')
+
+
+# P426 - loudness match after each leg
+EBUR = """[Parsed_ebur128_0 @ 0x1] Summary:
+
+  Integrated loudness:
+    I:         -23.1 LUFS
+    Threshold: -33.4 LUFS
+"""
+
+
+def test_parses_the_integrated_loudness():
+    assert rs.parse_integrated_lufs(EBUR) == -23.1
+    assert rs.parse_integrated_lufs("no summary") is None
+
+
+def test_a_loud_leg_is_brought_to_the_target():
+    # muslim-2592 UZ rendered at -23.1 and was lowered by hand to -28.1
+    assert rs.loudness_gain(-23.1) == -4.9
+    assert rs.loudness_gain(-25.5) == -2.5
+
+
+def test_a_leg_near_or_under_the_target_is_kept():
+    assert rs.loudness_gain(-27.6) == 0.0
+    assert rs.loudness_gain(-28.3) == 0.0
+    assert rs.loudness_gain(-31.0) == 0.0   # never boosted - could clip the voice
