@@ -195,8 +195,8 @@ this one wins.
   operator's yes. The UZ narration was rendered from the uncorrected text - not re-checked for this word.
 - **Scene direction (operator 2026-11-15): every clip carries the feeling of its words** - name the feeling in the
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
-- **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 waits for the
-  operator's yes. Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 PUBLISHED
+  2026-11-15 (4 clips; line found stale 2026-11-21). Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Muslim #2592 - PUBLISHED 2026-11-19 (R274-R277, TG 297-300); library 855855d0.** Third set from the 2026-11-18
   refill (33 rows unused). Explanation page live (AR/EN/RU/TJ). TikTok covers checked in the posts list. Listen published
   2026-11-19 (4 clips, index 139).
