@@ -516,7 +516,7 @@ and `reel-retro.md`:
 **Still open, carried unchanged:** #2307 TJ («Сабабкунандаи» for هاذم, and the
 UZ fix built in `out/candidate-translations.json` and never applied); the
 narrator mismatches (#6018, #1005, #2616; #31 and #1987 read and benign); 21 legacy
-`matn_verified_at` stamps under P265; #1520's four published captions; Bukhari
+`matn_verified_at` stamps under P265; Bukhari
 #1 Tier 1 confirmation, where the fetcher caps quotes at 125 characters so the
 vocalised matn is still mirror-only; the weekly `self_upskilling.md` check, RUN
 2026-10-22 and next due 2026-10-29 - Kling 4.0 is announced but has no API, so
@@ -738,9 +738,9 @@ say so before applying a re-translation to a shipped row.
 **PUBLISHED CAPTIONS - RULE SET 2026-10-17.** Incomplete stays, incorrect gets
 fixed. A partial quotation of a sahih hadith, correctly attributed, is not a
 fabrication, and editing live posts across four platforms has its own risk. So
-#8, #5185, #1894 and #1773 stay as published. #1520's FOUR POSTS ARE TO BE
-CORRECTED - they carried لَكُنَّ, a wrong word, with '(for women)' built on it.
-Not yet done.
+#8, #5185, #1894 and #1773 stay as published. #1520's four posts STAY (CLOSED 2026-11-21, operator): لَكُنَّ is not a wrong word but the
+majority reading - Ibn Hajar (Fath al-Bari): «فالأكثر بضم الكاف خطاب للنسوة»; Qadi Iyad: both readings sound;
+sunnah.com Riyad as-Salihin 1276 and HadeethEnc 2759 print لَكُنَّ. '(for women)' was the right sense.
 
 **#1773 DONE 2026-10-17 - matn was CLEAN, translations were not.** Second false
 positive from the gloss detector (after #1521): the parentheticals clarified a

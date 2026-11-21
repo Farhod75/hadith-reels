@@ -1,3 +1,12 @@
+## [2026-11-21] - #1520: the lakunna 'defect' closed as a valid reading
+
+### Docs
+
+- OPEN_ITEMS.md: #1520's four posts stay - لَكُنَّ is the majority reading (Ibn Hajar, Qadi Iyad; sunnah.com and
+  HadeethEnc print it), so '(for women)' was right. reel-tracker.md #1520 row notes both readings.
+
+---
+
 ## [2026-11-19f] - Muslim #2592 published (R274-R277)
 
 ### Added
