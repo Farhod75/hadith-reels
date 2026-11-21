@@ -1,3 +1,12 @@
+## [2026-11-21c] - scripts/parse-platform.py (P427)
+
+### Changed
+
+- out/parse_platform.py moved to scripts/parse-platform.py with tests; tidy-out.py had archived it as a one-off.
+  Run: `python scripts/parse-platform.py <number>`.
+
+---
+
 ## [2026-11-21b] - Render: every leg lands at -28 LUFS (P426)
 
 ### Fixed

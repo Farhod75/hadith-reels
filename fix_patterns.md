@@ -16798,3 +16798,23 @@ Checked on a copy of #2592 UZ: -23.1 -> -28.0, and a second pass keeps it. Tests
 **Status:** FIXED
 
 ---
+
+## PATTERN 427: A tool every set uses lived in out/, and tidy-out archived it
+
+**Date:** 2026-11-21  **Repo:** hadith-reels  **Severity:** workflow (each set's texts step failed until restored)
+
+**What happened.** out/parse_platform.py turns out/platform-<n>.md into out/texts-<n>.json, the texts every publishing
+run pastes. It was written in out/ during a set and never moved. tidy-out.py (P106) archives every script in out/ as
+a one-off, so after the 2026-11-19 audit of work/ the #2592 texts step stopped until it was copied back by hand.
+
+**Fix.** scripts/parse-platform.py: the same parse, paths from the repo root instead of the current folder, a clear
+error when a language does not have six blocks, tests in scripts/lib/test_parse_platform.py. On #2592 its texts-2592.json
+is byte-identical to the old script's. out/parse_platform.py removed.
+
+**Lesson:** a script that a second set runs belongs in scripts/, not out/.
+
+**Tripwire:** a script name in a set's steps that points into out/.
+
+**Status:** FIXED
+
+---

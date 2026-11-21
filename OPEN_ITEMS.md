@@ -200,7 +200,7 @@ this one wins.
 - **Muslim #2592 - PUBLISHED 2026-11-19 (R274-R277, TG 297-300); library 855855d0.** Third set from the 2026-11-18
   refill (33 rows unused). Explanation page live (AR/EN/RU/TJ). TikTok covers checked in the posts list. Listen published
   2026-11-19 (4 clips, index 139).
-- **tidy-out.py keeps archiving out/parse_platform.py** (a tool every set uses) as a one-off script. Move it into
+- **DONE 2026-11-21 (P427): tidy-out.py kept archiving out/parse_platform.py** - now scripts/parse-platform.py. (a tool every set uses) as a one-off script. Move it into
   scripts/ or add it to KEEP_EXACT.
 - **Library duplicates seen 2026-11-19:** Muslim #2609 is the same hadith as Bukhari #6114 (R214-R217); two rows each
   for Tirmidhi #2616 and Bukhari #1469; Bukhari #6682 and #7563 are near-identical. Not changed.
