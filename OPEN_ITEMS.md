@@ -219,8 +219,10 @@ this one wins.
   2026-11-19 (4 clips, index 135).
 - **Bukhari #6116 - PUBLISHED 2026-11-19 (R266-R269, TG 289-292); library 45420bf4.** First set from the 2026-11-18
   library refill (35 rows unused). Explanation page live. Listen published 2026-11-19 (4 clips, index 131).
-- **Library refill held back:** Bukhari #6938 at status deduped - «ألا تقولوه» is plural and the machine translation
-  made it singular; translate by hand before it goes to Stage 3.
+- **Library refill held back:** Bukhari #6938 - translated by hand 2026-11-22 (operator approved; provenance human):
+  «ألا تقولوه» is plural and means 'do you not consider' (Fath al-Bari: تظنونه; Khan: 'Don't you think that he says').
+  Stage 3 -> needs_human: pass B read it as a prohibition ('do not say that') in EN/RU/TJ - the wording of #425,
+  not of #6938. Waits for the Stage 4 ruling.
 - **TikTok cover (P-check, 2026-11-19):** the cover Save is now clicked by its own bounding box and the dialog checked
   closed; every cover is also checked in the posts list after posting. The posted-cover editor on TikTok offers only
   frames of the video, so a missed cover means delete and re-post (#5090 UZ was re-posted 2026-11-18).
