@@ -1,0 +1,102 @@
+{
+  "schema": 2,
+  "slug": "bukhari-5986",
+  "library_id": "8b190018-cad5-4e50-af41-7a06f3a9bb0b",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "5986",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5372",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-22",
+      "references_ar": "صحيح البخاري (8/ 5) (5986).\nصحيح مسلم (4/ 1982) (2557).\nتوضيح الأحكام من بلوغ المرام، للبسام (7/ 320).\nشرح رياض الصالحين، لابن عثيمين (3/ 188).\nفتح ذي الجلال والإكرام شرح بلوغ المرام، لابن عثيمين (6/ 275).\nتطريز رياض الصالحين، لفيصل المبارك (ص224).\nمنحة العلام في شرح بلوغ المرام، لعبد الله الفوزان (10/ 81).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5372",
+          "raw": "raw/hadeethenc-5372-ar.json",
+          "raw_sha256": "b9f0b0be407a9bf69329eb598265cc33432ceddb31a9500ab7f3dc7880baaece",
+          "title": "من أحب أن يبسط له في رزقه، وينسأ له في أثره، فليصل رحمه",
+          "hadeeth": "عن أنس بن مالك رضي الله عنه أن رسول الله صلى الله عليه وسلم قال: «مَنْ أَحَبَّ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ، وَيُنْسَأَ لَهُ فِي أَثَرِهِ، فَلْيَصِلْ رَحِمَهُ».",
+          "explanation": "يَحُثُّ النبيُّ صلى الله عليه وسلم على صِلة الأقاربِ بالزيارة والإكرام البدني والمالي وغير ذلك، وأنها سببٌ في سَعة الرزق وطول العمر.",
+          "lessons": [
+            "الرَّحِم هم الأقارب من جهة الأب والأم، وكلما كان أقرب كان أولى بالصلة.",
+            "الجزاء من جنس العمل، فمَن وَصَل رَحِمَه بالبر والإحسان، وَصَله الله في عُمْره ورزقه.",
+            "صلة الرحم سببٌ لِبَسْطِ الرِّزق وتوسيعه، وسببٌ لطول العمر، وإن كان الأجلُ والرزقُ محددًا إلا أنه قد يكون بركة في الرزق والعمر، فيفعل في عمره أكثر وأنفع مما يفعله غيرُه، وقيل زيادة الرزق والعمر زيادة حقيقية. والله أعلم."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5372",
+          "raw": "raw/hadeethenc-5372-en.json",
+          "raw_sha256": "f0da9cb7ae694be8a720484ab53e9ca7bf2c18cec81ba37093fefb147d8d2acd",
+          "title": "Whoever loves to have his sustenance expanded and his term of life prolonged should maintain his kinship ties",
+          "hadeeth": "Anas ibn Mālik (may Allah be pleased with him) reported: The Messenger of Allah (may Allah’s peace and blessings be upon him) said: \"Whoever loves to have his sustenance expanded and his term of life prolonged should maintain his kinship ties.\"",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) urges the upholding of kinship ties by visiting, physically and financially honoring, and the like. It points out that it is a cause for expanding sustenance and prolonging lifespan.",
+          "lessons": [
+            "Kinship refers to our relatives on the mother's and father's side. The closer the relative, the worthier he is in having his kinship ties maintained.\r",
+            "Recompense is of the same type as the action. So, whoever maintains his kinship ties by kindness and benevolence, Allah maintains him in terms of his lifespan and sustenance.\r",
+            "Upholding kinship ties is a cause for the increase and expansion of sustenance and the prolongation of lifespan. Although people's lifespan and sustenance are fixed, this may indicate the existence of blessings in their lifespan and sustenance. So, a person utilizes his lifespan more and better than others. It is also said to mean a real increase in one's sustenance and lifespan - And Allah knows best."
+          ],
+          "word_meanings": [],
+          "attribution": "Agreed upon",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5372",
+          "raw": "raw/hadeethenc-5372-ru.json",
+          "raw_sha256": "ea7b2db26b51b2b57723356003823fd5c2fc96dca554f3f64e97a17e733c3616",
+          "title": "Кто желает, чтобы его удел (ризк) был увеличен, а жизнь — продлена, пусть поддерживает родственные связи",
+          "hadeeth": "От Анаса ибн Малика (да будет доволен им Аллах) переадётся, что Посланник Аллаха (да благословит его Аллах и приветствует) сказал: «Кто желает, чтобы его удел (ризк) был увеличен, а жизнь — продлена, пусть поддерживает родственные связи».",
+          "explanation": "Пророк (да благословит его Аллах и приветствует) призывает к поддержанию родственных связей посредством их посещения, оказания им почёта, как физически, так и материально и прочими способами. Он подчеркивает, что это является причиной улучшения благосостояния и долголетия.",
+          "lessons": [
+            "Родственники — это близкие люди по линии отца и матери. Чем ближе родство, тем большее значение имеет его поддержание.\r",
+            "Воздаяние соответствует деянию. Кто поддерживает свои родственные связи с благочестием и благодеянием, того Аллах поддерживает в его жизни (годах) и увеличивает его удел.\r",
+            "Поддержание родственных связей является причиной умножения и расширения удела, а также причиной долголетия. Хотя срок жизни и удел предопределены, поддержание родственных связей может стать благословением, влияющим на удел и годы жизни. Человек, поддерживающий родственные связи, может совершить больше и полезнее благих дел, чем кто-либо другой. Существует мнение, что под увеличением удела и годов жизни подразумевается реальное их увеличение. Истина же ведома только Аллаху."
+          ],
+          "word_meanings": [],
+          "attribution": "Привели Аль-Бухари и Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "uz": {
+          "url": "https://hadeethenc.com/uz/browse/hadith/5372",
+          "raw": "raw/hadeethenc-5372-uz.json",
+          "raw_sha256": "4aeb3319f2a7ea61b1c56d56318068ecf7d29ea1a6028e6d1c2a7f2a3698cdfb",
+          "title": "Кимни ризқи кенг ва умри баракали бўлиши хурсанд қилса, сийлаий раҳмни боғласин», – дедилар",
+          "hadeeth": "Анас ибн Молик разияллоҳу анҳудан ривоят қилинади:\nРасулуллоҳ соллаллоҳу алайҳи ва саллам: «Кимни ризқи кенг ва умри баракали бўлиши хурсанд қилса, сийлаий раҳмни боғласин», – дедилар.",
+          "explanation": "Набий соллаллоҳу алайҳи ва саллам бу ҳадиси шарифда Қариндошларни зиёрат, ҳурмат ва бошқа яхши ишларни қилиш билан сийлаи раҳм қилишга ундамоқдалар. Албатта, бундай ишларни қилиш ризқнинг кенг ва умрнинг узун бўлишига сабаб бўлади.",
+          "lessons": [
+            "Раҳм дегани ота-она томонидан бўлган қариндошлардир. Қариндош қанча яқин бўлса, шунча қариндошлик ришталарини боғлашга авлороқ бўлади.\r",
+            "Мукофот ёки жазо амалнинг жинсидандир. Ким қариндошларига яхшилик ва эҳсон қилса, Аллоҳ ҳам унга ризқини кенг ва умрини узун қилиш билан яхшилик қилади.\r",
+            "Сийлаи раҳм ризқнинг мўл-кўл ва умрнинг узун бўлиши учун сабабдир. Баъзилар: «Инсоннинг умри ва ризқи ёзилиб қўйилган, бу ерда барака мақсад қилинмоқда»–деганлар. Яъни умри бўйи бошқалардан фойдалироқ ишларни қилади. Ва баъзилар: «Ҳақийқатдан ҳам умри узаяди ва ризқи кўпаяди» – деганлар, Аллоҳу аълам."
+          ],
+          "word_meanings": [],
+          "attribution": "Муттафақун алайҳ",
+          "grade": "Саҳиҳ"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/5372",
+          "raw": "raw/hadeethenc-5372-tg.json",
+          "raw_sha256": "e2aa8ed59961db9fa5f9ca35e36bfa7d6fea81a7b483b81b39818dea347c1909",
+          "title": "Ҳар кӣ бихоҳад дар ризқи ӯ фаровонӣ ояд ва аҷали ӯ ба таъхир андохта шавад, пайванди хешовандиро нигоҳ дорад",
+          "hadeeth": "Аз Анас ибни Молик (Худованд аз ӯ розӣ бод) ривоят аст, ки Расули Аллоҳ (салому дуруди Аллоҳ бар ӯ бод) фармуданд: \"Ҳар кӣ бихоҳад дар ризқи ӯ фаровонӣ ояд ва аҷали ӯ ба таъхир андохта шавад, пайванди хешовандиро нигоҳ дорад\".",
+          "explanation": "Паёмбар (Салому дуруди Аллоҳ бар ӯ бод) бо анҷоми зиёрату дидорбинӣ ва ҳамкории ҷониву молӣ ҳифзи робита бо хешовандонро ташвиқ намудаанд, ки он сабаби фаровонӣ дар ризқу рӯзӣ ва дарозумрӣ аст.",
+          "lessons": [
+            "Манзур аз хешовандӣ, хешовандон аз тарафи падару модар ҳастанд ва ба ҳар андоза, ки хешовандӣ наздиктар бошад ба ҳамон андоза дар робитаи хешовандӣ ва силаи раҳм авлотаранд.\r",
+            "Подош аз ҷинси амал аст, ҳар кӣ бо некӣ ва хубӣ пайванди хешовандиро ба ҷой оварад, Аллоҳ дар умр ва ризқи ӯ афзунӣ мебахшад.\r",
+            "Силаи раҳм боиси вусъати ризқу рузӣ ва дарозии умр аст, агарчи аҷал ва ризқу рузии банда маҳдуд ва мушаххас аст, аммо инҷо мақсуд аз баракат дар умр ва ризқ он аст, ки мумкин аст дар зиндагии худ амалҳои бештар ва судмандтар аз дигарон анҷом диҳад. Ҳамингуна бархе бар инанд, ки мақсуд аз баракат дар умр ва рӯзӣ ба маънои ҳақиқии он аст. Худованд донотар аст."
+          ],
+          "word_meanings": [],
+          "attribution": "متفق عليه",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}
