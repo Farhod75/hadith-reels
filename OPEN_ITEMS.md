@@ -202,8 +202,11 @@ this one wins.
   2026-11-19 (4 clips, index 139).
 - **DONE 2026-11-21 (P427): tidy-out.py kept archiving out/parse_platform.py** - now scripts/parse-platform.py. (a tool every set uses) as a one-off script. Move it into
   scripts/ or add it to KEEP_EXACT.
-- **Library duplicates seen 2026-11-19:** Muslim #2609 is the same hadith as Bukhari #6114 (R214-R217); two rows each
-  for Tirmidhi #2616 and Bukhari #1469; Bukhari #6682 and #7563 are near-identical. Not changed.
+- **DONE 2026-11-22 (operator): library duplicates.** Removed Muslim #2609 (same hadith as Bukhari #6114, published
+  R214-R217) and Bukhari #6682 (same words as #7563, which stays); their candidates set to rejected with the reason.
+  Backup: out/_archive/library-removed/2026-11-22-2609-6682.json. Kept: Bukhari #1469 x2 and Tirmidhi #2616 x2 are
+  different excerpts of one long hadith, not duplicates - but the two #2616 rows disagree on the grade (sahih vs
+  hasan); check Dorar before either is used.
 - **Muslim #1914 - PUBLISHED 2026-11-19 (R270-R273, TG 293-296); library 411a7f60.** Second set from the 2026-11-18
   refill (34 rows unused). Explanation page live (AR/EN/RU). TikTok covers checked in the posts list. Listen published
   2026-11-19 (4 clips, index 135).

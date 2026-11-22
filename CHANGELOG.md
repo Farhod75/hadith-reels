@@ -1,3 +1,12 @@
+## [2026-11-22] - Library: two duplicate rows removed
+
+### Changed
+
+- hadith_library: Muslim #2609 (= Bukhari #6114, already published) and Bukhari #6682 (= #7563) removed; their
+  candidates rejected with the reason. 101 rows, 31 unused. Backup in out/_archive/library-removed/.
+
+---
+
 ## [2026-11-21c] - scripts/parse-platform.py (P427)
 
 ### Changed
