@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-lamps",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an oasis town at golden dusk, small clay oil lamps glowing in the windows of several neighbouring mud-brick houses, palms against a warm sky. No people. Mood: homes still connected, reach out today. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204bc-b64d-7912-8cb8-3dea4b192a0c",
+    "submitted_utc":  "2026-11-22T19:30:05.7605324Z",
+    "completed_utc":  "2026-11-22T19:30:14.2053114Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-lamps-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ad/-cYihHf_-ZWC1Fg9getR7_XINsYniN.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-lamps-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ad/_r2fV7JAlqlgx7T_sb7vz_RfipfGjc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-lamps-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ad/knmpYrH3zKqEFVe2abSCB_z50IflzF.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2012628013
+}

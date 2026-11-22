@@ -1763,3 +1763,37 @@ non-sahih source and added words. A reel on the authentic wording answers that k
 before Post, not only after typing.
 
 ---
+
+## R278-R281 - Sahih al-Bukhari #5986 - 2026-11-22
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips.
+
+**Caught before publish**
+
+- text_tajik: the closing clause corrected in the library row before narration.
+- UZ and TJ loudness (-23.0 and -25.3 LUFS) lowered to -28.0 by render-set.py itself - the first set on P426, no
+  hand step.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- Kling polling failed on the network for lane, mat and lamps; resumed by request id (`-Resume` also needs `-Image`,
+  the first resume failed without it).
+- Full-size reels timed out staging over a slow link; 540p previews were sent for approval instead.
+- The Playwright browser came up signed out of Facebook, Instagram, TikTok and YouTube (a temp profile). The operator
+  signed in once, after a Facebook password reset. The profile is now pinned in the MCP config, and sign-ins were
+  checked to survive a restart.
+- TikTok changed its upload page: a guided-tour overlay, a full-screen cover editor whose Save sits off-screen, and
+  toggles that coordinate clicks miss. Handled with clicks run in the page. Meta's composer came up in Russian; the
+  labels were adapted.
+
+**Operator corrections of the assistant: 1.** With the browser signed out, the assistant proposed posting by hand in
+Firefox; the operator rejected that - the automation is the point. The operator signs in once, the assistant posts.
+
+**The finding:** a browser profile that lives in a temp directory loses every sign-in at the worst moment. Pin it,
+and when a sign-in is lost, ask for the one sign-in, not for the work.
+
+---

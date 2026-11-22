@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-tray",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a wooden door standing open in a mud-brick house, on the threshold a round woven tray with clay cups, a jug and a bowl of dates set out for guests, warm light inside. No people. Mood: welcoming family, keeping the ties. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204bb-c0d6-7f70-bc75-fc3be35f1b5d",
+    "submitted_utc":  "2026-11-22T19:29:02.9647535Z",
+    "completed_utc":  "2026-11-22T19:29:11.4522191Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-tray-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a7/orCjdSVyJSOViQg9V6DXb_iP1cd9DM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-tray-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a7/xJdW1NOIr59GhSJzSGgu3_yd19OeHU.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-tray-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a7/Q4rSQud399amI11VHP6uc_efoUpf1Q.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1351830216
+}

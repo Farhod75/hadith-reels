@@ -1,3 +1,16 @@
+## [2026-11-22b] - Bukhari #5986 published (R278-R281)
+
+### Added
+
+- **Bukhari #5986 assets:** seven scenes b5986-lane, basket, tree, tray, gift, mat, lamps and their slow copies
+  registered (Kling 4.0), prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R278-R281 (Family / Kinship), reel-retro.md, OPEN_ITEMS.md (#5986; Playwright profile pinned).
+
+---
+
 ## [2026-11-22] - Library: two duplicate rows removed
 
 ### Changed

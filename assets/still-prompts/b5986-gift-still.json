@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-gift",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a bundle of flatbread wrapped in a clean cloth and a small clay jar of honey placed by a closed wooden door in a quiet lane, morning light. No people. Mood: help brought to a relative. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204bc-1a27-7202-80a4-0d3d9eb885ec",
+    "submitted_utc":  "2026-11-22T19:29:25.7916520Z",
+    "completed_utc":  "2026-11-22T19:29:34.1715918Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-gift-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a9/S1YCOY6ncKU8_Y9fu6pu1_jhXYvhJf.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-gift-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a9/jiCvg67P34c5bH3gUtKt8_pfST3FV4.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-gift-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a9/C4XrFdgJxQXu6f52yyuvk_EEo822fB.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1274833109
+}

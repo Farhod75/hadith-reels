@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab386d7/oPkh9ZwWORYRH-eBtBiIw_output.mp4",
+    "name":  "b5986-lane",
+    "image":  "out\\refs\\b5986-lane-1.jpg",
+    "file":  "out\\backgrounds\\new\\b5986-lane.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-22T19:31:26.5393885Z",
+    "size_bytes":  28707745,
+    "negative_prompt":  null,
+    "prompt":  "Soft morning light spreads down the quiet lane toward the door at the far end, palm fronds sway gently, fine dust floats in the sunlight. Setting out to visit family. Slow push-in along the lane. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a204bd-f098-7523-acf4-afc59e86012c",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-22T19:39:01.3686582Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-22T19:40:59.4498167Z",
+    "mode":  "image-to-video"
+}

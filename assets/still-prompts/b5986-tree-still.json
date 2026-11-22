@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-tree",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, an ancient wide olive tree with deep visible roots and long spreading branches in a courtyard, many new green shoots, soft late-morning light. No people. Mood: a long, blessed life and family roots. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204bb-503a-7f12-b248-8f43186583f8",
+    "submitted_utc":  "2026-11-22T19:28:33.9935988Z",
+    "completed_utc":  "2026-11-22T19:28:43.9036523Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-tree-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a4/-RnLyB1ugF3kmxrb3IwvA_ESIkENVC.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-tree-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a4/rMNS3HDP7vKZVI7K9o3E9_tcLxfTNm.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-tree-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a4/6QiejuTgkjARkDS0saV_0_uVVJ7YUN.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1904239159
+}

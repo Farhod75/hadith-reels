@@ -197,6 +197,13 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 PUBLISHED
   2026-11-15 (4 clips; line found stale 2026-11-21). Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Bukhari #5986 - PUBLISHED 2026-11-22 (R278-R281, TG 301-304); library 8b190018.** Explanation page live
+  (AR/EN/RU/UZ/TJ). First set rendered with P426 (UZ and TJ lowered to -28 LUFS automatically). Listen for #5986
+  waits for the operator's yes.
+- **Playwright MCP profile pinned 2026-11-22** (claude_desktop_config.json: `--user-data-dir` on the existing
+  mcp-chrome-c52a602 profile, `--viewport-size 1400,900`). Sign-ins survived a Claude Desktop restart (YouTube Studio
+  checked). TikTok's new upload page (tour overlay, off-screen cover Save) and Meta's Russian labels are handled in
+  the session, not in a script.
 - **Muslim #2592 - PUBLISHED 2026-11-19 (R274-R277, TG 297-300); library 855855d0.** Third set from the 2026-11-18
   refill (33 rows unused). Explanation page live (AR/EN/RU/TJ). TikTok covers checked in the posts list. Listen published
   2026-11-19 (4 clips, index 139).

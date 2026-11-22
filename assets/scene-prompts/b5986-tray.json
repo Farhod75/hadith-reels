@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "schema": 1,
+  "prompt": "Warm light glows through the open door onto the tray of cups, jug and dates on the threshold, the light grows a little warmer. Welcoming family. Slow push-in toward the doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a204bd-f0c6-7b82-abba-ba0a2bbdcfa8",
+  "mode": "image-to-video",
+  "file": "out\\backgrounds\\new\\b5986-tray.mp4",
+  "completed_utc": "2026-11-22T19:38:00.2234732Z",
+  "name": "b5986-tray",
+  "submitted_utc": "2026-11-22T19:31:26.5833387Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab386da/--NBzTEWmE9ueobyRSdqr_output.mp4",
+  "image": "out\\refs\\b5986-tray-2.jpg",
+  "size_bytes": 23643276,
+  "generate_audio": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "resolution": null
+}

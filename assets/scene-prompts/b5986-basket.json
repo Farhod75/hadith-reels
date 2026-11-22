@@ -1,0 +1,18 @@
+{
+  "size_bytes": 23540640,
+  "resolution": null,
+  "mode": "image-to-video",
+  "schema": 1,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab386cf/8XB35uxPLxlQiabtRsc85_output.mp4",
+  "generate_audio": null,
+  "prompt": "Warm light from the small window slowly brightens on the overflowing basket of dates and the open sack of wheat, fine dust drifts in the beam. Provision made wide. Slow push-in toward the basket. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "submitted_utc": "2026-11-22T19:31:26.4295828Z",
+  "image": "out\\refs\\b5986-basket-2.jpg",
+  "name": "b5986-basket",
+  "file": "out\\backgrounds\\new\\b5986-basket.mp4",
+  "duration_sec": 10,
+  "request_id": "01a204bd-f022-7470-b5c8-03fe6ff852b8",
+  "completed_utc": "2026-11-22T19:37:14.1122779Z"
+}

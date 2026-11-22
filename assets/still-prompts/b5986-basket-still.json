@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-basket",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a large woven palm basket overflowing with fresh dates beside an open sack of wheat on a palm-fibre mat in a cool mud-brick storeroom, warm light from a small window. No people. Mood: provision made wide. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204ba-f55b-7af2-88f8-c2a6743a2d8b",
+    "submitted_utc":  "2026-11-22T19:28:10.8423140Z",
+    "completed_utc":  "2026-11-22T19:28:19.2588410Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-basket-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a1/8GGYPd2l-IHPzrM7Ygb5h_ZhT3m41L.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-basket-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a1/8mYdxDHnCNLqoJCTXLBOL_9K7hiSkN.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-basket-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386a1/sSCrWZXX9l46yeIGySYne_vCvGICwi.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1218670765
+}

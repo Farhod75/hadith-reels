@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab386d5/hjed8AlLzJi1sSBqE_Dqb_output.mp4",
+    "name":  "b5986-lamps",
+    "image":  "out\\refs\\b5986-lamps-2.jpg",
+    "file":  "out\\backgrounds\\new\\b5986-lamps.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-22T19:31:25.8504486Z",
+    "size_bytes":  29241378,
+    "negative_prompt":  null,
+    "prompt":  "The small lamps flicker warmly in the windows of the neighbouring houses as the golden dusk deepens, palm fronds sway gently. Reach out today. Slow push-in down the lane. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a204bd-ee06-7cb3-b0e0-8bdcc3e723d9",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-22T19:39:01.3626403Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-22T19:41:02.6060690Z",
+    "mode":  "image-to-video"
+}

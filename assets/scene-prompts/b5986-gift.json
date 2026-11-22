@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab386ce/pXjOGrETKNkYWs3486zVi_output.mp4",
+  "submitted_utc": "2026-11-22T19:31:26.8316541Z",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-22T19:37:03.4460363Z",
+  "duration_sec": 10,
+  "resolution": null,
+  "size_bytes": 20817549,
+  "schema": 1,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "prompt": "Morning light moves slowly across the cloth-wrapped bread and the clay jar by the door, a light breeze stirs the edge of the cloth. Help brought to a relative. Slow push-in toward the bundle. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\b5986-gift.mp4",
+  "request_id": "01a204bd-f1c9-76e3-8e99-c9757ae81953",
+  "name": "b5986-gift",
+  "image": "out\\refs\\b5986-gift-2.jpg",
+  "negative_prompt": null
+}

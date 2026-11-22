@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b5986-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a long palm-fibre mat in a lamp-lit courtyard set for a large family meal, many clay plates, cups and bowls of dates and bread in a row, warm evening glow. No people. Mood: a family gathered, blessing in the home. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a204bc-67a6-7c50-9f1e-25530bb82f19",
+    "submitted_utc":  "2026-11-22T19:29:45.6266251Z",
+    "completed_utc":  "2026-11-22T19:29:54.0434012Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b5986-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ab/ZEk44a_tbQyyf7STjMYlF_s4FroXEk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b5986-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ab/XuUwHI82VqfL3rjFBm8u6_zXTTrElf.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b5986-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab386ab/ah943OteYxus2C87Yduat_a3D1QqF3.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  92611402
+}
