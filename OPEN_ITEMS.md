@@ -199,7 +199,7 @@ this one wins.
   2026-11-15 (4 clips; line found stale 2026-11-21). Listen for #91 PUBLISHED 2026-11-15 (4 clips).
 - **Bukhari #5986 - PUBLISHED 2026-11-22 (R278-R281, TG 301-304); library 8b190018.** Explanation page live
   (AR/EN/RU/UZ/TJ). First set rendered with P426 (UZ and TJ lowered to -28 LUFS automatically). Listen for #5986
-  waits for the operator's yes.
+  PUBLISHED 2026-11-22 (4 clips, index 143).
 - **Playwright MCP profile pinned 2026-11-22** (claude_desktop_config.json: `--user-data-dir` on the existing
   mcp-chrome-c52a602 profile, `--viewport-size 1400,900`). Sign-ins survived a Claude Desktop restart (YouTube Studio
   checked). TikTok's new upload page (tour overlay, off-screen cover Save) and Meta's Russian labels are handled in
