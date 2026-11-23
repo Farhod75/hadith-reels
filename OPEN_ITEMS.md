@@ -251,7 +251,7 @@ this one wins.
 - **Muslim #1510 - PUBLISHED 2026-11-17 (R254-R257, TG 273-276); library f9401679.** First set with UZ/TJ subtitles
   (P422) and on Kling 4.0 (P421). Listen for #1510 PUBLISHED 2026-11-17 (4 clips).
 - **DONE 2026-11-17 (P423): scribe-srt.py for EN/RU** - operator approved; render-reel uses it for en/ru/uz/tj.
-- **generate-scene.ps1 -Resume rewrites the prompt sidecar** with whatever -Prompt was passed (seen on m1510-fetters).
+- **generate-scene.ps1 -Resume - FIXED 2026-11-23 (P429):** settings come from the sidecar, -Image not needed, -Prompt ignored.
 - **Muslim #105 - PUBLISHED 2026-11-17 (R250-R253, TG 269-272); library 2c56ebec.** Picked on the view analytics
   (stakes with a named consequence). Four made covers on every platform. Listen for #105 PUBLISHED 2026-11-17 (4 clips).
 - **Bukhari #1521 - PUBLISHED 2026-11-16 (R246-R249, TG 265-268); library 9f2f905f.** Listen for #1521 PUBLISHED 2026-11-16 (4 clips). Four made covers on every platform.

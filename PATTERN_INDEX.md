@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-358 patterns in 371 entries, frontier **P428**. The P-sequence is shared with
+359 patterns in 372 entries, frontier **P429**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -419,5 +419,6 @@ BEFORE changing it.
 - **P426** - The Uzbek leg came out ~5 dB louder than the others on every set
 - **P427** - A tool every set uses lived in out/, and tidy-out archived it
 - **P428** - Stage 4 could not approve a row the operator ruled on after A/B disagreed
+- **P429** - generate-scene -Resume took the job's settings from its own parameters
 
-<!-- pattern-index-stamp entries=371 patterns=358 frontier=428 sha1=fc20ab27f24d81348d5dbabceab9b0b7c1a8bd88 -->
+<!-- pattern-index-stamp entries=372 patterns=359 frontier=429 sha1=36763bd4a80ba2d279fffe5aca94518e4a6f74b5 -->

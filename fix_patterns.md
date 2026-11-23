@@ -16840,3 +16840,27 @@ terminal row. review_action stays 'approve' (ck_review allows nothing else); rev
 **Status:** FIXED
 
 ---
+
+## PATTERN 429: generate-scene -Resume took the job's settings from its own parameters
+
+**Date:** 2026-11-23  **Repo:** hadith-reels  **Severity:** workflow + data (a paid job could not be resumed; sidecars rewritten)
+
+**What happened.** -Resume polls a job that is already paid for, but the run still built its settings from the
+command line. Without -Image it defaulted to v3 text-to-video, 5 s, and wrote that over the sidecar of a Kling 4.0
+image-to-video 10 s job; a -Prompt passed on resume replaced the recorded prompt (m1510-fetters). With -Model v4 and
+no -Image it died - "image-to-video only" - before polling at all (b5986-lane, mat, lamps on 2026-11-22, resumed only
+when the still path was added back by hand).
+
+**Fix.** On -Resume the script reads model, duration and image from assets/scene-prompts/<name>.json, builds no
+request body (nothing is submitted, the still need not be on disk), ignores -Prompt with a note, and writes to the
+sidecar only request_id, resumed_utc and the completion facts. Checked by resuming the completed b5986-lane job under
+a test name with no -Image, no -Model and a dummy -Prompt: model, mode, duration, image and prompt unchanged,
+completion recorded, nothing charged.
+
+**Lesson:** a resume describes the job that exists; it never re-describes it.
+
+**Tripwire:** a sidecar whose model or mode changes on a run that has resumed_utc.
+
+**Status:** FIXED
+
+---

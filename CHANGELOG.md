@@ -1,3 +1,12 @@
+## [2026-11-23b] - generate-scene -Resume keeps the job's own settings (P429)
+
+### Fixed
+
+- generate-scene.ps1 -Resume: model, duration and image come from the scene-prompt sidecar; -Image is no longer
+  needed, -Prompt is ignored, and the sidecar keeps the submitting run's record.
+
+---
+
 ## [2026-11-23] - Stage 4 can overrule a Stage 3 split (P428)
 
 ### Added

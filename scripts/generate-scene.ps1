@@ -57,6 +57,30 @@ param(
   
 
 
+# P429: a -Resume run takes model, mode, duration, image and prompt from the sidecar the
+# submitting run wrote. It used to take them from its own parameters: without -Image the
+# sidecar was rewritten as a v3 text-to-video 5s job, and with -Model v4 but no -Image the
+# run died ("image-to-video only") before polling a job that had already been paid for.
+$resuming = -not [string]::IsNullOrWhiteSpace($Resume)
+$priorSidecar = $null
+if ($resuming) {
+  $sidePath = Join-Path (Join-Path (Split-Path $PSScriptRoot -Parent) 'assets\scene-prompts') "$Name.json"
+  if (Test-Path $sidePath) {
+    try { $priorSidecar = Get-Content $sidePath -Raw | ConvertFrom-Json } catch { $priorSidecar = $null }
+  }
+  if ($priorSidecar) {
+    if (-not $Model -and $priorSidecar.model) { $Model = [string]$priorSidecar.model }
+    if (-not $PSBoundParameters.ContainsKey('Duration') -and $priorSidecar.duration_sec) { $Duration = [string]$priorSidecar.duration_sec }
+    if ([string]::IsNullOrWhiteSpace($Image) -and $priorSidecar.image) { $Image = [string]$priorSidecar.image }
+  } else {
+    Write-Host "  note: no sidecar for $Name - the resume records only what this run knows (P429)" -ForegroundColor Yellow
+  }
+  if (-not [string]::IsNullOrWhiteSpace($Prompt)) {
+    Write-Host "  note: -Prompt ignored on -Resume; the job already has its prompt (P429)" -ForegroundColor Yellow
+    $Prompt = $null
+  }
+}
+
 # Mode = image-to-video if -Image supplied, else text-to-video. Pick matching default model.
 $imageMode = -not [string]::IsNullOrWhiteSpace($Image)
 if (-not $Model) {
@@ -107,6 +131,14 @@ function Write-Sidecar {
         ForEach-Object { $rec[$_.Name] = $_.Value }
     } catch { }
   }
+  # P429: on -Resume the submitting run's record stands; only the run's own facts are added.
+  if ($resuming -and $rec.ContainsKey('model')) {
+    if ($reqId) { $rec['request_id'] = $reqId }
+    foreach ($k in $Extra.Keys) { $rec[$k] = $Extra[$k] }
+    [System.IO.File]::WriteAllText($side, ($rec | ConvertTo-Json -Depth 5),
+      (New-Object System.Text.UTF8Encoding($false)))
+    return
+  }
   if (-not [string]::IsNullOrWhiteSpace($Prompt)) { $rec['prompt'] = $Prompt }
   if (-not [string]::IsNullOrWhiteSpace($Image))  { $rec['image']  = $Image }
   $rec['name']            = $Name
@@ -127,7 +159,6 @@ function Write-Sidecar {
 }
 
 # --- read FAL_KEY from .env.local (never typed on the command line) ----------
-$resuming = -not [string]::IsNullOrWhiteSpace($Resume)
 if (-not $resuming -and [string]::IsNullOrWhiteSpace($Prompt)) {
   Die "-Prompt is required unless -Resume <request_id> is given"
 }
@@ -181,7 +212,9 @@ if ($KeepText) {
 $payload['generate_audio'] = $false
 if ($Model -match 'v2\.1/master') { $payload.Remove('generate_audio') }  # rejects the field
 
-if ($imageMode) {
+if ($resuming) {
+  # P429: nothing is submitted, so no body is built and the image need not be on disk.
+} elseif ($imageMode) {
   if (-not (Test-Path $Image)) { Die "image not found: $Image" }
   # encode the local image as a base64 data URI (fal accepts this directly as a file input)
   $bytes = [System.IO.File]::ReadAllBytes((Resolve-Path $Image))
@@ -196,7 +229,7 @@ if ($imageMode) {
 # an integer duration, resolution; no aspect_ratio (the still sets it), no negative_prompt, no
 # generate_audio. Sending the v3 body is what returned 422 on 2026-11-16 (that try also used the
 # kling/v4 id, whose status URL is not under fal-ai/kling-video).
-if ($Model -match 'kling-video/v4') {
+if (-not $resuming -and $Model -match 'kling-video/v4') {
   if (-not $imageMode) { Die "Kling 4.0 path is image-to-video only here" }
   $payload['start_image_url'] = $payload['image_url']; $payload.Remove('image_url')
   $payload['duration'] = [int]$Duration
