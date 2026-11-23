@@ -35,3 +35,20 @@ def test_patch_carries_the_operators_words():
     p = ac.patch_for("approve", u"да", "farhod", now)
     assert p == {"status": "approved", "reviewed_by": "farhod", "reviewed_at": "2026-11-03T16:32:00+00:00",
                  "review_action": "approve", "review_reason": u"да"}
+
+
+def test_overrule_approves_only_a_needs_human_row():
+    nh = dict(ROW, status="needs_human")
+    assert "only a 'verified' row" in ac.decide(nh, "2749", "approve")
+    assert ac.decide(nh, "2749", "approve", overrule=True) is None
+    assert "only for a 'needs_human' row" in ac.decide(ROW, "2749", "approve", overrule=True)
+    assert "approval only" in ac.decide(nh, "2749", "reject", overrule=True)
+    assert "already" in ac.decide(dict(ROW, status="approved"), "2749", "approve", overrule=True)
+    assert "not #2747" in ac.decide(nh, "2747", "approve", overrule=True)
+
+
+def test_overrule_is_marked_in_the_reason_and_action_stays_in_the_schema():
+    now = dt.datetime(2026, 11, 23, 17, 0, tzinfo=dt.timezone.utc)
+    p = ac.patch_for("approve", u"да", "farhod", now, overrule=True)
+    assert p["review_action"] == "approve"
+    assert p["review_reason"] == u"OVERRULE (Stage 3 disagree): да"

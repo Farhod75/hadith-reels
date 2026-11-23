@@ -222,7 +222,7 @@ this one wins.
 - **Library refill held back:** Bukhari #6938 - translated by hand 2026-11-22 (operator approved; provenance human):
   «ألا تقولوه» is plural and means 'do you not consider' (Fath al-Bari: تظنونه; Khan: 'Don't you think that he says').
   Stage 3 -> needs_human: pass B read it as a prohibition ('do not say that') in EN/RU/TJ - the wording of #425,
-  not of #6938. Waits for the Stage 4 ruling.
+  not of #6938. APPROVED 2026-11-23 by overrule (P428); next: promote.
 - **TikTok cover (P-check, 2026-11-19):** the cover Save is now clicked by its own bounding box and the dialog checked
   closed; every cover is also checked in the posts list after posting. The posted-cover editor on TikTok offers only
   frames of the video, so a missed cover means delete and re-post (#5090 UZ was re-posted 2026-11-18).

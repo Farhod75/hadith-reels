@@ -16818,3 +16818,25 @@ is byte-identical to the old script's. out/parse_platform.py removed.
 **Status:** FIXED
 
 ---
+
+## PATTERN 428: Stage 4 could not approve a row the operator ruled on after A/B disagreed
+
+**Date:** 2026-11-23  **Repo:** hadith-reels  **Severity:** workflow (a correct translation could not enter the library)
+
+**What happened.** Bukhari #6938 was translated by hand: «ألا تقولوه» is plural and asks "do you not consider (him)"
+(Fath al-Bari: تظنونه; Khan: "Don't you think that he says"). Stage 3 split - pass B read a prohibition, "do not say
+that", in EN, RU and TJ, which is the wording of #425, not of #6938 - so the row went to needs_human. The operator ruled
+for the translation, and approve-candidate.py refused: it approves a 'verified' row only. The old way out was to reword
+until both passes agree (#6724); here that means bending the translation toward the pass that is wrong.
+
+**Fix.** approve-candidate.py --overrule: approves a 'needs_human' row only, refuses any other status, a reject, or a
+terminal row. review_action stays 'approve' (ck_review allows nothing else); review_reason is prefixed
+'OVERRULE (Stage 3 disagree): ' so every such ruling can be found. Tests in scripts/lib/test_approve_candidate.py.
+
+**Lesson:** when the two passes disagree, the human gate has to be able to decide - not only to send the text back.
+
+**Tripwire:** a translation reworded only so that a model stops objecting.
+
+**Status:** FIXED
+
+---

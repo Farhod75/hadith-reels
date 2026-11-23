@@ -14,7 +14,13 @@ writes what the operator decided, with his words, and only onto the row he decid
 Writes status (approved / rejected), reviewed_by, reviewed_at, review_action and review_reason
 (the operator's words). Refuses unless the row exists, its hadith_number is the one named, and -
 for an approval - its status is 'verified' (both A/B passes, Stage 3). A row already approved,
-rejected or promoted is never touched. Next step after an approval:
+rejected or promoted is never touched.
+
+P428: --overrule approves a 'needs_human' row - A/B disagreed and the operator rules against one
+pass (Bukhari #6938: pass B read a question as a prohibition). review_action stays 'approve' (the
+schema's ck_review allows no other value for it); review_reason is prefixed 'OVERRULE (Stage 3
+disagree): ' so every such ruling can be found. The note must say which reading was overruled and why.
+Next step after an approval:
     python scripts/promote-candidates.py --show --tags <a,b,c>
 """
 import argparse
@@ -31,7 +37,10 @@ REPO = os.path.dirname(HERE)
 TERMINAL = ('approved', 'rejected', 'promoted')
 
 
-def decide(row, number, action):
+OVERRULE_PREFIX = 'OVERRULE (Stage 3 disagree): '
+
+
+def decide(row, number, action, overrule=False):
     """None when the write may go ahead, else the reason it may not."""
     if row is None:
         return 'no candidate with that id'
@@ -40,12 +49,20 @@ def decide(row, number, action):
     st = row.get('status')
     if st in TERMINAL:
         return 'the row is already %s' % st
+    if overrule:
+        if action != 'approve':
+            return '--overrule is for an approval only'
+        if st != 'needs_human':
+            return "--overrule is only for a 'needs_human' row (A/B disagreed); this one is %r" % st
+        return None
     if action == 'approve' and st != 'verified':
         return "status is %r - only a 'verified' row (A/B passed, Stage 3) can be approved" % st
     return None
 
 
-def patch_for(action, note, reviewer, now=None):
+def patch_for(action, note, reviewer, now=None, overrule=False):
+    if overrule:
+        note = OVERRULE_PREFIX + note
     return {'status': 'approved' if action == 'approve' else 'rejected',
             'reviewed_by': reviewer,
             'reviewed_at': (now or dt.datetime.now(dt.timezone.utc)).isoformat(timespec='seconds'),
@@ -71,6 +88,8 @@ def main(argv=None):
     ap.add_argument('--action', choices=('approve', 'reject'), default='approve')
     ap.add_argument('--note', required=True, help="the operator's words, verbatim, and when")
     ap.add_argument('--reviewer', default='farhod')
+    ap.add_argument('--overrule', action='store_true',
+                    help="P428: approve a 'needs_human' row; the note says which A/B reading is overruled and why")
     ap.add_argument('--commit', action='store_true')
     args = ap.parse_args(argv)
 
@@ -82,12 +101,12 @@ def main(argv=None):
         url + '/rest/v1/hadith_candidates?' + flt + '&select=candidate_id,collection,hadith_number,status,verify_agreement',
         headers=H), timeout=30).read().decode())
     row = rows[0] if len(rows) == 1 else None
-    why = decide(row, args.number, args.action)
+    why = decide(row, args.number, args.action, args.overrule)
     print('candidate %s: %s' % (args.id, json.dumps(row, ensure_ascii=False)))
     if why:
         print('REFUSED: ' + why)
         return 1
-    patch = patch_for(args.action, args.note, args.reviewer)
+    patch = patch_for(args.action, args.note, args.reviewer, overrule=args.overrule)
     print('would write: ' + json.dumps(patch, ensure_ascii=False))
     if not args.commit:
         print('DRY RUN - add --commit.')

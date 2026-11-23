@@ -1,3 +1,16 @@
+## [2026-11-23] - Stage 4 can overrule a Stage 3 split (P428)
+
+### Added
+
+- approve-candidate.py --overrule: approves a needs_human row on the operator's ruling; review_reason prefixed
+  'OVERRULE (Stage 3 disagree): '. Two tests.
+
+### Changed
+
+- Bukhari #6938 approved by overrule (hand translation; pass B's prohibition reading rejected).
+
+---
+
 ## [2026-11-22b] - Bukhari #5986 published (R278-R281)
 
 ### Added
