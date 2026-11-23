@@ -1,0 +1,90 @@
+{
+  "schema": 2,
+  "slug": "muslim-2631",
+  "library_id": "961eb91b-60d9-4b82-93ee-4ac815575190",
+  "collection": "Sahih Muslim",
+  "hadith_number": "2631",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "3360",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-23",
+      "references_ar": "صحيح مسلم (4/ 2027) (2631).\nبهجة الناظرين شرح رياض الصالحين، لسليم الهلالي (1/ 352).\nتطريز رياض الصالحين، لفيصل آل مبارك (ص198).\nكنوز رياض الصالحين، لمجموعة من الباحثين (5/ 144).\nشرح رياض الصالحين، لابن عثيمين (3/ 105).\nنزهة المتقين شرح رياض الصالحين، لمجموعة من الباحثين (1/ 276).",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/3360",
+          "raw": "raw/hadeethenc-3360-ar.json",
+          "raw_sha256": "80d1ce79512ef2a7ac263292d41eeca5e72ac6615ff2adc4fc7dafac715fd0bf",
+          "title": "من عال جاريتين حتى تبلغا جاء يوم القيامة أنا وهو وضم أصابعه",
+          "hadeeth": "عَنْ أَنَسِ بْنِ مَالِكٍ رضي الله عنه قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: «مَنْ عَالَ جَارِيَتَيْنِ حَتَّى تَبْلُغَا جَاءَ يَوْمَ الْقِيَامَةِ أَنَا وَهُوَ» وَضَمَّ أَصَابِعَهُ.",
+          "explanation": "أَخْبَرَ النبيُّ صلى الله عليه وسلم أنَّ مَن رُزِقَ باثنتين من البنات أو الأخوات، فقام عليهما بالمُؤنة والتربية والتوجيه للخير والتحذير من الشر ونحو ذلك حتى يَكْبُرَا ويَبْلُغا؛ جاء يوم القيامة هو والنبيُّ صلى الله عليه وسلم كهاتَين وضَمّ أصابِعَه السبابة والوسطى.",
+          "lessons": [
+            "الثواب العظيم لمن قام على البنات بالمؤونة والتربية حتى يتزوجْن أو يبلغْن، وكذلك الأخوات.",
+            "أجر القيام على البنات أعظم من أجر القيام على البنين؛ إذ لم يُذْكَر مثل ذلك في حقِّهم؛ وذلك لأجل أنَّ مؤنة البنات والاهتمام بأمورهن أعظم من أمور البنين؛ لأنهن عورات لا يباشِرْن أمورَهن، ولا يتصرفن تصرف البنين، وكذلك لأنهن لا يتعلق بهن طمع الأب بالاستقواء بهن على الأعداء، وإحياء اسمه واتصال نسبه، وغير ذلك، كما يتعلق بالذكر؛ فاحتيج في ذلك إلى الصبر والإخلاص من المنفق عليهن مع حسن النية؛ فعظم الأجر، فكان رفيق النبي صلى الله عليه وسلم يوم القيامة.",
+            "علامات البلوغ للمرأة: إكمال خمس عشرة سنة، أو تحيض ولو قبل خمس عشرة سنة، أو نَبَتتْ لها العانة وهو الشعر الخشن حول القُبُل، أو بالاحتلام وهو إنزال المني في المنام.",
+            "قال القرطبي: ويعني ببلوغهما وصولَهما إلى حال يستقلّان بأنفسهما؛ وذلك إنما يكون في النساء إلى أن يدخل بهن أزواجهن، فلا يعني به بلوغهما إلى أن تحيض وتُكلَّف؛ إذ قد تتزوج قبل ذلك فتستغني بالزوج عن قيام الكافل، وقد تحيض وهي غير مستقلة بشيء من مصالحها ولو تركت لضاعت وفسدت أحوالها، بل هي في هذه الحالة أحق بالصيانة والحفظ والقائم عليها لتكمل صيانتها فيرغب في تزويجها، ولهذا المعنى قال علماؤنا لا تسقط النفقة عن والد الصبية ببلوغها بل بدخول الزوج بها."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/3360",
+          "raw": "raw/hadeethenc-3360-en.json",
+          "raw_sha256": "cafb3591365ff27a4b5a55ed4e946e4d5835c46b97af5111f50b64e2a0a3bd29",
+          "title": "Whoever provides for two girls until they reach puberty, he will come on the Day of Judgment, me and him,\" and he joined his fingers",
+          "hadeeth": "Anas ibn Mālik (may Allah be pleased with him) reported: The Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Whoever provides for two girls until they reach puberty, he will come on the Day of Judgment, me and him,\" and he joined his fingers.",
+          "explanation": "The Prophet (may Allah's peace and blessings be upon him) informed that one who is granted two daughters, or two sisters, and he takes care of them by providing for them, raising them, directing them to goodness, and warning them against evil and the like until they grow up and reach puberty, he will come on the Day of Judgment along with the Prophet (may Allah's peace and blessings be upon him) like these two, and he joined his index and middle fingers.",
+          "lessons": [
+            "The great reward for the one who looks after his daughters by providing for them and raising them until they get married or reach puberty, and the same applies to his sisters.\r",
+            "The reward for looking after daughters is greater than that of looking after sons, as nothing similar to this was mentioned about them. This is because providing for daughters and taking care of their affairs is greater than taking care of the sons' affairs since they are ‘Awrah (should be covered) and cannot manage their affairs or act like boys. Moreover, a father does not aspire to seek strength in his daughters against enemies, as is the case with his sons, or to depend on them to keep his name alive and the continuity of his progeny. Hence, one who provides for his daughters needs to be patient, sincere, and have a good intention, and this is why the reward is great, as he will be a companion of the Prophet (may Allah's peace and blessings be upon him) on the Day of Judgment.\r",
+            "Signs of puberty for a woman: reaching the age of fifteen, menstruating even before the age of fifteen, having pubic hair, which is the coarse hair that grows around the genitals, or having a nocturnal emission, which is the discharge of semen during sleep.\r",
+            "Al-Qurtubi said: By reaching puberty, he means reaching a state of independence, and in the case of women, they reach this state only when their husbands consummate the marriage with them. So, he is not referring here to their reaching puberty by menstruating and becoming religiously accountable, since a girl can get married before this and becomes in no need of a caretaker other than the husband, or she may menstruate without being independent in any of her interests, and if she is left alone, she might be lost and her affairs might be ruined. Rather, in this case she is even more entitled to support and protection and needs her caretaker to provide her with full protection until she gets married. Based on this meaning, our scholars stated that a girl's father is not exempted from providing for her when she reaches puberty but only when her husband consummates the marriage with her."
+          ],
+          "word_meanings": [],
+          "attribution": "Narrated by Muslim",
+          "grade": "Authentic"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/3360",
+          "raw": "raw/hadeethenc-3360-ru.json",
+          "raw_sha256": "361d03a8c7c58d24fe841b9dd64b5a0c8f4300543684bbd30807c377cd402d1f",
+          "title": "С тем, кто вырастил двух девочек, пока они не достигли совершеннолетия, мы придёт в Судный день, как вот эти». И он соединил пальцы",
+          "hadeeth": "Анас ибн Малик (да будет доволен им Аллах) передаёт, что Посланник Аллаха (мир ему и благословение Аллаха) сказал: «С тем, кто вырастил двух девочек, пока они не достигли совершеннолетия, мы придёт в Судный день, как вот эти». И он соединил пальцы.",
+          "explanation": "Пророк (мир ему и благословение Аллаха) сообщил, что тот, кому были дарованы две дочери или две сестры и он обеспечивал их, воспитывал, направлял к благому, предостерегал от зла и совершал подобные действия, пока они не выросли и не достигли совершеннолетия либо не вступили в брак, придёт в Судный день вместе с Пророком (мир ему и благословение Аллаха) «как вот эти»: и он соединил указательный и средний пальцы.",
+          "lessons": [
+            "Великая награда ожидает того, кто заботится о дочерях, обеспечивает и воспитывает их, пока они не выйдут замуж или не достигнут совершеннолетия. Это относится и к сёстрам.\r",
+            "Награда за заботу о дочерях больше награды за заботу о сыновьях, поскольку о сыновьях ничего подобного не сказано. Это потому, что девочки требуют больше внимания и усилий в их обеспечении, потому что им должно быть обеспечено должное сокрытие, и они не делают многие вещи самостоятельно и не действуют так, как действуют мальчики. Причина ещё и в том, что с дочерями отец не связывает надежды на то, что они сделают его сильнее перед лицом врага, продолжат его фамилию и род и так далее, как связывает он подобные надежды с сыновьями. Соответственно, это дело требует терпения и искренности от расходующего на дочерей, а также благого намерения, и тогда его ждёт великая награда, и он будет спутником Пророка (мир ему и благословение Аллаха) в Судный день.\r",
+            "Признаки достижения женщиной совершеннолетия таковы: достижение пятнадцатилетнего возраста либо начало менструаций (даже если ей ещё нет пятнадцати) либо появление жёстких волос вокруг половых органов либо появление поллюций, которые представляют собой семяизвержения во сне.\r",
+            "Аль-Куртуби сказал: «Под достижением ими совершеннолетия подразумевается достижение ими такого положения, когда они уже могут справляться самостоятельно. Это подразумевает, что дочь вышла замуж и муж уже вступил с ней в близость, и речь не идёт о совершеннолетии в том смысле, что у них начались менструации и настало им время выполнять религиозные обязанности. Ведь может быть, что девушка вступит в брак раньше, и муж избавит её от необходимости в том, кто будет её содержать; и может быть такое, что она достигнет возраста, когда у неё уже будут идти менструации, однако на тот момент будет совершенно неспособна сама позаботиться о себе, и если её оставить, то она окажется беспомощной и пропадёт. Она в таком положении даже больше заслуживает защиты, оберегания и того, кто заботился бы о ней, чтобы она была полностью защищена до тех пор, пока он не выдаст её замуж. Поэтому наши учёные сказали, что обязанность расходовать на дочь снимается с отца не когда она достигает совершеннолетия, а когда [она выйдет замуж и] муж уединится с ней»."
+          ],
+          "word_meanings": [],
+          "attribution": "Передал Муслим",
+          "grade": "Достоверный хадис"
+        },
+        "tj": {
+          "url": "https://hadeethenc.com/tg/browse/hadith/3360",
+          "raw": "raw/hadeethenc-3360-tg.json",
+          "raw_sha256": "85fbaa2da988ad0898bb2e911a423f5eb78ccaa3f5e4535ae864c2968564cd00",
+          "title": "Касе, ки ду духтарро сарпарастӣ кунад, то ин ки ба синни балоғат бирасанд, рӯзи қиёмат дар ҳоле меояд, ки ман ва ӯ монанди ин ду хоҳем буд\". Ва ангуштонашро бо ҳам часпонд",
+          "hadeeth": "Аз Анас ибни Молик (разияллоҳу анҳу) ривоят аст, ки Паёмбар (саллаллоҳу алайҳи ва саллам) фармуданд: \"Касе, ки ду духтарро сарпарастӣ кунад, то ин ки ба синни балоғат бирасанд, рӯзи қиёмат дар ҳоле меояд, ки ман ва ӯ монанди ин ду хоҳем буд\". Ва ангуштонашро бо ҳам часпонд.",
+          "explanation": "Паёмбар (саллаллоҳу алайҳи ва саллам) хабар доданд, ки касе, ки ба ӯ ду духтар ё хоҳар дода шуда бошад ва ӯ дар таъминот, тарбият, раҳнамоӣ ба хайр ва ҳушдор аз шар барои онҳо кӯшиш кунад, то онҳо калон шаванд ва ба балоғат бирасанд, рӯзи қиёмат ӯ ва Паёмбар (саллаллоҳу алайҳи ва саллам) монанди ду ангушт дар паҳлуи ҳам хоҳанд буд. Паёмбар ҳангоми гуфтани ин сухан ангушти ишора ва миёнаи худро ба ҳам часпонид. (Яъне, ба монанди ин ду ангушт ба ҳам наздик хоҳанд буд.)",
+          "lessons": [
+            "Савоби бузург барои касе, ки духтарон ва ҳамчунин хоҳаронашро сарпарастӣ намуда, ононро то замони издивоҷ ё синни балоғат тарбият кунад.\r",
+            "Савоби нигоҳубин ва таъминоти духтарон бузургтар аз савоби нигоҳубин ва таъминоти писарон аст, зеро барои нигоҳубин ва таъминоти писарон чунин савоб зикр нашудааст. Савоби бештар доштани нигоҳубин ва ғамхории духтарон нисбат ба писарон ба он хотир аст, ки духтарон аврат ва пӯшида ҳастанд ва худашон ба мисли писарон мустақилона амал намекунанд. Ҳамчунин, писарон барои падар имконияти истифода аз қудрат бар душман ва эҳёи ному насаби ӯро медиҳанд. Чизҳое, ки ба мард марбут ҳастанд, ки духтарон ин хосиятро надоранд. Аз ин рӯ, дар таъмин ва тарбияти духтарон зиёдтар ба сабр ва ихлосу самимият ниёз дорад ва ҳар касе нафақаи ононро ба уҳда мегирад, бояд нияташ нек бошад. Бинобар ин савобаш бештар аст ва дар рӯзи қиёмат бо Паёмбар (саллаллоҳу алайҳи ва саллам) наздик хоҳад буд.\r",
+            "Аломатҳои ба балоғат расидани зан: понздаҳсола шудан, ё ҳайз дидани ӯ пеш аз понздаҳсолагӣ, ё рӯидани мӯйи ғафси хашин дар атрофи шармгоҳ, ё эҳтилом, ки он баромадани оби манӣ дар ҳолати хоб аст.\r",
+            "Қуртубӣ мегӯяд: Балоғат маънояш расидан ба ҳолати мустақилона будани онҳо мебошад. Ин дар занон вақте аст, ки ба шавҳар бароянд. Пас манзур аз болиғ шудани зан ин нест, ки ҳайз шавад ва мукаллаф шавад, чун мумкин аст, ки пеш аз он издивоҷ кунад ва дигар ниёзе ба валӣ (кафил) надошта бошад ва шавҳар ҳама масъулиятҳои кафилро ба ҷой орад. Ҳамчунин имкон дорад, ки ҳайз шавад, вале дар баровардани эҳтиёҷоташ мустақил набошад ва бояд нигоҳдорӣ шавад, агар раҳо карда шавад, шояд зоеъ шавад ва аҳволаш бад шавад. Балки дар ин ҳолат шояд ӯ бештар ба сарпарастӣ ва нигоҳубин ниёз дорад, то ин ки ӯ ба хубӣ нигоҳдорӣ шавад ва ба шавҳар дода шавад. Бинобар ин олимони мо гуфтаанд, ки масъулияти падар дар нафақа ва тарбияти духтар бо ба балоғат расидани ӯ ба поён намерасад, балки вақте ба поён мерасад, ки духтар ба шавҳар дода шавад."
+          ],
+          "word_meanings": [],
+          "attribution": "رواه مسلم",
+          "grade": "Саҳеҳ"
+        }
+      }
+    }
+  ],
+  "related_events": []
+}
