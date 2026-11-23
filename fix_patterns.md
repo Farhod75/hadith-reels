@@ -16864,3 +16864,22 @@ completion recorded, nothing charged.
 **Status:** FIXED
 
 ---
+
+## PATTERN 430: one failed status poll ended a Kling run that was still generating
+
+**Date:** 2026-11-23  **Repo:** hadith-reels  **Severity:** workflow (runs stopped, each resumed by hand)
+
+**What happened.** generate-scene.ps1 polls the fal queue every 8 s and called Die on the first failed status
+request. The job carries on server-side, so a single network blip left a paid clip undownloaded. On a flaky link this
+stopped 3 of 7 runs for #5986 (2026-11-22) and 6 of 7 for #1048 (2026-11-23); every one was resumed by hand (P429).
+
+**Fix.** A failed poll is logged and retried with a growing pause; only 6 failures in a row stop the run, and the
+message then prints the -Resume line. A successful poll resets the count.
+
+**Lesson:** a poll loop for a job that runs elsewhere must survive the network between the two.
+
+**Tripwire:** a Kling log that ends in "status check failed" after fewer than six tries.
+
+**Status:** FIXED
+
+---

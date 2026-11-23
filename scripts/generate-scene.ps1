@@ -280,12 +280,23 @@ Say "`n[2/3] Generating (video gen takes ~1-4 min)..."
 # the fal status API. 20 minutes is well past observed worst case and costs
 # nothing when generation is fast.
 $deadline = (Get-Date).AddMinutes(20)
+# P430: one failed status call used to end the run, though the job keeps going server-side.
+# On 2026-11-22/23 a flaky link stopped 9 of 14 Kling runs this way and each was resumed by hand.
+# Now a failed poll is retried; only 6 failures in a row stop the run, with the resume line.
+$pollFails = 0
 do {
   Start-Sleep -Seconds 8
   try {
     $st = Invoke-RestMethod -Method Get -Uri $statusUrl -Headers $headers
+    $pollFails = 0
   } catch {
-    Die "status check failed: $($_.Exception.Message)"
+    $pollFails++
+    Write-Host "        status check failed ($pollFails/6): $($_.Exception.Message)" -ForegroundColor Yellow
+    if ($pollFails -ge 6) {
+      Die "status check failed 6 times in a row (request $reqId). The job may still complete - resume it:`n  .\scripts\generate-scene.ps1 -Name $Name -Resume $reqId"
+    }
+    Start-Sleep -Seconds (5 * $pollFails)
+    continue
   }
   Write-Host "        status: $($st.status)" -ForegroundColor DarkGray
   if ($st.status -eq 'COMPLETED') { break }

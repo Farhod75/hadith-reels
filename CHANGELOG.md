@@ -1,3 +1,11 @@
+## [2026-11-23c] - generate-scene survives a failed status poll (P430)
+
+### Fixed
+
+- generate-scene.ps1: a failed status poll is retried; six in a row stop the run with the -Resume line.
+
+---
+
 ## [2026-11-23b] - generate-scene -Resume keeps the job's own settings (P429)
 
 ### Fixed

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-359 patterns in 372 entries, frontier **P429**. The P-sequence is shared with
+360 patterns in 373 entries, frontier **P430**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -420,5 +420,6 @@ BEFORE changing it.
 - **P427** - A tool every set uses lived in out/, and tidy-out archived it
 - **P428** - Stage 4 could not approve a row the operator ruled on after A/B disagreed
 - **P429** - generate-scene -Resume took the job's settings from its own parameters
+- **P430** - one failed status poll ended a Kling run that was still generating
 
-<!-- pattern-index-stamp entries=372 patterns=359 frontier=429 sha1=36763bd4a80ba2d279fffe5aca94518e4a6f74b5 -->
+<!-- pattern-index-stamp entries=373 patterns=360 frontier=430 sha1=606c00d61be6fa28e46ee93f70e3cca553c49100 -->
