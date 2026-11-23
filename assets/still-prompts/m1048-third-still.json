@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1048-third",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a narrow path climbing over a stony ridge toward a third valley glowing far off in the haze, dry hills on both sides, late afternoon. No people. Mood: always seeking one more. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20982-8ad8-7be3-a95a-9c9af75ee639",
+    "submitted_utc":  "2026-11-23T17:44:40.1158844Z",
+    "completed_utc":  "2026-11-23T17:44:48.4577088Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1048-third-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f4/tPcycCZumobktMZ5XInF9_GYNsH1Mz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1048-third-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f4/sJmCpXS8IKhJSFJP7_P3J_9XxKTMBp.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1048-third-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f4/xdzesOjTltqHCFwgByKKX_P8mbUP01.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1250050868
+}

@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a678/p8vFLg1j8UF5CnAFnGYo1_output.mp4",
+    "name":  "m1048-coins",
+    "image":  "out\\refs\\m1048-coins-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-coins.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.8492714Z",
+    "size_bytes":  20842954,
+    "negative_prompt":  null,
+    "prompt":  "The ray of light from the small window slowly brightens over the heaped gold and silver coins in the open chest, fine dust floats in the beam, the coins glint softly. Two valleys of wealth. Slow push-in toward the chest. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9dfa-7a21-8cfa-7f7e21dca2d8",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:52:38.5771793Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T18:07:50.2268448Z",
+    "mode":  "image-to-video"
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1048-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a plain wooden door of a mud-brick house standing open, bright soft morning light pouring in across a clean earthen floor. No people. Mood: an open door, turning back. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20983-1c16-7531-b216-d338e6c339be",
+    "submitted_utc":  "2026-11-23T17:45:17.2924205Z",
+    "completed_utc":  "2026-11-23T17:45:25.6997475Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1048-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f8/UtL059bLfTncUHvcRZxmv_wQSBDeDM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1048-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f8/dF0OJn8Db_JfPYtNam4Vx_Bh4DCd3H.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1048-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f8/u1KRFpbxzC2x-Ff5vtqDX_WAiUmdFo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1985874353
+}

@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a628/Ia5cbX_lyrPK6tPmBrukv_output.mp4",
+    "name":  "m1048-dust",
+    "image":  "out\\refs\\m1048-dust-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-dust.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.6660530Z",
+    "size_bytes":  25419222,
+    "negative_prompt":  null,
+    "prompt":  "Wind drifts fine sand slowly across the dune and over the half-buried coins, the coins sink a little deeper under the moving sand, low warm sun. Only the dust fills it in the end. Slow push-in toward the coins. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9d4a-7660-9e5c-6088b308a483",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:51:10.7249164Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T17:59:49.1488355Z",
+    "mode":  "image-to-video"
+}

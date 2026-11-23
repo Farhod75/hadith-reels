@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "image": "out\\refs\\m1048-third-1.jpg",
+  "file": "out\\backgrounds\\new\\m1048-third.mp4",
+  "name": "m1048-third",
+  "resolution": null,
+  "generate_audio": null,
+  "schema": 1,
+  "completed_utc": "2026-11-23T18:00:18.7354698Z",
+  "size_bytes": 25113099,
+  "submitted_utc": "2026-11-23T17:48:02.5038232Z",
+  "negative_prompt": null,
+  "prompt": "Warm haze glows over the far valley at the end of the stony path, a light breeze moves the dry grass by the path, the far valley brightens slightly. Always seeking one more. Slow push-in along the path toward the far valley. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab3a62c/bIP3M1Af22-opaarPFVqi_output.mp4",
+  "request_id": "01a20985-a08d-7a11-bb85-76cee543c4c0",
+  "mode": "image-to-video"
+}

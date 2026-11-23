@@ -1797,3 +1797,28 @@ Firefox; the operator rejected that - the automation is the point. The operator 
 and when a sign-in is lost, ask for the one sign-in, not for the work.
 
 ---
+
+## R282-R285 - Sahih Muslim #1048 - 2026-11-23
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips.
+
+**Caught before publish**
+
+- Library RU matn: «два дола… возжелал бы третий дол» - archaic and heavy; replaced with a wording close to HadeethEnc RU (operator approved).
+- EN moral repeated 'two valleys of wealth' right after the story (lint seam-repeat, P315); reworded.
+- TikTok TJ: the music copyright check came up off; switched on and waited for its result before posting.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- Six of seven Kling runs died on one failed status poll; resumed with -Resume alone (P429 held). Fixed the cause: a failed poll is retried (P430).
+- YouTube uploads ran past the tool timeout; each was confirmed in the content list (all four public, own covers).
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a resume that needs nothing but the request id turns a broken poll from a chore into one line - and the retry (P430) should make even that rare.
+
+---

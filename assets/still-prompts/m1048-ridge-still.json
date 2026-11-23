@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1048-ridge",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, early morning seen from a high rocky ridge: two wide desert valleys side by side below, soft golden haze, long shadows of the hills. No people. Mood: the son of Adam and his wide horizon. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a2097e-be0a-7940-9db6-b72c024ca437",
+    "submitted_utc":  "2026-11-23T17:40:30.9403570Z",
+    "completed_utc":  "2026-11-23T17:43:59.7381724Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1048-ridge-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5ef/1GukHIqeAa8IMoICKqYJD_skdkiZQh.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1048-ridge-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5ef/SpM1TEbbZAqqUhViDrVEe_nKEuJOsm.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1048-ridge-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5ef/x4RJ5aTORjZJq0qDba2O6_fKdrcUTZ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1669674795
+}

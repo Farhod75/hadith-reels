@@ -197,6 +197,8 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 PUBLISHED
   2026-11-15 (4 clips; line found stale 2026-11-21). Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Muslim #1048 - PUBLISHED 2026-11-23 (R282-R285, TG 305-308); library d9ad6c04.** Explanation page live (AR/EN/RU).
+  Library RU matn corrected before narration. Listen PUBLISHED 2026-11-23 (4 clips, index 147).
 - **Bukhari #5986 - PUBLISHED 2026-11-22 (R278-R281, TG 301-304); library 8b190018.** Explanation page live
   (AR/EN/RU/UZ/TJ). First set rendered with P426 (UZ and TJ lowered to -28 LUFS automatically). Listen for #5986
   PUBLISHED 2026-11-22 (4 clips, index 143).

@@ -1,3 +1,16 @@
+## [2026-11-23d] - Muslim #1048 published (R282-R285)
+
+### Added
+
+- **Muslim #1048 assets:** seven scenes m1048-ridge, coins, third, dust, door, mat, dawn and their slow copies registered (Kling 4.0), prompt sidecars.
+- scripts/docs-set.py: writes a published set's tracker rows, metrics, retro, CHANGELOG and OPEN_ITEMS lines from one config.
+
+### Docs
+
+- reel-tracker.md R282-R285 (Contentment / Qanaah), reel-retro.md, OPEN_ITEMS.md (#1048).
+
+---
+
 ## [2026-11-23c] - generate-scene survives a failed status poll (P430)
 
 ### Fixed

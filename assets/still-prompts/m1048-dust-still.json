@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1048-dust",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, wind drifting fine sand over a few old coins half-buried in a desert dune, the coins slowly disappearing under the sand, low warm sun. No people. Mood: only the dust fills it in the end. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20982-d715-7450-8280-351c3bea0b0e",
+    "submitted_utc":  "2026-11-23T17:44:59.6354647Z",
+    "completed_utc":  "2026-11-23T17:45:07.9811100Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1048-dust-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f6/0cWAW8-lhBAO4Eu2UjVtq_3qGr8Fsa.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1048-dust-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f6/5ZPVghsnSdsXAdSuMD_nZ_J2CVE2zc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1048-dust-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5f6/Oe72IkVRstziK38n5Y1tM_YiC21A2o.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  473630161
+}

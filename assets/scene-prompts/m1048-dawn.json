@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a629/KZHOgP9-x3e1DrvAzW8R7_output.mp4",
+    "name":  "m1048-dawn",
+    "image":  "out\\refs\\m1048-dawn-1.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.0746544Z",
+    "size_bytes":  23085587,
+    "negative_prompt":  null,
+    "prompt":  "The sun rises slowly over the desert seen through the doorway, the first light spreads across the sand, palm fronds sway gently. Allah accepts whoever turns back. Slow push-in toward the doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9b03-7930-aca7-73b9b6d75df2",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:51:10.7346219Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T18:00:05.7169639Z",
+    "mode":  "image-to-video"
+}

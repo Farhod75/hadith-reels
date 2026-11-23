@@ -3500,6 +3500,132 @@
       "verified": true,
       "notes": "Lamps in the windows of neighbouring houses at dusk - call a relative today. Slow copy (setpts 1.22, ~0.82x) of b5986-lamps.mp4 (P386). Sahih al-Bukhari #5986 (Anas ibn Malik: whoever loves that his provision be widened and his life extended, let him keep ties of kinship). MODE B, no people, no hands, no faces - frame-checked 2026-11-22 (P417: none present). Stills picked 2026-11-22 (lane-1, basket-2, tree-2, tray-2, gift-2, mat-3, lamps-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/b5986-lamps.json"
+    },
+    "m1048-ridge.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two wide desert valleys below a ridge at morning - the son of Adam (the lead-in). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-ridge.json"
+    },
+    "m1048-ridge-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two wide desert valleys below a ridge at morning - the son of Adam (the lead-in). Slow copy (setpts 1.22, ~0.82x) of m1048-ridge.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-ridge.json"
+    },
+    "m1048-coins.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An open chest heaped with gold and silver coins - 'two valleys of wealth'. Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-coins.json"
+    },
+    "m1048-coins-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An open chest heaped with gold and silver coins - 'two valleys of wealth'. Slow copy (setpts 1.22, ~0.82x) of m1048-coins.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-coins.json"
+    },
+    "m1048-third.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A stony path climbing toward a far valley in the haze - 'he would seek a third'. Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-third.json"
+    },
+    "m1048-third-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A stony path climbing toward a far valley in the haze - 'he would seek a third'. Slow copy (setpts 1.22, ~0.82x) of m1048-third.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-third.json"
+    },
+    "m1048-dust.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Wind drifting sand over half-buried coins - 'nothing fills the belly of the son of Adam but dust'. Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-dust.json"
+    },
+    "m1048-dust-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Wind drifting sand over half-buried coins - 'nothing fills the belly of the son of Adam but dust'. Slow copy (setpts 1.22, ~0.82x) of m1048-dust.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-dust.json"
+    },
+    "m1048-door.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An open door with morning light pouring in - 'Allah relents toward whoever repents'. Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-door.json"
+    },
+    "m1048-door-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "An open door with morning light pouring in - 'Allah relents toward whoever repents'. Slow copy (setpts 1.22, ~0.82x) of m1048-door.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-door.json"
+    },
+    "m1048-mat.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A prayer mat facing a blank wall with a clay lamp - turning back to Allah (the moral). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-mat.json"
+    },
+    "m1048-mat-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A prayer mat facing a blank wall with a clay lamp - turning back to Allah (the moral). Slow copy (setpts 1.22, ~0.82x) of m1048-mat.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-mat.json"
+    },
+    "m1048-dawn.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sunrise over the desert through a doorway - turn back to Allah today. Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-dawn.json"
+    },
+    "m1048-dawn-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Sunrise over the desert through a doorway - turn back to Allah today. Slow copy (setpts 1.22, ~0.82x) of m1048-dawn.mp4 (P386). Sahih Muslim #1048 (Anas ibn Malik: if the son of Adam had two valleys of wealth he would seek a third; nothing fills his belly but dust; Allah relents toward whoever repents). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (ridge-2, coins-2, third-1, dust-2, door-2, mat-1, dawn-1). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m1048-dawn.json"
     }
   }
 }

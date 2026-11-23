@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a62a/azVjKDp-88BF8G9wzd_d5_output.mp4",
+    "name":  "m1048-door",
+    "image":  "out\\refs\\m1048-door-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-door.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.6995290Z",
+    "size_bytes":  25141145,
+    "negative_prompt":  null,
+    "prompt":  "Bright soft morning light pours in through the open wooden door and spreads slowly across the earthen floor, fine dust floats in the light. An open door, turning back. Slow push-in toward the doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9d69-7dd1-adf4-8cc181a30a44",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:51:10.7249164Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T18:00:51.0358364Z",
+    "mode":  "image-to-video"
+}

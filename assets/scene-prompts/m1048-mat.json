@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a623/Ar7c4eG-8NJvFmBD2-VqY_output.mp4",
+    "name":  "m1048-mat",
+    "image":  "out\\refs\\m1048-mat-1.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-mat.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.8662360Z",
+    "size_bytes":  19261744,
+    "negative_prompt":  null,
+    "prompt":  "The small clay lamp flickers gently beside the prayer mat facing the plain wall, the early light grows softly warmer. Turning back to Allah. Slow push-in toward the mat. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9e17-7b80-b8ab-de133912ab83",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:51:10.7259149Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T17:57:17.9667911Z",
+    "mode":  "image-to-video"
+}

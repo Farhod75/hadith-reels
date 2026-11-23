@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m1048-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a simple prayer mat of palm fibre on a clean earthen floor facing a plain blank mud-brick wall, a small clay lamp beside it, quiet early light. No people. Mood: turning back to Allah. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20983-62f2-7c02-8db4-0ed2677c255e",
+    "submitted_utc":  "2026-11-23T17:45:35.4403694Z",
+    "completed_utc":  "2026-11-23T17:45:43.7348464Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m1048-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5fa/DlB0qSdoONsuBr1E3ByVU_q0mM1N4m.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m1048-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5fa/M4pGOnR5IraAbkjuR0NfB_LEJFR4xl.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m1048-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a5fa/P_zO2ktf2O5uOEnqQslCa_ghwhcCQt.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1393850363
+}

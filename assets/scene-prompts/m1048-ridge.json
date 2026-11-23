@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a628/sugUlp8MEqpQt34HJeHcp_output.mp4",
+    "name":  "m1048-ridge",
+    "image":  "out\\refs\\m1048-ridge-2.jpg",
+    "file":  "out\\backgrounds\\new\\m1048-ridge.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T17:48:01.4374720Z",
+    "size_bytes":  17259581,
+    "negative_prompt":  null,
+    "prompt":  "Soft golden haze drifts slowly over the wide valleys below, long shadows of the hills shorten as the morning light grows, palm fronds sway gently. The son of Adam and his wide horizon. Slow push-in toward the valleys. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a20985-9c77-73c0-8e2f-8d52dbd071fc",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T17:51:10.7259149Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T17:58:14.0777714Z",
+    "mode":  "image-to-video"
+}
