@@ -212,8 +212,9 @@ this one wins.
 - **DONE 2026-11-22 (operator): library duplicates.** Removed Muslim #2609 (same hadith as Bukhari #6114, published
   R214-R217) and Bukhari #6682 (same words as #7563, which stays); their candidates set to rejected with the reason.
   Backup: out/_archive/library-removed/2026-11-22-2609-6682.json. Kept: Bukhari #1469 x2 and Tirmidhi #2616 x2 are
-  different excerpts of one long hadith, not duplicates - but the two #2616 rows disagree on the grade (sahih vs
-  hasan); check Dorar before either is used.
+  different excerpts of one long hadith, not duplicates. #2616 grade settled 2026-11-23: both rows sahih (row 690858b0
+  was hasan) - HadeethEnc 4303 sahih bi-majmu' turuqih, al-Albani Sahih at-Tirmidhi 2616, at-Tirmidhi hasan sahih. The
+  longer Tabarani wording (with man aslama salima) is the one al-Albani weakened (Da'ifa 5436) - not this text.
 - **Muslim #1914 - PUBLISHED 2026-11-19 (R270-R273, TG 293-296); library 411a7f60.** Second set from the 2026-11-18
   refill (34 rows unused). Explanation page live (AR/EN/RU). TikTok covers checked in the posts list. Listen published
   2026-11-19 (4 clips, index 135).
