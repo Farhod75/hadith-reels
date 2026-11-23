@@ -16874,7 +16874,7 @@ request. The job carries on server-side, so a single network blip left a paid cl
 stopped 3 of 7 runs for #5986 (2026-11-22) and 6 of 7 for #1048 (2026-11-23); every one was resumed by hand (P429).
 
 **Fix.** A failed poll is logged and retried with a growing pause; only 6 failures in a row stop the run, and the
-message then prints the -Resume line. A successful poll resets the count.
+message then prints the -Resume line. A successful poll resets the count. Extended 2026-11-23 (#2664): the result fetch and the clip download get the same six retries - one #2664 run died on "result fetch failed" after the job had completed.
 
 **Lesson:** a poll loop for a job that runs elsewhere must survive the network between the two.
 

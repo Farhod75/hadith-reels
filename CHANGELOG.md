@@ -1,3 +1,11 @@
+## [2026-11-23e] - generate-scene: result fetch and download retried too (P430)
+
+### Fixed
+
+- generate-scene.ps1: the result fetch and the clip download are retried six times like the poll.
+
+---
+
 ## [2026-11-23d] - Muslim #1048 published (R282-R285)
 
 ### Added

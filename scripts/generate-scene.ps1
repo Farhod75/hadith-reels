@@ -317,15 +317,27 @@ Ok "generation complete"
 
 # --- 3) FETCH result + download the clip -------------------------------------
 Say "`n[3/3] Downloading clip..."
-try {
-  $res = Invoke-RestMethod -Method Get -Uri $resultUrl -Headers $headers
-} catch {
-  Die "result fetch failed: $($_.Exception.Message)"
+# P430: the result fetch and the download get the same retries as the poll - the job is done and paid for.
+$res = $null
+for ($try = 1; $try -le 6 -and -not $res; $try++) {
+  try { $res = Invoke-RestMethod -Method Get -Uri $resultUrl -Headers $headers }
+  catch {
+    Write-Host "        result fetch failed ($try/6): $($_.Exception.Message)" -ForegroundColor Yellow
+    if ($try -ge 6) { Die "result fetch failed 6 times (request $reqId). Resume it:`n  .\scripts\generate-scene.ps1 -Name $Name -Resume $reqId" }
+    Start-Sleep -Seconds (5 * $try)
+  }
 }
 # Kling returns { video: { url: "..." } }
 $videoUrl = $res.video.url
 if (-not $videoUrl) { Die "no video URL in result: $($res | ConvertTo-Json -Compress -Depth 5)" }
-Invoke-WebRequest -Uri $videoUrl -OutFile $outFile
+for ($try = 1; $try -le 6; $try++) {
+  try { Invoke-WebRequest -Uri $videoUrl -OutFile $outFile; break }
+  catch {
+    Write-Host "        download failed ($try/6): $($_.Exception.Message)" -ForegroundColor Yellow
+    if ($try -ge 6) { Die "download failed 6 times (request $reqId). Resume it:`n  .\scripts\generate-scene.ps1 -Name $Name -Resume $reqId" }
+    Start-Sleep -Seconds (5 * $try)
+  }
+}
 if (-not (Test-Path $outFile)) { Die "download failed ($outFile not created)" }
 
 $mb = [math]::Round((Get-Item $outFile).Length/1MB,2)
