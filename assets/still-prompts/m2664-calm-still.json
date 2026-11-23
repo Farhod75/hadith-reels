@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2664-calm",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the same kind of oasis after a dust storm has passed, a few fallen palm fronds on the sand, clear calm sky and soft light. No people. Mood: Allah decreed, and what He willed He did. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a209d2-00d4-7491-a5a4-df35dc262360",
+    "submitted_utc":  "2026-11-23T19:11:27.2762468Z",
+    "completed_utc":  "2026-11-23T19:11:43.8341501Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2664-calm-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fe/Jjs46U5u3hrnBB2zKFImb_No6pfDrn.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2664-calm-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fe/bAqsNQbrm1EUd6Wf4ddga_xUX3s74v.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2664-calm-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fe/u0a7rGLv6w7-FUa9DdlUS_nUZrVvdm.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  279552591
+}

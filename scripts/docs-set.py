@@ -16,9 +16,9 @@ rows = []
 for i, l in enumerate(L):
     j = json.load(io.open(W % (l, l, 'render.json'), encoding='utf-8'))
     dur = round(sum(j['sceneDurations']), 1); mb = round(os.path.getsize(W % (l, l, 'reel.mp4')) / 1048576, 1)
-    rows.append('| %s | %s | %s #%s | %s | Sahih | %s | %s | %s | Adults | %s | adults-%s-%s-story.mp3 | adults-%s-%s-moral.mp3 | adults-%s-%s-narration.mp3 | %s | adults-%s-%s-bg-mixed.mp4 | %s | %s | adults-%s-%s-reel.mp4 | %ss | %s MB | TG %d. %sCover on %s. YouTube https://youtube.com/shorts/%s. |' % (
+    rows.append('| %s | %s | %s #%s | %s | Sahih | %s | %s | %s | Adults | %s | adults-%s-%s-story.mp3 | adults-%s-%s-moral.mp3 | adults-%s-%s-narration.mp3 | %s | adults-%s-%s-bg-mixed.mp4 | %s | %s | adults-%s-%s-reel.mp4 | %ss | %s MB | %s%sCover on %s. YouTube https://youtube.com/shorts/%s. |' % (
         rn[l], date, cfg['collection'], num, cfg['narrator'], cfg['theme'], cfg['tags'], l.upper(), slug, l, slug, l, slug, l, slug,
-        ', '.join(j['scenes']), l, slug, cfg['beds'][l], sub[l], l, slug, dur, mb, cfg['tg_first'] + i, cfg['notes'][l], cfg['covers'][l], cfg['yt'][l]))
+        ', '.join(j['scenes']), l, slug, cfg['beds'][l], sub[l], l, slug, dur, mb, ('TG %d. ' % (cfg['tg_first'] + i)) if 'tg' not in cfg else ('TG %s. ' % cfg['tg'][l]), cfg['notes'][l], cfg['covers'][l], cfg['yt'][l]))
 t = rd('reel-tracker.md')
 last = [x for x in t.split('\n') if x.startswith('| R%d |' % (R - 1))][0]
 t = rep(t, last + '\n', last + '\n' + '\n'.join(rows) + '\n')
@@ -29,8 +29,11 @@ t = rep(t, s + '\n', s + '\n' + cfg['scene_row'] + '\n')
 m = re.search(r'^\| %s \| (\d+) \| ([^|]+) \|' % re.escape(cfg['theme']), t, re.M)
 if m:
     t = t[:m.start()] + '| %s | %d | %s, %s |' % (cfg['theme'], int(m.group(1)) + 4, m.group(2).strip(), rng) + t[m.end():]
+elif cfg.get('theme_after'):
+    a = [x for x in t.split('\n') if x.startswith('| %s |' % cfg['theme_after'])][0]
+    t = rep(t, a + '\n', a + '\n| %s | 4 | %s | EN, RU, UZ, TJ |\n' % (cfg['theme'], rng))
 else:
-    raise SystemExit('theme row missing: ' + cfg['theme'])
+    raise SystemExit('theme row missing: ' + cfg['theme'] + ' (set theme_after to add it)')
 for l in L:
     name = cfg['beds'][l]
     m = re.search(r'^\| %s \| (\d+) \| R\d+ \| ([^|\n]*?) \|$' % re.escape(name), t, re.M); assert m, name

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2664-lamp",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a small clay oil lamp glowing in a window niche of a mud-brick room before dawn, a palm-fibre mat on the floor below, deep blue sky outside. No people. Mood: ask Allah for help. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a209d2-b288-7543-8de8-e77f35b60360",
+    "submitted_utc":  "2026-11-23T19:12:12.7736979Z",
+    "completed_utc":  "2026-11-23T19:12:25.2045003Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2664-lamp-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a802/c0iMyG4UaOo4JbmgtH5FM_UferQaZk.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2664-lamp-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a802/DPbRU1etYFZtPwPlu8vFb_C0D1fb5s.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2664-lamp-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a802/68Li0VSO6oIEBlxfO0ueL_TwxLpeEM.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  27605156
+}

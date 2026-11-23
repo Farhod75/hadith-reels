@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-23T19:13:35.0163772Z",
+  "prompt": "The small lamp flame flickers gently in the window niche as the deep blue sky outside slowly brightens toward dawn. Ask Allah for help. Slow push-in toward the lamp. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "negative_prompt": null,
+  "name": "m2664-lamp",
+  "image": "out\\refs\\m2664-lamp-2.jpg",
+  "file": "out\\backgrounds\\new\\m2664-lamp.mp4",
+  "size_bytes": 13698762,
+  "schema": 1,
+  "mode": "image-to-video",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab3a82d/XQwLQCeGMbKGeI8p7OQnQ_output.mp4",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "generate_audio": null,
+  "request_id": "01a209d3-f2d1-7932-b280-28ec3643a11c",
+  "completed_utc": "2026-11-23T19:23:37.0342970Z",
+  "resolution": null
+}

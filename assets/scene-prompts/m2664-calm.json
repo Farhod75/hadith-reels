@@ -1,0 +1,18 @@
+{
+  "negative_prompt": null,
+  "request_id": "01a209d3-fa7d-7e71-9964-6a1e508b7309",
+  "generate_audio": null,
+  "completed_utc": "2026-11-23T19:31:51.0182529Z",
+  "duration_sec": 10,
+  "prompt": "The air is calm and clear after the storm, a light breeze barely moves the fallen palm fronds on the sand, soft light settles. What Allah willed, He did. Slow push-in. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "submitted_utc": "2026-11-23T19:13:36.9512411Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab3a870/Ab9oRGhLOgn1kGCqL8sga_output.mp4",
+  "image": "out\\refs\\m2664-calm-3.jpg",
+  "mode": "image-to-video",
+  "schema": 1,
+  "name": "m2664-calm",
+  "resolution": null,
+  "file": "out\\backgrounds\\new\\m2664-calm.mp4",
+  "size_bytes": 21084389,
+  "model": "fal-ai/kling-video/v4/image-to-video"
+}

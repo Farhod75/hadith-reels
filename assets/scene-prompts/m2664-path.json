@@ -1,0 +1,18 @@
+{
+  "duration_sec": 10,
+  "schema": 1,
+  "image": "out\\refs\\m2664-path-1.jpg",
+  "prompt": "Morning sunlight grows brighter over the ridge at the top of the stone steps, fine dust drifts in the light, cloth on the walls stirs. Keep climbing, do not give up. Slow push-in up the steps. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "submitted_utc": "2026-11-23T19:13:25.9521749Z",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "file": "out\\backgrounds\\new\\m2664-path.mp4",
+  "video_url": "https://v3b.fal.media/files/b/0ab3a833/zYDDSqAET8FhXpx81Jslk_output.mp4",
+  "name": "m2664-path",
+  "generate_audio": null,
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-23T19:25:33.2208891Z",
+  "resolution": null,
+  "size_bytes": 25548325,
+  "negative_prompt": null,
+  "request_id": "01a209d3-cf4f-77d0-a66f-2f42bf441b99"
+}

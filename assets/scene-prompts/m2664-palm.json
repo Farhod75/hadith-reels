@@ -1,0 +1,18 @@
+{
+  "file": "out\\backgrounds\\new\\m2664-palm.mp4",
+  "size_bytes": 45729781,
+  "submitted_utc": "2026-11-23T19:13:32.0403397Z",
+  "schema": 1,
+  "completed_utc": "2026-11-23T19:26:23.1000880Z",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab3a82b/dQzhUnVX96MZDjK13oTUs_output.mp4",
+  "generate_audio": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "image": "out\\refs\\m2664-palm-2.jpg",
+  "name": "m2664-palm",
+  "prompt": "The fronds of the tall strong palm and the young sapling beside it move gently in a light breeze, sunlight flickers through the leaves. The strong and the weak, and good in each. Slow tilt up the tall trunk. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a209d3-e718-7e83-a348-e7ed8ac877fc",
+  "resolution": null,
+  "negative_prompt": null,
+  "mode": "image-to-video"
+}

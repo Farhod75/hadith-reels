@@ -1822,3 +1822,32 @@ and when a sign-in is lost, ask for the one sign-in, not for the work.
 **The finding:** a resume that needs nothing but the request id turns a broken poll from a chore into one line - and the retry (P430) should make even that rare.
 
 ---
+
+## R286-R289 - Sahih Muslim #2664 - 2026-11-23
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Seven Kling 4.0 clips (one remade).
+
+**Caught before publish**
+
+- Library UZ: «қизиқ» weaker than احرص, made «интил» (approved).
+- Operator: UZ «де» -> «айт» in the matn and in the moral; re-narrated and re-rendered.
+- Operator: the tool in the m2664-tools frame was not a real-looking tool; the scene was remade without any tool (m2664-field) and all four legs re-rendered.
+- Plan: two clips under a 30 s moral failed P386; anchors moved and all clips slowed x1.4.
+- UZ bed nasheed-06 at 19.4 dB under the voice; raised to the 2.00 cap (15.8 dB).
+- TikTok RU and UZ: the music check came up off; switched on and waited for its result.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- After the UZ re-narration the first render aligned on the old narration.mp3 and stopped at the scene-length gate (72.06 vs 72.84 s); the second run passed. render-set reads narration.mp3 before render-reel rebuilds it.
+- One Kling run died on the result fetch after the job completed; the fetch and download now retry too (P430).
+- The YouTube composer was hidden at 400 px (left over from the HV check); the viewport was reset.
+
+**Operator corrections of the assistant: 2** (the UZ verb; the scene with the tool).
+
+**The finding:** a generated object that names nothing real is still a defect - look at what the props are, not only that no people are in frame.
+
+---

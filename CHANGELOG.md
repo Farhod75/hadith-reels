@@ -1,3 +1,15 @@
+## [2026-11-23f] - Muslim #2664 published (R286-R289)
+
+### Added
+
+- **Muslim #2664 assets:** scenes m2664-dawn, palm, path, storm, calm, field, lamp (+ tools, not used) with x1.4 slow copies, prompt sidecars.
+
+### Docs
+
+- reel-tracker.md R286-R289 (Iman / Qadar, new), reel-retro.md, OPEN_ITEMS.md (#2664). docs-set.py: new theme rows and per-leg TG strings.
+
+---
+
 ## [2026-11-23e] - generate-scene: result fetch and download retried too (P430)
 
 ### Fixed

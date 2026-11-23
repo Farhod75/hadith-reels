@@ -1,0 +1,18 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3aba7/gxCIDKva3yAuAo7oU87Ng_output.mp4",
+    "name":  "m2664-field",
+    "image":  "out\\refs\\m2664-field-1.jpg",
+    "file":  "out\\backgrounds\\new\\m2664-field.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T21:30:38.0081040Z",
+    "size_bytes":  22657014,
+    "negative_prompt":  null,
+    "prompt":  "Sunrise light spreads slowly over the freshly ploughed furrows, water flows gently in the small channel beside the basket of grain and the clay jars. Begin the useful work. Slow push-in toward the basket. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text, no tools.",
+    "request_id":  "01a20a51-6ccc-7b51-897d-dafc5d705d8d",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T21:48:57.4158532Z",
+    "mode":  "image-to-video"
+}

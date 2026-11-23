@@ -1,0 +1,19 @@
+{
+    "video_url":  "https://v3b.fal.media/files/b/0ab3a829/Mgs37S4asgu7-J26YED2i_output.mp4",
+    "name":  "m2664-dawn",
+    "image":  "out\\refs\\m2664-dawn-3.jpg",
+    "file":  "out\\backgrounds\\new\\m2664-dawn.mp4",
+    "resolution":  null,
+    "submitted_utc":  "2026-11-23T19:13:30.9943521Z",
+    "size_bytes":  24000320,
+    "negative_prompt":  null,
+    "prompt":  "The first golden light spreads slowly down the quiet lane between the mud-brick houses, palm fronds sway gently, the sky brightens. A new day begins. Slow push-in along the lane. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+    "request_id":  "01a209d3-e30a-7412-a533-f67322f3e8ff",
+    "model":  "fal-ai/kling-video/v4/image-to-video",
+    "schema":  1,
+    "generate_audio":  null,
+    "resumed_utc":  "2026-11-23T19:20:56.3622754Z",
+    "duration_sec":  10,
+    "completed_utc":  "2026-11-23T19:26:12.6263700Z",
+    "mode":  "image-to-video"
+}

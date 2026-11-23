@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2664-dawn",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, first light of dawn over a quiet oasis village of mud-brick houses and palms, a clear sky turning gold. No people. Mood: a new day, the believer begins. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a209d0-0f59-7d13-aa1e-2be8cd166cb3",
+    "submitted_utc":  "2026-11-23T19:09:19.7259712Z",
+    "completed_utc":  "2026-11-23T19:09:36.4295590Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2664-dawn-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7f1/qDdtFYt21eSMl-UiZFmTb_yLTk2LCD.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2664-dawn-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7f1/W7fDgy8REojENJsAY70w1_GzQUzLdX.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2664-dawn-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7f1/mzHPSZ_23r_gqXcJb9jSJ_pDJFpLMB.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1724983549
+}

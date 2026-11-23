@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab3a82a/KZccRmlgeQ9R2-56XUHUo_output.mp4",
+  "completed_utc": "2026-11-23T19:25:03.8310543Z",
+  "submitted_utc": "2026-11-23T19:13:24.2879945Z",
+  "size_bytes": 24466722,
+  "schema": 1,
+  "name": "m2664-tools",
+  "mode": "image-to-video",
+  "negative_prompt": null,
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "duration_sec": 10,
+  "file": "out\\backgrounds\\new\\m2664-tools.mp4",
+  "generate_audio": null,
+  "prompt": "Sunrise light spreads over the freshly turned field, water flows gently in the small channel beside the hoe, basket and clay jar. Begin the useful work. Slow push-in toward the tools. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a209d3-c8f9-7450-bd05-b461a84d09aa",
+  "image": "out\\refs\\m2664-tools-1.jpg"
+}

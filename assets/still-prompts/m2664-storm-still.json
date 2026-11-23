@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2664-storm",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a dust storm rolling over palms and mud-brick walls at the edge of an oasis, the sky darkened with sand. No people. Mood: when something befalls you. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a209d1-867d-7ec0-9156-7f7f887c1466",
+    "submitted_utc":  "2026-11-23T19:10:55.9715727Z",
+    "completed_utc":  "2026-11-23T19:11:13.0317963Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2664-storm-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fb/CksdZptxB_U-Xp5E2mMnk_awtle3Uw.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2664-storm-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fb/eZ0egD35mcNc0bJ0KKXRU_aR3QpmHG.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2664-storm-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3a7fb/VO2l4IKPP4gnq18WocnT0_uaCuNDbV.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  153316524
+}
