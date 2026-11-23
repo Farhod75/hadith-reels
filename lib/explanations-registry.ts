@@ -30,6 +30,7 @@ import x_bukhari_6675 from '@/content/explanations/bukhari-6675.json'
 import x_bukhari_6857 from '@/content/explanations/bukhari-6857.json'
 import x_ibnmajah_4251 from '@/content/explanations/ibnmajah-4251.json'
 import x_muslim_1005 from '@/content/explanations/muslim-1005.json'
+import x_muslim_1048 from '@/content/explanations/muslim-1048.json'
 import x_muslim_1510 from '@/content/explanations/muslim-1510.json'
 import x_muslim_1631 from '@/content/explanations/muslim-1631.json'
 import x_muslim_1914 from '@/content/explanations/muslim-1914.json'
@@ -81,6 +82,7 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'bukhari-6857': x_bukhari_6857 as Explanation,
   'ibnmajah-4251': x_ibnmajah_4251 as Explanation,
   'muslim-1005': x_muslim_1005 as Explanation,
+  'muslim-1048': x_muslim_1048 as Explanation,
   'muslim-1510': x_muslim_1510 as Explanation,
   'muslim-1631': x_muslim_1631 as Explanation,
   'muslim-1914': x_muslim_1914 as Explanation,
