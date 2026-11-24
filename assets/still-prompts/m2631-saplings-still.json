@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2631-saplings",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, two young palm saplings growing side by side in a small walled garden, each tied to a wooden support stake, watered earth around them, gentle morning sun. No people. Mood: cared for until they grow. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20ac4-8907-7b53-917f-b565cc5bbc2c",
+    "submitted_utc":  "2026-11-23T23:36:21.5833599Z",
+    "completed_utc":  "2026-11-23T23:37:27.0157374Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2631-saplings-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae38/O9cMZZWj4rR4i4sW8MvNo_FDbOjbYn.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2631-saplings-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae38/THMwO8CKZ1fcXkBs7KP0z_ERmjbXpv.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2631-saplings-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae38/BvL6tSoyNI5Bm-f9mp6SN_VYdBXgqw.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  535445540
+}

@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "image": "out\\refs\\m2631-tray-3.jpg",
+  "mode": "image-to-video",
+  "request_id": "01a20ac7-cf99-7010-8995-6b48a964c9fa",
+  "completed_utc": "2026-11-23T23:48:04.4782145Z",
+  "prompt": "Warm sunlight from the window slowly brightens over the bowls of milk, the flatbread and the dates on the low table, fine dust drifts in the beam. Providing for them. Slow push-in toward the table. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m2631-tray.mp4",
+  "duration_sec": 10,
+  "generate_audio": null,
+  "submitted_utc": "2026-11-23T23:39:56.5051974Z",
+  "name": "m2631-tray",
+  "video_url": "https://v3b.fal.media/files/b/0ab3ae66/W4LjXX2DhphoeQ7Obhj9O_output.mp4",
+  "size_bytes": 18979136
+}

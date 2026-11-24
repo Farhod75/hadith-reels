@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2631-gift",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a small folded new wool shawl tied with a ribbon and a little basket of dates placed on a cushion inside a mud-brick home, soft evening light. No people. Mood: one good thing for a girl in your family. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20ac6-bc5b-7280-974d-058c013bc0e7",
+    "submitted_utc":  "2026-11-23T23:38:45.7781089Z",
+    "completed_utc":  "2026-11-23T23:38:54.1444394Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2631-gift-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae41/3fYG3wc_qnnihucnZToSt_BU19vi1o.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2631-gift-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae41/4RjAQN9ySqNRsBQviAoqv_4FOomjLQ.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2631-gift-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae41/N93vY0eIpq_gYSVLpJJ7V_SbciFVHa.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1764082653
+}

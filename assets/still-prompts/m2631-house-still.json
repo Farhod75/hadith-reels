@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2631-house",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the courtyard of a modest mud-brick family home in early morning, a small fig tree, two little pairs of children\u0027s leather sandals side by side by the door, soft warm light. No people. Mood: a home where two girls are raised. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20ac3-5ec7-7fd2-a82b-e32fcd0e3552",
+    "submitted_utc":  "2026-11-23T23:35:05.0727595Z",
+    "completed_utc":  "2026-11-23T23:36:10.6511287Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2631-house-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae30/2UeDbMJHGCzPmowuG2teI_YeqFFkjK.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2631-house-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae30/tR-ZNi1zKRP1xrvakBuL9_3sLWzqqj.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2631-house-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae30/iJp_nDZLznTXaWmZXWeWM_XR8kJeXD.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  104994884
+}

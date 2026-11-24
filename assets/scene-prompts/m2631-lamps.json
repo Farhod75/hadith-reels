@@ -1,0 +1,18 @@
+{
+  "request_id": "01a20ac7-dfa6-7bf1-89eb-f0f423033ed0",
+  "video_url": "https://v3b.fal.media/files/b/0ab3ae63/Ynmgm4HiH_QArmcF0qVcr_output.mp4",
+  "file": "out\\backgrounds\\new\\m2631-lamps.mp4",
+  "schema": 1,
+  "size_bytes": 16872417,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "prompt": "The two small lamp flames flicker gently side by side in the niche, their warm glow softly pulses on the mud-brick wall. Nearness, side by side. Slow push-in toward the lamps. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "resolution": null,
+  "submitted_utc": "2026-11-23T23:40:00.6530567Z",
+  "generate_audio": null,
+  "completed_utc": "2026-11-23T23:47:33.8586667Z",
+  "mode": "image-to-video",
+  "image": "out\\refs\\m2631-lamps-2.jpg",
+  "duration_sec": 10,
+  "negative_prompt": null,
+  "name": "m2631-lamps"
+}

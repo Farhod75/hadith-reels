@@ -3642,7 +3642,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "First light over an oasis lane - a new day (the lead-in). Slow copy (setpts 1.22, ~0.82x) of m2664-dawn.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "First light over an oasis lane - a new day (the lead-in). Slow copy (setpts 1.4, ~0.71x) of m2664-dawn.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-dawn.json"
     },
     "m2664-palm.mp4": {
@@ -3660,7 +3660,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "A tall strong palm beside a young sapling - 'the strong believer ... and in each there is good'. Slow copy (setpts 1.22, ~0.82x) of m2664-palm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "A tall strong palm beside a young sapling - 'the strong believer ... and in each there is good'. Slow copy (setpts 1.4, ~0.71x) of m2664-palm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-palm.json"
     },
     "m2664-path.mp4": {
@@ -3678,7 +3678,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Stone steps climbing to a bright ridge - 'be keen on what benefits you ... do not give up'. Slow copy (setpts 1.22, ~0.82x) of m2664-path.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "Stone steps climbing to a bright ridge - 'be keen on what benefits you ... do not give up'. Slow copy (setpts 1.4, ~0.71x) of m2664-path.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-path.json"
     },
     "m2664-storm.mp4": {
@@ -3696,7 +3696,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "A dust storm rolling over palms - 'if something befalls you'. Slow copy (setpts 1.22, ~0.82x) of m2664-storm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "A dust storm rolling over palms - 'if something befalls you'. Slow copy (setpts 1.4, ~0.71x) of m2664-storm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-storm.json"
     },
     "m2664-calm.mp4": {
@@ -3714,7 +3714,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Calm after the storm, fallen fronds on the sand - 'Allah decreed, and what He willed He did'. Slow copy (setpts 1.22, ~0.82x) of m2664-calm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "Calm after the storm, fallen fronds on the sand - 'Allah decreed, and what He willed He did'. Slow copy (setpts 1.4, ~0.71x) of m2664-calm.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-calm.json"
     },
     "m2664-tools.mp4": {
@@ -3732,7 +3732,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "A spade, basket and jar at a freshly turned field at sunrise - begin the useful work (the moral). Slow copy (setpts 1.22, ~0.82x) of m2664-tools.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421). NOT USED: replaced by m2664-field before publish - the tool in the frame did not read as any real tool (operator, 2026-11-23).",
+      "notes": "A spade, basket and jar at a freshly turned field at sunrise - begin the useful work (the moral). Slow copy (setpts 1.4, ~0.71x) of m2664-tools.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421). NOT USED: replaced by m2664-field before publish - the tool in the frame did not read as any real tool (operator, 2026-11-23).",
       "prompt_sidecar": "assets/scene-prompts/m2664-tools.json"
     },
     "m2664-lamp.mp4": {
@@ -3750,7 +3750,7 @@
         "adults"
       ],
       "verified": true,
-      "notes": "A lamp in a window niche before dawn - ask Allah for help and begin. Slow copy (setpts 1.22, ~0.82x) of m2664-lamp.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "A lamp in a window niche before dawn - ask Allah for help and begin. Slow copy (setpts 1.4, ~0.71x) of m2664-lamp.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, tools-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-lamp.json"
     },
     "m2664-field.mp4": {
@@ -3768,8 +3768,98 @@
         "adults"
       ],
       "verified": true,
-      "notes": "Freshly ploughed furrows at sunrise with a basket of grain, clay jars and a water channel, no tools - begin the useful work (the moral). Slow copy (setpts 1.22, ~0.82x) of m2664-tools.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, field-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "notes": "Freshly ploughed furrows at sunrise with a basket of grain, clay jars and a water channel, no tools - begin the useful work (the moral). Slow copy (setpts 1.4, ~0.71x) of m2664-tools.mp4 (P386). Sahih Muslim #2664 (Abu Hurairah: the strong believer is better and more beloved to Allah than the weak, and in each there is good; be keen on what benefits you, seek Allah's help and do not give up; do not say 'if only'). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (dawn-3, palm-2, path-1, storm-2, calm-3, field-1, lamp-2). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
       "prompt_sidecar": "assets/scene-prompts/m2664-field.json"
+    },
+    "m2631-house.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A family courtyard at morning with small sandals by the door - a home where girls are raised (the lead-in). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-house.json"
+    },
+    "m2631-house-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A family courtyard at morning with small sandals by the door - a home where girls are raised (the lead-in). Slow copy (setpts 1.4, ~0.71x) of m2631-house.mp4 (P386). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-house.json"
+    },
+    "m2631-saplings.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two young palm saplings tied to support stakes - 'takes care of two girls until they reach maturity'. Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-saplings.json"
+    },
+    "m2631-saplings-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two young palm saplings tied to support stakes - 'takes care of two girls until they reach maturity'. Slow copy (setpts 1.4, ~0.71x) of m2631-saplings.mp4 (P386). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-saplings.json"
+    },
+    "m2631-tray.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two bowls of milk, bread and dates on a low table - providing for them. Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-tray.json"
+    },
+    "m2631-tray-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two bowls of milk, bread and dates on a low table - providing for them. Slow copy (setpts 1.4, ~0.71x) of m2631-tray.mp4 (P386). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-tray.json"
+    },
+    "m2631-lamps.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two small lamps side by side in a niche - 'I and he', the joined fingers (the moral). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-lamps.json"
+    },
+    "m2631-lamps-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "Two small lamps side by side in a niche - 'I and he', the joined fingers (the moral). Slow copy (setpts 1.4, ~0.71x) of m2631-lamps.mp4 (P386). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-lamps.json"
+    },
+    "m2631-gift.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A folded shawl tied with a ribbon and a basket of dates - one good thing for a girl in your family. Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-gift.json"
+    },
+    "m2631-gift-s.mp4": {
+      "classification": "scene",
+      "lanes": [
+        "adults"
+      ],
+      "verified": true,
+      "notes": "A folded shawl tied with a ribbon and a basket of dates - one good thing for a girl in your family. Slow copy (setpts 1.4, ~0.71x) of m2631-gift.mp4 (P386). Sahih Muslim #2631 (Anas ibn Malik: whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he - and he joined his fingers). MODE B, no people, no hands, no faces. Stills picked 2026-11-23 (house-2, saplings-3, tray-3, lamps-2, gift-1; boards not used - blank white boards read as modern). FLUX 2 still -> Kling 4.0 i2v 10s 1080p (P421).",
+      "prompt_sidecar": "assets/scene-prompts/m2631-gift.json"
     }
   }
 }

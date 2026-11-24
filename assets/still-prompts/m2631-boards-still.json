@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "m2631-boards",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, two small wooden writing boards with a reed pen and a little ink pot on a palm-fibre mat beside a clay oil lamp, quiet afternoon light, the boards blank. No people. Mood: raising and teaching them. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20ac6-2d3e-7fb0-b8e8-f56c9ef219c1",
+    "submitted_utc":  "2026-11-23T23:38:09.1551549Z",
+    "completed_utc":  "2026-11-23T23:38:17.4998599Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\m2631-boards-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae3d/RcRw3Dz2P5W1hZHg8iCTG_gz1zHY3Y.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\m2631-boards-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae3d/_DAuH8V4mvbvV7znnTd5s_ATW8R06N.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\m2631-boards-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3ae3d/9MfTECMbxeOzP2DbtvTnz_MdEYN1mA.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  700638415
+}

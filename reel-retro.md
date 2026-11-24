@@ -1851,3 +1851,29 @@ and when a sign-in is lost, ask for the one sign-in, not for the work.
 **The finding:** a generated object that names nothing real is still a defect - look at what the props are, not only that no people are in frame.
 
 ---
+
+## R290-R293 - Sahih Muslim #2631 - 2026-11-23
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok. Five Kling 4.0 clips, none remade.
+
+**Caught before publish**
+
+- Operator question: the reward 'on the Day of Resurrection' or 'in Paradise', and is the two-finger gesture this hadith? Both are this hadith in two wordings; at-Tirmidhi 1914 added to the explanation (approved).
+- UZ bed at a fixed gain 1.32 sat 9.7 dB under the voice (target 15.7); re-rendered on auto (0.66).
+- UZ and TJ covers were drawn before the captions existed and had no source line; redrawn after build-caption.
+- TikTok EN, RU, UZ, TJ: the music check came up off; switched on and waited for its result.
+
+**Escaped to publish**
+
+- None known.
+
+**Incidents**
+
+- The first detached render launch did nothing: the -File path with spaces was not quoted for Start-Process. Quoted and relaunched.
+- YouTube RU: the run opened on a beforeunload dialog from the EN publish dialog left open; dismissed, closed the dialog, reran.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a hand-set bed gain carried over from another set is a guess - start every leg on auto and only override against the measured gap.
+
+---

@@ -1,0 +1,18 @@
+{
+  "negative_prompt": null,
+  "image": "out\\refs\\m2631-house-2.jpg",
+  "size_bytes": 20636359,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "request_id": "01a20ac7-c631-7340-8045-c5b59e7de652",
+  "completed_utc": "2026-11-23T23:48:05.3000675Z",
+  "mode": "image-to-video",
+  "duration_sec": 10,
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\m2631-house.mp4",
+  "name": "m2631-house",
+  "submitted_utc": "2026-11-23T23:39:54.1102544Z",
+  "resolution": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab3ae64/5DerrAxpKBg-h-9LH8pVm_output.mp4",
+  "generate_audio": null,
+  "prompt": "Soft morning light grows in the quiet courtyard, the leaves of the fig tree move gently in a light breeze, fine dust floats in the sunlight by the small sandals at the door. A home where girls are raised. Slow push-in toward the door. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text."
+}

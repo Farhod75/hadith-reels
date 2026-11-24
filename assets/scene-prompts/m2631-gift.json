@@ -1,0 +1,18 @@
+{
+  "name": "m2631-gift",
+  "negative_prompt": null,
+  "request_id": "01a20ac7-d78c-77d2-ab2a-1341704eff3a",
+  "image": "out\\refs\\m2631-gift-1.jpg",
+  "mode": "image-to-video",
+  "resolution": null,
+  "generate_audio": null,
+  "duration_sec": 10,
+  "submitted_utc": "2026-11-23T23:39:58.5402796Z",
+  "completed_utc": "2026-11-23T23:47:44.2382277Z",
+  "prompt": "Soft evening light slowly warms the folded shawl tied with a ribbon and the little basket of dates on the cushion, fine dust floats in the light. One good thing for a girl in your family. Slow push-in toward the gift. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "file": "out\\backgrounds\\new\\m2631-gift.mp4",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "size_bytes": 15103505,
+  "video_url": "https://v3b.fal.media/files/b/0ab3ae65/Iq2e2qrXOlrY7OTwKgJM6_output.mp4",
+  "schema": 1
+}

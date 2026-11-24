@@ -1,3 +1,19 @@
+## [2026-11-23g] - Muslim #2631 published (R290-R293)
+
+### Added
+
+- **Muslim #2631 assets:** scenes m2631-house, saplings, tray, lamps, gift with x1.4 slow copies, prompt and still sidecars.
+
+### Fixed
+
+- **assets/asset-registry.json:** m2664 slow-copy notes said x1.22; they are x1.4.
+
+### Docs
+
+- reel-tracker.md R290-R293 (Family / Children, new), reel-retro.md, OPEN_ITEMS.md (#2631).
+
+---
+
 ## [2026-11-23f] - Muslim #2664 published (R286-R289)
 
 ### Added
