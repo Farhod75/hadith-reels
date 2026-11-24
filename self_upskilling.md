@@ -11,8 +11,8 @@
 > Until then a human or the session assistant runs it. Record the date checked
 > even when nothing changed — "last checked" is the value, not "last updated".
 
-**Last checked:** 2026-11-16
-**Next due:** 2026-11-23
+**Last checked:** 2026-11-24
+**Next due:** 2026-12-01
 
 > **This date is now enforced.** `audit-docs.py` fails the push when it
 > passes (P332). Before that it was a line in a file that was missed three
@@ -236,6 +236,7 @@ section says whether it works for us.
 
 | Date | Checked | Found |
 |---|---|---|
+| 2026-11-24 | npm (installed vs `npm view`), Claude API release notes (via search), Next.js security blog, fal Kling list | Ran 1 day overdue - audit-docs failed the push on it again (P332). **npm behind:** next 16.4.5 vs 16.4.6 (bug fixes; the November security fixes are in 16.4.5); @playwright/test 1.65.0 vs 1.65.1; react 19.2.4 vs 19.3.1; @supabase/supabase-js 2.105.4 vs 2.119.2; @anthropic-ai/sdk 1.4.0 vs 1.14.0; @fal-ai/client 1.10.1 vs 1.11.0; remotion 4.0.540 vs 4.0.547; typescript 5.9.3 vs 7.0.2 (major). None upgraded unattended. **Next.js:** no security release after 2026-11-03. **Claude API:** latest entry 2026-11-09 (Claude Fable 5.2; fast mode without a beta header); Opus 4.8 fast mode is removed 2026-11-30 - not used here. **fal:** Kling v4 and v4 Flash endpoints listed; **Kling Image 4.0** (`kling/v4/long-image`, announced 2026-11-17) is new - a candidate for stills next to FLUX 3. Not verified: ElevenLabs (paid probe), Supabase changelog, Playwright release notes. |
 | 2026-11-08 | Claude API, Next.js, Playwright, Supabase, fal (Kling/FLUX); ElevenLabs not probed (paid call) | Ran 1 day overdue - audit-docs failed the push on it (P332 working). **Playwright 1.65.0 shipped 2026-11-05** (we pin 1.64.1; Node 22 so its Node 20 drop does not bite) - not upgraded unattended. **Next.js security release 2026-11-03: HR already patched (16.4.5); HV still on Next 14.2.35, an unsupported line** - OPEN_ITEMS. Claude: no new model ids. Kling 4.0 and FLUX 3 evals still open. |
 | 2026-10-31d | npm (package.json vs `npm view`), Playwright, Claude API, Next.js, Supabase, runner images, fal/Kling | Scheduled weekly run; header dates already 2026-10-31/2026-11-07 from run c, left unchanged. **npm behind:** next 16.2.6 vs 16.4.3 (Next.js November security release announced 2026-10-27); react/react-dom 19.2.4 vs 19.3.1; typescript 5.9.3 vs 7.0.2 (major); @supabase/supabase-js 2.105.4 vs 2.118.0; @anthropic-ai/sdk 0.95.2 vs 1.3.0 (major); remotion 4.0.460 vs 4.0.539. Current: @playwright/test 1.64.1, @fal-ai/client 1.10.1. Kling 4.0 endpoint id and pricing now read off the model page. Next.js blog fetched for the first time. **Not verified:** ElevenLabs (paid probe), BFL/FLUX page, Claude Code release notes, Whisper/Scribe, `ubuntu-latest` -> 26.04 announcement (seen only in a truncated summary). |
 | 2026-10-31c | Playwright (upgraded), Claude Code hooks, sources | Playwright 1.64.1 installed and CI unpinned (P333). Reading the Claude Code hooks reference to wire the index found that **this repo's hooks had never run** (P334). Official sources section added; two URLs marked unverified rather than listed as checked. |
