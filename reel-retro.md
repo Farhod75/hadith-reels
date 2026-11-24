@@ -1865,7 +1865,8 @@ and when a sign-in is lost, ask for the one sign-in, not for the work.
 
 **Escaped to publish**
 
-- None known.
+- TikTok TJ went out with the first frame as its cover, and RU #2664 (the set before) with a white cover;
+  the operator saw both. Both deleted and posted again with their covers (P432).
 
 **Incidents**
 

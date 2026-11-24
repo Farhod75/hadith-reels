@@ -960,7 +960,9 @@ cover there first. A native file dialog must be answered with `browser_file_uplo
   **Never press Escape in the upload dialog** - it closes it (the draft survives under Content -> Shorts).
 - **TikTok Studio** - `tiktok.com/tiktokstudio/upload`. `input[type=file]`; the Draft.js description takes the
   same synthetic paste; Show more -> uncheck «Reuse of content», check «AI-generated content» and confirm
-  «Turn on»; Edit cover -> a frame from the strip or «Upload cover» -> Save; Post (-> «Post now» if the music
+  «Turn on»; Edit cover -> a frame from the strip or «Upload cover» -> Save (P432: set the cover file only
+  after the frame strip has loaded, and check the dialog shows the title before Save - a file set earlier is
+  dropped silently); Post (-> «Post now» if the music
   check is still running). A new post sits under «Content under review / Only me» for a few minutes, then
   turns Everyone.
   **Check the editor state, not the DOM (2026-11-17, #105):** after the paste the first block (the title) is not

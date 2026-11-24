@@ -16883,3 +16883,26 @@ message then prints the -Resume line. A successful poll resets the count. Extend
 **Status:** FIXED
 
 ---
+
+## PATTERN 432: a TikTok cover set before the cover editor loaded was dropped without a word
+
+**Date:** 2026-11-23  **Repo:** hadith-reels  **Severity:** publish (two posts went out with the wrong cover)
+
+**What happened.** The upload flow opens Edit cover and sets the cover file on `input[type=file][accept*="image"]`
+straight away. The input is already in the DOM while the editor is still loading the video's frame strip; a file set
+then is ignored, the dialog shows the first frame, and Save keeps that frame. The run reported "cover saved: true".
+Muslim #2631 TJ went out with the first frame (the house), and Muslim #2664 RU with a blank white cover; the operator
+saw both in the posts list and on the phone. A posted cover can only be changed to a frame of the video, so both posts
+were deleted (0 views) and posted again.
+
+**Fix.** Open Edit cover, wait for «Upload cover» and for the frame strip to fill, then set the file; look at the
+dialog and confirm the cover shows the title before Save, and look at the Cover box on the page after Save. If the
+dialog still shows a video frame, set the file again. reel-creation-pipeline.md (TikTok Studio) says so.
+
+**Lesson:** a file input that accepts a file has not necessarily used it - check what the page shows.
+
+**Tripwire:** a TikTok Cover box without the language label and title just before Post.
+
+**Status:** FIXED
+
+---

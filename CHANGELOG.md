@@ -1,3 +1,16 @@
+## [2026-11-23h] - TikTok cover set before the editor loaded (P432)
+
+### Fixed
+
+- **TikTok upload:** the cover file is set only after the cover editor's frame strip has loaded, and the cover is
+  checked on screen before Save. Muslim #2631 TJ (first frame) and #2664 RU (white) were deleted and posted again.
+
+### Docs
+
+- fix_patterns.md P432, PATTERN_INDEX.md; reel-creation-pipeline.md (TikTok Studio); reel-retro.md (#2631, #2664).
+
+---
+
 ## [2026-11-23g] - Muslim #2631 published (R290-R293)
 
 ### Added
