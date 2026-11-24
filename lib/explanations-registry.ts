@@ -21,6 +21,7 @@ import x_bukhari_5986 from '@/content/explanations/bukhari-5986.json'
 import x_bukhari_6018 from '@/content/explanations/bukhari-6018.json'
 import x_bukhari_6114 from '@/content/explanations/bukhari-6114.json'
 import x_bukhari_6116 from '@/content/explanations/bukhari-6116.json'
+import x_bukhari_6306 from '@/content/explanations/bukhari-6306.json'
 import x_bukhari_6307 from '@/content/explanations/bukhari-6307.json'
 import x_bukhari_6405 from '@/content/explanations/bukhari-6405.json'
 import x_bukhari_6406 from '@/content/explanations/bukhari-6406.json'
@@ -75,6 +76,7 @@ export const EXPLANATIONS: Record<string, Explanation> = {
   'bukhari-6018': x_bukhari_6018 as Explanation,
   'bukhari-6114': x_bukhari_6114 as Explanation,
   'bukhari-6116': x_bukhari_6116 as Explanation,
+  'bukhari-6306': x_bukhari_6306 as Explanation,
   'bukhari-6307': x_bukhari_6307 as Explanation,
   'bukhari-6405': x_bukhari_6405 as Explanation,
   'bukhari-6406': x_bukhari_6406 as Explanation,
