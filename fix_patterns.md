@@ -16965,3 +16965,37 @@ anchored at "moral", where the moral opens with "In one hadith...".
 **Status:** RULE (trial on #3479)
 
 ---
+
+## PATTERN 436: views per reel across all five platforms, every two days
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** feature (operator request)
+
+**What was asked.** A helper that collects the views of every reel on every channel and language, run
+every day or two in the middle of the day, instead of looking platform by platform by hand.
+
+**Why it matters.** The TikTok stall (every post since 2026-11-23 at 0 views, with hourly spacing too) was
+found only because the operator asked. A table keyed by R id shows a stall the day it starts.
+
+**Fix.** `scripts/views/`:
+- `collect.py` - Telegram from the public page t.me/s/SahihHadithReels (views per message id, walking back);
+  joins everything to `reel-tracker.md` (TG id and YouTube id from the notes; TikTok / Instagram / Facebook by
+  the caption starting with the reel's title = the YouTube title before " | ", nearest R date when a title
+  repeats, more than 3 days apart is no match). Writes `out/views/<date>.csv`, appends `out/views/history.csv`
+  (growth since the last snapshot) and `out/views/<date>-report.md`: totals, last 7 days with the R ids at 0
+  per platform, top 10 of 14 days, averages by language and by theme over 30 days.
+- `yt.js`, `tt.js`, `meta.js` - run with Playwright MCP `browser_evaluate` and its `filename` option in the
+  operator's signed-in browser (Studio / TikTok Studio / Business Suite Content), saving `views-<p>.json`.
+  Playwright's run_code has no fs; browser_evaluate's `filename` is the way to get the data to disk.
+  A file missing or older than 6 h is reported, never guessed.
+
+**Facebook is shown but not summed.** For reels cross-posted from Instagram, the FB-feed "Просмотры" runs within
+a few views of the IG figure (2 261 vs 2 254 on R299; 58 of 67 identical) - it looks like the shared counter.
+Adding it would count the same views twice. Business Suite gives the last 30 days only; history keeps the rest.
+
+**Lesson:** a number the operator has to go and look for is a number nobody watches.
+
+**Tripwire:** a report where a platform's "ok" hides a stale file; FB added into the total.
+
+**Status:** FIXED (scheduled every two days at midday, operator's computer must be on)
+
+---

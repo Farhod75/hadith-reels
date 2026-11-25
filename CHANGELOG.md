@@ -1,3 +1,15 @@
+## [2026-11-25d] - P436: views report across all platforms
+
+### Added
+
+- **scripts/views/collect.py, yt.js, tt.js, meta.js:** views per reel (R id) from Telegram, YouTube, TikTok, Instagram and Facebook; out/views/<date>.csv, history.csv, <date>-report.md. Facebook shown but kept out of the total (cross-posted reels share the IG counter).
+
+### Docs
+
+- fix_patterns.md P436, reel-creation-pipeline.md (views report), PATTERN_INDEX.md.
+
+---
+
 ## [2026-11-25c] - Tirmidhi #3479 published (R298-R301)
 
 ### Added

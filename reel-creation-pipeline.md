@@ -782,6 +782,11 @@ that cannot happen by memory again.
 **Order: TG (agent) -> IG + FB (one post, Meta Business Suite) -> YT Shorts ->
 TikTok.** One platform at a time.
 
+**Views report every two days (operator 2026-11-25, P436).** `scripts/views/collect.py` joins Telegram (public
+page), YouTube Studio, TikTok Studio and Business Suite (Instagram; Facebook shown, not summed) to the tracker by
+R id; the browser parts run `scripts/views/{yt,tt,meta}.js` through `browser_evaluate` with `filename`. A
+scheduled task runs it every two days at midday on the operator's computer and sends the report.
+
 **The Al-Mudarris line under the HV line (operator 2026-11-24, P433; project doc
 HR-handoff-al-mudarris-link.md).** Every NEW reel's description gets ONE line about
 Al-Mudarris (free Arabic lessons) straight after the `🔍 ... hadithverifier.com` line; the HV

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-363 patterns in 376 entries, frontier **P434**. The P-sequence is shared with
+364 patterns in 377 entries, frontier **P436**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -424,5 +424,6 @@ BEFORE changing it.
 - **P432** - a TikTok cover set before the cover editor loaded was dropped without a word
 - **P433** - the Al-Mudarris line under the HV line in every new reel description
 - **P434** - a modern frame only on the moral, and the timeline set (7th c. -> the collector's century -> today)
+- **P436** - views per reel across all five platforms, every two days
 
-<!-- pattern-index-stamp entries=376 patterns=363 frontier=434 sha1=e388a40bf8a8f1c614c2ec358653a490e71e1ee4 -->
+<!-- pattern-index-stamp entries=377 patterns=364 frontier=436 sha1=147eff12a2008560faafd3c0860bbc795f73701b -->
