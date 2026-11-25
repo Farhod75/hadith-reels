@@ -9,6 +9,10 @@ slug, num, date = cfg['slug'], cfg['number'], cfg['date']
 L = ['en', 'ru', 'uz', 'tj']
 R = cfg['r_first']; rn = {l: 'R%d' % (R + i) for i, l in enumerate(L)}
 rng = 'R%d-R%d' % (R, R + 3)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
+from set_grade import set_grade   # P438: from the library row, not assumed
+grade = set_grade(cfg, os.getcwd())
+print('grade:', grade)
 sub = {'en': 'YES - scribe-srt.py (P423, P425); stt-validate clean', 'ru': 'YES - scribe-srt.py (P423, P425); stt-validate clean',
        'uz': 'YES - scribe-srt.py (P422); stt-validate clean', 'tj': 'YES - scribe-srt.py (P422); stt-validate clean'}
 W = 'out/work/adults/%s/%%s/adults-%%s-%s-%%s' % (slug, slug)
@@ -16,8 +20,8 @@ rows = []
 for i, l in enumerate(L):
     j = json.load(io.open(W % (l, l, 'render.json'), encoding='utf-8'))
     dur = round(sum(j['sceneDurations']), 1); mb = round(os.path.getsize(W % (l, l, 'reel.mp4')) / 1048576, 1)
-    rows.append('| %s | %s | %s #%s | %s | Sahih | %s | %s | %s | Adults | %s | adults-%s-%s-story.mp3 | adults-%s-%s-moral.mp3 | adults-%s-%s-narration.mp3 | %s | adults-%s-%s-bg-mixed.mp4 | %s | %s | adults-%s-%s-reel.mp4 | %ss | %s MB | %s%sCover on %s. YouTube https://youtube.com/shorts/%s. |' % (
-        rn[l], date, cfg['collection'], num, cfg['narrator'], cfg['theme'], cfg['tags'], l.upper(), slug, l, slug, l, slug, l, slug,
+    rows.append('| %s | %s | %s #%s | %s | %s | %s | %s | %s | Adults | %s | adults-%s-%s-story.mp3 | adults-%s-%s-moral.mp3 | adults-%s-%s-narration.mp3 | %s | adults-%s-%s-bg-mixed.mp4 | %s | %s | adults-%s-%s-reel.mp4 | %ss | %s MB | %s%sCover on %s. YouTube https://youtube.com/shorts/%s. |' % (
+        rn[l], date, cfg['collection'], num, cfg['narrator'], grade, cfg['theme'], cfg['tags'], l.upper(), slug, l, slug, l, slug, l, slug,
         ', '.join(j['scenes']), l, slug, cfg['beds'][l], sub[l], l, slug, dur, mb, ('TG %d. ' % (cfg['tg_first'] + i)) if 'tg' not in cfg else ('TG %s. ' % cfg['tg'][l]), cfg['notes'][l], cfg['covers'][l], cfg['yt'][l]))
 t = rd('reel-tracker.md')
 last = [x for x in t.split('\n') if x.startswith('| R%d |' % (R - 1))][0]

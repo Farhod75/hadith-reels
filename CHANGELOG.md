@@ -1,3 +1,15 @@
+## [2026-11-25f] - P438: tracker grade from the library
+
+### Fixed
+
+- **scripts/docs-set.py:** the grade is read from hadith_library (or the docs config's `grade`) instead of always "Sahih"; anything but sahih/hasan stops. New scripts/lib/set_grade.py.
+
+### Docs
+
+- fix_patterns.md P438, PATTERN_INDEX.md; tests in scripts/lib/test_set_grade.py.
+
+---
+
 ## [2026-11-25e] - P437: render-set ignores a stale narration.mp3
 
 ### Fixed

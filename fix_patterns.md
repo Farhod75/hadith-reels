@@ -17025,3 +17025,26 @@ Checked on bukhari-7536 (all four languages fresh: narration.mp3).
 **Status:** FIXED
 
 ---
+## PATTERN 438: docs-set wrote "Sahih" for every set
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** data accuracy (tracker)
+
+**What happened.** `docs-set.py` had the grade as a literal in the tracker row. Tirmidhi #3479
+(at-Tirmidhi: gharib; al-Albani: hasan) went into reel-tracker.md as Sahih for R298-R301 and
+was corrected by hand.
+
+**Fix.** `scripts/lib/set_grade.py`: the docs config's `grade` if set (operator override), else
+`hadith_library.grade` for the set's `library_id` (docs config, else `out/set-<number>.json`).
+Only sahih/hasan are accepted - any other value, an empty grade or a missing id stops the docs
+before anything is written. docs-set prints the grade it used.
+
+**Tests.** scripts/lib/test_set_grade.py (no network). Checked against the library: #3479 Hasan,
+#7536 Sahih, #6306 Sahih.
+
+**Lesson:** a fact the library already holds is read, not typed.
+
+**Tripwire:** a tracker grade that differs from hadith_library.grade.
+
+**Status:** FIXED
+
+---
