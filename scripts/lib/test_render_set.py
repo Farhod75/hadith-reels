@@ -204,3 +204,28 @@ def test_a_leg_near_or_under_the_target_is_kept():
     assert rs.loudness_gain(-27.6) == 0.0
     assert rs.loudness_gain(-28.3) == 0.0
     assert rs.loudness_gain(-31.0) == 0.0   # never boosted - could clip the voice
+
+
+# ---- P437: a narration.mp3 older than story/moral is the previous narration ----
+def _touch(path, t):
+    io.open(path, "wb").close()
+    os.utime(path, (t, t))
+
+
+def test_concat_newer_than_both_parts_is_fresh(tmp_path):
+    s, m, n = (str(tmp_path / x) for x in ("s.mp3", "m.mp3", "n.mp3"))
+    _touch(s, 1000); _touch(m, 1000); _touch(n, 2000)
+    assert rs.narration_is_stale(n, [s, m]) is False
+
+
+def test_re_narrated_moral_makes_the_concat_stale(tmp_path):
+    # #2664 UZ: moral re-narrated after the last render - narration.mp3 still held the old one
+    s, m, n = (str(tmp_path / x) for x in ("s.mp3", "m.mp3", "n.mp3"))
+    _touch(s, 1000); _touch(n, 2000); _touch(m, 3000)
+    assert rs.narration_is_stale(n, [s, m]) is True
+
+
+def test_missing_concat_counts_as_stale(tmp_path):
+    s, m = str(tmp_path / "s.mp3"), str(tmp_path / "m.mp3")
+    _touch(s, 1000); _touch(m, 1000)
+    assert rs.narration_is_stale(str(tmp_path / "none.mp3"), [s, m]) is True

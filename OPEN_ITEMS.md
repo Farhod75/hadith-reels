@@ -205,7 +205,7 @@ this one wins.
   live (AR/EN/RU/TJ). Listen PUBLISHED 2026-11-23 (4 clips, index 155).
 - **Muslim #2664 - PUBLISHED 2026-11-23 (R286-R289, TG 309-316 video + full-text replies); library d2095e20.** Explanation page
   live (AR/EN/RU/UZ/TJ). Listen PUBLISHED 2026-11-23 (4 clips, index 151).
-- **render-set.py aligns on a stale narration.mp3 after a re-narration** (#2664 UZ): the first render stops at the
+- **DONE 2026-11-25 (P437): render-set.py aligns on a stale narration.mp3 after a re-narration** (#2664 UZ): the first render stops at the
   scene-length gate, the second passes. Concatenate story+moral in render-set before measuring.
 - **Muslim #1048 - PUBLISHED 2026-11-23 (R282-R285, TG 305-308); library d9ad6c04.** Explanation page live (AR/EN/RU).
   Library RU matn corrected before narration. Listen PUBLISHED 2026-11-23 (4 clips, index 147).

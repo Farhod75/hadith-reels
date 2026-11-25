@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-364 patterns in 377 entries, frontier **P436**. The P-sequence is shared with
+365 patterns in 378 entries, frontier **P437**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -425,5 +425,6 @@ BEFORE changing it.
 - **P433** - the Al-Mudarris line under the HV line in every new reel description
 - **P434** - a modern frame only on the moral, and the timeline set (7th c. -> the collector's century -> today)
 - **P436** - views per reel across all five platforms, every two days
+- **P437** - render-set measured a narration.mp3 left over from the previous narration
 
-<!-- pattern-index-stamp entries=377 patterns=364 frontier=436 sha1=147eff12a2008560faafd3c0860bbc795f73701b -->
+<!-- pattern-index-stamp entries=378 patterns=365 frontier=437 sha1=8b302f49ae26c6e5206c7bb4fbf676a09e8a39fd -->

@@ -191,13 +191,24 @@ def aligned_durations(anchors, story, moral, matn_start, total, tail_pad):
 def narration_seconds(ff, slug, lang):
     w = os.path.join(REPO, 'out', 'work', 'adults', slug, lang)
     full = os.path.join(w, 'adults-%s-%s-narration.mp3' % (lang, slug))
-    if os.path.exists(full):
-        return mg.duration(ff, full), 'narration.mp3'
     parts = [os.path.join(w, 'adults-%s-%s-%s.mp3' % (lang, slug, s)) for s in ('story', 'moral')]
     missing = [p for p in parts if not os.path.exists(p)]
     if missing:
         raise SystemExit('FAILED: %s has no narration yet (%s)' % (lang, ', '.join(os.path.basename(p) for p in missing)))
-    return sum(mg.duration(ff, p) for p in parts) + CONCAT_GAP_GUARD, 'story+moral +%.1fs guard' % CONCAT_GAP_GUARD
+    if not narration_is_stale(full, parts):
+        return mg.duration(ff, full), 'narration.mp3'
+    how = 'story+moral +%.1fs guard' % CONCAT_GAP_GUARD
+    if os.path.exists(full):   # P437: a re-narration left yesterday's concat behind
+        how += ' (narration.mp3 older than story/moral - ignored)'
+    return sum(mg.duration(ff, p) for p in parts) + CONCAT_GAP_GUARD, how
+
+
+def narration_is_stale(full, parts):
+    """P437: render-reel rebuilds narration.mp3 from story+moral, so a concat older than either
+    part measures the previous narration (#2664 UZ: the first render stopped at the scene gate)."""
+    if not os.path.exists(full):
+        return True
+    return os.path.getmtime(full) < max(os.path.getmtime(p) for p in parts)
 
 
 def clip_seconds(ff, names):

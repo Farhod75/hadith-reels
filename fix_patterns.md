@@ -16999,3 +16999,29 @@ Adding it would count the same views twice. Business Suite gives the last 30 day
 **Status:** FIXED (scheduled every two days at midday, operator's computer must be on)
 
 ---
+
+## PATTERN 437: render-set measured a narration.mp3 left over from the previous narration
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** tooling (a false STOP, then a pass)
+
+**What happened.** #2664 UZ was re-narrated after a render. `render-set.py` measured
+`<base>-narration.mp3` when it existed - but that file is render-reel's step-4 concat of the
+*previous* story+moral. The scene-length gate ran on the old length and stopped; the render
+rebuilt the concat, and the second render-set run passed.
+
+**Fix.** `narration_seconds()` uses narration.mp3 only when it is at least as new as both
+story.mp3 and moral.mp3 (`narration_is_stale`). Otherwise it measures story+moral plus the
+0.6 s concat guard, and the line says the old concat was ignored. The SRT was already safe:
+scribe-srt.py fingerprints story+moral (size + mtime) and render-reel rebuilds narration.mp3
+every run.
+
+**Tests.** scripts/lib/test_render_set.py: fresh concat, re-narrated moral, no concat.
+Checked on bukhari-7536 (all four languages fresh: narration.mp3).
+
+**Lesson:** a derived file is only as current as its newest input - compare before you read it.
+
+**Tripwire:** render-set prints "narration.mp3" for a language whose story or moral changed today.
+
+**Status:** FIXED
+
+---

@@ -1,3 +1,14 @@
+## [2026-11-25e] - P437: render-set ignores a stale narration.mp3
+
+### Fixed
+
+- **scripts/render-set.py:** after a re-narration the old narration.mp3 (render-reel's concat) was measured, so the scene-length gate stopped on the previous length (#2664 UZ). It is used now only when newer than story and moral; otherwise story+moral + guard.
+
+### Docs
+
+- fix_patterns.md P437, OPEN_ITEMS.md, PATTERN_INDEX.md; tests in scripts/lib/test_render_set.py.
+
+---
 ## [2026-11-25d] - P436: views report across all platforms
 
 ### Added
