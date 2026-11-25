@@ -1,3 +1,16 @@
+## [2026-11-25i] - P441: ElevenLabs pronunciation dictionary for TJ
+
+### Added
+
+- **tts/pronunciation-tj.json, tts/pronunciation-dictionaries.json, scripts/tts-dictionary.py:** misread words fixed by an IPA dictionary instead of rewording (давон, дастонатро).
+- **app/api/tts/route.ts:** sends the language's pronunciation_dictionary_locators.
+
+### Docs
+
+- fix_patterns.md P441, reel-creation-pipeline.md (dictionary first), OPEN_ITEMS.md, PATTERN_INDEX.md; tests in scripts/lib/test_tts_dictionary.py.
+
+---
+
 ## [2026-11-25h] - P440: TTS instruction record corrected
 
 ### Fixed

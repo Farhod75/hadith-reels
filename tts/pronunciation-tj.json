@@ -1,0 +1,7 @@
+{
+  "_doc": "P441: words the TTS engine mispronounces, fixed by an ElevenLabs pronunciation dictionary (the text is not changed). Add a word only after a Scribe-checked A/B in out/tts-dict-test. Then run: python scripts/tts-dictionary.py --lang tj --apply",
+  "rules": [
+    {"word": "давон", "ipa": "daˈvɔn", "note": "running; read as довон without it (#7536 TJ; trial 2026-11-25: 0/3 plain, 3/3 with)"},
+    {"word": "дастонатро", "ipa": "dastɔnatˈrɔ", "note": "your hands; read as достонатро / дустонатро (P284; trial 2026-11-25: 2/3 plain, 3/3 with)"}
+  ]
+}

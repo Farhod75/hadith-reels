@@ -343,6 +343,8 @@ second one) · Change log. Then one commit, `Doc=1`.
 
   Current model: **eleven_v4** (default since 2026-10-04).
 
+  **Pronunciation dictionary first (P441).** A word the engine misreads goes into`n  `tts/pronunciation-<lang>.json` (word + IPA) after a Scribe-checked A/B in out/tts-dict-test, then`n  `python scripts/tts-dictionary.py --lang <l> --apply`; /api/tts sends the dictionary with every request`n  and the text stays as written. Rewording (below) is the fallback when the dictionary does not take.`n  The pytest gate fails if a rule file changed without --apply.
+
   | word | model | voiced as | found | workaround |
   |---|---|---|---|---|
   | «Марде» | v3 | «Мардэ» | R081 | «Як мард» — NOT NEEDED on v4 |

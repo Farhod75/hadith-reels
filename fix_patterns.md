@@ -17106,3 +17106,37 @@ operator's approval, check the Scribe transcript. Never respell (P095).
 **Status:** FIXED (record)
 
 ---
+## PATTERN 441: a pronunciation dictionary instead of rewording
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** feature (fixes a class P095/P440 left open)
+
+**Why.** With TTS_INSTRUCTIONS dead (P440) the only lever was rewording, which is not available in
+the matn and changes what the channel says. ElevenLabs pronunciation dictionaries are read by
+eleven_v4 (IPA phoneme rules, non-English included) and leave the text untouched.
+
+**Trial (out/tts-dict-test, TJ adults voice Meisam, eleven_v4, Scribe tg):**
+- «давон»: plain 0/3 (Scribe داوان = довон), dictionary 3/3 (دوان).
+- «дастонатро»: plain 2/3 (one دوستانت - "your friends"), dictionary 3/3.
+- Through /api/tts after the change: 3/3 both words.
+
+**Fix.**
+- `tts/pronunciation-tj.json` - word, IPA, note (with the trial numbers).
+- `scripts/tts-dictionary.py --lang tj [--apply]` - builds lower- and capital-initial rules (P284
+  broke sentence-initially), creates `hr-<lang>-<sha6>` on ElevenLabs when the rules change, writes
+  `tts/pronunciation-dictionaries.json` (id, version_id, rules_sha; no secret).
+- `app/api/tts/route.ts` - sends the language's `pronunciation_dictionary_locators` with every request.
+- The API key needed Pronunciation Dictionaries: Write (operator enabled it; nothing else).
+
+**Tests.** scripts/lib/test_tts_dictionary.py - the locator's rules_sha must match the rule file, so an
+edit without --apply fails pytest and the pre-push hook.
+
+**Order for a misread word now:** re-take once; add a dictionary rule and A/B it; reword our own block
+only if the dictionary does not take. Never respell (P095).
+
+**Lesson:** the right lever changes how a word is said, not what is written.
+
+**Tripwire:** a reworded block for a word that a dictionary rule could have fixed.
+
+**Status:** FIXED (TJ); UZ when a word breaks
+
+---

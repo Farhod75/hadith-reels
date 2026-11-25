@@ -13,6 +13,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
 import { requireAdmin } from '@/lib/admin-session'
+// P441: per-language ElevenLabs pronunciation dictionaries (tts/pronunciation-<lang>.json, synced by
+// scripts/tts-dictionary.py). The text is never respelled (P095) - the dictionary carries the fix.
+import PRONUNCIATION_DICTIONARIES from '@/tts/pronunciation-dictionaries.json'
+
+type DictLocator = { id: string; version_id: string }
+const DICTS = PRONUNCIATION_DICTIONARIES as Record<string, DictLocator>
 
 type VoiceSet = {
   adults: string
@@ -257,6 +263,9 @@ export async function POST(req: NextRequest) {
           // languages and both lanes at once.
           model_id: process.env.ELEVENLABS_MODEL || 'eleven_v4',
           voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+          ...(DICTS[langKey]
+            ? { pronunciation_dictionary_locators: [{ pronunciation_dictionary_id: DICTS[langKey].id, version_id: DICTS[langKey].version_id }] }
+            : {}),
         }),
       }
     )

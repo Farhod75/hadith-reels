@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-368 patterns in 381 entries, frontier **P440**. The P-sequence is shared with
+369 patterns in 382 entries, frontier **P441**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -19,8 +19,8 @@ BEFORE changing it.
 
 - `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
 - `fix_patterns.md` (16) - P209, P247, P256, P291, P332, P364, P365, P366, P388, P390, P396, P398, P399, P405, P406, P411
+- `route.ts` (12) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360, P441
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
-- `route.ts` (11) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
@@ -429,5 +429,6 @@ BEFORE changing it.
 - **P438** - docs-set wrote "Sahih" for every set
 - **P439** - the publishing scripts lived only in out/
 - **P440** - the TTS-instruction "fix" was dead code
+- **P441** - a pronunciation dictionary instead of rewording
 
-<!-- pattern-index-stamp entries=381 patterns=368 frontier=440 sha1=5b4af728d1f210aa61152ffc447d738d156e7076 -->
+<!-- pattern-index-stamp entries=382 patterns=369 frontier=441 sha1=05ed48b66841608cfe530d588a3dbcb8cb35eaa0 -->

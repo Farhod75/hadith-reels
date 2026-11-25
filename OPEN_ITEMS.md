@@ -205,7 +205,7 @@ this one wins.
   live (AR/EN/RU/TJ). Listen PUBLISHED 2026-11-23 (4 clips, index 155).
 - **Muslim #2664 - PUBLISHED 2026-11-23 (R286-R289, TG 309-316 video + full-text replies); library d2095e20.** Explanation page
   live (AR/EN/RU/UZ/TJ). Listen PUBLISHED 2026-11-23 (4 clips, index 151).
-- **ElevenLabs pronunciation dictionary (P440, 2026-11-25):** TTS_INSTRUCTIONS are not sent since P102, so a
+- **DONE 2026-11-25 (P441): ElevenLabs pronunciation dictionary (P440, 2026-11-25):** TJ dictionary live (давон, дастонатро: 0/3 and 2/3 plain -> 3/3 with). UZ next when a word breaks. TTS_INSTRUCTIONS are not sent since P102, so a
   mispronounced UZ/TJ word is fixed only by rewording. A PLS/alias dictionary on eleven_v4 could fix it without
   changing the text - check that v4 accepts one, then test on давон/вачаб.
 - **DONE 2026-11-25 (P437): render-set.py aligns on a stale narration.mp3 after a re-narration** (#2664 UZ): the first render stops at the
