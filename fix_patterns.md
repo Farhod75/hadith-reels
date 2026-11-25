@@ -11598,6 +11598,11 @@ breaks sidecars on published reels.
 
 ## PATTERN 284: A Tajik vowel that only breaks sentence-initially
 
+> **Correction (P440, 2026-11-25):** the fix below never ran. Since P102 (2026-08-09) UZ/TJ go to
+> ElevenLabs and `TTS_INSTRUCTIONS` is not sent - route.ts marks it reference-only. The re-narration came
+> back right by chance (each take differs). The example was removed from route.ts. The only working lever is
+> rewording our own blocks (P295, P303). Respelling stays forbidden (P095).
+
 `Дастонатро` (your hands) narrated as `Достонатро` (your stories). The same stem
 in the STORY block, `дастонашро`, narrated correctly in the same run.
 
@@ -12043,6 +12048,9 @@ that confirmed the codepoints. Not by any gate.
 ---
 
 ## PATTERN 295: the TTS instruction lever worked once and did not work twice
+
+> **Correction (P440, 2026-11-25):** it never worked. The instructions are not sent to ElevenLabs (P102);
+> P284's good take was luck. The rewording rule below stands; skip the "try the instruction once" step.
 
 P284 fixed a Tajik vowel — `Дастонатро` narrated as `Достонатро` — with a
 word-level example in `tj.adults`'s `instructions`, and the re-narration came
@@ -17071,5 +17079,30 @@ aside); YouTube differs only in the Checks wait.
 **Tripwire:** a new out/*js<N>.py.
 
 **Status:** FIXED
+
+---
+## PATTERN 440: the TTS-instruction "fix" was dead code
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** record accuracy
+
+**What was wrong.** P284 (2026-10-22) recorded a Tajik vowel fixed by a word example in
+`TTS_INSTRUCTIONS`, and P295 told the next person to "try the instruction once". But P102
+(2026-08-09) moved UZ/TJ to ElevenLabs, and route.ts says the instructions are "RETAINED FOR
+REFERENCE ONLY - no longer called". P284's correct re-take was chance. Found again on #7536 TJ
+(вачаб/давон): an instruction edit did nothing; rewording to шитобон/шитофтан did.
+
+**Fix.** Correction notes at the top of P284 and P295; the das-TON example removed from route.ts
+(an instruction that does not run reads as a word that is handled). The order for a mispronounced
+word: re-take once (takes differ), then reword our own block or the library translation with the
+operator's approval, check the Scribe transcript. Never respell (P095).
+
+**Open:** ElevenLabs pronunciation dictionaries could fix a word without rewording - not tried
+(OPEN_ITEMS).
+
+**Lesson:** a fix is proven by the code path that runs, not by the next good take.
+
+**Tripwire:** a pattern or comment that cites TTS_INSTRUCTIONS as the fix.
+
+**Status:** FIXED (record)
 
 ---

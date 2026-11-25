@@ -1,3 +1,16 @@
+## [2026-11-25h] - P440: TTS instruction record corrected
+
+### Fixed
+
+- **fix_patterns.md P284, P295:** correction notes - TTS_INSTRUCTIONS are not sent since P102; the P284 take was chance.
+- **app/api/tts/route.ts:** the dead das-TON example removed from the reference-only TTS_INSTRUCTIONS.
+
+### Docs
+
+- fix_patterns.md P440, OPEN_ITEMS.md (pronunciation dictionary), PATTERN_INDEX.md.
+
+---
+
 ## [2026-11-25g] - P439: publishing scripts from one tracked generator
 
 ### Added

@@ -118,9 +118,6 @@ const TTS_INSTRUCTIONS: Record<string, string> = {
     "Pronounce these Tajik Cyrillic letters precisely: ҳ as aspirated h (like Arabic ح); " +
     "қ as deep uvular k (like Arabic ق); ҷ as English 'j' in 'judge'; ӣ as long 'ee'; ӯ as long 'oo'; " +
     "ғ as voiced uvular g (like Arabic غ). " +
-    "Vowel quality carries meaning: дастон / дастонат / дастонаш = 'das-TON' " +
-    "(hands), with a clear short 'a' in the first syllable — never 'dos-TON', " +
-    "which is достон, a story or epic. " +
     "Do not use Russian phonetic patterns. " +
     "This is religious content — speak with gravity and respect.",
 }
