@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "completed_utc": "2026-11-24T23:46:09.9105907Z",
+  "request_id": "01a20fee-a87f-7d53-b2d7-f34c78d36d95",
+  "negative_prompt": null,
+  "duration_sec": 10,
+  "image": "out\\refs\\b6306-dawn-1.jpg",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "submitted_utc": "2026-11-24T23:40:29.3739113Z",
+  "size_bytes": 23306177,
+  "schema": 1,
+  "name": "b6306-dawn",
+  "generate_audio": null,
+  "video_url": "https://v3b.fal.media/files/b/0ab3d02c/UN_4PkHKTku-cQV44ksXN_output.mp4",
+  "file": "out\\backgrounds\\new\\b6306-dawn.mp4",
+  "mode": "image-to-video",
+  "prompt": "The first light of dawn slowly brightens behind the date palms, the sky warms from deep blue to pale gold, the palm fronds sway gently. A new day given, hope. Slow push-in toward the palms. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text."
+}

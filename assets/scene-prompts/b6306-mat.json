@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "prompt": "The small lamp flame beside the plain palm-fibre mat flickers gently, its warm glow softly pulses on the floor and the wall of the dim room. Humility before the Lord. Slow push-in toward the mat. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "b6306-mat",
+  "resolution": null,
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\b6306-mat.mp4",
+  "duration_sec": 10,
+  "image": "out\\refs\\b6306-mat-2.jpg",
+  "size_bytes": 25477686,
+  "schema": 1,
+  "video_url": "https://v3b.fal.media/files/b/0ab3d036/yDx1HqKoCOeM2FEgxXh0p_output.mp4",
+  "request_id": "01a20fee-a8be-7511-9c26-9ecf4594f998",
+  "negative_prompt": null,
+  "submitted_utc": "2026-11-24T23:40:29.4584449Z",
+  "mode": "image-to-video",
+  "completed_utc": "2026-11-24T23:47:57.2800997Z"
+}

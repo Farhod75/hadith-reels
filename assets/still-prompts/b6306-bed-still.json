@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6306-bed",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a folded wool blanket and a simple sleeping mat in a quiet mud-brick room at night, a small clay oil lamp glowing beside it. Mood: say it tonight before you sleep. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20fe6-561c-7342-8b60-e07cb5effe06",
+    "submitted_utc":  "2026-11-24T23:31:23.7756836Z",
+    "completed_utc":  "2026-11-24T23:31:32.0315221Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6306-bed-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd5/MSLOJQnfWrfDimcw5AZBZ_NrJv6F6v.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6306-bed-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd5/rRA8hIZA1Dceka2Q4VqqD_nxukoJ2W.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6306-bed-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd5/B-uffUPjA069HbMxyUPzo_CmyFZtcL.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2120195973
+}

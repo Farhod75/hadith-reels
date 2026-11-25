@@ -1,0 +1,18 @@
+{
+  "resolution": null,
+  "request_id": "01a2100b-bc64-7d00-a3ef-722e9e10516e",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "negative_prompt": null,
+  "submitted_utc": "2026-11-25T00:12:14.952331Z",
+  "name": "b6306-lane",
+  "generate_audio": null,
+  "image": "out\\refs\\b6306-lane-2.jpg",
+  "duration_sec": 10,
+  "prompt": "The soft warm light at the far end of the narrow lane slowly grows brighter, fine dust floats in the evening air, a light breeze stirs the palm-fibre bundle. Keeping to the covenant as far as one is able, walking toward the Lord. Slow push-in down the lane toward the light. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d0e8/6Y5qiqWCs8UqCDZybfHa1_output.mp4",
+  "file": "out\\backgrounds\\new\\b6306-lane.mp4",
+  "size_bytes": 22646881,
+  "completed_utc": "2026-11-25T00:17:38.0492390Z",
+  "mode": "image-to-video",
+  "schema": 1
+}

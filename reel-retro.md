@@ -1878,3 +1878,29 @@ and when a sign-in is lost, ask for the one sign-in, not for the work.
 **The finding:** a hand-set bed gain carried over from another set is a guess - start every leg on auto and only override against the measured gap.
 
 ---
+
+## R294-R297 - Sahih al-Bukhari #6306 - 2026-11-24
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok (TikTok one language an hour, the first set under the new spacing rule). Seven Kling 4.0 clips, none remade.
+
+**Caught before publish**
+
+- The library row was #6323; the operator approved re-basing it to #6306 (the sayyid al-istighfar wording), with Arabic from HadeethEnc 5503.
+- Stage 3 flagged 'لَكَ' (before You) in TJ, then UZ; fixed with the operator's approval.
+- render-set stopped on P386 with six clips for the long matn; a seventh scene (lane) and quarter anchors fixed it.
+
+**Escaped to publish**
+
+- Instagram/Facebook went out without the custom covers: Meta's thumbnail section never finished loading and the operator said publish as is. The operator sets the covers from the phone.
+
+**Incidents**
+
+- TikTok views near zero on the days with 8-12 posts; new rule from this set: one set a day on TikTok, languages about an hour apart (review 2026-11-27).
+- The pre-push hook blocked on an overdue weekly tool check; ran it and logged it.
+- device_commit_files left a stale copy once; re-committed with force and verified.
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a long matn needs its clip count planned from the measured narration - six clips could not carry #6306; the seventh was a paid extra that planning would have ordered up front.
+
+---

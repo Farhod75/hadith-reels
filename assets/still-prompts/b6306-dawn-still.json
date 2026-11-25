@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6306-dawn",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, the first light of dawn rising over a grove of date palms behind mud-brick houses, the sky turning from deep blue to pale gold. Mood: a new day given, hope. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20fe5-b963-7d03-8fc2-deb21b2242f9",
+    "submitted_utc":  "2026-11-24T23:30:43.6637895Z",
+    "completed_utc":  "2026-11-24T23:30:51.9134585Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6306-dawn-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd1/whvEYWRitbkwQqGUChXGm_oBoXA3VV.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6306-dawn-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd1/pLuOmScP-_WLbvVozjoJF_J2RrNHe0.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6306-dawn-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfd1/-W1ZNKPAfM5d3JHuUuaGi_9cvgoAPo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1690982643
+}

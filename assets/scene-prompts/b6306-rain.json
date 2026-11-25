@@ -1,0 +1,18 @@
+{
+  "submitted_utc": "2026-11-24T23:40:29.7909675Z",
+  "duration_sec": 10,
+  "size_bytes": 31375584,
+  "generate_audio": null,
+  "schema": 1,
+  "name": "b6306-rain",
+  "completed_utc": "2026-11-24T23:46:52.2061730Z",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d02f/mk2YVWsD9sa0Mh8YhcoEa_output.mp4",
+  "mode": "image-to-video",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resolution": null,
+  "negative_prompt": null,
+  "file": "out\\backgrounds\\new\\b6306-rain.mp4",
+  "request_id": "01a20fee-aa29-7851-a9b9-189b640c21ca",
+  "prompt": "Gentle rain keeps falling on the old stone steps, small streams of clear water run down them and wash the dust away, the puddles ripple. Sins washed away by forgiveness. Slow push-in up the steps. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "image": "out\\refs\\b6306-rain-1.jpg"
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6306-rain",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, gentle rain falling on old stone steps and washing the dust from them, puddles reflecting soft grey light, a mud-brick wall beside. Mood: sins washed away by forgiveness. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20fe5-706d-7c93-94b1-4901b45c514d",
+    "submitted_utc":  "2026-11-24T23:30:24.9633683Z",
+    "completed_utc":  "2026-11-24T23:30:33.2657208Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6306-rain-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcf/jYtL9WJxLQROY0ONoufqr_pk4bICzI.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6306-rain-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcf/eKsqRZvudZUYrbPsenaQ3_G2uGcurR.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6306-rain-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcf/CCV01DbcEBBrSE700oeox_1LWk5bxB.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  251595977
+}

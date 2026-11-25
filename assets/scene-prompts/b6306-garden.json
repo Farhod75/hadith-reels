@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "request_id": "01a20fee-ac51-7793-8fb5-e9bc537411bc",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d02d/d1AhD88SnZCYHdHCVx6-L_output.mp4",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "generate_audio": null,
+  "negative_prompt": null,
+  "prompt": "Clear water flows gently along the channel between the green fruit trees, leaves move in a soft breeze, golden light glistens on the water. The reward of Paradise. Slow push-in along the water channel. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "image": "out\\refs\\b6306-garden-1.jpg",
+  "duration_sec": 10,
+  "size_bytes": 42346061,
+  "completed_utc": "2026-11-24T23:46:29.1990154Z",
+  "name": "b6306-garden",
+  "submitted_utc": "2026-11-24T23:40:30.3558086Z",
+  "schema": 1,
+  "file": "out\\backgrounds\\new\\b6306-garden.mp4"
+}

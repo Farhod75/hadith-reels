@@ -499,6 +499,11 @@ Generate short-form video reels (15-60s) with authentic hadiths for Instagram/Ti
   Ar-Raheeq) are a MAP, not a source: their footnotes lead to the primary text. Their own text is
   not quoted (copyright, and their translations are loose); they may be named as "see also,
   p. N" beside the primary citation. Nothing is translated from a translation.
+  **Where the books are (operator's PC, 2026-11-24) - read them there, NEVER copy their text into
+  this repo (it is public):** Usvai Hasana RU `C:\QA\Hadith verification AI app\books\usvai-hasana-ru`;
+  Ar-Raheeq al-Makhtum RU/UZ/EN `D:\Arabic_All\Ар-Рахик аль-Махтум`; Ibn Hisham's Sira RU
+  `D:\Arabic_All\Сира Ибн Хишама\RU` (UZ and TJ are being translated). Ibn Hisham is primary but needs a
+  muhaddith's grading per report before use (P389).
 - **Matn corrections without an Arabic reader (P391, operator 2026-11-10).** When the library's
   Arabic differs from its cited hadith by 1-2 words and TWO independent Tier-1 sources (sunnah.com - via
   the local hadith-json mirror - and HadeethEnc) agree word for word, correct the library to them through

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6306-mat",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a plain palm-fibre prayer mat laid on the floor of a dim mud-brick room, a small clay oil lamp beside it giving a soft warm glow, the mat facing a plain wall. Mood: humility, standing before the Lord. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20fe5-247c-7071-bc3e-401302fce543",
+    "submitted_utc":  "2026-11-24T23:30:05.5368715Z",
+    "completed_utc":  "2026-11-24T23:30:13.9160132Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6306-mat-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcd/KXRYMS-vsqt8RAm5JFfHi_uv7Fe4vM.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6306-mat-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcd/slNXRSu9-sXm0IVq1ZGcj_TTU9tov5.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6306-mat-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcd/QXBuMR8WYHOvsl2USTqVJ_emvyzMgo.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2046934035
+}

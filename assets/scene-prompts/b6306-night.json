@@ -1,0 +1,18 @@
+{
+  "completed_utc": "2026-11-24T23:47:48.0184369Z",
+  "size_bytes": 18502692,
+  "image": "out\\refs\\b6306-night-2.jpg",
+  "request_id": "01a20fee-aa40-7661-9b21-83d52e3a25ef",
+  "resolution": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d036/nTYXETnRooJj3T6isrey3_output.mp4",
+  "name": "b6306-night",
+  "prompt": "Stars twinkle softly in the deep blue night sky above the quiet village, the warm lamp light in the small window flickers gently, the palm fronds stir in a light breeze. The night, when a servant turns back to his Lord. Slow push-in toward the glowing window. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\b6306-night.mp4",
+  "submitted_utc": "2026-11-24T23:40:29.8056612Z",
+  "negative_prompt": null,
+  "schema": 1,
+  "mode": "image-to-video",
+  "duration_sec": 10
+}

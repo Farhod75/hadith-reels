@@ -1,0 +1,18 @@
+{
+  "file": "out\\backgrounds\\new\\b6306-bed.mp4",
+  "duration_sec": 10,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "size_bytes": 17800278,
+  "video_url": "https://v3b.fal.media/files/b/0ab3d02c/sBTQH8cNFu8bje-N4qwAU_output.mp4",
+  "request_id": "01a20fee-ab98-7363-bc5c-5abb877d80bb",
+  "negative_prompt": null,
+  "completed_utc": "2026-11-24T23:46:19.5562279Z",
+  "submitted_utc": "2026-11-24T23:40:30.1710415Z",
+  "name": "b6306-bed",
+  "resolution": null,
+  "prompt": "The small lamp flame beside the folded blanket and sleeping mat flickers gently, its warm glow softly pulses in the quiet room at night. Say it tonight before you sleep. Slow push-in toward the lamp and the bed. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "image": "out\\refs\\b6306-bed-2.jpg",
+  "mode": "image-to-video",
+  "schema": 1,
+  "generate_audio": null
+}

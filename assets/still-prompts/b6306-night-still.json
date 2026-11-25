@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "b6306-night",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a quiet mud-brick village under a deep blue night sky full of stars, one small window glowing with warm lamp light. Mood: the night, when a servant turns back to his Lord. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a20fe3-6042-7770-bc06-94e78ff447ae",
+    "submitted_utc":  "2026-11-24T23:28:09.3533487Z",
+    "completed_utc":  "2026-11-24T23:29:55.4040356Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\b6306-night-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcb/GkIsigeyG1oZ7BIf90HQB_ypxu3etW.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\b6306-night-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcb/tEUgpVRonFZYysqFhZGPj_YvzRbY00.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\b6306-night-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3cfcb/9zoRaaAkuV2p7_hV8OVHh_bLsm5KJJ.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  450088384
+}

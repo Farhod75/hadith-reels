@@ -1,3 +1,16 @@
+## [2026-11-25a] - Bukhari #6306 published (R294-R297)
+
+### Added
+
+- **Bukhari #6306 assets:** scenes b6306-night, mat, lane, rain, garden, dawn, bed with x1.4 slow copies, prompt and still sidecars.
+- **CLAUDE.md:** where the Seerah/hadith books live on the operator's PC (map only, never committed - the repo is public).
+
+### Docs
+
+- reel-tracker.md R294-R297 (Forgiveness / Repentance), reel-retro.md, OPEN_ITEMS.md (#6306); Shaddad ibn Aws added to the companions line.
+
+---
+
 ## [2026-11-24b] - Al-Mudarris line under the HV line in new reel descriptions (P433)
 
 ### Added
