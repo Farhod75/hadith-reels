@@ -1,0 +1,18 @@
+{
+  "file": "out\\backgrounds\\new\\t3479-rain.mp4",
+  "completed_utc": "2026-11-25T02:08:24.9747310Z",
+  "submitted_utc": "2026-11-25T02:03:16.9935265Z",
+  "name": "t3479-rain",
+  "schema": 1,
+  "mode": "image-to-video",
+  "negative_prompt": null,
+  "generate_audio": null,
+  "resolution": null,
+  "image": "out\\refs\\t3479-rain-2.jpg",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d381/YnzfCCzCjKMtvRgJFOewY_output.mp4",
+  "duration_sec": 10,
+  "prompt": "Gentle rain drops fall on the dry cracked earth and darken it, the small green shoot in the center trembles and lifts, soft silver light breaks through the clouds. The supplication answered. Slow push-in toward the green shoot. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a21071-640e-7db0-9168-41df50f1a932",
+  "size_bytes": 19850153,
+  "model": "fal-ai/kling-video/v4/image-to-video"
+}

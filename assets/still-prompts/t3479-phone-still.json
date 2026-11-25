@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t3479-phone",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, present day, a quiet modern room at night: a plain prayer rug laid on a carpet; beside the rug on the floor a smartphone lies FACE DOWN, screen against the carpet, only its plain dark matte back visible, the screen completely hidden and dark, no light from it; a small warm table lamp glowing softly nearby. Mood: the phone set aside, a present heart before supplication. The phone back has no logo, no camera branding. No people, no hands, no feet, no faces, no animals, no moon, no crescent, no readable text, no letters, no calligraphy, no logos.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a21076-8816-7923-afcf-a37393fad177",
+    "submitted_utc":  "2026-11-25T02:08:53.6509045Z",
+    "completed_utc":  "2026-11-25T02:09:02.2539222Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t3479-phone-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d386/SBWyIWavWk00cLd2XQukE_QTTY9cEb.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t3479-phone-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d386/WJ8HAVOITuSTD042tq9Cb_FXEglBOO.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t3479-phone-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d386/iIHDoy55CAWfEzFMpWvbg_OafV39QS.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  2036838592
+}

@@ -1,0 +1,18 @@
+{
+  "size_bytes": 19504404,
+  "video_url": "https://v3b.fal.media/files/b/0ab3d387/-2nEa-s-OSQJVNZJwcYCr_output.mp4",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resolution": null,
+  "duration_sec": 10,
+  "submitted_utc": "2026-11-25T02:03:14.8762248Z",
+  "mode": "image-to-video",
+  "file": "out\\backgrounds\\new\\t3479-sky.mp4",
+  "request_id": "01a21071-5c00-78c1-8572-ae6d3c5974cd",
+  "completed_utc": "2026-11-25T02:09:31.2473702Z",
+  "image": "out\\refs\\t3479-sky-2.jpg",
+  "prompt": "The first stars slowly brighten in the deep blue evening sky, the thin band of gold above the horizon gently fades, the palm crowns sway softly in a light breeze. Calling upon the Lord, the sky open. Slow tilt up toward the sky. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "t3479-sky",
+  "schema": 1,
+  "negative_prompt": null,
+  "generate_audio": null
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t3479-scholar",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a 9th-century Central Asian scholar\u0027s study in Termez: stacks of CLOSED plain leather-bound manuscripts with blank undecorated spines and covers, all books shut, a thin cut reed pen (qalam, a simple hollow reed stick, not a feather) lying beside a small clay inkwell, a small clay oil lamp glowing warmly, carved wooden lattice window with soft evening light, plain brick walls, a wool rug on the floor. No open books, no pages visible, no feathers, no quills. Mood: a hadith carefully preserved and recorded across the centuries. No people, no hands, no feet, no faces, no animals, no moon, no crescent, no readable text, no letters, no calligraphy, no logos.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a21076-3c92-75c0-9a44-f066ce59901e",
+    "submitted_utc":  "2026-11-25T02:08:34.2014873Z",
+    "completed_utc":  "2026-11-25T02:08:42.5780164Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t3479-scholar-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d384/zG0yS4zt7sLdPPzALR6AU_BUpXGvLX.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t3479-scholar-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d384/TnAujQxdGcsekPBBuDIVj_SyNBKZFt.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t3479-scholar-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d384/fpLYsaTPR483AFP3yszM7_tFyQ9App.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  686851081
+}

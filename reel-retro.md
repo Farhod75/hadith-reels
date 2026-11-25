@@ -1904,3 +1904,30 @@ and when a sign-in is lost, ask for the one sign-in, not for the work.
 **The finding:** a long matn needs its clip count planned from the measured narration - six clips could not carry #6306; the seventh was a paid extra that planning would have ordered up front.
 
 ---
+
+## R298-R301 - Jami at-Tirmidhi #3479 - 2026-11-25
+
+**Shipped:** EN, RU, UZ, TJ - TG / IG+FB / YT Shorts / TikTok (one language an hour). Seven Kling 4.0 clips, none remade. First reels with the Al-Mudarris line (P433) and the first timeline set (P434).
+
+**Caught before publish**
+
+- First stills for the 9th-century study had open books with script-like lines, a feather quill and a metal-nib pen; the phone lay screen-up with a lit screen. Prompts rewritten ('closed books only, a reed pen not a feather', 'FACE DOWN'), redone before Kling.
+- RU cover on the lamp clip lost the flame at 2.0 s; redrawn on the sky clip.
+- pick-nasheed returned #6306's four beds again (that set was not in the tracker yet); excluded by hand.
+- TikTok EN: the music check came up off; switched on and waited for 'No issues found'.
+
+**Escaped to publish**
+
+- None known. The phone leaves the frame 2-3 s into its scene (the push-in goes past it); flagged to the operator, who approved.
+
+**Incidents**
+
+- Scribe 429 (system busy) on the UZ subtitle pass; render-set retried and the UZ SRT was written.
+- YouTube TJ: the device did not answer within 140 s and the upload stayed a draft; not rerun blind - the draft was checked (title, description, not-for-kids, tags, cover) and published.
+- YouTube Studio's Create button changed; the generator now uses getByRole('button', {name:'Create'}).
+
+**Operator corrections of the assistant: 0.**
+
+**The finding:** a scene's subject must stay in frame for the words it carries - a push-in past the key object (the phone) leaves the moral's image empty; aim the camera move at the object, not beyond it.
+
+---

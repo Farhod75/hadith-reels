@@ -1,0 +1,18 @@
+{
+  "size_bytes": 17377564,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "submitted_utc": "2026-11-25T02:03:16.8002819Z",
+  "request_id": "01a21071-6374-7e93-aade-d0288fa6b5aa",
+  "file": "out\\backgrounds\\new\\t3479-basin.mp4",
+  "generate_audio": null,
+  "mode": "image-to-video",
+  "schema": 1,
+  "name": "t3479-basin",
+  "completed_utc": "2026-11-25T02:09:16.9415843Z",
+  "prompt": "The water in the clay basin stays perfectly still like a mirror reflecting the palm and the dusk sky, the palm fronds above sway gently, the light slowly deepens. A calm attentive heart. Slow push-in toward the reflection. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "duration_sec": 10,
+  "video_url": "https://v3b.fal.media/files/b/0ab3d386/kD-UBUyhOmIBm0om8bbGs_output.mp4",
+  "negative_prompt": null,
+  "image": "out\\refs\\t3479-basin-2.jpg",
+  "resolution": null
+}

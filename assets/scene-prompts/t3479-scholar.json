@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d3d5/dJWKi7fYlcRGWxSr9hY2n_output.mp4",
+  "resolution": null,
+  "negative_prompt": null,
+  "name": "t3479-scholar",
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\t3479-scholar.mp4",
+  "schema": 1,
+  "image": "out\\refs\\t3479-scholar-1.jpg",
+  "duration_sec": 10,
+  "request_id": "01a2107c-a8d5-7353-a1db-801bc78479a2",
+  "size_bytes": 12001469,
+  "submitted_utc": "2026-11-25T02:15:35.4303862Z",
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "completed_utc": "2026-11-25T02:22:27.5044605Z",
+  "prompt": "The small clay lamp flame flickers gently beside the stacks of closed manuscripts, soft evening light through the carved lattice window slowly shifts on the brick wall, fine dust floats in the air. A hadith carefully preserved and recorded across the centuries. Slow push-in toward the books and the reed pen. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text."
+}

@@ -1,3 +1,15 @@
+## [2026-11-25c] - Tirmidhi #3479 published (R298-R301)
+
+### Added
+
+- **Tirmidhi #3479 assets:** scenes t3479-sky, door, rain, lamp, basin, scholar, phone with x1.4 slow copies, prompt and still sidecars (registry entries landed with #6306).
+
+### Docs
+
+- reel-tracker.md R298-R301 (Dua / Supplication; grade Hasan), reel-retro.md, OPEN_ITEMS.md (#3479).
+
+---
+
 ## [2026-11-25b] - P434: modern frames only on the moral; the timeline set
 
 ### Added

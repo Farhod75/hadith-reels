@@ -197,6 +197,8 @@ this one wins.
   still and the Kling prompt (light, weather, camera), and take objects from internet references. First used on #31.
 - **Bukhari #31 - PUBLISHED 2026-11-15 (R238-R241, TG 257-260); library c1e0da62.** Listen for #31 PUBLISHED
   2026-11-15 (4 clips; line found stale 2026-11-21). Listen for #91 PUBLISHED 2026-11-15 (4 clips).
+- **Tirmidhi #3479 - PUBLISHED 2026-11-25 (R298-R301, TG 329-332); library c0d58e8c.** No HadeethEnc
+  explanation yet. Listen PUBLISHED 2026-11-25 (index 163). First set with the Al-Mudarris line (P433).
 - **Bukhari #6306 - PUBLISHED 2026-11-24 (R294-R297, TG 321-328); library 1e8f5019.** Explanation page
   live. Listen PUBLISHED 2026-11-25 (with #3479, index 163). IG covers: operator to set from the phone.
 - **Muslim #2631 - PUBLISHED 2026-11-23 (R290-R293, TG 317-320); library 961eb91b.** Explanation page

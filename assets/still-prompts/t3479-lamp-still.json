@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t3479-lamp",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a single small clay oil lamp on a low mud-brick ledge in a dark quiet room, its flame perfectly still and upright, warm light on the rough wall. Mood: a heart that is present, steady and focused. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a2105d-2b0f-7951-bed6-ec1e078a8684",
+    "submitted_utc":  "2026-11-25T01:41:11.4639547Z",
+    "completed_utc":  "2026-11-25T01:41:19.7165410Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t3479-lamp-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2df/GBQrAa2MNDRzDbLbw8YBW_WJm0DvAz.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t3479-lamp-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2df/eSKuZmxZggUFmy53xU2eb_BKUVhULc.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t3479-lamp-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2df/FcbjDlla5XxMV5_8VWcjC_UUV3SkPn.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  566034872
+}

@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t3479-sky",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, looking up past the dark silhouettes of date palm crowns into a vast clear evening sky, the first stars appearing in deep blue above a thin band of fading gold. Mood: calling upon the Lord, the sky open. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a2105c-e1db-70f0-92df-2ed530a70923",
+    "submitted_utc":  "2026-11-25T01:40:52.4633357Z",
+    "completed_utc":  "2026-11-25T01:41:00.9797902Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t3479-sky-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2dd/JJ7hF3YKV4GW5G0bSgB_J_PcZI9fwD.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t3479-sky-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2dd/AsndOKPkYJZrwk2zmmTjq_4ObNc1iT.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t3479-sky-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2dd/dIkgajAEQqflVU7T283fn_XFrHuYT8.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1855385105
+}

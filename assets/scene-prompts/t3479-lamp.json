@@ -1,0 +1,18 @@
+{
+  "mode": "image-to-video",
+  "generate_audio": null,
+  "submitted_utc": "2026-11-25T02:03:17.1116704Z",
+  "schema": 1,
+  "resolution": null,
+  "size_bytes": 14064086,
+  "image": "out\\refs\\t3479-lamp-1.jpg",
+  "completed_utc": "2026-11-25T02:08:08.0550284Z",
+  "negative_prompt": null,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "duration_sec": 10,
+  "file": "out\\backgrounds\\new\\t3479-lamp.mp4",
+  "request_id": "01a21071-64a2-72e2-8028-2c5a82a8f7ba",
+  "prompt": "The small clay lamp flame burns steady and upright, barely moving, its warm glow softly pulses on the rough mud-brick wall of the quiet dark room. A heart that is present. Slow push-in toward the flame. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "name": "t3479-lamp",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d380/1_0c2Y9fJg4k2VHzuBRRR_output.mp4"
+}

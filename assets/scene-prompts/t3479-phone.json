@@ -1,0 +1,18 @@
+{
+  "video_url": "https://v3b.fal.media/files/b/0ab3d3cd/y6Gkjq5aLC8cg4ICv_kMl_output.mp4",
+  "mode": "image-to-video",
+  "size_bytes": 11417470,
+  "schema": 1,
+  "submitted_utc": "2026-11-25T02:15:35.3177859Z",
+  "completed_utc": "2026-11-25T02:21:04.8241515Z",
+  "prompt": "The warm table lamp glows softly and steadily, the phone lies still face down on the carpet with its screen hidden and dark, the quiet room stays calm at night. The phone set aside, a present heart before supplication. Slow push-in past the phone toward the prayer rug. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "duration_sec": 10,
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "resolution": null,
+  "request_id": "01a2107c-a863-78e1-8428-f010dd9abcb7",
+  "generate_audio": null,
+  "file": "out\\backgrounds\\new\\t3479-phone.mp4",
+  "negative_prompt": null,
+  "image": "out\\refs\\t3479-phone-1.jpg",
+  "name": "t3479-phone"
+}

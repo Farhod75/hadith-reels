@@ -1,0 +1,36 @@
+{
+    "schema":  1,
+    "mode":  "text-to-image",
+    "name":  "t3479-door",
+    "model":  "fal-ai/flux-2",
+    "prompt":  "Vertical 9:16 photoreal cinematic, a palm-fibre prayer mat laid inside a mud-brick room before an open wooden doorway, through the doorway a starry night sky, a small clay lamp glowing on the floor beside the mat. Mood: standing to supplicate with certainty. 7th-century Arabian setting: mud-brick walls, palm-trunk beams, plain clay vessels, palm-fibre mats, wool cloth. No people, no hands, no feet, no footprints of people, no faces, no animals, no blood, no moon, no crescent, no text, no calligraphy, no modern objects, no glass, no metal.",
+    "image_size":  "portrait_16_9",
+    "num_inference_steps":  28,
+    "safety_tolerance":  "2",
+    "count_requested":  3,
+    "request_id":  "01a2105d-bdfe-7a52-9813-3a45d53d8a43",
+    "submitted_utc":  "2026-11-25T01:41:49.0710540Z",
+    "completed_utc":  "2026-11-25T01:41:57.3320255Z",
+    "variants":  [
+                     {
+                         "n":  1,
+                         "file":  "out\\refs\\t3479-door-1.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2e3/mz27cYvaFoMbMmSfD-lA3_FnHC6ES8.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  2,
+                         "file":  "out\\refs\\t3479-door-2.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2e3/kuwdCGRTBbJ_IDSChSuVD_jKfnoJ16.png",
+                         "downloaded":  true
+                     },
+                     {
+                         "n":  3,
+                         "file":  "out\\refs\\t3479-door-3.jpg",
+                         "url":  "https://v3b.fal.media/files/b/0ab3d2e3/uZB_jtCmrz3weZUah8Z64_S38HUDjn.png",
+                         "downloaded":  true
+                     }
+                 ],
+    "chosen":  null,
+    "seed":  1514068584
+}

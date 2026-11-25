@@ -1,0 +1,18 @@
+{
+  "model": "fal-ai/kling-video/v4/image-to-video",
+  "schema": 1,
+  "negative_prompt": null,
+  "duration_sec": 10,
+  "resolution": null,
+  "image": "out\\refs\\t3479-door-2.jpg",
+  "video_url": "https://v3b.fal.media/files/b/0ab3d393/DKaWDOaJCYrAllGSCD0Un_output.mp4",
+  "submitted_utc": "2026-11-25T02:03:16.0979817Z",
+  "mode": "image-to-video",
+  "generate_audio": null,
+  "size_bytes": 24518113,
+  "file": "out\\backgrounds\\new\\t3479-door.mp4",
+  "name": "t3479-door",
+  "prompt": "Stars twinkle softly in the night sky beyond the open wooden doorway, the small lamp flame beside the prayer mat flickers gently, its warm glow pulses on the floor. Standing to supplicate with certainty. Slow push-in along the mat toward the doorway. Keep every object exactly as in the image, nothing added or removed. No people, no hands, no feet, no faces, no creatures, no moon, no text.",
+  "request_id": "01a21071-60aa-7b12-ba49-84a6395d81d0",
+  "completed_utc": "2026-11-25T02:11:33.8945139Z"
+}
