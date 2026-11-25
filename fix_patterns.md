@@ -16933,3 +16933,35 @@ exact - so a missing id stops the run.
 **Status:** FIXED (TikTok pending the operator's profile link)
 
 ---
+
+## PATTERN 434: a modern frame only on the moral, and the timeline set (7th c. -> the collector's century -> today)
+
+**Date:** 2026-11-24  **Repo:** hadith-reels  **Severity:** content rule (operator, 2026-11-24, first used on Tirmidhi #3479)
+
+**What was asked.** The operator asked whether a scene may look like today when the moral speaks to today
+("call your parents", "set aside what distracts you"), and proposed a passage of time: the Prophet's era,
+then the middle ages, then the present, by context.
+
+**Rule.**
+- The hadith itself (the matn and its lead-in) stays 7th-century, as before: a modern object under the
+  Prophet's words is an anachronism and makes the hadith look as if it were about the object.
+- The moral may end on ONE present-day frame, only when the moral's own words point to it (a phone face down
+  for "set aside what distracts you"). Same blocks as every scene: no people, no hands, no faces; no screen
+  showing anything, no readable text, no logo or brand.
+- Between them, at the start of the moral, a frame from the collector's century may stand for the hadith being
+  recorded and carried down (#3479: a 9th-century study in Termez for at-Tirmidhi - closed manuscripts, a reed
+  pen (qalam, not a feather quill), an inkwell, a lamp; no open pages, no calligraphy).
+- Order only forward in time; never go back to a 7th-century scene after a later one.
+
+**First stills failed and were redone (2026-11-24):** open books with lines that read as script, a feather quill
+and a metal-nib pen (wrong for the 9th century), a phone screen-up with a lit screen. The prompts that passed say
+"closed books only, no pages visible, a reed pen not a feather" and "FACE DOWN, only its plain back visible".
+
+**Lesson:** the narration does not speak the collector's line (it is in the caption), so the collector's frame is
+anchored at "moral", where the moral opens with "In one hadith...".
+
+**Tripwire:** a modern object in a scene under the matn; a lit or readable screen; going back in time.
+
+**Status:** RULE (trial on #3479)
+
+---

@@ -439,6 +439,12 @@ Hard blocks, non-negotiable, from the spec's §2: never depict the Prophet ﷺ,
 any prophet, angels, Allah, or named Sahaba. Era and clothing must match the
 hadith's period.
 
+**Modern frames and the timeline set (operator 2026-11-24, P434).** The matn stays 7th-century. The moral may
+end on ONE present-day frame when its own words point there (a phone face down for "set aside what distracts
+you"): no people, no hands, no lit screen, no text, no logo. A frame from the collector's century (closed
+manuscripts, reed pen, inkwell - no readable pages) may open the moral, anchored at `moral`. Time only moves
+forward: 7th c. -> collector -> today.
+
 **⚠ This JSON is the religious gate.** Approve or edit it before a single
 image is generated. A bad prompt approved here becomes a paid clip and then a
 published reel.

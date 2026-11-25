@@ -1,3 +1,11 @@
+## [2026-11-25b] - P434: modern frames only on the moral; the timeline set
+
+### Added
+
+- **P434 (operator 2026-11-24):** the matn stays 7th-century; the moral may end on ONE present-day frame when its own words point there (no people, no lit screen, no text, no logo); a frame from the collector's century may open the moral, anchored at `moral`; time only moves forward. First used on Tirmidhi #3479 (a 9th-century study in Termez, a phone face down). fix_patterns.md, reel-creation-pipeline.md, PATTERN_INDEX.md.
+
+---
+
 ## [2026-11-25a] - Bukhari #6306 published (R294-R297)
 
 ### Added
