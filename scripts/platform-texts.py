@@ -31,6 +31,9 @@ import re
 import sys
 import unicodedata
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
+import al_mudarris as am  # noqa: E402  P433
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 LANGS = ('en', 'ru', 'uz', 'tj')
@@ -84,7 +87,10 @@ def tag_words(tags_line):
     return out
 
 
-def build(caption, lang):
+def build(caption, lang, reel_id=None):
+    """reel_id (R...): P433 - add the Al-Mudarris line under the 🔍 line: with a tagged link
+    for YouTube, without a link for Instagram/Facebook and TikTok (TikTok off for now, see
+    scripts/lib/al_mudarris.py). None = no line (tests of the old shape)."""
     p = parse(caption)
     coll, num = collection_and_number(p['ref'])
     narrator = p['ref'].split(',', 1)[1].strip() if ',' in p['ref'] else ''
@@ -102,8 +108,14 @@ def build(caption, lang):
     fb_desc = '\n'.join(p['body']).strip()
     # P371: the Arabic stays (operator 2026-11-05); the caption goes in unchanged.
     tiktok = caption.strip()
+    insta = caption.strip()
+    if reel_id:
+        yt_desc = am.apply(yt_desc, 'youtube', lang, reel_id)
+        insta = am.apply(insta, 'instagram', lang)
+        fb_desc = am.apply(fb_desc, 'instagram', lang)
+        tiktok = am.apply(tiktok, 'tiktok', lang)
     return {
-        'instagram': caption.strip(),
+        'instagram': insta,
         'facebook_title': yt_title,
         'facebook_description': fb_desc,
         'youtube_title': yt_title,
@@ -222,13 +234,18 @@ def main(argv=None):
         print('%s - %d block(s) checked, %d differ, %d mixed-script word(s)'
               % ('FAILED' if bad or mixed else 'OK', n, len(bad), len(mixed)))
         return 1 if bad or mixed else 0
+    try:
+        ids = am.reel_ids(a.number, REPO)          # P433
+    except ValueError as e:
+        print('FAILED: %s' % e)
+        return 1
     results = []
     for lang in a.langs:
         path = find_caption(a.number, lang)
         if not path:
             print('MISSING caption-%s-%s.txt (run build-caption.ts first)' % (a.number, lang))
             return 1
-        results.append((lang, build(io.open(path, encoding='utf-8').read(), lang)))
+        results.append((lang, build(io.open(path, encoding='utf-8').read(), lang, reel_id=ids.get(lang))))
     covers = {}
     for lang, _ in results:
         name = 'cover-%s-%s.jpg' % (a.number, lang)

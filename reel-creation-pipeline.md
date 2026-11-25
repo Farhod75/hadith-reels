@@ -776,6 +776,22 @@ that cannot happen by memory again.
 **Order: TG (agent) -> IG + FB (one post, Meta Business Suite) -> YT Shorts ->
 TikTok.** One platform at a time.
 
+**The Al-Mudarris line under the HV line (operator 2026-11-24, P433; project doc
+HR-handoff-al-mudarris-link.md).** Every NEW reel's description gets ONE line about
+Al-Mudarris (free Arabic lessons) straight after the `🔍 ... hadithverifier.com` line; the HV
+line and the rest are unchanged. The lines live verbatim in `scripts/lib/al_mudarris.py` - never
+retype them.
+- Telegram (`tg-post-set.py`, full and short caption) and YouTube (`platform-texts.py`): the line
+  with a tagged link, `utm_source=telegram|youtube&utm_medium=reel&utm_campaign=hv_reels&utm_content=<R id>`.
+- Instagram + Facebook: a line WITHOUT a link ("link in the profile"); the profile link
+  `utm_source=instagram&utm_medium=bio` was added by the operator on 2026-11-24.
+- TikTok: OFF (`ENABLED['tiktok'] = False`) until the operator adds the bio link - that needs a
+  TikTok Business account, held back until the posting-schedule test is read.
+- The R ids come from `out/set-<n>.json` `"r_first"` (EN, RU, UZ, TJ in that order, as in
+  docs-set.py), else from the set's rows in reel-tracker.md. Neither -> both scripts stop: put
+  `"r_first"` in the set file before building the platform texts.
+- Published reels are not edited. One Al-Mudarris line per description (the code refuses a second).
+
 **THE SEQUENCE IS FIXED (operator, 2026-11-09, P385). Do not reorder it.** This is
 how #6405 was published, and `platform-texts.py` prints it at the top of every
 `out/platform-<n>.md`:

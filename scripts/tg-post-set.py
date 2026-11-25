@@ -34,6 +34,9 @@ import sys
 import urllib.error
 import urllib.request
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib'))
+import al_mudarris as am  # noqa: E402  P433
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 API = 'http://localhost:3002/api/telegram/post'
@@ -59,8 +62,10 @@ def derive_short(full):
     return out
 
 
-def plan_language(number, slug, lang, root=REPO):
-    """Everything needed to post one language, or a reason it cannot be posted."""
+def plan_language(number, slug, lang, root=REPO, reel_id=None):
+    """Everything needed to post one language, or a reason it cannot be posted.
+    reel_id (R...): P433 - the Al-Mudarris line with its tagged link goes under the 🔍 line
+    of the full caption and of the short one. None = no line (tests of the old shape)."""
     full_p = os.path.join(root, 'out', 'caption-%s-%s.txt' % (number, lang))
     short_p = os.path.join(root, 'out', 'caption-%s-%s-tg-video.txt' % (number, lang))
     reel = 'out/work/adults/%s/%s/adults-%s-%s-reel.mp4' % (slug, lang, lang, slug)
@@ -69,12 +74,16 @@ def plan_language(number, slug, lang, root=REPO):
     if not os.path.exists(os.path.join(root, reel)):
         return {'lang': lang, 'error': 'missing ' + reel}
     full = io.open(full_p, encoding='utf-8-sig').read().strip()
+    if reel_id:
+        full = am.apply(full, 'telegram', lang, reel_id)
     if len(full) > MESSAGE_LIMIT:
         return {'lang': lang, 'error': 'caption %d chars - over even the 4096 message limit' % len(full)}
     p = {'lang': lang, 'reel': reel, 'full': full, 'split': needs_split(full)}
     if p['split']:
         if os.path.exists(short_p):
             p['short'] = io.open(short_p, encoding='utf-8-sig').read().strip()
+            if reel_id:
+                p['short'] = am.apply(p['short'], 'telegram', lang, reel_id)
             p['short_source'] = os.path.relpath(short_p, root)
         else:
             p['short'] = derive_short(full)
@@ -126,7 +135,12 @@ def main(argv=None):
     for l in args.redo:
         state.pop(l, None)
 
-    plans = [plan_language(args.number, args.slug, l) for l in args.langs]
+    try:
+        ids = am.reel_ids(args.number, REPO)          # P433
+    except ValueError as e:
+        print('FAILED: %s' % e)
+        return 1
+    plans = [plan_language(args.number, args.slug, l, reel_id=ids.get(l)) for l in args.langs]
     bad = [p for p in plans if 'error' in p]
     print('tg-post-set %s (%s) - %s' % (args.number, args.slug, 'POST' if args.post else 'DRY RUN'))
     for p in plans:

@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-361 patterns in 374 entries, frontier **P432**. The P-sequence is shared with
+362 patterns in 375 entries, frontier **P433**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -422,5 +422,6 @@ BEFORE changing it.
 - **P429** - generate-scene -Resume took the job's settings from its own parameters
 - **P430** - one failed status poll ended a Kling run that was still generating
 - **P432** - a TikTok cover set before the cover editor loaded was dropped without a word
+- **P433** - the Al-Mudarris line under the HV line in every new reel description
 
-<!-- pattern-index-stamp entries=374 patterns=361 frontier=432 sha1=a05bf0644569a0ea376239807d129a8e1409c181 -->
+<!-- pattern-index-stamp entries=375 patterns=362 frontier=433 sha1=f4bdf4bb0b462893f0df0d7fde78ab5ea81ca56a -->

@@ -1,3 +1,17 @@
+## [2026-11-24b] - Al-Mudarris line under the HV line in new reel descriptions (P433)
+
+### Added
+
+- **scripts/lib/al_mudarris.py:** the operator's lines verbatim, the UTM link, insert-after-HV and the reel ids.
+- **tg-post-set.py, platform-texts.py:** the line on Telegram and YouTube (tagged link) and Instagram/Facebook
+  (no link, link in the profile). TikTok off until its profile link exists. Tests: test_al_mudarris.py.
+
+### Docs
+
+- fix_patterns.md P433, PATTERN_INDEX.md; reel-creation-pipeline.md (Publishing).
+
+---
+
 ## [2026-11-23h] - TikTok cover set before the editor loaded (P432)
 
 ### Fixed

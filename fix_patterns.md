@@ -16906,3 +16906,30 @@ dialog still shows a video frame, set the file again. reel-creation-pipeline.md 
 **Status:** FIXED
 
 ---
+
+## PATTERN 433: the Al-Mudarris line under the HV line in every new reel description
+
+**Date:** 2026-11-24  **Repo:** hadith-reels  **Severity:** feature (operator task, project doc HR-handoff-al-mudarris-link.md)
+
+**What was asked.** One line about Al-Mudarris (al-mudarris.com, free Arabic lessons in UZ/RU/TJ) straight
+after the 🔍 hadithverifier line on Telegram, YouTube, Instagram/Facebook and TikTok, in all four languages,
+the lines and links verbatim from the doc; HV line untouched; published reels untouched.
+
+**Fix.** `scripts/lib/al_mudarris.py` holds the verbatim lines, the UTM link builder and
+`insert_after_hv` (after the first 🔍 line; a second Al-Mudarris line is refused; no 🔍 line is an error).
+`tg-post-set.py` adds the tagged line to the full and the short Telegram caption; `platform-texts.py` adds
+it to the YouTube description and the no-link line to Instagram/Facebook. Links in Instagram and TikTok
+captions are not clickable, so there the link is in the profile (operator set Instagram's 2026-11-24).
+TikTok is off until its profile link exists (it needs a Business account). `utm_content` is the reel's R id,
+from `out/set-<n>.json` "r_first" or the tracker; neither stops both scripts rather than guess.
+`lib/caption.ts` (also used by the site) is not changed. scripts/lib/test_al_mudarris.py: verbatim lines,
+no Latin look-alikes in the Cyrillic lines, placement, once only, TikTok off, R ids.
+
+**Lesson:** a link that tells analytics where a visitor came from is only worth having if the id is
+exact - so a missing id stops the run.
+
+**Tripwire:** a description with the Al-Mudarris line anywhere but straight under the 🔍 line, or twice.
+
+**Status:** FIXED (TikTok pending the operator's profile link)
+
+---
