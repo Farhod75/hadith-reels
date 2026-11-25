@@ -972,6 +972,8 @@ cover there first. A native file dialog must be answered with `browser_file_uplo
 `run_code` leaves the MCP's own chooser pending); YouTube and TikTok have an `input[type=file]` that
 `setInputFiles` fills directly.
 
+**Scripts (P439).** `python scripts/publish-js.py --number N [--platform meta,tt,yt] [--langs en]` writes`n`meta|tt|yt<N>-<lang>.js` into the newest `app-*\.playwright-mcp` folder from `out/texts-<N>.json`; run each with`n`browser_run_code_unsafe`. The YouTube one waits 90 s for Checks and does not throw - if the device call times`nout, the upload is a Draft in Studio: finish it there, never re-run.
+
 **Per platform (selectors that worked on 2026-11-16):**
 
 - **Meta Business Suite** - `business.facebook.com/latest/reels_composer?asset_id=...`. «Добавить видео» -> file;

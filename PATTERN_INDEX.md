@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-366 patterns in 379 entries, frontier **P438**. The P-sequence is shared with
+367 patterns in 380 entries, frontier **P439**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -427,5 +427,6 @@ BEFORE changing it.
 - **P436** - views per reel across all five platforms, every two days
 - **P437** - render-set measured a narration.mp3 left over from the previous narration
 - **P438** - docs-set wrote "Sahih" for every set
+- **P439** - the publishing scripts lived only in out/
 
-<!-- pattern-index-stamp entries=379 patterns=366 frontier=438 sha1=206cffe4084373ae7c45c7b2c0d7e790fe4c4c39 -->
+<!-- pattern-index-stamp entries=380 patterns=367 frontier=439 sha1=6809c8e0c74d444f42d860020e1f98c79915d22f -->

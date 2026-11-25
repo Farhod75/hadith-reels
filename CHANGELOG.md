@@ -1,3 +1,15 @@
+## [2026-11-25g] - P439: publishing scripts from one tracked generator
+
+### Added
+
+- **scripts/publish-js.py:** writes the Meta, TikTok and YouTube Playwright scripts per language (replaces out/{metajs,ytjs,ttjs}<N>.py). YouTube Checks wait 90 s with .catch; newest app-* .playwright-mcp folder found automatically.
+
+### Docs
+
+- fix_patterns.md P439, reel-creation-pipeline.md (Scripts), PATTERN_INDEX.md; tests in scripts/lib/test_publish_js.py.
+
+---
+
 ## [2026-11-25f] - P438: tracker grade from the library
 
 ### Fixed

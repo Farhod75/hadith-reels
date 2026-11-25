@@ -1,0 +1,51 @@
+"""scripts/publish-js.py - P439: the Meta/TikTok/YouTube scripts come from one tracked generator."""
+import importlib.util
+import json
+import os
+
+import pytest
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+_spec = importlib.util.spec_from_file_location("publish_js", os.path.join(os.path.dirname(HERE), "publish-js.py"))
+pj = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(pj)
+
+TEXTS = {"en": {"meta": 'Line "one"\nﷺ', "tt": "tt text #x", "yt_title": "T | Sahih",
+                "yt_desc": "desc", "yt_tags": "a,b"}}
+
+
+def test_meta_text_is_a_json_literal():
+    js = pj.meta_js(TEXTS, "en")
+    assert "const TXT=" + json.dumps(TEXTS["en"]["meta"], ensure_ascii=False) + ";" in js
+
+
+def test_yt_waits_90s_and_does_not_throw_on_a_slow_check():
+    js = pj.yt_js(TEXTS, "en", "7536", "bukhari-7536", repo="R")
+    assert "waitFor({timeout:90000}).catch(()=>{})" in js
+    assert "{name:'Create', exact:true}" in js   # 'Create' alone also matched 'Create playlist'
+
+
+def test_yt_points_at_the_reel_and_the_cover_of_its_language():
+    js = pj.yt_js(TEXTS, "en", "7536", "bukhari-7536", repo="R")
+    assert json.dumps(os.path.join("R", "out", "work", "adults", "bukhari-7536", "en", "adults-en-bukhari-7536-reel.mp4")) in js
+    assert json.dumps(os.path.join("R", "out", "work", "adults", "bukhari-7536", "en", "cover-7536-en.jpg")) in js
+
+
+def test_a_missing_text_stops():
+    with pytest.raises(SystemExit):
+        pj.tt_js({"en": {"tt": "  "}}, "en")
+    with pytest.raises(SystemExit):
+        pj.yt_js({"en": {"yt_title": "t"}}, "en", "1", "s")
+
+
+def test_newest_app_folder_wins(tmp_path):
+    for n, t in (("app-6.6395.0", 1000), ("app-6.28899.6", 2000)):
+        d = tmp_path / n / ".playwright-mcp"
+        d.mkdir(parents=True)
+        os.utime(str(d), (t, t))
+    assert pj.playwright_dir(str(tmp_path)).endswith(os.path.join("app-6.28899.6", ".playwright-mcp"))
+
+
+def test_no_app_folder_stops(tmp_path):
+    with pytest.raises(SystemExit):
+        pj.playwright_dir(str(tmp_path))

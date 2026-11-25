@@ -17048,3 +17048,28 @@ before anything is written. docs-set prints the grade it used.
 **Status:** FIXED
 
 ---
+## PATTERN 439: the publishing scripts lived only in out/
+
+**Date:** 2026-11-25  **Repo:** hadith-reels  **Severity:** tooling (fixes lost between sets)
+
+**What happened.** The Meta caption, TikTok caption/toggles and YouTube upload scripts were made by
+out/{metajs,ytjs,ttjs}<N>.py, copied from the previous set each time. out/ is untracked and archived by
+tidy-out, so a fix lived only in the newest copy: yt7536-en.js was still built with the 600 s Checks wait
+(the device bridge gives up at ~140 s and left EN #7536 and TJ #3479 as Drafts), and the playwright folder
+path was hardcoded to one app version.
+
+**Fix.** `scripts/publish-js.py --number N [--platform] [--langs] [--dir]`: one tracked generator, texts
+from out/texts-<N>.json, slug from out/set-<N>.json, output in the newest AnthropicClaude app-*
+`.playwright-mcp` folder. YouTube: `Create` matched exactly, Checks wait 90 s with `.catch`. A missing
+text stops; a missing reel or cover is warned. Same output as the #7536 Meta/TikTok files (line endings
+aside); YouTube differs only in the Checks wait.
+
+**Tests.** scripts/lib/test_publish_js.py.
+
+**Lesson:** a script every set needs is a tracked script.
+
+**Tripwire:** a new out/*js<N>.py.
+
+**Status:** FIXED
+
+---
