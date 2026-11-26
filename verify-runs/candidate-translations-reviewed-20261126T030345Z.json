@@ -1,0 +1,10 @@
+{
+  "reviewed_sha256": "e3de01a6468f5b5cf2f6ef498d56ecb857a8644d9d57d2079988de935a6c7e4d",
+  "signed_at": "2026-11-26T03:03:45+00:00",
+  "rows": 2,
+  "source": "out\\candidate-translations.json",
+  "refs": [
+    "abudawud #1488",
+    "tirmidhi #1956"
+  ]
+}

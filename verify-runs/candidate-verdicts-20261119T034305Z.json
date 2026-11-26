@@ -1,0 +1,659 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "bukhari #7536",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "c43598e0c03f7a6c9a28bcdd8d2159441e0d2668367c6ec67d1516282672d845",
+      "text_english": "3347d415dc9f027a91986510296c2f77e9a65ac3e045d6487815b2c4338f8795",
+      "text_russian": "766fc083c4773c8cc635ae088f7ebf41b560f49d48f2df7d3ed2a608837a966f",
+      "text_uzbek_cyrillic": "ab5d10b986e390baf97ec73edf49837e335da445a6cb3113a39fd6f8d72c5bf2",
+      "text_tajik": "97a8347596e6bb4926002513bc1bd133a1c7087b74718ff1cb17bb7368c8f050"
+    },
+    "checked_at": "2026-11-19T03:43:32+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #5997",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "c451e363d63d0e2ca29043aa870320269cce7bdb52dd62d23b1acfa17760e709",
+      "text_english": "b4170183b7dc24921ff26547d33c4e812765a8ae3e36ded6a5e256925cd1af41",
+      "text_russian": "512c8009233d5d9abb3130fa46b0a4d327200fd9c95ae20f7e862b688bcbd008",
+      "text_uzbek_cyrillic": "801da2b0f36fc1a3f8e1639208fab0d5d8493451a623908a6e7331316a467679",
+      "text_tajik": "2fdcb0bf0852c72ca7f6c102a281ca6ab6814e353a9f56cb1cf1c2dfad10f89f"
+    },
+    "checked_at": "2026-11-19T03:43:53+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6116",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ҳар бор мефармуд",
+              "why": "The Arabic only states that the man repeated his request several times and the Prophet replied 'Lā taghḍab' once (in the final response), not that each repetition was answered individually; the phrase 'every time he said' is an added clarification not explicitly present in the Arabic text."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "1195efa1778d3885232b26998b73ada9bd3960bedcde89bcac9e48e9386e604f",
+      "text_english": "097bea657495212f6d473c658775f80bddc9430827da39ed348e3c7274477f32",
+      "text_russian": "8109792acc766ee4b94d26def1ba8e345c8cb6fd84398fbf3d87432c032531c3",
+      "text_uzbek_cyrillic": "55ac731f50c85daf718f2ef9c69b3d2057e9018a3bec4bb6875f063cec35c567",
+      "text_tajik": "cbc50620b1fab702c29a639c2f041e8159d73d1a0869cb8bea8d4bdc3db4c1a4"
+    },
+    "checked_at": "2026-11-19T03:44:29+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2592",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "f19135bfddaf2671df62ee490818b7ffc3fab202f005919fad9f9a351162b51f",
+      "text_english": "99572f98109e5eb347369da28c42d857e7c1cd61398e5b3390d8219f5ab8e0ed",
+      "text_russian": "9f62a2bf27f5877ef21914abe23c4e952d4c2f660ef490fb2aac2087d40b9f52",
+      "text_uzbek_cyrillic": "74f03c54aa6d8abaffe61da8816a5362c51a22aa7861909babd2a107edfffcce",
+      "text_tajik": "74c4047694b8746f3f896ffc70e22e045142dcfd92ba0ad21fac2d4f3b16efc9"
+    },
+    "checked_at": "2026-11-19T03:45:00+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #1914",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллоҳ унинг бу ишини қадрлади",
+              "why": "The Arabic verb 'شكر الله له' means 'Allah thanked/was grateful to him', but the translation renders it as 'Allah valued/appreciated his deed' (қадрлади), which shifts the meaning from divine gratitude to appreciation/value judgment, and also adds the explicit noun 'иши' (his deed) not present in the Arabic text which simply has 'له' (to him)."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "fa8a8e7f98776d8bfb137232ee5631a21cbc9703d36052806a40438b8c5beb5a",
+      "text_english": "8663c6a3f1f78a98467b31da6eabe7aa49f9759c9fa35ee618d8cd9887097084",
+      "text_russian": "5d0cf194c605cad2473cebc0122cf958ce243e4203dbf8fc68c4b97b2de1eb27",
+      "text_uzbek_cyrillic": "0212294eadd7575f06c47fdccb81bde9658570f08dfd7151a7797e4fe3caec9f",
+      "text_tajik": "3ea1ffcf0dd29b2a47d59b4b25e3dce7344428b7142f8c814c0b9bc63e8a7114"
+    },
+    "checked_at": "2026-11-19T03:45:57+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #5986",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "8e82163fca51622b3ca045ad16202f88f648b05a6a202bc9bfb9735bb8939137",
+      "text_english": "9d0f84e0cfc6958e6f4a689b16d32d44b38d177485aee477a82f2c0895693b0a",
+      "text_russian": "6a0832dad942e2083fc3c9ecbc796c4e89496401ecfca9c2ead0d11f9be1e1c9",
+      "text_uzbek_cyrillic": "26b52a9b96338c9a96aecdca4f27712b75eb572be0d6115332ed835ab2b2aa71",
+      "text_tajik": "e2571ad0a7c926dc8fb7bdacb211003fbce86c58b4e4933329adde84111786cd"
+    },
+    "checked_at": "2026-11-19T03:46:21+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2631",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "[бирга келади]",
+              "why": "The Arabic text only says 'he will come on the Day of Resurrection, I and he' (أنا وهو) without the verb 'бирга келади' (comes together) - the bracketed addition supplies a verb and meaning not explicitly stated in the Arabic."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "5b04ced42d74b0e2af48307387a8160056aae00cdde2c6737b0b9df0a767e2fc",
+      "text_english": "46e31825aef4ffbf0ebfb713d33301c9f6b533532857316ee41824bd09b47de4",
+      "text_russian": "554c0187127dda6f79adcd9d50a1cc624d3befe7d51bdf210ddf84987dbdc35b",
+      "text_uzbek_cyrillic": "c4d9576e999bf5ce707ecea3c4a7ed0f29db560d8a044c04fa639738d21719ee",
+      "text_tajik": "bdea5861f15405eba22c0a203c086cbe96b32003199eaec31a1ad42ad58df1f7"
+    },
+    "checked_at": "2026-11-19T03:46:51+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2664",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "6885a0759e0d0d5bc3b751bcb92fcba35b2b7710c76788f9c4ced02036b9aa95",
+      "text_english": "96892c63ff648e3e19d5efd6254028898d085b09ee3d2643d1232c9f30e47eec",
+      "text_russian": "e106e5ad2722e663d3cbe4f29861a34dab2b118877cca6bebd2197ec76eafb1b",
+      "text_uzbek_cyrillic": "ed9bf8b325cfa6d20493136e655f08527be54d33dc91aaf0324a1d7efdcd1456",
+      "text_tajik": "376b90b2bfd9fdd02b72d26a10baf6dd32571d9a5b483bddd73df506be0c5b84"
+    },
+    "checked_at": "2026-11-19T03:47:34+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6056",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "36194d465e36c02800c08d8c7132f3aaa1239055c843df76d3fd91d9571878e1",
+      "text_english": "441e20116039d4542ffc05b9f3ee27a1af441dc11f03795cfba2581c76084442",
+      "text_russian": "02843eedaf9e764319e9cdaaa8218ffc6b42854f7a28604b9746f93ab9c34b96",
+      "text_uzbek_cyrillic": "73a10c4fb788f299865dcd2ad2d95786663075f45e2e93cfdf400426aaf180d7",
+      "text_tajik": "5f58b01b9259f18001f2a04b6a00412ef13f0290c2caf7d4898a1ef9207bdbaa"
+    },
+    "checked_at": "2026-11-19T03:47:49+00:00"
+  }
+]

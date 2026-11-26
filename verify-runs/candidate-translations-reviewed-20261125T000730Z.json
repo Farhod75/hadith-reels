@@ -1,0 +1,9 @@
+{
+  "reviewed_sha256": "82be54c8cc60bbd7f62483f76ab64dc05e30e0a679d81eff30ddb680f9efbc6c",
+  "signed_at": "2026-11-25T00:07:30+00:00",
+  "rows": 1,
+  "source": "out\\candidate-translations.json",
+  "refs": [
+    "tirmidhi #3479"
+  ]
+}

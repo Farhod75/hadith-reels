@@ -1,0 +1,961 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "muslim #28",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "His Messenger ﷺ",
+              "why": "The ﷺ symbol (peace be upon him) is not present in the Arabic text"
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ﷺ",
+              "why": "This blessing upon Muhammad is not present in the Arabic source."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "1502262e55f56df396fddf8190c26b781ad555462e3826e1ced63b0fe297e3ff",
+      "text_english": "6ab3e42c62c0fbc9773152cf8e753bca6308263c5f3fd0190184467b1a18c28f",
+      "text_russian": "4496cdbb2af1c66fdc897a1c6c1295c8c4de7e542ed5c29a6263313baff19f8b",
+      "text_uzbek_cyrillic": "2e9a83caf810114255044a1722b848df6514e15c5cd3e67d3dc8adba2d33f7b0",
+      "text_tajik": "c71a64bd4f15549b4b956d737025bdf9ce46cdb2a655587e044127029e63feca"
+    },
+    "checked_at": "2026-11-19T03:15:26+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6938",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Do you not say of him",
+              "why": "«ألا تقولوه» tells the speakers not to say that about him; it does not ask whether they say something about him. The following «يقول لا إله إلا الله» states that he says ‘There is no god but Allah.’"
+            }
+          ],
+          "confidence": "medium"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Разве ты не скажешь, что он говорит",
+              "why": "The Arabic تقولوه addresses multiple people and has an object meaning 'it/that'; the Russian instead addresses one person ('ты') and makes 'he says' the content of what that person is asked to say."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "error",
+          "issues": [],
+          "confidence": "low",
+          "raw": ""
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Чунин магӯй",
+              "why": "The translation addresses one person with «магӯй», whereas the Arabic «تقولوه» addresses more than one person."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "incomplete"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "b44e2c959c7526d959e32b2f141521a2de42fb249100aad1a989824d4251b6f2",
+      "text_english": "2fe92efedaaaaaa692811ee73a138ad42e6ead7c316ab945d39cb5bccf84f683",
+      "text_russian": "ae95f966c45b59cdfa75688698aa1697ecbd3cd12b950f4b5c769cc2bd8d09b5",
+      "text_uzbek_cyrillic": "b9a1fc89e1a52c213f211b5e20fa6ac630e292a16269f3305a9cd187f5eb083a",
+      "text_tajik": "9fec431483f918c955d86ce8692ab8e783fcae2e89649052bbc10b6def65da45"
+    },
+    "checked_at": "2026-11-19T03:17:10+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #99",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "592bbd89626d13838247dff675321ad1c8c1c1da1326efaee717b80eab278549",
+      "text_english": "395248baf7044d6e160eb1d8bb38ce8082407c2901fa33ea14797ddd7b9399f7",
+      "text_russian": "c5da2a178b97c3e28fe98cb218dc492efc86cf2b0f14efe28933b9ed8b4238fd",
+      "text_uzbek_cyrillic": "108cff7f7cd4ae2151c46732ba1b061cbb8e4df2872552fe6a31fe96682d9e3e",
+      "text_tajik": "db6f232ce64db99d6b1cd7e74f5b8c01b88a34e4f7cad205f77fedacf3dc62ef"
+    },
+    "checked_at": "2026-11-19T03:17:45+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6682",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Glory be to Allah the Mighty",
+              "why": "العظيم means 'the Great/Magnificent' (referring to greatness), not 'the Mighty' (which would correspond to القدير or العزيز, related to power)."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "89418ff4af9a1d5395421067af518fe9b9f22814481b7b6fbf8a23b775545c84",
+      "text_english": "467bcb03f93bbeb510a1602987ee9e50c5854beb702a5f6112ca1b5a9b55a6f1",
+      "text_russian": "75a97919b0759646256dbe79a6abb95063b75b078dc870e17dbfb7c03f1c8d3b",
+      "text_uzbek_cyrillic": "a288989cdd9352a7597353088a2d83d9623e46a30942e7b2ed3a63546be1861b",
+      "text_tajik": "ce5afe128dc126f79cc8a4d74f60d3e7295e3def98d7a865e84ca185e422393b"
+    },
+    "checked_at": "2026-11-19T03:18:10+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #7563",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Glory be to Allah the Mighty",
+              "why": "العَظيم means 'the Great/Magnificent', not 'the Mighty' (which corresponds to Al-Qawi or Al-Aziz)."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "30f51b23e6b48a2f5799fb94eb0637aa02c976ee4638f28b2547ac1e82013356",
+      "text_english": "39216de5522517a684e4ff52546423666d49e7afbf88c79a40e52afc2b384793",
+      "text_russian": "da5906e0458588ec648d5087d254758876e43e49b4d1d7270de5174666d09229",
+      "text_uzbek_cyrillic": "9ddce45c8c5fbca9471ce7190c0cfd85a8f5de583cf837dc48063dd0a885e0ab",
+      "text_tajik": "3aa1f2c799fbba730d28864158c6a0494871f5856b9ab1267110b43db112db3e"
+    },
+    "checked_at": "2026-11-19T03:18:30+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2609",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ﷺ",
+              "why": "This adds a blessing upon the Messenger that is not present in the Arabic source."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "4f03b19806e973c346c42bbeb210b4421beeff3ca25428353043e078a2e842af",
+      "text_english": "b423c35cc71b4aec2701496b183d3c3cd01ee3a463a7a8343bbab5814dc40ce5",
+      "text_russian": "b7df48280477cd9a7880e57a9dc1686b267bba5a45f977a5ba8456484221b099",
+      "text_uzbek_cyrillic": "ba9e4fff976e7aa384dbbf4fea176e83dce67abdf86f7b5853f2c80b683204ea",
+      "text_tajik": "d6fe6677df9e6a31065ff4291715572eb4a1664a2c7765496c89780484ea2cdb"
+    },
+    "checked_at": "2026-11-19T03:18:57+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6323",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "I seek refuge in You from the evil of what I have done. I acknowledge before You Your favor upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You.",
+              "why": "The Arabic order is: acknowledge favor, acknowledge sin, forgive me, for none forgives sins but You, THEN seek refuge from evil of what I have done. The translation moves the 'seek refuge' clause to the front, altering the sequence of the supplication."
+            },
+            {
+              "type": "added",
+              "quote": "dies that night",
+              "why": "The Arabic only says 'فماتَ' (and dies) without specifying 'that night'; this temporal detail is not stated for the evening case in the source (only the morning case specifies 'مِن يَومِه')."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "and dies that night",
+              "why": "The Arabic evening clause says only “and dies” (فمات), without specifying “that night.” Only the morning clause explicitly specifies death that same day (مِن يَومِه)."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Прибегаю к Тебе от зла того, что я совершил. Признаю пред Тобой милость Твою ко мне, и признаю пред Тобой грех свой, прости же меня",
+              "why": "The Arabic places 'أعوذ بك من شر ما صنعت' after 'فإنه لا يغفر الذنوب إلا أنت', at the end of the supplication, but the translation moves it to the beginning before 'أبوء لك بنعمتك عليك', altering the original sequence of clauses."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "шу кечада",
+              "why": "The Arabic says that if he recites it in the evening and then dies, he enters Paradise; it does not specify that he dies that same night. It explicitly specifies the same day only for the morning recitation."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "(бузургтарин дуои талаби бахшиш)",
+              "why": "This parenthetical gloss ('the greatest supplication for seeking forgiveness') is an added interpretive explanation not present in the Arabic title 'سَيِّدُ الاستِغفارِ'."
+            },
+            {
+              "type": "added",
+              "quote": "ва дар ҳамон шаб бимирад",
+              "why": "The Arabic first clause only says 'فماتَ' (and he dies) without specifying 'that same night'; this time-specification is only present in the second (morning) clause of the Arabic ('مِن يَومِه'), not the first."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "дар ҳамон шаб",
+              "why": "The Arabic says that if he says it in the evening and then dies, he enters Paradise; it does not specify that he dies that same night. Only the morning clause explicitly specifies death that same day."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "5a7ae60ba28ffecd3513bc09dfa08e48f44acaf4c202e917015ceaa8667b5297",
+      "text_english": "ba2235aa6b89833be03d66e47afcd33818ec9602e4e83937d5a40f3579a38fd1",
+      "text_russian": "8b35fac8e2e5f2d733636d821c115ee771696a1167fe25bb8d3cc12dc2243435",
+      "text_uzbek_cyrillic": "8e9666637280543a3b85374e8981eaebd1e7b8bac04962af67b15638f20c1fbb",
+      "text_tajik": "bc83c66fda5efcfbce8432e2ca24142931285518cd8c36da9d59ecb5a4cfb7f8"
+    },
+    "checked_at": "2026-11-19T03:20:06+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "tirmidhi #1988",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "570c6e9923e4d6a7a35754417da65dbe36d8ef9abb0c780e7faa48b5143e17c8",
+      "text_english": "f4d2c535a21edef4611108662e8e33b8257d032a7b3f704272aee0f88f4f1991",
+      "text_russian": "c88966e1e9c2e987f31b66e80aff5e7110acd7e06db99dc92aae059ab1a70cf7",
+      "text_uzbek_cyrillic": "96bd0fe5b8f9223875407fb7abd09106a7a66fdad96a7e2e61ab6e50ec4846cd",
+      "text_tajik": "3f654b2eb861e5eae30c9e22e1e15dbc37eb31740498f8cec59b8b064e289c5c"
+    },
+    "checked_at": "2026-11-19T03:20:24+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2691",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "f239d5b8ece82a9cec579d378579175fc82abe7bdc5117d3074325cc8da2fbad",
+      "text_english": "724af328df1a4b31b93c38c022a6b8b0ae14c62c9038fa5bc9e1a53970abd0e6",
+      "text_russian": "2610daa189eff28a03e97c235a5fc1714ce429f5579e3ce2fdad8f264abcd192",
+      "text_uzbek_cyrillic": "b9a2adac67e1410643706e6fefb04a47514831668aa7193c2ecaa346f3c9a224",
+      "text_tajik": "fa6d117c945a16779340b3f444f3f06a7c227ec132ca1bf264e64f2c02b5d80a"
+    },
+    "checked_at": "2026-11-19T03:21:03+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #15",
+    "agreement": "fail",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ота-онасидан",
+              "why": "Arabic has 'والده' (his father) only; translation adds 'mother' making it 'his parents' instead of 'his father'."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "ота-онасидан",
+              "why": "The Arabic وَالِدِهِ says “his father” (singular), whereas the Uzbek says “his parents,” including his mother."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "71e822d04d1678832d3ef0250a6dc92a81d7066784ffaff700303a8b525f74c4",
+      "text_english": "c36b0137617d2ebb72b5b555db9d116d8719ccfa62029f8bb0723d9f0bb2ba4c",
+      "text_russian": "9e0d154f6aa8990a66a58e8b726dce01ce2cd87e943dffbea97185c1bea31a64",
+      "text_uzbek_cyrillic": "7535b5e11a6b8ca06a4f8751986b1ee759a1f02cb171151429cc59e2022ce236",
+      "text_tajik": "fd9aba6aeed8daf1dc60bf99effd5a75057f0724b29608809e23da0c449b0c1a"
+    },
+    "checked_at": "2026-11-19T03:21:48+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2956",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "b6c4ccb6aae5775e2432405fda3a2dba30f55400d79eb928e64485613d8c7cd2",
+      "text_english": "06288e60ac7c065c8cbd12e488d9225b95630ff37b55ba20bb4aab7c0b24c0bd",
+      "text_russian": "6cc2fa0c7338b535cc860f99b9b6e3674dd5de3ddb49e36d32761a2a2f6c67f6",
+      "text_uzbek_cyrillic": "591550fbcdef568b8489ea74232d116c3ebece10c52138c615612130cd93610e",
+      "text_tajik": "c7f3911a5a308594f534a9192001f1c5839a53be6b69933be9fd90f5e367d073"
+    },
+    "checked_at": "2026-11-19T03:22:00+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #1048",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "4e3319e1c3c54532277bcd51e9ba8e5f818c4cac68a4f0468fe191cf5553bf28",
+      "text_english": "81b1c575dd40d9ece4a30781ccba5aa97367470f1bc9bc36b3ccef8f4dc0836a",
+      "text_russian": "2f360f2289254da6a5639e890ab5ae5a25113b0cdeb0c47dc2d67356d4590713",
+      "text_uzbek_cyrillic": "1e4ad519b6772e08d2d83be94f9a398fd771b5163217a9e23271f18132fb09a4",
+      "text_tajik": "0bce1e8ce74fd90aca78be2557b780c7e46b0a08910a7f5af5e6795bf2d2f86f"
+    },
+    "checked_at": "2026-11-19T03:22:30+00:00"
+  }
+]

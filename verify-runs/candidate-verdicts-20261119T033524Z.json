@@ -1,0 +1,808 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6938",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Разве не скажешь",
+              "why": "The Arabic تقولوه addresses multiple people, whereas скажешь addresses one person."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "error",
+          "issues": [],
+          "confidence": "low",
+          "raw": ""
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллоҳ уни дўзахга ҳаром қилади",
+              "why": "Арабчада «Аллоҳ унга дўзахни ҳаром қилади» (حَرَّمَ اللهُ عليه النَّارَ) дейилган; таржимада эса банданинг ўзи дўзахга ҳаром қилиниши айтилган."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "incomplete"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "b44e2c959c7526d959e32b2f141521a2de42fb249100aad1a989824d4251b6f2",
+      "text_english": "c3b298e64e5ac03189a7c9f6c10d3c8b521a85144ad77ebb95da915f9c7e0d20",
+      "text_russian": "6e8ad1e17facf7bd0cecafe222a2900ed9a33cee6f330e20c86bf6b6db03d7b0",
+      "text_uzbek_cyrillic": "392900ac86f9e8e66cf7918f822382d718dff672c9479bf99e3a64c030640951",
+      "text_tajik": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "checked_at": "2026-11-19T03:36:38+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #7536",
+    "agreement": "fail",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "бегом",
+              "why": "هرولة means a brisk, hurried walk/jog, not full running; while commonly rendered this way, it slightly intensifies the pace beyond what the Arabic term denotes."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "omitted",
+              "quote": "عز وجل",
+              "why": "The honorific 'Mighty and Majestic' (ʿazza wa jall) describing Allah is present in the Arabic after 'عن ربه' but is not rendered in the Uzbek translation."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "omitted",
+              "quote": "عز وجل",
+              "why": "Роббига нисбатан айтилган «Азиз ва Улуғ» таъзим ибораси таржимада тушириб қолдирилган."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "c43598e0c03f7a6c9a28bcdd8d2159441e0d2668367c6ec67d1516282672d845",
+      "text_english": "3347d415dc9f027a91986510296c2f77e9a65ac3e045d6487815b2c4338f8795",
+      "text_russian": "766fc083c4773c8cc635ae088f7ebf41b560f49d48f2df7d3ed2a608837a966f",
+      "text_uzbek_cyrillic": "5aa96e0272fb92364d23d38a0c70a03fde32c3983b210d36c29f6cdfc920846b",
+      "text_tajik": "97a8347596e6bb4926002513bc1bd133a1c7087b74718ff1cb17bb7368c8f050"
+    },
+    "checked_at": "2026-11-19T03:37:20+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #5997",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "c451e363d63d0e2ca29043aa870320269cce7bdb52dd62d23b1acfa17760e709",
+      "text_english": "b4170183b7dc24921ff26547d33c4e812765a8ae3e36ded6a5e256925cd1af41",
+      "text_russian": "512c8009233d5d9abb3130fa46b0a4d327200fd9c95ae20f7e862b688bcbd008",
+      "text_uzbek_cyrillic": "801da2b0f36fc1a3f8e1639208fab0d5d8493451a623908a6e7331316a467679",
+      "text_tajik": "2fdcb0bf0852c72ca7f6c102a281ca6ab6814e353a9f56cb1cf1c2dfad10f89f"
+    },
+    "checked_at": "2026-11-19T03:37:41+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6116",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "1195efa1778d3885232b26998b73ada9bd3960bedcde89bcac9e48e9386e604f",
+      "text_english": "097bea657495212f6d473c658775f80bddc9430827da39ed348e3c7274477f32",
+      "text_russian": "8109792acc766ee4b94d26def1ba8e345c8cb6fd84398fbf3d87432c032531c3",
+      "text_uzbek_cyrillic": "55ac731f50c85daf718f2ef9c69b3d2057e9018a3bec4bb6875f063cec35c567",
+      "text_tajik": "cbc50620b1fab702c29a639c2f041e8159d73d1a0869cb8bea8d4bdc3db4c1a4"
+    },
+    "checked_at": "2026-11-19T03:38:10+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2592",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "аз некӣ маҳрум шудааст",
+              "why": "Arabic uses the same conditional/jussive verb form (yuhram) for both clauses, meaning 'whoever is deprived of gentleness is [also] deprived of goodness' as parallel conditional results. The translation renders the second verb in perfect tense ('шудааст' - has become/has been deprived), breaking the parallel conditional structure and turning it into a completed-action statement rather than mirroring the first clause's tense."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "f19135bfddaf2671df62ee490818b7ffc3fab202f005919fad9f9a351162b51f",
+      "text_english": "99572f98109e5eb347369da28c42d857e7c1cd61398e5b3390d8219f5ab8e0ed",
+      "text_russian": "9f62a2bf27f5877ef21914abe23c4e952d4c2f660ef490fb2aac2087d40b9f52",
+      "text_uzbek_cyrillic": "74f03c54aa6d8abaffe61da8816a5362c51a22aa7861909babd2a107edfffcce",
+      "text_tajik": "4f36e4db4ced8b04b4fe7c7b40fa5e64baf3ba70c15c2246cfee1525888fc806"
+    },
+    "checked_at": "2026-11-19T03:38:32+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #1914",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллах оценил это у него",
+              "why": "شكر الله له means Allah thanked/was grateful to him, not merely 'appreciated/valued' it - changes the specific action attributed to Allah."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллоҳ унинг (ишини) қабул қилиб",
+              "why": "The Arabic فشكر الله له means 'Allah thanked/was grateful to him', not 'Allah accepted his deed' - these are distinct concepts (shukr vs qabul)."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллоҳ унинг (ишини) қабул қилиб",
+              "why": "فَشَكَرَ اللَّهُ لَهُ means Allah appreciated his action, not that Allah accepted his deed, as the translation states."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "fa8a8e7f98776d8bfb137232ee5631a21cbc9703d36052806a40438b8c5beb5a",
+      "text_english": "8663c6a3f1f78a98467b31da6eabe7aa49f9759c9fa35ee618d8cd9887097084",
+      "text_russian": "bc99e550b56eb24708b7ab914e755f8d92531adb74edf4d9bb09d4d43a143231",
+      "text_uzbek_cyrillic": "e50db9ecd71b62b32a77b82d704e7494607d34d802c2ef735ff232275c208650",
+      "text_tajik": "3ea1ffcf0dd29b2a47d59b4b25e3dce7344428b7142f8c814c0b9bc63e8a7114"
+    },
+    "checked_at": "2026-11-19T03:39:06+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #5986",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "(срок его жизни)",
+              "why": "Добавлено пояснение, отсутствующее в арабском тексте; арабское 'أثره' буквально означает 'его след/память', а не прямо 'срок жизни'."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "8e82163fca51622b3ca045ad16202f88f648b05a6a202bc9bfb9735bb8939137",
+      "text_english": "9d0f84e0cfc6958e6f4a689b16d32d44b38d177485aee477a82f2c0895693b0a",
+      "text_russian": "07bb91f9cf236a431ceb8227455b8ee8a5ef5f5d3a8b341bc9616add38f307e1",
+      "text_uzbek_cyrillic": "b6a7ed8b2defd07e88f57684cfe3b709210d3dc36104e428784129b0332b5287",
+      "text_tajik": "e2571ad0a7c926dc8fb7bdacb211003fbce86c58b4e4933329adde84111786cd"
+    },
+    "checked_at": "2026-11-19T03:39:45+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2631",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "[бирга келади]",
+              "why": "Arabic has only 'جاء...أنا وهو' (he comes, I and he); the word 'together' (бирга) is an interpretive addition not explicitly stated in the Arabic text, though bracketed as editorial."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "5b04ced42d74b0e2af48307387a8160056aae00cdde2c6737b0b9df0a767e2fc",
+      "text_english": "46e31825aef4ffbf0ebfb713d33301c9f6b533532857316ee41824bd09b47de4",
+      "text_russian": "554c0187127dda6f79adcd9d50a1cc624d3befe7d51bdf210ddf84987dbdc35b",
+      "text_uzbek_cyrillic": "c4d9576e999bf5ce707ecea3c4a7ed0f29db560d8a044c04fa639738d21719ee",
+      "text_tajik": "bdea5861f15405eba22c0a203c086cbe96b32003199eaec31a1ad42ad58df1f7"
+    },
+    "checked_at": "2026-11-19T03:40:17+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "muslim #2664",
+    "agreement": "fail",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "(фалон ишни)",
+              "why": "Arabic 'لو أني فعلت' does not specify an object; the bracketed clarification adds implied content not explicitly stated in the source."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "дари амали шайтонро мекушояд",
+              "why": "Arabic says 'لو تفتح عمل الشيطان' (if opens the work of Satan), with no mention of 'door' (дар); the Tajik adds 'дари' (door of) which is not present in the source text."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "дари амали шайтонро",
+              "why": "The translation adds «дари» (“the door of”). The Arabic says that “if” opens Satan’s work, without mentioning a door."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "6885a0759e0d0d5bc3b751bcb92fcba35b2b7710c76788f9c4ced02036b9aa95",
+      "text_english": "96892c63ff648e3e19d5efd6254028898d085b09ee3d2643d1232c9f30e47eec",
+      "text_russian": "e106e5ad2722e663d3cbe4f29861a34dab2b118877cca6bebd2197ec76eafb1b",
+      "text_uzbek_cyrillic": "ed9bf8b325cfa6d20493136e655f08527be54d33dc91aaf0324a1d7efdcd1456",
+      "text_tajik": "7bb251145574e2715a6bd148b9bfde74bbd772b180a03dc1a96274c15f71cbcd"
+    },
+    "checked_at": "2026-11-19T03:41:12+00:00"
+  },
+  {
+    "candidate_id": null,
+    "ref": "bukhari #6056",
+    "agreement": "fail",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "клеветник",
+              "why": "قتات refers to a talebearer/gossip-monger who spreads others' words to cause discord (namm), not one who fabricates false accusations (клеветник = calumniator); the translation shifts the meaning."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "клеветник",
+              "why": "«قَتَّاتٌ» means a talebearer who passes people's words on to others to sow discord, not specifically a slanderer who makes false accusations."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Ғийбатчи (сўз ташувчи)",
+              "why": "قتات refers specifically to a tale-carrier/slanderer who spreads talk between people to cause discord (namima), not a 'ғийбатчи' (backbiter, who speaks ill of someone behind their back). The parenthetical 'сўз ташувчи' is accurate, but leading with 'Ғийбатчи' misrepresents the term."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Ғийбатчи",
+              "why": "«قَتَّاتٌ» means a tale-bearer who carries people's words between them, not a backbiter («ғийбатчи»). The parenthetical «сўз ташувчи» correctly conveys the Arabic meaning."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "36194d465e36c02800c08d8c7132f3aaa1239055c843df76d3fd91d9571878e1",
+      "text_english": "3125b39a4ed70450d1b847a8425fd489546d19bdfbcd699a5de7286b4c59a8da",
+      "text_russian": "f5a922f0af8cde4a545c4ffb43d98622d1db22214f671aaff9a50e9917a28f8d",
+      "text_uzbek_cyrillic": "44600edc799f4eecec01f304c78d48b52dc3a54885000945d5ae1200239da183",
+      "text_tajik": "22d30a55cc73b9f02e010e54c63dc742567968230e615a2a996aba7b72c0e2b4"
+    },
+    "checked_at": "2026-11-19T03:41:55+00:00"
+  }
+]

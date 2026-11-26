@@ -1,0 +1,97 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #7536",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ibn Malik",
+              "why": "The Arabic names the narrator only as Anas; it does not include 'ibn Malik'."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ибн Малика",
+              "why": "The Arabic names the narrator only as أنس (Anas); it does not include the patronymic ‘ibn Malik.’"
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ибн Молик",
+              "why": "The Arabic names the narrator only as Anas (أنس); it does not include 'ibn Malik'."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ибни Молик",
+              "why": "The Arabic names the narrator only as Anas (أنس); it does not include 'ibn Malik'."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "e0eb5c2726bd066808d5f82713cc5f774db5aac31c4c35f251e55cd947e65003",
+      "text_english": "c1aac1760d5e1f5d90447f5481b9904c32ca7fa11d520494329455c6429b4562",
+      "text_russian": "09fcf96a4e8ddc4440e418065f9015de231558c7601f73407f509e69a708d8b8",
+      "text_uzbek_cyrillic": "732f6576fa309cb9e1435401a9aed0d4a5802c011e3b37b427e446136db7cfe5",
+      "text_tajik": "25bb73e57fe0a686766e4b348f38107240ec4855571812ad20bd37145a4812b0"
+    },
+    "checked_at": "2026-11-25T15:41:50+00:00"
+  }
+]

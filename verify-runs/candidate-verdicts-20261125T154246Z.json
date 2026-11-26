@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #7536",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "898a7b46d1707974539503f4648c3b98d77314de171ee1e9c600fb941a0b08e1",
+      "text_english": "c1aac1760d5e1f5d90447f5481b9904c32ca7fa11d520494329455c6429b4562",
+      "text_russian": "09fcf96a4e8ddc4440e418065f9015de231558c7601f73407f509e69a708d8b8",
+      "text_uzbek_cyrillic": "732f6576fa309cb9e1435401a9aed0d4a5802c011e3b37b427e446136db7cfe5",
+      "text_tajik": "25bb73e57fe0a686766e4b348f38107240ec4855571812ad20bd37145a4812b0"
+    },
+    "checked_at": "2026-11-25T15:43:08+00:00"
+  }
+]

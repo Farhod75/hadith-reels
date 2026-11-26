@@ -1,0 +1,79 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #6019",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Пурсиданд",
+              "why": "Arabic has singular verb قَالَ (\"he said\") but the Tajik uses plural \"пурсиданд\" (\"they asked\"), changing both number and verb meaning."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "d389736ab76a298b445fd13a8b91224b441f84f64854e06687d56f91da92ab0d",
+      "text_english": "3a347d8bbcd72741d4c287c2c707c05b2941640d5dea02ffcbb3cdd0c5ef5152",
+      "text_russian": "d4b2d169a2c17d82ea98f51f3734e81d0c7a58ce0127b7b367a652e3a4106314",
+      "text_uzbek_cyrillic": "f562c0b3a1bede02701faea623b89aab26f3354859884f8a91cbfb6dfd35bfcb",
+      "text_tajik": "c83d0e25512fa2c445424e98c8ce805214b9537a0e6a3960501e42942927e409"
+    },
+    "checked_at": "2026-11-26T00:26:06+00:00"
+  }
+]

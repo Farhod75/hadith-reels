@@ -1,0 +1,85 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #1419",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "covetous",
+              "why": "شحيح means stingy/miserly (reluctant to give due to attachment to one's own wealth), not covetous (desiring others' possessions) — these convey different meanings."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "молга ҳарис",
+              "why": "Arabic 'شحيح' means miserly/stingy (reluctant to give), but the Uzbek 'молга ҳарис' means 'greedy for wealth/covetous', which shifts the meaning from miserliness to acquisitiveness."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "20f85ee7267d9b31c8d0e27e9f5ccd1e05c9090111c188e4606f2af210e4a16e",
+      "text_english": "a054952f662ab83e68e538ef3dad22984b2a95b96ad01d6fa3cf46ab8a942d67",
+      "text_russian": "40e92a7ea874c513596c110a7757eb7def8ed2aebe1b91c74d9bfec8d475a5ad",
+      "text_uzbek_cyrillic": "8f002791fd9588b341cb74f3542eb443c6bfbb09378e642e9c0cadd02e7d976c",
+      "text_tajik": "0c84d5546144eb6aa8275992934e71bda28ec0a7bd79d7f539be11cd4cad3133"
+    },
+    "checked_at": "2026-11-26T00:44:59+00:00"
+  }
+]

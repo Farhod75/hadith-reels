@@ -1,0 +1,85 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih Muslim #1510",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "отасининг ҳаққини қайтара олмайди",
+              "why": "Arabic لا يجزي والدا means 'cannot repay/satisfy the father' (the father himself), but the translation adds 'ҳаққини' (his right/due), introducing a concept of 'right' not present in the Arabic."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "ҳаққи падарро адо карда наметавонад",
+              "why": "Arabic only says a child cannot repay/satisfy (yajzi) a father; the word 'ҳаққ' (right) is inserted, introducing a concept of 'right' not present in the source."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "f6d61793ac60a6dae89ca8f1a6b6d0449fa26a38bc0974ef9b4bdbcb396520f2",
+      "text_english": "cbff845afabe2c0641523fc1bffd56ae973aff6e29aee921a350c90eeddc205b",
+      "text_russian": "87d76d72c84585ffcff8fd3dfefa55bf96d4fff5bbf6247de2f3bdacccd87ce0",
+      "text_uzbek_cyrillic": "f72e78ba282b419d72a8215e8116a26aab4073c1f674632e56d421574b64a15b",
+      "text_tajik": "9a6207c5b3a2660d6bc685e06bf671361e02af96b0f321bb06b650ef07738469"
+    },
+    "checked_at": "2026-11-17T21:14:02+00:00"
+  }
+]

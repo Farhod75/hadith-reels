@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sunan Abu Dawud #1488",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "ac6d820771bb26bb310198ca17fc6e5ca6c5cd5ccd5f1228975b4c2b1c598372",
+      "text_english": "7a897160ccbea6378713019b1cf9451527895e73efb7af94d5bc2b5d07f531b2",
+      "text_russian": "ed1cd767fadb5a38854d99a7d33344d85b68072a8c40127fe70b6999e85d1f02",
+      "text_uzbek_cyrillic": "0c9104a685d2ec442cb65b99b1afba9c5b66bef003b33ae7ceddcb8f27cfc87a",
+      "text_tajik": "f3e3900cfd82feda150184926b38ea449e84b4db5e4159feac7cef3afa2ea8ae"
+    },
+    "checked_at": "2026-11-26T03:04:30+00:00"
+  }
+]

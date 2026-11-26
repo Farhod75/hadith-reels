@@ -1,0 +1,97 @@
+[
+  {
+    "candidate_id": "3fc885f8-1a52-4cc2-a4f9-a33db066e3c5",
+    "ref": "bukhari #6938",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Do you not consider that he says",
+              "why": "The Arabic «ألا تقولوه: يقول» tells them not to say that about him, then states that he says the declaration of faith. It does not ask whether they consider that he says it."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Разве вы не считаете, что он говорит",
+              "why": "«ألا تقولوه» prohibits saying that about him: 'Do not say that.' The following «يقول» states that he says the testimony. The translation replaces this prohibition and statement with a question about what the listeners consider."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "ҳисобламайсизларми",
+              "why": "Arabic ألا تقولوه means 'do you not say (about him)', but the translation renders it as 'do you not consider/think', shifting the verb from speech to thought."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Оё намеҳисобед, ки ӯ",
+              "why": "The Arabic «ألا تقولوه» tells them not to say that about him; it does not ask, “Do you not consider that he…?” The following «يقول لا إله إلا الله» states that he says the confession."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "b44e2c959c7526d959e32b2f141521a2de42fb249100aad1a989824d4251b6f2",
+      "text_english": "284e2017ae4594a21957996ba3b10352418848c685d15fac673f044ce65cb2f4",
+      "text_russian": "63ede2b45e2c97d8bc11b6a475b97397041d8f8d8970570fe9cc7a37f333a5e1",
+      "text_uzbek_cyrillic": "6b17c2133a01fe43854d754078b7dbaeebecea9cfc47550d70c5023d9dff3df6",
+      "text_tajik": "5c043a4de0535022ada97e9f1f3d28196590334bb90bec994e1d74cb3829b16c"
+    },
+    "checked_at": "2026-11-22T22:48:15+00:00"
+  }
+]

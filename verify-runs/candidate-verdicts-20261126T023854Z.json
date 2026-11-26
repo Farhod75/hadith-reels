@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Musnad Ahmad #6576",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "d63075414559f13627e25ba9a91a7fd553edbe84cf8934c737297ff3a9a6a3ca",
+      "text_english": "e0ab0fd7f390f9232554afb2610aa4e41ed758d728d1497b97c4125ae3d2adb3",
+      "text_russian": "8cf9fcb2effb068ba3eec36218a19bb03c8be347f705b3cbda3b8a31a1a8be43",
+      "text_uzbek_cyrillic": "607cd6c7787420b22deea01b89bd98c9b41d6727f5134d02c7b287e2bedd1304",
+      "text_tajik": "baaaec1654325c96c5cc966a32721ec28849d70a3a165f4091d29281dc1bad7c"
+    },
+    "checked_at": "2026-11-26T02:39:07+00:00"
+  }
+]

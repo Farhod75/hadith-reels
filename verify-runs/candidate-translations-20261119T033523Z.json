@@ -1,0 +1,372 @@
+[
+  {
+    "candidate_id": "3fc885f8-1a52-4cc2-a4f9-a33db066e3c5",
+    "ref": "bukhari #6938",
+    "text_arabic": "غَدا عليَّ رَسولُ اللهِ صلَّى اللهُ عليه وسلَّم، فقال رَجُلٌ: أينَ مالِكُ بنُ الدُّخشُنِ؟ فقال رَجُلٌ مِنَّا: ذلك مُنافِقٌ، لا يُحِبُّ اللهَ ورَسولَه، فقال النَّبيُّ صلَّى اللهُ عليه وسلَّم: ألا تَقولوه: يقولُ لا إلَهَ إلَّا اللهُ ، يَبتَغي بذلك وجهَ اللهِ ، قال: بَلى، قال: فإنَّه لا يوافى عَبدٌ يَومَ القيامةِ به إلَّا حَرَّمَ اللهُ عليه النَّارَ.",
+    "proposed": {
+      "text_english": "The Messenger of Allah ﷺ came to me in the morning, and a man said: Where is Malik ibn al-Dukhshun? A man among us said: He is a hypocrite; he does not love Allah and His Messenger. The Prophet ﷺ said: Do not say that of him - he says there is no god but Allah, seeking thereby the face of Allah. He said: Yes. He said: No servant meets the Day of Resurrection with it except that Allah has forbidden the Fire to him.",
+      "text_russian": "Пришёл ко мне утром Посланник Аллаха ﷺ, и некий человек сказал: «Где Малик ибн ад-Духшун?» Тогда один человек из нас сказал: «Это лицемер, он не любит Аллаха и Его Посланника». Пророк ﷺ сказал: «Разве не скажешь: он говорит \"Нет божества, кроме Аллаха\", стремясь этим к Лику Аллаха?» Он ответил: «Конечно». Тогда он сказал: «Поистине, какой бы раб ни предстал в День воскресения с этим, Аллах непременно запретит ему Огонь».",
+      "text_uzbek_cyrillic": "Аллоҳнинг Расули соллаллоҳу алайҳи ва саллам эрталаб ҳузуримга келди. Шунда бир киши: «Молик ибн Дуҳшун қаерда?» — деди. Биздан бир киши: «У мунофиқ, Аллоҳ ва Унинг Расулини севмайди», — деди. Набий соллаллоҳу алайҳи ва саллам: «Айтманг буни: у \"Ла илаҳа иллаллоҳ\" дейди, бу билан Аллоҳнинг юзини истайди», — деди. У киши: «Ҳа, тўғри», — деди. У: «Албатта, қайси бир банда қиёмат куни шу калима билан келса, Аллоҳ уни дўзахга ҳаром қилади», — деди.",
+      "text_tajik": ""
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:32:53+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:32:58+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:06+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:29+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "a348087b-d45b-4b8c-9d07-3c54c0dc97c6",
+    "ref": "bukhari #7536",
+    "text_arabic": "عن أنس بن مالك وأبي هريرة رضي الله عنهما عن النبي صلى الله عليه وسلم فيما يرويه عن ربه عز وجل قال: «إذا تَقَرَّبَ العبدُ إليَّ شِبْرًا تَقَرَّبْتُ إليه ذِرَاعًا، وإذا تَقَرَّبَ إليَّ ذِرَاعًا تَقَرَّبْتُ مِنْهُ بَاعًا، وإذا أتاني يمشي أَتَيْتُهُ هَرْوَلَةً».",
+    "proposed": {
+      "text_english": "From Anas ibn Malik and Abu Hurayrah, may Allah be pleased with them both, from the Prophet ﷺ, in what he relates from his Lord, Mighty and Majestic, who said: \"If the servant draws near to Me a hand's span, I draw near to him a forearm's length; and if he draws near to Me a forearm's length, I draw near to him a fathom; and if he comes to Me walking, I come to him running.\"",
+      "text_russian": "Передают со слов Анаса ибн Малика и Абу Хурайры, да будет доволен ими обоими Аллах, от Пророка ﷺ, который передаёт от своего Господа, Великого и Могучего, слова Его: «Если раб приблизится ко Мне на пядь, Я приближусь к нему на локоть, а если он приблизится ко Мне на локоть, Я приближусь к нему на сажень, а если он придёт ко Мне пешком, Я приду к нему бегом».",
+      "text_uzbek_cyrillic": "Анас ибн Молик ва Абу Ҳурайра — розияллоҳу анҳумо — ривоят қилади: Набий соллаллоҳу алайҳи ва саллам Роббидан ривоят қилиб айтган сўзида деди: «Банда Менга бир қарич яқинлашса, Мен унга бир газ яқинлашаман. У Менга бир газ яқинлашса, Мен унга бир қулоч яқинлашаман. У Менга юриб келса, Мен унга чопиб бораман».",
+      "text_tajik": "Аз Анас ибни Молик ва Абӯҳурайра – розияллоҳу анҳумо – аз Паёмбар ﷺ ривоят аст, ки он чиро аз Парвардигори хеш, азза ва ҷалла, нақл мекард, фармуд: «Чун банда як вачаб ба Ман наздик шавад, Ман як зироъ ба ӯ наздик мешавам; ва чун ӯ як зироъ ба Ман наздик шавад, Ман як боъ ба ӯ наздик мешавам; ва чун ӯ қадамзанон ба сӯи Ман ояд, Ман давон ба сӯи ӯ меравам»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:31+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:34+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:41+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:48+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "ed936d95-d611-4691-aa65-aa5440fc1e51",
+    "ref": "bukhari #5997",
+    "text_arabic": "عن أبي هريرة رضي الله عنه قال: قَبَّلَ النبيُّ صلى الله عليه وسلم الحسنَ بنَ عليٍّ رضي الله عنهما ، وعنده الأَقْرَعُ بنُ حَابِسٍ، فقال الأَقْرَعُ: إنَّ لي عَشَرَةً من الوَلَدِ ما قَبَّلْتُ مِنْهُمْ أَحَدًا، فَنَظَرَ إليهِ رسولُ اللهِ صلى الله عليه وسلم فقال: «مَنْ لَا يَرْحَم لَا يُرْحَمُ!».",
+    "proposed": {
+      "text_english": "Abu Hurairah, may Allah be pleased with him, said: The Prophet ﷺ kissed al-Hasan ibn Ali, may Allah be pleased with them both, while al-Aqra' ibn Habis was with him. Al-Aqra' said: I have ten children, and I have not kissed any one of them. The Messenger of Allah ﷺ looked at him and said: \"He who does not show mercy will not be shown mercy.\"",
+      "text_russian": "Передают со слов Абу Хурайры, да будет доволен им Аллах, что он сказал: Пророк ﷺ поцеловал аль-Хасана ибн Али, да будет доволен ими обоими Аллах, а рядом с ним находился аль-Акра' ибн Хабис. Аль-Акра' сказал: «У меня десять детей, и я никого из них не целовал». Тогда Посланник Аллаха ﷺ посмотрел на него и сказал: «Кто не проявляет милосердия, к тому не будет проявлено милосердие!»",
+      "text_uzbek_cyrillic": "Абу Ҳурайра розияллоҳу анҳудан ривоят қилинади: Набий ﷺ Ҳасан ибн Алийни розияллоҳу анҳумо ўпди, ҳузурида эса Ақраъ ибн Ҳобис бор эди. Ақраъ: \"Менинг ўнта фарзандим бор, улардан бирортасини ҳам ўпганим йўқ\", - деди. Шунда Аллоҳнинг Расули ﷺ унга қараб: \"Ким раҳм қилмаса, унга ҳам раҳм қилинмайди!\" - деди.",
+      "text_tajik": "Аз Абӯҳурайра розияллоҳу анҳу ривоят аст, ки гуфт: Паёмбар ﷺ Ҳасан ибни Алиро розияллоҳу анҳумо бӯсид, дар ҳоле ки Ақраъ ибни Ҳобис дар назди ӯ буд. Ақраъ гуфт: «Ман даҳ фарзанд дорам, ҳеҷ яке аз онҳоро набӯсидаам». Расули Аллоҳ ﷺ ба ӯ нигарист ва гуфт: «Касе ки раҳм накунад, ба ӯ раҳм карда намешавад!»"
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:50+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:33:54+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:00+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:06+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "8ba06774-f0b4-47f4-9cbc-8247f40c1452",
+    "ref": "bukhari #6116",
+    "text_arabic": "أَنَّ رَجُلًا قَالَ لِلنَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: أَوْصِنِي، قَالَ: «لَا تَغْضَبْ» فَرَدَّدَ مِرَارًا قَالَ: «لَا تَغْضَبْ».",
+    "proposed": {
+      "text_english": "A man said to the Prophet ﷺ, \"Advise me.\" He said, \"Do not become angry.\" He repeated it several times; he said, \"Do not become angry.\"",
+      "text_russian": "Один человек сказал Пророку ﷺ: «Дай мне наставление». Он сказал: «Не гневайся». Тот повторил это несколько раз, (и каждый раз) он говорил: «Не гневайся».",
+      "text_uzbek_cyrillic": "Бир киши Набий соллаллоҳу алайҳи ва салламга: \"Менга васият қилинг\", деди. У зот: \"Ғазабланма\", дедилар. У бир неча марта такрорлади. У зот: \"Ғазабланма\", дедилар.",
+      "text_tajik": "Марде ба Паёмбар ﷺ гуфт: «Маро васият кун». Фармуд: «Хашм магир». Он мард чанд бор такрор кард, ҳар бор мефармуд: «Хашм магир»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:08+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:10+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:14+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:17+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "1318300c-0ad0-4955-853e-c32ad9093692",
+    "ref": "muslim #2592",
+    "text_arabic": "«مَنْ يُحْرَمِ الرِّفْقَ يُحْرَمِ الْخَيْرَ».",
+    "proposed": {
+      "text_english": "Whoever is deprived of gentleness is deprived of good.",
+      "text_russian": "Кто лишён мягкости, тот лишён блага.",
+      "text_uzbek_cyrillic": "Ким мулойимликдан маҳрум қилинса, яхшиликдан маҳрум қилинади.",
+      "text_tajik": "«Ҳар кӣ аз мулоимат (нармӣ) маҳрум шавад, аз некӣ маҳрум шудааст»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:18+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:20+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:22+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:24+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "f40a770a-6c3a-4068-9a13-82ad86a09291",
+    "ref": "muslim #1914",
+    "text_arabic": "«بَيْنَمَا رَجُلٌ يَمْشِي بِطَرِيقٍ وَجَدَ غُصْنَ شَوْكٍ عَلَى الطَّرِيقِ فَأَخَّرَهُ، فَشَكَرَ اللَّهُ لَهُ فَغَفَرَ لَهُ».",
+    "proposed": {
+      "text_english": "While a man was walking along a path, he found a thorny branch on the path, so he removed it. Allah thanked him for it and forgave him.",
+      "text_russian": "Пока человек шёл по дороге, он нашёл ветку с колючками на дороге и убрал её, и Аллах оценил это у него и простил его.",
+      "text_uzbek_cyrillic": "Бир киши йўлда юриб борар экан, йўлда тикан шохини топди ва уни четга суриб қўйди. Аллоҳ унинг (ишини) қабул қилиб, уни мағфират қилди.",
+      "text_tajik": "Марде дар роҳе роҳ мерафт, шохаи хоре дар роҳ ёфт, пас онро канор кард. Пас Аллоҳ аз ӯ сипосгузорӣ намуд ва ӯро биёмурзид."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:26+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:27+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:31+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:35+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "38184973-022e-425a-8cd1-d783f237a2cc",
+    "ref": "bukhari #5986",
+    "text_arabic": "«مَنْ أَحَبَّ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ، وَيُنْسَأَ لَهُ فِي أَثَرِهِ، فَلْيَصِلْ رَحِمَهُ».",
+    "proposed": {
+      "text_english": "Whoever loves that his provision be expanded for him and his life-span be extended for him, let him maintain ties of kinship.",
+      "text_russian": "Кто хочет, чтобы ему было увеличено в его уделе и продлена его отсрочка (срок его жизни), пусть поддерживает родственные связи.",
+      "text_uzbek_cyrillic": "Ким ризқи кенгайтирилишини ва умри узайтирилишини хоҳласа, қариндошчилик алоқасини улансин.",
+      "text_tajik": "Ҳар кӣ дӯст дорад, ки рӯзиаш фарох карда шавад ва умраш дароз карда шавад, пас бояд бо хешовандони худ сила раҳм кунад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:36+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:38+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:41+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:45+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "fe61e679-23f1-4304-8ace-fb4639a09faf",
+    "ref": "muslim #2631",
+    "text_arabic": "«مَنْ عَالَ جَارِيَتَيْنِ حَتَّى تَبْلُغَا جَاءَ يَوْمَ الْقِيَامَةِ أَنَا وَهُوَ» وَضَمَّ أَصَابِعَهُ.",
+    "proposed": {
+      "text_english": "Whoever takes care of two girls until they reach maturity will come on the Day of Resurrection, I and he—and he joined his fingers.",
+      "text_russian": "Кто содержал двух девочек, пока они не достигнут зрелости, тот придёт в День воскресения, я и он — и он соединил свои пальцы.",
+      "text_uzbek_cyrillic": "Ким икки қиз болани вояга етгунча боқса, қиёмат куни мен ва у [бирга келади]. Ва бармоқларини қовуштирди.",
+      "text_tajik": "Ҳар кас ду духтарро то ба балоғат расиданашон парастор шавад, рӯзи қиёмат ман ва ӯ (чунин) меоем — ва ангуштони худро ба ҳам пайваст."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:46+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:48+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:51+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:55+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "5c4d3012-6cc7-4250-8802-7bc69e2c7d1c",
+    "ref": "muslim #2664",
+    "text_arabic": "«الْمُؤْمِنُ الْقَوِيُّ، خَيْرٌ وَأَحَبُّ إِلَى اللهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ، وَفِي كُلٍّ خَيْرٌ، احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللهِ وَلَا تَعْجَزْ، وَإِنْ أَصَابَكَ شَيْءٌ، فَلَا تَقُلْ لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا، وَلَكِنْ قُلْ قَدَرُ اللهِ وَمَا شَاءَ فَعَلَ، فَإِنَّ (لَوْ) تَفْتَحُ عَمَلَ الشَّيْطَانِ».",
+    "proposed": {
+      "text_english": "The strong believer is better and more beloved to Allah than the weak believer, and in each there is good. Be eager for what benefits you, seek help from Allah, and do not be helpless. If something befalls you, do not say, \"If only I had done such and such, such and such would have happened,\" but say, \"The decree of Allah; what He willed, He did,\" for \"if\" opens the work of Satan.",
+      "text_russian": "Сильный верующий лучше и любимее Аллаху, чем слабый верующий, и в каждом из них есть благо. Стремись к тому, что приносит тебе пользу, проси помощи у Аллаха и не проявляй бессилия. Если же тебя постигнет что-либо, не говори: «Если бы я сделал так, то было бы так-то и так-то», а говори: «Предопределение Аллаха, и то, что Он пожелал, Он сделал», ибо «если бы» открывает путь деянию шайтана.",
+      "text_uzbek_cyrillic": "Кучли мўмин Аллоҳнинг наздида заиф мўминдан яхшироқ ва маҳбуброқдир, ҳар бирида яхшилик бор. Сенга манфаат берадиган нарсага қизиқ, Аллоҳдан ёрдам сўра ва ожизлик қилма. Агар сенга бирон нарса етса: «Агар мен (фалон ишни) қилганимда, фалон-фалон бўларди», дема. Балки: «Аллоҳнинг қадари, У нимани хоҳласа, шуни қилди», де. Чунки «агар» дейиш шайтон ишига йўл очади.",
+      "text_tajik": "Мӯъмини қавӣ беҳтар ва назди Аллоҳ дӯстдоштатар аст аз мӯъмини заиф, ва дар ҳар кадом хайр ҳаст. Бар он чи туро фоида медиҳад, ҳарис бош, ва аз Аллоҳ ёрӣ бихоҳ, ва нотавон машав. Ва агар чизе ба ту расид, нагӯй: «Агар ман чунин мекардам, чунин мешуд», балки бигӯй: «Қадари Аллоҳ аст ва он чи хост, кард», зеро «агар» дари амали шайтонро мекушояд."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:34:57+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:00+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:08+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:16+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "0e499412-7b13-4dd1-b929-b266515d3e35",
+    "ref": "bukhari #6056",
+    "text_arabic": "«لَا يَدْخُلُ الْجَنَّةَ قَتَّاتٌ».",
+    "proposed": {
+      "text_english": "\"A slanderer will not enter Paradise.\"",
+      "text_russian": "Не войдёт в Рай клеветник.",
+      "text_uzbek_cyrillic": "«Ғийбатчи (сўз ташувчи) жаннатга кирмайди».",
+      "text_tajik": "«Сухончин (суханчинкунанда) ба биҳишт дохил намешавад»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:17+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:18+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:20+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:35:23+00:00"
+      }
+    }
+  }
+]

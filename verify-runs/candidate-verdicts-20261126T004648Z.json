@@ -1,0 +1,79 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #1419",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "а ведь это уже принадлежит такому-то",
+              "why": "Arabic has past tense 'كان' (it had already belonged to so-and-so), but the translation uses present tense 'принадлежит' (belongs), altering the meaning regarding when the property became someone else's."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "20f85ee7267d9b31c8d0e27e9f5ccd1e05c9090111c188e4606f2af210e4a16e",
+      "text_english": "225aed693b9e029b57a56787bd58bfc9c3121b6b0736b3ff0c731b419c8a5582",
+      "text_russian": "40e92a7ea874c513596c110a7757eb7def8ed2aebe1b91c74d9bfec8d475a5ad",
+      "text_uzbek_cyrillic": "32bf2c7d09fd0810231af7dac735f9d584851a8f9a5f2411537d9283d89b59f3",
+      "text_tajik": "0c84d5546144eb6aa8275992934e71bda28ec0a7bd79d7f539be11cd4cad3133"
+    },
+    "checked_at": "2026-11-26T00:48:07+00:00"
+  }
+]

@@ -1,0 +1,115 @@
+[
+  {
+    "candidate_id": "3fc885f8-1a52-4cc2-a4f9-a33db066e3c5",
+    "ref": "bukhari #6938",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Do you not consider that he says",
+              "why": "ألا تقولوه prohibits the people addressed from saying that about him, followed by يقول, 'he says.' It does not ask whether they consider that he says it."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "ru": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Разве вы не считаете, что он говорит",
+              "why": "Arabic ألا تقولوه refers to them 'saying' (testifying) about him, not 'considering/thinking' - the verb's meaning (say) was changed to a verb of thought (consider)."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "«Разве вы не считаете, что он говорит \"Нет божества, кроме Аллаха\", стремясь этим к Лику Аллаха?»",
+              "why": "В арабском «ألا تقولوه» — запрет говорить о нём так, то есть называть его лицемером. Далее «يقول لا إله إلا الله، يبتغي بذلك وجه الله» утверждает, что он произносит эти слова, стремясь к Лику Аллаха. Перевод заменяет запрет и утверждение вопросом «Разве вы не считаете…?»."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "деб ҳисобламайсизларми",
+              "why": "Arabic ألا تقولوه uses the verb 'say' (تقول), but the translation renders it as 'do you not consider/think' (ҳисобламайсизларми), shifting the meaning from 'say' to 'think/consider'."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "«Уни Аллоҳнинг юзини истаб, \"Ла илаҳа иллаллоҳ\" дейди, деб ҳисобламайсизларми?»",
+              "why": "The Arabic «ألا تقولوه» tells them not to say that, followed by the statement that he says «لا إله إلا الله» seeking Allah’s face. The translation instead turns this into a question asking whether they consider him to say it."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Оё намеҳисобед, ки ӯ ... мегӯяд",
+              "why": "Arabic 'ألا تقولوه' means 'do you (pl) not say it', but the translation renders it as 'do you not consider/think', changing the verb from 'say' to 'think/consider'."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Оё намеҳисобед, ки ӯ",
+              "why": "The Arabic «ألا تقولوه» tells them not to say that about him, followed by «يقول لا إله إلا الله» (“he says ‘There is no god but Allah’”). The translation instead asks whether they consider that he says it."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "b44e2c959c7526d959e32b2f141521a2de42fb249100aad1a989824d4251b6f2",
+      "text_english": "284e2017ae4594a21957996ba3b10352418848c685d15fac673f044ce65cb2f4",
+      "text_russian": "63ede2b45e2c97d8bc11b6a475b97397041d8f8d8970570fe9cc7a37f333a5e1",
+      "text_uzbek_cyrillic": "6b17c2133a01fe43854d754078b7dbaeebecea9cfc47550d70c5023d9dff3df6",
+      "text_tajik": "5c043a4de0535022ada97e9f1f3d28196590334bb90bec994e1d74cb3829b16c"
+    },
+    "checked_at": "2026-11-22T22:33:07+00:00"
+  }
+]

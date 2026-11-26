@@ -1,0 +1,446 @@
+[
+  {
+    "candidate_id": "03f91aad-d30c-4b2b-865c-deaef5fbebcb",
+    "ref": "muslim #28",
+    "text_arabic": "مَن قال: أشهَدُ أنْ لا إلَهَ إلَّا اللهُ وحدَه لا شَريك له ، وأنَّ مُحَمَّدًا عَبدُه ورَسولُه ، وأنَّ عيسى عبدُ اللهِ ، وابنُ أَمَتِه، وكَلِمَتُه ألقاها إلى مَريَمَ وروحٌ منه، وأنَّ الجَنَّةَ حَقٌّ، وأنَّ النَّارَ حَقٌّ، أدخَلَه اللهُ مِن أيِّ أبوابِ الجَنَّةِ الثَّمانيةِ شاءَ. وفي روايةٍ: أدخَلَه اللهُ الجَنَّةَ على ما كانَ مِن عَمَلٍ، ولَم يَذكُرْ مِن أيِّ أبوابِ الجَنَّةِ الثَّمانيةِ شاءَ.",
+    "proposed": {
+      "text_english": "Whoever says: I bear witness that there is no god but Allah alone, with no partner, and that Muhammad is His servant and His Messenger ﷺ, and that Jesus is the servant of Allah and the son of His maidservant, and His word which He cast to Mary, and a spirit from Him, and that Paradise is true, and that the Fire is true, Allah will admit him through whichever of the eight gates of Paradise he wishes. And in a narration: Allah will admit him into Paradise whatever his deeds may have been, and it did not mention through whichever of the eight gates of Paradise he wishes.",
+      "text_russian": "Кто скажет: «Свидетельствую, что нет божества, кроме Аллаха, Единого, у Которого нет сотоварища, и что Мухаммад — Его раб и Его Посланник, и что Иса — раб Аллаха, и сын Его рабыни, и Слово Его, которое Он послал Марьям, и дух от Него, и что Рай есть истина, и что Огонь есть истина», — того Аллах введёт в любые из восьми врат Рая, какие пожелает.\n\nА в другой версии: того Аллах введёт в Рай, независимо от того, какие дела он совершал, — и не упомянуто «в любые из восьми врат Рая, какие пожелает».",
+      "text_uzbek_cyrillic": "Ким: «Аллоҳдан ўзга илоҳ йўқлигига, Унинг ёлғиз ва шериксиз эканлигига, Муҳаммад Унинг бандаси ва Расули эканлигига, Ийсо Аллоҳнинг бандаси, Унинг чўрисининг ўғли, Марямга ташлаган калимаси ва Ундан бўлган бир руҳ эканлигига, жаннат ҳақ эканлигига ва дўзах ҳақ эканлигига гувоҳлик бераман», деса, Аллоҳ уни жаннатнинг саккиз эшигидан хоҳлаганидан киритади.\n\nБошқа ривоятда: Аллоҳ уни қандай амали бўлишидан қатъи назар жаннатга киритади, дейилган бўлиб, жаннатнинг саккиз эшигидан хоҳлаганидан киритиши зикр қилинмаган.",
+      "text_tajik": "Ҳар кас бигӯяд: «Шаҳодат медиҳам, ки ҳеҷ маъбуде ба ҳақ ҷуз Аллоҳ нест, танҳост ва шарике надорад, ва ҳамоно Муҳаммад бандаву расули Ӯст, ва ҳамоно Исо бандаи Аллоҳ аст ва писари канизи Ӯ, ва каломи Ӯст, ки онро ба Марям афкандааст, ва рӯҳест аз ҷониби Ӯ, ва ҳамоно биҳишт ҳақ аст ва ҳамоно дӯзах ҳақ аст», Аллоҳ ӯро аз ҳар кадоме аз дарҳои ҳаштгонаи биҳишт, ки хоҳад, дохил мекунад.\n\nВа дар ривояте: Аллоҳ ӯро ба биҳишт дохил мекунад, бар ҳар амале, ки будааст, ва зикр накардааст, ки аз кадом як аз дарҳои ҳаштгонаи биҳишт, ки хоҳад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:16+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:20+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:30+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:40+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "3fc885f8-1a52-4cc2-a4f9-a33db066e3c5",
+    "ref": "bukhari #6938",
+    "text_arabic": "غَدا عليَّ رَسولُ اللهِ صلَّى اللهُ عليه وسلَّم، فقال رَجُلٌ: أينَ مالِكُ بنُ الدُّخشُنِ؟ فقال رَجُلٌ مِنَّا: ذلك مُنافِقٌ، لا يُحِبُّ اللهَ ورَسولَه، فقال النَّبيُّ صلَّى اللهُ عليه وسلَّم: ألا تَقولوه: يقولُ لا إلَهَ إلَّا اللهُ ، يَبتَغي بذلك وجهَ اللهِ ، قال: بَلى، قال: فإنَّه لا يوافى عَبدٌ يَومَ القيامةِ به إلَّا حَرَّمَ اللهُ عليه النَّارَ.",
+    "proposed": {
+      "text_english": "The Messenger of Allah ﷺ came to me in the morning, and a man said: Where is Malik ibn al-Dukhshun? A man among us said: That one is a hypocrite, he does not love Allah and His Messenger. The Prophet ﷺ said: Do you not say of him - he says there is no god but Allah, seeking thereby the countenance of Allah? He said: Yes. He said: No servant meets [Allah] on the Day of Resurrection with it except that Allah has forbidden the Fire to him.",
+      "text_russian": "Пришёл ко мне утром Посланник Аллаха ﷺ, и один человек спросил: «Где Малик ибн ад-Духшун?» Один человек из нас сказал: «Это лицемер, не любящий Аллаха и Его Посланника». Пророк ﷺ сказал: «Разве ты не скажешь, что он говорит: \"Нет божества, кроме Аллаха\", стремясь к этим Лику Аллаха?» Тот сказал: «Да». Он сказал: «Поистине, ни один раб не предстанет в День воскресения с этим, кроме того, что Аллах запретит ему Огонь».",
+      "text_uzbek_cyrillic": "Аллоҳнинг Расули соллаллоҳу алайҳи ва саллам эрталаб ҳузуримга келди. Шунда бир киши: \"Молик ибн Духшун қаерда?\" — деди. Бизлардан бир киши: \"У мунофиқ, Аллоҳни ва Унинг Расулини севмайди\" — деди. Набий соллаллоҳу алайҳи ва саллам: \"Айтманг, у \"Ла илаҳа иллаллоҳ\" дейди, бу билан Аллоҳнинг юзини истайди\", дедилар. У: \"Ҳа\" деди. У ҳолда [Набий соллаллоҳу алайҳи ва саллам]: \"Қиёмат куни бирор банда шу сўз билан келса, Аллоҳ унга дўзахни ҳаром қилади\", дедилар.",
+      "text_tajik": "Расули Аллоҳ ﷺ бомдодон назди ман омад, пас марде гуфт: «Моликибни Духшун куҷост?» Марде аз мо гуфт: «Он мунофиқ аст, Аллоҳ ва Расули Ӯро дӯст намедорад». Пайғамбар ﷺ фармуд: «Чунин магӯй, ӯ мегӯяд: \"Ло илоҳа иллаллоҳ\" ва бо он таваҷҷуҳи Аллоҳро металабад». Гуфт: «Бале (чунин аст)». Фармуд: «Пас ҳеҷ бандае дар рӯзи қиёмат бо он наояд, магар он ки Аллоҳ оташро бар ӯ ҳаром кунад»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:53+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:10:57+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:06+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:14+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "aae630ea-83e1-4bb6-be94-bf71191b8e5c",
+    "ref": "bukhari #99",
+    "text_arabic": "قيلَ: يا رَسولَ اللهِ ، مَن أسعَدُ النَّاسِ بشَفاعَتِكَ يَومَ القيامةِ ؟ قال رَسولُ اللهِ صلَّى اللهُ عليه وسلَّم: لقد ظَنَنتُ يا أبا هُرَيرةَ أن لا يَسألَني عن هذا الحَديثِ أحَدٌ أوَّلُ مِنكَ؛ لِما رَأيتُ مِن حِرصِكَ على الحَديثِ، أسعَدُ النَّاسِ بشَفاعَتي يَومَ القيامةِ مَن قال : لا إلَهَ إلَّا اللهُ ، خالِصًا مِن قَلبِه أو نَفسِه.",
+    "proposed": {
+      "text_english": "It was said: O Messenger of Allah, who is the most fortunate of people in attaining your intercession on the Day of Resurrection? The Messenger of Allah ﷺ said: I had thought, O Abu Hurayrah, that no one would ask me about this matter before you, due to what I have seen of your eagerness for hadith. The most fortunate of people in attaining my intercession on the Day of Resurrection is the one who said, \"There is no god but Allah,\" sincerely from his heart or his soul.",
+      "text_russian": "Было сказано: о Посланник Аллаха, кто самый счастливый из людей твоим заступничеством в День воскресения? Посланник Аллаха ﷺ сказал: я полагал, о Абу Хурайра, что никто не спросит меня об этом хадисе раньше тебя, по тому усердию, которое я видел у тебя к хадису. Самый счастливый из людей моим заступничеством в День воскресения — тот, кто сказал: «Нет божества, кроме Аллаха», искренне, от своего сердца или от своей души.",
+      "text_uzbek_cyrillic": "Айтилди: Эй Аллоҳнинг Расули, қиёмат куни Сенинг шафоатинг билан одамларнинг энг бахтлиси ким бўлади? Расулуллоҳ соллаллоҳу алайҳи ва саллам айтдилар: Эй Абу Ҳурайра, ҳадисга қизиққанингни кўриб, бу ҳақида мендан биринчи бўлиб сен сўрайсан, деб ўйлагандим. Қиёмат куни шафоатим билан одамларнинг энг бахтлиси — қалбидан ёки нафсидан холис бўлган ҳолда «Ла илаҳа иллаллоҳ» деган кишидир.",
+      "text_tajik": "Гуфта шуд: Ё Расулаллоҳ, бахтиёртарини мардум ба шафоати Шумо дар рӯзи қиёмат кист? Расули Аллоҳ ﷺ фармуд: Эй Абӯҳурайра, ҳамоно гумон мекардам, ки касе пеш аз ту ин ҳадисро аз ман напурсад, зеро ҳирсу иштиёқи туро ба ҳадис дидаам. Бахтиёртарини мардум ба шафоати ман дар рӯзи қиёмат касест, ки «Ло илоҳа иллаллоҳ»-ро холисона аз дили худ ё аз нафси худ гуфтааст."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:17+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:20+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:28+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:36+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "8e590333-c858-42ab-8881-b5ba78c8f534",
+    "ref": "bukhari #6682",
+    "text_arabic": "كَلِمَتانِ خَفيفَتانِ على اللِّسانِ ، ثَقيلَتانِ في الميزانِ ، حَبيبَتانِ إلى الرَّحمَنِ: سُبحانَ اللهِ وبحَمدِه، سُبحانَ اللهِ العَظيمِ.",
+    "proposed": {
+      "text_english": "Two words that are light on the tongue, heavy in the balance, and beloved to the Most Merciful: Glory be to Allah and praise be to Him, Glory be to Allah the Mighty.",
+      "text_russian": "Два слова, лёгкие на языке, тяжёлые на весах, любимые Милостивому: «Субхана-Ллахи ва бихамдихи, субхана-Ллахи-ль-Азыйм».",
+      "text_uzbek_cyrillic": "Тилга енгил, тарозида оғир, Раҳмонга суюмли бўлган икки калима бор: «Субҳаналлоҳи ва биҳамдиҳ, субҳаналлоҳил азийм».",
+      "text_tajik": "Ду калима бар забон сабук, дар тарозу (мизон) вазнин ва назди Раҳмон маҳбубанд: «Субҳоналлоҳи ва биҳамдиҳӣ, Субҳоналлоҳил-азим»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:37+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:39+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:43+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:46+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "ec924b08-2efb-4b6a-9b79-e5bad5844006",
+    "ref": "bukhari #7563",
+    "text_arabic": "كَلِمَتانِ حَبيبَتانِ إلى الرَّحمَنِ، خَفيفَتانِ على اللِّسانِ ، ثَقيلَتانِ في الميزانِ : سُبحانَ اللهِ وبحَمدِه، سُبحانَ اللهِ العَظيمِ.",
+    "proposed": {
+      "text_english": "Two words are beloved to the Most Merciful, light upon the tongue, heavy in the balance: Glory be to Allah and praise be to Him, Glory be to Allah the Mighty.",
+      "text_russian": "Два слова, любимые Милостивому, лёгкие на языке, тяжёлые на весах: «Субхана-Ллахи ва бихамдихи, субхана-Ллахи-ль-Азым».",
+      "text_uzbek_cyrillic": "Икки калима борки, Раҳмонга севимлидир, тилга енгилдир, мезонда оғирдир: «Субҳаналлоҳи ва биҳамдиҳ, субҳаналлоҳил азим».",
+      "text_tajik": "Ду калима ҳастанд, ки ба назди Раҳмон маҳбубанд, бар забон сабук ва дар тарозу вазнинанд: «Субҳоналлоҳи ва биҳамдиҳӣ, субҳоналлоҳил-азим»."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:48+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:50+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:53+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:57+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "232a1f0f-5861-4ff9-8a68-35b1a21d8157",
+    "ref": "muslim #2609",
+    "text_arabic": "ليس الشَّديدُ بالصُّرَعةِ ، قالوا: فالشَّديدُ أيُّمَ هو؟ يا رَسولَ اللهِ، قال: الذي يَملِكُ نَفسَه عِندَ الغَضَبِ.",
+    "proposed": {
+      "text_english": "The strong one is not the one who wrestles others down. They said: Then who is the strong one, O Messenger of Allah ﷺ? He said: The one who controls himself at the time of anger.",
+      "text_russian": "Не тот силён, кто одолевает в борьбе. Сказали: а кто же тогда силён, о Посланник Аллаха? Он сказал: тот, кто владеет собой при гневе.",
+      "text_uzbek_cyrillic": "Кучли киши полвон эмас. Улар: Унда кучли ким, эй Аллоҳнинг Расули? — дедилар. У: Ғазаб пайтида ўзини тута биладиган кишидир, — деди.",
+      "text_tajik": "Қавӣ он нест, ки дар кӯштигирӣ дигаронро аз по меандозад. Гуфтанд: Пас, қавӣ кист, эй Расули Аллоҳ? Гуфт: Он касест, ки ҳангоми хашм худро нигоҳ медорад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:11:58+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:00+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:04+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:09+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "11a9d4e3-4bf7-4d23-bc11-f1b180b4df60",
+    "ref": "bukhari #6323",
+    "text_arabic": "سَيِّدُ الاستِغفارِ: اللهُمَّ أنتَ رَبِّي ، لا إلَهَ إلَّا أنتَ ، خَلَقتَني وأنا عَبدُك ، وأنا على عَهدِك ووَعدِك ما استَطَعتُ، أبوءُ لك بنِعمَتِك عليَّ، وأبوءُ لك بذَنبي، فاغفِرْ لي؛ فإنَّه لا يَغفِرُ الذُّنوبَ إلَّا أنتَ ، أعوذُ بك مِن شَرِّ ما صَنَعتُ. إذا قال حينَ يُمسي فماتَ دَخَلَ الجَنَّةَ -أو: كان مِن أهلِ الجَنَّةِ-، وإذا قال حينَ يُصبِحُ فماتَ مِن يَومِه مِثلَه.",
+    "proposed": {
+      "text_english": "The master of seeking forgiveness: O Allah, You are my Lord, there is no god but You. You created me and I am Your servant, and I am upon Your covenant and promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge before You Your favor upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You. Whoever says it in the evening and dies that night will enter Paradise - or: will be among the people of Paradise - and whoever says it in the morning and dies that day, the same applies to him.",
+      "text_russian": "Господин мольбы о прощении: «О Аллах, Ты мой Господь, нет божества, кроме Тебя, Ты создал меня, и я раб Твой, и я верен Твоему завету и Твоему обещанию, насколько могу. Прибегаю к Тебе от зла того, что я совершил. Признаю пред Тобой милость Твою ко мне, и признаю пред Тобой грех свой, прости же меня, ибо никто не прощает грехи, кроме Тебя». Если скажет это вечером и умрёт, войдёт в Рай — или: будет из обитателей Рая, — а если скажет это утром и умрёт в тот же день, то так же.",
+      "text_uzbek_cyrillic": "Истиғфорнинг саййиди: «Аллоҳумма, анта Роббий, ля илаҳа илля анта, халақтаний ва ана абдук, ва ана аля аҳдика ва ваъдика мастато'т, абуу лака би ниъматика алайя, ва абуу лака би занбий, фағфир лий, фаиннаҳу ля яғфируз-зунуба илля анта, аъузу бика мин шарри ма саноъту». Киши буни кечқурун айтиб, шу кечада вафот этса, жаннатга киради — ёки: жаннат аҳлидан бўлади —, эрталаб айтиб, шу кунида вафот этса ҳам худди шундай бўлади.",
+      "text_tajik": "Саид-ул-истиғфор (бузургтарин дуои талаби бахшиш): «Аллоҳумма, Анта Раббӣ, ло илоҳа илло Анта, халақтанӣ ва ана абдук, ва ана ала аҳдика ва ваъдика мастатаъту, абӯу лака би-ниъматика алайя, ва абӯу лака би-занбӣ, фағфирлӣ, фаиннаҳу ло яғфируз-зунуба илло Анта, аъӯзу бика мин шарри мо саноъту».\n\nҲар кас инро ҳангоми шом бигӯяд ва дар ҳамон шаб бимирад, ба биҳишт дохил мешавад — ё: аз аҳли биҳишт мегардад —, ва ҳар кас инро ҳангоми субҳ бигӯяд ва дар ҳамон рӯз бимирад, ҳамон ҳукмро дорад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:12+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:16+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:25+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:35+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "2a771385-b2bb-4702-9350-03bbf5e41776",
+    "ref": "tirmidhi #1988",
+    "text_arabic": "إيَّاكم والظنَّ ؛ فإن الظنَّ أكذبُ الحديثِ.",
+    "proposed": {
+      "text_english": "Beware of suspicion, for suspicion is the most untruthful of speech.",
+      "text_russian": "Остерегайтесь предположения, ибо предположение — самая лживая из речей.",
+      "text_uzbek_cyrillic": "Гумондан сақланинг, чунки гумон энг ёлғон сўздир.",
+      "text_tajik": "Аз гумон бипарҳезед, зеро гумон дурӯғтарини сухан аст."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:36+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:38+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:40+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:42+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "c848b572-9bc6-42f8-9909-b8b98c02cf60",
+    "ref": "muslim #2691",
+    "text_arabic": "مَن قال : لا إلَهَ إلَّا اللهُ وحدَه لا شَريكَ له ، له المُلكُ وله الحَمدُ، وهو على كُلِّ شيءٍ قديرٌ، في يَومٍ مِائةَ مَرَّةٍ ؛ كانَت له عَدلَ عَشرِ رِقابٍ، وكُتِبَت له مِائةُ حَسَنةٍ، ومُحيَت عنه مِائةُ سَيِّئةٍ، وكانَت له حِرزًا مِنَ الشَّيطانِ يَومَه ذلك حتَّى يُمسيَ، ولم يَأتِ أحَدٌ أفضَلَ ممَّا جاءَ به، إلَّا أحَدٌ عَمِلَ أكثَرَ مِن ذلك، ومَن قال : سُبحانَ اللهِ وبحَمدِه في يَومٍ مِائةَ مَرَّةٍ ، حُطَّت خَطاياه ولو كانَت مِثلَ زَبَدِ البَحرِ.",
+    "proposed": {
+      "text_english": "Whoever says: \"There is no god but Allah, alone, without partner; His is the dominion and His is the praise, and He is over all things powerful,\" a hundred times in a day, it will be for him the equivalent of freeing ten slaves, a hundred good deeds will be recorded for him, a hundred bad deeds will be effaced from him, and it will be a protection for him from Satan that day until evening, and no one will bring anything better than what he brought, except one who does more than that. And whoever says: \"Glory be to Allah and praise be to Him,\" a hundred times in a day, his sins will be wiped away even if they were like the foam of the sea.",
+      "text_russian": "Кто скажет: «Нет божества, кроме Аллаха, Единого, у Которого нет сотоварища, Ему принадлежит владычество и Ему хвала, и Он над всякой вещью мощен», сто раз в день, — тому это будет равноценно освобождению десяти рабов, и будет записано ему сто благих дел, и будет стёрто с него сто дурных дел, и будет это ему защитой от шайтана в тот его день до вечера, и никто не придёт с лучшим, чем то, с чем пришёл он, кроме того, кто совершит больше этого. А кто скажет: «Пречист Аллах, и хвала Ему», сто раз в день, — с того будут смыты его прегрешения, даже если они подобны пене морской.",
+      "text_uzbek_cyrillic": "Ким «Ла илаҳа иллаллоҳу ваҳдаҳу ла шарика лаҳу, лаҳул-мулку ва лаҳул-ҳамду, ва ҳува ала кулли шайин қадир» деб бир кунда юз марта айтса, унга ўнта қул озод қилганга тенг савоб бўлади, унга юз яхшилик ёзилади, ундан юз ёмонлик ўчирилади, у кун бўйи кечгача шайтондан сақловчи бўлади, ва ҳеч ким у келтирган нарсадан афзалроғини келтирмайди, магар ундан кўпроқ амал қилган киши бундан мустасно. Ва ким «Субҳаналлоҳи ва биҳамдиҳи» деб бир кунда юз марта айтса, гуноҳлари денгиз кўпигича бўлса ҳам тўкилади.",
+      "text_tajik": "Касе ки бигӯяд: «Ло илоҳа иллаллоҳу ваҳдаҳу ло шарика лаҳу, лаҳул-мулку ва лаҳул-ҳамду, ва ҳува ъало кулли шайъин қадир» дар як рӯз сад бор, барои ӯ баробари озод кардани даҳ банда хоҳад буд, ва сад некӣ барояш навишта мешавад, ва сад гуноҳ аз ӯ пок карда мешавад, ва он рӯз то шом барояш аз шайтон нигаҳбон хоҳад буд, ва ҳеҷ кас беҳтар аз он чи ӯ овардааст наоварад, магар касе ки бештар аз он амал кунад. Ва касе ки бигӯяд: «Субҳоналлоҳи ва биҳамдиҳ» дар як рӯз сад бор, гуноҳонаш фурӯ рехта шавад, ҳарчанд ба мисли кафи дарё бошад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:45+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:12:50+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:00+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:11+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "7e199ee6-ab72-4bb2-819e-f844abcc3f01",
+    "ref": "bukhari #15",
+    "text_arabic": "«لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى أَكُونَ أَحَبَّ إِلَيْهِ مِنْ وَالِدِهِ وَوَلَدِهِ وَالنَّاسِ أَجْمَعِينَ».",
+    "proposed": {
+      "text_english": "None of you truly believes until I am more beloved to him than his father, his child, and all people.",
+      "text_russian": "Не уверует никто из вас, пока я не стану любимее ему, чем его отец, его дитя и все люди.",
+      "text_uzbek_cyrillic": "Сизлардан бирингиз мен унга ота-онасидан, боласидан ва барча одамлардан кўра маҳбуброқ бўлмагунимча иймон келтирмайди.",
+      "text_tajik": "Яке аз шумо имон намеоварад, то он ки ман назди ӯ аз падараш, фарзандаш ва тамоми мардум муҳаббатлитар бошам."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:13+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:15+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:18+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:21+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "3040722d-d832-4d09-8e82-78946d18b08f",
+    "ref": "muslim #2956",
+    "text_arabic": "«الدُّنْيَا سِجْنُ الْمُؤْمِنِ وَجَنَّةُ الْكَافِرِ».",
+    "proposed": {
+      "text_english": "\"The world is a prison for the believer and a paradise for the disbeliever.\"",
+      "text_russian": "Мир этот — темница верующего и рай неверующего.",
+      "text_uzbek_cyrillic": "Дунё мўминнинг зиндони ва кофирнинг жаннатидир.",
+      "text_tajik": "Дунё зиндони мӯъмин ва биҳишти кофир аст."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:23+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:24+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:26+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:28+00:00"
+      }
+    }
+  },
+  {
+    "candidate_id": "355e96b7-9a8d-4b77-8f57-7b59c78d86ff",
+    "ref": "muslim #1048",
+    "text_arabic": "«لَوْ كَانَ لِابْنِ آدَمَ وَادِيَانِ مِنْ مَالٍ لَابْتَغَى وَادِيًا ثَالِثًا، وَلَا يَمْلَأُ جَوْفَ ابْنِ آدَمَ إِلَّا التُّرَابُ، وَيَتُوبُ اللهُ عَلَى مَنْ تَابَ».",
+    "proposed": {
+      "text_english": "If the son of Adam had two valleys of wealth, he would seek a third valley, and nothing fills the belly of the son of Adam but dust, and Allah relents toward whoever repents.",
+      "text_russian": "Если бы у сына Адама было два дола богатства, он непременно возжелал бы третий дол. И не наполнит утробу сына Адама ничто, кроме земли. И принимает Аллах покаяние того, кто покается.",
+      "text_uzbek_cyrillic": "Агар одам фарзандига мол(дан иборат) икки водий бўлса, учинчи водийни истар эди. Одам фарзандининг қорнини фақат тупроқ тўлдиради. Аллоҳ тавба қилган кишининг тавбасини қабул қилади.",
+      "text_tajik": "Агар фарзанди Одамро ду водӣ молу сарват мебуд, ҳатман ба ҷустани водии сеюм мехост, ва шиками фарзанди Одамро чизе ҷуз хок пур намекунад, ва Аллоҳ тавбаи ҳар касро, ки тавба кунад, мепазирад."
+    },
+    "translation_meta": {
+      "text_english": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:29+00:00"
+      },
+      "text_russian": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:32+00:00"
+      },
+      "text_uzbek_cyrillic": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:35+00:00"
+      },
+      "text_tajik": {
+        "provenance": "machine",
+        "model": "claude-sonnet-5",
+        "source_field": "text_arabic",
+        "at": "2026-11-19T03:13:40+00:00"
+      }
+    }
+  }
+]

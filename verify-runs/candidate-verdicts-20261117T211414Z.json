@@ -1,0 +1,79 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih Muslim #1510",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "added",
+              "quote": "(яхшилигини)",
+              "why": "The Arabic simply says 'no child can repay (yajzi) his father' with no object specified; inserting '(his goodness)' adds an interpretive gloss not present in the source."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "f6d61793ac60a6dae89ca8f1a6b6d0449fa26a38bc0974ef9b4bdbcb396520f2",
+      "text_english": "cbff845afabe2c0641523fc1bffd56ae973aff6e29aee921a350c90eeddc205b",
+      "text_russian": "87d76d72c84585ffcff8fd3dfefa55bf96d4fff5bbf6247de2f3bdacccd87ce0",
+      "text_uzbek_cyrillic": "1af9cec08eabadd823d4bf0b254c8e649c976e529ffc7ac65f4bb57f2ce4d968",
+      "text_tajik": "cfd89141cc0cb028c54624df61f17726e8fe079140458c96978da638f75befae"
+    },
+    "checked_at": "2026-11-17T21:14:50+00:00"
+  }
+]

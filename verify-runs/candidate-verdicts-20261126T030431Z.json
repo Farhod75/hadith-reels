@@ -1,0 +1,73 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Jami at-Tirmidhi #1956",
+    "agreement": "pass",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "ed44b91439d89fbbe793fe64cce77fda640cd749e552ce862f3deeec919792ce",
+      "text_english": "0f9abce85dd022d3abf7e5a55d9ed5655aa501181dc147993ecbc8da2e2e35c2",
+      "text_russian": "57cc86441c937206a428ade1ef337b382e2aeb648cba477f4fede3f7ecbd1071",
+      "text_uzbek_cyrillic": "f4851a761f03f79b98add46ffbbb9b84f53edc611ce7e7e03fab59d195b9a26b",
+      "text_tajik": "5476ee9c9cb3401e1382d0a9efd5efd7fcb7748dc0e5ca1898e6f255039812e4"
+    },
+    "checked_at": "2026-11-26T03:04:45+00:00"
+  }
+]

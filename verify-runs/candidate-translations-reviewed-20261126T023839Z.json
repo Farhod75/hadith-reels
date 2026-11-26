@@ -1,0 +1,9 @@
+{
+  "reviewed_sha256": "d6a604cca15bb358768e4f682ff1efb852ab019b8df849f95f2e77f48b8b9f9b",
+  "signed_at": "2026-11-26T02:38:39+00:00",
+  "rows": 1,
+  "source": "out\\candidate-translations.json",
+  "refs": [
+    "ahmad #6576"
+  ]
+}

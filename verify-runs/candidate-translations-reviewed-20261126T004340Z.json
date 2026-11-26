@@ -1,0 +1,10 @@
+{
+  "reviewed_sha256": "badfb9569e4fc2b8a4ea7b4c9f64f3a31c1dc6c70b9824aed19e0ca2535d94b0",
+  "signed_at": "2026-11-26T00:43:40+00:00",
+  "rows": 2,
+  "source": "out\\candidate-translations.json",
+  "refs": [
+    "bukhari #1419",
+    "bukhari #10"
+  ]
+}

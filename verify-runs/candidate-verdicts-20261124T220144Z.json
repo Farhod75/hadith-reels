@@ -1,0 +1,79 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #6306",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "tj": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "omitted",
+              "quote": "Ба неъмати Ту бар худ иқрор мекунам ва ба гуноҳи худ низ иқрор мекунам",
+              "why": "Дар ҳар ду ибораи «أَبُوءُ لَكَ» маънои «ба Ту иқрор мекунам» омадааст. Тарҷума дар ҳар ду маврид «ба Ту»-ро ҳазф кардааст."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "28891d38c70ddc4bef7ad9221838aae8589ef58a861f42ba520d3bd097ccba15",
+      "text_english": "404d24f6a3c013231e11554c85016219ceb143a3dd6be2e0c42078643686855b",
+      "text_russian": "27b6d59914f59de9d0985db7f35d779bac48035790650be568f0f023be56d52a",
+      "text_uzbek_cyrillic": "6d87ef599bbbec51b9549157ee70e5092a3b5363e84e5378a84e2328eded3e67",
+      "text_tajik": "77cf94d422afc4c91e4b51376bfca3c03e6a0e18152e1d45267323468be8d162"
+    },
+    "checked_at": "2026-11-24T22:02:37+00:00"
+  }
+]
