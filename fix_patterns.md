@@ -17140,3 +17140,24 @@ only if the dictionary does not take. Never respell (P095).
 **Status:** FIXED (TJ); UZ when a word breaks
 
 ---
+## PATTERN 442: paid-check reports piled up outside git
+
+**Date:** 2026-11-26  **Repo:** hadith-reels  **Severity:** evidence (R4)
+
+**What happened.** R4/P408 made `verify-runs/` the tracked record of every Stage 2/3 run. From
+2026-11-13 the commits added files by name, so 59 reports (2026-11-13..26) sat untracked. The doc-drift
+email listed them as "untracked" but still said CLEAN - nothing treated them as drift.
+
+**Fix.** Committed (ffc032c). `audit-docs.py` `check_verify_runs()`: an untracked report older than a
+day is DRIFT (fails the audit, the pre-push hook and the drift email); a newer one is a WARN, so a run
+in progress does not block a push.
+
+**Tests.** scripts/lib/test_audit_docs_verify_runs.py (temp git repo).
+
+**Lesson:** evidence that nothing checks for is evidence that stops being kept.
+
+**Tripwire:** a DRIFT line `[verify-runs]`.
+
+**Status:** FIXED
+
+---

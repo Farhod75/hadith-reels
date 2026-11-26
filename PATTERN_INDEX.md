@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-369 patterns in 382 entries, frontier **P441**. The P-sequence is shared with
+370 patterns in 383 entries, frontier **P442**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -22,9 +22,9 @@ BEFORE changing it.
 - `route.ts` (12) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360, P441
 - `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
+- `audit-docs.py` (8) - P247, P248, P253, P332, P335, P334, P336, P442
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
 - `audit-assets.py` (7) - P117, P121, P123, P197, P241, P251, P301
-- `audit-docs.py` (7) - P247, P248, P253, P332, P335, P334, P336
 - `audit-library.py` (7) - P119, P161, P192, P203, P262, P268, P290
 - `verify-matn-number.py` (7) - P311, P312, P319, P322, P323, P327, P328
 - `generate-scene.ps1` (6) - P217, P250, P255, P281, P329, P335
@@ -430,5 +430,6 @@ BEFORE changing it.
 - **P439** - the publishing scripts lived only in out/
 - **P440** - the TTS-instruction "fix" was dead code
 - **P441** - a pronunciation dictionary instead of rewording
+- **P442** - paid-check reports piled up outside git
 
-<!-- pattern-index-stamp entries=382 patterns=369 frontier=441 sha1=05ed48b66841608cfe530d588a3dbcb8cb35eaa0 -->
+<!-- pattern-index-stamp entries=383 patterns=370 frontier=442 sha1=084c1ca860e2077dab5ed8ec2814f3f8e07aaf1a -->

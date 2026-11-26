@@ -36,6 +36,7 @@ import os
 import collections
 import re
 import subprocess
+import time
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -510,6 +511,30 @@ def check_pattern_index():
                 fail('PATTERN_INDEX', line.strip())
 
 
+def untracked_reports(root, now=None, day=86400):
+    """P442: verify-runs/ is the tracked evidence of paid checks (R4, P408). -> (stale, fresh):
+    untracked report names older / younger than a day. A day's grace so a run in progress
+    is not drift; older than that, a commit added files by name and left the reports behind."""
+    r = subprocess.run(['git', 'ls-files', '--others', '--exclude-standard', 'verify-runs'],
+                       capture_output=True, text=True, cwd=root)
+    now = now or time.time()
+    stale, fresh = [], []
+    for name in r.stdout.split():
+        p = os.path.join(root, name)
+        if os.path.isfile(p):
+            (stale if now - os.path.getmtime(p) > day else fresh).append(os.path.basename(name))
+    return stale, fresh
+
+
+def check_verify_runs():
+    stale, fresh = untracked_reports(ROOT)
+    if stale:
+        fail('verify-runs', '%d report(s) older than a day are not committed (R4/P408), e.g. %s - git add verify-runs/'
+             % (len(stale), sorted(stale)[0]))
+    if fresh:
+        warn('verify-runs', '%d report(s) from the last day not committed yet' % len(fresh))
+
+
 def check_session_hook_parts():
     """Every part of the session-start output must have a handler, and fit.
 
@@ -622,6 +647,7 @@ def main():
     check_stack_facts()
     check_upskilling_due()
     check_pattern_index()
+    check_verify_runs()
     check_session_hook_parts()
     check_tripwires()
 

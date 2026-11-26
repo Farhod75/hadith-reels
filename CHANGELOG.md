@@ -1,3 +1,15 @@
+## [2026-11-26a] - P442: audit-docs flags uncommitted verify-runs reports
+
+### Fixed
+
+- **scripts/audit-docs.py:** untracked verify-runs/ reports older than a day are drift; newer ones warn. 59 reports since 2026-11-13 committed (ffc032c).
+
+### Docs
+
+- fix_patterns.md P442, PATTERN_INDEX.md; tests in scripts/lib/test_audit_docs_verify_runs.py.
+
+---
+
 ## [2026-11-25l] - Library: #1488 and #1956 translations completed
 
 ### Fixed (hadith_library, operator approved)
