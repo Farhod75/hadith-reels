@@ -1,3 +1,12 @@
+## [2026-11-25l] - Library: #1488 and #1956 translations completed
+
+### Fixed (hadith_library, operator approved)
+
+- **Abu Dawud #1488:** `to Him` (إليه) added in all four languages.
+- **Tirmidhi #1956:** `for you` (لك) added in all four; EN `in the face of`. Stage 3 pass on both. Published reels unchanged.
+
+---
+
 ## [2026-11-25k] - Library meaning audit; Ahmad #7936 retired, #6576 completed
 
 ### Fixed (hadith_library, operator approved)
