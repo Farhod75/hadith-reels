@@ -1,3 +1,16 @@
+## [2026-11-25j] - Library: three partial matns completed
+
+### Fixed (hadith_library, operator approved)
+
+- **Bukhari #6019, #1419, #10:** full matn (sunnah.com, hadith-json mirror) and EN/RU/UZ/TJ; Stage 3 A/B pass on all four languages; P319 MATCH.
+- **Bukhari #10 TJ:** the stored Tajik put the Muslim definition under `Муҳоҷир`.
+
+### Docs
+
+- OPEN_ITEMS.md (partial matns done; Muslim #2588 was already full).
+
+---
+
 ## [2026-11-25i] - P441: ElevenLabs pronunciation dictionary for TJ
 
 ### Added

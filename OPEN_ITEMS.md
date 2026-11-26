@@ -146,7 +146,7 @@ this one wins.
 
 **Added 2026-10-31 / 2026-11-01, open:**
 
-- **Partial matns in the library.** Rows whose Arabic or translation is a
+- **DONE 2026-11-25 (operator approved each): Partial matns in the library.** Bukhari #6019 (all four clauses), #1419 (the question + `do not delay until the throat`), #10 (the muhajir clause) completed in all languages; Stage 3 pass on all four after A's notes (TJ `Пурсида шуд`; EN/UZ `stingy`/`бахил` for شحيح; RU past tense); P319 MATCH; matn_verified_at left for a reader (P265). **#10 TJ had the Muslim definition under `Муҳоҷир`** - fixed. Muslim #2588 was already full (published R226). Original note: Rows whose Arabic or translation is a
   fragment of a longer hadith, found while choosing sets and NOT yet checked
   against a Tier 1 page: Bukhari #6019 (neighbour + guest + speech - only the
   neighbour clause stored; to be done later in full, all four languages, via
