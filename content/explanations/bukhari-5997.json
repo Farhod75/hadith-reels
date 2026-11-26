@@ -1,0 +1,147 @@
+{
+  "schema": 2,
+  "slug": "bukhari-5997",
+  "library_id": "620cbbf4-119e-4bad-b3df-c08549bea766",
+  "collection": "Sahih al-Bukhari",
+  "hadith_number": "5997",
+  "library_is_excerpt": false,
+  "occasion": null,
+  "commentaries": [
+    {
+      "source": "hadeethenc",
+      "source_id": "5440",
+      "publisher": "HadeethEnc.com",
+      "licence": "HadeethEnc API terms: no modification, addition or deletion of the content; credit the publisher and source (HadeethEnc.com).",
+      "fetched_at": "2026-11-26",
+      "references_ar": "دليل الفالحين لطرق رياض الصالحين، لابن علان، نشر دار الكتاب العربي، بدون تاريخ.\nشرح رياض الصالحين، لابن عثيمين، نشر: دار الوطن للنشر، الرياض، الطبعة: 1426هـ.\nبهجة الناظرين شرح رياض الصالحين، للهلالي، نشر: دار ابن الجوزي، الطبعة الأولى 1418هـ.\nصحيح البخاري، نشر: دار طوق النجاة (مصورة عن السلطانية بإضافة ترقيم ترقيم محمد فؤاد عبد الباقي)، الطبعة: الأولى 1422هـ.\nصحيح مسلم، تحقيق: محمد فؤاد عبد الباقي، نشر: دار إحياء التراث العربي - بيروت.",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/5440",
+          "raw": "raw/hadeethenc-5440-ar.json",
+          "raw_sha256": "d014e28598d8519e00e649307e8b6f034cc614328f1c0629040ea190c62a7de3",
+          "title": "مَنْ لَا يَرْحَم لَا يُرْحَمُ!",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: قَبَّلَ النبيُّ صلى الله عليه وسلم الحسنَ بنَ عليٍّ رضي الله عنهما ، وعنده الأَقْرَعُ بنُ حَابِسٍ، فقال الأَقْرَعُ: إنَّ لي عَشَرَةً من الوَلَدِ ما قَبَّلْتُ مِنْهُمْ أَحَدًا، فَنَظَرَ إليهِ رسولُ اللهِ صلى الله عليه وسلم فقال: «مَنْ لَا يَرْحَم لَا يُرْحَمُ!».",
+          "explanation": "أخبر أبو هريرة رضي الله عنه أن رسول الله صلى الله عليه وسلم قبَّل الحسن بن علي وعنده الأقرع بن حابس التميمي جالساً، فقال الأقرع: إنَّ لي عشرة من الولد ما قبَّلتُ منهم أحداً، فنظر إليه رسول الله صلى الله عليه وسلم ثم قال: \"من لا يرحم لا يُرحَم\"، وفي رواية: \"أوَ أملك أن نزع الله من قلبك الرحمة\" أي ماذا أصنع إذا كان الله قد نزع من قلبك عاطفة الرحمة؟ فهل أملك أن أعيدها إليك؟.",
+          "lessons": [
+            "تقبيل الأبوين لأولادهما مشروع مستحب.",
+            "العطف على الصغير دلالة الرحمة والشفقة عليه.",
+            "من أسباب رحمة الله للناس التراحم بينهم.",
+            "الجزاء من جنس العمل؛ فمن لا يَرحم لا يُرحم.",
+            "فيه دلالة على جفاء الأعراب سكان البادية.",
+            "فيه أن الشرع لا يؤخذ بالعقل، إنما بالوحي والاتباع."
+          ],
+          "word_meanings": [
+            {
+              "word": "من لا يرحم",
+              "meaning": " أي: من لا يرحم الناس.والرحمة من الخلق بمعنى التلطف."
+            },
+            {
+              "word": "لا يُرحم",
+              "meaning": " أي: لا يرحمه الله، والرحمة صفة فعلية تليق بجلال الله -تعالى- وليست كرحمة المخلوقين."
+            }
+          ],
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/5440",
+          "raw": "raw/hadeethenc-5440-en.json",
+          "raw_sha256": "5a19fd1845b7948dfab2b00b574eb1b3dae5b2129cde90d23a6da47f86ba3fb5",
+          "title": "Whoever does not show mercy will not be shown mercy",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: The Messenger of Allah (may Allah’s peace and blessings be upon him) kissed Al-Hasan ibn ‘Ali while Al-Aqra‘ ibn Hābis was present. Al-Aqra‘ observed: \"I have ten children, and I have never kissed any of them.\" Thereupon, the Messenger of Allah (may Allah’s peace and blessings be upon him) looked at him and said: \"Whoever does not show mercy will not be shown mercy!\"",
+          "explanation": "Abu Hurayrah (may Allah be pleased with him) informed that the Messenger (may Allah's peace and blessings be upon him) kissed Al-Hasan ibn ‘Ali while Al-Aqra‘ ibn Hābis At-Tamīmi was sitting with him. Al-Aqra‘ remarked: \"I have ten children, and I have never kissed any of them.\" Thereupon, the Messenger (may Allah's peace and blessings be upon him) looked at him and said: \"Whoever does not show mercy will not be shown mercy.\" In another narration: \"What can I do if Allah has removed mercy from your heart?\" Meaning: If Allah, the Almighty, has taken the feeling of mercy away from your heart, can I ever bring it back?",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/5440",
+          "raw": "raw/hadeethenc-5440-ru.json",
+          "raw_sha256": "6f0db9b5ac00f08ef4e6935699fa864ec838589e2ad50b5a715d31e07e387e9b",
+          "title": "«Тот, кто не милосерден к другим, не будет помилован и сам!»",
+          "hadeeth": "Сообщается, что Абу Хурайра (да будет доволен им Аллах) сказал: «Однажды Пророк (да благословит его Аллах и приветствует) поцеловал аль-Хасана, сына ‘Али (да будет доволен Аллах ими обоими), а в это время у него был аль-Акра` ибн Хабис. Увидев это, аль-Акра` сказал: \"Поистине, у меня десять сыновей, но я никогда не целовал ни одного из них\". Тогда Посланник Аллаха (да благословит его Аллах и приветствует) взглянул на него и сказал: \"Тот, кто не милосерден к другим, не будет помилован и сам!\"».",
+          "explanation": "Абу Хурайра (да будет доволен им Аллах) сообщил, что однажды Пророк (да благословит его Аллах и приветствует) поцеловал аль-Хасана ибн ‘Али, а в это время у него сидел аль-Акра` ибн Хабис ат-Тамими, который, увидев это, сказал: «Поистине, у меня десять сыновей, но я никогда не целовал ни одного из них». Тогда Посланник Аллаха (да благословит его Аллах и приветствует) взглянул на него, а затем сказал: «Тот, кто не милосерден к другим, не будет помилован и сам!», а в другой версии данного хадиса сообщается, что Пророк (да благословит его Аллах и приветствует) сказал: «Разве я в силах помочь тебе, если Аллах лишил твое сердце милосердия?!», то есть: «Что я могу поделать, если Аллах лишил твое сердце чувства милосердия? Разве я в силах вернуть его обратно?!»",
+          "lessons": [],
+          "word_meanings": [],
+          "attribution": "Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ],
+  "related_events": [
+    {
+      "source": "hadeethenc",
+      "source_id": "11171",
+      "publisher": "HadeethEnc.com",
+      "fetched_at": "2026-11-26",
+      "see_also": "Лучший пример, т. 3, с. 71",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/11171",
+          "raw": "raw/hadeethenc-11171-ar.json",
+          "raw_sha256": "e52da8882505627a2e75c457474edec513d903b1d215b03e470299c5ae62b942",
+          "title": "اللهم إني أحبه فأحبه، وأحب من يحبه",
+          "hadeeth": "عن أبي هريرة رضي الله عنه قال: كنتُ مع رسول الله صلى الله عليه وسلم في سوق من أسواق المدينة، فانصرف فانصرفتُ، فقال: «أين لُكَعُ -ثلاثا- ادعُ الحسن بن علي». فقام الحسن بن علي يمشي وفي عنقه السِّخَاب، فقال النبي صلى الله عليه وسلم بيده هكذا، فقال الحسن بيده هكذا، فالتزمه فقال: «اللهم إني أُحبه فأَحبَّه، وأَحبَّ من يحبه». وقال أبو هريرة: فما كان أحد أحب إليَّ من الحسن بن علي، بعد ما قال رسول الله صلى الله عليه وسلم ما قال.",
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/11171",
+          "raw": "raw/hadeethenc-11171-en.json",
+          "raw_sha256": "d99453d581a6dd79ce3e993ed4e1467966764d28a93ce3fdd0d4ea952fb1a91b",
+          "title": "O Allah, I do love him. So love him and love whoever loves him",
+          "hadeeth": "Abu Hurayrah (may Allah be pleased with him) reported: I was accompanying the Messenger of Allah (may Allah's peace and blessings be upon him) in one of the markets of Madīnah. He left and so did I. He said: \"Where is Luka‘?\" He repeated this three times and then said: \"Call Al-Hasan ibn ‘Ali.\" Al-Hasan got up and walked [towards him] and he had a necklace round his neck. The Prophet (may Allah's peace and blessings be upon him) had his hand like this and Al-Hasan’s hand was the same and he hugged him and said: \"O Allah, I do love him. So love him and love whoever loves him.\" Abu Hurayrah said: \"There is none more beloved to me than Al-Hasan ibn ‘Ali.\" He said that after he heard the Messenger of Allah (may Allah's peace and blessings be upon him) had said what he said about him.",
+          "attribution": "Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/11171",
+          "raw": "raw/hadeethenc-11171-ru.json",
+          "raw_sha256": "2089c164eaca93bce1822bb112bdb8175ea7aaf2fc746fc7e5b62a5dd08e73ab",
+          "title": "«О Аллах, поистине, я люблю его, полюби же его и Ты, и полюби тех, кто станет любить его!»",
+          "hadeeth": "Абу Хурейра (да будет доволен им Аллах) передал: «Однажды днём я находился вместе с Посланником Аллаха (мир ему и благословение Аллаха) на одном из рынков Медины. Когда он ушёл оттуда, я также ушёл. [Подойдя к дому Фатимы,] он (мир ему и благословение Аллаха) стал спрашивать: \"Где малыш? — повторив этот вопрос трижды — Позови аль-Хасана ибн Али!\" И тут подошёл аль-Хасан ибн Али, а на его шее было ожерелье из благовоний. И тогда Пророк (мир ему и благословение Аллаха) сделал своей рукой вот так, а аль-Хасан — вот так, после чего он (мир ему и благословение Аллаха) обнял его и сказал: \"О Аллах, поистине, я люблю его, полюби же его и Ты, и полюби тех, кто станет любить его!\"» Абу Хурейра сказал: «И после того, как Посланник Аллаха (мир ему и благословение Аллаха) произнёс эти слова, не было для меня на свете человека любимее, чем аль-Хасан ибн Али».",
+          "attribution": "Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    },
+    {
+      "source": "hadeethenc",
+      "source_id": "4251",
+      "publisher": "HadeethEnc.com",
+      "fetched_at": "2026-11-26",
+      "see_also": "",
+      "langs": {
+        "ar": {
+          "url": "https://hadeethenc.com/ar/browse/hadith/4251",
+          "raw": "raw/hadeethenc-4251-ar.json",
+          "raw_sha256": "ca1b0fe60939ac77fbb4e51ab243ed512d54982a07654b0c40866c45d5fdf252",
+          "title": "تقبيل الصبيان ورحمتهم والشفقة عليهم",
+          "hadeeth": "عن عائشة رضي الله عنها قالت: قَدِمَ نَاسٌ مِنَ الأَعْرَابِ عَلَى رَسُولِ اللهِ صلى الله عليه وسلم فقالوا: أَتُقَبِّلُونَ صِبْيَانَكُمْ؟ فقال: «نعم» قالوا: لَكِنَّا واللهِ ما نُقَبِّلُ! فقال رسولُ اللهِ صلى الله عليه وسلم : «أَوَ أَمْلِكُ إن كانَ اللهُ نَزَعَ مِنْ قُلُوبِكُم الرَّحْمَةَ!».",
+          "attribution": "متفق عليه",
+          "grade": "صحيح"
+        },
+        "en": {
+          "url": "https://hadeethenc.com/en/browse/hadith/4251",
+          "raw": "raw/hadeethenc-4251-en.json",
+          "raw_sha256": "81c0b3031af80901b7c6a3ad049da1f80e556124fbefd4002110c2e7854cabb5",
+          "title": "Kissing the children and having mercy and clemency towards them",
+          "hadeeth": "‘Ā’ishah (may Allah be pleased with her) reported: Some Bedouins visited the Messenger of Allah (may Allah's peace and blessings be upon him) and they said: \"Do you kiss your children?\" He said: 'Yes.' They said: \"By Allah we do not kiss our children.\" Thereupon the Messenger of Allah (may Allah's peace and blessings be upon him) said: \"Then what can I do if Allah has removed mercy from your hearts?\"",
+          "attribution": "Narrated by Bukhari & Muslim",
+          "grade": "Authentic hadith"
+        },
+        "ru": {
+          "url": "https://hadeethenc.com/ru/browse/hadith/4251",
+          "raw": "raw/hadeethenc-4251-ru.json",
+          "raw_sha256": "d513ac39d53f10aa8f2091815813dd98817c0ebe982b64819531bf19ad6182bb",
+          "title": "Целование детей, милосердие и жалость к ним",
+          "hadeeth": "‘Аиша (да будет доволен ею Аллах) передаёт: «Люди из числа бедуинов пришли к Посланнику Аллаха (мир ему и благословение Аллаха) и спросили: “Вы целуете своих детей?” Он ответил: “Да”. [Бедуины] сказали: “А мы, клянёмся Аллахом, не целуем их!” Тогда Посланник Аллаха (мир ему и благословение Аллаха) сказал: “Что же я могу сделать, если Аллах лишил ваши сердца милосердия?”»",
+          "attribution": "Согласован Аль-Бухари и Муслимом",
+          "grade": "Достоверный"
+        }
+      }
+    }
+  ]
+}
