@@ -183,8 +183,7 @@ this one wins.
   passwords): app-release-bundle.aab + app-release-signed.apk, upload key SHA-256
   84:8F:70:6A:2E:D5:E6:B0:CF:50:4F:B8:74:13:83:11:42:46:4C:66:CD:F9:54:01:3E:83:6F:E6:BB:DC:FE:5B.
   minSdkVersion raised 21 -> 24 (androidbrowserhelper requires it); Bubblewrap's jdkPath set to
-  the 8.3 short path (apksigner broke on «C:\Program Files»). WAITING ON: Google's identity
-  check; an Android 10+ phone for the device check (the operator's LG runs Android 5); phone
+  the 8.3 short path (apksigner broke on «C:\Program Files»). WAITING ON (2026-11-26: identity VERIFIED by Google): an Android 10+ phone (arrives 2026-11-27) for the device check (the operator's LG runs Android 5); phone
   number check. THEN: create the app, upload the .aab to closed testing, take the Play App
   Signing SHA-256, publish public/.well-known/assetlinks.json with both fingerprints, 12 testers
   x 14 consecutive days, production. LATER: a paid tier (operator 2026-11-11: the API costs
