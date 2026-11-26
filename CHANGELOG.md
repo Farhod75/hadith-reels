@@ -4,6 +4,7 @@
 
 - **Abu Dawud #1488:** `to Him` (إليه) added in all four languages.
 - **Tirmidhi #1956:** `for you` (لك) added in all four; EN `in the face of`. Stage 3 pass on both. Published reels unchanged.
+- **Listen #1488:** re-narrated from the corrected text (narrate-library S block) and republished, 4 clips; #7536 Listen left for the operator.
 
 ---
 
