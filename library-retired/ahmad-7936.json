@@ -1,0 +1,34 @@
+{
+ "retired_at": "2026-11-25",
+ "reason": "Not found at Musnad Ahmad 7936; the text is al-Tabarani 7/138 (6613) via Sakhbara al-Azdi - al-Dimyati: sanaduhu saqim; al-Mundhiri: cannot reach hasan; al-Haythami: Abu Dawud al-A'ma is matruk. Library is sahih/hasan only. Operator approved deletion 2026-11-25.",
+ "row": {
+  "id": "da85eede-346e-4661-9e17-0220a0486a3f",
+  "text_arabic": "مَنْ أُعْطِيَ فَشَكَرَ وَابْتُلِيَ فَصَبَرَ وَظَلَمَ فَاسْتَغْفَرَ وَظُلِمَ فَعَفَا",
+  "text_english": "Blessed is he who is given and is grateful, who is tried and is patient, who wrongs and seeks forgiveness, and who is wronged and forgives.",
+  "text_uzbek": "Baxtlidir: neʼmat berilganda shukr qilgan, sinalganda sabr etgan, zulm qilganda istighfor aytgan, zulm koʻrganda kechirgan.",
+  "text_russian": "Блажен тот, кому дано и кто благодарен, кто испытан и терпелив, кто согрешил и просит прощения, кого обидели и кто прощает.",
+  "narrator": "Abu Hurairah",
+  "collection": "Musnad Ahmad",
+  "book": "Musnad of the Prolific Narrators Among the Companions",
+  "hadith_number": "7936",
+  "grade": "hasan",
+  "tags": [
+   "gratitude",
+   "patience",
+   "forgiveness",
+   "character",
+   "blessed"
+  ],
+  "source_url": "https://sunnah.com/ahmad:7936",
+  "authority": "tier1",
+  "created_at": "2026-05-12T00:15:12.668319+00:00",
+  "text_tajik": "Хушбахт аст он касе, ки ҳангоми неъмат шукр кунад, ҳангоми озмоиш сабр намояд, ҳангоми зулм истиғфор хонад ва ҳангоми зулм дидан бубахшад.",
+  "text_uzbek_cyrillic": "Бахтлидир: неъмат берилганда шукр қилган, синалганда сабр этган, зулм қилганда истигҳфор айтган, зулм кўрганда кечирган.",
+  "text_uzbek_latin": "Baxtlidir: neʼmat berilganda shukr qilgan, sinalganda sabr etgan, zulm qilganda istighfor aytgan, zulm koʻrganda kechirgan.",
+  "matn_verified_at": null,
+  "matn_screened_at": "2026-09-05T07:39:01.136426+00:00",
+  "translation_source": null,
+  "matn_verified_sha256": null,
+  "matn_screened_sha256": "2041e115e940293ce24412e13032b08c78ef13818e19d9aaf35610ae43180e06"
+ }
+}

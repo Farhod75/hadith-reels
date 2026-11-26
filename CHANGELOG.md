@@ -1,3 +1,16 @@
+## [2026-11-25k] - Library meaning audit; Ahmad #7936 retired, #6576 completed
+
+### Fixed (hadith_library, operator approved)
+
+- **Musnad Ahmad #7936 deleted:** weak (al-Tabarani via Sakhbara al-Azdi), not at the cited number; copy in library-retired/ahmad-7936.json.
+- **Musnad Ahmad #6576:** full matn, four translations, grade hasan; Stage 3 pass; P319 MATCH.
+
+### Docs
+
+- OPEN_ITEMS.md (audit findings: #1488 and #1956 open), reel-tracker.md (101 library rows), library-retired/ (new).
+
+---
+
 ## [2026-11-25j] - Library: three partial matns completed
 
 ### Fixed (hadith_library, operator approved)

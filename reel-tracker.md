@@ -698,7 +698,7 @@ clips themselves need `-Duration 10` on generate-scene.ps1, which defaults to 5.
 | Avg duration | ~40s |
 | Avg file size | ~13 MB |
 | Hadiths used (unique) | 76 |
-| Library rows | 102 (76 used, 26 unused - 2026-11-25) |
+| Library rows | 101 (76 used, 25 unused - 2026-11-25; Ahmad #7936 retired as weak) |
 | Hadith collections used | 6 (Sahih al-Bukhari ×143, Sahih Muslim ×100, Jami at-Tirmidhi ×26, Sunan Abu Dawud ×16, Sunan Ibn Majah ×8, Sunan an-Nasai ×8) |
 | Companions cited | 26 (Abu Hurairah ×139, Anas ibn Malik ×32, Abu Musa al-Ashari ×12, Abdullah ibn Amr ×8, Abdullah ibn Masud ×12, Suhaib ×8, Abu Dharr ×5, Aisha ×5, Abu Bakra ×8, Abu Darda ×4, Abu Malik al-Ashari ×4, Adiy ibn Hatim ×4, Hudhayfah ibn al-Yaman ×8, Ibn Abbas ×4, Ibn Umar ×4, Itban ibn Malik ×4, Jabir ibn Abdullah ×4, Jarir ibn Abdullah ×4, Jubayr ibn Mut'im ×4, Mu'awiyah ibn Jahimah ×4, Nu'man ibn Bashir ×4, Salman al-Farisi ×4, Umar ibn al-Khattab ×4, Umm Salamah ×4, Uthman ibn Affan ×4, Shaddad ibn Aws ×4) |
 
