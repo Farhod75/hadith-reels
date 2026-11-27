@@ -17328,3 +17328,45 @@ language, kinds kept when they fit, the boundary moves when they do not, none wh
 **Status:** FIXED
 
 ---
+## PATTERN 450: review sheets and previews were rebuilt by hand every set
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** friction
+
+**What happened.** The three operator review points of a set - stills to pick, Kling clips to check
+for people/hands, 540p previews - were each produced by an ad-hoc PIL script or ffmpeg loop written
+again in the session (#5997, #2589, #6019).
+
+**Fix.** `scripts/review-sheet.py --number N --mode stills|clips|previews`: stills grouped by scene
+(variants side by side) -> out/sheet-<N>-stills.jpg; the plan's clips at start/middle/end ->
+out/sheet-<N>-clips.jpg; each language's reel at 540 px -> out/prev<N>/. Slug from out/set-<N>.json.
+
+**Tests.** scripts/lib/test_review_sheet.py - grouping and ordering of variants, frame times.
+
+**Lesson:** a review step the operator sees every set deserves a tracked command.
+
+**Tripwire:** a contact sheet or preview built with an inline script.
+
+**Status:** FIXED
+
+---
+## PATTERN 451: narrate-reel learned the dev server was down only from a failed call
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** friction
+
+**What happened.** /api/tts is served by `next dev -p 3002`. After a desktop-app restart the server
+was down and narrate-reel aborted on its first request, with no hint how to start it.
+
+**Fix.** `scripts/lib/dev_server.py dev_server_problem()`: a socket connect to the API's host:port
+before the first paid call (after --dry-run, which needs no server); a refusal stops with the start
+command.
+
+**Tests.** scripts/lib/test_dev_server.py - listening passes with the origin's port; refused stops
+with the command.
+
+**Lesson:** check what a paid run depends on before spending.
+
+**Tripwire:** a narrate-reel ABORT on URLError.
+
+**Status:** FIXED
+
+---

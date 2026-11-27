@@ -1,3 +1,16 @@
+## [2026-11-27h] - P450 review sheets, P451 dev-server check
+
+### Added
+
+- **scripts/review-sheet.py:** `--number N --mode stills|clips|previews` - the operator's review files for a set (P450).
+- **scripts/lib/dev_server.py:** narrate-reel checks the dev server on :3002 before the first paid call and prints how to start it (P451).
+
+### Docs
+
+- fix_patterns.md P450-P451, PATTERN_INDEX.md, reel-creation-pipeline.md; tests test_review_sheet.py, test_dev_server.py.
+
+---
+
 ## [2026-11-27g] - P449: render-set suggests an align that fits every language
 
 ### Added

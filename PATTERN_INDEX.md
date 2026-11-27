@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-377 patterns in 390 entries, frontier **P449**. The P-sequence is shared with
+379 patterns in 392 entries, frontier **P451**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -438,5 +438,7 @@ BEFORE changing it.
 - **P447** - pick-nasheed --exclude without .mp3 excluded nothing
 - **P448** - al-Hasan's name read as the book Usvai Hasana
 - **P449** - align anchors were tuned by hand, one dry run at a time
+- **P450** - review sheets and previews were rebuilt by hand every set
+- **P451** - narrate-reel learned the dev server was down only from a failed call
 
-<!-- pattern-index-stamp entries=390 patterns=377 frontier=449 sha1=52641b4fa919fc71d0f6be182ec05f1c144dba4e -->
+<!-- pattern-index-stamp entries=392 patterns=379 frontier=451 sha1=791514bf470e1ff75b4922071add6d668e34d96e -->

@@ -109,6 +109,13 @@ if a.dry_run:
     print('\nDRY RUN - nothing was sent and nothing was spent.')
     sys.exit(0)
 
+# P451: the dev server serves /api/tts - check it before the first paid call
+sys.path.insert(0, os.path.join(ROOT, 'scripts', 'lib'))
+from dev_server import dev_server_problem
+_why = dev_server_problem(API.rsplit('/api/', 1)[0])
+if _why:
+    die(_why)
+
 before = {s: stat(side(s, 'mp3')) for s, _ in jobs}
 rows = []
 bad = 0
