@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-375 patterns in 388 entries, frontier **P447**. The P-sequence is shared with
+376 patterns in 389 entries, frontier **P448**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -19,8 +19,8 @@ BEFORE changing it.
 
 - `render-reel.ps1` (20) - P121, P123, P136, P189, P208, P237, P246, P249, P251, P252, P255, P281, P282, P286, P297, P304, P309, P319, P321, P330
 - `fix_patterns.md` (16) - P209, P247, P256, P291, P332, P364, P365, P366, P388, P390, P396, P398, P399, P405, P406, P411
+- `lint-content.py` (12) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327, P448
 - `route.ts` (12) - P071, P095, P140, P188, P232, P246, P284, P303, P353, P354, P360, P441
-- `lint-content.py` (11) - P122, P124, P161, P192, P233, P235, P275, P282, P287, P315, P327
 - `stt-validate.py` (11) - P189, P193, P235, P243, P246, P247, P252, P298, P315, P330, P339
 - `audit-docs.py` (8) - P247, P248, P253, P332, P335, P334, P336, P442
 - `verify-candidates.py` (8) - P221, P235, P257, P264, P266, P299, P345, P357
@@ -436,5 +436,6 @@ BEFORE changing it.
 - **P445** - the Meta share steps lived in chat, and YouTube hung on "leave site?"
 - **P446** - fetch-explanation wanted the row's uuid
 - **P447** - pick-nasheed --exclude without .mp3 excluded nothing
+- **P448** - al-Hasan's name read as the book Usvai Hasana
 
-<!-- pattern-index-stamp entries=388 patterns=375 frontier=447 sha1=f425f86308125967cadc57c2a0fee7a26173d2f0 -->
+<!-- pattern-index-stamp entries=389 patterns=376 frontier=448 sha1=3f06f101e06fed3002c7a17814426ad2976eacda -->

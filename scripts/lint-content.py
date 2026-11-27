@@ -91,8 +91,8 @@ UNNAMED_AUTHORITY = {
 # including in negative claims ("neither X nor Y records...").
 SEERAH_TITLES = [
     'Ar-Raheeq', 'Al-Makhtum', 'Raheeq Al-Makhtum', 'Sealed Nectar',
-    'Ар-Рахик', 'Аль-Махтум', 'Усва', 'Усваи', 'Хасана', 'Ҳасана',
-    'Uswa', 'Hasana', 'Усва аль-Хасана', 'Сират', 'Sirah', 'Seerah',
+    'Ар-Рахик', 'Аль-Махтум', 'Усва', 'Усваи',   # P448: no bare 'Хасана'/'Hasana' - it is
+    'Uswa', 'Усва аль-Хасана', 'Сират', 'Sirah', 'Seerah',   # al-Hasan's name (RU 'аль-Хасана', #5997)
     'Ибн Хишам', 'Ibn Hisham', 'Ибн Исхак', 'Ibn Ishaq',
 ]
 

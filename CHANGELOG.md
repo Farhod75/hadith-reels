@@ -1,3 +1,15 @@
+## [2026-11-27e] - P448: lint no longer reads al-Hasan as Usvai Hasana
+
+### Fixed
+
+- **scripts/lint-content.py:** bare 'Хасана'/'Ҳасана'/'Hasana' removed from SEERAH_TITLES; the book is still matched by Усва/Усваи/Uswa.
+
+### Docs
+
+- fix_patterns.md P448, PATTERN_INDEX.md; test in scripts/lib/test_lint_seam.py.
+
+---
+
 ## [2026-11-27d] - P447: pick-nasheed --exclude without .mp3
 
 ### Fixed

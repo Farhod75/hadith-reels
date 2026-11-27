@@ -32,3 +32,10 @@ def test_the_check_reports_one_warning_on_the_moral():
     found = lc.check_seam(blocks)
     assert len(found) == 1 and found[0].level == 'WARN' and found[0].check == 'seam-repeat'
     assert lc.check_seam(lc.parse_blocks('S: He said: "Be kind."\nM: Kindness is faith.\n')) == []
+
+def test_al_hasan_is_not_a_seerah_title_but_the_book_still_is():
+    # P448: "поцеловал аль-Хасана ибн Али" (#5997 RU) was flagged as the book Usvai Hasana
+    blocks = {'S': [(1, 'Пророк ﷺ поцеловал аль-Хасана ибн Али.')]}
+    assert lc.check_seerah_source(blocks) == []
+    for line in ('В «Усваи Ҳасана» сказано', 'Uswa Hasana, vol. 3', 'Ар-Рахик аль-Махтум'):
+        assert lc.check_seerah_source({'S': [(1, line)]}), line

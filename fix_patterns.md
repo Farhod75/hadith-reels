@@ -17282,3 +17282,23 @@ approved bed is printed as a WARNING instead of being dropped silently.
 **Status:** FIXED
 
 ---
+## PATTERN 448: al-Hasan's name read as the book Usvai Hasana
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** lint false positive
+
+**What happened.** `lint-content.py` SEERAH_TITLES held bare 'Хасана', 'Ҳасана' and 'Hasana'. The RU
+draft of #5997 ("поцеловал аль-Хасана ибн Али") was flagged as naming a seerah source.
+
+**Fix.** The bare words are gone; the book is still caught by 'Усва', 'Усваи', 'Uswa' and
+'Усва аль-Хасана', which always come with it.
+
+**Tests.** scripts/lib/test_lint_seam.py - al-Hasan passes; Usvai Hasana, Uswa Hasana and
+Ar-Raheeq are still caught.
+
+**Lesson:** a title word that is also a person's name cannot be a match on its own.
+
+**Tripwire:** a seerah-source finding on a line that names al-Hasan or al-Husayn.
+
+**Status:** FIXED
+
+---
