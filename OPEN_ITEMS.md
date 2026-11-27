@@ -1331,6 +1331,19 @@ If it is reopened, it is reopened from a source, and all four languages move
 together or none do.
 
 
+**#3435 على ما كان من العمل — REOPENED FROM A SOURCE AND RESOLVED 2026-11-27 (operator approved 18:26).**
+HadeethEnc 3417 (Tier 1, "[صحيح البخاري - 3435]") gives the clause in all four of our
+languages, and all four read it one way: EN "regardless of the deeds which he has done",
+RU «независимо от того, какими были его дела», UZ «амали қандай бўлмасин», TJ «бо ҳар амале,
+ки дошта бошад»; its sharh: Paradise even if deficient in obedience and with sins. Our four
+were replaced by those clauses verbatim, together, as the note below required. The Arabic is
+HadeethEnc's fully vowelled text (same letters; diacritics audit ORTHOGRAPHIC only - لاَ/لَا,
+اللَّهُ/اللهُ). Main text only: Ubadah's "eight gates" addition (in Bukhari 3435 itself via Junada,
+and Muslim 28) is left out, as HadeethEnc and Riyad as-Salihin 412 quote it. Promoted to the
+library 2026-11-27 (29685204), source_url https://sunnah.com/bukhari:3435 (P319 MATCH),
+Stage 3 8/8 pass (verify-runs/candidate-verdicts-20261127T232704Z.json). The note below is
+history.
+
 **#3435 على ما كان من العمل — DECIDED 2026-10-12. Wording stands; the row
 stays `needs_human` on this clause, permanently, and that is the correct
 resting state, not an unfinished task.** All four languages now render it

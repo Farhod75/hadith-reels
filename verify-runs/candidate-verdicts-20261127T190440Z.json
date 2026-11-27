@@ -1,0 +1,91 @@
+[
+  {
+    "candidate_id": null,
+    "ref": "Sahih al-Bukhari #3435",
+    "agreement": "disagree",
+    "per_language": {
+      "en": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "ru": {
+        "a": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "pass"
+      },
+      "uz": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "Аллоҳ уни қилган амали билан жаннатга киритади",
+              "why": "Arabic 'على ما كان من العمل' means 'regardless of/whatever his deeds were' (emphasizing entry despite deeds), but the translation renders it as 'with/by means of the deeds he did', which reverses the intended sense."
+            }
+          ],
+          "confidence": "medium"
+        },
+        "b": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "қилган амали билан",
+              "why": "This means 'with the deed(s) he has done.' The Arabic على ما كان من العمل means 'whatever his deeds may have been,' a qualification not conveyed by the translation."
+            }
+          ],
+          "confidence": "high"
+        },
+        "agreement": "fail"
+      },
+      "tj": {
+        "a": {
+          "verdict": "fail",
+          "issues": [
+            {
+              "type": "changed",
+              "quote": "бо он амале ки дошт",
+              "why": "Arabic 'على ما كان من العمل' means 'regardless of/whatever deeds he had' (despite his deeds), but the Tajik 'бо он амале ки дошт' (with the deed he had) reverses this to suggest entry is accompanied by/dependent on his deeds, altering the theological meaning of the hadith."
+            }
+          ],
+          "confidence": "high"
+        },
+        "b": {
+          "verdict": "pass",
+          "issues": [],
+          "confidence": "high"
+        },
+        "agreement": "disagree"
+      }
+    },
+    "models": {
+      "a": "claude-sonnet-5",
+      "b": "gpt-6.1-sol"
+    },
+    "input_sha256": {
+      "text_arabic": "beacd5b2b88ba27cebfbd453a6f665c17551b43f08a98ae90bc6f33ce7e590db",
+      "text_english": "46fdbf86419ba6a49e7c89b66f7b9b17c00a0838ea6c348a25c9b77ef7197b11",
+      "text_russian": "775b9ea46cb0804a9d448faa2ac72ccdc415f00317fbab81b9b42f92de6acf9f",
+      "text_uzbek_cyrillic": "14464915dfedcf9e7e46f4865dc4170479c20eae3bf86a9f2f72f77f05d7c664",
+      "text_tajik": "f7c6ae9d1a9a082042330dc20b0f7148cb808c90503b8e4da2562223a49ac637"
+    },
+    "checked_at": "2026-11-27T19:05:32+00:00"
+  }
+]

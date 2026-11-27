@@ -1,3 +1,12 @@
+## [2026-11-27i] - Library: Bukhari #3435 (Tawheed 3) approved, promoted and aligned with HadeethEnc
+
+### Changed (hadith_library, operator approved)
+
+- **Bukhari #3435:** Stage 4 approved (overrule recorded), promoted; narrator key Ubadah ibn as-Samit (P344); source_url sunnah.com/bukhari:3435 (was a Dorar search, P322). على ما كان من العمل aligned with HadeethEnc 3417 in EN/RU/UZ/TJ; Arabic fully vowelled; main text without the "eight gates" addition. Stage 3 8/8 pass. Tags tawheed, iman, shahada, jannah, prophet (`isa` has no lib/tags.ts forms - the pre-push tag gate caught it).
+- **Explanation page** bukhari-3435 from HadeethEnc 3417 (all five languages).
+
+---
+
 ## [2026-11-27h] - P450 review sheets, P451 dev-server check
 
 ### Added
