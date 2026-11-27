@@ -636,8 +636,9 @@ If you add or remove a route or module, change this list in the same commit.
   OPEN_ITEMS.md that mentions each number (P372) - run it before choosing a set;
   `--row N` (`--candidates`) is the four-language side-by-side read.
 - `tidy-out.py` — keeps out/ in the P106 layout (work/ = sets not yet published, published/ =
-  archive with each set's loose files in `_files/`, out/_archive/ for one-offs). Dry run unless
-  `--apply`; writes an undo script. Run at every set close.
+  archive with each set's loose files in `_files/`, out/_archive/ for one-offs, unused stills in
+  out/refs/_unused/ - P444). Dry run unless `--apply`; writes an undo script. docs-set.py runs it
+  with --apply at every set close (P444).
 - `approve-candidate.py` — Stage 4, recorded: writes the operator's decision onto ONE candidate
   by id, with his words in `review_reason`. Refuses a wrong number, a row that is not
   'verified' (for an approval) and any row already approved, rejected or promoted.

@@ -17187,3 +17187,29 @@ narration are dropped; 3042 passes the share; a different hadith and an empty si
 **Status:** FIXED
 
 ---
+## PATTERN 444: out/refs grew to 1248 stills and tidy-out was run by hand
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** hygiene
+
+**What happened.** Every set generates three stills per scene; only one is animated. out/refs/ held
+1248 files (274 used by a scene, the rest rejected variants, logs and .done markers). tidy-out.py
+did not touch subfolders, and "run at every set close" depended on someone remembering - the top
+of out/ had about 830 loose files when the operator asked for order.
+
+**Fix.** `tidy-out.py`: `used_refs()` (the scene sidecars' `image` + stills the asset registry names)
+and `classify_ref()` - a still no scene uses moves to `out/refs/_unused/` once its set is in the
+tracker (alternates of a set still in work stay, the operator may re-pick); logs and .done markers
+go to `_archive/logs/refs/`. Same plan CSV and undo script. `docs-set.py` runs `tidy-out.py --apply`
+after it writes the tracker (`--no-tidy` skips it), so set close tidies out/ by itself.
+First run: 556 + 902 files moved, nothing deleted.
+
+**Tests.** scripts/lib/test_tidy_out.py - a used still stays, an unused one moves after publishing,
+alternates of a set in work stay, logs go to the archive, other files stay.
+
+**Lesson:** a cleanup step that depends on memory is a cleanup step that does not happen.
+
+**Tripwire:** more than ~100 images at the top of out/refs/ outside the sets in work.
+
+**Status:** FIXED
+
+---

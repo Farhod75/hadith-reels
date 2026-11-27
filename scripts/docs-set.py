@@ -62,3 +62,8 @@ c = rd('CHANGELOG.md'); wr('CHANGELOG.md', cfg['changelog'].strip() + '\n\n---\n
 o = rd('OPEN_ITEMS.md'); a = [x for x in o.split('\n') if x.startswith(cfg['after_open'])][0]
 o = rep(o, a + '\n', cfg['open_line'].rstrip('\n') + '\n' + a + '\n'); wr('OPEN_ITEMS.md', o)
 print('docs ok', rng)
+# P444: the set is now in the tracker - tidy out/ (its work folder, loose files, unused stills).
+# Moves only, with an undo script; --no-tidy skips it.
+if '--no-tidy' not in sys.argv:
+    import subprocess
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tidy-out.py'), '--apply'])

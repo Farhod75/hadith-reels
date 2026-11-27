@@ -16,6 +16,9 @@
 #   commit-msgs/     commit_msg_*.txt, msg_*.txt
 #   misc/            the rest that is clearly ours (txt/json/md not read by any tool)
 # and out/deliverables/ for files meant for the operator (FB cover and avatar, the Sol audit zip, loose mp4/jpg).
+# P444: out/refs/ too - a still that no scene was animated from (assets/scene-prompts/*.json "image")
+# and the registry does not name goes to out/refs/_unused/ once its set is published; logs and .done
+# markers in refs/ go to _archive/logs/refs/. docs-set.py runs --apply at every set close.
 import csv, io, os, re, sys, shutil
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,6 +88,44 @@ def classify(name, known):
     return None, 'unrecognised - left in place'
 
 
+REF_IMAGE = {'.jpg', '.jpeg', '.png', '.webp'}
+
+
+def used_refs(repo=REPO):
+    """P444: lower-case file names of the stills a scene was animated from (the scene sidecar's
+    "image") or that the asset registry names. These stay in out/refs/."""
+    import glob, json
+    used = set()
+    for f in glob.glob(os.path.join(repo, 'assets', 'scene-prompts', '*.json')):
+        try:
+            d = json.load(io.open(f, encoding='utf-8-sig'))
+        except (ValueError, OSError):
+            continue
+        v = d.get('image') if isinstance(d, dict) else None
+        if isinstance(v, str) and 'refs' in v:
+            used.add(re.split(r'[\\/]', v)[-1].lower())
+    reg = os.path.join(repo, 'assets', 'asset-registry.json')
+    if os.path.exists(reg):
+        t = io.open(reg, encoding='utf-8').read()
+        used.update(m.lower() for m in re.findall(r'refs[\\/]+([A-Za-z0-9._-]+\.(?:jpg|jpeg|png|webp))', t))
+    return used
+
+
+def classify_ref(name, used, unpublished):
+    """PURE. (destination under out/ or None, why) for one file at the top of out/refs/."""
+    low, ext = name.lower(), os.path.splitext(name)[1].lower()
+    if ext in LOG or ext == '.done':
+        return os.path.join('_archive', 'logs', 'refs'), 'log'
+    if ext not in REF_IMAGE:
+        return None, 'not an image - left in place'
+    if low in used:
+        return None, 'a scene was animated from it'
+    m = re.match(r'^[a-z]+(\d{1,5})-', low)
+    if m and m.group(1) in unpublished:
+        return None, 'set %s still in work - the operator may re-pick' % m.group(1)
+    return os.path.join('refs', '_unused'), 'no scene uses it'
+
+
 def slug_dirs():
     out = {}
     for root in ('work', 'published'):
@@ -150,8 +191,20 @@ def main():
             key = dest.split(os.sep)[0] + os.sep + '*' + os.sep + '_files'
         counts[key] = counts.get(key, 0) + 1
         rows.append((name, dest or '', why))
+    ref_rows = []                                                   # P444
+    refs_dir = os.path.join(OUT, 'refs')
+    if os.path.isdir(refs_dir):
+        used = used_refs()
+        for name in sorted(os.listdir(refs_dir)):
+            if not os.path.isfile(os.path.join(refs_dir, name)):
+                continue
+            dest, why = classify_ref(name, used, UNPUBLISHED)
+            counts[dest or os.path.join('refs', 'stays')] = counts.get(dest or os.path.join('refs', 'stays'), 0) + 1
+            if dest:
+                ref_rows.append((os.path.join('refs', name), dest, why))
     with io.open(os.path.join(OUT, '_tidy_plan.csv'), 'w', encoding='utf-8', newline='') as fh:
         w = csv.writer(fh); w.writerow(['file', 'to', 'why']); w.writerows(rows); w.writerows(work_moves)
+        w.writerows(ref_rows)
     print('published sets known from the tracker: %d; in work, not yet published: %s' % (len(known), ', '.join(sorted(UNPUBLISHED)) or '-'))
     print('work/ set folders to move: %d (%s)' % (len(work_moves), ', '.join(sorted(set(m[2] for m in work_moves)))))
     for k in sorted(counts):
@@ -174,11 +227,11 @@ def main():
         except OSError as e:
             print('COULD NOT MOVE %s: %s (a file is open? close it and re-run)' % (src, e)); continue
         undo.append("Move-Item -LiteralPath '%s' -Destination '%s'" % (d.replace("'", "''"), s.replace("'", "''")))
-    for name, dest, _ in rows:
+    for name, dest, _ in rows + ref_rows:
         if not dest:
             continue
         d = os.path.join(OUT, dest); os.makedirs(d, exist_ok=True)
-        target = os.path.join(d, name)
+        target = os.path.join(d, os.path.basename(name))
         if os.path.exists(target):
             print('SKIP (exists): ' + target); continue
         try:

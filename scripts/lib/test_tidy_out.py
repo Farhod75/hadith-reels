@@ -61,3 +61,20 @@ def test_one_offs_of_a_set_in_work_stay_until_it_is_published():
         assert to.classify('run-b6114-kling.ps1', {'6114'})[0] == os.path.join('_archive', 'sets', '6114')
     finally:
         to.UNPUBLISHED.clear()
+
+
+def test_refs_a_used_still_stays_and_an_unused_one_moves_after_publishing():
+    # P444: out/refs held 1248 files, 274 of them used by a scene
+    used = {'b6019-doors-1.jpg'}
+    assert to.classify_ref('b6019-doors-1.jpg', used, set())[0] is None
+    assert to.classify_ref('b6019-doors-2.jpg', used, set())[0] == os.path.join('refs', '_unused')
+
+
+def test_refs_alternates_of_a_set_in_work_stay():
+    assert to.classify_ref('b6019-doors-2.jpg', set(), {'6019'})[0] is None
+
+
+def test_refs_logs_go_to_the_log_archive_and_other_files_stay():
+    assert to.classify_ref('b6019-doors.log', set(), set())[0] == os.path.join('_archive', 'logs', 'refs')
+    assert to.classify_ref('x.done', set(), set())[0] == os.path.join('_archive', 'logs', 'refs')
+    assert to.classify_ref('notes.txt', set(), set())[0] is None

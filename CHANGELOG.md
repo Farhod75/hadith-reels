@@ -1,3 +1,17 @@
+## [2026-11-27a] - P444: tidy-out sorts out/refs and runs at set close
+
+### Changed
+
+- **scripts/tidy-out.py:** unused stills -> out/refs/_unused/ once their set is published; refs logs -> _archive/logs/refs/.
+- **scripts/docs-set.py:** runs `tidy-out.py --apply` after the tracker is written (`--no-tidy` to skip).
+- First run (operator asked 2026-11-27): 1458 files moved, undo scripts in out/; nothing deleted.
+
+### Docs
+
+- fix_patterns.md P444, PATTERN_INDEX.md, CLAUDE.md tidy-out line; tests in scripts/lib/test_tidy_out.py.
+
+---
+
 ## [2026-11-26b] - P443: explanation pages for a source that explains one part
 
 ### Added

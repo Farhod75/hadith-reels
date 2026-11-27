@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-371 patterns in 384 entries, frontier **P443**. The P-sequence is shared with
+372 patterns in 385 entries, frontier **P444**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -432,5 +432,6 @@ BEFORE changing it.
 - **P441** - a pronunciation dictionary instead of rewording
 - **P442** - paid-check reports piled up outside git
 - **P443** - a scholar's explanation of one part of the hadith had no way onto the page
+- **P444** - out/refs grew to 1248 stills and tidy-out was run by hand
 
-<!-- pattern-index-stamp entries=384 patterns=371 frontier=443 sha1=cbaa83553662281654c37db9eceb7c7ad9c53752 -->
+<!-- pattern-index-stamp entries=385 patterns=372 frontier=444 sha1=5f93a95e7661432cc0ebc0e0920055be080ebdcc -->
