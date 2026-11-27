@@ -11,12 +11,23 @@ language). Writes <platform><N>-<lang>.js into the Playwright MCP folder of the 
 AnthropicClaude app-* (the folder moves on every desktop update - P-note 2026-11-17), or --dir.
 Run each file with browser_run_code_unsafe (filename). Nothing is clicked here; publishing still
 waits for the operator's "да".
+
+P445 - Meta in four files per language, run in this order (clear the file chooser with
+browser_file_upload and no paths after metaup and metacover):
+  metaup<N>-<l>.js     opens the Reels composer and picks the reel (copied into <dir>/upload/)
+  meta<N>-<l>.js       pastes the caption
+  metacover<N>-<l>.js  uploads the language's cover
+  metashare.js         refuses without a cover, waits for the copyright check, sets the
+                       audience (radio 3, checkbox 4 off), checks both, shares, clicks Done
+YouTube: a previous upload still running makes Studio ask "leave site?"; the script dismisses
+it, waits and retries, and returns {blocked} instead of leaving the page.
 """
 import argparse
 import glob
 import io
 import json
 import os
+import shutil
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,9 +57,64 @@ TT = '''async (page) => {
   return {len, want: TXT.length, res};
 }'''
 
+COMPOSER = ('https://business.facebook.com/latest/reels_composer'
+            '?asset_id=1423366717525447&business_id=1985396645464439')
+
+META_UP = '''async (page) => {
+  const V=%s;
+  await page.goto(%s); await page.waitForTimeout(6000);
+  const [fc] = await Promise.all([page.waitForEvent('filechooser', {timeout:30000}),
+    page.getByText(/Добавить видео|Загрузить видео/).first().click()]);
+  await fc.setFiles(V);
+  return 'reel picked - clear the chooser (browser_file_upload, no paths), then run meta<N>-<lang>.js';
+}'''
+
+META_COVER = '''async (page) => {
+  const C=%s;
+  await page.getByText('Загрузить изображение').first().waitFor({timeout:90000});
+  await page.getByText('Загрузить изображение').first().click(); await page.waitForTimeout(1500);
+  const [fc] = await Promise.all([page.waitForEvent('filechooser'), page.getByText('Загрузить изображение').last().click()]);
+  await fc.setFiles(C);
+  return 'cover picked - clear the chooser, then run metashare.js';
+}'''
+
+META_SHARE = '''async (page) => {
+  const cov = await page.getByText('Изменить изображение').count();
+  if (!cov) return {stop: 'no cover - never publish without one'};
+  await page.getByText('Нарушений авторских прав не обнаружено').first().waitFor({timeout:180000});
+  const next = () => page.getByRole('button', {name:'Далее'}).last().click();
+  await next(); await page.waitForTimeout(2500);
+  await next(); await page.waitForTimeout(2500);
+  const radios = page.locator('input[type=radio]');
+  await radios.nth(2).check({force:true}); await page.waitForTimeout(800);
+  const cbs = page.locator('input[type=checkbox]');
+  if (await cbs.nth(3).isChecked()) await cbs.nth(3).uncheck({force:true});
+  await page.waitForTimeout(800);
+  const r = []; for (let i=0;i<await radios.count();i++) r.push(await radios.nth(i).isChecked());
+  const c = []; for (let i=0;i<await cbs.count();i++) c.push(await cbs.nth(i).isChecked());
+  if (JSON.stringify(r)!==%s || JSON.stringify(c)!==%s) return {stop:'audience not as expected - nothing shared', r, c};
+  await page.getByRole('button', {name:'Поделиться'}).last().click();
+  await page.getByRole('button', {name:'Готово'}).first().waitFor({timeout:240000});
+  await page.getByRole('button', {name:'Готово'}).first().click();
+  await page.waitForTimeout(3000);
+  return {cov, shared: page.url()};
+}'''
+RADIOS = [False, False, True, True, False]
+CHECKS = [False, True, False, False, False]
+
 YT = '''async (page) => {
   const V=%s, C=%s, TITLE=%s, DESC=%s, TAGS=%s;
-  await page.goto('https://studio.youtube.com');
+  // P445: an upload still running makes Studio ask "leave site?" - dismiss, wait, retry; never leave it
+  let blocked = false, ok = false;
+  const onDialog = d => { blocked = true; d.dismiss().catch(()=>{}); };
+  page.on('dialog', onDialog);
+  for (let i = 0; i < 4 && !ok; i++) {
+    blocked = false;
+    await page.goto('https://studio.youtube.com', {timeout: 20000}).catch(()=>{});
+    if (!blocked) ok = true; else await page.waitForTimeout(10000);
+  }
+  page.off('dialog', onDialog);
+  if (!ok) return {blocked: 'the previous upload is still running - run this file again in a minute'};
   await page.getByRole('button', {name:'Create', exact:true}).first().click();
   await page.getByText('Upload videos').first().click();
   await page.locator('input[name=Filedata]').setInputFiles(V);
@@ -89,6 +155,19 @@ def need(texts, lang, *keys):
     return t
 
 
+def meta_up_js(video, url=COMPOSER):
+    return META_UP % (j(video), j(url))
+
+
+def meta_cover_js(cover):
+    return META_COVER % j(cover)
+
+
+def meta_share_js():
+    js = lambda b: j(json.dumps([bool(x) for x in b]).replace(' ', ''))
+    return META_SHARE % (js(RADIOS), js(CHECKS))
+
+
 def meta_js(texts, lang):
     return META % j(need(texts, lang, 'meta')['meta'])
 
@@ -124,10 +203,23 @@ def main(argv=None):
     slug = json.load(io.open(sp, encoding='utf-8'))['slug']
     texts = json.load(io.open(os.path.join(REPO, 'out', 'texts-%s.json' % a.number), encoding='utf-8'))
     d = a.dir or playwright_dir()
+    up = os.path.join(d, 'upload')
     for p in a.platform.split(','):
         for l in a.langs.split(','):
             if p == 'meta':
                 js = meta_js(texts, l)
+                w = os.path.join(REPO, 'out', 'work', 'adults', slug, l)
+                os.makedirs(up, exist_ok=True)
+                for f in ('adults-%s-%s-reel.mp4' % (l, slug), 'cover-%s-%s.jpg' % (a.number, l)):
+                    if os.path.exists(os.path.join(w, f)):
+                        shutil.copy2(os.path.join(w, f), os.path.join(up, f))
+                    else:
+                        print('WARNING: %s missing - Meta needs it in %s' % (f, up))
+                for name, code in (('metaup', meta_up_js(os.path.join(up, 'adults-%s-%s-reel.mp4' % (l, slug)))),
+                                   ('metacover', meta_cover_js(os.path.join(up, 'cover-%s-%s.jpg' % (a.number, l))))):
+                    o = os.path.join(d, '%s%s-%s.js' % (name, a.number, l))
+                    io.open(o, 'w', encoding='utf-8', newline='\n').write(code)
+                    print(o)
             elif p == 'tt':
                 js = tt_js(texts, l)
             elif p == 'yt':
@@ -137,6 +229,10 @@ def main(argv=None):
             out = os.path.join(d, '%s%s-%s.js' % (p, a.number, l))
             io.open(out, 'w', encoding='utf-8', newline='\n').write(js)
             print(out)
+    if 'meta' in a.platform:
+        o = os.path.join(d, 'metashare.js')
+        io.open(o, 'w', encoding='utf-8', newline='\n').write(meta_share_js())
+        print(o)
     if 'yt' in a.platform:
         for l in a.langs.split(','):
             w = os.path.join(REPO, 'out', 'work', 'adults', slug, l)

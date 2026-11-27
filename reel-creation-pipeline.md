@@ -976,6 +976,11 @@ cover there first. A native file dialog must be answered with `browser_file_uplo
 
 **Scripts (P439).** `python scripts/publish-js.py --number N [--platform meta,tt,yt] [--langs en]` writes`n`meta|tt|yt<N>-<lang>.js` into the newest `app-*\.playwright-mcp` folder from `out/texts-<N>.json`; run each with`n`browser_run_code_unsafe`. The YouTube one waits 90 s for Checks and does not throw - if the device call times`nout, the upload is a Draft in Studio: finish it there, never re-run.
 
+**Meta and YouTube order (P445).** Meta per language: `metaup<N>-<l>.js` -> clear the chooser
+(`browser_file_upload`, no paths) -> `meta<N>-<l>.js` -> `metacover<N>-<l>.js` -> clear -> `metashare.js`
+(refuses without a cover). YouTube: run the four `yt` files one after another; one that returns
+`{blocked}` met a running upload - run it again a minute later.
+
 **Per platform (selectors that worked on 2026-11-16):**
 
 - **Meta Business Suite** - `business.facebook.com/latest/reels_composer?asset_id=...`. «Добавить видео» -> file;

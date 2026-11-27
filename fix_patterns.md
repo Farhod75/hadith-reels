@@ -17213,3 +17213,32 @@ alternates of a set in work stay, logs go to the archive, other files stay.
 **Status:** FIXED
 
 ---
+## PATTERN 445: the Meta share steps lived in chat, and YouTube hung on "leave site?"
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** publishing
+
+**What happened.** (1) Publishing #2589 on YouTube, the RU script's `page.goto` met Studio's
+"leave site?" prompt - EN was still uploading - and hung; the operator had to dismiss it and the
+run was repeated. Since then a 40 s pause was added by hand between languages. (2) On Meta only
+the caption came from publish-js (P439). Opening the composer, picking the reel, uploading the
+cover and the share step (copyright wait, audience radio/checkbox, Поделиться, Готово) were
+typed into each session again; the cover check was added on #6019 only after TJ #2589 went out
+unchecked.
+
+**Fix.** `publish-js.py`: YouTube dismisses the prompt (never accepts it - that cancels the upload),
+waits 10 s and retries up to four times, then returns `{blocked}` without touching the page.
+Meta: `metaup<N>-<l>.js`, `metacover<N>-<l>.js` and `metashare.js`; the reel and cover are copied
+into `<playwright>/upload/`; `metashare.js` refuses without «Изменить изображение» (no cover, no
+publish) and shares only when the audience radios and checkboxes are exactly as expected.
+
+**Tests.** scripts/lib/test_publish_js.py - dismiss not accept, the blocked return, the handler off
+before the upload; share refuses before Поделиться without a cover and compares both lists;
+upload/cover point at the files.
+
+**Lesson:** a step typed again every session is a step that drifts - put it in the generator.
+
+**Tripwire:** a Meta share or YouTube goto written by hand in a session.
+
+**Status:** FIXED
+
+---

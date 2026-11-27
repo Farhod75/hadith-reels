@@ -49,3 +49,22 @@ def test_newest_app_folder_wins(tmp_path):
 def test_no_app_folder_stops(tmp_path):
     with pytest.raises(SystemExit):
         pj.playwright_dir(str(tmp_path))
+
+def test_yt_dismisses_leave_site_and_never_navigates_away_from_a_running_upload():
+    # P445: #2589 RU hung on the "leave site?" prompt while EN was still uploading
+    js = pj.yt_js(TEXTS, "en", "7536", "bukhari-7536", repo="R")
+    assert "d.dismiss()" in js and "d.accept" not in js
+    assert "return {blocked:" in js
+    assert js.index("page.off('dialog'") < js.index("Upload videos")
+
+
+def test_meta_share_refuses_without_a_cover_and_checks_the_audience():
+    js = pj.meta_share_js()
+    assert "if (!cov) return {stop:" in js
+    assert js.index("if (!cov)") < js.index("Поделиться")
+    assert '"[false,false,true,true,false]"' in js and '"[false,true,false,false,false]"' in js
+
+
+def test_meta_upload_and_cover_point_at_the_given_files():
+    assert json.dumps("U/adults-en-x-reel.mp4") in pj.meta_up_js("U/adults-en-x-reel.mp4")
+    assert json.dumps("U/cover-1-en.jpg") in pj.meta_cover_js("U/cover-1-en.jpg")

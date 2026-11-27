@@ -1,3 +1,15 @@
+## [2026-11-27b] - P445: Meta upload/cover/share and the YouTube "leave site?" guard in publish-js
+
+### Changed
+
+- **scripts/publish-js.py:** writes metaup/metacover<N>-<l>.js and metashare.js (cover required, audience checked) and copies reel + cover to the upload folder; YouTube scripts dismiss "leave site?" and retry, or return `{blocked}`.
+
+### Docs
+
+- fix_patterns.md P445, PATTERN_INDEX.md, reel-creation-pipeline.md; tests in scripts/lib/test_publish_js.py.
+
+---
+
 ## [2026-11-27a] - P444: tidy-out sorts out/refs and runs at set close
 
 ### Changed
