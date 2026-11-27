@@ -24,6 +24,7 @@
 # Usage (dry run unless --commit):
 #   python scripts/fetch-explanation.py --hadeethenc 4555 \
 #       --library-id 8eeb6788-dcca-4494-8a38-c43f5ce00de1 [--commit]
+#   --library-id also takes the hadith number (2564) or bukhari:6019 (P446)
 #
 # Stdlib only.
 # ============================================================
@@ -332,19 +333,45 @@ def load_env(path):
     return env
 
 
+UUID = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$', re.I)
+
+
+def library_query(ref):
+    """PURE. P446: --library-id takes the row's uuid, or the hadith number ("6019"), or
+    "<collection slug>:<number>" ("bukhari:6019") when two collections share a number."""
+    ref = (ref or '').strip()
+    if UUID.match(ref):
+        return {'id': 'eq.' + ref}
+    m = re.fullmatch(r'(?:([a-z-]+):)?([0-9]+[a-z]?)', ref)
+    if not m:
+        raise ValueError('library id %r is neither a uuid nor a hadith number' % ref)
+    q = {'hadith_number': 'eq.' + m.group(2)}
+    if m.group(1):
+        names = [n for n, slug in load_collections().items() if slug == m.group(1)]
+        if len(names) != 1:
+            raise ValueError('collection slug %r is not in collections.json' % m.group(1))
+        q['collection'] = 'eq.' + names[0]
+    return q
+
+
 def library_row(library_id):
     env = load_env(os.path.join(ROOT, '.env.local'))
     base, key = env.get('NEXT_PUBLIC_SUPABASE_URL'), env.get('SUPABASE_SERVICE_ROLE_KEY')
     if not base or not key:
         sys.exit('STOP: .env.local has no Supabase URL / service key')
-    q = urllib.parse.urlencode({'id': 'eq.' + library_id,
-                                'select': 'id,collection,hadith_number,grade,text_arabic,source_url'})
+    try:
+        q = library_query(library_id)
+    except ValueError as e:
+        sys.exit('STOP: %s' % e)
+    q['select'] = 'id,collection,hadith_number,grade,text_arabic,source_url'
+    q = urllib.parse.urlencode(q)
     req = urllib.request.Request(base.rstrip('/') + '/rest/v1/hadith_library?' + q,
                                  headers={'apikey': key, 'Authorization': 'Bearer ' + key})
     with urllib.request.urlopen(req, timeout=30) as r:
         rows = json.loads(r.read().decode('utf-8'))
     if len(rows) != 1:
-        sys.exit('STOP: library id %s matched %d rows' % (library_id, len(rows)))
+        sys.exit('STOP: library id %s matched %d rows%s' % (library_id, len(rows),
+                 ' - add the collection: bukhari:N, muslim:N ...' if len(rows) > 1 else ''))
     return rows[0]
 
 
@@ -357,7 +384,8 @@ def write_bytes(path, data):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--hadeethenc', required=True, help='HadeethEnc hadeeth id')
-    ap.add_argument('--library-id', required=True, help='hadith_library.id')
+    ap.add_argument('--library-id', required=True,
+                    help='hadith_library.id, or the hadith number (6019), or bukhari:6019 (P446)')
     ap.add_argument('--related', action='append', default=[], metavar='ID',
                     help='HadeethEnc id of a related event (repeatable); sahih/hasan only')
     ap.add_argument('--see-also', action='append', default=[], metavar='ID=TEXT',

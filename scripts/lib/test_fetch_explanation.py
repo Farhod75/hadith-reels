@@ -226,3 +226,21 @@ def test_no_occasion_without_a_cited_source():
         occ = doc.get('occasion')
         if occ is not None:
             assert occ.get('source') and occ.get('url') and occ.get('text'), slug
+
+
+def test_library_id_takes_a_uuid_a_number_or_collection_and_number():
+    # P446: #6019 needed a separate lookup for its uuid
+    u = '0258a8cd-29e9-4a43-a1fb-9a3957a8fed8'
+    assert fe.library_query(u) == {'id': 'eq.' + u}
+    assert fe.library_query('6019') == {'hadith_number': 'eq.6019'}
+    q = fe.library_query('bukhari:6019')
+    assert q['hadith_number'] == 'eq.6019' and q['collection'] == 'eq.Sahih al-Bukhari'
+
+
+def test_library_id_refuses_anything_else():
+    for bad in ('', 'six', 'nosuchbook:1', '60 19'):
+        try:
+            fe.library_query(bad)
+        except ValueError:
+            continue
+        raise AssertionError(bad)

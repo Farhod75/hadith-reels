@@ -17242,3 +17242,24 @@ upload/cover point at the files.
 **Status:** FIXED
 
 ---
+## PATTERN 446: fetch-explanation wanted the row's uuid
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** friction
+
+**What happened.** Every other set script takes the hadith number; `fetch-explanation.py --library-id`
+took only `hadith_library.id`. For #6019 the number was passed, PostgREST answered 400, and the uuid
+was looked up with a separate query.
+
+**Fix.** `library_query()`: a uuid, the hadith number (`6019`) or `<collection slug>:<number>`
+(`bukhari:6019`, slugs from content/explanations/collections.json). More than one row stops and
+says to add the collection; anything else stops before a request.
+
+**Tests.** scripts/lib/test_fetch_explanation.py - uuid, number, slug:number; bad input refused.
+
+**Lesson:** one key for a set across every script.
+
+**Tripwire:** a uuid lookup written by hand before fetch-explanation.
+
+**Status:** FIXED
+
+---

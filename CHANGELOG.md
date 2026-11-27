@@ -1,3 +1,15 @@
+## [2026-11-27c] - P446: fetch-explanation takes the hadith number
+
+### Changed
+
+- **scripts/fetch-explanation.py:** `--library-id` also takes `6019` or `bukhari:6019`.
+
+### Docs
+
+- fix_patterns.md P446, PATTERN_INDEX.md; tests in scripts/lib/test_fetch_explanation.py.
+
+---
+
 ## [2026-11-27b] - P445: Meta upload/cover/share and the YouTube "leave site?" guard in publish-js
 
 ### Changed
