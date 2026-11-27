@@ -1,0 +1,9 @@
+{
+  "reviewed_sha256": "73e2b7262c0e4488d68b641ef5760001545bb710a0fbad6653e4ffa0951b2bc8",
+  "signed_at": "2026-11-26T23:36:08+00:00",
+  "rows": 1,
+  "source": "out\\candidate-translations.json",
+  "refs": [
+    "muslim #2589"
+  ]
+}
