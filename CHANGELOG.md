@@ -1,3 +1,11 @@
+## [2026-11-27f] - Registry: aswati-Victory-March mood energetic (operator approved)
+
+### Fixed (asset registry)
+
+- **aswati-Victory-March.mp3:** `mood` calm -> energetic - its own notes call it martial and the most assertive of the eight; tagged calm, it led every `--mood calm` pick (#6019). Steady-Motivation unchanged: the asset gate already excludes it after the Content ID claim.
+
+---
+
 ## [2026-11-27e] - P448: lint no longer reads al-Hasan as Usvai Hasana
 
 ### Fixed
