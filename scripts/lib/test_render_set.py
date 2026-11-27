@@ -229,3 +229,44 @@ def test_missing_concat_counts_as_stale(tmp_path):
     s, m = str(tmp_path / "s.mp3"), str(tmp_path / "m.mp3")
     _touch(s, 1000); _touch(m, 1000)
     assert rs.narration_is_stale(str(tmp_path / "none.mp3"), [s, m]) is True
+
+# P449: #6019 took five hand-tuned dry runs; UZ (64 s) did not fit with one clip on the moral
+_LANGS_6019 = {'uz': (40.0, 23.5, 5.0, 64.2), 'en': (34.0, 20.4, 4.0, 55.2)}
+_CAPS = [14.04] * 7
+_PLAN = ['start', 'matn:0.2', 'matn:0.42', 'matn:0.56', 'matn:0.7', 'matn:0.84', 'moral']
+
+
+def test_the_plan_that_failed_is_still_refused():
+    durs = rs.aligned_durations(_PLAN, *_LANGS_6019['uz'], 1.0)
+    assert max(durs) > 14.04
+
+
+def test_suggest_align_fits_every_language_and_keeps_the_kinds():
+    sug, res = rs.suggest_align(_PLAN, _LANGS_6019, _CAPS, 1.0)
+    assert sug is not None and sug[0] == 'start'
+    for durs in res.values():
+        assert max(durs) <= 14.04 and min(durs) >= rs.MIN_SLOT
+
+
+def test_suggest_align_says_so_when_nothing_fits():
+    sug, over = rs.suggest_align(['start', 'moral'], _LANGS_6019, [14.04, 14.04], 1.0)
+    assert sug is None and over > 0
+
+
+def test_when_the_plans_kinds_fit_they_are_kept():
+    plan = ['start', 'matn:0.5', 'moral']
+    sug, _ = rs.suggest_align(plan, {'en': (20.0, 10.0, 3.0, 30.6)}, [14.04] * 3, 1.0)
+    assert [a.split(':')[0] for a in sug] == ['start', 'matn', 'moral']
+
+
+def test_the_matn_moral_boundary_moves_when_the_kinds_cannot_fit(monkeypatch):
+    # #6019: the plan's kinds could not fit; making the last matn anchor a moral one did
+    calls = []
+    def fake(v, *a, **k):
+        calls.append(list(v))
+        return (v, {}) if [x.split(':')[0] for x in v].count('moral') == 2 else (None, 1.0)
+    monkeypatch.setattr(rs, '_fit_align', fake)
+    plan = ['start', 'matn:0.2', 'matn:0.5', 'matn:0.8', 'moral']
+    sug, _ = rs.suggest_align(plan, {}, [], 1.0)
+    assert calls[0] == plan
+    assert sug == ['start', 'matn:0.2', 'matn:0.5', 'moral', 'moral']

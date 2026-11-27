@@ -30,6 +30,9 @@ Per language, before anything renders:
     start comes from the language's cached subtitles when they exist (EN/RU after a render),
     otherwise from the share of the S block's letters that the lead-in takes. Each clip must be
     long enough for its slot (scenes, else scenes_slow); the result goes to -SceneDurations.
+  P449: when an align does not fit, the dry run suggests one that fits every language - each
+  anchor keeps its kind (matn, moral, story) and its fraction moves as little as it can;
+  --write-align puts the suggestion into the plan.
 Then (only with --render) it runs render-reel.ps1 -Style adults -FitScenes -NoReview per
 language, logs to out/render-<slug>.log, and finishes with mix-gap.py's after-render check.
 P426: after each leg renders, a leg louder than -27 LUFS is brought to -28 (the render is kept as
@@ -188,6 +191,86 @@ def aligned_durations(anchors, story, moral, matn_start, total, tail_pad):
     return durs
 
 
+def _split_anchor(a):
+    base, _, frac = a.partition(':')
+    return base, (float(frac) if frac else 0.0)
+
+
+def _fmt_anchor(base, f):
+    if base == 'start':
+        return 'start'
+    return base if f == 0 else '%s:%s' % (base, ('%.2f' % f).rstrip('0').rstrip('.'))
+
+
+def suggest_align(anchors, lang_data, caps, tail_pad, step=0.01, passes=40):
+    """PURE. P449: the plan's own anchor kinds first; when they cannot fit, the matn/moral
+    boundary moves one clip at a time (the last matn anchor becomes moral, or the first moral
+    one becomes matn) - #6019 needed exactly that. Same return as _fit_align."""
+    kinds = [a.partition(':')[0] for a in anchors]
+    variants = [list(anchors)]
+    for k in range(1, len(anchors)):
+        mm = [i for i, x in enumerate(kinds) if x == 'matn']
+        if len(mm) >= k:
+            v = list(anchors)
+            for i in mm[-k:]:
+                v[i] = 'moral'
+            variants.append(v)
+        mo = [i for i, x in enumerate(kinds) if x == 'moral']
+        if len(mo) >= k:
+            v = list(anchors)
+            for i in mo[:k]:
+                v[i] = 'matn:0.9'
+            variants.append(v)
+    worst = None
+    for v in variants:
+        sug, res = _fit_align(v, lang_data, caps, tail_pad, step, passes)
+        if sug:
+            return sug, res
+        worst = res if worst is None or (res is not None and res < worst) else worst
+    return None, worst
+
+
+def _fit_align(anchors, lang_data, caps, tail_pad, step=0.01, passes=40):
+    """PURE. P449: anchors that fit every language. lang_data: {lang: (story, moral, matn_start,
+    total)}; caps: the longest clip per scene (the slow copy when there is one). Each anchor keeps
+    its kind; its fraction moves as little as it can. Returns (anchors, {lang: durations}) or
+    (None, worst overflow in seconds) when no fractions of these kinds fit."""
+    kinds = [_split_anchor(a) for a in anchors]
+    f0 = [f for _, f in kinds]
+    grid = [round(i * step, 2) for i in range(int(round(0.99 / step)) + 1)]
+
+    def cost(fs):
+        over = 0.0
+        al = [_fmt_anchor(b, f) for (b, _), f in zip(kinds, fs)]
+        for story, moral, m0, total in lang_data.values():
+            try:
+                durs = aligned_durations(al, story, moral, m0, total, tail_pad)
+            except ValueError:
+                return 1e9, None
+            over += sum(max(0.0, d - c) for d, c in zip(durs, caps))
+        return over * 1000 + sum(abs(a - b) for a, b in zip(fs, f0)), over
+
+    fs = list(f0)
+    best, _ = cost(fs)
+    for _ in range(passes):
+        moved = False
+        for i, (b, _) in enumerate(kinds):
+            if b == 'start':
+                continue
+            for g in grid:
+                trial = fs[:i] + [g] + fs[i + 1:]
+                c, _ = cost(trial)
+                if c < best - 1e-9:
+                    best, fs, moved = c, trial, True
+        if not moved:
+            break
+    _, over = cost(fs)
+    if over is None or over > 1e-6:
+        return None, over
+    al = [_fmt_anchor(b, f) for (b, _), f in zip(kinds, fs)]
+    return al, {l: aligned_durations(al, *d[:3], d[3], tail_pad) for l, d in lang_data.items()}
+
+
 def narration_seconds(ff, slug, lang):
     w = os.path.join(REPO, 'out', 'work', 'adults', slug, lang)
     full = os.path.join(w, 'adults-%s-%s-narration.mp3' % (lang, slug))
@@ -307,6 +390,7 @@ def main(argv=None):
     ap.add_argument('--plan', required=True)
     ap.add_argument('--langs', nargs='*', choices=LANGS, default=None)
     ap.add_argument('--render', action='store_true')
+    ap.add_argument('--write-align', action='store_true', help='P449: put the suggested align into the plan')
     args = ap.parse_args(argv)
 
     plan = json.load(io.open(args.plan, encoding='utf-8-sig'))
@@ -326,6 +410,7 @@ def main(argv=None):
 
     print('render-set %s - %s' % (slug, 'RENDER' if args.render else 'DRY RUN'))
     jobs, bad = [], 0
+    lang_data, align_stop = {}, False
     gated = asset_gate([plan['langs'][l]['bed'] for l in langs] + plan['scenes'] + plan.get('scenes_slow', []))
     for name, why in gated:
         print('  STOP (asset gate, P377): %s' % why[:300])
@@ -346,9 +431,10 @@ def main(argv=None):
             if m0 is None:
                 m0, how = round(story * lead_in_fraction(draft_s_block(slug, lang), lang), 3), 'letter share'
             try:
+                lang_data[lang] = (story, moral, m0, nar)
                 durations = aligned_durations(align, story, moral, m0, nar, tail_pad)
             except ValueError as e:
-                print('  %s  STOP (P386 align): %s' % (lang, e)); bad += 1; continue
+                print('  %s  STOP (P386 align): %s' % (lang, e)); bad += 1; align_stop = True; continue
             fits = lambda clips: all(d <= s for d, (_, s) in zip(durations, clips))
             if fits(std):
                 which, scenes = 'scenes', [n for n, _ in std]
@@ -357,7 +443,7 @@ def main(argv=None):
             else:
                 over = ['%s (%s) needs %.2fs, clip is %.2fs' % (n, a, d, c) for (n, c), a, d in zip(std, align, durations) if d > c]
                 print('  %s  STOP (P386 align): %s - add a clip for that part or move an anchor'
-                      % (lang, '; '.join(over))); bad += 1; continue
+                      % (lang, '; '.join(over))); bad += 1; align_stop = True; continue
             need = max(durations)
             print('  %s  align (matn at %.2fs from %s): %s'
                   % (lang, m0, how, ' | '.join('%s %.2fs' % (n, d) for n, d in zip(scenes, durations))))
@@ -385,6 +471,22 @@ def main(argv=None):
               % (lang, nar, src, ('aligned, longest %.2fs' % need) if durations else ('%.2fs per clip' % need),
                  which, cfg['bed'], float(gain)))
         jobs.append((lang, scenes, cfg['bed'], float(gain), durations))
+    if align_stop and len(lang_data) == len(langs):
+        caps = [max(c, sc) for (_, c), (_, sc) in zip(std, slow)] if slow and len(slow) == len(std) else [c for _, c in std]
+        sug, res = suggest_align(align, lang_data, caps, tail_pad)
+        if sug:
+            print('  SUGGESTED (P449) "align": %s' % json.dumps(sug))
+            for l, d in res.items():
+                print('     %s  longest %.2fs  %s' % (l, max(d), ' | '.join('%.1f' % x for x in d)))
+            if args.write_align:
+                plan['align'] = sug
+                io.open(args.plan, 'w', encoding='utf-8').write(json.dumps(plan, ensure_ascii=False, indent=2) + '\n')
+                print('  written to %s - run the dry run again' % args.plan)
+            else:
+                print('  --write-align puts it into the plan')
+        else:
+            print('  no fractions of these anchor kinds fit (still %.2fs over) - add a clip or change a kind'
+                  % (res or 0))
     if bad:
         print('FAILED: fix the above - nothing rendered.')
         return 1

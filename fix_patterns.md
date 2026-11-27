@@ -17302,3 +17302,29 @@ Ar-Raheeq are still caught.
 **Status:** FIXED
 
 ---
+## PATTERN 449: align anchors were tuned by hand, one dry run at a time
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** friction
+
+**What happened.** #6019 (seven clips, a 64 s UZ leg) took five dry runs of hand-moved anchors
+before every language fit its clips; the fix that worked was changing a kind (the last matn anchor
+to `moral`), which nothing suggested. The dry run already knew every leg's story, moral, matn start
+and clip lengths.
+
+**Fix.** `render-set.py suggest_align()`: when an align stops, it searches fractions (0.01 steps,
+coordinate descent from the plan's own values, moving each as little as it can) that fit every
+language's clips (slow copies included) with no slot under MIN_SLOT; if the plan's kinds cannot fit,
+it moves the matn/moral boundary one clip at a time. It prints the align and each language's slots;
+`--write-align` puts it into the plan. On #6019's failing plan it suggested
+`start, matn:0.16, matn:0.42, matn:0.56, matn:0.7, moral, moral:0.44` - all four fit first time.
+
+**Tests.** scripts/lib/test_render_set.py - the failing plan is refused, the suggestion fits every
+language, kinds kept when they fit, the boundary moves when they do not, none when nothing fits.
+
+**Lesson:** when a check can say what would pass, it should say it.
+
+**Tripwire:** more than one dry run to settle an align.
+
+**Status:** FIXED
+
+---

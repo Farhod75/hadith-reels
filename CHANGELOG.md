@@ -1,3 +1,15 @@
+## [2026-11-27g] - P449: render-set suggests an align that fits every language
+
+### Added
+
+- **scripts/render-set.py:** a failed align prints a suggested one (fractions moved as little as possible; the matn/moral boundary moved when needed); `--write-align` writes it into the plan.
+
+### Docs
+
+- fix_patterns.md P449, PATTERN_INDEX.md; tests in scripts/lib/test_render_set.py.
+
+---
+
 ## [2026-11-27f] - Registry: aswati-Victory-March mood energetic (operator approved)
 
 ### Fixed (asset registry)

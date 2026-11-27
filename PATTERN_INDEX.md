@@ -3,7 +3,7 @@
 **Generated. Do not hand-edit** - run `python scripts/build-pattern-index.py`.
 `audit-docs.py` fails the push when this file and `fix_patterns.md` disagree.
 
-376 patterns in 389 entries, frontier **P448**. The P-sequence is shared with
+377 patterns in 390 entries, frontier **P449**. The P-sequence is shared with
 hadith-verifier, so the count here is lower than the frontier.
 
 **Read the pattern, never this line.** Full text: search `## PATTERN <n>`
@@ -437,5 +437,6 @@ BEFORE changing it.
 - **P446** - fetch-explanation wanted the row's uuid
 - **P447** - pick-nasheed --exclude without .mp3 excluded nothing
 - **P448** - al-Hasan's name read as the book Usvai Hasana
+- **P449** - align anchors were tuned by hand, one dry run at a time
 
-<!-- pattern-index-stamp entries=389 patterns=376 frontier=448 sha1=3f06f101e06fed3002c7a17814426ad2976eacda -->
+<!-- pattern-index-stamp entries=390 patterns=377 frontier=449 sha1=52641b4fa919fc71d0f6be182ec05f1c144dba4e -->
