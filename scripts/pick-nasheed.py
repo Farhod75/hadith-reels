@@ -136,6 +136,23 @@ def tracker_usage(path):
     return usage
 
 
+def resolve_excludes(names, beds):
+    """PURE. P447: --exclude names as the operator types them - with or without .mp3, any
+    case. Returns (the bed file names to exclude, the names that match no bed)."""
+    by_key = {}
+    for b in beds:
+        by_key[b.lower()] = b
+        by_key[b.lower()[:-4] if b.lower().endswith('.mp3') else b.lower()] = b
+    hit, unknown = set(), []
+    for n in names:
+        b = by_key.get(n.strip().lower())
+        if b:
+            hit.add(b)
+        else:
+            unknown.append(n)
+    return hit, unknown
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Recommend a nasheed, with the reason (reel-producing step 7).")
@@ -164,7 +181,9 @@ def main():
     if usage is None:
         return 2
 
-    excluded = set(args.exclude)
+    excluded, unknown = resolve_excludes(args.exclude, beds)
+    if unknown:
+        print("WARNING: --exclude names no approved bed: %s" % ", ".join(unknown))
     latest_reel = max((n for v in usage.values() for n, _ in v), default=0)
 
     rows = []

@@ -48,3 +48,10 @@ def test_the_real_registry_reads():
     reg = os.path.join(os.path.dirname(SCRIPTS), "assets", "asset-registry.json")
     moods = pn.bed_moods(reg)
     assert all(m and all(x in pn.MOODS for x in m) for m in moods.values())
+
+
+def test_exclude_works_with_or_without_mp3_and_reports_unknown_names():
+    # P447: --exclude aswati-Steady-Motivation silently excluded nothing
+    beds = ["aswati-Steady-Motivation.mp3", "vocal-nasheed-05.mp3"]
+    hit, unknown = pn.resolve_excludes(["aswati-Steady-Motivation", "VOCAL-NASHEED-05.mp3", "nope"], beds)
+    assert hit == set(beds) and unknown == ["nope"]

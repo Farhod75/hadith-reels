@@ -17263,3 +17263,22 @@ says to add the collection; anything else stops before a request.
 **Status:** FIXED
 
 ---
+## PATTERN 447: pick-nasheed --exclude without .mp3 excluded nothing
+
+**Date:** 2026-11-27  **Repo:** hadith-reels  **Severity:** friction
+
+**What happened.** `--exclude aswati-Steady-Motivation` (no extension) matched no bed and the script
+said "0 excluded" - the Content-ID-claimed bed could still be recommended.
+
+**Fix.** `resolve_excludes()`: a name with or without `.mp3`, any case; a name that matches no
+approved bed is printed as a WARNING instead of being dropped silently.
+
+**Tests.** scripts/lib/test_pick_nasheed.py.
+
+**Lesson:** an option that can silently do nothing needs to say so.
+
+**Tripwire:** "0 excluded" after an --exclude.
+
+**Status:** FIXED
+
+---

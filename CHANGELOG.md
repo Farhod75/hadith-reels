@@ -1,3 +1,15 @@
+## [2026-11-27d] - P447: pick-nasheed --exclude without .mp3
+
+### Fixed
+
+- **scripts/pick-nasheed.py:** `--exclude` takes names with or without `.mp3`, any case; unknown names warn.
+
+### Docs
+
+- fix_patterns.md P447, PATTERN_INDEX.md; test in scripts/lib/test_pick_nasheed.py.
+
+---
+
 ## [2026-11-27c] - P446: fetch-explanation takes the hadith number
 
 ### Changed
