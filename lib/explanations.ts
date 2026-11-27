@@ -57,6 +57,7 @@ export interface Explanation {
   collection: string
   hadith_number: string
   library_is_excerpt?: boolean   // the reel narrated part of a longer hadith
+  covers_part?: { note: string; share: number }   // P443: the commentary explains one part of the hadith
   occasion: Occasion | null
   related_events?: RelatedEvent[]
   commentaries: Commentary[]
@@ -92,6 +93,7 @@ export const EXPLAIN_UI: Record<SiteLang, {
   sourceOf: string; verbatim: string; references: string; original: string
   noLang: string; noExplanation: string; checkSource: string; translationFallback: string
   fullHadith: string; excerptNote: string; events: string; translationPending: string; seeAlso: string
+  partHeading: string; partNote: string
 }> = {
   en: {
     back: '← Hadith Reels',
@@ -112,6 +114,8 @@ export const EXPLAIN_UI: Record<SiteLang, {
     events: 'Related events',
     translationPending: 'A translation will be added after review.',
     seeAlso: 'See also',
+    partHeading: 'Part of the hadith explained',
+    partNote: 'The explanation below is for this part of the hadith, as the source gives it.',
   },
   ru: {
     back: '← Hadith Reels',
@@ -132,6 +136,8 @@ export const EXPLAIN_UI: Record<SiteLang, {
     events: 'События, связанные с хадисом',
     translationPending: 'Перевод будет добавлен после проверки.',
     seeAlso: 'См. также',
+    partHeading: 'Часть хадиса, к которой дано разъяснение',
+    partNote: 'Разъяснение ниже относится к этой части хадиса — так, как её приводит источник.',
   },
   uz: {
     back: '← Hadith Reels',
@@ -152,6 +158,8 @@ export const EXPLAIN_UI: Record<SiteLang, {
     events: 'Ҳадисга оид воқеалар',
     translationPending: 'Таржимаси текширувдан ўтгач қўшилади.',
     seeAlso: 'Яна қаранг',
+    partHeading: 'Шарҳ берилган қисм',
+    partNote: 'Қуйидаги шарҳ ҳадиснинг манбада келтирилган шу қисмига тегишли.',
   },
   tj: {
     back: '← Hadith Reels',
@@ -172,5 +180,7 @@ export const EXPLAIN_UI: Record<SiteLang, {
     events: 'Воқеаҳои марбут ба ҳадис',
     translationPending: 'Тарҷума пас аз санҷиш илова мешавад.',
     seeAlso: 'Инчунин нигаред',
+    partHeading: 'Қисме, ки шарҳ дода шудааст',
+    partNote: 'Шарҳи зерин ба ҳамин қисми ҳадис тааллуқ дорад, чунон ки манбаъ овардааст.',
   },
 }

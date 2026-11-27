@@ -152,6 +152,36 @@ def _docs():
                 yield f[:-5], json.load(fh)
 
 
+# P443: Bukhari #6019 and HadeethEnc 3042 (the guest part, plus a second narration from Muslim)
+LIB_6019 = ('مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ '
+            'وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ جَائِزَتَهُ. قَالَ: وَمَا جَائِزَتُهُ يَا رَسُولَ اللَّهِ؟ قَالَ: '
+            'يَوْمٌ وَلَيْلَةٌ، وَالضِّيَافَةُ ثَلاَثَةُ أَيَّامٍ، فَمَا كَانَ وَرَاءَ ذَلِكَ فَهْوَ صَدَقَةٌ عَلَيْهِ، '
+            'وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ')
+SRC_3042 = ('عن أبي شُريح خُويلد بن عمرو الخزاعي عن النبي صلى الله عليه وسلم أنه قال: «مَنْ كَان يُؤمِن '
+            'بِاللهِ وَاليَومِ الآخِرِ فَلْيُكْرِم ضَيفَه جَائِزَتَه»، قَالوا: وما جَائِزَتُهُ؟ يَا رسول الله، قال: '
+            '«يَومُهُ ولَيلَتُهُ، والضِّيَافَةُ ثَلاَثَةُ أَيَّامٍ، فَمَا كَانَ وَرَاءَ ذَلك فَهُوَ صَدَقَةٌ عَلَيه». '
+            'وفي رواية: «لا يَحِلُّ لِمُسْلِمٍ أَنْ يُقِيمَ عِنْدَ أَخِيهِ حَتَّى يؤْثِمَهُ» قالوا: يَا رَسول الله، '
+            'وَكَيفَ يُؤْثِمَهُ؟ قال: «يُقِيمُ عِندَهُ ولاَ شَيءَ لَهُ يُقرِيهِ بهِ».')
+
+
+def test_a_part_of_the_hadith_is_not_the_same_hadith():
+    assert not fe.same_hadith(LIB_6019, SRC_3042)
+
+
+def test_the_part_check_drops_the_opener_and_a_second_narration():
+    w = fe.source_part_words(SRC_3042)
+    assert w[0] == 'من' and 'يحل' not in w and 'خزاعي' not in w
+
+
+def test_a_source_explaining_one_part_passes_the_share():
+    assert fe.part_share(LIB_6019, SRC_3042) >= fe.PART_MIN_SHARE
+
+
+def test_a_different_hadith_fails_the_share():
+    assert fe.part_share(LIB_6019, SRC_AR) < fe.PART_MIN_SHARE
+    assert fe.part_share('', SRC_3042) == 0.0
+
+
 def test_every_explanation_is_verbatim_from_its_raw_source():
     seen = 0
     for slug, doc in _docs():

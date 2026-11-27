@@ -17161,3 +17161,29 @@ in progress does not block a push.
 **Status:** FIXED
 
 ---
+## PATTERN 443: a scholar's explanation of one part of the hadith had no way onto the page
+
+**Date:** 2026-11-26  **Repo:** hadith-reels  **Severity:** content gap
+
+**What happened.** Bukhari #6019 (Abu Shuraih) has three parts: honour the neighbour, honour the guest,
+speak good or keep silent. HadeethEnc explains only the guest part (3042, with a second narration
+from Muslim). `fetch-explanation.py` requires the whole library matn inside the source, so it stopped
+(correctly) and the reel's caption link would have opened a page with no explanation.
+
+**Fix.** `fetch-explanation.py --covers-part NOTE`: allowed only when the operator passes it and the
+source's own hadith words (opener and any "وفي رواية" narration left out) are, in order, at least 60%
+the library's (`part_share()`; 3042 vs #6019 = 89%, an unrelated hadith 8%). The file records
+`covers_part {note, share}`, `library_is_excerpt` is forced false, and the page shows the explained
+part as the source gives it under "Part of the hadith explained" (4 languages, `EXPLAIN_UI`).
+Nothing in the source text is changed - the verbatim test still re-reads the raw bytes.
+
+**Tests.** scripts/lib/test_fetch_explanation.py - part is not same_hadith; the opener and second
+narration are dropped; 3042 passes the share; a different hadith and an empty side fail.
+
+**Lesson:** a partial source is honest only when the page says which part it explains.
+
+**Tripwire:** a `covers_part` file whose page section `explained-part` does not render.
+
+**Status:** FIXED
+
+---

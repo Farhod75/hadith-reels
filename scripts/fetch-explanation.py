@@ -162,6 +162,46 @@ def library_is_excerpt(library_arabic, source_arabic):
     return len(letters(src)) - len(a) > EXCERPT_MARGIN
 
 
+# P443: HadeethEnc explains only one part of some hadiths (Bukhari #6019: the neighbour, the guest
+# and "speak good"; HadeethEnc 3042 is the guest part, with a second narration from Muslim). The
+# page may carry that explanation only when the operator says so (--covers-part) and the source's
+# own words are, in order, mostly the library's - and the page says which part it explains.
+PART_MIN_SHARE = 0.6
+# an opener may end "... صلى الله عليه وسلم أنه قال" (HadeethEnc 3042)
+_PART_OPENER_END = re.compile('(صلياللهعليهوسلم|رسولالله|النبي)(انه)?(قال|يقول|فقال)?$')
+
+
+def _word_keys(text):
+    def key(w):
+        w = letters(w)
+        return w[1:] if w.startswith('و') and len(w) > 2 else w
+    return [key(w) for w in (text or '').split() if letters(w)]
+
+
+def source_part_words(source_arabic):
+    """The source's hadith words: after a plain opener that hands over to the quote, and before
+    a second narration ("وفي رواية")."""
+    src = source_arabic or ''
+    q = re.search('[«"]', src)
+    if q and _PART_OPENER_END.search(letters(src[:q.start()])):
+        src = src[q.start():]
+    words = _word_keys(src)
+    for i in range(len(words) - 1):
+        if words[i] == 'في' and words[i + 1] == 'روايه':
+            return words[:i]
+    return words
+
+
+def part_share(library_arabic, source_arabic):
+    """Share (0..1) of the source's hadith words found, in order, in the library matn."""
+    import difflib
+    sw, lw = source_part_words(source_arabic), _word_keys(library_arabic)
+    if not sw or not lw:
+        return 0.0
+    blocks = difflib.SequenceMatcher(a=sw, b=lw, autojunk=False).get_matching_blocks()
+    return sum(b.size for b in blocks) / len(sw)
+
+
 def strong_grade(grade_ar):
     """HadeethEnc's Arabic grade for a related event: sahih or hasan only (HARD RULE 8)."""
     g = grade_ar or ''
@@ -325,6 +365,9 @@ def main(argv=None):
     ap.add_argument('--accept-variant', metavar='NOTE',
                     help='the library matn differs from the source by a wording variant of at most 2 '
                          'words; NOTE (why) is stored in the file and the page is built anyway')
+    ap.add_argument('--covers-part', metavar='NOTE',
+                    help='P443: the source explains one part of the library hadith; NOTE (which '
+                         'part, why) is stored and the page shows the part it explains')
     ap.add_argument('--commit', action='store_true', help='write the files (default: dry run)')
     sys.stdout.reconfigure(encoding='utf-8')     # P395: before argparse - --help prints Cyrillic
     a = ap.parse_args(argv)
@@ -354,7 +397,14 @@ def main(argv=None):
         if a.accept_variant and len(missing) + len(extra) <= 2:
             variant = {'note': a.accept_variant, 'missing_from_library': missing,
                        'extra_in_library': extra}
-    if not same_hadith(row.get('text_arabic'), src_ar) and not variant:
+    part = None
+    if not same_hadith(row.get('text_arabic'), src_ar) and not variant and a.covers_part:
+        share = part_share(row.get('text_arabic'), src_ar)
+        print('  part check: %.0f%% of the source\'s words are in the library matn (need %.0f%%)'
+              % (share * 100, PART_MIN_SHARE * 100))
+        if share >= PART_MIN_SHARE:
+            part = {'note': a.covers_part, 'share': round(share, 2)}
+    if not same_hadith(row.get('text_arabic'), src_ar) and not variant and not part:
         sys.exit('STOP: HadeethEnc %s is not the library matn of %s #%s - not written.\n'
                  '  library: %s\n  source : %s' % (a.hadeethenc, row['collection'],
                                                    row['hadith_number'], row.get('text_arabic'), src_ar))
@@ -376,6 +426,9 @@ def main(argv=None):
             sys.exit('STOP: %s - not written.' % e)
         print('  related %s: %s (%s)' % (rid, rp['ar'].get('title'), ', '.join(sorted(related[-1]['langs']))))
     doc = build_doc(row, payloads, hashes, a.hadeethenc, today, collections, related)
+    if part:
+        doc['covers_part'] = part             # P443: the page names the part it explains
+        doc['library_is_excerpt'] = False     # the source is the shorter text here
     if variant:
         doc['matn_variant'] = variant         # recorded, never silent (OPEN_ITEMS: Arabic reader)
     if doc['library_is_excerpt']:

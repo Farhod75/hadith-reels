@@ -157,6 +157,29 @@ export default async function HadithPage({ params, searchParams }: { params: Par
           )
         })()}
 
+        {/* P443: the commentary explains one part of this hadith - show that part as the source gives it */}
+        {explanation?.covers_part && (() => {
+          const c = explanation.commentaries[0]
+          const ar = c?.langs.ar?.hadeeth
+          const x = c?.langs[lang]
+          if (!ar && !x?.hadeeth) return null
+          return (
+            <section className="mb-6" data-testid="explained-part">
+              <h2 className="text-lg font-semibold text-gray-900 mb-1">{t.partHeading}</h2>
+              <p className="text-xs text-gray-500 mb-2">{t.partNote}</p>
+              {ar && (
+                <p dir="rtl" lang="ar" className="text-lg leading-loose text-right text-gray-900 p-4 bg-amber-50 rounded-xl border border-amber-100 mb-3 whitespace-pre-line">{ar}</p>
+              )}
+              {x?.hadeeth && <p className="text-gray-800 leading-relaxed whitespace-pre-line">{x.hadeeth}</p>}
+              {x && (
+                <a href={x.url} target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-700 hover:underline">
+                  {c.publisher}, №{c.source_id} ↗
+                </a>
+              )}
+            </section>
+          )
+        })()}
+
         {!explanation && (
           <p className="text-sm text-gray-600 bg-white border border-gray-200 rounded-xl p-4" data-testid="no-explanation">
             {t.noExplanation}

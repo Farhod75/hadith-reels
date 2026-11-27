@@ -1,3 +1,16 @@
+## [2026-11-26b] - P443: explanation pages for a source that explains one part
+
+### Added
+
+- **scripts/fetch-explanation.py:** `--covers-part NOTE` with a 60% in-order word check (`part_share()`); records `covers_part`.
+- **Hadith page:** "Part of the hadith explained" section (`explained-part`) in EN/RU/UZ/TJ.
+
+### Docs
+
+- fix_patterns.md P443, PATTERN_INDEX.md; tests in scripts/lib/test_fetch_explanation.py.
+
+---
+
 ## [2026-11-26a] - P442: audit-docs flags uncommitted verify-runs reports
 
 ### Fixed
